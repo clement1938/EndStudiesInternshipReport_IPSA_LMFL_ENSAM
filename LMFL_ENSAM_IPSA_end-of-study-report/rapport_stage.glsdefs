@@ -1,0 +1,28 @@
+\glsdefs@newdocentry{rse}%
+{%
+name={\acronymfont {\glsentryshort {rse}}},%
+sort={RSE},%
+type={main},%
+first={RSE},%
+firstplural={RSEs},%
+text={RSE},%
+plural={RSEs},%
+description={Responsabilité Sociétale des Entreprises},%
+descriptionplural={Responsabilité Sociétale des Entreprises},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Responsabilité Sociétale des Entreprises},%
+longplural={Responsabilité Sociétale des Entreprisess},%
+short={RSE},%
+shortplural={RSEs},%
+counter={page},%
+parent={},%
+%
+}%
+

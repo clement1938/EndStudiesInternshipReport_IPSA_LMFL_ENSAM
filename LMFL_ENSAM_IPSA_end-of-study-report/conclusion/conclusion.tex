@@ -1,0 +1,38 @@
+\chapter*{Conclusion}
+\addcontentsline{toc}{chapter}{Conclusion}
+\vspace{-0.5cm}
+%L'objectif de ce stage était d'implémenter une méthode d'\textbf{interpolation linéaire} dans \textbf{Antares} puis de comparer sa précision avec la \textbf{méthode IDW} dans le cas de propagation acoustique avec l'analogie FWH, tout en optimisant la vitesse d'exécution du code.
+%Premièrement, une recherche documentaire sur les méthodes d'interpolation implémentables dans notre cas a été menée.
+%Ensuite, la méthode linéaire a été implémentée en utilisant une méthode particulière pour les cellules non triangulaires ou rectangulaires.
+%L'efficacité a été augmentée dans les cas multi-instants partagés en évitant le recalcule des coefficients d'interpolation à chaque itération. Ces mêmes coefficients peuvent être récupérés par l'utilisateur qui voudrait appeler deux fois le traitement pour une base ayant une même structure.
+%La méthode linéaire a été testée sur des cas simples et industriels. Elle fonctionne correctement sur tous les types de cellules, sauf dans certains cas très complexes comme des prismes ayant des faces opposées de tailles différentes et/ou non parallèles.
+%Dans le cas de l'aéroacoustique, la méthode linéaire est plus précise que IDW dans tous les cas testés. Cependant, des résultats expérimentaux ont montré que des coefficients (\(N\), \(p\)) autour de (10, 10) donnaient de très bons résultats. Dans ce cas, IDW peut s'avérer plus précis que la méthode linéaire.
+\subsection*{Bilan technique et humain}
+
+J’ai été enthousiasmé par ce stage au CERFACS, à plusieurs titres. Il m’a non seulement permis de développer et renforcer de nombreuses connaissances dans le domaine informatique mais également sur le plan humain. Il m’a donné une belle occasion de découvrir la vie d’un laboratoire de recherche.
+
+L'objectif de ce stage était d'implémenter une méthode d'interpolation linéaire dans Antares puis de comparer sa précision avec la méthode IDW dans le cas de propagation acoustique avec l'analogie FWH, tout en optimisant la vitesse d'exécution du code.
+Après avoir exploré la structure d'Antares, une recherche documentaire a été menée pour savoir quelle méthode, implémentable dans la librairie, pouvait être candidate pour compléter la méthode IDW et linéaire. Quelques méthodes polynomiales et géostatistiques ont pu être mises en évidence. Une présentation un plus détaillée de la méthode par voisin le plus proche, IDW et linéaire a aussi été réalisée.
+L'un des principaux résultats de ce stage a été l'implémentation globalement réussie de la méthode d'interpolation linéaire, qui s'est révélée  généralement plus précise que la méthode de Pondération Inverse à la Distance (IDW) précédemment codée.
+Coder l’interpolation linéaire jusqu’en 3D n’a été ni très difficile, ni chronophage. Cependant, l’intégrer au code déjà existant et faire les tests fut plus délicat. Le soutien de mon maître de stage a été primordial pour me montrer comment fonctionnent les outils au CERFACS et m'aider à sortir d'impasses.
+Cette nouvelle méthode a été testée sur des cas académiques mais aussi sur des cas industriels tels que sur une vue en coupe à la position (0, 0, 0.01), selon l'axe z de la chambre de combustion preccinsta.
+L'étude sur les coefficients \(N\) et \(p\) de la méthode IDW a montré que pour des paramètres (\(N\), \(p\)) autour de (10, 10) nous pouvons obtenir de meilleurs résultats qu'avec la méthode linéaire, dans le cas d'aéroacoustique étudié.
+Ce travail a aussi amélioré les performances du code (cinq fois plus rapide pour la méthode IDW dans un cas test d'aéroacoustique).
+Le code ajouté pourrait aussi faciliter l'intégration de méthodes d'ordre supérieur grâce à certaines fonctions python réutilisables.
+J'ai ressenti tout au long de mon stage l'importance de réaliser un travail ouvrant des perspectives nouvelles pour un chercheur.
+Enfin, ce stage n'a pas été qu'une expérience professionnelle enrichissante. Il a conforté mon intérêt pour les méthodes numériques appliquées et la recherche en calcul scientifique. Je suis particulièrement reconnaissant pour l'accompagnement dont j'ai bénéficié tout au long de cette expérience et pour les opportunités de développement personnel et professionnel qu'il m'a offert.
+
+\subsection*{Perspectives}
+Pour continuer à améliorer le traitement d'interpolation d'Antares, on pourrait implémenter l'une des méthodes d'ordre supérieur citées dans la section \ref{s223}.
+On pourrait également compléter les tests de la méthode linéaire sur la chaîne aéroacoustique, en observant la polaire de l'amplitude en fonction de l'observateur dans le cas d'un Mac non nul.
+Afin d'améliorer la rapidité, le code pourrait être passé en parallèle pour pouvoir s’exécuter sur plusieurs processeurs à la fois.
+Une petite amélioration qui permettrait de rendre le code compatible avec plus de bases serait d'inclure les bases "multizones" à l'interpolation linéaire.
+% Faire la ref
+
+
+\subsection*{Réflexion personnelle}
+
+Le CERFACS est un laboratoire privé à la pointe des simulations numériques. Il s'est d'abord spécialisé dans l'aérodynamique et s’intéresse maintenant de plus en plus à la combustion. Il adapte ses domaines de recherche aux domaines importants de l'industrie.
+Durant ce stage, au-delà des aspects techniques, j'ai eu un bel aperçu du métier de chercheur tant au travers de mes missions que dans mes rencontres. Il s'agit de rechercher et de s'appuyer sur le travail déjà réalisé autour de notre problématique.
+Ensuite, il faut explorer des pistes qui peuvent s'avérer infructueuses après les avoir longuement explorées.
+Enfin, un travail de rédaction est nécessaire pour expliquer clairement notre travail aux scientifiques.

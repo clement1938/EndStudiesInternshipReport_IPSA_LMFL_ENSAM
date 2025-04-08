@@ -1,0 +1,383 @@
+\documentclass[11pt,a4paper]{report}
+
+\hbadness=10000
+\hfuzz=100pt
+
+\usepackage[utf8]{inputenc}
+\usepackage[hidelinks]{hyperref} 
+\usepackage[T1]{fontenc}
+\usepackage[top=2cm,bottom=2cm,left=2.5cm,right=2.5cm]{geometry}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{inconsolata}
+\usepackage{array}
+\usepackage{color}
+\usepackage{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage[export]{adjustbox}
+\usepackage[french]{babel}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{transparent}
+\usepackage{eso-pic}
+\usepackage{chngpage}
+\usepackage{shorttoc}
+\usepackage{comment}
+\usepackage{makeidx}
+\usepackage[backend=biber]{biblatex}
+\addbibresource{bibliographie/biblio.bib}
+\usepackage{csquotes}
+\usepackage{multirow}
+\usepackage{footnotehyper}
+\usepackage{xcolor}
+\usepackage{acro}
+\usepackage{pgfplots}
+\usepackage{ragged2e}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage{microtype}
+
+\usepackage{chngcntr}
+\usepackage{tocloft}
+
+\usepackage{nicefrac}
+
+
+%\counterwithin{table}{section}
+%\renewcommand{\thetable}{\thesection.\arabic{table}} % Format table number as section.table
+%\renewcommand{\thefigure}{\thesection.\arabic{figure}} % Format figure number as section.figure
+% Command to refer to an appendix item as "Annexe n"
+\newcommand{\annexref}[1]{annexe~\ref{#1}}
+
+
+\usetikzlibrary{patterns}
+\pgfplotsset{compat=1.17}
+
+\setlength{\parskip}{0.5\baselineskip}
+
+\DeclareAcronym{CNES}{
+  short = CNES,
+  long = Centre National d'Études Spatiales,
+  short-indefinite = un,
+}
+
+\DeclareAcronym{EDF}{
+  short = EDF,
+  long = Électricité De France,
+  short-indefinite = une,
+}
+
+\DeclareAcronym{ONERA}{
+  short = ONERA,
+  long = Office National d'Études et de Recherche Aérospatiales ,
+  short-indefinite = un,
+}
+
+\DeclareAcronym{SAS}{
+  short = SAS,
+  long =   Société par Actions Simplifiées,
+  short-indefinite = une,
+}
+
+\DeclareAcronym{SI}{
+  short = SI,
+  long = Système International d'unités,
+  short-indefinite = un,
+}
+
+\DeclareAcronym{KDTree}{
+  short = KDTree,
+  long = {K-Dimensional Tree, pour arbre à k-dimensions},
+  short-indefinite = un,
+}
+
+\DeclareAcronym{Mo}{
+  short = Mo,
+  long = mégaoctets,
+  short-indefinite = un,
+}
+
+\DeclareAcronym{RBF}{
+  short = RBF,
+  long = {Radial Basis Function, pour fonction de base radiale},
+  short-indefinite = une,
+}
+
+\DeclareAcronym{MLS}{
+  short = MLS,
+  long = {Moving Least Squares, pour moindres carrés mobiles},
+  short-indefinite = une,
+}
+
+\DeclareAcronym{MISCOG}{
+  short = MISCOG,
+  long = {Multi-Instance Solver Coulpled trough Overlapping Grids, pour Solveur multi-instances couplées à travers des grilles superposées}, % ou couplé ?????
+  short-indefinite = une,
+}
+
+
+\DeclareAcronym{DSM}{
+  short = DSM,
+  long = {Digital Surface Model, pour modèle numérique de surface},
+  short-indefinite = une,
+}
+
+\DeclareAcronym{1D}{
+  short = 1D,
+  long = une Dimension,
+  short-indefinite = Une,
+}
+
+\DeclareAcronym{GIP}{
+  short = GIP,
+  long = Groupement d’Intérêt Public,
+  short-indefinite = un,
+}
+
+\DeclareAcronym{CFD}{
+  short = CFD,
+  long = {Computation Fluid Dynamics, pour mécanique des fuides numérique},
+  short-indefinite = un,
+}
+
+
+\DeclareAcronym{RSE}{
+  short = RSE,
+  long = Responsabilité Sociétale des Entreprises,
+  short-indefinite = une,
+}
+
+\DeclareAcronym{CERFACS}{
+  short = CERFACS,
+  long = Centre Européen de Recherche et de Formation Avancée en Calcul Scientifique,
+  short-indefinite = un,
+}
+
+\DeclareAcronym{HPC}{
+  short = HPC,
+  long = {High Performance Computing, pour calcul haute performance},
+  short-indefinite = un,
+}
+
+\DeclareAcronym{IDW}{
+  short = IDW,
+  long = {Inverse Distance Weighting, pour pondération inverse à la distance},
+  short-indefinite = une,
+}
+
+\DeclareAcronym{FWH}{
+  short = FWH,
+  long = Ffowcs Williams-Hawkings,
+  short-indefinite = une,
+}
+
+\DeclareAcronym{NURBS}{
+  short = NURBS,
+  long = {Non Uniform Rational Basis Splines, pour B-splines rationnelles non uniformes},
+  short-indefinite = une,
+}
+
+
+\DeclareAcronym{CAO}{
+  short = CAO,
+  long = Conception Assistée par Ordinateur,
+  short-indefinite = une,
+}
+
+\DeclareAcronym{QVT}{
+  short = QVT,
+  long = Qualité de Vie au Travail,
+  short-indefinite = la,
+}
+
+\DeclareAcronym{CSE}{
+  short = CSE,
+  long = Comité Social et Économique,
+  short-indefinite = le,
+}
+
+\DeclareAcronym{CSSCT}{
+  short = CSSCT,
+  long = {Commission Santé, Sécurité et Conditions de Travail},
+  short-indefinite = la,
+}
+
+\DeclareAcronym{DUERP}{
+  short = DUERP,
+  long = Document Unique d’Évaluation des Risques Professionnels,
+  short-indefinite = le,
+}
+
+\DeclareAcronym{OTP}{
+  short = OTP,
+  long = One-Time-Password,
+  short-indefinite = le,
+}
+
+\DeclareAcronym{DSP}{
+  short = DSP,
+  long = Densité spectrale de puissance,
+  short-indefinite = le,
+}
+
+\DeclareAcronym{ALGO-COOP}{
+  short = ALGO-COOP,
+  long = {parallels ALGOrithmes \& sCientifics sOftware Operational Performances, pour algorithmes parallèles et logiciels scientifiques performances opérationnelles},
+  short-indefinite = l',
+}
+
+\DeclareAcronym{CSG}{
+  short = CSG,
+  long = {Computer Service General, pour équipe informatique et support utilisateur},
+  short-indefinite = le,
+}
+
+\DeclareAcronym{ES}{
+  short = ES,
+  long = {Energy and Safety, pour énergie et sécurité},
+  short-indefinite = l',
+}
+
+\DeclareAcronym{AAM}{
+  short = AAM,
+  long = {Advanced Aerodynamics and Multiphysics, pour aérodynamique avancée et multiphysique},
+  short-indefinite = l',
+}
+
+\DeclareAcronym{GLOBC}{
+  short = GLOBC,
+  long = {modelling climate and GLOBal Change, pour modélisation du climat et de son changement global},
+  short-indefinite = la,
+}
+
+\DeclareAcronym{RGPD}{
+  short = RGPD,
+  long = Règlement Général sur la Protection des Données,
+  short-indefinite = le,
+}
+
+
+\lstset{ 
+    language=Python,                     % Langage
+    basicstyle=\ttfamily\footnotesize,   % Style de base
+    keywordstyle=\color{blue},           % Style des mots-clés
+    commentstyle=\color{green},          % Style des commentaires
+    stringstyle=\color{red},             % Style des chaînes de caractères
+    numbers=left,                        % Numérotation des lignes
+    numberstyle=\tiny\color{gray},       % Style des numéros de ligne
+    stepnumber=1,                        % Numérotation chaque ligne
+    numbersep=5pt,                       % Distance entre les numéros de ligne et le code
+    showspaces=false,                    % Ne pas afficher les espaces
+    showstringspaces=false,              % Ne pas afficher les espaces dans les chaînes de caractères
+    tabsize=4,                           % Taille des tabulations
+    captionpos=b,                        % Position des légendes (en bas)
+    breaklines=true,                     % Retour à la ligne automatique
+    breakatwhitespace=false,             % Retour à la ligne uniquement dans les espaces
+    frame=single,                        % Cadre autour du code
+    framerule=0.5pt,
+    rulecolor=\color{black},
+}
+\renewcommand{\lstlistingname}{Code}
+
+\newcommand{\dps}{\displaystyle}
+
+\pagestyle{fancy}
+
+\setlength{\headheight}{25.22153pt}
+\setlength{\footskip}{37.6175pt}
+
+\definecolor{backcolour}{rgb}{0.96,0.96,0.95}
+\definecolor{lightbrown}{rgb}{0.71, 0.40, 0.11}
+\definecolor{myblue}{rgb}{0.3,0.4,0.9}
+\definecolor{green}{rgb}{0.0, 0.5, 0.0}
+\definecolor{aurometalsaurus}{rgb}{0.43, 0.5, 0.5}
+\definecolor{babyblue}{rgb}{0.54, 0.81, 0.94}
+\definecolor{bronze}{rgb}{0.8, 0.5, 0.2}
+\definecolor{brilliantrose}{rgb}{1.0, 0.33, 0.64}
+
+\fancypagestyle{plain}{
+  \fancyhead[L]{Livrable Stage M1 \\ Clément THIBAULT}
+  \fancyhead[R]{\includegraphics*[width=0.2\textwidth]{images/newCerfacs+Fond.png}}
+  \fancyfoot[C]{page \thepage}
+  \fancyfoot[R]{\includegraphics*[width=0.1\textwidth]{images/ipsagarde.png}}
+}
+
+\fancyhead[L]{Livrable Stage M1 \\ Clément THIBAULT}
+\fancyhead[R]{\includegraphics*[width=0.2\textwidth]{images/newCerfacs+Fond.png}}
+\fancyfoot[C]{page \thepage}
+\renewcommand{\sectionmark}[1]{\markboth{}{}}
+\fancyfoot[R]{\includegraphics*[width=0.1\textwidth]{images/ipsagarde.png}}
+
+
+  \newcommand\BackgroundPic{
+  \put(0 cm, 1.0 cm){
+  \parbox[b][0.6\paperheight]{\paperwidth}{
+  \centering
+  {\includegraphics[width=\paperwidth,height=0.38\paperheight, %\transparent{0.4}
+  keepaspectratio]{images/Interpolation-quadratique-3D-thetraedre.png}}
+  \vspace{2.0cm} % Adjust the spacing between the image and the title
+  \makebox[\paperwidth]{\textbf{Interpolation quadratique dans un tétraèdre}} % Center the title below the image
+  }}}
+
+\captionsetup[table]{name=Tableau}
+
+
+
+\begin{document}
+
+\AddToShipoutPicture*{\BackgroundPic}
+
+\input{page_de_couverture/pagedegarde.tex}
+
+\newpage
+\pagenumbering{arabic}
+\pagestyle{fancy}
+\setcounter{page}{2}
+
+\fancypagestyle{custompage}{
+  \fancyhf{} % Clear header/footer
+  \fancyhead[L]{Livrable Stage M1 \\ Clément THIBAULT}
+  \fancyhead[R]{\includegraphics*[width=0.2\textwidth]{images/newCerfacs+Fond.png}}
+  \fancyfoot[C]{page 2}
+  \fancyfoot[R]{\includegraphics*[width=0.1\textwidth]{images/ipsagarde.png}}
+}
+
+\thispagestyle{custompage}
+
+\input{remerciement/remerciement}
+
+\newpage
+\tableofcontents
+
+
+\newpage
+\input{bilan_technique/bilan_technique.tex}
+\newpage
+
+\input{introduction/intro.tex}
+\newpage 
+
+\input{chap1_pres_entreprise/chap1.tex}
+\newpage
+
+\input{chap2_pres_stage/chap2.tex}
+\newpage
+
+\input{conclusion/conclusion.tex}
+\newpage
+
+\input{annexes/annexes.tex}
+\newpage
+
+\nocite{*}
+\printbibliography
+\addcontentsline{toc}{chapter}{Bibliographie}
+\newpage
+
+\printacronyms[name=Liste des acronymes, heading=chapter*] % Glossaire après si besoin
+
+\input{quatre_couv/quatre_couv.tex}
+
+
+\end{document}

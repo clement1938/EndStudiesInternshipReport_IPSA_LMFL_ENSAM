@@ -1,0 +1,49 @@
+\cleardoublepage
+\paragraph{Résumé}
+\vspace{0,5cm}
+L'objectif de ce stage était d'implémenter une méthode d'\textbf{interpolation linéaire} dans \textbf{Antares} puis de comparer sa précision avec la \textbf{méthode IDW} dans le cas de propagation acoustique avec l'analogie FWH, tout en optimisant la vitesse d'exécution du code.
+Premièrement, une recherche documentaire sur les méthodes d'interpolation implémentables dans notre cas a été menée.
+Ensuite, la méthode linéaire a été implémentée en utilisant une méthode particulière pour les cellules non triangulaires ou rectangulaires.
+L'efficacité a été augmentée dans les cas multi-instants partagés en évitant le recalcule des coefficients d'interpolation à chaque itération. Ces mêmes coefficients peuvent être récupérés par l'utilisateur qui voudrait appeler deux fois le traitement pour une base ayant une même structure.
+Le code est jusqu'à \(n\) fois plus rapide pour une base ayant \(n\) instants partagés.
+La méthode linéaire a été testée sur des cas simples et industriels. Elle fonctionne correctement sur tous les types de cellules, sauf dans certains cas très complexes comme des prismes ayant des faces opposées de tailles différentes et/ou non parallèles.
+Dans le cas de l'aéroacoustique, la méthode linéaire est plus précise que IDW dans tous les cas testés. Cependant, des résultats expérimentaux ont montré que des coefficients (\(N\), \(p\)) autour de (10, 10) donnaient de très bons résultats. Dans ce cas, IDW peut s'avérer plus précis que la méthode linéaire.
+
+\paragraph{Abstract}
+\vspace{0,5cm}
+The objective of this internship was to implement a \textbf{linear interpolation} method in \textbf{Antares} and then to compare its accuracy with the \textbf{IDW method} in the case of acoustic propagation using the FWH analogy, while optimizing the code execution speed.
+First, a literature review on interpolation methods applicable to our case was conducted.
+Secondly, the linear method was implemented using a special method for non-triangular or rectangular cells.
+Efficiency was increased in shared multi-instant cases by avoiding the recalculation of interpolation coefficients at each iteration.
+These same coefficients can be reused by a user who wants to run the process twice on a base with the same structure.
+The code is almost \(n\) times faster for a database with \(n\) shared instants.
+The linear method has been tested on simple and industrial cases.
+It works correctly on all cell types, except in some very complex cases, such as prisms with non-parallel and/or differently sized opposing faces.
+In the case of aeroacoustics, the linear method is more accurate than IDW in all tested scenarios. However, experimental results have shown that coefficients (\(N\), \(p\)) around (10, 10) produce very good results. In such cases, IDW may prove to be more accurate than the linear method.
+
+
+
+
+\begin{comment}
+    Ce rapport de stage présente le travail effectué au \textbf{CERFACS}, un institut de recherche axé sur le calcul haute performance (HPC).
+
+    Destiné à l'\textbf{IPSA}, ainsi qu'aux utilisateurs et développeurs du code d'\textbf{interpolation} de la \textbf{librairie Antares} utilisée pour le post-traitement de simulations numériques, ce document propose une vue d'ensemble des activités menées.
+
+    Il débute par une présentation générale du CERFACS, avant de détailler le stage.
+    Ce dernier inclut une introduction à la librairie Antares et à son utilisation pour l'interpolation, suivie d'un état de l'art des différentes méthodes d'interpolation susceptibles d'être intégrées dans la librairie.
+    Une description de l'implémentation de la méthode linéaire est ensuite fournie, avec un focus sur les optimisations réalisées.
+    Enfin, les résultats de la comparaison entre la méthode de \textbf{Pondération Inverse à la Distance} (IDW) précédemment codée et la \textbf{méthode linéaire} implémentée sont exposés.
+
+    \paragraph{Abstract}
+
+    \vspace{0,5cm}
+
+    This internship report presents the work carried out at \textbf{CERFACS}, a research institute focused on High-Performance Computing (HPC).
+
+    Intended for the \textbf{IPSA}, as well as the users and developers of the \textbf{interpolation} code in the \textbf{Antares library} used for post-processing numerical simulations, this document provides an overview of the activities undertaken.
+
+    It begins with a general presentation of CERFACS, followed by a detailed account of the internship.
+    The latter includes an introduction to the Antares library and its use for interpolation, followed by a state-of-the-art review of various interpolation methods that could potentially be integrated into the library.
+    A description of the implementation of the linear method is then provided, with a focus on the optimizations performed.
+    Finally, the results of the comparison between the previously coded \textbf{Inverse Distance Weighting} (IDW) method and the implemented \textbf{linear method} are presented.
+\end{comment}
