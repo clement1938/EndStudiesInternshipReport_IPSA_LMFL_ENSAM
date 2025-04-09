@@ -17,8 +17,7 @@ jobs:
         latexmk_use_lualatex: true
 
     - name: Archive the PDF
-      uses: actions/upload-artifact@3d14eb2c6a42a7423f76825bffb7584d28a4e516
-
+      uses: actions/upload-artifact@v3
       with:
         name: rapport_stage
         path: rapport_stage.pdf
