@@ -2,52 +2,11 @@
 \babel@toc {english}{}\relax 
 \contentsline {chapter}{Summary sheet}{4}{section*.2}%
 \contentsline {chapter}{Introduction}{5}{section*.4}%
-\contentsline {chapter}{\numberline {1}Le laboratoire de recherche CERFACS}{6}{chapter.1}%
+\contentsline {chapter}{\numberline {1}The LMFL Laboratory}{6}{chapter.1}%
 \contentsline {paragraph}{Démarche RSE}{8}{section*.5}%
 \contentsline {paragraph}{Écoresponsabilité}{8}{section*.6}%
-\contentsline {paragraph}{Responsabilité sociale / Qualité de vie au travail}{9}{section*.8}%
-\contentsline {chapter}{\numberline {2}Implémentation de la méthode d'interpolation linéaire dans Antares}{11}{chapter.2}%
-\contentsline {section}{\numberline {2.1}La librairie Antares}{11}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Les différentes méthodes d'interpolation}{13}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}La méthode par voisin le plus proche}{14}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}La méthode pondération inverse à la distance (IDW)}{15}{subsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.2.3}D'autres méthodes}{17}{subsection.2.2.3}%
-\contentsline {subparagraph}{a. Interpolation de Lagrange \blx@tocontentsinit {0}\cite {Barycentric_Lagrange1, Barycentric_Lagrange2}}{17}{section*.17}%
-\contentsline {subparagraph}{b. Interpolation d'Hermite \blx@tocontentsinit {0}\cite {bajaj}}{17}{section*.18}%
-\contentsline {subparagraph}{c. Interpolation quadratique \blx@tocontentsinit {0}\cite {alexis}}{18}{section*.19}%
-\contentsline {subparagraph}{d. Interpolation cubique \blx@tocontentsinit {0}\cite {tanaka}}{18}{section*.20}%
-\contentsline {subparagraph}{e. Splines cubiques \blx@tocontentsinit {0}\cite {gordont1971}}{18}{section*.21}%
-\contentsline {subparagraph}{f. NURBS \blx@tocontentsinit {0}\cite {surface, piegl1995nurbs}}{19}{section*.22}%
-\contentsline {subparagraph}{g. Kriging \blx@tocontentsinit {0}\cite {palmer2009, kringing}}{19}{section*.23}%
-\contentsline {subparagraph}{h.Cokriging \blx@tocontentsinit {0}\cite {kringing}}{20}{section*.25}%
-\contentsline {subparagraph}{i. RBF \blx@tocontentsinit {0}\cite {opencfs}}{20}{section*.27}%
-\contentsline {subparagraph}{j. Les moindres carrés}{21}{section*.28}%
-\contentsline {subparagraph}{k. MISCOG}{21}{section*.29}%
-\contentsline {subsection}{\numberline {2.2.4}La méthode linéaire}{22}{subsection.2.2.4}%
-\contentsline {paragraph}{1D}{22}{section*.30}%
-\contentsline {subparagraph}{Linéaire}{22}{section*.31}%
-\contentsline {paragraph}{2D}{22}{section*.32}%
-\contentsline {subparagraph}{Triangle : Barycentrique}{22}{section*.33}%
-\contentsline {subparagraph}{Rectangle : Bilinéaire}{23}{section*.35}%
-\contentsline {subparagraph}{Quadrilatère}{24}{section*.37}%
-\contentsline {paragraph}{3D}{24}{section*.39}%
-\contentsline {subparagraph}{Pavé droit : Trilinéaire}{24}{section*.40}%
-\contentsline {subparagraph}{Tétraèdre : Barycentrique étendu}{25}{section*.42}%
-\contentsline {subparagraph}{Pyramide, hexaèdre, prisme et autres formes}{25}{section*.43}%
-\contentsline {section}{\numberline {2.3}Implémentation de la méthode linéaire}{26}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}La structure générale du code "TreatmentInterpolation"}{26}{subsection.2.3.1}%
-\contentsline {paragraph}{L'interpolation IDW}{26}{section*.45}%
-\contentsline {paragraph}{L'interpolation linéaire}{27}{section*.46}%
-\contentsline {subsection}{\numberline {2.3.2}Le pseudo-algorithme}{28}{subsection.2.3.2}%
-\contentsline {subsection}{\numberline {2.3.3}Optimisation du temps de calcul}{29}{subsection.2.3.3}%
-\contentsline {section}{\numberline {2.4}Tests}{31}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}Tests unitaires sur la méthode linéaire}{31}{subsection.2.4.1}%
-\contentsline {subsection}{\numberline {2.4.2}Tests sur des cas industriels}{33}{subsection.2.4.2}%
-\contentsline {subsection}{\numberline {2.4.3}Tests sur des cas d'aéroacoustique}{34}{subsection.2.4.3}%
-\contentsline {subsection}{\numberline {2.4.4}Tests sur les paramètres de la méthode IDW}{36}{subsection.2.4.4}%
-\contentsline {chapter}{Conclusion}{37}{chapter*.58}%
-\contentsline {chapter}{Annexes}{39}{section*.62}%
-\contentsline {paragraph}{Équations FWH}{43}{section*.68}%
-\contentsline {chapter}{Bibliographie}{45}{chapter*.69}%
-\contentsline {paragraph}{Résumé}{47}{section*.71}%
-\contentsline {paragraph}{Abstract}{47}{section*.72}%
+\contentsline {paragraph}{Responsabilité sociale / Qualité de vie au travail}{8}{section*.7}%
+\contentsline {chapter}{Conclusion}{11}{chapter*.8}%
+\contentsline {chapter}{Bibliographie}{14}{chapter*.12}%
+\contentsline {paragraph}{Résumé}{16}{section*.14}%
+\contentsline {paragraph}{Abstract}{16}{section*.15}%

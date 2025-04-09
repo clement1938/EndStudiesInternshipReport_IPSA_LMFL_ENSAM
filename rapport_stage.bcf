@@ -2361,49 +2361,7 @@
     <bcf:datasource type="file" datatype="bibtex" glob="false">bibliographie/biblio.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1" intorder="1">antares</bcf:citekey>
-    <bcf:citekey order="2" intorder="1">cassiopee2015</bcf:citekey>
-    <bcf:citekey order="3" intorder="1">gordont1971_2</bcf:citekey>
-    <bcf:citekey order="4" intorder="1">palmer2009</bcf:citekey>
-    <bcf:citekey order="4" intorder="2">idw-mapscaping</bcf:citekey>
-    <bcf:citekey order="5" intorder="1">idw-update</bcf:citekey>
-    <bcf:citekey order="6" intorder="1">Barycentric_Lagrange1</bcf:citekey>
-    <bcf:citekey order="6" intorder="2">Barycentric_Lagrange2</bcf:citekey>
-    <bcf:citekey order="7" intorder="1">bajaj</bcf:citekey>
-    <bcf:citekey order="8" intorder="1">alexis</bcf:citekey>
-    <bcf:citekey order="9" intorder="1">alexis</bcf:citekey>
-    <bcf:citekey order="10" intorder="1">tanaka</bcf:citekey>
-    <bcf:citekey order="11" intorder="1">gordont1971</bcf:citekey>
-    <bcf:citekey order="12" intorder="1">surface</bcf:citekey>
-    <bcf:citekey order="12" intorder="2">piegl1995nurbs</bcf:citekey>
-    <bcf:citekey order="13" intorder="1">palmer2009</bcf:citekey>
-    <bcf:citekey order="13" intorder="2">kringing</bcf:citekey>
-    <bcf:citekey order="14" intorder="1">kringing</bcf:citekey>
-    <bcf:citekey order="15" intorder="1">palmer2009</bcf:citekey>
-    <bcf:citekey order="16" intorder="1">palmer2009</bcf:citekey>
-    <bcf:citekey order="17" intorder="1">opencfs</bcf:citekey>
-    <bcf:citekey order="18" intorder="1">opensource</bcf:citekey>
-    <bcf:citekey order="19" intorder="1">opensource_2</bcf:citekey>
-    <bcf:citekey order="20" intorder="1">Rosenfeld</bcf:citekey>
-    <bcf:citekey order="21" intorder="1">opensource_2</bcf:citekey>
-    <bcf:citekey order="22" intorder="1">muller2020</bcf:citekey>
-    <bcf:citekey order="23" intorder="1">levin</bcf:citekey>
-    <bcf:citekey order="23" intorder="2">MLS</bcf:citekey>
-    <bcf:citekey order="24" intorder="1">laborderie2018</bcf:citekey>
-    <bcf:citekey order="25" intorder="1">alexis</bcf:citekey>
-    <bcf:citekey order="26" intorder="1">palmer2009</bcf:citekey>
-    <bcf:citekey order="27" intorder="1">fluidssengineer</bcf:citekey>
-    <bcf:citekey order="27" intorder="2">palmer2009</bcf:citekey>
-    <bcf:citekey order="28" intorder="1">perronnet1998</bcf:citekey>
-    <bcf:citekey order="29" intorder="1">camarero2024</bcf:citekey>
-    <bcf:citekey order="30" intorder="1">idw-arcgis</bcf:citekey>
-    <bcf:citekey order="31" intorder="1">fluidssengineer</bcf:citekey>
-    <bcf:citekey order="31" intorder="2">palmer2009</bcf:citekey>
-    <bcf:citekey order="32" intorder="1">schoder2019</bcf:citekey>
-    <bcf:citekey order="33" intorder="1">cunha2011</bcf:citekey>
-    <bcf:citekey order="33" intorder="2">cunha2016</bcf:citekey>
-    <bcf:citekey order="34" intorder="1">frequence</bcf:citekey>
-    <bcf:citekey order="35" intorder="1" nocite="1">*</bcf:citekey>
+    <bcf:citekey order="1" intorder="1" nocite="1">*</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">

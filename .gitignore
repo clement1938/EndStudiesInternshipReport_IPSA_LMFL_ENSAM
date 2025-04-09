@@ -1,0 +1,13 @@
+# Fichiers de construction
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.synctex(busy)
+*.bcf
+*.run.xml
+
+# Fichiers temporaires
+*~

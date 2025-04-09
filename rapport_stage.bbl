@@ -37,6 +37,7 @@
       \field{labeltitlesource}{title}
       \field{title}{{Numerical Methods for Large Eddy Simulation in Turbomachinery (en cours)}}
       \field{type}{phdthesis}
+      \true{nocite}
     \endentry
     \entry{antares}{misc}{}
       \name{author}{1}{}{%
@@ -57,6 +58,7 @@
       \field{month}{04}
       \field{title}{{Antares Documentation Release 2.2.0}}
       \field{year}{2024}
+      \true{nocite}
       \verb{urlraw}
       \verb https://cerfacs.fr/antares/
       \endverb
@@ -85,6 +87,7 @@
       \field{journaltitle}{ICCG}
       \field{title}{Multi-dimensional Hermite Interpolation and Approximation for Modelling and Visualization}
       \field{year}{2001}
+      \true{nocite}
     \endentry
     \entry{cassiopee2015}{article}{}
       \name{author}{6}{}{%
@@ -132,6 +135,7 @@
       \field{journaltitle}{Aerospace Science and Technology}
       \field{title}{Cassiopee: a CFD pre-and post-processing tool}
       \field{year}{2015}
+      \true{nocite}
       \verb{doi}
       \verb 10.1016/j.ast.2015.05.023
       \endverb
@@ -162,6 +166,7 @@
       \field{journaltitle}{SIAM Review}
       \field{title}{Barycentric Lagrange Interpolation}
       \field{year}{2004}
+      \true{nocite}
       \verb{doi}
       \verb 10.1137/S0036144502417715
       \endverb
@@ -185,6 +190,7 @@
       \field{note}{Accédé: 2024-08-22}
       \field{title}{{RBF and Kernel Interpolations}}
       \field{year}{2021}
+      \true{nocite}
       \verb{urlraw}
       \verb https://bitbucket.org/joelrosenfeld/rbf-and-kernel-interpolation/src/master/
       \endverb
@@ -210,6 +216,7 @@
       \field{labeltitlesource}{title}
       \field{note}{Accédé: 2024-08-23}
       \field{title}{{The Best Methods for Mesh Interpolation}}
+      \true{nocite}
       \verb{urlraw}
       \verb https://resources.system-analysis.cadence.com/blog/msa2022-the-best-methods-for-mesh-interpolation
       \endverb
@@ -237,6 +244,7 @@
       \field{labeltitlesource}{title}
       \field{title}{MEC6212 : Génération de maillages transfinits}
       \field{year}{2024}
+      \true{nocite}
     \endentry
     \entry{cunha2011}{inbook}{}
       \name{author}{2}{}{%
@@ -265,6 +273,7 @@
       \field{booktitle}{17th AIAA/CEAS Aeroacoustics Conference (32nd AIAA Aeroacoustics Conference)}
       \field{title}{An Innovative Interpolation Technique for Aeroacoustic Hybrid Methods}
       \field{year}{2011}
+      \true{nocite}
       \verb{doi}
       \verb 10.2514/6.2011-2754
       \endverb
@@ -296,6 +305,7 @@
       \field{journaltitle}{International Journal for Numerical Methods in Fluids}
       \field{title}{Development of optimized interpolation schemes with spurious modes minimization}
       \field{year}{2016}
+      \true{nocite}
       \verb{doi}
       \verb 10.1002/fld.4079
       \endverb
@@ -319,6 +329,7 @@
       \field{note}{Accédé: 2024-08-13}
       \field{title}{{How IDW (Inverse Distance Weighted) Interpolation Works}}
       \field{year}{2024}
+      \true{nocite}
       \verb{urlraw}
       \verb https://pro.arcgis.com/en/pro-app/latest/tool-reference/3d-analyst/how-idw-works.htm
       \endverb
@@ -345,6 +356,7 @@
       \field{note}{Accédé: 2024-08-22}
       \field{title}{{interpolation.jl}}
       \field{year}{2024}
+      \true{nocite}
       \verb{urlraw}
       \verb https://github.com/Ferrite-FEM/Ferrite.jl/blob/master/src/interpolations.jl
       \endverb
@@ -383,6 +395,7 @@
       \field{booktitle}{52nd Aerospace Sciences Meeting}
       \field{title}{Interpolation Method Needed for Numerical Uncertainty Analysis of Computational Fluid Dynamics}
       \field{year}{2014}
+      \true{nocite}
       \verb{doi}
       \verb 10.2514/6.2014-1433
       \endverb
@@ -435,6 +448,7 @@
       \field{journaltitle}{SIAM Journal on Numerical Analysis}
       \field{title}{Blending-Function Methods of Bivariate and Multivariate Interpolation and Approximation}
       \field{year}{1971}
+      \true{nocite}
       \verb{doi}
       \verb 10.1137/0708019
       \endverb
@@ -461,6 +475,7 @@
       \field{journaltitle}{International journal for numerical methods in engineering, Vol. 7}
       \field{title}{Blending-function methods of bivariate and multivariate interpolation and approximation}
       \field{year}{1971}
+      \true{nocite}
     \endentry
     \entry{nasa}{article}{}
       \name{author}{3}{}{%
@@ -520,6 +535,7 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Barycentric Interpolation}
+      \true{nocite}
       \verb{urlraw}
       \verb https://www.inf.usi.ch/hormann/papers/Hormann.2014.BI.pdf
       \endverb
@@ -546,6 +562,7 @@
       \field{note}{Accédé: 2024-08-26}
       \field{title}{{The Learning Dock}}
       \field{year}{2024}
+      \true{nocite}
       \verb{urlraw}
       \verb https://www.thelearningdock.org/
       \endverb
@@ -601,6 +618,7 @@
       \field{journaltitle}{Journal of Computational Physics}
       \field{title}{Numerical analysis of a high-order unstructured overset grid method for compressible LES of turbomachinery}
       \field{year}{2018}
+      \true{nocite}
       \verb{doi}
       \verb 10.1016/j.jcp.2018.02.045
       \endverb
@@ -626,6 +644,7 @@
       \field{booktitle}{Geometric modeling for scientific visualization}
       \field{title}{Mesh-Independent Surface Interpolation}
       \field{year}{2004}
+      \true{nocite}
       \verb{doi}
       \verb 10.1007/978-3-662-07443-5_3
       \endverb
@@ -649,6 +668,7 @@
       \field{note}{Accédé: 2024-08-13}
       \field{title}{{Understanding Inverse Distance Weighting}}
       \field{year}{2023}
+      \true{nocite}
       \verb{urlraw}
       \verb https://mapscaping.com/understanding-inverse-distance-weighting/
       \endverb
@@ -663,6 +683,7 @@
       \field{booktitle}{Geometric Modeling for Scientific Visualization}
       \field{title}{Mesh-Independent Surface Interpolation}
       \field{year}{2004}
+      \true{nocite}
       \verb{doi}
       \verb 10.1007/978-3-662-07443-5_3
       \endverb
@@ -687,6 +708,7 @@
       \field{labeltitlesource}{title}
       \field{title}{A user's guide to hip}
       \field{year}{2020}
+      \true{nocite}
     \endentry
     \entry{opencfs}{online}{}
       \field{sortinit}{o}
@@ -694,6 +716,7 @@
       \field{labeltitlesource}{title}
       \field{note}{Accédé: 2024-08-29}
       \field{title}{openCFS User Documentation}
+      \true{nocite}
       \verb{urlraw}
       \verb https://opencfs.gitlab.io/userdocu/DataExplanations/RBF/
       \endverb
@@ -722,6 +745,7 @@
       \field{journaltitle}{47th AIAA Aerospace Sciences Meeting including the New Horizons Forum and Aerospace Exposition}
       \field{title}{Construction of CFD Solutions Using Interpolation Rather than Computation with the ADSI Code}
       \field{year}{2009}
+      \true{nocite}
       \verb{doi}
       \verb 10.2514/6.2009-141
       \endverb
@@ -747,6 +771,7 @@
       \field{journaltitle}{Comptes Rendus de l'Académie des Sciences-Series I-Mathematics}
       \field{title}{Interpolation transfinie SW le triangle, le tetraèdre et le pentaèdre. Application à la crhation de maillages et à la condition de Dirichlet}
       \field{year}{1998}
+      \true{nocite}
       \verb{doi}
       \verb 10.1016/S0764-4442(97)82723-1
       \endverb
@@ -776,6 +801,7 @@
       \field{labeltitlesource}{title}
       \field{title}{The NURBS Book}
       \field{year}{1995}
+      \true{nocite}
       \verb{doi}
       \verb 10.1007/978-3-642-97385-7
       \endverb
@@ -810,6 +836,7 @@
       \field{labeltitlesource}{title}
       \field{title}{{Monitoring du bruit des avions : une détection à partir du signal audio}}
       \field{year}{2010}
+      \true{nocite}
       \verb{urlraw}
       \verb https://hal.science/hal-00538359/file/000137.pdf
       \endverb
@@ -853,6 +880,7 @@
       \field{booktitle}{25th AIAA/CEAS Aeroacoustics Conference, 2019}
       \field{title}{Conservative source term interpolation for hybrid aeroacoustic computations}
       \field{year}{2019}
+      \true{nocite}
       \verb{doi}
       \verb 10.2514/6.2019-2538
       \endverb
@@ -875,6 +903,7 @@
       \field{labeltitlesource}{title}
       \field{note}{Accédé: 2024-08-22}
       \field{title}{{Kringing}}
+      \true{nocite}
       \verb{urlraw}
       \verb https://www.sciencedirect.com/topics/agricultural-and-biological-sciences/kriging
       \endverb
@@ -912,6 +941,7 @@
       \field{labeltitlesource}{title}
       \field{title}{Accurate and Robust Fluid Analysis Using Cubic Interpolation with Volume/Area Coordinates (CIVA) Method on Unstructured Grids *}
       \field{year}{2004}
+      \true{nocite}
       \verb{doi}
       \verb 10.1299/jsmeb.47.672
       \endverb
@@ -937,6 +967,7 @@
       \field{journaltitle}{mode d'emploi du logiciel INGRID}
       \field{title}{interpolation dans un maillage et visualtion par isovaleurs}
       \field{year}{1986}
+      \true{nocite}
     \endentry
   \enddatalist
 \endrefsection
