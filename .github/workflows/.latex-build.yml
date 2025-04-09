@@ -11,7 +11,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Set up LaTeX environment
-      uses: xu-cheng/latex-action@v2
+      uses: xu-cheng/latex-action@v3
       with:
         root_file: rapport_stage.tex
         latexmk_use_lualatex: true
