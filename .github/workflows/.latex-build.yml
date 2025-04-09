@@ -10,7 +10,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Compile LaTex document
+    - name: Compile LaTeX document
       uses: xu-cheng/latex-action@v3
       with:
         root_file: rapport_stage.tex
@@ -23,14 +23,26 @@ jobs:
         path: rapport_stage.pdf
 
     - name: Send email notification
+      if: always()
       uses: dawidd6/action-send-mail@v3
       with:
         server_address: smtp.gmail.com
         server_port: 465
+        secure: true
         username: ${{ secrets.EMAIL_USERNAME }}
         password: ${{ secrets.EMAIL_PASSWORD }}
-        subject: "LaTeX PDF Build Status"
+        subject: "LaTeX PDF Build - ${{ job.status }}"
         body: |
-          The LaTeX PDF build has been ${{ job.status }}.
+          Hello,
+
+          The LaTeX PDF build has been **${{ job.status }}**.
+
+          Repository: ${{ github.repository }}
+          Workflow: ${{ github.workflow }}
+          Commit: ${{ github.sha }}
+          Triggered by: ${{ github.actor }}
+
+          Regards,
+          GitHub Actions
         to: clem.thibault747@gmail.com
         from: "GitHub Actions <noreply@github.com>"
