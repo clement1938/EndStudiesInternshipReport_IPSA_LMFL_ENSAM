@@ -16,7 +16,7 @@
 \usepackage{tcolorbox}
 \usepackage{fancyhdr}
 \usepackage[export]{adjustbox}
-\usepackage[french]{babel}
+\usepackage[english]{babel}
 \usepackage{listings}
 \usepackage{hyperref}
 \usepackage{transparent}
@@ -37,11 +37,12 @@
 \usepackage{tabularx}
 \usepackage{float}
 \usepackage{microtype}
-
 \usepackage{chngcntr}
 \usepackage{tocloft}
-
 \usepackage{nicefrac}
+\usepackage[super]{nth}
+
+\usepackage[table]{xcolor}
 
 
 %\counterwithin{table}{section}
@@ -283,6 +284,9 @@
 \newcommand{\dps}{\displaystyle}
 
 \pagestyle{fancy}
+%\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+%\fancyhead[C]{\leftmark} % Affiche le titre du chapitre courant au centre
+
 
 \setlength{\headheight}{25.22153pt}
 \setlength{\footskip}{37.6175pt}
@@ -295,29 +299,33 @@
 \definecolor{babyblue}{rgb}{0.54, 0.81, 0.94}
 \definecolor{bronze}{rgb}{0.8, 0.5, 0.2}
 \definecolor{brilliantrose}{rgb}{1.0, 0.33, 0.64}
+\definecolor{darkblue}{RGB}{0, 70, 127}
+\definecolor{lightblue}{RGB}{173, 216, 230}
+\definecolor{white}{RGB}{255, 255, 255}
+
 
 \fancypagestyle{plain}{
-  \fancyhead[L]{Livrable Stage M1 \\ Clément THIBAULT}
-  \fancyhead[R]{\includegraphics*[width=0.2\textwidth]{images/newCerfacs+Fond.png}}
+  \fancyhead[L]{End-of-study thesis \\ Clément THIBAULT}
+  \fancyhead[R]{\includegraphics*[width=0.25\textwidth]{images/logos.png}}
   \fancyfoot[C]{page \thepage}
   \fancyfoot[R]{\includegraphics*[width=0.1\textwidth]{images/ipsagarde.png}}
 }
 
-\fancyhead[L]{Livrable Stage M1 \\ Clément THIBAULT}
-\fancyhead[R]{\includegraphics*[width=0.2\textwidth]{images/newCerfacs+Fond.png}}
+\fancyhead[L]{End-of-study thesis \\ Clément THIBAULT}
+\fancyhead[R]{\includegraphics*[width=0.25\textwidth]{images/logos.png}}
 \fancyfoot[C]{page \thepage}
 \renewcommand{\sectionmark}[1]{\markboth{}{}}
 \fancyfoot[R]{\includegraphics*[width=0.1\textwidth]{images/ipsagarde.png}}
 
 
   \newcommand\BackgroundPic{
-  \put(0 cm, 1.0 cm){
-  \parbox[b][0.6\paperheight]{\paperwidth}{
+  \put(0 cm, 5.0 cm){
+  \parbox[b][0.5\paperheight]{\paperwidth}{
   \centering
-  {\includegraphics[width=\paperwidth,height=0.38\paperheight, %\transparent{0.4}
-  keepaspectratio]{images/Interpolation-quadratique-3D-thetraedre.png}}
+  {\includegraphics[width=\paperwidth,height=0.30\paperheight, %\transparent{0.4}
+  keepaspectratio]{images/ipsagarde.png}}
   \vspace{2.0cm} % Adjust the spacing between the image and the title
-  \makebox[\paperwidth]{\textbf{Interpolation quadratique dans un tétraèdre}} % Center the title below the image
+  \makebox[\paperwidth]{\textbf{TITRE IMAGE PAGE DE GARDE}} % Center the title below the image
   }}}
 
 \captionsetup[table]{name=Tableau}
@@ -348,7 +356,7 @@
 \input{remerciement/remerciement}
 
 \newpage
-\tableofcontents
+\tableofcontents % table of contents
 
 
 \newpage
