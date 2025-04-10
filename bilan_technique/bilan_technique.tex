@@ -22,15 +22,15 @@ It also enables us to suggest what could be done by the next person working on t
 
 
 \begin{minipage}[t]{6.5cm}
-Influence de la méthode d’interpolation sur la propagation acoustique FWH
+    Optimization of the performance of a centrifugal pump using Data \\ Assimilation
 \end{minipage} & 
 \begin{minipage}[t]{8.5cm}
 %\begin{itemize}
-- Développer une méthode d’interpolation linéaire HPC dans Antares
+- X
 
-- Évaluer l’influence de la méthode d’interpolation dans la qualité des résultats de propagation acoustique avec l’analogie FWH
+- Y
 
-- Améliorer les performances HPC de la méthode d’interpolation dans Antares
+- Z
 %\end{itemize}
 \end{minipage} \\ 
 
@@ -43,12 +43,10 @@ Influence de la méthode d’interpolation sur la propagation acoustique FWH
 - LMFL
 
 - ENSAM
-
-- Date de mise à jour : 15 octobre 2024
 %\end{itemize}
 \end{minipage} & 
 \begin{minipage}[t]{8.5cm}
-VSCode, Python, Kraken (supercalculateur du CERFACS), Antares, Paraview, Git
+VSCode, Python, TGCC, Paraview, Git, OpenFoam
 \end{minipage} \\ 
 
 
@@ -75,23 +73,22 @@ VSCode, Python, Kraken (supercalculateur du CERFACS), Antares, Paraview, Git
 \begin{minipage}[t]{6.5cm}
     
 
-- Meilleurs paramètres pour l'IDW se situent autour de N=10 et p=10
+- X
 
-- Méthode linéaire généralement plus précise que IDW
+- Y
 
-- Rapidité du code d'interpolation augmentée, pour toutes les méthodes (d'un facteur 105 en linéaire, sur le cas test d'aéroacoustique)
+- Z
 
 %\item Paramètres n \simeq 10 et p \simeq 10 optimaux pour la méthode IDW
 %\end{itemize}
 \end{minipage} & 
 \begin{minipage}[t]{8.5cm}
 
-- N=10 et p=10 donnent beaucoup d'importance sur l'information des points proches
+-X
 
-- La méthode linéaire est d'ordre 1 contrairement à IDW qui n'a pas d'ordre au sens usuel du terme
+- Y
 
-- Pour la rapidité, une amélioration a consisté à ne pas recalculer des coefficients à chaque instant de la solution
-
+- Z
 \end{minipage} \\ 
 
 \rowcolor{lightblue}
@@ -100,21 +97,18 @@ VSCode, Python, Kraken (supercalculateur du CERFACS), Antares, Paraview, Git
 \hline
 \begin{minipage}[t]{6.5cm}
 %\begin{itemize}
-- Prise en main des outils
+- Getting to grips with the tools
 
-- Adapter la méthode linéaire au code déjà existant
+- Y
 %\end{itemize}
 \end{minipage} & 
 \begin{minipage}[t]{8.5cm}
 %\begin{itemize}
 %- Optimiser la méthode linéaire pour les maillages prismatiques
-- Traiter les maillages 'multizones' avec points partagés en linéaire
+- X
 
-- Implémenter une méthode d'ordre supérieur
+- Y
 
-- Passer le code en parallèle pour améliorer la rapidité
-
-- Compléter les tests de la méthode linéaire sur la chaîne aéroacoustique
 
 % - Implémenter une méthode plus rapide pour les maillages non-structurés
 
