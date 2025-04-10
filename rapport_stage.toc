@@ -7,6 +7,6 @@
 \contentsline {paragraph}{Écoresponsabilité}{8}{section*.6}%
 \contentsline {paragraph}{Responsabilité sociale / Qualité de vie au travail}{8}{section*.7}%
 \contentsline {chapter}{Conclusion}{11}{chapter*.8}%
-\contentsline {chapter}{Bibliographie}{14}{chapter*.12}%
-\contentsline {paragraph}{Résumé}{16}{section*.14}%
-\contentsline {paragraph}{Abstract}{16}{section*.15}%
+\contentsline {chapter}{Bibliography}{13}{chapter*.12}%
+\contentsline {paragraph}{Résumé}{15}{section*.14}%
+\contentsline {paragraph}{Abstract}{15}{section*.15}%

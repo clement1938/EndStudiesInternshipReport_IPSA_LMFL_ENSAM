@@ -57,6 +57,33 @@
 
 \setlength{\parskip}{0.5\baselineskip}
 
+
+\DeclareAcronym{ENSAM}{
+  short = ENSAM,
+  long = École Nationale Nupérieure d'Arts et Métiers,
+  short-indefinite = une,
+}
+
+\DeclareAcronym{LMFL}{
+  short = LMFL,
+  long = Laboratoire de Mécanique des Fluides de Lille,
+  short-indefinite = un,
+}
+
+\DeclareAcronym{ONERA}{
+  short = ONERA,
+  long = Office National d'Études et de Recherche Aérospatiales,
+  short-indefinite = un,
+}
+
+\DeclareAcronym{CFD}{
+  short = CFD,
+  long = Computation Fluid Dynamics, %, pour mécanique des fuides numérique {}
+  short-indefinite = un,
+}
+
+% ACRONYMS STAGE CERFACS M1
+
 \DeclareAcronym{CNES}{
   short = CNES,
   long = Centre National d'Études Spatiales,
@@ -69,15 +96,15 @@
   short-indefinite = une,
 }
 
-\DeclareAcronym{ONERA}{
-  short = ONERA,
-  long = Office National d'Études et de Recherche Aérospatiales ,
-  short-indefinite = un,
-}
+%\DeclareAcronym{ONERA}{
+%  short = ONERA,
+%  long = Office National d'Études et de Recherche Aérospatiales ,
+%  short-indefinite = un,
+%}
 
 \DeclareAcronym{SAS}{
   short = SAS,
-  long =   Société par Actions Simplifiées,
+  long = Société par Actions Simplifiées,
   short-indefinite = une,
 }
 
@@ -136,11 +163,11 @@
   short-indefinite = un,
 }
 
-\DeclareAcronym{CFD}{
-  short = CFD,
-  long = {Computation Fluid Dynamics, pour mécanique des fuides numérique},
-  short-indefinite = un,
-}
+%\DeclareAcronym{CFD}{
+%  short = CFD,
+%  long = {Computation Fluid Dynamics, pour mécanique des fuides numérique},
+%  short-indefinite = un,
+%}
 
 
 \DeclareAcronym{RSE}{
@@ -380,10 +407,10 @@
 
 \nocite{*}
 \printbibliography
-\addcontentsline{toc}{chapter}{Bibliographie}
+\addcontentsline{toc}{chapter}{Bibliography}
 \newpage
 
-\printacronyms[name=Liste des acronymes, heading=chapter*] % Glossaire après si besoin
+\printacronyms[name=List of acronyms, heading=chapter*] % Glossaire après si besoin
 
 \input{quatre_couv/quatre_couv.tex}
 
