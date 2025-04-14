@@ -3,24 +3,25 @@
 
 During my studies, I've become passionate about applied mathematics,
 fluid mechanics. That's why I did my last internship at \ac{CERFACS}.
+It convinced me to do a thesis in \ac{CFD} after \ac{IPSA}. The subject proposed by \ac{LMFL} really suited me: CFD on an opensource library, coupled with AI and experimental work.
 
 So it was with enthusiasm that I started my internship on February 26, 2025, in this laboratory for a duration of six months.
 
-In a few words, the \ac{LMFL} is a public
+In a few words, the LMFL is a public laboratory, composed by 38 researchers and around 25 phD students. The laboratory has three sites in Lille (\ac{ENSAM} and \ac{ONERA}) and on the Villeneuve d'Ascq campus (Centrale Lille, \ac{CNRS}, Université de Lille).
 
 
-En quelques mots, Le CERFACS est un institut de recherche privé, financé par sept actionnaires. Il est spécialisé et reconnu pour son expertise en \ac{HPC}. C’est un acteur principal dans ce domaine, en collaboration avec des industriels et des institutions renommés et connus pour développer des solutions à la pointe de la technologie.
+
 
 %Mon maître de stage, Carlos MONTILLA, est responsable d’Antares \cite{antares} depuis un an. Antares est un code d’analyse de données privé sous forme de librairie python et C++, développé au CERFACS depuis 2012 et dont l’objectif est de réaliser du pré-traitement et post-traitement sur des simulations numériques utilisées par le laboratoire, ses actionnaires et autres partenaires. Il contient notamment un traitement d’interpolation et un traitement \ac{FWH}, principalement codé en Python par Carlos MONTILLA. La chaîne de calcul aéroacoustique (sous-section \ref{s243}) utilise le traitement d’interpolation avant de pouvoir utiliser le traitement FWH. L’objectif de l’interpolation d’Antares est de pouvoir interpoler les valeurs aux points d’un maillage ’cible’, issu d’une discrétisation de l’espace, en utilisant les valeurs aux points d’un maillage ’source’ ; par exemple, dans le cadre d’un raffinement de maillage entre deux itérations de calcul ou lors de la création d’une surface de contrôle dans un maillage 3D pour appliquer les équations de FWH à la propagation aéroacoustique.
 
-Mes missions principales lors de ce stage ont été les suivantes :
+My main tasks during this internship were as follows:
 
 \begin{itemize}
-    \item réaliser un état de l'art sur les autres méthodes d'interpolation potentiellement implémentables dans Antares (avec les contraintes associées);
-    \item identifier les meilleurs paramètres pour l'équation \ac{IDW} la seule qui était implémentée jusqu'alors dans Antares;
-    \item implémenter la méthode linéaire, de la tester et d'optimiser le code.  % \ac{DSP} à placer
+    \item Optimisation des paramètres de focage de la méthode \ac{IBM} à l'aide de \ac{CONES};
+    \item Y;
+    \item Z.  % \ac{DSP} à placer
 \end{itemize}
 
 % A savoir, 3D, non structuré, temps de calcul, caractéristiques des équations à interpoler ...
 
-Pour expliquer plus en détail le contenu du stage, je présenterai dans une première partie le laboratoire de recherche CERFACS. Dans une seconde partie j’exposerai le travail que j’ai réalisé sous forme de rapport. Cette seconde partie se décompose en quatre sous-parties : la présentation de la librairie Antares, les différentes méthodes d'interpolation, l'implémentation de la méthode linéaire dans Antares et finalement les tests de l'ancienne et de la nouvelle méthode d'interpolation.
+To explain the content of my internship in more detail, I will first present the LMFL research laboratory. In the second part, I'll present the work I carried out in the form of a report. This second part is divided into NN sub-sections: ...
