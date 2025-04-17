@@ -40,6 +40,10 @@
 \usepackage{chngcntr}
 \usepackage{tocloft}
 \usepackage{nicefrac}
+
+\usepackage{siunitx}
+
+
 \usepackage[super]{nth}
 
 \usepackage[table]{xcolor}
@@ -57,6 +61,11 @@
 
 \setlength{\parskip}{0.5\baselineskip}
 
+\DeclareAcronym{PIV}{
+  short = PIV,
+  long = Particle image velocimetry,
+  short-indefinite = une,
+}
 
 \DeclareAcronym{IBM}{
   short = IBM,
@@ -431,8 +440,8 @@
 \input{chap1_pres_entreprise/chap1.tex}
 \newpage
 
-%\input{chap2_pres_stage/chap2.tex}
-%\newpage
+\input{chap2_pres_stage/chap2.tex}
+\newpage
 
 \input{conclusion/conclusion.tex}
 \newpage
