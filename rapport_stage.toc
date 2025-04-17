@@ -37,19 +37,19 @@
 \contentsline {subparagraph}{Pyramide, hexaèdre, prisme et autres formes}{24}{section*.43}%
 \contentsline {section}{\numberline {2.4}Expetimentations}{24}{section.2.4}%
 \contentsline {section}{\numberline {2.5}The pump}{24}{section.2.5}%
-\contentsline {section}{\numberline {2.6}Processing of PIV data}{25}{section.2.6}%
+\contentsline {section}{\numberline {2.6}Preprocessing of PIV data}{25}{section.2.6}%
 \contentsline {section}{\numberline {2.7}Modifications of OpenFoam and CONES}{26}{section.2.7}%
 \contentsline {subsection}{\numberline {2.7.1}La structure générale du code "TreatmentInterpolation"}{26}{subsection.2.7.1}%
-\contentsline {paragraph}{L'interpolation IDW}{27}{section*.47}%
-\contentsline {paragraph}{L'interpolation linéaire}{27}{section*.48}%
-\contentsline {subsection}{\numberline {2.7.2}Le pseudo-algorithme}{29}{subsection.2.7.2}%
-\contentsline {subsection}{\numberline {2.7.3}Optimisation du temps de calcul}{30}{subsection.2.7.3}%
-\contentsline {section}{\numberline {2.8}Tests}{32}{section.2.8}%
-\contentsline {subsection}{\numberline {2.8.1}Tests unitaires sur la méthode linéaire}{32}{subsection.2.8.1}%
-\contentsline {subsection}{\numberline {2.8.2}Tests sur des cas industriels}{34}{subsection.2.8.2}%
-\contentsline {subsection}{\numberline {2.8.3}Tests sur des cas d'aéroacoustique}{35}{subsection.2.8.3}%
-\contentsline {subsection}{\numberline {2.8.4}Tests sur les paramètres de la méthode IDW}{37}{subsection.2.8.4}%
-\contentsline {chapter}{Conclusion}{38}{chapter*.60}%
-\contentsline {chapter}{Bibliography}{40}{chapter*.64}%
-\contentsline {paragraph}{Résumé}{42}{section*.66}%
-\contentsline {paragraph}{Abstract}{42}{section*.67}%
+\contentsline {paragraph}{L'interpolation IDW}{26}{section*.46}%
+\contentsline {paragraph}{L'interpolation linéaire}{27}{section*.47}%
+\contentsline {subsection}{\numberline {2.7.2}Le pseudo-algorithme}{28}{subsection.2.7.2}%
+\contentsline {subsection}{\numberline {2.7.3}Optimisation du temps de calcul}{29}{subsection.2.7.3}%
+\contentsline {section}{\numberline {2.8}Tests}{31}{section.2.8}%
+\contentsline {subsection}{\numberline {2.8.1}Tests unitaires sur la méthode linéaire}{31}{subsection.2.8.1}%
+\contentsline {subsection}{\numberline {2.8.2}Tests sur des cas industriels}{33}{subsection.2.8.2}%
+\contentsline {subsection}{\numberline {2.8.3}Tests sur des cas d'aéroacoustique}{34}{subsection.2.8.3}%
+\contentsline {subsection}{\numberline {2.8.4}Tests sur les paramètres de la méthode IDW}{36}{subsection.2.8.4}%
+\contentsline {chapter}{Conclusion}{37}{chapter*.59}%
+\contentsline {chapter}{Bibliography}{39}{chapter*.63}%
+\contentsline {paragraph}{Résumé}{41}{section*.65}%
+\contentsline {paragraph}{Abstract}{41}{section*.66}%

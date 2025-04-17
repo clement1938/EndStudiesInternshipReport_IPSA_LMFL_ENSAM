@@ -1340,33 +1340,36 @@ x (m),y(m),Vx(m/s),Vy(m/s),r(m),theta(rad),Vr(m/s),Vtheta(m/s),Vz(m/s),???
  
 The pdf is a paper where can be found the experimental conditions even if the analysis are focussed on another flow rate.
 
-\section{Processing of PIV data}
+\section{Preprocessing of PIV data}
 
-\begin{figure}[H]
-    \centering
-    \begin{tikzpicture}[scale=100]
+\begin{comment}
+    \begin{figure}[H]
         \centering
-        % Axes
-        \draw[->] (0,0) -- (0.09,0) node[right] {$x$ (m)};
-        \draw[->] (0,0) -- (0,0.135) node[above] {$y$ (m)};
+        \begin{tikzpicture}[scale=100]
+            \centering
+            % Axes
+            \draw[->] (0,0) -- (0.09,0) node[right] {$x$ (m)};
+            \draw[->] (0,0) -- (0,0.135) node[above] {$y$ (m)};
+            
+            % Zone d'acquisition
+            \draw[fill=blue!20,opacity=0.5] (0,0) rectangle (0.08,0.124);
+            \node at (0.04,0.062) {Zone PIV};
         
-        % Zone d'acquisition
-        \draw[fill=blue!20,opacity=0.5] (0,0) rectangle (0.08,0.124);
-        \node at (0.04,0.062) {Zone PIV};
-    
-        % Graduation x
-        \foreach \x in {0.02, 0.04, 0.06, 0.08}
-        \draw[shift={(\x,0)},color=black] (0.0pt,1pt) -- (0pt,-0.1pt) node[below] {\x};
-    
-        % Graduation y
-        \foreach \y in {0.02, 0.04, 0.06, 0.08, 0.10, 0.12}
-        \draw[shift={(0,\y)},color=black] (0.1pt,0pt) -- (-0.1pt,0pt) node[left] {\y};
-    
-        % Ligne x = 0.0555 (theta = 0)
-        \draw[red, very thick, dashed] (0.0555, 0) -- (0.0555, 0.124);
-        \node[red, rotate=90] at (0.0555, 0.062) {$\theta = 0$};
-    \end{tikzpicture}
-\end{figure}
+            % Graduation x
+            \foreach \x in {0.02, 0.04, 0.06, 0.08}
+            \draw[shift={(\x,0)},color=black] (0.0pt,1pt) -- (0pt,-0.1pt) node[below] {\x};
+        
+            % Graduation y
+            \foreach \y in {0.02, 0.04, 0.06, 0.08, 0.10, 0.12}
+            \draw[shift={(0,\y)},color=black] (0.1pt,0pt) -- (-0.1pt,0pt) node[left] {\y};
+        
+            % Ligne x = 0.0555 (theta = 0)
+            \draw[red, very thick, dashed] (0.0555, 0) -- (0.0555, 0.124);
+            \node[red, rotate=90] at (0.0555, 0.062) {$\theta = 0$};
+        \end{tikzpicture}
+    \end{figure}
+\end{comment}
+
 
 \begin{figure}[H]
     \centering
@@ -1386,10 +1389,10 @@ The pdf is a paper where can be found the experimental conditions even if the an
         \node[red, rotate=90] at (0.053, 0.062) {$\theta = x_{abs} = 0$};
         
         \draw[->, >=stealth, color=red, thick] (0.0555, 0.0145) -- (0.07, 0.0145);
-        \node[red, rotate=270] at (0.058, 0.009) {$x_{abs}$};
+        \node[red, rotate=270] at (0.058, 0.0085) {$x_{abs}$};
 
         \draw[->, >=stealth, color=red, thick]  (0.0555, 0.0145) -- (0.0555, 0);
-        \node[red, rotate=0] at (0.0615, 0.017) {$y_{abs}$};
+        \node[red, rotate=0] at (0.062, 0.017) {$y_{abs}$};
 
         \addplot+[
             only marks,
@@ -1401,6 +1404,28 @@ The pdf is a paper where can be found the experimental conditions even if the an
     \end{tikzpicture}
 \end{figure}
 
+First, we need to know how to convert the coordinates from the local system to the absolute system.
+We find that between the line 55 and 56, the radius is constant and pass from lower than \(\pi\) to upper.
+We also did plot x over theta for three differents values of theta and find out an intersection point for x = 0.0555.
+So now, we know that for x = 0.0555, theta = \(\frac{\pi}{2}\)
+%We could use the absolute system is defined by the following equations:
+\begin{equation}
+    \begin{cases}
+        x_{abs} = x + 0.0555 \\
+        y_{abs} = y
+    \end{cases}
+\end{equation}
+
+
+For now we are in stationary case (time invariant). So we are going to deal with data average over time.
+There are around 49 maps (=file) by turn. So to agerage the data over the time, we can average over the \(\phi\) (\(\phi\) appartiens à 0-211rd) (=maps). That into the six directory.
+
+We will also average data between R1 and R2 to go to 3 files (of 10x81x125 elements).
+
+Now, we keep only the data on the line x = 0.0555 (in fact we average data between x = 0.055 and x = 0.056).
+
+Cones keep data in a particular way. We need to convert the data in a format that cones can read.
+truncate at line 89, where the radius is upper than 0.3, because some reflexion on the pump
 
 
 
