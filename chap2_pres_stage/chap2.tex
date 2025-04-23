@@ -1320,11 +1320,66 @@ Note pour l'ordre supérieur : une transformation des quadrilatères vers des re
 
 %\subsection{Résumé des similitudes et différences des différentes méthodes}
 
-\section{Expetimentations}
+\newpage
 
-\section{The pump}
+- Modèle proche parois kOmegaSST
+- Réduction du pipe (avec recherche condition vitesse entrée)
 
-Results in the file are High-Speed PIV data obtained at a PIV frequency of 980 Hz
+\section{OpenFOAM}
+% introduire OpenFOAM
+Simulations are performed using the C++ framework OpenFOAM, used to discretize the equations previously presented. Standing for \textsl{Open Source Field Operation and Manipulation}, OpenFOAM is an open-source project which provides many tools, referred to as executables %\citep[see][]{greenshields2021}. These executable files can be divided into three separate categories:
+\begin{itemize}
+    \item[$-$] \textbf{Pre-processing}, including meshing and decomposing tools.
+    \item[$-$] \textbf{Solving}, including in-built and custom solvers. Each solver is built to answer a specific CFD problem. 
+    \item[$-$] \textbf{Post-processing}, including \texttt{ParaView}, an open-source visualization application.
+\end{itemize}
+
+OpenFOAM is not provided with a graphical interface, which is why a simulation is built by writing ``dictionaries'', in which are stored the necessary information for the simulation (mesh, turbulence model, maximum number of characteristic times, $\dots$). Thus, a specific directory structure must be observed, as outlined in ... % \autoref{fig:OpenFOAM_directory_structure}:
+% décrire la structure du dossier OpenFOAM et ce que chaque fichier fait (dans mon cas de simulation)
+
+
+\begin{center}
+    \begin{minipage}{\textwidth}
+    \begin{forest}
+        pic dir tree,
+        [root,
+        [system
+            [controlDict, file]
+            [blockMeshDict, file]
+        ]
+        [constant
+            [polyMesh]
+        ]
+        ]
+    \end{forest}
+    \captionof{figure}{OpenFOAM directory structure}
+    \label{fig:openfoam-directory}
+\end{minipage}
+\end{center}
+
+
+The \texttt{system} directory contains the main parameters concerning the progress of the simulation:
+\begin{itemize}
+    \item[$-$] The \texttt{controlDict} dictionary defines parameters such as start and end time, time steps, data output formatting, or data average computation.
+    \item[$-$] The \texttt{blockMeshDict} dictionary defines the geometry, mesh and boundary conditions implementation.
+    \item[$-$] The \texttt{decomposeParDict} dictionary defines the geometry and mesh decomposition, with the objective to run the simulation in parallel, using multiple cores.
+    \item[$-$] The \texttt{fvSchemes} dictionary defines the discretisation schemes used in the solution.
+    \item[$-$] The \texttt{fvSolution} dictionary defines the equation solvers, tolerances and other algorithm controls for instance. 
+\end{itemize}
+
+The \texttt{constant} directory contains the different physical properties of the simulation. Moreover, the subfolder \texttt{polyMesh} contains the mesh data, obtained after the \texttt{blockMesh} command line is run:
+\begin{itemize}
+    \item[$-$] The \texttt{momentumTransport} dictionary defines the simulation type (\ac{RANS} or \ac{LES}), as well as the turbulence model.
+    \item[$-$] The \texttt{transportProperties} dictionary defines the transport model (Newtonian for instance) and some transport coefficients, such as the kinematic viscosity $\nu$. 
+    \item[$-$] The \texttt{turbulenceProperties} dictionary defines the different parameters of the chosen turbulence model.
+\end{itemize}
+
+The \texttt{0} directory contains the initial solution's fields. The \texttt{postProcessing} directory stores data from the running simulation, such as forces and probes' data. The \texttt{processor0...N} directories directly result from the geometry decomposition, which is proceeded through the \texttt{decomposeParDict} dictionary. The \texttt{dummy.foam} is an empty file which allows to visualize the simulation with \texttt{ParaView}. 
+
+\section{Experimentations}
+\section{Presentation of the pump}
+
+Results in the file are High-Speed \ac{PIV} data obtained at a PIV frequency of 980 Hz
 The operating conditions of the machine where :
 N= 1200 rpm
 Qv = 0.256 m3/s (design flow rate of the pump)
@@ -1370,6 +1425,11 @@ The pdf is a paper where can be found the experimental conditions even if the an
     \end{figure}
 \end{comment}
 
+\subparagraph{Zone d'acquisition PIV}
+\phantom{-}
+
+The PIV data is acquired in a rectangular zone of 0.08 m x 0.124 m.
+The cathesian coordinates are given in a local system, where the absolute origin is at the center of the pump.
 
 \begin{figure}[H]
     \centering
@@ -1385,14 +1445,30 @@ The pdf is a paper where can be found the experimental conditions even if the an
             ymin=0, ymax=0.124,
             title={Zone d'acquisition PIV}
         ]
-        \draw[red, very thick, dashed] (0.0555, 0) -- (0.0555, 0.124);
-        \node[red, rotate=90] at (0.053, 0.062) {$\theta = x_{abs} = 0$};
-        
-        \draw[->, >=stealth, color=red, thick] (0.0555, 0.0145) -- (0.07, 0.0145);
-        \node[red, rotate=270] at (0.058, 0.0085) {$x_{abs}$};
+        \draw[red, very thick, dashed] (0.0245, 0) -- (0.0245, 0.124);
+        \node[red, rotate=90] at (0.053-0.031, 0.062) {$\theta = x_{abs} = 0$};
 
-        \draw[->, >=stealth, color=red, thick]  (0.0555, 0.0145) -- (0.0555, 0);
-        \node[red, rotate=0] at (0.062, 0.017) {$y_{abs}$};
+
+        % CentreAbs : (0,0)    -> CentreRel : (-0.0245,0.257.5)
+        % BoutRel   : (0.06, 0.12) -> boutAbs : ...
+
+        \draw[darkblue, very thick, dashed] (0.037756, 0) -- (0.0445, 0.124);
+        \draw[darkblue, very thick, dashed] (0.051012, 0) -- (0.0645, 0.124);
+        %\draw[darkblue, very thick, dashed] (0.02*(0.2575/0.3855)+0.0245, 0) -- (0.0245+0.02, 0.124);
+        %\node[darkblue, rotate=90] at (0.053-0.031, 0.062) {$\theta = x_{abs} = 0$};
+        
+        \draw[->, >=stealth, color=darkblue, thick] (0.0245, 0.0145) -- (0.07-0.031, 0.0145);
+        \node[darkblue, rotate=0] at (0.062-0.031, 0.017) {$\vec{x}$}; % _{abs}
+
+        \draw[->, >=stealth, color=darkblue, thick]  (0.0245, 0.0145) -- (0.0245, 2*0.0145);
+        \node[darkblue, rotate=0] at (0.021, 0.0195) {$\vec{y}$}; %_{abs}
+
+        \draw[->, >=stealth, color=red, thick]  (0.0245, 0.1) -- (0.0245, 0.1145);
+        \node[red, rotate=0] at (0.062-0.032, 0.108) {$\vec{U_{r}}$};
+
+        \draw[->, >=stealth, color=red, thick]  (0.0245, 0.1) -- (0.01, 0.1);
+        \node[red, rotate=0] at (0.0245-0.01, 0.1-0.005) {$\vec{U_{\theta}}$};
+
 
         \addplot+[
             only marks,
@@ -1404,32 +1480,82 @@ The pdf is a paper where can be found the experimental conditions even if the an
     \end{tikzpicture}
 \end{figure}
 
+\subparagraph{1.}
+
 First, we need to know how to convert the coordinates from the local system to the absolute system.
-We find that between the line 55 and 56, the radius is constant and pass from lower than \(\pi\) to upper.
-We also did plot x over theta for three differents values of theta and find out an intersection point for x = 0.0555.
-So now, we know that for x = 0.0555, theta = \(\frac{\pi}{2}\)
+We find that between the line 55 and 56, the radius is constant and pass from lower than \(\pi\) to upper. In fact, for the plan at 75\%, it is the same approache but between the line 65 and 66 because of some technical experimental constraints.
+We also did plot x over theta for three differents values of theta and find out an intersection point for x = 0.0245.
+So now, we know that for x = 0.0245, theta = \(\frac{\pi}{2}\)
 %We could use the absolute system is defined by the following equations:
 \begin{equation}
     \begin{cases}
-        x_{abs} = x + 0.0555 \\
-        y_{abs} = y
+        x_{rel} = x_{abs} + 0.0245 \\
+        y_{rel} = x_{abs} + R_{2} \\ % R2 = 257.5
     \end{cases}
 \end{equation}
 
 
+\subparagraph{2.Average}
 For now we are in stationary case (time invariant). So we are going to deal with data average over time.
 There are around 49 maps (=file) by turn. So to agerage the data over the time, we can average over the \(\phi\) (\(\phi\) appartiens à 0-211rd) (=maps). That into the six directory.
 
+
+\subparagraph{3.Sampling}
 We will also average data between R1 and R2 to go to 3 files (of 10x81x125 elements).
+Now, we keep only the data on the line x = 0.0245 (in fact we average data between x = 0.024 and x = 0.025). Data are then truncate at line 89, where the radius is upper than 0.3, because of some laser reflexion on the pump during the PIV experiment.
 
-Now, we keep only the data on the line x = 0.0555 (in fact we average data between x = 0.055 and x = 0.056).
 
+\subparagraph{4.Shaping for CONES}
 Cones keep data in a particular way. We need to convert the data in a format that cones can read.
-truncate at line 89, where the radius is upper than 0.3, because some reflexion on the pump
+From 3 files (of 10x81x125 elements), to the files \texttt{fieldCylindrical.txt}
+and \texttt{obs\_coordinates.txt}. Describe shapes...
+
+
+\subparagraph{5.Creation of a file for the interpolation}
+Finally, we need to create an \texttt{coords\_seventh.txt} file for the interpolation function in CONES.
+We don't juste use the coordinates of the points in the PIV data, beacause we want to average over the angle \(\theta\) on the pump. The numerical simulation is $\frac{2\pi}{7}$ OU $2\pi/7$ periodic, so we interpolate in 150 points over theta between 0 and 2pi/7.
+To do that, wue just take the \texttt{obs\_coordinates.txt} file and duplicate 150 times the points over the angle \(\theta\) (between -pi/7 and pi/7). In our case, we chose 150 that will aproximately correspont to the shap of a cell at this radius.
+To be consistent with axis further, we take points between -pi/7 + pi/2 and pi/7 + pi/2
+
+Here is the plot of the experimental data and the numerical data (for D = 3e7 (introduire la variable)), at the same points (both are averages over time and over the angle \(\theta\)).
 
 
 
-\section{Modifications of OpenFoam and CONES}
+\section{Modifications on OpenFoam and CONES}
+\subsection{Modifications on the interpolation function}
+
+Concretely, to average the data over the angle \(\theta\), we need to modify the interpolation function in CONES.
+Instead of read coords, the interpolation function read the data in the \texttt{coords\_seventh.txt} file.
+
+Then, it computes the interpolation and average the data over the angle \(\theta\) (between -pi/7 and pi/7), by doing a somme over \(\theta\) and dividing by the number of points (150). To go back from 150x5x3x3 (to detail) to 5x3x3 data. All of those computation are mad in a cylindrical referencial. Ref au schéma tikz
+
+
+A sixth coefficients DP has been add.
+It's represent the difference of pressure between the inlet of the pipe and the outlet of the diffuser. 
+The numerical coefficient are interpolating, respectively at (0,0,-0.35) and (0,0.390,0).
+For the high fidelity value, we can find experimental data form the same pump [M. Fan 2022], that's match with M. Fan simulation (eq to approximately \(\eta\) = 0.4). So can also compute :
+
+
+
+U\_{2} is the impeller tip speed computed from the impeller diameter and the rotation speed of the pump.
+
+\begin{equation}
+    \frac{\Delta P_{P}}{\rho U_{2}^{2}} = \eta \Leftrightarrow
+    \Delta P_{P} = \rho U_{2}^{2} \eta
+\end{equation}
+
+As we are in a steady simulation, the restult of the numerical pressure is divided by the density of the fluid.
+
+\begin{equation}
+    \Delta P_{P} = 32^{2} \times 0.4 = 410 Pa
+\end{equation}
+
+So the state vector is now 46.
+Incertitude on P will be less to take more take it account.
+Inflation...
+
+At pump flow rate = pump design flow rate So Q?/Q? =1
+
 
 \subsection{La structure générale du code "TreatmentInterpolation"}
 

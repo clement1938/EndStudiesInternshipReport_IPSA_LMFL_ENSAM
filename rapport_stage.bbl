@@ -39,6 +39,90 @@
       \field{type}{phdthesis}
       \true{nocite}
     \endentry
+    \entry{dazinHighspeedStereoscopicPIV2011a}{article}{}
+      \name{author}{8}{}{%
+        {{hash=6a3e3698109e0722d74d25566cf7fe24}{%
+           family={Dazin},
+           familyi={D\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=fa75cf219398f6d1886926dfa2b665b8}{%
+           family={Cavazzini},
+           familyi={C\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod}}}%
+        {{hash=09ab98625473bf414c0c867e33a38c47}{%
+           family={Pavesi},
+           familyi={P\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod}}}%
+        {{hash=6ba21a21ee3400a8bd38fd8eb0468683}{%
+           family={Dupont},
+           familyi={D\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+        {{hash=dffe277f40ab7c17c411594ccc9442c2}{%
+           family={Coudert},
+           familyi={C\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=68ea8a94eb8a8305dbeb55787c058850}{%
+           family={Ardizzon},
+           familyi={A\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod}}}%
+        {{hash=5ad7ae688422e07b46202665266d4fbb}{%
+           family={Caignaert},
+           familyi={C\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod}}}%
+        {{hash=bd5a816bbe365db339b92121e8d50491}{%
+           family={Bois},
+           familyi={B\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{d3be4bc66f333cdfcc95059fa0d4e947}
+      \strng{fullhash}{e3cc8f6f13acfb356c4f2faa00d13a8d}
+      \strng{bibnamehash}{d3be4bc66f333cdfcc95059fa0d4e947}
+      \strng{authorbibnamehash}{d3be4bc66f333cdfcc95059fa0d4e947}
+      \strng{authornamehash}{d3be4bc66f333cdfcc95059fa0d4e947}
+      \strng{authorfullhash}{e3cc8f6f13acfb356c4f2faa00d13a8d}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{This paper presents an experimental analysis of the unsteady phenomena developing in a vaneless diffuser of a radial flow pump. Partial flow operating conditions were investigated using 2D/3C high repetition rate PIV, coupled with unsteady pressure transducers. Pressure measurements were acquired on the shroud wall of the vaneless diffuser and on the suction pipe of the pump, whereas PIV flow fields were determined on three different heights in the hub to shroud direction, inside the diffuser. The classical Fourier analysis was applied to both pressure signals to identify the spectral characteristics of the developing instabilities, and the high-order spectral analysis was exploited to investigate possible non-linear interaction mechanisms between different unsteady structures. A dedicated PIV averaging procedure was developed and applied to the PIV flow fields so as to capture and visualize the topology of the spectrally identified phenomena. The influence of these phenomena on the diffuser efficiency was also investigated.}
+      \field{issn}{0723-4864, 1432-1114}
+      \field{journaltitle}{Experiments in Fluids}
+      \field{langid}{english}
+      \field{month}{7}
+      \field{number}{1}
+      \field{shortjournal}{Exp Fluids}
+      \field{title}{High-Speed Stereoscopic {{PIV}} Study of Rotating Instabilities in a Radial Vaneless Diffuser}
+      \field{urlday}{18}
+      \field{urlmonth}{4}
+      \field{urlyear}{2025}
+      \field{volume}{51}
+      \field{year}{2011}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \true{nocite}
+      \field{pages}{83\bibrangedash 93}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1007/s00348-010-1030-x
+      \endverb
+      \verb{file}
+      \verb /home/clementt/Zotero/storage/K7CG4MCQ/Dazin et al. - 2011 - High-speed stereoscopic PIV study of rotating instabilities in a radial vaneless diffuser.pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://link.springer.com/10.1007/s00348-010-1030-x
+      \endverb
+      \verb{url}
+      \verb http://link.springer.com/10.1007/s00348-010-1030-x
+      \endverb
+    \endentry
   \enddatalist
 \endrefsection
 \endinput

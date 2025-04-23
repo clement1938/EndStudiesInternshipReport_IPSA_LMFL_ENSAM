@@ -105,76 +105,92 @@
 \newlabel{fig:trilineaire}{{2.17}{24}{Schéma d'interpolation trilinéaire (source : Wikipédia)}{figure.caption.41}{}}
 \@writefile{toc}{\contentsline {subparagraph}{Tétraèdre : Barycentrique étendu}{24}{section*.42}\protected@file@percent }
 \@writefile{toc}{\contentsline {subparagraph}{Pyramide, hexaèdre, prisme et autres formes}{24}{section*.43}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2.4}Expetimentations}{24}{section.2.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2.5}The pump}{24}{section.2.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2.6}Preprocessing of PIV data}{25}{section.2.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2.7}Modifications of OpenFoam and CONES}{26}{section.2.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.7.1}La structure générale du code "TreatmentInterpolation"}{26}{subsection.2.7.1}\protected@file@percent }
-\ACRO{recordpage}{KDTree}{26}{1}{26}
-\newlabel{arguments}{{2.7.1}{26}{La structure générale du code "TreatmentInterpolation"}{subsection.2.7.1}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2.1}{\ignorespaces Arguments initiaux pour la méthode d'interpolation dans Antares}}{26}{table.caption.45}\protected@file@percent }
-\newlabel{tab:arguments_interpolation1}{{2.1}{26}{Arguments initiaux pour la méthode d'interpolation dans Antares}{table.caption.45}{}}
-\newlabel{parametres}{{2.7.1}{26}{La structure générale du code "TreatmentInterpolation"}{lstnumber.-1.1}{}}
-\newlabel{implementation_IDW}{{2.7.1}{26}{La structure générale du code "TreatmentInterpolation"}{lstnumber.-1.1}{}}
-\@writefile{toc}{\contentsline {paragraph}{L'interpolation IDW}{26}{section*.46}\protected@file@percent }
-\newlabel{prisme}{{2.7.1}{27}{L'interpolation IDW}{section*.46}{}}
-\@writefile{toc}{\contentsline {paragraph}{L'interpolation linéaire}{27}{section*.47}\protected@file@percent }
-\newlabel{lst:tet}{{2.2}{27}{Utilisation du traitement "tetrahedralize" pour interpoler linéairement tous types de cellules}{lstlisting.2.2}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.2}{\ignorespaces Utilisation du traitement "tetrahedralize" pour interpoler linéairement tous types de cellules}}{27}{lstlisting.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.7.2}Le pseudo-algorithme}{28}{subsection.2.7.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.7.3}Optimisation du temps de calcul}{29}{subsection.2.7.3}\protected@file@percent }
-\newlabel{lst:antares}{{2.3}{29}{Exemple de réutilisation des données}{lstlisting.2.3}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.3}{\ignorespaces Exemple de réutilisation des données}}{29}{lstlisting.2.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2.18}{\ignorespaces Schéma de sélection du deuxième point le plus proche}}{30}{figure.caption.48}\protected@file@percent }
-\newlabel{fig:deux_pt}{{2.18}{30}{Schéma de sélection du deuxième point le plus proche}{figure.caption.48}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.19}{\ignorespaces Illustration de la surface négative avec le point P}}{30}{figure.caption.49}\protected@file@percent }
-\newlabel{fig:surface_negative}{{2.19}{30}{Illustration de la surface négative avec le point P}{figure.caption.49}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.20}{\ignorespaces Comment savoir si une surface créée par deux sommets et un point est dans un triangle}}{31}{figure.caption.50}\protected@file@percent }
-\newlabel{fig:find_sn}{{2.20}{31}{Comment savoir si une surface créée par deux sommets et un point est dans un triangle}{figure.caption.50}{}}
-\newlabel{arguments_ajoutes}{{2.7.3}{31}{Optimisation du temps de calcul}{figure.caption.50}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2.2}{\ignorespaces Arguments ajoutés pour la méthode d'interpolation dans Antares}}{31}{table.caption.51}\protected@file@percent }
-\newlabel{tab:arguments_interpolation2}{{2.2}{31}{Arguments ajoutés pour la méthode d'interpolation dans Antares}{table.caption.51}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.8}Tests}{31}{section.2.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.8.1}Tests unitaires sur la méthode linéaire}{31}{subsection.2.8.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2.21}{\ignorespaces Vue en coupe sur des cellules pyramidales et tétraédriques par interpolation linéaire}}{32}{figure.caption.52}\protected@file@percent }
-\newlabel{fig:lin_pyr_tet}{{2.21}{32}{Vue en coupe sur des cellules pyramidales et tétraédriques par interpolation linéaire}{figure.caption.52}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.22}{\ignorespaces Vue en coupe sur des cellules pyramidales et tétraédriques par interpolation idw}}{32}{figure.caption.52}\protected@file@percent }
-\newlabel{fig:idw_pyr_tet}{{2.22}{32}{Vue en coupe sur des cellules pyramidales et tétraédriques par interpolation idw}{figure.caption.52}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.23}{\ignorespaces Logarithme de l'erreur en fonction du logarithme du raffinement}}{32}{figure.caption.53}\protected@file@percent }
-\newlabel{fig:err_tet}{{2.23}{32}{Logarithme de l'erreur en fonction du logarithme du raffinement}{figure.caption.53}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.8.2}Tests sur des cas industriels}{33}{subsection.2.8.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2.24}{\ignorespaces Coupe dans la chambre de combustion preccinsta}}{33}{figure.caption.54}\protected@file@percent }
-\newlabel{fig:coupe_preccinsta}{{2.24}{33}{Coupe dans la chambre de combustion preccinsta}{figure.caption.54}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.25}{\ignorespaces Interpolation IDW sur une coupe d'une chambre de combustion avec isosurface de la flamme}}{33}{figure.caption.55}\protected@file@percent }
-\newlabel{fig:cb-IDW}{{2.25}{33}{Interpolation IDW sur une coupe d'une chambre de combustion avec isosurface de la flamme}{figure.caption.55}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.26}{\ignorespaces Interpolation linéaire sur une coupe d'une chambre de combustion avec isosurface de la flamme}}{33}{figure.caption.55}\protected@file@percent }
-\newlabel{fig:cb-lineaire}{{2.26}{33}{Interpolation linéaire sur une coupe d'une chambre de combustion avec isosurface de la flamme}{figure.caption.55}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.8.3}Tests sur des cas d'aéroacoustique}{34}{subsection.2.8.3}\protected@file@percent }
-\newlabel{s241}{{2.8.3}{34}{Tests sur des cas d'aéroacoustique}{subsection.2.8.3}{}}
-\newlabel{s243}{{2.8.3}{34}{Tests sur des cas d'aéroacoustique}{subsection.2.8.3}{}}
-\newlabel{fig:aac1}{{2.27a}{34}{Base source}{figure.caption.56}{}}
-\newlabel{sub@fig:aac1}{{a}{34}{Base source}{figure.caption.56}{}}
-\newlabel{fig:aac2}{{2.27b}{34}{Base cible}{figure.caption.56}{}}
-\newlabel{sub@fig:aac2}{{b}{34}{Base cible}{figure.caption.56}{}}
-\newlabel{fig:aac3}{{2.27c}{34}{Interpolation de la solution de la base source dans la base cible}{figure.caption.56}{}}
-\newlabel{sub@fig:aac3}{{c}{34}{Interpolation de la solution de la base source dans la base cible}{figure.caption.56}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.27}{\ignorespaces Début de la chaîne aéroacoustique}}{34}{figure.caption.56}\protected@file@percent }
-\newlabel{fig:composite}{{2.27}{34}{Début de la chaîne aéroacoustique}{figure.caption.56}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.28}{\ignorespaces Comparaison entre la solution analytique et la solution utilisant l'interpolation IDW et linéaire}}{35}{figure.caption.57}\protected@file@percent }
-\newlabel{fig:onde_aac}{{2.28}{35}{Comparaison entre la solution analytique et la solution utilisant l'interpolation IDW et linéaire}{figure.caption.57}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.8.4}Tests sur les paramètres de la méthode IDW}{36}{subsection.2.8.4}\protected@file@percent }
-\newlabel{s244}{{2.8.4}{36}{Tests sur les paramètres de la méthode IDW}{subsection.2.8.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.29}{\ignorespaces Comparaison entre la solution analytique et la solution utilisant l'interpolation IDW (p=10, N=10) et linéaire}}{36}{figure.caption.58}\protected@file@percent }
-\newlabel{fig:np10}{{2.29}{36}{Comparaison entre la solution analytique et la solution utilisant l'interpolation IDW (p=10, N=10) et linéaire}{figure.caption.58}{}}
-\@writefile{toc}{\contentsline {chapter}{Conclusion}{37}{chapter*.59}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.4}OpenFOAM}{25}{section.2.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2.18}{\ignorespaces OpenFOAM directory structure}}{25}{figure.2.18}\protected@file@percent }
+\newlabel{fig:openfoam-directory}{{2.18}{25}{OpenFOAM directory structure}{figure.2.18}{}}
+\ACRO{recordpage}{RANS}{25}{1}{25}
+\ACRO{recordpage}{LES}{25}{1}{25}
+\@writefile{toc}{\contentsline {section}{\numberline {2.5}Experimentations}{26}{section.2.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.6}Presentation of the pump}{26}{section.2.6}\protected@file@percent }
+\ACRO{recordpage}{PIV}{26}{1}{26}
+\@writefile{toc}{\contentsline {section}{\numberline {2.7}Preprocessing of PIV data}{26}{section.2.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subparagraph}{Zone d'acquisition PIV}{26}{section*.44}\protected@file@percent }
+\@writefile{toc}{\contentsline {subparagraph}{1.}{27}{section*.46}\protected@file@percent }
+\@writefile{toc}{\contentsline {subparagraph}{2.Average}{27}{section*.47}\protected@file@percent }
+\@writefile{toc}{\contentsline {subparagraph}{3.Sampling}{27}{section*.48}\protected@file@percent }
+\@writefile{toc}{\contentsline {subparagraph}{4.Shaping for CONES}{27}{section*.49}\protected@file@percent }
+\@writefile{toc}{\contentsline {subparagraph}{5.Creation of a file for the interpolation}{28}{section*.50}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.8}Modifications on OpenFoam and CONES}{28}{section.2.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.8.1}Modifications on the interpolation function}{28}{subsection.2.8.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.8.2}La structure générale du code "TreatmentInterpolation"}{28}{subsection.2.8.2}\protected@file@percent }
+\ACRO{recordpage}{KDTree}{29}{1}{29}
+\newlabel{arguments}{{2.8.2}{29}{La structure générale du code "TreatmentInterpolation"}{subsection.2.8.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2.1}{\ignorespaces Arguments initiaux pour la méthode d'interpolation dans Antares}}{29}{table.caption.51}\protected@file@percent }
+\newlabel{tab:arguments_interpolation1}{{2.1}{29}{Arguments initiaux pour la méthode d'interpolation dans Antares}{table.caption.51}{}}
+\newlabel{parametres}{{2.8.2}{29}{La structure générale du code "TreatmentInterpolation"}{lstnumber.-1.1}{}}
+\newlabel{implementation_IDW}{{2.8.2}{29}{La structure générale du code "TreatmentInterpolation"}{lstnumber.-1.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{L'interpolation IDW}{29}{section*.52}\protected@file@percent }
+\newlabel{prisme}{{2.8.2}{29}{L'interpolation IDW}{section*.52}{}}
+\@writefile{toc}{\contentsline {paragraph}{L'interpolation linéaire}{29}{section*.53}\protected@file@percent }
+\newlabel{lst:tet}{{2.2}{30}{Utilisation du traitement "tetrahedralize" pour interpoler linéairement tous types de cellules}{lstlisting.2.2}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.2}{\ignorespaces Utilisation du traitement "tetrahedralize" pour interpoler linéairement tous types de cellules}}{30}{lstlisting.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.8.3}Le pseudo-algorithme}{31}{subsection.2.8.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.8.4}Optimisation du temps de calcul}{32}{subsection.2.8.4}\protected@file@percent }
+\newlabel{lst:antares}{{2.3}{32}{Exemple de réutilisation des données}{lstlisting.2.3}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.3}{\ignorespaces Exemple de réutilisation des données}}{32}{lstlisting.2.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2.19}{\ignorespaces Schéma de sélection du deuxième point le plus proche}}{33}{figure.caption.54}\protected@file@percent }
+\newlabel{fig:deux_pt}{{2.19}{33}{Schéma de sélection du deuxième point le plus proche}{figure.caption.54}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.20}{\ignorespaces Illustration de la surface négative avec le point P}}{33}{figure.caption.55}\protected@file@percent }
+\newlabel{fig:surface_negative}{{2.20}{33}{Illustration de la surface négative avec le point P}{figure.caption.55}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.21}{\ignorespaces Comment savoir si une surface créée par deux sommets et un point est dans un triangle}}{34}{figure.caption.56}\protected@file@percent }
+\newlabel{fig:find_sn}{{2.21}{34}{Comment savoir si une surface créée par deux sommets et un point est dans un triangle}{figure.caption.56}{}}
+\newlabel{arguments_ajoutes}{{2.8.4}{34}{Optimisation du temps de calcul}{figure.caption.56}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2.2}{\ignorespaces Arguments ajoutés pour la méthode d'interpolation dans Antares}}{34}{table.caption.57}\protected@file@percent }
+\newlabel{tab:arguments_interpolation2}{{2.2}{34}{Arguments ajoutés pour la méthode d'interpolation dans Antares}{table.caption.57}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.9}Tests}{34}{section.2.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.9.1}Tests unitaires sur la méthode linéaire}{34}{subsection.2.9.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2.22}{\ignorespaces Vue en coupe sur des cellules pyramidales et tétraédriques par interpolation linéaire}}{35}{figure.caption.58}\protected@file@percent }
+\newlabel{fig:lin_pyr_tet}{{2.22}{35}{Vue en coupe sur des cellules pyramidales et tétraédriques par interpolation linéaire}{figure.caption.58}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.23}{\ignorespaces Vue en coupe sur des cellules pyramidales et tétraédriques par interpolation idw}}{35}{figure.caption.58}\protected@file@percent }
+\newlabel{fig:idw_pyr_tet}{{2.23}{35}{Vue en coupe sur des cellules pyramidales et tétraédriques par interpolation idw}{figure.caption.58}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.24}{\ignorespaces Logarithme de l'erreur en fonction du logarithme du raffinement}}{35}{figure.caption.59}\protected@file@percent }
+\newlabel{fig:err_tet}{{2.24}{35}{Logarithme de l'erreur en fonction du logarithme du raffinement}{figure.caption.59}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.9.2}Tests sur des cas industriels}{36}{subsection.2.9.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2.25}{\ignorespaces Coupe dans la chambre de combustion preccinsta}}{36}{figure.caption.60}\protected@file@percent }
+\newlabel{fig:coupe_preccinsta}{{2.25}{36}{Coupe dans la chambre de combustion preccinsta}{figure.caption.60}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.26}{\ignorespaces Interpolation IDW sur une coupe d'une chambre de combustion avec isosurface de la flamme}}{36}{figure.caption.61}\protected@file@percent }
+\newlabel{fig:cb-IDW}{{2.26}{36}{Interpolation IDW sur une coupe d'une chambre de combustion avec isosurface de la flamme}{figure.caption.61}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.27}{\ignorespaces Interpolation linéaire sur une coupe d'une chambre de combustion avec isosurface de la flamme}}{36}{figure.caption.61}\protected@file@percent }
+\newlabel{fig:cb-lineaire}{{2.27}{36}{Interpolation linéaire sur une coupe d'une chambre de combustion avec isosurface de la flamme}{figure.caption.61}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.9.3}Tests sur des cas d'aéroacoustique}{37}{subsection.2.9.3}\protected@file@percent }
+\newlabel{s241}{{2.9.3}{37}{Tests sur des cas d'aéroacoustique}{subsection.2.9.3}{}}
+\newlabel{s243}{{2.9.3}{37}{Tests sur des cas d'aéroacoustique}{subsection.2.9.3}{}}
+\newlabel{fig:aac1}{{2.28a}{37}{Base source}{figure.caption.62}{}}
+\newlabel{sub@fig:aac1}{{a}{37}{Base source}{figure.caption.62}{}}
+\newlabel{fig:aac2}{{2.28b}{37}{Base cible}{figure.caption.62}{}}
+\newlabel{sub@fig:aac2}{{b}{37}{Base cible}{figure.caption.62}{}}
+\newlabel{fig:aac3}{{2.28c}{37}{Interpolation de la solution de la base source dans la base cible}{figure.caption.62}{}}
+\newlabel{sub@fig:aac3}{{c}{37}{Interpolation de la solution de la base source dans la base cible}{figure.caption.62}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.28}{\ignorespaces Début de la chaîne aéroacoustique}}{37}{figure.caption.62}\protected@file@percent }
+\newlabel{fig:composite}{{2.28}{37}{Début de la chaîne aéroacoustique}{figure.caption.62}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.29}{\ignorespaces Comparaison entre la solution analytique et la solution utilisant l'interpolation IDW et linéaire}}{38}{figure.caption.63}\protected@file@percent }
+\newlabel{fig:onde_aac}{{2.29}{38}{Comparaison entre la solution analytique et la solution utilisant l'interpolation IDW et linéaire}{figure.caption.63}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.9.4}Tests sur les paramètres de la méthode IDW}{39}{subsection.2.9.4}\protected@file@percent }
+\newlabel{s244}{{2.9.4}{39}{Tests sur les paramètres de la méthode IDW}{subsection.2.9.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.30}{\ignorespaces Comparaison entre la solution analytique et la solution utilisant l'interpolation IDW (p=10, N=10) et linéaire}}{39}{figure.caption.64}\protected@file@percent }
+\newlabel{fig:np10}{{2.30}{39}{Comparaison entre la solution analytique et la solution utilisant l'interpolation IDW (p=10, N=10) et linéaire}{figure.caption.64}{}}
+\@writefile{toc}{\contentsline {chapter}{Conclusion}{40}{chapter*.65}\protected@file@percent }
 \abx@aux@nociteall
-\@writefile{toc}{\contentsline {chapter}{Bibliography}{39}{chapter*.63}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{Bibliography}{42}{chapter*.69}\protected@file@percent }
 \ACRO{total-barriers}{1}
-\@writefile{toc}{\contentsline {paragraph}{Résumé}{41}{section*.65}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Abstract}{41}{section*.66}\protected@file@percent }
-\abx@aux@read@bbl@mdfivesum{C2BB9EB4C148482826809E930EA76813}
+\@writefile{toc}{\contentsline {paragraph}{Résumé}{44}{section*.71}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Abstract}{44}{section*.72}\protected@file@percent }
+\abx@aux@read@bbl@mdfivesum{D83A15346C94A12A2D61952A684091B9}
 \abx@aux@defaultrefcontext{0}{alexis}{nty/global//global/global}
-\ACRO{usage}{PIV=={0}}
+\abx@aux@defaultrefcontext{0}{dazinHighspeedStereoscopicPIV2011a}{nty/global//global/global}
+\ACRO{usage}{LES=={1}}
+\ACRO{usage}{RANS=={1}}
+\ACRO{usage}{PIV=={1}}
 \ACRO{usage}{IBM=={1}}
 \ACRO{usage}{IPSA=={1}}
 \ACRO{usage}{CONES=={1}}
@@ -234,5 +250,8 @@
 \ACRO{pages}{RBF=={19@1@19}}
 \ACRO{pages}{MLS=={20@1@20}}
 \ACRO{pages}{MISCOG=={20@1@20}}
-\ACRO{pages}{KDTree=={26@1@26}}
-\gdef \@abspage@last{41}
+\ACRO{pages}{RANS=={25@1@25}}
+\ACRO{pages}{LES=={25@1@25}}
+\ACRO{pages}{PIV=={26@1@26}}
+\ACRO{pages}{KDTree=={29@1@29}}
+\gdef \@abspage@last{44}
