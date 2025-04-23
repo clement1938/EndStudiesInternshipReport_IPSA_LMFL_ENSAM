@@ -423,6 +423,11 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/tocloft/tocloft.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/tocloft/tocloft.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/units/nicefrac.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/units/nicefrac.sty
+INPUT ./dirtree.sty
+INPUT dirtree.sty
+INPUT /usr/share/texlive/texmf-dist/tex/generic/dirtree/dirtree.tex
+INPUT /usr/share/texlive/texmf-dist/tex/generic/dirtree/dirtree.tex
+INPUT /usr/share/texlive/texmf-dist/tex/generic/dirtree/dirtree.tex
 INPUT /usr/share/texlive/texmf-dist/tex/latex/forest/forest.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/forest/forest.sty
 INPUT /usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.code.tex
@@ -463,8 +468,6 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/elocalloc/elocalloc.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/elocalloc/elocalloc.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/inlinedef/inlinedef.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/inlinedef/inlinedef.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/forest/forest-lib-edges.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/forest/forest-lib-edges.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/tikz-qtree/tikz-qtree.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/tikz-qtree/tikz-qtree.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/tikz-qtree/pgftree.sty
@@ -927,7 +930,6 @@ INPUT ./images/ipsagarde.png
 INPUT ./images/ipsagarde.png
 INPUT ./images/ipsagarde.png
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecsl1095.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/inconsolata/t1-zi4b-0.tfm
 INPUT ./images/logos.png
 INPUT ./images/logos.png
 INPUT ./images/logos.png
@@ -1146,7 +1148,6 @@ INPUT ./rapport_stage.out
 INPUT ./rapport_stage.out
 INPUT rapport_stage.run.xml
 OUTPUT rapport_stage.run.xml
-INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4b.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb

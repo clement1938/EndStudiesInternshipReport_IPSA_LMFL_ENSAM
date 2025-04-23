@@ -5,7 +5,7 @@
 %– Le récit de l’expérience préprofessionnelle doit faire état de toutes les fonctions exercées par le stagiaire à son poste. Il doit comporter des développements techniques (illustrés par des schémas expliqués et commentés, par exemple), mais il s’agit avant tout de donner au lecteur une idée de ce que furent l’emploi du temps du stagiaire, ses tâches quotidiennes, les contraintes du métier, la nature des relations humaines dans cet environnement, les difficultés rencontrées et les résultats obtenus.
 %– Les connaissances techniques acquises doivent transparaître dans le document. Le correcteur évaluera si celui-ci fait état d’une maîtrise réelle des outils (informatiques, mécaniques, etc.) utilisés pendant le stage. En outre, il estimera le niveau des connaissances techniques acquises que la rédaction du rapport aura su mettre en évidence.
 
-The internship began in February 2025. I was provided with a fix computer, and credentials to connect to the Irene and Cassiopée supercalcomputers. Marcello MELDI, Antoine DAZIN and Miguel MARTINEZ VALERO which are my internship supervisors, showed me around the lab...
+The internship began in February 2025. I was provided with a fix computer, and credentials to connect to the Irene and Cassiopée supercomputers. Marcello MELDI, Antoine DAZIN and Miguel MARTINEZ VALERO which are my internship supervisors, showed me around the lab.
 Then, Tom MOUSSIE my and Miguel co-officies, explained to me the basics of OpenFoam and CONES, the DA code. I was able to run a few tests on OpenFoam on the supercomputers, which allowed me to familiarize myself with the tools and the code. % PARLER DE LA CONFIG DE CONES
 
 %Lors de mes essais sur le supercalculateur, j'ai utilisé une partition qui offre une puissance de calcul totale de 723 Tflop/s. Elle est composée de 185 nœuds Intel 2x18 cœurs Skylake, cadencés à 2,3 GHz avec 96 Go de mémoire. Ces ressources m'ont permis d'effectuer les tests demandant le plus de ressources.
@@ -1338,24 +1338,132 @@ OpenFOAM is not provided with a graphical interface, which is why a simulation i
 % décrire la structure du dossier OpenFOAM et ce que chaque fichier fait (dans mon cas de simulation)
 
 
+\begin{forest}
+    for tree={
+      font=\ttfamily,
+      grow'=0,
+      child anchor=west,
+      parent anchor=south,
+      anchor=west,
+      calign=first,
+      inner xsep=7pt,
+      edge path={
+        \noexpand\path [draw, \forestoption{edge}]
+        (!u.south west) +(7.5pt,0) |- (.child anchor) pic {folder} \forestoption{edge label};
+      },
+      before typesetting nodes={
+        if n=1
+          {insert before={[,phantom]}}
+          {}
+      },
+      fit=band,
+      before computing xy={l=15pt},
+    }  
+  [root
+    [system
+      [controlDict
+      ]
+      [blockMeshDict
+      ]
+      [decomposeParDict
+      ]
+      [fvSchemes
+      ]
+      [fvSolution
+      ]
+    ]
+    [templates
+    ]
+    [tests
+    ]
+  ]
+  \end{forest}
+  
+
+\begin{comment}
+\begin{forest}
+    for tree={
+      grow'=0,
+      child anchor=west,
+      parent anchor=south,
+      anchor=west,
+      calign=first,
+      inner sep=1pt,
+      l=1.5em,
+      s sep=0.5em,
+      edge path={
+        \noexpand\path [draw, -] (\forestOanchor) |- (\forestCanchor)\forestedge;
+      },
+    }
+    [Projet
+      [data]
+      [scripts
+        [analyse.py]
+        [utils.py]
+      ]
+      [docs
+        [rapport.tex]
+        [images]
+      ]
+      [README.md]
+    ]
+\end{forest}
+
+
+\begin{forest}
+[Projet, directory
+  [data, directory]
+  [scripts, directory
+    [analyse.py, file]
+    [utils.py, file]
+  ]
+  [docs, directory
+    [rapport.tex, file]
+    [images, directory]
+  ]
+  [README.md, file]
+]
+\end{forest}
+
+
+\begin{center}
+    \begin{forest}
+    [Projet
+    [data]
+    [scripts
+        [analyse.py]
+        [utils.py]
+    ]
+    [docs
+        [rapport.tex]
+        [images]
+    ]
+    [README.md]
+    ]
+    \end{forest}
+\end{center}
+\end{comment}
+
+\begin{comment}
 \begin{center}
     \begin{minipage}{\textwidth}
-    \begin{forest}
-        pic dir tree,
-        [root,
-        [system
-            [controlDict, file]
-            [blockMeshDict, file]
-        ]
-        [constant
-            [polyMesh]
-        ]
-        ]
-    \end{forest}
-    \captionof{figure}{OpenFOAM directory structure}
-    \label{fig:openfoam-directory}
-\end{minipage}
+        \begin{forest}
+            pic dir tree,
+            [root,
+            [system
+                [controlDict, file]
+                [blockMeshDict, file]
+            ]
+            [constant
+                [polyMesh]
+            ]
+            ]
+        \end{forest}
+        \captionof{figure}{OpenFOAM directory structure}
+        \label{fig:openfoam-directory}
+    \end{minipage}
 \end{center}
+\end{comment}
 
 
 The \texttt{system} directory contains the main parameters concerning the progress of the simulation:
