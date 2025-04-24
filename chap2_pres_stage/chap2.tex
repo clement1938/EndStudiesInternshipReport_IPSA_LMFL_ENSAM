@@ -10,11 +10,52 @@ Then, Tom MOUSSIE and Miguel, my co-officies, explained to me the basics of Open
 
 %Lors de mes essais sur le supercalculateur, j'ai utilisé une partition qui offre une puissance de calcul totale de 723 Tflop/s. Elle est composée de 185 nœuds Intel 2x18 cœurs Skylake, cadencés à 2,3 GHz avec 96 Go de mémoire. Ces ressources m'ont permis d'effectuer les tests demandant le plus de ressources.
 
-\section{State of the art}
-\subsection{Data Assimilation}
-Data assimilation is a technique used to improve the accuracy of numerical models by combining them with observational data. It is widely used in various fields, including meteorology, oceanography, and engineering. The goal of data assimilation is to obtain a more accurate representation of the state of a system by integrating information from different physical measurements or hight fidelity sources.
+\section{Data Assimilation}
 
-\subsection{The centrifugal pump}
+PAS d'equation ici, sinon je me fait frapper
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/DAmap.png}
+    \caption{The big picture for DA methods and algorithms}
+    \label{fig:DAmap}
+\end{figure}
+
+Data assimilation\cite{aschDataAssimilationMethods2016} is a technique used to improve the accuracy of numerical models by combining them with observational data. It is widely used in various fields, including meteorology, oceanography, and engineering. The goal of data assimilation is to obtain a more accurate representation of the state of a system by integrating information from different physical measurements or hight fidelity sources.
+
+
+\subsection{State of the art} % Introduction
+
+DA
+Expliquer en quoi / cas test ou ca a fonctionné en CFD en utilisant des paramètres écoulement. (aller de + en plus en détail jusqu'a param IBM car gros cas test couteux en body-fitted)
+
+
+
+IBM mais pas technique
+
+(aller de + en plus en détail jusqu'a param IBM car gros cas test couteux en body-fitted)
+
+Objectif : amélioration params forcage stationaire
+
+\subsection{Presentation of the test case: the centrifugal pump}
+
+Parler de la partie expérimentale
+
+Results in the file are High-Speed \ac{PIV} data obtained at a PIV frequency of 980 Hz
+The operating conditions of the machine where :
+N= 1200 rpm
+Qv = 0.256 m3/s (design flow rate of the pump)
+ 
+The 6 directories are corresponding to tests realised at 
+25\%, 50\% et 75\% of the diffuser height.
+
+Each test was repeated twice for the same operating condition and the same height (R1, R2)
+
+In each directory, there are 1581 files corresponding to instantaneous ASCII data file.
+The 9 columns are corrresponding to :
+x (m),y(m),Vx(m/s),Vy(m/s),r(m),theta(rad),Vr(m/s),Vtheta(m/s),Vz(m/s),???
+ 
+The pdf is a paper where can be found the experimental conditions even if the analysis are focussed on another flow rate.
 
 \title{Fonctionning}
 \title{Utility}
@@ -26,18 +67,596 @@ Data assimilation is a technique used to improve the accuracy of numerical model
     \label{fig:old_centrifugal_pump}
 \end{figure}
 
-\subsection{Some theoretical background on Data Assimilation}
+Données hautes fidélités,...
+
 
 \section{Numerical ingredients}
 
-\subsection{Computation Fluid Dynamics}
+\subsection{Governing equations}
+- Equations (Incompressible, turbulence,...)
+- Ajout IBM -> Methodo forcage continue
 
 \subsection{The open source code OpenFoam}
 
-\subsection{The library ? CONES}
+\subsection{EnKF}
 
-CONES is a library ? coded in Python/C++ developed for ... since NNNN at LMFL
+
+\subsection{The library CONES}
+CONES is a library coded in Python/C++ developed for ... since NNNN at LMFL
 It's parallelized and can be used on supercomputers. It is mainly designed to work with OpenFoam and DA codes as \ac{EnKF}.\label{instants_partages}
+
+Simulations are performed using the C++ framework OpenFOAM, used to discretize the equations previously presented. Standing for \textsl{Open Source Field Operation and Manipulation}, OpenFOAM is an open-source project which provides many tools, referred to as executables %\citep[see][]{greenshields2021}. These executable files can be divided into three separate categories:
+\begin{itemize}
+    \item[$-$] \textbf{Pre-processing}, including meshing and decomposing tools.
+    \item[$-$] \textbf{Solving}, including in-built and custom solvers. Each solver is built to answer a specific CFD problem. 
+    \item[$-$] \textbf{Post-processing}, including \texttt{ParaView}, an open-source visualization application.
+\end{itemize}
+
+OpenFOAM is not provided with a graphical interface, which is why a simulation is built by writing ``dictionaries'', in which are stored the necessary information for the simulation (mesh, turbulence model, maximum number of characteristic times, $\dots$). Thus, a specific directory structure must be observed, as outlined in ... % \autoref{fig:OpenFOAM_directory_structure}:
+% décrire la structure du dossier OpenFOAM et ce que chaque fichier fait (dans mon cas de simulation)
+
+
+\begin{forest}
+    for tree={
+      font=\ttfamily,
+      grow'=0,
+      child anchor=west,
+      parent anchor=south,
+      anchor=west,
+      calign=first,
+      inner xsep=7pt,
+      edge path={
+        \noexpand\path [draw, \forestoption{edge}]
+        (!u.south west) +(7.5pt,0) |- (.child anchor) pic {folder} \forestoption{edge label};
+      },
+      before typesetting nodes={
+        if n=1
+          {insert before={[,phantom]}}
+          {}
+      },
+      fit=band,
+      before computing xy={l=15pt},
+    }  
+  [root
+    [system
+      [controlDict
+      ]
+      [blockMeshDict
+      ]
+      [decomposeParDict
+      ]
+      [fvSchemes
+      ]
+      [fvSolution
+      ]
+    ]
+    [templates
+    ]
+    [tests
+    ]
+  ]
+  \end{forest}
+  
+
+The \texttt{system} directory contains the main parameters concerning the progress of the simulation:
+\begin{itemize}
+    \item[$-$] The \texttt{controlDict} dictionary defines parameters such as start and end time, time steps, data output formatting, or data average computation.
+    \item[$-$] The \texttt{blockMeshDict} dictionary defines the geometry, mesh and boundary conditions implementation.
+    \item[$-$] The \texttt{decomposeParDict} dictionary defines the geometry and mesh decomposition, with the objective to run the simulation in parallel, using multiple cores.
+    \item[$-$] The \texttt{fvSchemes} dictionary defines the discretisation schemes used in the solution.
+    \item[$-$] The \texttt{fvSolution} dictionary defines the equation solvers, tolerances and other algorithm controls for instance. 
+\end{itemize}
+
+The \texttt{constant} directory contains the different physical properties of the simulation. Moreover, the subfolder \texttt{polyMesh} contains the mesh data, obtained after the \texttt{blockMesh} command line is run:
+\begin{itemize}
+    \item[$-$] The \texttt{momentumTransport} dictionary defines the simulation type (\ac{RANS} or \ac{LES}), as well as the turbulence model.
+    \item[$-$] The \texttt{transportProperties} dictionary defines the transport model (Newtonian for instance) and some transport coefficients, such as the kinematic viscosity $\nu$. 
+    \item[$-$] The \texttt{turbulenceProperties} dictionary defines the different parameters of the chosen turbulence model.
+\end{itemize}
+
+The \texttt{0} directory contains the initial solution's fields. The \texttt{postProcessing} directory stores data from the running simulation, such as forces and probes' data. The \texttt{processor0...N} directories directly result from the geometry decomposition, which is proceeded through the \texttt{decomposeParDict} dictionary. The \texttt{dummy.foam} is an empty file which allows to visualize the simulation with \texttt{ParaView}. 
+
+
+\subsection{Modeling}
+'Jumeaux numérique'
+- Maillage
+- CL, ...
+
+
+\section{IBM preliminary results}
+
+"Résultats de la simulation avec 3e5"
+
+\section{Application de la DA}
+
+Expliquer comment j'applique la DA sur le cas test de la pompe centrifuge (pas d'equation)
+
+\subsection{Preprocessing of PIV data}
+
+\subparagraph{Zone d'acquisition PIV}
+\phantom{-}
+
+The PIV data is acquired in a rectangular zone of 0.08 m x 0.124 m.
+The cathesian coordinates are given in a local system, where the absolute origin is at the center of the pump.
+
+
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis equal,
+            xlabel={$x$ (m)},
+            ylabel={$y$ (m)},
+            width=8cm,
+            height=12cm,
+            grid=both,
+            xmin=0, xmax=0.08,
+            ymin=0, ymax=0.124,
+            title={Zone d'acquisition PIV}
+        ]
+        \draw[red, very thick, dashed] (0.0245, 0) -- (0.0245, 0.124);
+        \node[red, rotate=90] at (0.053-0.031, 0.062) {$\theta = x_{abs} = 0$};
+
+
+        % CentreAbs : (0,0)    -> CentreRel : (-0.0245,0.257.5)
+        % BoutRel   : (0.06, 0.12) -> boutAbs : ...
+
+        \draw[darkblue, very thick, dashed] (0.037756, 0) -- (0.0445, 0.124);
+        \draw[darkblue, very thick, dashed] (0.051012, 0) -- (0.0645, 0.124);
+        %\draw[darkblue, very thick, dashed] (0.02*(0.2575/0.3855)+0.0245, 0) -- (0.0245+0.02, 0.124);
+        %\node[darkblue, rotate=90] at (0.053-0.031, 0.062) {$\theta = x_{abs} = 0$};
+        
+        \draw[->, >=stealth, color=darkblue, thick] (0.0245, 0.0145) -- (0.07-0.031, 0.0145);
+        \node[darkblue, rotate=0] at (0.062-0.031, 0.017) {$\vec{x}$}; % _{abs}
+
+        \draw[->, >=stealth, color=darkblue, thick]  (0.0245, 0.0145) -- (0.0245, 2*0.0145);
+        \node[darkblue, rotate=0] at (0.021, 0.0195) {$\vec{y}$}; %_{abs}
+
+        \draw[->, >=stealth, color=red, thick]  (0.0245, 0.1) -- (0.0245, 0.1145);
+        \node[red, rotate=0] at (0.062-0.032, 0.108) {$\vec{U_{r}}$};
+
+        \draw[->, >=stealth, color=red, thick]  (0.0245, 0.1) -- (0.01, 0.1);
+        \node[red, rotate=0] at (0.0245-0.01, 0.1-0.005) {$\vec{U_{\theta}}$};
+
+
+        \addplot+[
+            only marks,
+            mark=*,
+            mark size=0.3pt,
+            color=blue
+        ] table [x index=0, y index=1] {points_piv_tikz.txt};
+        \end{axis}
+    \end{tikzpicture}
+\end{figure}
+
+Dans la simulation numérique, l'axe z est vers le centre de la Terre, contrairement à l'expérience où il est vers le haut.
+La roue tourne dans le sens trigonométrique dans le repère de la simulation numérique et dans le sens antitrigonométrique dans l'expérimentation.
+
+\subparagraph{1.}
+
+First, we need to know how to convert the coordinates from the local system to the absolute system.
+We find that between the line 55 and 56, the radius is constant and pass from lower than \(\pi\) to upper. In fact, for the plan at 75\%, it is the same approache but between the line 65 and 66 because of some technical experimental constraints.
+We also did plot x over theta for three differents values of theta and find out an intersection point for x = 0.0245.
+So now, we know that for x = 0.0245, theta = \(\frac{\pi}{2}\)
+%We could use the absolute system is defined by the following equations:
+\begin{equation}
+    \begin{cases}
+        x_{rel} = x_{abs} + 0.0245 \\
+        y_{rel} = x_{abs} + R_{2} \\ % R2 = 257.5
+    \end{cases}
+\end{equation}
+
+
+\subparagraph{2.Average}
+For now we are in stationary case (time invariant). So we are going to deal with data average over time.
+There are around 49 maps (=file) by turn. So to agerage the data over the time, we can average over the \(\phi\) (\(\phi\) appartiens à 0-211rd) (=maps). That into the six directory.
+
+
+\subparagraph{3.Sampling}
+We will also average data between R1 and R2 to go to 3 files (of 10x81x125 elements).
+Now, we keep only the data on the line x = 0.0245 (in fact we average data between x = 0.024 and x = 0.025). Data are then truncate at line 89, where the radius is upper than 0.3, because of some laser reflexion on the pump during the PIV experiment.
+
+
+\subparagraph{4.Shaping for CONES}
+Cones keep data in a particular way. We need to convert the data in a format that cones can read.
+From 3 files (of 10x81x125 elements), to the files \texttt{fieldCylindrical.txt}
+and \texttt{obs\_coordinates.txt}. Describe shapes...
+
+
+\subparagraph{5.Creation of a file for the interpolation}
+Finally, we need to create an \texttt{coords\_seventh.txt} file for the interpolation function in CONES.
+We don't juste use the coordinates of the points in the PIV data, beacause we want to average over the angle \(\theta\) on the pump. The numerical simulation is $\frac{2\pi}{7}$ OU $2\pi/7$ periodic, so we interpolate in 150 points over theta between 0 and 2pi/7.
+To do that, wue just take the \texttt{obs\_coordinates.txt} file and duplicate 150 times the points over the angle \(\theta\) (between -pi/7 and pi/7). In our case, we chose 150 that will aproximately correspont to the shap of a cell at this radius.
+To be consistent with axis further, we take points between -pi/7 + pi/2 and pi/7 + pi/2
+
+Here is the plot of the experimental data and the numerical data (for D = 3e7 (introduire la variable)), at the same points (both are averages over time and over the angle \(\theta\)).
+
+
+
+
+potentiellement en annexe
+
+Concretely, to average the data over the angle \(\theta\), we need to modify the interpolation function in CONES.
+Instead of read coords, the interpolation function read the data in the \texttt{coords\_seventh.txt} file.
+
+Then, it computes the interpolation and average the data over the angle \(\theta\) (between -pi/7 and pi/7), by doing a somme over \(\theta\) and dividing by the number of points (150). To go back from 150x5x3x3 (to detail) to 5x3x3 data. All of those computation are mad in a cylindrical referencial. Ref au schéma tikz
+
+
+A sixth coefficients DP has been add.
+It's represent the difference of pressure between the inlet of the pipe and the outlet of the diffuser. 
+The numerical coefficient are interpolating, respectively at (0,0,-0.35) and (0,0.390,0).
+For the high fidelity value, we can find experimental data form the same pump [M. Fan 2022], that's match with M. Fan simulation (eq to approximately \(\eta\) = 0.4). So can also compute :
+
+
+
+U\_{2} is the impeller tip speed computed from the impeller diameter and the rotation speed of the pump.
+
+\begin{equation}
+    \frac{\Delta P_{P}}{\rho U_{2}^{2}} = \eta \Leftrightarrow
+    \Delta P_{P} = \rho U_{2}^{2} \eta
+\end{equation}
+
+As we are in a steady simulation, the restult of the numerical pressure is divided by the density of the fluid.
+
+\begin{equation}
+    \Delta P_{P} = 32^{2} \times 0.4 = 410 Pa
+\end{equation}
+
+So the state vector is now 46.
+Incertitude on P will be less to take more take it account.
+Inflation...
+
+At pump flow rate = pump design flow rate So Q?/Q? =1
+
+\subsection{Preparation/modifation on OpenFoam and CONES}
+
+Tout ce qu'il y a dans le CONES dict
+Parler des modifs dans le code ici.
+
+
+
+- Réduction du pipe (avec recherche condition vitesse entrée)
+
+
+
+
+
+
+\section{Results}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{comment}
+\label{prisme}\paragraph{L'interpolation linéaire}
+
+
+
+pseudo-algorithme
+
+\vspace{0.3cm}
+
+\textbf{Initialisation :}
+
+$\bullet$ Créer le KD-tree
+
+$\bullet$ Créer une liste de listes \texttt{node\_to\_elements} qui permet de récupérer l'indice des éléments constitués par un certain point.
+
+$\bullet$ Définir les points à interpoler
+
+\vspace{0.5cm}
+
+\textbf{Parcours des points à interpoler :}
+\begin{list}{$\circ$}{\leftmargin=0.5cm \labelwidth=1cm \itemsep=0cm}
+    \item Pour chaque point :
+    \begin{list}{$\diamond$}{\leftmargin=0.5cm \labelwidth=1cm \itemsep=0cm}
+        \item Si la distance au point le plus proche est inférieure à \texttt{tolerance} :
+        \begin{list}{$\bullet$}{\leftmargin=0.5cm\labelwidth=1cm \itemsep=0cm}
+            \item Le poids associé au \texttt{point cible} prend la valeur 1
+            \item Le sommet associé au \texttt{point cible} prend la valeur du \texttt{point source} le plus proche
+        \end{list}
+        \item Sinon :
+        \begin{list}{$\bullet$}{\leftmargin=0.5cm \labelwidth=1cm \itemsep=0cm}
+            \item Récupérer les indices des éléments des points les plus proches\\
+            $\circ$ Pour chaque élément pertinent :
+            \begin{list}{$\bullet$}{\leftmargin=0.5cm\labelwidth=1cm \itemsep=0cm}
+                \item Récupérer les coordonnées des sommets (points) de la cellule\\
+                $\diamond$ Si le point est à l'intérieur de la cellule :
+                \begin{list}{$\bullet$}{\leftmargin=0.5cm \labelwidth=1cm \itemsep=0cm}
+                    \item Calculer les poids "barycentriques"
+                    \item Récupérer les indices des sommets (points) de la base source
+                \end{list}
+            \end{list}
+        \end{list}
+    \end{list}
+    $\diamond$ Si le point n'est dans aucune cellule proche :
+    \begin{list}{$\bullet$}{\leftmargin=0.5cm \labelwidth=1cm \itemsep=0cm}
+        \item Le poids associé prend la valeur \texttt{numpy.nan} (cette valeur sera changée avant la mise à jour d'octobre)
+    \end{list}
+\end{list}
+
+\vspace{0.4cm}
+
+
+\textbf{Mise à jour de la base cible :}
+\begin{list}{$\circ$}{\leftmargin=0.5cm \labelwidth=1cm \itemsep=0cm}
+    \item Pour chaque variable à interpoler :
+    \begin{list}{$\bullet$}{\leftmargin=0.5cm \labelwidth=1cm \itemsep=0cm}
+        \item La variable de chaque nouveau point prend la valeur des poids calculés multipliés par la variable aux sommets (points) respectifs de la base source
+    \end{list}
+\end{list}
+
+
+\begin{lstlisting}[caption=Exemple de réutilisation des données, label={lst:antares}]
+    import antares
+    from copy import deepcopy
+    # deepcopy est utilise pour s'assurer que la 'target_base' ne soit pas calculee par le traitement
+
+    myt = antares.Treatment('interpolation')
+    myt['source'] = source_base
+    myt['target'] = deepcopy(target_base)
+    myt['get_data'] = True
+    result1, data = myt.execute()
+
+    # 'data' peut etre enregistre sur votre ordinateur par exemple, pour pouvoir etre appele plus tard
+
+    myt = antares.Treatment('interpolation')
+    myt['source'] = source_base
+    myt['target'] = target_base
+    myt['data'] = data
+    result2 = myt.execute()
+\end{lstlisting}
+
+
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \centering
+        % Triangle initial
+        \coordinate (I) at (0,0);
+        \coordinate (II) at (2,4);
+        \coordinate (III) at (4,0);
+        \coordinate (P) at (2.4,2.1); % Point P (plus proche du nouveau triangle)
+
+        % Nouveau triangle
+        \coordinate (IV) at (3.4,2.5);
+
+        % Draw the initial triangle
+        \draw[thick] (I) -- (II) -- (III) -- cycle;
+
+        % Draw the new triangle
+        \draw[thick] (II) -- (III) -- (IV) -- cycle;
+
+        % Draw point P
+        \filldraw[blue] (P) circle (2pt) node[anchor=east] {P};
+
+        % Label the vertices of the initial triangle
+        \filldraw[red] (I) circle (2pt) node[anchor=east] {I}; % [anchor=east,xshift=-5pt,yshift=-5pt]
+        \filldraw[red] (II) circle (2pt) node[anchor=south] {II};
+        \filldraw[red] (III) circle (2pt) node[anchor=west] {III};
+
+        % Label the vertices of the new triangle
+        \filldraw[red] (IV) circle (2pt) node[anchor=west] {IV};
+
+        % Draw lines from P to vertices
+        \draw[dashed] (P) -- (IV);
+        \draw[dashed] (P) -- (II);
+
+        % Title
+        %\node at (4,-1) {P plus proche de IV que du sommet le plus éloigné du triangle dans lequel il se trouve};
+    \end{tikzpicture}
+    \caption{Schéma de sélection du deuxième point le plus proche}
+    \label{fig:deux_pt}
+%\label{fig:interpolation_IDW_rayon}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        % Triangle initial
+        \coordinate (II) at (2*1.5,4*1.5);
+        \coordinate (III) at (4*1.5,0);
+        \coordinate (P) at (2.4*1.5,2.1*1.5); % Point P (plus proche du nouveau triangle))
+        \coordinate (IV) at (3.4*1.5,2.5*1.5);
+    
+        % Draw point P
+        \filldraw[blue] (P) circle (2pt) node[anchor=east] {P};
+    
+        % Label the vertices of the initial triangle
+        \filldraw[red] (II) circle (2pt) node[anchor=south] {II};
+        \filldraw[red] (III) circle (2pt) node[anchor=west] {III};
+    
+        % Label the vertices of the new triangle
+        \filldraw[red] (IV) circle (2pt) node[anchor=west] {IV};
+    
+        % Colorer les surfaces, avec une surface négative
+        \fill[blue!20] (II) -- (P) -- (IV) -- cycle;
+        \fill[green!20, opacity=1.0] (III) -- (P) -- (IV) -- cycle;
+        % Utilisation de hachures pour indiquer une surface négative
+        \fill[pattern=north west lines, pattern color=red, opacity=0.7] (P) -- (III) -- (II) -- cycle;
+    
+        % Draw the 'outside' triangle
+        \draw[thick] (II) -- (III) -- (IV) -- cycle;
+    
+        % Draw lines from P to vertices
+        \draw[thick] (P) -- (IV);
+        \draw[thick] (P) -- (II);
+        \draw[thick] (P) -- (III);
+    
+        % Ajouter des annotations pour indiquer la surface négative
+        %\node at (2.1*1.5,2.15*1.5) [anchor=west] {Surface};
+        %\node at (2.1*1.5,2.15*1.5-0.4) [anchor=west] {négative};
+        \node at (3, 1) [anchor=east] {
+            \begin{tikzpicture}[baseline]
+                \fill[pattern=north west lines, pattern color=red, opacity=0.7] (0,0) rectangle (0.5,0.2);
+            \end{tikzpicture}
+            \hspace{0.1cm} Surface négative
+        };
+        %\node at (3, 1) [anchor=east] {Surface négative};
+        \draw[->, thick] (3, 1) -- (4.0, 2.9);
+
+        %\node at (2.5*1.5, 1.5*1.5) [anchor=north] {\textbf{-}};
+    \end{tikzpicture}    
+    \caption{Illustration de la surface négative avec le point P}
+    \label{fig:surface_negative}
+\end{figure}
+
+
+\begin{figure}[H]
+\centering
+    \begin{tikzpicture}
+    % Définition des points
+    \coordinate (A) at (0, 0);
+    \coordinate (B) at (4, 0);
+    \coordinate (C) at (2, 2);
+    \coordinate (P) at (2.4, 4); % Point P, placé en dehors de deux droites
+
+    % Tracer le triangle ABC
+    \draw[thick] (A) -- (B) -- (C) -- cycle;
+
+    % Tracer les droites étendues des segments du triangle
+    \draw[dashed] (A) -- ++(-1,-1); % Droite étendue
+    \draw[dashed] (A) -- ++(-3, 0);
+    \draw[dashed] (B) -- ++(3,0);
+    \draw[dashed] (B) -- ++(1, -1);
+    \draw[dashed] (C) -- ++(2, 2);
+    \draw[dashed] (C) -- ++(-2, 2);
+
+
+    % Ajouter des flèches perpendiculaires avec des points d'interrogation
+    %\draw[->, thick] (2, -0.1) -- (2, -0.7) node[anchor=north] {?};
+    %\draw[->, thick] (3.8, 2) -- (4.3, 2.5) node[anchor=west] {?};
+    \draw[<->, thick] (1-0.2, 3-0.2) -- (1 + 0.2, 3 + 0.2) node[anchor=west] {?};
+        %\draw[->, thick] (0.8, 1.5) -- (0.3, 2) node[anchor=east] {?};
+
+    % Tracer les surfaces colorées (facultatif pour ce schéma)
+    \fill[blue!20, opacity=0.7] (A) -- (P) -- (C) -- cycle;
+    \fill[green!20, opacity=0.7] (P) -- (B) -- (C) -- cycle;
+    \fill[pattern=north west lines, pattern color=red, opacity=0.2] (A) -- (B) -- (P) -- cycle;
+
+    % Marquer les points
+    \filldraw[red] (A) circle (2pt) node[anchor=north] {A};
+    \filldraw[red] (B) circle (2pt) node[anchor=north] {B};
+    \filldraw[red] (C) circle (2pt) node[anchor=south] {C};
+    \filldraw[blue] (P) circle (2pt) node[anchor=west] {P};
+
+    %\node at (2.5, 1.2) [anchor=east] {
+     %   \begin{tikzpicture}[baseline]
+    %        \fill[pattern=north west lines, pattern color=red, opacity=0.7] (0,0) rectangle (0.5,0.2);
+    %    \end{tikzpicture}
+    %    \hspace{0.1cm} Surface négative
+    %};
+    %\draw[->, thick] (2.5, 1.2) -- (2.5, 0.5);
+    \end{tikzpicture}
+\caption{Comment savoir si une surface créée par deux sommets et un point est dans un triangle}
+\label{fig:find_sn}
+\end{figure}
+
+
+\label{arguments_ajoutes}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|}
+    \hline
+    \textbf{Name} & \textbf{Def. value} & \textbf{Description} \\ \hline %    \textbf{Nom} & \textbf{\shortstack{Valeur\\par défaut}} & \textbf{Description} \\ \hline
+
+    %\multicolumn{3}{|l|}{\textbf{Arguments ajoutés}} \\ \hline
+    \texttt{method} & \texttt{'idw'} & Méthode d'interpolation ('idw' ou 'linear') \\
+    \texttt{tolerance\_edge} & \texttt{1e-10} & Tolerance de "point dans la cellule ?" \\
+    \texttt{get\_data} & \texttt{None} & True pour récupérer des données \\ 
+    \texttt{data} & \texttt{None} & Assigner les données précalculées \\ \hline
+    \end{tabular}
+    \caption{Arguments ajoutés pour la méthode d'interpolation dans Antares}
+    \label{tab:arguments_interpolation2}
+\end{table}
+
+
+\begin{comment}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[b]{0.47\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/ipsagarde.png} % cb-IDW.png
+        \caption{Interpolation IDW sur une coupe d'une chambre de combustion avec isosurface de la flamme}
+        \label{fig:cb-IDW}
+    \end{minipage}
+    \hspace{0.02\textwidth} % Espace entre les deux figures
+    \begin{minipage}[b]{0.47\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/ipsagarde.png} % cb-lineaire.png
+        \caption{Interpolation linéaire sur une coupe d'une chambre de combustion avec isosurface de la flamme}
+        \label{fig:cb-lineaire}
+    \end{minipage}
+\end{figure}
+
+%\subsection{Tests sur des cas d'aéroacoustique}\label{s241}
+
+
+
+- observateur quelconque, car Mach égal à 0;
+
+\vspace{-0,2cm}
+- fréquence du signal aéroacoustique : 40 Hz;
+
+\vspace{-0,2cm}
+- nombre de points de la base source : 3x4 (pour 3D et 4 points par dimension);
+
+\vspace{-0,2cm}
+- types de cellules de la base source : hexaèdres;
 
 
 
@@ -348,7 +967,6 @@ où :
 \end{figure}
 
 
-\newpage
 
 \subparagraph{f. NURBS} % \cite{surface, piegl1995nurbs}
 \textit{Type : Polynomiale} \\
@@ -482,522 +1100,4 @@ où :
 \begin{equation}
     f(x, y, z) = \sum_{i=0}^{1} \sum_{j=0}^{1} \sum_{k=0}^{1} f_{ijk} (1 - |x - x_i|)(1 - |y - y_j|)(1 - |z - z_k|)
 \end{equation}
-
-
-
-\newpage
-
-- Modèle proche parois kOmegaSST
-- Réduction du pipe (avec recherche condition vitesse entrée)
-
-\section{OpenFOAM}
-% introduire OpenFOAM
-Simulations are performed using the C++ framework OpenFOAM, used to discretize the equations previously presented. Standing for \textsl{Open Source Field Operation and Manipulation}, OpenFOAM is an open-source project which provides many tools, referred to as executables %\citep[see][]{greenshields2021}. These executable files can be divided into three separate categories:
-\begin{itemize}
-    \item[$-$] \textbf{Pre-processing}, including meshing and decomposing tools.
-    \item[$-$] \textbf{Solving}, including in-built and custom solvers. Each solver is built to answer a specific CFD problem. 
-    \item[$-$] \textbf{Post-processing}, including \texttt{ParaView}, an open-source visualization application.
-\end{itemize}
-
-OpenFOAM is not provided with a graphical interface, which is why a simulation is built by writing ``dictionaries'', in which are stored the necessary information for the simulation (mesh, turbulence model, maximum number of characteristic times, $\dots$). Thus, a specific directory structure must be observed, as outlined in ... % \autoref{fig:OpenFOAM_directory_structure}:
-% décrire la structure du dossier OpenFOAM et ce que chaque fichier fait (dans mon cas de simulation)
-
-
-\begin{forest}
-    for tree={
-      font=\ttfamily,
-      grow'=0,
-      child anchor=west,
-      parent anchor=south,
-      anchor=west,
-      calign=first,
-      inner xsep=7pt,
-      edge path={
-        \noexpand\path [draw, \forestoption{edge}]
-        (!u.south west) +(7.5pt,0) |- (.child anchor) pic {folder} \forestoption{edge label};
-      },
-      before typesetting nodes={
-        if n=1
-          {insert before={[,phantom]}}
-          {}
-      },
-      fit=band,
-      before computing xy={l=15pt},
-    }  
-  [root
-    [system
-      [controlDict
-      ]
-      [blockMeshDict
-      ]
-      [decomposeParDict
-      ]
-      [fvSchemes
-      ]
-      [fvSolution
-      ]
-    ]
-    [templates
-    ]
-    [tests
-    ]
-  ]
-  \end{forest}
-  
-
-The \texttt{system} directory contains the main parameters concerning the progress of the simulation:
-\begin{itemize}
-    \item[$-$] The \texttt{controlDict} dictionary defines parameters such as start and end time, time steps, data output formatting, or data average computation.
-    \item[$-$] The \texttt{blockMeshDict} dictionary defines the geometry, mesh and boundary conditions implementation.
-    \item[$-$] The \texttt{decomposeParDict} dictionary defines the geometry and mesh decomposition, with the objective to run the simulation in parallel, using multiple cores.
-    \item[$-$] The \texttt{fvSchemes} dictionary defines the discretisation schemes used in the solution.
-    \item[$-$] The \texttt{fvSolution} dictionary defines the equation solvers, tolerances and other algorithm controls for instance. 
-\end{itemize}
-
-The \texttt{constant} directory contains the different physical properties of the simulation. Moreover, the subfolder \texttt{polyMesh} contains the mesh data, obtained after the \texttt{blockMesh} command line is run:
-\begin{itemize}
-    \item[$-$] The \texttt{momentumTransport} dictionary defines the simulation type (\ac{RANS} or \ac{LES}), as well as the turbulence model.
-    \item[$-$] The \texttt{transportProperties} dictionary defines the transport model (Newtonian for instance) and some transport coefficients, such as the kinematic viscosity $\nu$. 
-    \item[$-$] The \texttt{turbulenceProperties} dictionary defines the different parameters of the chosen turbulence model.
-\end{itemize}
-
-The \texttt{0} directory contains the initial solution's fields. The \texttt{postProcessing} directory stores data from the running simulation, such as forces and probes' data. The \texttt{processor0...N} directories directly result from the geometry decomposition, which is proceeded through the \texttt{decomposeParDict} dictionary. The \texttt{dummy.foam} is an empty file which allows to visualize the simulation with \texttt{ParaView}. 
-
-\section{Experimentations}
-\section{Presentation of the pump}
-
-Results in the file are High-Speed \ac{PIV} data obtained at a PIV frequency of 980 Hz
-The operating conditions of the machine where :
-N= 1200 rpm
-Qv = 0.256 m3/s (design flow rate of the pump)
- 
-The 6 directories are corresponding to tests realised at 
-25\%, 50\% et 75\% of the diffuser height.
-
-Each test was repeated twice for the same operating condition and the same height (R1, R2)
-
-In each directory, there are 1581 files corresponding to instantaneous ASCII data file.
-The 9 columns are corrresponding to :
-x (m),y(m),Vx(m/s),Vy(m/s),r(m),theta(rad),Vr(m/s),Vtheta(m/s),Vz(m/s),???
- 
-The pdf is a paper where can be found the experimental conditions even if the analysis are focussed on another flow rate.
-
-\section{Preprocessing of PIV data}
-
-\subparagraph{Zone d'acquisition PIV}
-\phantom{-}
-
-The PIV data is acquired in a rectangular zone of 0.08 m x 0.124 m.
-The cathesian coordinates are given in a local system, where the absolute origin is at the center of the pump.
-
-\begin{figure}[H]
-    \centering
-    \begin{tikzpicture}
-        \begin{axis}[
-            axis equal,
-            xlabel={$x$ (m)},
-            ylabel={$y$ (m)},
-            width=8cm,
-            height=12cm,
-            grid=both,
-            xmin=0, xmax=0.08,
-            ymin=0, ymax=0.124,
-            title={Zone d'acquisition PIV}
-        ]
-        \draw[red, very thick, dashed] (0.0245, 0) -- (0.0245, 0.124);
-        \node[red, rotate=90] at (0.053-0.031, 0.062) {$\theta = x_{abs} = 0$};
-
-
-        % CentreAbs : (0,0)    -> CentreRel : (-0.0245,0.257.5)
-        % BoutRel   : (0.06, 0.12) -> boutAbs : ...
-
-        \draw[darkblue, very thick, dashed] (0.037756, 0) -- (0.0445, 0.124);
-        \draw[darkblue, very thick, dashed] (0.051012, 0) -- (0.0645, 0.124);
-        %\draw[darkblue, very thick, dashed] (0.02*(0.2575/0.3855)+0.0245, 0) -- (0.0245+0.02, 0.124);
-        %\node[darkblue, rotate=90] at (0.053-0.031, 0.062) {$\theta = x_{abs} = 0$};
-        
-        \draw[->, >=stealth, color=darkblue, thick] (0.0245, 0.0145) -- (0.07-0.031, 0.0145);
-        \node[darkblue, rotate=0] at (0.062-0.031, 0.017) {$\vec{x}$}; % _{abs}
-
-        \draw[->, >=stealth, color=darkblue, thick]  (0.0245, 0.0145) -- (0.0245, 2*0.0145);
-        \node[darkblue, rotate=0] at (0.021, 0.0195) {$\vec{y}$}; %_{abs}
-
-        \draw[->, >=stealth, color=red, thick]  (0.0245, 0.1) -- (0.0245, 0.1145);
-        \node[red, rotate=0] at (0.062-0.032, 0.108) {$\vec{U_{r}}$};
-
-        \draw[->, >=stealth, color=red, thick]  (0.0245, 0.1) -- (0.01, 0.1);
-        \node[red, rotate=0] at (0.0245-0.01, 0.1-0.005) {$\vec{U_{\theta}}$};
-
-
-        \addplot+[
-            only marks,
-            mark=*,
-            mark size=0.3pt,
-            color=blue
-        ] table [x index=0, y index=1] {points_piv_tikz.txt};
-        \end{axis}
-    \end{tikzpicture}
-\end{figure}
-
-\subparagraph{1.}
-
-First, we need to know how to convert the coordinates from the local system to the absolute system.
-We find that between the line 55 and 56, the radius is constant and pass from lower than \(\pi\) to upper. In fact, for the plan at 75\%, it is the same approache but between the line 65 and 66 because of some technical experimental constraints.
-We also did plot x over theta for three differents values of theta and find out an intersection point for x = 0.0245.
-So now, we know that for x = 0.0245, theta = \(\frac{\pi}{2}\)
-%We could use the absolute system is defined by the following equations:
-\begin{equation}
-    \begin{cases}
-        x_{rel} = x_{abs} + 0.0245 \\
-        y_{rel} = x_{abs} + R_{2} \\ % R2 = 257.5
-    \end{cases}
-\end{equation}
-
-
-\subparagraph{2.Average}
-For now we are in stationary case (time invariant). So we are going to deal with data average over time.
-There are around 49 maps (=file) by turn. So to agerage the data over the time, we can average over the \(\phi\) (\(\phi\) appartiens à 0-211rd) (=maps). That into the six directory.
-
-
-\subparagraph{3.Sampling}
-We will also average data between R1 and R2 to go to 3 files (of 10x81x125 elements).
-Now, we keep only the data on the line x = 0.0245 (in fact we average data between x = 0.024 and x = 0.025). Data are then truncate at line 89, where the radius is upper than 0.3, because of some laser reflexion on the pump during the PIV experiment.
-
-
-\subparagraph{4.Shaping for CONES}
-Cones keep data in a particular way. We need to convert the data in a format that cones can read.
-From 3 files (of 10x81x125 elements), to the files \texttt{fieldCylindrical.txt}
-and \texttt{obs\_coordinates.txt}. Describe shapes...
-
-
-\subparagraph{5.Creation of a file for the interpolation}
-Finally, we need to create an \texttt{coords\_seventh.txt} file for the interpolation function in CONES.
-We don't juste use the coordinates of the points in the PIV data, beacause we want to average over the angle \(\theta\) on the pump. The numerical simulation is $\frac{2\pi}{7}$ OU $2\pi/7$ periodic, so we interpolate in 150 points over theta between 0 and 2pi/7.
-To do that, wue just take the \texttt{obs\_coordinates.txt} file and duplicate 150 times the points over the angle \(\theta\) (between -pi/7 and pi/7). In our case, we chose 150 that will aproximately correspont to the shap of a cell at this radius.
-To be consistent with axis further, we take points between -pi/7 + pi/2 and pi/7 + pi/2
-
-Here is the plot of the experimental data and the numerical data (for D = 3e7 (introduire la variable)), at the same points (both are averages over time and over the angle \(\theta\)).
-
-
-
-\section{Modifications on OpenFoam and CONES}
-\subsection{Modifications on the interpolation function}
-
-Concretely, to average the data over the angle \(\theta\), we need to modify the interpolation function in CONES.
-Instead of read coords, the interpolation function read the data in the \texttt{coords\_seventh.txt} file.
-
-Then, it computes the interpolation and average the data over the angle \(\theta\) (between -pi/7 and pi/7), by doing a somme over \(\theta\) and dividing by the number of points (150). To go back from 150x5x3x3 (to detail) to 5x3x3 data. All of those computation are mad in a cylindrical referencial. Ref au schéma tikz
-
-
-A sixth coefficients DP has been add.
-It's represent the difference of pressure between the inlet of the pipe and the outlet of the diffuser. 
-The numerical coefficient are interpolating, respectively at (0,0,-0.35) and (0,0.390,0).
-For the high fidelity value, we can find experimental data form the same pump [M. Fan 2022], that's match with M. Fan simulation (eq to approximately \(\eta\) = 0.4). So can also compute :
-
-
-
-U\_{2} is the impeller tip speed computed from the impeller diameter and the rotation speed of the pump.
-
-\begin{equation}
-    \frac{\Delta P_{P}}{\rho U_{2}^{2}} = \eta \Leftrightarrow
-    \Delta P_{P} = \rho U_{2}^{2} \eta
-\end{equation}
-
-As we are in a steady simulation, the restult of the numerical pressure is divided by the density of the fluid.
-
-\begin{equation}
-    \Delta P_{P} = 32^{2} \times 0.4 = 410 Pa
-\end{equation}
-
-So the state vector is now 46.
-Incertitude on P will be less to take more take it account.
-Inflation...
-
-At pump flow rate = pump design flow rate So Q?/Q? =1
-
-
-
-
-\label{prisme}\paragraph{L'interpolation linéaire}
-
-
-
-pseudo-algorithme
-
-\vspace{0.3cm}
-
-\textbf{Initialisation :}
-
-$\bullet$ Créer le KD-tree
-
-$\bullet$ Créer une liste de listes \texttt{node\_to\_elements} qui permet de récupérer l'indice des éléments constitués par un certain point.
-
-$\bullet$ Définir les points à interpoler
-
-\vspace{0.5cm}
-
-\textbf{Parcours des points à interpoler :}
-\begin{list}{$\circ$}{\leftmargin=0.5cm \labelwidth=1cm \itemsep=0cm}
-    \item Pour chaque point :
-    \begin{list}{$\diamond$}{\leftmargin=0.5cm \labelwidth=1cm \itemsep=0cm}
-        \item Si la distance au point le plus proche est inférieure à \texttt{tolerance} :
-        \begin{list}{$\bullet$}{\leftmargin=0.5cm\labelwidth=1cm \itemsep=0cm}
-            \item Le poids associé au \texttt{point cible} prend la valeur 1
-            \item Le sommet associé au \texttt{point cible} prend la valeur du \texttt{point source} le plus proche
-        \end{list}
-        \item Sinon :
-        \begin{list}{$\bullet$}{\leftmargin=0.5cm \labelwidth=1cm \itemsep=0cm}
-            \item Récupérer les indices des éléments des points les plus proches\\
-            $\circ$ Pour chaque élément pertinent :
-            \begin{list}{$\bullet$}{\leftmargin=0.5cm\labelwidth=1cm \itemsep=0cm}
-                \item Récupérer les coordonnées des sommets (points) de la cellule\\
-                $\diamond$ Si le point est à l'intérieur de la cellule :
-                \begin{list}{$\bullet$}{\leftmargin=0.5cm \labelwidth=1cm \itemsep=0cm}
-                    \item Calculer les poids "barycentriques"
-                    \item Récupérer les indices des sommets (points) de la base source
-                \end{list}
-            \end{list}
-        \end{list}
-    \end{list}
-    $\diamond$ Si le point n'est dans aucune cellule proche :
-    \begin{list}{$\bullet$}{\leftmargin=0.5cm \labelwidth=1cm \itemsep=0cm}
-        \item Le poids associé prend la valeur \texttt{numpy.nan} (cette valeur sera changée avant la mise à jour d'octobre)
-    \end{list}
-\end{list}
-
-\vspace{0.4cm}
-
-
-\textbf{Mise à jour de la base cible :}
-\begin{list}{$\circ$}{\leftmargin=0.5cm \labelwidth=1cm \itemsep=0cm}
-    \item Pour chaque variable à interpoler :
-    \begin{list}{$\bullet$}{\leftmargin=0.5cm \labelwidth=1cm \itemsep=0cm}
-        \item La variable de chaque nouveau point prend la valeur des poids calculés multipliés par la variable aux sommets (points) respectifs de la base source
-    \end{list}
-\end{list}
-
-
-\begin{lstlisting}[caption=Exemple de réutilisation des données, label={lst:antares}]
-    import antares
-    from copy import deepcopy
-    # deepcopy est utilise pour s'assurer que la 'target_base' ne soit pas calculee par le traitement
-
-    myt = antares.Treatment('interpolation')
-    myt['source'] = source_base
-    myt['target'] = deepcopy(target_base)
-    myt['get_data'] = True
-    result1, data = myt.execute()
-
-    # 'data' peut etre enregistre sur votre ordinateur par exemple, pour pouvoir etre appele plus tard
-
-    myt = antares.Treatment('interpolation')
-    myt['source'] = source_base
-    myt['target'] = target_base
-    myt['data'] = data
-    result2 = myt.execute()
-\end{lstlisting}
-
-
-
-\begin{figure}[H]
-    \centering
-    \begin{tikzpicture}
-        \centering
-        % Triangle initial
-        \coordinate (I) at (0,0);
-        \coordinate (II) at (2,4);
-        \coordinate (III) at (4,0);
-        \coordinate (P) at (2.4,2.1); % Point P (plus proche du nouveau triangle)
-
-        % Nouveau triangle
-        \coordinate (IV) at (3.4,2.5);
-
-        % Draw the initial triangle
-        \draw[thick] (I) -- (II) -- (III) -- cycle;
-
-        % Draw the new triangle
-        \draw[thick] (II) -- (III) -- (IV) -- cycle;
-
-        % Draw point P
-        \filldraw[blue] (P) circle (2pt) node[anchor=east] {P};
-
-        % Label the vertices of the initial triangle
-        \filldraw[red] (I) circle (2pt) node[anchor=east] {I}; % [anchor=east,xshift=-5pt,yshift=-5pt]
-        \filldraw[red] (II) circle (2pt) node[anchor=south] {II};
-        \filldraw[red] (III) circle (2pt) node[anchor=west] {III};
-
-        % Label the vertices of the new triangle
-        \filldraw[red] (IV) circle (2pt) node[anchor=west] {IV};
-
-        % Draw lines from P to vertices
-        \draw[dashed] (P) -- (IV);
-        \draw[dashed] (P) -- (II);
-
-        % Title
-        %\node at (4,-1) {P plus proche de IV que du sommet le plus éloigné du triangle dans lequel il se trouve};
-    \end{tikzpicture}
-    \caption{Schéma de sélection du deuxième point le plus proche}
-    \label{fig:deux_pt}
-%\label{fig:interpolation_IDW_rayon}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \begin{tikzpicture}
-        % Triangle initial
-        \coordinate (II) at (2*1.5,4*1.5);
-        \coordinate (III) at (4*1.5,0);
-        \coordinate (P) at (2.4*1.5,2.1*1.5); % Point P (plus proche du nouveau triangle))
-        \coordinate (IV) at (3.4*1.5,2.5*1.5);
-    
-        % Draw point P
-        \filldraw[blue] (P) circle (2pt) node[anchor=east] {P};
-    
-        % Label the vertices of the initial triangle
-        \filldraw[red] (II) circle (2pt) node[anchor=south] {II};
-        \filldraw[red] (III) circle (2pt) node[anchor=west] {III};
-    
-        % Label the vertices of the new triangle
-        \filldraw[red] (IV) circle (2pt) node[anchor=west] {IV};
-    
-        % Colorer les surfaces, avec une surface négative
-        \fill[blue!20] (II) -- (P) -- (IV) -- cycle;
-        \fill[green!20, opacity=1.0] (III) -- (P) -- (IV) -- cycle;
-        % Utilisation de hachures pour indiquer une surface négative
-        \fill[pattern=north west lines, pattern color=red, opacity=0.7] (P) -- (III) -- (II) -- cycle;
-    
-        % Draw the 'outside' triangle
-        \draw[thick] (II) -- (III) -- (IV) -- cycle;
-    
-        % Draw lines from P to vertices
-        \draw[thick] (P) -- (IV);
-        \draw[thick] (P) -- (II);
-        \draw[thick] (P) -- (III);
-    
-        % Ajouter des annotations pour indiquer la surface négative
-        %\node at (2.1*1.5,2.15*1.5) [anchor=west] {Surface};
-        %\node at (2.1*1.5,2.15*1.5-0.4) [anchor=west] {négative};
-        \node at (3, 1) [anchor=east] {
-            \begin{tikzpicture}[baseline]
-                \fill[pattern=north west lines, pattern color=red, opacity=0.7] (0,0) rectangle (0.5,0.2);
-            \end{tikzpicture}
-            \hspace{0.1cm} Surface négative
-        };
-        %\node at (3, 1) [anchor=east] {Surface négative};
-        \draw[->, thick] (3, 1) -- (4.0, 2.9);
-
-        %\node at (2.5*1.5, 1.5*1.5) [anchor=north] {\textbf{-}};
-    \end{tikzpicture}    
-    \caption{Illustration de la surface négative avec le point P}
-    \label{fig:surface_negative}
-\end{figure}
-
-
-\begin{figure}[H]
-\centering
-    \begin{tikzpicture}
-    % Définition des points
-    \coordinate (A) at (0, 0);
-    \coordinate (B) at (4, 0);
-    \coordinate (C) at (2, 2);
-    \coordinate (P) at (2.4, 4); % Point P, placé en dehors de deux droites
-
-    % Tracer le triangle ABC
-    \draw[thick] (A) -- (B) -- (C) -- cycle;
-
-    % Tracer les droites étendues des segments du triangle
-    \draw[dashed] (A) -- ++(-1,-1); % Droite étendue
-    \draw[dashed] (A) -- ++(-3, 0);
-    \draw[dashed] (B) -- ++(3,0);
-    \draw[dashed] (B) -- ++(1, -1);
-    \draw[dashed] (C) -- ++(2, 2);
-    \draw[dashed] (C) -- ++(-2, 2);
-
-
-    % Ajouter des flèches perpendiculaires avec des points d'interrogation
-    %\draw[->, thick] (2, -0.1) -- (2, -0.7) node[anchor=north] {?};
-    %\draw[->, thick] (3.8, 2) -- (4.3, 2.5) node[anchor=west] {?};
-    \draw[<->, thick] (1-0.2, 3-0.2) -- (1 + 0.2, 3 + 0.2) node[anchor=west] {?};
-        %\draw[->, thick] (0.8, 1.5) -- (0.3, 2) node[anchor=east] {?};
-
-    % Tracer les surfaces colorées (facultatif pour ce schéma)
-    \fill[blue!20, opacity=0.7] (A) -- (P) -- (C) -- cycle;
-    \fill[green!20, opacity=0.7] (P) -- (B) -- (C) -- cycle;
-    \fill[pattern=north west lines, pattern color=red, opacity=0.2] (A) -- (B) -- (P) -- cycle;
-
-    % Marquer les points
-    \filldraw[red] (A) circle (2pt) node[anchor=north] {A};
-    \filldraw[red] (B) circle (2pt) node[anchor=north] {B};
-    \filldraw[red] (C) circle (2pt) node[anchor=south] {C};
-    \filldraw[blue] (P) circle (2pt) node[anchor=west] {P};
-
-    %\node at (2.5, 1.2) [anchor=east] {
-     %   \begin{tikzpicture}[baseline]
-    %        \fill[pattern=north west lines, pattern color=red, opacity=0.7] (0,0) rectangle (0.5,0.2);
-    %    \end{tikzpicture}
-    %    \hspace{0.1cm} Surface négative
-    %};
-    %\draw[->, thick] (2.5, 1.2) -- (2.5, 0.5);
-    \end{tikzpicture}
-\caption{Comment savoir si une surface créée par deux sommets et un point est dans un triangle}
-\label{fig:find_sn}
-\end{figure}
-
-
-\label{arguments_ajoutes}
-\begin{table}[H]
-    \centering
-    \begin{tabular}{|l|l|l|}
-    \hline
-    \textbf{Name} & \textbf{Def. value} & \textbf{Description} \\ \hline %    \textbf{Nom} & \textbf{\shortstack{Valeur\\par défaut}} & \textbf{Description} \\ \hline
-
-    %\multicolumn{3}{|l|}{\textbf{Arguments ajoutés}} \\ \hline
-    \texttt{method} & \texttt{'idw'} & Méthode d'interpolation ('idw' ou 'linear') \\
-    \texttt{tolerance\_edge} & \texttt{1e-10} & Tolerance de "point dans la cellule ?" \\
-    \texttt{get\_data} & \texttt{None} & True pour récupérer des données \\ 
-    \texttt{data} & \texttt{None} & Assigner les données précalculées \\ \hline
-    \end{tabular}
-    \caption{Arguments ajoutés pour la méthode d'interpolation dans Antares}
-    \label{tab:arguments_interpolation2}
-\end{table}
-
-
-\begin{comment}
-
-\begin{figure}[H]
-    \centering
-    \begin{minipage}[b]{0.47\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{images/ipsagarde.png} % cb-IDW.png
-        \caption{Interpolation IDW sur une coupe d'une chambre de combustion avec isosurface de la flamme}
-        \label{fig:cb-IDW}
-    \end{minipage}
-    \hspace{0.02\textwidth} % Espace entre les deux figures
-    \begin{minipage}[b]{0.47\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{images/ipsagarde.png} % cb-lineaire.png
-        \caption{Interpolation linéaire sur une coupe d'une chambre de combustion avec isosurface de la flamme}
-        \label{fig:cb-lineaire}
-    \end{minipage}
-\end{figure}
 \end{comment}
-
-%\subsection{Tests sur des cas d'aéroacoustique}\label{s241}
-
-
-
-\begin{comment}
-- observateur quelconque, car Mach égal à 0;
-
-\vspace{-0,2cm}
-- fréquence du signal aéroacoustique : 40 Hz;
-
-\vspace{-0,2cm}
-- nombre de points de la base source : 3x4 (pour 3D et 4 points par dimension);
-
-\vspace{-0,2cm}
-- types de cellules de la base source : hexaèdres;
-\end{comment}
-
-
-\subsection{Results}

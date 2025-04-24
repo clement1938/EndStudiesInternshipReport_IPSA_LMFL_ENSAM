@@ -39,6 +39,54 @@
       \field{type}{phdthesis}
       \true{nocite}
     \endentry
+    \entry{aschDataAssimilationMethods2016}{book}{}
+      \name{author}{3}{}{%
+        {{hash=fc15b2c738c78e9fa3b3666bdb1efa21}{%
+           family={Asch},
+           familyi={A\bibinitperiod},
+           given={Mark},
+           giveni={M\bibinitperiod}}}%
+        {{hash=cc77ad17a63f114d6e3a11f91b002cb0}{%
+           family={Bocquet},
+           familyi={B\bibinitperiod},
+           given={Marc},
+           giveni={M\bibinitperiod}}}%
+        {{hash=0e31b0278013129e832e8c224e4a0ebf}{%
+           family={Nodet},
+           familyi={N\bibinitperiod},
+           given={Maëlle},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Philadelphia}%
+      }
+      \list{publisher}{1}{%
+        {Society for Industrial and Applied Mathematics}%
+      }
+      \strng{namehash}{993bcce1b461b6007c250a92890b95bb}
+      \strng{fullhash}{993bcce1b461b6007c250a92890b95bb}
+      \strng{bibnamehash}{993bcce1b461b6007c250a92890b95bb}
+      \strng{authorbibnamehash}{993bcce1b461b6007c250a92890b95bb}
+      \strng{authornamehash}{993bcce1b461b6007c250a92890b95bb}
+      \strng{authorfullhash}{993bcce1b461b6007c250a92890b95bb}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{isbn}{978-1-61197-454-6}
+      \field{langid}{english}
+      \field{number}{11}
+      \field{pagetotal}{1}
+      \field{series}{Fundamentals of Algorithms}
+      \field{shorttitle}{Data Assimilation}
+      \field{title}{Data Assimilation: Methods, Algorithms, and Applications}
+      \field{year}{2016}
+      \field{dateera}{ce}
+      \verb{file}
+      \verb /home/clementt/Zotero/storage/HRHI8T8A/Asch et al. - 2016 - Data assimilation methods, algorithms, and applications.pdf
+      \endverb
+      \keyw{Algorithms,Inverse problems (Differential equations),Numerical analysis}
+    \endentry
     \entry{dazinHighspeedStereoscopicPIV2011a}{article}{}
       \name{author}{8}{}{%
         {{hash=6a3e3698109e0722d74d25566cf7fe24}{%
