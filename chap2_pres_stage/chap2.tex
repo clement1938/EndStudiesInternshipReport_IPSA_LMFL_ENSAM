@@ -1,6 +1,32 @@
 \chapter{Optimizing the performance of a centrifugal pump by data assimilation}
 
 
+Plan :
+
+1- PRESSION : Faire un filtre de Kalman sur la pression
+2- COMBINAISON : Faire le filtre de Kalman sur la vitesse et/ou la vitesse et la pression
+
+
+
+AJOUTER LE FILTRE DE KALMAN AVEC LA PRESSION
+
+Comment calculer la variance que je veux mettre ?
+Expérience : 5\%
+De mon coté : je vise qu'en moyenne un membre d'ensemble ait un écart de 1e7 par rapport au temps précédent (pour des valeurs autour de 5e7), donc, pour 30 membres d'ensemble, environ 95\% = 2 sigma dans 5e7+-1e7, càd sigma = 0.5e7 = 10\% mais je prendrais 5\% pour être plus large. Ensuite, le nombre d'itération entre les phases d'analyse est déterminé en regardans combien d'itération sont nécessaires pour faire varier la solution dans le diffuseur (influe, rapidement, converge doucement mais ce qui nous intéresse c'est que ça prenne la tendace) lorsqu'un paramètre de forcage est modifié (supposé très inférieure pour la turbulence car appliquée de partout)
+
+144 coeurs : 54it/min
+300-> 336 coeurs : 100it/min (+- 20\%)
+
+Nous avons fait l'EnKF sans l'état\dots
+Sans inflation pour commencer. Si on converge vers une solution qui ne nous satisfait pas, on peut essayer d'ajouter... Cela permet de s'échaper d'un minimum local en ajoutant du bruit artificiellement. 
+
+Nous avons fait une simu RANS mais nous aurion pu faire une simu URANS (ou LES ou DDES) avec un modèle de turbulence... 
+
+L'expérience montre un ordre de grandeur de centaines d'itération entre les phases d'analyse, mais cela dépend beaucoup du cas.
+Il en est de même pour le nombre de phases d'analyse.
+Supposons 1000 itération en moyenne entre chaque phase d'analyse, et 300 phases d'analyse, cela nous fait 300 000 itérations à simuler, soit 93h, sur env. 2800 coeurs, soit 264kh.processeur de calcul.
+
+
 
 Sur OpenFoam9, je fait une simu en parallèle sur cluster, dont je souhaiterais enregistrer une solution toutes les 1000 itération.
 Ensuite je les "reconstruct" puis tar avant de les transférer sur mon PC, détar pour observer via paraFoam quand interviens (et comment évoluent/convergent) les modifications que j'ai faites dans mon controlDict, qui simule ce qui sera fait par l'EnKF
@@ -13,8 +39,12 @@ Ensuite je les "reconstruct" puis tar avant de les transférer sur mon PC, déta
 
 Diminuer nbr de fichiers sur mon scratch
 
+88533 - 678670 : Pin : -260 non convergé
+Fz doit augementé aussi ??
 77533 - 660770 : Pin : -268
+
 55733 - 698670 : Pin : -304
+
 55577 - 698570 : Pin : -306
 
 
@@ -76,7 +106,7 @@ The pdf is a paper where can be found the experimental conditions even if the an
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{images/pompe_centrifuge.jpg}
-    \caption{Old centrifugal pump (picture : Olivier THIBAULT)}
+    \caption{Old centrifugal pump (personnal picture)}
     \label{fig:old_centrifugal_pump}
 \end{figure}
 
