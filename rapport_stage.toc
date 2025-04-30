@@ -8,10 +8,10 @@
 \contentsline {paragraph}{Responsabilité sociale / Qualité de vie au travail}{7}{section*.8}%
 \contentsline {chapter}{\numberline {2}Optimizing the performance of a centrifugal pump by data assimilation}{9}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Data Assimilation}{10}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}State of the art}{10}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.1}State of the art}{11}{subsection.2.1.1}%
 \contentsline {subsection}{\numberline {2.1.2}Presentation of the test case: the centrifugal pump}{11}{subsection.2.1.2}%
-\contentsline {section}{\numberline {2.2}Numerical ingredients}{11}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}Governing equations}{11}{subsection.2.2.1}%
+\contentsline {section}{\numberline {2.2}Numerical ingredients}{12}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Governing equations}{12}{subsection.2.2.1}%
 \contentsline {subsection}{\numberline {2.2.2}The open source code OpenFoam}{12}{subsection.2.2.2}%
 \contentsline {subsection}{\numberline {2.2.3}EnKF}{12}{subsection.2.2.3}%
 \contentsline {subsection}{\numberline {2.2.4}The library CONES}{12}{subsection.2.2.4}%

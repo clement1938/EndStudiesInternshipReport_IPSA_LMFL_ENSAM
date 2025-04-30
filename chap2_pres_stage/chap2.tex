@@ -6,7 +6,14 @@ Plan :
 1- PRESSION : Faire un filtre de Kalman sur la pression
 2- COMBINAISON : Faire le filtre de Kalman sur la vitesse et/ou la vitesse et la pression
 
+En combien de temps l'information de pression remonte-t-elle dans le diffuseur ?
+Peut-être faire deux filtres de Kalman.
 
+"Ouverture / idée" : DA temps réel dans avion impossible pour encore longtemps.
+Sol : Contrôle actif de la puissance en fonction des mesures de pression dans le compresseur :
+f(obs) -> controle de la puissance
+
+obs pression --> modèle de reconstruction du champ de vitesse --> modèle de reconaissance de patternes de décrochage --> contrôle de la puissance
 
 AJOUTER LE FILTRE DE KALMAN AVEC LA PRESSION
 
