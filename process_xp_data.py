@@ -9,12 +9,15 @@ from time import time
 from tqdm import tqdm
 import csv
 
+plt.rcParams['text.usetex'] = True  # Pour afficher en mode LaTex
 n_obs    = 5             #Nombre de points d'oservations voulu dans la simu, par niveau de PIV (25, 50, 75)
 hauteurs = [25, 50, 75]  # Hauteur, en % du diffuseur, des plans PIV
 tronque  = 89            # 89 car données sup à r=0.3 après (dans la zone de mesure brouillée)
 nb_plans = len(hauteurs) # Nombre de plans PIV
 pression = 1             # Nombre de point d'observation à la pression (0 : code initial, 1 ou 2 : code modifié)
                          # En cours d'implémentation
+ROOT_PATH = 'C:\\Users\\33695\\Desktop\\EndStudiesInternshipReport_IPSA_LMFL_ENSAM\\'
+#/home/clementt/Documents/ibm_testcases/pump/PIV_pour_Miguel/
 
 # Fonction pour lire les fichiers et les convertir en tableau numpy
 def reader_function(file, nb_columns=10125):
@@ -26,7 +29,7 @@ def reader_function(file, nb_columns=10125):
 def writer_function(file, data):
         """Écrit les données dans un fichier texte."""
         try:
-            with open(f"/home/clementt/Documents/ibm_testcases/pump/PIV_pour_Miguel/{file}.txt", "x") as fichier:
+            with open(f"{ROOT_PATH}{file}.txt", "x") as fichier:
                 np.savetxt(fichier, data, fmt='%.6f')
                 print(f"Le fichier {fichier} a été créé avec succès.")
         except FileExistsError:
@@ -45,7 +48,7 @@ def writer_function(file, data):
 
 def partie_1():
     print("Exécution de la partie 1...")
-    with open("/home/clementt/Documents/ibm_testcases/pump/PIV_pour_Miguel/Qn_D130R1_25%/H09D130R1_1341.txt", "r") as file:
+    with open(ROOT_PATH + "Qn_D130R1_25_pct/H09D130R1_1341.txt", "r") as file:
         A = reader_function(file)
         X = A[:80, 0]
         theta1 = A[:80, 5]
@@ -88,20 +91,20 @@ def partie_1():
 def partie_2():
     print("Exécution de la partie 2...")
     debut = time()
-    for PIV in tqdm(["Qn_D130R1_25%", "Qn_D130R1_50%", "Qn_D130R1_75%", 
-                     "Qn_D130R2_25%", "Qn_D130R2_50%", "Qn_D130R2_75%"]):
+    for PIV in tqdm(["Qn_D130R1_25_pct", "Qn_D130R1_50_pct", "Qn_D130R1_75_pct", 
+                     "Qn_D130R2_25_pct", "Qn_D130R2_50_pct", "Qn_D130R2_75_pct"]):
         print(f"case : {PIV}")
         SUM = np.zeros((10125, 10))
         compteur = 0
-        for i, file in tqdm(enumerate(sorted(os.listdir(f"/home/clementt/Documents/ibm_testcases/pump/PIV_pour_Miguel/{PIV}")))):
-            with open(f"/home/clementt/Documents/ibm_testcases/pump/PIV_pour_Miguel/{PIV}/{file}", "r") as file:
+        for i, file in tqdm(enumerate(sorted(os.listdir(f"{ROOT_PATH}{PIV}")))):
+            with open(f"{ROOT_PATH}{PIV}/{file}", "r") as file:
                 A=reader_function(file)
                 SUM = SUM + A
                 compteur +=1
         SUM = np.divide(SUM, int(compteur))
         print(f"Instants : {compteur}")
         try:
-            with open(f"/home/clementt/Documents/ibm_testcases/pump/PIV_pour_Miguel/{PIV}_moy_temp.txt", "x") as summed:
+            with open(f"{ROOT_PATH}{PIV}_moy_temp.txt", "x") as summed:
                 np.savetxt(summed, SUM, fmt='%.6f')
                 print(f"Les valeurs de {PIV} ont été sauvegardées dans {summed}")
         except FileExistsError:
@@ -120,7 +123,7 @@ def partie_3():
     for prct, decalage in zip(hauteurs, [55, 55, 65]): # décalage : PIV pas alignés
         OUT = np.zeros((tronque, 10))  # 89/125 car données sup à r=0.3 après
         ########## R1 #################
-        with open(f"/home/clementt/Documents/ibm_testcases/pump/PIV_pour_Miguel/Qn_D130R1_{prct}%_moy_temp.txt", "r") as file:
+        with open(f"{ROOT_PATH}Qn_D130R1_{prct}_pct_moy_temp.txt", "r") as file:
             A = reader_function(file)
 
             for i in range(tronque):
@@ -130,17 +133,17 @@ def partie_3():
 # Cependant, le repère est différent pour 75% car le champ de la caméra placé au dessus est plus petit > x entre 65 et 66
 
         ########## R2+R1 #################
-        with open(f"/home/clementt/Documents/ibm_testcases/pump/PIV_pour_Miguel/Qn_D130R2_{prct}%_moy_temp.txt", "r") as file:
+        with open(f"{ROOT_PATH}Qn_D130R2_{prct}_pct_moy_temp.txt", "r") as file:
             A = reader_function(file)
             for i in range(tronque):
                 OUT[i] = (OUT[i] + (A[i*81 + decalage] + A[i*81 + decalage+1])/2)  /2 # Moyenne avec les données de R1 et R2
         
         try:
-            with open(f"/home/clementt/Documents/ibm_testcases/pump/PIV_pour_Miguel/data_{prct}%_Y_125_sampled.txt", "x") as sampled:
+            with open(f"{ROOT_PATH}data_{prct}_pct_Y_125_sampled.txt", "x") as sampled:
                 np.savetxt(sampled, OUT, fmt='%.6f')
                 print(f"Les valeurs à {prct}% ont été sauvegardées dans {sampled}")
         except FileExistsError:
-            print(f"Le fichier 'data_{prct}%_Y_125_sampled.txt' existe déjà. Veuillez le supprimer ou choisir un autre nom.")
+            print(f"Le fichier 'data_{prct}_pct_Y_125_sampled.txt' existe déjà. Veuillez le supprimer ou choisir un autre nom.")
             break
 
 
@@ -164,7 +167,9 @@ def partie_4():
 
     for k, pct in enumerate(hauteurs):
 
-        with open(f"/home/clementt/Documents/ibm_testcases/pump/PIV_pour_Miguel/data_{pct}%_Y_125_sampled.txt", "r") as file:
+        print(f"Trying to open: {ROOT_PATH}data_{pct}_pct_Y_125_sampled.txt")
+
+        with open(f"{ROOT_PATH}data_{pct}_pct_Y_125_sampled.txt", "r") as file:
             A = reader_function(file, nb_columns=tronque)
             
             for j, ligne in enumerate(np.linspace(0, n_obs*pas, n_obs).astype(int)):
@@ -229,8 +234,13 @@ def partie_5():
     PIVwedgeAngle = np.pi/2
     coords_seventh = np.zeros((nb_echantillonage_pts*n_obs*len(hauteurs), 3))
     # pas = epsilon/r (avec r=y dans notre cas). Et ... = 2pi/7e
-    obs_coords = np.loadtxt("/home/clementt/Documents/ibm_testcases/pump/PIV_pour_Miguel/obs_coordinates.txt")
-    for source_pt_i, (x_s, y_s, z_s) in enumerate(obs_coords):
+    obs_coords = np.loadtxt(f"{ROOT_PATH}obs_coordinates.txt")
+    if pression !=0:
+        obs_coords_pression = obs_coords[len(obs_coords)-pression:]
+        obs_coords = obs_coords[:-pression]
+        print(f'ATTENTION : Pression non nulle !')
+        #print (f'obs_coords : {obs_coords}; obs_coords_pression : {obs_coords_pression}')
+    for source_pt_i, (x_s, y_s, z_s) in enumerate(obs_coords):  # je pourrais aussi moyenner azimutalement le pt de pression en haut de l'entrée
         r_s = y_s
         #length = 0
         #for theta_s in np.arange(-np.pi/7, np.pi/7, r_s*echantillonage):
@@ -240,6 +250,10 @@ def partie_5():
             coords_seventh[source_pt_i*nb_echantillonage_pts + target_pt, 2] = z_s
             #length+=1
         #lengths.append(length)
+
+    if pression != 0:
+        coords_seventh = np.vstack([coords_seventh, obs_coords_pression])# np.hstack([0, 0, -0.35])])
+        print("ATTENTION : Pression non nulle !")
 
     writer_function('coords_seventh', coords_seventh)
   
@@ -252,7 +266,7 @@ def partie_6():
     print("Exécution de la partie 6...")
     plt.figure(figsize=(12,4))
     for k, pct in enumerate(hauteurs):
-        with open(f"/home/clementt/Documents/ibm_testcases/pump/PIV_pour_Miguel/data_{pct}%_Y_125_sampled.txt", "r") as file:
+        with open(f"{ROOT_PATH}data_{pct}_pct_Y_125_sampled.txt", "r") as file:
             A = reader_function(file, nb_columns=tronque)
 
             r  = A[:,4]
@@ -270,7 +284,7 @@ def partie_6():
             plt.plot(r, Vz, label="Vz")
             plt.xlabel("r")
             plt.ylabel("Vitesses")
-            plt.title(f"Hauteur {pct}%")
+            plt.title(f"Hauteur {pct} pct")
             plt.legend()
             plt.grid(True)
 
@@ -278,8 +292,7 @@ def partie_6():
     plt.show()
 
 
-
-####################
+'''
 def partie_7():
     print("Exécution de la partie 7 : Conversion des données numériques en Cylindrical et rectification du repère (sens de rotation et Vz) de l'experimental...")
     hauteurs = [25, 50, 75]
@@ -287,7 +300,7 @@ def partie_7():
     radius = np.array([0.387763, 0.366763, 0.345763, 0.324763, 0.302763])
     n_obs = len(radius)
 
-    data = np.loadtxt(f"/home/clementt/Documents/ibm_testcases/pump/PIV_pour_Miguel/numFieldMoyCarthesian.txt")
+    data = np.loadtxt(f"{ROOT_PATH}numFieldMoyCarthesian.txt")
     Vx         =   data[0               :nb_plans*n_obs  ]
     Vy         =   data[nb_plans*n_obs  :2*nb_plans*n_obs]
     Vz         =   data[2*nb_plans*n_obs:3*nb_plans*n_obs]
@@ -295,12 +308,11 @@ def partie_7():
     Vtheta = -Vx
     Cylindrical = np.hstack([Vr, Vtheta, Vz])
     try:
-        with open("/home/clementt/Documents/ibm_testcases/pump/PIV_pour_Miguel/numFieldMoyCylindical.txt", "x") as fichier:
+        with open(f"{ROOT_PATH}numFieldMoyCylindical.txt", "x") as fichier:
             np.savetxt(fichier, Cylindrical, fmt='%.6f', delimiter=',')
     except FileExistsError:
         print("Le fichier 'numFieldMoyCylindical.txt' existe déjà. Veuillez le supprimer ou choisir un autre nom.")
 
-    '''
     data2 = np.loadtxt(f"/home/clementt/Documents/ibm_testcases/pump/PIV_pour_Miguel/fieldCylindrical.txt")
     Vr         =   data2[0               :nb_plans*n_obs  ] # Inchangé
     Vtheta         =   data2[nb_plans*n_obs  :2*nb_plans*n_obs] 
@@ -314,8 +326,6 @@ def partie_7():
     except FileExistsError:
         print("Le fichier 'expefieldCylindrical.txt' existe déjà. Veuillez le supprimer ou choisir un autre nom.")
     '''
-#################""
-
 
 
 
@@ -343,7 +353,7 @@ def partie_8():
         ax = axes[h]
 
         for fichier in fichiers:
-            data = np.loadtxt(f"/home/clementt/Documents/ibm_testcases/pump/PIV_pour_Miguel/{fichier}.txt")
+            data = np.loadtxt(f"{ROOT_PATH}{fichier}.txt")
 
             Vr         =   data[h*n_obs                     :(h+1)*n_obs                 ]
             Vtheta     =   data[h*n_obs+  n_obs*nb_plans    :(h+1)*n_obs+  n_obs*nb_plans] 
@@ -421,7 +431,7 @@ mapping = {
     4: partie_4,
     5: partie_5,
     6: partie_6,
-    7: partie_7,
+    #7: partie_7,
     8: partie_8,
 }
 
@@ -487,7 +497,7 @@ if PARTIE == 4:
         #with open(f"/home/clementt/Documents/ibm_test
 
 """
-with open("/home/clementt/Documents/ibm_testcases/pump/PIV_pour_Miguel/data/Qn_D130R1_25%/H09D130R1_0001.txt", "r") as R1_0001_25:
+with open("/home/clementt/Documents/ibm_testcases/pump/PIV_pour_Miguel/data/Qn_D130R1_25_pct/H09D130R1_0001.txt", "r") as R1_0001_25:
     print(R1_0001_25)
     A = R1_0001_25.read()
     print(len(A))
@@ -500,18 +510,18 @@ with open("/home/clementt/Documents/ibm_testcases/pump/PIV_pour_Miguel/data/Qn_D
     print(np.shape(A))
     print(A[0][2])
 
-#with open("/home/clementt/Documents/ibm_testcases/pump/PIV_pour_Miguel/Qn_D130R1_25%/data.txt", "x") as data:
+#with open("/home/clementt/Documents/ibm_testcases/pump/PIV_pour_Miguel/Qn_D130R1_25_pct/data.txt", "x") as data:
     #data.write("\nBonjour monde")
 
 
 #import mmap
 
 # Ouvre le fichier en mode lecture et récupère sa taille
-with open('/home/clementt/Documents/ibm_testcases/pump/PIV_pour_Miguel/Qn_D130R1_25%/H09D130R1_0001.txt', 'r') as f:
+with open('/home/clementt/Documents/ibm_testcases/pump/PIV_pour_Miguel/Qn_D130R1_25_pct/H09D130R1_0001.txt', 'r') as f:
     print
     #print(f.read())
 
-#with open('/home/clementt/Documents/ibm_testcases/pump/PIV_pour_Miguel/Qn_D130R1_25%/H09D130R1_0001.txt', 'r') as f:
+#with open('/home/clementt/Documents/ibm_testcases/pump/PIV_pour_Miguel/Qn_D130R1_25_pct/H09D130R1_0001.txt', 'r') as f:
     mm = mmap.mmap(f.fileno(), 0, access=mmap.ACCESS_READ)
     contents = mm.read()
 
