@@ -1,11 +1,25 @@
 \chapter{Optimizing the performance of a centrifugal pump by data assimilation}
 
+Plan 0 repartir d'une simu convergé avec les nouveaux schémas (4e7 puis 5e7)
+
+Plan a : plus raffiner autour de la sortie de la roue / entrée du diffuseur
+
+Plan b : modèle de turbulence k-epsilon
+
+Plan c : expension des valeurs (radial puis azimutale ?) (selon karhunen loeve expansion) en majorant au niveau de la sortie de la roue
+
+Plan n : ajouter la fuite (comment l'implémenter)
+
+Pour majorer les paramètres du filtre de Kalman : par exemple, faire une vérifiation numérique de la répétition circulaire, par exemple, du champ de vitesse. Si on est en dessous d'une limite sur un membre k, reprendre la simulation du membre k avec les paramètres de l'itération précédent. Comme cela, nous devrions converger vers les paramètres max qu'on peut atteindre avant que ça diverge, ou laisser le temps à la simu de converger avant de continuer à "augementer" les paramètres. (ou, en instationnaire, reprendre la simulation avec un pas de temps plus petit).
+
 Pb de la simu qui n'a pas convergé réglable en changeant le CFL ou bien en moyennant sur les derniers instants pour le filtre de Kalman.
 Changer momentanément le modèle de turbulence pour faire passer le phénomène transitoire.
 Aussi, revoir le taux d'expansion du maillage après le diffuseur.
-Dcp coder "pimpleFoam_Penalization"
+Donc coder \texttt{pimpleFoam\_Penalization}
 
 Mettre en live l'annimation 3B1B avec les données réellees du filtre de Kalman (soit Fx Fy Fz et K, omega), soit (moy ou nomrme F, K et omega)
+
+
 
 Plan :
 
@@ -16,7 +30,7 @@ En combien de temps l'information de pression remonte-t-elle dans le diffuseur ?
 Peut-être faire deux filtres de Kalman.
 
 "Ouverture / idée" : DA temps réel dans avion impossible pour encore longtemps.
-Sol : Contrôle actif de la puissance en fonction des mesures de pression dans le compresseur :
+Solution : Contrôle actif de la puissance en fonction des mesures de pression dans le compresseur :
 f(obs) -> controle de la puissance
 
 fvSolution : 
