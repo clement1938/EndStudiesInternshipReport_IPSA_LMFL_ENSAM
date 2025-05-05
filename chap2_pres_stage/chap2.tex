@@ -19,6 +19,103 @@ Peut-être faire deux filtres de Kalman.
 Sol : Contrôle actif de la puissance en fonction des mesures de pression dans le compresseur :
 f(obs) -> controle de la puissance
 
+fvSolution : 
+solvers
+{
+    p
+    {
+        solver          PCG;
+        preconditioner  DIC;
+        tolerance       1e-6;
+        relTol          0;
+    }
+
+    U
+    {
+        solver          smoothSolver;
+        smoother        symGaussSeidel;
+        tolerance       1e-5;
+        relTol          0.1;
+    }
+
+    "(k|omega)"
+    {
+        solver          smoothSolver;
+        smoother        symGaussSeidel;
+        tolerance       1e-5;
+        relTol          0.1;
+    }
+}
+
+PIMPLE
+{
+    nOuterCorrectors 1;
+    nCorrectors      2;
+    nNonOrthogonalCorrectors 1;
+
+    momentumPredictor yes;
+    consistent yes;
+    residualControl
+    {
+        p               1e-4;
+        U               1e-5;
+    }
+}
+
+relaxationFactors
+{
+    fields
+    {
+        p 0.05;
+    }
+    equations
+    {
+        U       0.3;
+        k       0.2;
+        omega   0.2;
+    }
+}
+
+fvOptions
+UFilter
+{
+    type            laplacian;
+    active          yes;
+    selectionMode   all;
+
+    laplacianCoeffs
+    {
+        field       U;
+        diffusivity uniform 1e-5;  // Ajuste si besoin
+    }
+}
+
+fieldAverage:
+fieldAverage1
+{
+    type            fieldAverage;
+    functionObjectLibs ("libfieldFunctionObjects.so");
+    enabled         true;
+    outputControl   timeStep;
+    outputInterval  1;
+
+    fields
+    (
+        U
+        {
+            mean        yes;
+            prime2Mean yes;
+        }
+        p
+        {
+            mean        yes;
+            prime2Mean yes;
+        }
+    );
+}
+
+
+
 obs pression --> modèle de reconstruction du champ de vitesse --> modèle de reconaissance de patternes de décrochage --> contrôle de la puissance
 
 AJOUTER LE FILTRE DE KALMAN AVEC LA PRESSION
