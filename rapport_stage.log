@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.4.8)  5 MAY 2025 11:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.4.8)  6 MAY 2025 17:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1310,7 +1310,11 @@ Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'english'.
- (./rapport_stage.aux)
+ (./rapport_stage.aux
+
+LaTeX Warning: Label `implicit_forcing' multiply defined.
+
+)
 \openout1 = `rapport_stage.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 502.
@@ -1551,101 +1555,134 @@ Package pdftex.def Info: images/ipsagarde.png  used on input line 537.
 (pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
  [8] (./chap2_pres_stage/chap2.tex
 Chapter 2.
-LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 18.
+LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 20.
 (/usr/share/texlive/texmf-dist/tex/latex/inconsolata/t1zi4.fd
 File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 10.95pt on input line 18.
+(Font)              scaled to size 10.95pt on input line 20.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `zi4' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 File: images/logos.png Graphic file (type png)
 <use images/logos.png>
-Package pdftex.def Info: images/logos.png  used on input line 70.
+Package pdftex.def Info: images/logos.png  used on input line 49.
 (pdftex.def)             Requested size: 113.81102pt x 18.68011pt.
 File: images/ipsagarde.png Graphic file (type png)
 <use images/ipsagarde.png>
-Package pdftex.def Info: images/ipsagarde.png  used on input line 70.
+Package pdftex.def Info: images/ipsagarde.png  used on input line 49.
 (pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
  [9
 
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}]
 File: images/logos.png Graphic file (type png)
 <use images/logos.png>
-Package pdftex.def Info: images/logos.png  used on input line 180.
+Package pdftex.def Info: images/logos.png  used on input line 177.
 (pdftex.def)             Requested size: 113.81102pt x 18.68011pt.
 File: images/ipsagarde.png Graphic file (type png)
 <use images/ipsagarde.png>
-Package pdftex.def Info: images/ipsagarde.png  used on input line 180.
+Package pdftex.def Info: images/ipsagarde.png  used on input line 177.
 (pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
  [10]
 <images/DAmap.png, id=217, 885.3075pt x 785.93625pt>
 File: images/DAmap.png Graphic file (type png)
 <use images/DAmap.png>
-Package pdftex.def Info: images/DAmap.png  used on input line 186.
+Package pdftex.def Info: images/DAmap.png  used on input line 190.
 (pdftex.def)             Requested size: 364.19667pt x 323.31526pt.
 File: images/logos.png Graphic file (type png)
 <use images/logos.png>
-Package pdftex.def Info: images/logos.png  used on input line 215.
+Package pdftex.def Info: images/logos.png  used on input line 204.
 (pdftex.def)             Requested size: 113.81102pt x 18.68011pt.
 File: images/ipsagarde.png Graphic file (type png)
 <use images/ipsagarde.png>
-Package pdftex.def Info: images/ipsagarde.png  used on input line 215.
+Package pdftex.def Info: images/ipsagarde.png  used on input line 204.
 (pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
  [11 <./images/DAmap.png>]
-<images/pompe_centrifuge.jpg, id=231, 1541.76pt x 2055.68pt>
+<images/pompe_centrifuge.jpg, id=234, 1541.76pt x 2055.68pt>
 File: images/pompe_centrifuge.jpg Graphic file (type jpg)
 <use images/pompe_centrifuge.jpg>
-Package pdftex.def Info: images/pompe_centrifuge.jpg  used on input line 232.
+Package pdftex.def Info: images/pompe_centrifuge.jpg  used on input line 222.
 (pdftex.def)             Requested size: 227.62206pt x 303.47679pt.
+<images/impeller_position.png, id=236, 243.91125pt x 386.19281pt>
+File: images/impeller_position.png Graphic file (type png)
+<use images/impeller_position.png>
+Package pdftex.def Info: images/impeller_position.png  used on input line 239.
+(pdftex.def)             Requested size: 182.09486pt x 288.318pt.
 File: images/logos.png Graphic file (type png)
 <use images/logos.png>
-Package pdftex.def Info: images/logos.png  used on input line 254.
+Package pdftex.def Info: images/logos.png  used on input line 243.
 (pdftex.def)             Requested size: 113.81102pt x 18.68011pt.
 File: images/ipsagarde.png Graphic file (type png)
 <use images/ipsagarde.png>
-Package pdftex.def Info: images/ipsagarde.png  used on input line 254.
+Package pdftex.def Info: images/ipsagarde.png  used on input line 243.
 (pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
  [12 <./images/pompe_centrifuge.jpg>]
+<images/implicit_forcing.png, id=250, 381.67593pt x 387.69844pt>
+File: images/implicit_forcing.png Graphic file (type png)
+<use images/implicit_forcing.png>
+Package pdftex.def Info: images/implicit_forcing.png  used on input line 287.
+(pdftex.def)             Requested size: 227.62206pt x 231.21289pt.
 File: images/logos.png Graphic file (type png)
 <use images/logos.png>
-Package pdftex.def Info: images/logos.png  used on input line 318.
+Package pdftex.def Info: images/logos.png  used on input line 291.
 (pdftex.def)             Requested size: 113.81102pt x 18.68011pt.
 File: images/ipsagarde.png Graphic file (type png)
 <use images/ipsagarde.png>
-Package pdftex.def Info: images/ipsagarde.png  used on input line 318.
+Package pdftex.def Info: images/ipsagarde.png  used on input line 291.
 (pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
- [13]
+ [13 <./images/impeller_position.png>]
+File: images/logos.png Graphic file (type png)
+<use images/logos.png>
+Package pdftex.def Info: images/logos.png  used on input line 354.
+(pdftex.def)             Requested size: 113.81102pt x 18.68011pt.
+File: images/ipsagarde.png Graphic file (type png)
+<use images/ipsagarde.png>
+Package pdftex.def Info: images/ipsagarde.png  used on input line 354.
+(pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
+ [14 <./images/implicit_forcing.png (PNG copy)>]
+<images/RESEDA_sketch.pdf, id=284, 478.78876pt x 255.95625pt>
+File: images/RESEDA_sketch.pdf Graphic file (type pdf)
+<use images/RESEDA_sketch.pdf>
+Package pdftex.def Info: images/RESEDA_sketch.pdf  used on input line 380.
+(pdftex.def)             Requested size: 227.62206pt x 121.68593pt.
+File: images/logos.png Graphic file (type png)
+<use images/logos.png>
+Package pdftex.def Info: images/logos.png  used on input line 384.
+(pdftex.def)             Requested size: 113.81102pt x 18.68011pt.
+File: images/ipsagarde.png Graphic file (type png)
+<use images/ipsagarde.png>
+Package pdftex.def Info: images/ipsagarde.png  used on input line 384.
+(pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
+ [15]
 PGFPlots: reading {points_piv_tikz.txt}
 File: images/logos.png Graphic file (type png)
 <use images/logos.png>
-Package pdftex.def Info: images/logos.png  used on input line 399.
+Package pdftex.def Info: images/logos.png  used on input line 451.
 (pdftex.def)             Requested size: 113.81102pt x 18.68011pt.
 File: images/ipsagarde.png Graphic file (type png)
 <use images/ipsagarde.png>
-Package pdftex.def Info: images/ipsagarde.png  used on input line 399.
+Package pdftex.def Info: images/ipsagarde.png  used on input line 451.
 (pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
- [14]
+ [16 <./images/RESEDA_sketch.pdf>]
 File: images/logos.png Graphic file (type png)
 <use images/logos.png>
-Package pdftex.def Info: images/logos.png  used on input line 431.
+Package pdftex.def Info: images/logos.png  used on input line 483.
 (pdftex.def)             Requested size: 113.81102pt x 18.68011pt.
 File: images/ipsagarde.png Graphic file (type png)
 <use images/ipsagarde.png>
-Package pdftex.def Info: images/ipsagarde.png  used on input line 431.
+Package pdftex.def Info: images/ipsagarde.png  used on input line 483.
 (pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
- [15]
+ [17]
 File: images/logos.png Graphic file (type png)
 <use images/logos.png>
-Package pdftex.def Info: images/logos.png  used on input line 496.
+Package pdftex.def Info: images/logos.png  used on input line 548.
 (pdftex.def)             Requested size: 113.81102pt x 18.68011pt.
 File: images/ipsagarde.png Graphic file (type png)
 <use images/ipsagarde.png>
-Package pdftex.def Info: images/ipsagarde.png  used on input line 496.
+Package pdftex.def Info: images/ipsagarde.png  used on input line 548.
 (pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
- [16] Excluding 'comment' comment.)
+ [18] Excluding 'comment' comment.)
 File: images/logos.png Graphic file (type png)
 <use images/logos.png>
 Package pdftex.def Info: images/logos.png  used on input line 540.
@@ -1654,7 +1691,7 @@ File: images/ipsagarde.png Graphic file (type png)
 <use images/ipsagarde.png>
 Package pdftex.def Info: images/ipsagarde.png  used on input line 540.
 (pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
- [17] (./conclusion/conclusion.tex)
+ [19] (./conclusion/conclusion.tex)
 File: images/logos.png Graphic file (type png)
 <use images/logos.png>
 Package pdftex.def Info: images/logos.png  used on input line 543.
@@ -1663,7 +1700,7 @@ File: images/ipsagarde.png Graphic file (type png)
 <use images/ipsagarde.png>
 Package pdftex.def Info: images/ipsagarde.png  used on input line 543.
 (pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
- [18
+ [20
 
 ]
 File: images/logos.png Graphic file (type png)
@@ -1674,7 +1711,7 @@ File: images/ipsagarde.png Graphic file (type png)
 <use images/ipsagarde.png>
 Package pdftex.def Info: images/ipsagarde.png  used on input line 543.
 (pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
- [19]
+ [21]
 File: images/logos.png Graphic file (type png)
 <use images/logos.png>
 Package pdftex.def Info: images/logos.png  used on input line 551.
@@ -1683,7 +1720,7 @@ File: images/ipsagarde.png Graphic file (type png)
 <use images/ipsagarde.png>
 Package pdftex.def Info: images/ipsagarde.png  used on input line 551.
 (pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
- [20
+ [22
 
 ] (./quatre_couv/quatre_couv.tex
 File: images/logos.png Graphic file (type png)
@@ -1694,7 +1731,7 @@ File: images/ipsagarde.png Graphic file (type png)
 <use images/ipsagarde.png>
 Package pdftex.def Info: images/ipsagarde.png  used on input line 1.
 (pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
- [21
+ [23
 
 ] Excluding 'comment' comment.)
 File: images/logos.png Graphic file (type png)
@@ -1705,32 +1742,36 @@ File: images/ipsagarde.png Graphic file (type png)
 <use images/ipsagarde.png>
 Package pdftex.def Info: images/ipsagarde.png  used on input line 558.
 (pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
- [22
+ [24
 
 ] (./rapport_stage.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
+
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package rerunfilecheck Info: File `rapport_stage.out' has not changed.
-(rerunfilecheck)             Checksum: 150B57B4EED7E89A2276B81958467AC2;3403.
+(rerunfilecheck)             Checksum: E1E28F9E69300852DF6FACD55F26DB6C;3403.
 Package logreq Info: Writing requests to 'rapport_stage.run.xml'.
 \openout1 = `rapport_stage.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 71116 strings out of 474222
- 1766865 string characters out of 5748734
- 2524187 words of memory out of 5000000
- 92258 multiletter control sequences out of 15000+600000
- 594189 words of font info for 197 fonts, out of 8000000 for 9000
+ 71211 strings out of 474222
+ 1768893 string characters out of 5748734
+ 2525654 words of memory out of 5000000
+ 92314 multiletter control sequences out of 15000+600000
+ 598466 words of font info for 218 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  125i,16n,137p,1631b,2064s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx2074.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm2074.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsl1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1095.pfb>
-Output written on rapport_stage.pdf (22 pages, 2099197 bytes).
+</usr/share/texlive/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx2074.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm2074.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsl1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1095.pfb>
+Output written on rapport_stage.pdf (24 pages, 2419929 bytes).
 PDF statistics:
- 463 PDF objects out of 1000 (max. 8388607)
- 335 compressed objects within 4 object streams
- 70 named destinations out of 1000 (max. 500000)
- 39895 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 671 PDF objects out of 1000 (max. 8388607)
+ 473 compressed objects within 5 object streams
+ 77 named destinations out of 1000 (max. 500000)
+ 48126 words of extra memory for PDF output out of 51595 (max. 10000000)
 

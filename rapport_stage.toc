@@ -8,26 +8,26 @@
 \contentsline {paragraph}{Responsabilité sociale / Qualité de vie au travail}{7}{section*.8}%
 \contentsline {chapter}{\numberline {2}Optimizing the performance of a centrifugal pump by data assimilation}{9}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Data Assimilation}{11}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}State of the art}{11}{subsection.2.1.1}%
-\contentsline {subsection}{\numberline {2.1.2}Presentation of the test case: the centrifugal pump}{11}{subsection.2.1.2}%
-\contentsline {section}{\numberline {2.2}Numerical ingredients}{12}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}Governing equations}{12}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}The open source code OpenFoam}{13}{subsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.2.3}EnKF}{13}{subsection.2.2.3}%
-\contentsline {subsection}{\numberline {2.2.4}The library CONES}{13}{subsection.2.2.4}%
-\contentsline {subsection}{\numberline {2.2.5}Modeling}{14}{subsection.2.2.5}%
-\contentsline {section}{\numberline {2.3}IBM preliminary results}{14}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Application de la DA}{14}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}Preprocessing of PIV data}{14}{subsection.2.4.1}%
-\contentsline {subparagraph}{Zone d'acquisition PIV}{14}{section*.11}%
-\contentsline {subparagraph}{1.}{15}{section*.13}%
-\contentsline {subparagraph}{2.Average}{15}{section*.14}%
-\contentsline {subparagraph}{3.Sampling}{15}{section*.15}%
-\contentsline {subparagraph}{4.Shaping for CONES}{16}{section*.16}%
-\contentsline {subparagraph}{5.Creation of a file for the interpolation}{16}{section*.17}%
-\contentsline {subsection}{\numberline {2.4.2}Preparation/modifation on OpenFoam and CONES}{16}{subsection.2.4.2}%
-\contentsline {section}{\numberline {2.5}Results}{17}{section.2.5}%
-\contentsline {chapter}{Conclusion}{18}{chapter*.18}%
-\contentsline {chapter}{Bibliography}{20}{chapter*.22}%
-\contentsline {paragraph}{Résumé}{22}{section*.24}%
-\contentsline {paragraph}{Abstract}{22}{section*.25}%
+\contentsline {subsection}{\numberline {2.1.1}State of the art}{12}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Presentation of the test case: the centrifugal pump}{12}{subsection.2.1.2}%
+\contentsline {section}{\numberline {2.2}Numerical ingredients}{13}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Governing equations}{13}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}The open source code OpenFoam}{14}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}EnKF}{14}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}The library CONES}{14}{subsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.2.5}Modeling}{15}{subsection.2.2.5}%
+\contentsline {section}{\numberline {2.3}IBM preliminary results}{16}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Application de la DA}{16}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Preprocessing of PIV data}{16}{subsection.2.4.1}%
+\contentsline {subparagraph}{Zone d'acquisition PIV}{16}{section*.14}%
+\contentsline {subparagraph}{1.}{17}{section*.16}%
+\contentsline {subparagraph}{2.Average}{17}{section*.17}%
+\contentsline {subparagraph}{3.Sampling}{17}{section*.18}%
+\contentsline {subparagraph}{4.Shaping for CONES}{18}{section*.19}%
+\contentsline {subparagraph}{5.Creation of a file for the interpolation}{18}{section*.20}%
+\contentsline {subsection}{\numberline {2.4.2}Preparation/modifation on OpenFoam and CONES}{18}{subsection.2.4.2}%
+\contentsline {section}{\numberline {2.5}Results}{19}{section.2.5}%
+\contentsline {chapter}{Conclusion}{20}{chapter*.21}%
+\contentsline {chapter}{Bibliography}{22}{chapter*.25}%
+\contentsline {paragraph}{Résumé}{24}{section*.27}%
+\contentsline {paragraph}{Abstract}{24}{section*.28}%
