@@ -1,16 +1,16 @@
 \chapter{Optimizing the performance of a centrifugal pump by data assimilation}
 
-Plan 0 repartir d'une simu convergé avec les nouveaux schémas (4e7 puis 5e7)
+OK  Plan 0 repartir d'une simu convergé avec les nouveaux schémas (4e7 puis 5e7)
 
 Plan a : plus raffiner autour de la sortie de la roue / entrée du diffuseur
 
-Plan b : modèle de turbulence k-epsilon
+Plan b : NONmodèle de turbulence k-epsilonNON paramètre de viscosité turbu de 0.09? to 0.5 (à augementer ?) dans momentumTransport (beta star ds kosst ? se renseigner)
 
-viscosité turbu de 09? to 0. (à augementer ?)
-
-Plan c : expension des valeurs (radial puis azimutale ? -> trouver une fonction approximative de la forme de la pale et la "convoluer" avec la fonction voulu) (selon karhunen loeve expansion) en majorant au niveau de la sortie de la roue
+Plan c a faire après: expension des valeurs (radial puis azimutale ? -> trouver une fonction approximative de la forme de la pale et la "convoluer" avec la fonction voulu) (selon karhunen loeve expansion) en majorant au niveau de la sortie de la roue
 
 Plan n : ajouter la fuite (comment l'implémenter)
+
+Passer à une simu "instationnaire" : URANS
 
 Pour majorer les paramètres du filtre de Kalman : par exemple, faire une vérifiation numérique de la répétition circulaire, par exemple, du champ de vitesse. Si on est en dessous d'une limite sur un membre k, reprendre la simulation du membre k avec les paramètres de l'itération précédent. Comme cela, nous devrions converger vers les paramètres max qu'on peut atteindre avant que ça diverge, ou laisser le temps à la simu de converger avant de continuer à "augementer" les paramètres. (ou, en instationnaire, reprendre la simulation avec un pas de temps plus petit).
 
