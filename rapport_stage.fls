@@ -783,6 +783,11 @@ INPUT ./images/DAmap.png
 INPUT ./images/DAmap.png
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1200.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1200.tfm
+INPUT ./images/pompe_centrifuge.jpg
+INPUT ./images/pompe_centrifuge.jpg
+INPUT ./images/pompe_centrifuge.jpg
+INPUT ./images/pompe_centrifuge.jpg
+INPUT ./images/pompe_centrifuge.jpg
 INPUT ./images/logos.png
 INPUT ./images/logos.png
 INPUT ./images/logos.png
@@ -791,11 +796,6 @@ INPUT ./images/ipsagarde.png
 INPUT ./images/ipsagarde.png
 INPUT ./images/ipsagarde.png
 INPUT ./images/ipsagarde.png
-INPUT ./images/pompe_centrifuge.jpg
-INPUT ./images/pompe_centrifuge.jpg
-INPUT ./images/pompe_centrifuge.jpg
-INPUT ./images/pompe_centrifuge.jpg
-INPUT ./images/pompe_centrifuge.jpg
 INPUT ./images/impeller_position.png
 INPUT ./images/impeller_position.png
 INPUT ./images/impeller_position.png
