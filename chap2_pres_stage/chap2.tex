@@ -1,6 +1,21 @@
 \chapter{Optimizing the performance of a centrifugal pump by data assimilation}
 
 
+
+
+
+
+Pour majorer les paramètres du filtre de Kalman : par exemple, faire une vérifiation numérique de la répétition circulaire, par exemple, du champ de vitesse. Si on est en dessous d'une limite sur un membre k, reprendre la simulation du membre k avec les paramètres de l'itération précédent. Comme cela, nous devrions converger vers les paramètres max qu'on peut atteindre avant que ça diverge, ou laisser le temps à la simu de converger avant de continuer à "augementer" les paramètres. (ou, en instationnaire, reprendre la simulation avec un pas de temps plus petit).
+
+Pb de la simu qui n'a pas convergé réglable en changeant le CFL ou bien en moyennant sur les derniers instants pour le filtre de Kalman.
+Changer momentanément le modèle de turbulence pour faire passer le phénomène transitoire.
+Aussi, revoir le taux d'expansion du maillage après le diffuseur.
+Donc coder \texttt{pimpleFoam\_Penalization}
+
+Mettre en live l'annimation 3B1B avec les données réellees du filtre de Kalman (soit Fx Fy Fz et K, omega), soit (moy ou nomrme F, K et omega)
+
+Nbr de processeurs : sur rome : 128 coeurs par noeuds, 30 membres d'ensemble + python : 127×30+1 = 3811 arrondi à 3840 car noeuds complets
+
 Plan :
 
 1- PRESSION : Faire un filtre de Kalman sur la pression
@@ -10,7 +25,7 @@ En combien de temps l'information de pression remonte-t-elle dans le diffuseur ?
 Peut-être faire deux filtres de Kalman.
 
 "Ouverture / idée" : DA temps réel dans avion impossible pour encore longtemps.
-Sol : Contrôle actif de la puissance en fonction des mesures de pression dans le compresseur :
+Solution : Contrôle actif de la puissance en fonction des mesures de pression dans le compresseur :
 f(obs) -> controle de la puissance
 
 fvSolution : 
@@ -151,6 +166,8 @@ Fz doit augementé aussi ??
 
 55577 - 698570 : Pin : -306
 
+La fenêtre d'observation a été définie en observant le nombre d'itération nécessaire à ce que l'influence de l'IBM atteigne le diffuseur et prenne l'allure du résultat convergé. Nous nous intéressons pas aux paramètres de turbulence pour déterminer la fenêtre d'observation car présent dans tout le domaine, leurs influence est presque directe (pas forcément leurs convergence). Nous avons choisis 700 itérations
+
 
 The internship began in February 2025. I was provided with a fix computer, and credentials to connect to the Irene and Cassiopée supercomputers. Marcello MELDI, Antoine DAZIN and Miguel MARTINEZ VALERO which are my internship supervisors, showed me around the lab.
 Then, Tom MOUSSIE and Miguel, my co-officies, explained to me the basics of OpenFoam and CONES, the DA code. I was able to run a few tests on OpenFoam on the supercomputers, which allowed me to familiarize myself with the tools and the code. % PARLER DE LA CONFIG DE CONES
@@ -164,9 +181,10 @@ PAS d'equation ici, sinon je me fait frapper
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{images/DAmap.png}
-    \caption{The big picture for DA methods and algorithms}
+    \caption{The big picture for DA methods and algorithms\cite{aschDataAssimilationMethods2016}}
     \label{fig:DAmap}
 \end{figure}
+
 
 Data assimilation\cite{aschDataAssimilationMethods2016} is a technique used to improve the accuracy of numerical models by combining them with observational data. It is widely used in various fields, including meteorology, oceanography, and engineering. The goal of data assimilation is to obtain a more accurate representation of the state of a system by integrating information from different physical measurements or hight fidelity sources.
 
@@ -176,6 +194,10 @@ Data assimilation\cite{aschDataAssimilationMethods2016} is a technique used to i
 DA
 Expliquer en quoi / cas test ou ca a fonctionné en CFD en utilisant des paramètres écoulement. (aller de + en plus en détail jusqu'a param IBM car gros cas test couteux en body-fitted)
 
+It can be used in CFD cases\cite{moussieStatisticalInferenceUpstream2024a}
+
+
+The IBM theory has been developed in 1972 by Charles S. Peskin\cite{IBM_base}
 
 
 IBM mais pas technique
@@ -186,15 +208,31 @@ Objectif : amélioration params forcage stationaire
 
 \subsection{Presentation of the test case: the centrifugal pump}
 
+Centrifugal pumps are used since 1475
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/pompe_centrifuge.jpg}
+    \caption{Old centrifugal pump (personnal picture)}
+    \label{fig:old_centrifugal_pump}
+\end{figure}
+
 Parler de la partie expérimentale
 
-Results in the file are High-Speed \ac{PIV} data obtained at a PIV frequency of 980 Hz
+Results in the file are High-Speed \ac{PIV} data obtained by Antoine DAZIN in 2011\cite{dazinHighspeedStereoscopicPIV2011a} at a PIV frequency of 980 Hz on a SHF impeller
 The operating conditions of the machine where :
 N= 1200 rpm
 Qv = 0.256 m3/s (design flow rate of the pump)
  
 The 6 directories are corresponding to tests realised at 
 25\%, 50\% et 75\% of the diffuser height.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{images/impeller_position.png}
+    \caption{Position of the PIV plans}
+    \label{fig:PIVPlans}
+\end{figure}
 
 Each test was repeated twice for the same operating condition and the same height (R1, R2)
 
@@ -207,12 +245,7 @@ The pdf is a paper where can be found the experimental conditions even if the an
 \title{Fonctionning}
 \title{Utility}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/pompe_centrifuge.jpg}
-    \caption{Old centrifugal pump (personnal picture)}
-    \label{fig:old_centrifugal_pump}
-\end{figure}
+
 
 Données hautes fidélités,...
 
@@ -223,7 +256,33 @@ Données hautes fidélités,...
 - Equations (Incompressible, turbulence,...)
 - Ajout IBM -> Methodo forcage continue
 
+
+$Re_\Omega=\cfrac{R_2^2 \Omega}{\nu} = 5.53\times10^5$ 
+
+$Ma = \cfrac{R_2 \Omega}{c} = 0.095$ \textrm{\textbf{(incompressible)}}
+
+\begin{equation*}
+    \boldsymbol{\nabla} \cdot (\boldsymbol{u}\boldsymbol{u}) = -\nabla p + \nu \nabla^2 \boldsymbol{u}  \overbrace{-\frac{\xi}{\eta} \left(\boldsymbol{u} - \boldsymbol{u_{ib}} \right)}^{\boldsymbol{f}_P}
+\end{equation*}
+
+\begin{equation*}
+    \xi = \left\{
+   \begin{array}{ll}
+   0 & \textrm{if } \boldsymbol{x} \in \Omega_f \\
+   1 & \textrm{if } \boldsymbol{x} \in (\Sigma_b \cup \Omega_b)
+   \end{array} \right.
+\end{equation*}
+
 \subsection{The open source code OpenFoam}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/implicit_forcing.png}
+    \caption{Implementation of the focing term of the immersed boundary method in OpenFoam}
+    \label{implicit_forcing}
+\end{figure}
+
+
 
 \subsection{EnKF}
 
@@ -309,6 +368,12 @@ The \texttt{0} directory contains the initial solution's fields. The \texttt{pos
 - Maillage
 - CL, ...
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/RESEDA_sketch.pdf}
+    \caption{Implementation of the focing term of the immersed boundary method in OpenFoam}
+    \label{implicit_forcing}
+\end{figure}
 
 \section{IBM preliminary results}
 

@@ -8,6 +8,7 @@
 *.synctex(busy)
 *.bcf
 *.run.xml
+forReportTreeIlustration/<case>/
 
 # Fichiers temporaires
 *~

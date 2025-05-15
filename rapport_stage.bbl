@@ -155,7 +155,6 @@
       \field{year}{2011}
       \field{dateera}{ce}
       \field{urldateera}{ce}
-      \true{nocite}
       \field{pages}{83\bibrangedash 93}
       \range{pages}{11}
       \verb{doi}
@@ -170,6 +169,86 @@
       \verb{url}
       \verb http://link.springer.com/10.1007/s00348-010-1030-x
       \endverb
+    \endentry
+    \entry{moussieStatisticalInferenceUpstream2024a}{article}{}
+      \name{author}{3}{}{%
+        {{hash=7d1fc99b76c34515079e92e9becf2854}{%
+           family={Moussie},
+           familyi={M\bibinitperiod},
+           given={Tom},
+           giveni={T\bibinitperiod}}}%
+        {{hash=dd012d18153de400d5887b02a7e2a52d}{%
+           family={Errante},
+           familyi={E\bibinitperiod},
+           given={Paolo},
+           giveni={P\bibinitperiod}}}%
+        {{hash=4e04623514f4c380cf23d542eb767cf3}{%
+           family={Meldi},
+           familyi={M\bibinitperiod},
+           given={Marcello},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{8dd2bc195b242638de97168d55ad13d8}
+      \strng{fullhash}{8dd2bc195b242638de97168d55ad13d8}
+      \strng{bibnamehash}{8dd2bc195b242638de97168d55ad13d8}
+      \strng{authorbibnamehash}{8dd2bc195b242638de97168d55ad13d8}
+      \strng{authornamehash}{8dd2bc195b242638de97168d55ad13d8}
+      \strng{authorfullhash}{8dd2bc195b242638de97168d55ad13d8}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The Benchmarck on the Aerodynamics of a Rectangular 5:1 Cylinder is studied using a data-driven technique which bridges numerical simulation and available experimental results. Because of intrinsic features of the tools used for investigation, in particular in terms of set-up and boundary conditions, significant discrepancies have been observed in the literature when comparing experimental and numerical results. An approach based on the Ensemble Kalman Filter is here used to optimize a synthetic turbulent inlet used as boundary condition in the numerical calculation, in order to reduce the discrepancy with the available experiments. The data-driven method successfully optimizes the boundary condition features, which produce a significant improvement of the accuracy in the prediction of the flow. These findings open perspectives of application towards the analysis of realistic cases, where boundary conditions are complex and usually unknown.}
+      \field{issn}{1386-6184, 1573-1987}
+      \field{journaltitle}{Flow, Turbulence and Combustion}
+      \field{langid}{english}
+      \field{month}{11}
+      \field{number}{4}
+      \field{shortjournal}{Flow Turbulence Combust}
+      \field{title}{Statistical {{Inference}} of {{Upstream Turbulence Intensity}} for the {{Flow Around}} a {{Bluff Body}} with {{Massive Separation}}}
+      \field{urlday}{6}
+      \field{urlmonth}{5}
+      \field{urlyear}{2025}
+      \field{volume}{113}
+      \field{year}{2024}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{853\bibrangedash 889}
+      \range{pages}{37}
+      \verb{doi}
+      \verb 10.1007/s10494-024-00573-z
+      \endverb
+      \verb{file}
+      \verb /home/clementt/Zotero/storage/NSU45CMU/Moussie et al. - 2024 - Statistical Inference of Upstream Turbulence Intensity for the Flow Around a Bluff Body with Massive.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://link.springer.com/10.1007/s10494-024-00573-z
+      \endverb
+      \verb{url}
+      \verb https://link.springer.com/10.1007/s10494-024-00573-z
+      \endverb
+    \endentry
+    \entry{IBM_base}{article}{}
+      \name{author}{1}{}{%
+        {{hash=e0e1eadfb4014d1d181e08219c6b5259}{%
+           family={Peskin},
+           familyi={P\bibinitperiod},
+           given={Charles\bibnamedelima S},
+           giveni={C\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \strng{namehash}{e0e1eadfb4014d1d181e08219c6b5259}
+      \strng{fullhash}{e0e1eadfb4014d1d181e08219c6b5259}
+      \strng{bibnamehash}{e0e1eadfb4014d1d181e08219c6b5259}
+      \strng{authorbibnamehash}{e0e1eadfb4014d1d181e08219c6b5259}
+      \strng{authornamehash}{e0e1eadfb4014d1d181e08219c6b5259}
+      \strng{authorfullhash}{e0e1eadfb4014d1d181e08219c6b5259}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Computational Physics}
+      \field{title}{Flow Patterns Around Heart Valves: A Numerical Method}
+      \field{year}{1972}
     \endentry
   \enddatalist
 \endrefsection
