@@ -1,0 +1,7 @@
+# This file is used internally by FFMPEG.
+file 'file:C:/Users/33695/Desktop/EndStudiesInternshipReport_IPSA_LMFL_ENSAM/manim-kalman/media/videos/fourier_template/480p15/partial_movie_files/FourierSum/1185818338_3200367606_223132457.mp4'
+file 'file:C:/Users/33695/Desktop/EndStudiesInternshipReport_IPSA_LMFL_ENSAM/manim-kalman/media/videos/fourier_template/480p15/partial_movie_files/FourierSum/624642324_2017743319_2370548255.mp4'
+file 'file:C:/Users/33695/Desktop/EndStudiesInternshipReport_IPSA_LMFL_ENSAM/manim-kalman/media/videos/fourier_template/480p15/partial_movie_files/FourierSum/624642324_2135085013_3804820598.mp4'
+file 'file:C:/Users/33695/Desktop/EndStudiesInternshipReport_IPSA_LMFL_ENSAM/manim-kalman/media/videos/fourier_template/480p15/partial_movie_files/FourierSum/624642324_2341082278_665309112.mp4'
+file 'file:C:/Users/33695/Desktop/EndStudiesInternshipReport_IPSA_LMFL_ENSAM/manim-kalman/media/videos/fourier_template/480p15/partial_movie_files/FourierSum/624642324_2398472211_2622006079.mp4'
+file 'file:C:/Users/33695/Desktop/EndStudiesInternshipReport_IPSA_LMFL_ENSAM/manim-kalman/media/videos/fourier_template/480p15/partial_movie_files/FourierSum/624642324_4247107814_1261915241.mp4'
