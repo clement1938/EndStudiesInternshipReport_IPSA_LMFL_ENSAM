@@ -1,9 +1,26 @@
 \chapter{Optimizing the performance of a centrifugal pump by data assimilation}
 
 
+
+\begin{comment}
+    
+    3 times
+        simpleFoam_penalization/impeller.H  :
+            D[cellsZone[cellID]][0] = viscosity[0]*(penaltyCoeff[0]*r*r + penaltyCoeff[5]*r + penaltyCoeff[10]);
+
+    1 time
+        kOmegaSST_penalization_vClem/kOmegaSST_base/kOmegaSSTBase_penalization_vClem.C
+            DK_[cellsZone_[cellID]] = kinViscosity[0]*penCoeff_k_;
+            DO_[cellsZone_[cellID]] = kinViscosity[0]*penCoeff_omega_;
+
+\end{comment}
+
 manim : allparameters interp avec gausienne ou anim moyenne et variance
 
 
+The theorical average speed at the input of the diffuseur is equal to \[\frac{Q_{diff_{in}}}{S_{diff_{in}}} = \frac{Q_{pump_{in}}}{2\pi R_{3} h_{diff}} = 3.65m.s^{-1}\]. $Q_{pump_{in}} = Q_{diff_{in}}$ because the mass flow rate is constant and the flow is incompressible.
+
+Détail : R3 = 0.257m; h=0.0400m; Q = 0.236m3/s -> S=0.0646m2
 
 Pour majorer les paramètres du filtre de Kalman : par exemple, faire une vérifiation numérique de la répétition circulaire, par exemple, du champ de vitesse. Si on est en dessous d'une limite sur un membre k, reprendre la simulation du membre k avec les paramètres de l'itération précédent. Comme cela, nous devrions converger vers les paramètres max qu'on peut atteindre avant que ça diverge, ou laisser le temps à la simu de converger avant de continuer à "augementer" les paramètres. (ou, en instationnaire, reprendre la simulation avec un pas de temps plus petit).
 
