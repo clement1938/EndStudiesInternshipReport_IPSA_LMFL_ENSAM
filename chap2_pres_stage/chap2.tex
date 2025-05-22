@@ -17,6 +17,8 @@
 \end{comment}
 
 
+Par rapport à l'aléatoire, les variation sont random mais avec une graine de reproducibilité (sed) qui permet d'avoir le même résultat à chaque fois qu'on lance la simulation.
+
 
 Nbr de processeurs : sur rome : 128 coeurs par noeuds, 30 membres d'ensemble + python : 127×30+1 = 3811 arrondi à 3840 car noeuds complets : 30 noeuds
 
@@ -51,7 +53,7 @@ PAS d'equation ici, sinon je me fait frapper
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/DAmap.png}
+    \includegraphics[width=0.8\textwidth]{images/other/DAmap.png}
     \caption{The big picture for DA methods and algorithms\cite{aschDataAssimilationMethods2016}}
     \label{fig:DAmap}
 \end{figure}
@@ -83,7 +85,7 @@ Centrifugal pumps are used since 1475
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{images/pompe_centrifuge.jpg}
+    \includegraphics[width=0.5\textwidth]{images/other/pompe_centrifuge.jpg}
     \caption{Old centrifugal pump (personnal picture)}
     \label{fig:old_centrifugal_pump}
 \end{figure}
@@ -100,7 +102,7 @@ The 6 directories are corresponding to tests realised at
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{images/impeller_position.png}
+    \includegraphics[width=0.4\textwidth]{images/experimentalPump/impeller_position.png}
     \caption{Position of the PIV plans}
     \label{fig:PIVPlans}
 \end{figure}
@@ -153,7 +155,7 @@ $Ma = \cfrac{R_2 \Omega}{c} = 0.095$ \textrm{\textbf{(incompressible)}}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{images/implicit_forcing.png}
+    \includegraphics[width=0.5\textwidth]{images/other/implicit_forcing.png}
     \caption{Model}
     \label{model}
 \end{figure}
@@ -164,7 +166,7 @@ $Ma = \cfrac{R_2 \Omega}{c} = 0.095$ \textrm{\textbf{(incompressible)}}
 
 
 \subsection{The library CONES}
-CONES is a library coded in Python/C++ developed for ... since NNNN at LMFL
+CONES is a library coded in Python/C++ developed for ... since 2022 ??? at LMFL
 It's parallelized and can be used on supercomputers. It is mainly designed to work with OpenFoam and DA codes as \ac{EnKF}.\label{instants_partages}
 
 Simulations are performed using the C++ framework OpenFOAM, used to discretize the equations previously presented. Standing for \textsl{Open Source Field Operation and Manipulation}, OpenFOAM is an open-source project which provides many tools, referred to as executables %\citep[see][]{greenshields2021}. These executable files can be divided into three separate categories:
@@ -218,7 +220,16 @@ OpenFOAM is not provided with a graphical interface, which is why a simulation i
     ]
   ]
   \end{forest}
-  
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\textwidth]{images/other/OF_arbo.png}
+    \caption{Arbo of OpenFoam}
+    \label{arboOF}
+\end{figure}
+
 
 The \texttt{system} directory contains the main parameters concerning the progress of the simulation:
 \begin{itemize}
@@ -240,22 +251,53 @@ The \texttt{0} directory contains the initial solution's fields. The \texttt{pos
 
 
 \subsection{Modeling}
-'Jumeaux numérique'
-- Maillage
-- CL, ...
+
+The objective of the model is to try to find same physical behavior as the experimental data. We call that digital twin.
+
+For that we have first to discretize the numerical model of the pump. The mesh is generated using the \texttt{blockMesh} utility, which is a built-in OpenFOAM tool. The mesh is composed of 12 million cells. The mesh is composed of hexahedral cells. (quasi only, exepted some interface, cf figure). We don't need complex mesh because we dont neek to fit the geometry of the impeller.
+
+Boundary conditions are defines as that:
+\begin{itemize}
+    \item[$-$] Inlet: velocity inlet
+    \item[$-$] Outlet: pressure outlet
+    \item[$-$] Wall: no-slip wall
+\end{itemize}
+
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{images/RESEDA_sketch.pdf}
-    \caption{Implementation of the focing term of the immersed boundary method in OpenFoam}
-    \label{implicit_forcing}
+    \includegraphics[width=0.5\textwidth]{images/model/RESEDA_sketch.pdf}
+    \caption{Model}
+    \label{Model}
 \end{figure}
 
 \section{IBM preliminary results}
 
-"Résultats de la simulation avec 3e5"
+"Résultats de la simulation avec 3e5" -> 3e7
 
 \section{Application de la DA}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/coordsSeventh.png}
+    \caption{Interpolation points over 360/7 degrees}
+    \label{coordsSeventh}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=0.4\textwidth]{images/numericalPump/diffuseurMesh.png}
+    \caption{diffuseur Mesh}
+    \label{diffuseurMesh}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=0.4\textwidth]{images/coords360.png}
+    \caption{Interpolation points over 360 degrees}
+    \label{coords360}
+\end{figure}
+
+
 
 S'aider du plan de la présentation MALEAF
 
@@ -275,6 +317,16 @@ Expérience : 5\%
 De mon coté : je vise qu'en moyenne un membre d'ensemble ait un écart de 1e7 par rapport au temps précédent (pour des valeurs autour de 5e7), donc, pour 30 membres d'ensemble, environ 95\% = 2 sigma dans 5e7+-1e7, càd sigma = 0.5e7 = 10\%. Ensuite, le nombre d'itération entre les phases d'analyse est déterminé en regardans combien d'itération sont nécessaires pour faire varier la solution dans le diffuseur (influe, rapidement, converge doucement mais ce qui nous intéresse c'est que ça prenne la tendace) lorsqu'un paramètre de forcage est modifié (supposé très inférieure pour la turbulence car appliquée de partout)
 
 The observation window was defined by observing the number of iterations required for the influence of the IBM to reach the diffuser and take the form of the converged result. We are not interested in the turbulence parameters to determine the observation window because they are present throughout the domain, their influence is almost direct (not necessarily their convergence). We chose 800 iterations
+
+
+Pb de la DA : plus rapide que DNS mais toujours plus lent que RANS et le temps d'attente et de calcul sur supercalculateur (sur 4000 processeurs) est de l'orde de plusieurs jours. On peut donc se demander si la DA est vraiment utile dans ce cas. En effet, la DA est plus rapide que la DNS mais pas que la RANS. Cependant, il faut prendre en compte le fait que la DA permet de réduire le temps de calcul de la simulation numérique en permettant d'optimiser les paramètres de l'IBM. De plus, la DA peut être utilisée pour d'autres cas d'étude où la DNS est trop coûteuse.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/other/queue_IRENE.png}
+    \caption{IRENE queue}
+    \label{queue_IRENE}
+\end{figure}
 
 \subsection{Preprocessing of PIV data}
 
@@ -330,7 +382,7 @@ The cathesian coordinates are given in a local system, where the absolute origin
             mark=*,
             mark size=0.3pt,
             color=blue
-        ] table [x index=0, y index=1] {points_piv_tikz.txt};
+        ] table [x index=0, y index=1] {autre/points_piv_tikz.txt};
         \end{axis}
     \end{tikzpicture}
 \end{figure}
