@@ -1,10 +1,7 @@
 \chapter{Optimizing the performance of a centrifugal pump by data assimilation}
 
-508860.0        Param1 : 36790560.0  2558053.0  Param2 : 8642285.0  2267741.0   Param3 : 112552442.0  2126347.0         Param4 : 79181872.0  3888344.0  Param5 : 27699504.0  4098622.0 
-509670.0        Param1 : 22816419.0  2455970.0  Param2 : 22649752.0  2389690.0  Param3 : 112552467.0  2126417.0         Param4 : 79181867.0  3888344.0  Param5 : 27699517.0  4098616.0 
-510470.0        Param1 : 22816430.0  2455977.0  Param2 : 22649763.0  2389696.0  Param3 : 112552467.0  2126417.0         Param4 : 79181867.0  3888344.0  Param5 : 27699517.0  4098616.0
 
-Afficher lignes de courant
+
 
 \begin{comment}
     
@@ -19,176 +16,29 @@ Afficher lignes de courant
 
 \end{comment}
 
-manim : allparameters interp avec gausienne ou anim moyenne et variance
 
 
-The theorical average speed at the input of the diffuseur is equal to \[\frac{Q_{diff_{in}}}{S_{diff_{in}}} = \frac{Q_{pump_{in}}}{2\pi R_{3} h_{diff}} = 3.65m.s^{-1}\]. $Q_{pump_{in}} = Q_{diff_{in}}$ because the mass flow rate is constant and the flow is incompressible.
-
-Détail : R3 = 0.257m; h=0.0400m; Q = 0.236m3/s -> S=0.0646m2
-
-Pour majorer les paramètres du filtre de Kalman : par exemple, faire une vérifiation numérique de la répétition circulaire, par exemple, du champ de vitesse. Si on est en dessous d'une limite sur un membre k, reprendre la simulation du membre k avec les paramètres de l'itération précédent. Comme cela, nous devrions converger vers les paramètres max qu'on peut atteindre avant que ça diverge, ou laisser le temps à la simu de converger avant de continuer à "augementer" les paramètres. (ou, en instationnaire, reprendre la simulation avec un pas de temps plus petit).
-
-Pb de la simu qui n'a pas convergé réglable en changeant le CFL ou bien en moyennant sur les derniers instants pour le filtre de Kalman.
-Changer momentanément le modèle de turbulence pour faire passer le phénomène transitoire.
-Aussi, revoir le taux d'expansion du maillage après le diffuseur.
-Donc coder \texttt{pimpleFoam\_Penalization}
-
-Mettre en live l'annimation 3B1B avec les données réellees du filtre de Kalman (soit Fx Fy Fz et K, omega), soit (moy ou nomrme F, K et omega)
-
-Nbr de processeurs : sur rome : 128 coeurs par noeuds, 30 membres d'ensemble + python : 127×30+1 = 3811 arrondi à 3840 car noeuds complets
-
-Plan :
-
-1- PRESSION : Faire un filtre de Kalman sur la pression
-2- COMBINAISON : Faire le filtre de Kalman sur la vitesse et/ou la vitesse et la pression
+Nbr de processeurs : sur rome : 128 coeurs par noeuds, 30 membres d'ensemble + python : 127×30+1 = 3811 arrondi à 3840 car noeuds complets : 30 noeuds
 
 En combien de temps l'information de pression remonte-t-elle dans le diffuseur ?
-Peut-être faire deux filtres de Kalman.
+Peut-être faire deux filtres de Kalman (ouverture)
 
 "Ouverture / idée" : DA temps réel dans avion impossible pour encore longtemps.
 Solution : Contrôle actif de la puissance en fonction des mesures de pression dans le compresseur :
 f(obs) -> controle de la puissance
-
-fvSolution : 
-solvers
-{
-    p
-    {
-        solver          PCG;
-        preconditioner  DIC;
-        tolerance       1e-6;
-        relTol          0;
-    }
-
-    U
-    {
-        solver          smoothSolver;
-        smoother        symGaussSeidel;
-        tolerance       1e-5;
-        relTol          0.1;
-    }
-
-    "(k|omega)"
-    {
-        solver          smoothSolver;
-        smoother        symGaussSeidel;
-        tolerance       1e-5;
-        relTol          0.1;
-    }
-}
-
-PIMPLE
-{
-    nOuterCorrectors 1;
-    nCorrectors      2;
-    nNonOrthogonalCorrectors 1;
-
-    momentumPredictor yes;
-    consistent yes;
-    residualControl
-    {
-        p               1e-4;
-        U               1e-5;
-    }
-}
-
-relaxationFactors
-{
-    fields
-    {
-        p 0.05;
-    }
-    equations
-    {
-        U       0.3;
-        k       0.2;
-        omega   0.2;
-    }
-}
-
-fvOptions
-UFilter
-{
-    type            laplacian;
-    active          yes;
-    selectionMode   all;
-
-    laplacianCoeffs
-    {
-        field       U;
-        diffusivity uniform 1e-5;  // Ajuste si besoin
-    }
-}
-
-fieldAverage:
-fieldAverage1
-{
-    type            fieldAverage;
-    functionObjectLibs ("libfieldFunctionObjects.so");
-    enabled         true;
-    outputControl   timeStep;
-    outputInterval  1;
-
-    fields
-    (
-        U
-        {
-            mean        yes;
-            prime2Mean yes;
-        }
-        p
-        {
-            mean        yes;
-            prime2Mean yes;
-        }
-    );
-}
-
-
-
+Pour ça, se ref au sujet de thèse de Tarane
 obs pression --> modèle de reconstruction du champ de vitesse --> modèle de reconaissance de patternes de décrochage --> contrôle de la puissance
 
-AJOUTER LE FILTRE DE KALMAN AVEC LA PRESSION
-
-Comment calculer la variance que je veux mettre ?
-Expérience : 5\%
-De mon coté : je vise qu'en moyenne un membre d'ensemble ait un écart de 1e7 par rapport au temps précédent (pour des valeurs autour de 5e7), donc, pour 30 membres d'ensemble, environ 95\% = 2 sigma dans 5e7+-1e7, càd sigma = 0.5e7 = 10\% mais je prendrais 5\% pour être plus large. Ensuite, le nombre d'itération entre les phases d'analyse est déterminé en regardans combien d'itération sont nécessaires pour faire varier la solution dans le diffuseur (influe, rapidement, converge doucement mais ce qui nous intéresse c'est que ça prenne la tendace) lorsqu'un paramètre de forcage est modifié (supposé très inférieure pour la turbulence car appliquée de partout)
 
 144 coeurs : 54it/min
 300-> 336 coeurs : 100it/min (+- 20\%)
-
-Nous avons fait l'EnKF sans l'état\dots
-Sans inflation pour commencer. Si on converge vers une solution qui ne nous satisfait pas, on peut essayer d'ajouter... Cela permet de s'échaper d'un minimum local en ajoutant du bruit artificiellement. 
-
-Nous avons fait une simu RANS mais nous aurion pu faire une simu URANS (ou LES ou DDES) avec un modèle de turbulence... 
-
-L'expérience montre un ordre de grandeur de centaines d'itération entre les phases d'analyse, mais cela dépend beaucoup du cas.
-Il en est de même pour le nombre de phases d'analyse.
-Supposons 1000 itération en moyenne entre chaque phase d'analyse, et 300 phases d'analyse, cela nous fait 300 000 itérations à simuler, soit 93h, sur env. 2800 coeurs, soit 264kh.processeur de calcul.
-
-
-
-Sur OpenFoam9, je fait une simu en parallèle sur cluster, dont je souhaiterais enregistrer une solution toutes les 1000 itération.
-Ensuite je les "reconstruct" puis tar avant de les transférer sur mon PC, détar pour observer via paraFoam quand interviens (et comment évoluent/convergent) les modifications que j'ai faites dans mon controlDict, qui simule ce qui sera fait par l'EnKF
-
 
 %Le plan du rapport doit être équilibré, c’est-à-dire que les paragraphes, à l’intérieur de chacune des deux parties principales (I. Présentation de l’entreprise, II. Présentation du travail réalisé) doivent être à peu près d’égale mesure. On évitera, par exemple, le mélange de paragraphes de 3 lignes avec d’autres de 60 lignes ; le rapport entre ces petits blocs de texte doit rester de 1 à 3.`
 
 %– Le récit de l’expérience préprofessionnelle doit faire état de toutes les fonctions exercées par le stagiaire à son poste. Il doit comporter des développements techniques (illustrés par des schémas expliqués et commentés, par exemple), mais il s’agit avant tout de donner au lecteur une idée de ce que furent l’emploi du temps du stagiaire, ses tâches quotidiennes, les contraintes du métier, la nature des relations humaines dans cet environnement, les difficultés rencontrées et les résultats obtenus.
 %– Les connaissances techniques acquises doivent transparaître dans le document. Le correcteur évaluera si celui-ci fait état d’une maîtrise réelle des outils (informatiques, mécaniques, etc.) utilisés pendant le stage. En outre, il estimera le niveau des connaissances techniques acquises que la rédaction du rapport aura su mettre en évidence.
 
-Diminuer nbr de fichiers sur mon scratch
-
-88533 - 678670 : Pin : -260 non convergé
-Fz doit augementé aussi ??
-77533 - 660770 : Pin : -268
-
-55733 - 698670 : Pin : -304
-
-55577 - 698570 : Pin : -306
-
-La fenêtre d'observation a été définie en observant le nombre d'itération nécessaire à ce que l'influence de l'IBM atteigne le diffuseur et prenne l'allure du résultat convergé. Nous nous intéressons pas aux paramètres de turbulence pour déterminer la fenêtre d'observation car présent dans tout le domaine, leurs influence est presque directe (pas forcément leurs convergence). Nous avons choisis 700 itérations
-
+\newpage
 
 The internship began in February 2025. I was provided with a fix computer, and credentials to connect to the Irene and Cassiopée supercomputers. Marcello MELDI, Antoine DAZIN and Miguel MARTINEZ VALERO which are my internship supervisors, showed me around the lab.
 Then, Tom MOUSSIE and Miguel, my co-officies, explained to me the basics of OpenFoam and CONES, the DA code. I was able to run a few tests on OpenFoam on the supercomputers, which allowed me to familiarize myself with the tools and the code. % PARLER DE LA CONFIG DE CONES
@@ -263,6 +113,11 @@ x (m),y(m),Vx(m/s),Vy(m/s),r(m),theta(rad),Vr(m/s),Vtheta(m/s),Vz(m/s),???
  
 The pdf is a paper where can be found the experimental conditions even if the analysis are focussed on another flow rate.
 
+The theorical average speed at the input of the diffuseur is equal to \[\frac{Q_{diff_{in}}}{S_{diff_{in}}} = \frac{Q_{pump_{in}}}{2\pi R_{3} h_{diff}} = 3.65m.s^{-1}\]. $Q_{pump_{in}} = Q_{diff_{in}}$ because the mass flow rate is constant and the flow is incompressible.
+
+Détail : R3 = 0.257m; h=0.0400m; Q = 0.236m3/s -> S=0.0646m2
+
+
 \title{Fonctionning}
 \title{Utility}
 
@@ -299,8 +154,8 @@ $Ma = \cfrac{R_2 \Omega}{c} = 0.095$ \textrm{\textbf{(incompressible)}}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{images/implicit_forcing.png}
-    \caption{Implementation of the focing term of the immersed boundary method in OpenFoam}
-    \label{implicit_forcing}
+    \caption{Model}
+    \label{model}
 \end{figure}
 
 
@@ -402,7 +257,24 @@ The \texttt{0} directory contains the initial solution's fields. The \texttt{pos
 
 \section{Application de la DA}
 
+S'aider du plan de la présentation MALEAF
+
 Expliquer comment j'applique la DA sur le cas test de la pompe centrifuge (pas d'equation)
+
+Nous avons fait l'EnKF sans l'état\dots
+Sans inflation pour commencer. Si on converge vers une solution qui ne nous satisfait pas, on peut essayer d'ajouter... Cela permet de s'échaper d'un minimum local en ajoutant du bruit artificiellement. 
+
+Nous avons fait une simu RANS mais nous aurion pu faire une simu URANS (ou LES ou DDES) avec un modèle de turbulence... 
+
+L'expérience montre un ordre de grandeur de centaines d'itération entre les phases d'analyse, mais cela dépend beaucoup du cas.
+Il en est de même pour le nombre de phases d'analyse.
+Supposons 1000 itération en moyenne entre chaque phase d'analyse, et 300 phases d'analyse, cela nous fait 300 000 itérations à simuler, soit 93h, sur env. 2800 coeurs, soit 264kh.processeur de calcul.
+
+Comment calculer la variance que je veux mettre ?
+Expérience : 5\%
+De mon coté : je vise qu'en moyenne un membre d'ensemble ait un écart de 1e7 par rapport au temps précédent (pour des valeurs autour de 5e7), donc, pour 30 membres d'ensemble, environ 95\% = 2 sigma dans 5e7+-1e7, càd sigma = 0.5e7 = 10\%. Ensuite, le nombre d'itération entre les phases d'analyse est déterminé en regardans combien d'itération sont nécessaires pour faire varier la solution dans le diffuseur (influe, rapidement, converge doucement mais ce qui nous intéresse c'est que ça prenne la tendace) lorsqu'un paramètre de forcage est modifié (supposé très inférieure pour la turbulence car appliquée de partout)
+
+The observation window was defined by observing the number of iterations required for the influence of the IBM to reach the diffuser and take the form of the converged result. We are not interested in the turbulence parameters to determine the observation window because they are present throughout the domain, their influence is almost direct (not necessarily their convergence). We chose 800 iterations
 
 \subsection{Preprocessing of PIV data}
 
@@ -560,6 +432,18 @@ Parler des modifs dans le code ici.
 
 
 \section{Results}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
