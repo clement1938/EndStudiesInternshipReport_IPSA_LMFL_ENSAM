@@ -60,3 +60,97 @@ plt.grid(True)
 
 plt.tight_layout()
 plt.show()
+
+
+############ Visualisation des 5 fonctions f(x) = ax² + bx + c ################
+
+
+# Dernière ligne = dernière estimation
+final_params = params[-1, :]  # shape (15,)
+
+# Génération de x : entre 0 et 0.25
+x = np.linspace(0, 0.25, 300)
+
+# Préparation des courbes f(x) = ax² + bx + c avec f(x) = f(0.1) pour x < 0.1
+fig, axs = plt.subplots(5, 1, figsize=(8, 12), sharex=True)
+fig.suptitle("Visualisation des 5 fonctions f(x) = ax² + bx + c", fontsize=14)
+
+for i in range(5):
+    a = final_params[3*i]
+    b = final_params[3*i+1]
+    c = final_params[3*i+2]
+
+    fx = a * x**2 + b * x + c
+
+    # On écrase les valeurs de fx pour x < 0.1 par f(0.1)
+    f_plateau = a * 0.1**2 + b * 0.1 + c
+    fx[x < 0.1] = f_plateau
+
+    axs[i].plot(x, fx, label=f"f{i+1}(x) = {a:.2g}x² + {b:.2g}x + {c:.2g}")
+    axs[i].set_ylabel(f"f{i+1}(x)")
+    axs[i].grid(True)
+    axs[i].legend(loc='best')
+
+axs[-1].set_xlabel("x")
+plt.tight_layout(rect=[0, 0, 1, 0.97])
+plt.show()
+
+
+
+
+#############################################
+
+from matplotlib.animation import FuncAnimation
+# Animation des 5 fonctions f(x) = ax² + bx + c
+
+
+params = data[:, 2::2]  # Paramètres uniquement (shape: n_iter × 15)
+
+# === Préparation de x pour tracer les courbes ===
+x = np.linspace(0, 0.25, 300)
+
+# === Création de la figure avec 5 subplots ===
+fig, axs = plt.subplots(5, 1, figsize=(8, 12), sharex=True)
+lines = []
+
+for ax in axs:
+    line, = ax.plot([], [], lw=2)
+    lines.append(line)
+    ax.grid(True)
+
+axs[-1].set_xlabel("x")
+fig.suptitle("Évolution des fonctions f(x) = ax² + bx + c au fil des itérations", fontsize=14)
+plt.tight_layout(rect=[0, 0, 1, 0.96])
+
+# === Fonction d'initialisation ===
+def init():
+    for line in lines:
+        line.set_data([], [])
+    return lines
+
+# === Fonction de mise à jour à chaque frame ===
+def update(frame):
+    coeffs = params[frame]  # les 15 paramètres à une itération donnée
+
+    for i in range(5):
+        a = coeffs[3*i]
+        b = coeffs[3*i+1]
+        c = coeffs[3*i+2]
+
+        fx = a * x**2 + b * x + c
+        f_plateau = a * 0.1**2 + b * 0.1 + c
+        fx[x < 0.1] = f_plateau
+
+        lines[i].set_data(x, fx)
+        axs[i].set_ylabel(f"f{i+1}(x)")
+        axs[i].set_xlim(0, 0.25)
+        axs[i].set_ylim(np.min(fx)-1e-2, np.max(fx)+1e-2)
+        axs[i].legend([f"it={frame}, a={a:.2g}, b={b:.2g}, c={c:.2g}"], loc="best", fontsize="small")
+
+    fig.suptitle(f"Itération {frame+1} — Time = {time[frame]:.1f}", fontsize=14)
+    return lines
+
+# === Lancement de l'animation ===
+ani = FuncAnimation(fig, update, frames=len(time), init_func=init, blit=False, interval=1000)
+
+plt.show()
