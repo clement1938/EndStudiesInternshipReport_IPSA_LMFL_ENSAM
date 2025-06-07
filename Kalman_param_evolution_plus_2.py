@@ -1,20 +1,22 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
+from matplotlib import cm
 
 # === Chargement des données ===
-data = np.loadtxt("UpdatedCoefficients4.txt", skiprows=1)  # Ignorer la première ligne qui contient les en-têtes
+data = np.loadtxt("UpdatedCoefficients5.txt", skiprows=1)  # Ignorer la première ligne qui contient les en-têtes
 
 time = data[:, 0]
 nrmse = data[:, 1:11]   # 10 colonnes de NRMSE
 # Les paramètres sont aux colonnes paires à partir de 2 (0-based)
-params = data[:,11::2]  # colonnes 11,13,... → les 15 paramètres
+params = data[:,11::2]  # colonnes 11,13,... → les 15 
+colors = plt.cm.tab20(np.linspace(0, 1, params.shape[1]))
 stds = data[:, 12::2]   # colonnes 12,14,... → les 15 stds
 
 # === Affichage des NRMSE individuellement ===
 plt.figure(figsize=(12, 6))
 for i in range(nrmse.shape[1]):
-    plt.plot(time, nrmse[:, i], label=f'NRMSE {i+1}')
+    plt.plot(time, nrmse[:, i], label=f'NRMSE {i+1}', color=colors[i])
 plt.xlabel('Time')
 plt.ylabel('NRMSE')
 plt.title('Évolution individuelle des 10 NRMSE')
@@ -26,7 +28,7 @@ plt.show()
 # === Affichage des 15 paramètres ===
 plt.figure(figsize=(10, 6))
 for i in range(params.shape[1]):
-    plt.plot(time, params[:, i], label=f'Param {i+1}')
+    plt.plot(time, params[:, i], label=f'Param {i+1}', color=colors[i])
 plt.xlabel('Time')
 plt.ylabel('Paramètres')
 plt.title('Évolution des 15 paramètres')
@@ -38,7 +40,7 @@ plt.show()
 # === Affichage des écarts-types ===
 plt.figure(figsize=(10, 6))
 for i in range(stds.shape[1]):
-    plt.plot(time, stds[:, i], label=f'Std {i+1}')
+    plt.plot(time, stds[:, i], label=f'Std {i+1}', color=colors[i])
 plt.xlabel('Time')
 plt.ylabel('Écarts-types')
 plt.title('Évolution des 15 écarts-types')
@@ -100,7 +102,7 @@ def update(frame):
     return lines
 
 # Lancement animation
-ani = FuncAnimation(fig, update, frames=len(time), init_func=init, blit=False, interval=800)
+ani = FuncAnimation(fig, update, frames=len(time), init_func=init, blit=False, interval=2000)
 plt.show()
 
 
