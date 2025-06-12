@@ -5,7 +5,7 @@
 \contentsline {chapter}{\numberline {1}The LMFL Laboratory}{6}{chapter.1}%
 \contentsline {paragraph}{Démarche RSE}{7}{section*.6}%
 \contentsline {paragraph}{Écoresponsabilité}{7}{section*.7}%
-\contentsline {paragraph}{Responsabilité sociale / Qualité de vie au travail}{7}{section*.8}%
+\contentsline {paragraph}{Responsabilité sociale / Qualité de vie au travail}{8}{section*.8}%
 \contentsline {chapter}{\numberline {2}Optimizing the performance of a centrifugal pump by data assimilation}{9}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Data Assimilation}{10}{section.2.1}%
 \contentsline {subsection}{\numberline {2.1.1}State of the art}{10}{subsection.2.1.1}%
@@ -13,21 +13,22 @@
 \contentsline {section}{\numberline {2.2}Numerical ingredients}{12}{section.2.2}%
 \contentsline {subsection}{\numberline {2.2.1}Governing equations}{12}{subsection.2.2.1}%
 \contentsline {subsection}{\numberline {2.2.2}The open source code OpenFoam}{13}{subsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.2.3}EnKF}{13}{subsection.2.2.3}%
-\contentsline {subsection}{\numberline {2.2.4}The library CONES}{13}{subsection.2.2.4}%
-\contentsline {subsection}{\numberline {2.2.5}Modeling}{15}{subsection.2.2.5}%
-\contentsline {section}{\numberline {2.3}IBM preliminary results}{15}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Application de la DA}{16}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}Preprocessing of PIV data}{17}{subsection.2.4.1}%
-\contentsline {subparagraph}{Zone d'acquisition PIV}{17}{section*.19}%
-\contentsline {subparagraph}{1.}{18}{section*.21}%
-\contentsline {subparagraph}{2.Average}{18}{section*.22}%
-\contentsline {subparagraph}{3.Sampling}{18}{section*.23}%
-\contentsline {subparagraph}{4.Shaping for CONES}{19}{section*.24}%
-\contentsline {subparagraph}{5.Creation of a file for the interpolation}{19}{section*.25}%
-\contentsline {subsection}{\numberline {2.4.2}Preparation/modifation on OpenFoam and CONES}{20}{subsection.2.4.2}%
-\contentsline {section}{\numberline {2.5}Results}{20}{section.2.5}%
-\contentsline {chapter}{Conclusion}{21}{chapter*.26}%
-\contentsline {chapter}{Bibliography}{23}{chapter*.30}%
-\contentsline {paragraph}{Résumé}{25}{section*.32}%
-\contentsline {paragraph}{Abstract}{25}{section*.33}%
+\contentsline {subsection}{\numberline {2.2.3}EnKF}{14}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}The library CONES}{14}{subsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.2.5}Modeling}{16}{subsection.2.2.5}%
+\contentsline {section}{\numberline {2.3}IBM preliminary results}{16}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Application de la DA}{17}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Preprocessing of PIV data}{19}{subsection.2.4.1}%
+\contentsline {subparagraph}{Zone d'acquisition PIV}{19}{section*.19}%
+\contentsline {subparagraph}{1.}{20}{section*.21}%
+\contentsline {subparagraph}{2.Average}{20}{section*.22}%
+\contentsline {subparagraph}{3.Sampling}{20}{section*.23}%
+\contentsline {subparagraph}{4.Shaping for CONES}{20}{section*.24}%
+\contentsline {subparagraph}{5.Creation of a file for the interpolation}{20}{section*.25}%
+\contentsline {subsection}{\numberline {2.4.2}Preparation/modifation on OpenFoam and CONES}{21}{subsection.2.4.2}%
+\contentsline {section}{\numberline {2.5}Results}{21}{section.2.5}%
+\contentsline {chapter}{Conclusion}{22}{chapter*.26}%
+\contentsline {chapter}{Bibliography}{24}{chapter*.30}%
+\contentsline {chapter}{List of acronyms}{25}{chapter*.31}%
+\contentsline {paragraph}{Résumé}{26}{section*.32}%
+\contentsline {paragraph}{Abstract}{26}{section*.33}%
