@@ -4,7 +4,7 @@ from matplotlib.animation import FuncAnimation
 from matplotlib import cm
 
 # === Chargement des données ===
-data = np.loadtxt("UpdatedCoefficients5.txt", skiprows=1)  # Ignorer la première ligne qui contient les en-têtes
+data = np.loadtxt("UpdatedCoefficients7.txt", skiprows=1)  # Ignorer la première ligne qui contient les en-têtes
 
 time = data[:, 0]
 nrmse = data[:, 1:11]   # 10 colonnes de NRMSE
@@ -12,6 +12,17 @@ nrmse = data[:, 1:11]   # 10 colonnes de NRMSE
 params = data[:,11::2]  # colonnes 11,13,... → les 15 
 colors = plt.cm.tab20(np.linspace(0, 1, params.shape[1]))
 stds = data[:, 12::2]   # colonnes 12,14,... → les 15 stds
+
+# === Affichage des NRMSE cumulés ===
+plt.figure(figsize=(10, 6))
+plt.plot(time, np.sum(nrmse, axis=1), label='Somme des NRMSE', color='red')
+plt.xlabel('Time')
+plt.ylabel('Somme des NRMSE')
+plt.title('Somme des 10 NRMSE au cours du temps')
+plt.grid(True)
+plt.legend(loc='upper right', fontsize='small')
+plt.tight_layout()
+plt.show()
 
 # === Affichage des NRMSE individuellement ===
 plt.figure(figsize=(12, 6))
@@ -91,6 +102,7 @@ def update(frame):
         a, b, c = coeffs[3*i], coeffs[3*i+1], coeffs[3*i+2]
         fx = a * x**2 + b * x + c
         fx[x < 0.1] = a * 0.1**2 + b * 0.1 + c  # plateau à gauche
+        # fx[x < 0.1] = a * 0.1**2 + b * 0.1 + c   : peut être inférieur à 0.
 
         lines[i].set_data(x, fx)
         axs[i].set_ylabel(f"f{i+1}(x)")
