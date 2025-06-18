@@ -4,7 +4,7 @@ from matplotlib.animation import FuncAnimation
 from matplotlib import cm
 
 # === Chargement des données ===
-data = np.loadtxt("UpdatedCoefficients13.txt", skiprows=1)  # Ignorer la première ligne qui contient les en-têtes
+data = np.loadtxt("UpdatedCoefficients17.txt", skiprows=1)  # Ignorer la première ligne qui contient les en-têtes
 
 time = data[:, 0]
 nrmse = data[:, 1:11]   # 10 colonnes de NRMSE
