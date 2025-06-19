@@ -4,10 +4,11 @@ from matplotlib.animation import FuncAnimation
 from matplotlib import cm
 
 # === Chargement des données ===
-data = np.loadtxt("UpdatedCoefficients14.txt", skiprows=1)  # Ignorer la première ligne qui contient les en-têtes
+data = np.loadtxt("UpdatedCoefficients18.txt", skiprows=1)  # Ignorer la première ligne qui contient les en-têtes
 
 time = data[:, 0]
 nrmse = data[:, 1:11]   # 10 colonnes de NRMSE
+nrmse = nrmse # / np.max(nrmse, axis=0)  # Normalisation des NRMSE
 # Les paramètres sont aux colonnes paires à partir de 2 (0-based)
 params = data[:,11::2]  # colonnes 11,13,... → les 15 
 colors = plt.cm.tab20(np.linspace(0, 1, params.shape[1]))
@@ -52,6 +53,7 @@ plt.show()
 plt.figure(figsize=(10, 6))
 for i in range(stds.shape[1]):
     plt.plot(time, stds[:, i], label=f'Std {i+1}', color=colors[i])
+    # plt.plot(time, stds[:, i]/abs(params[:,i]), label=f'Std {i+1}', color=colors[i])
 plt.xlabel('Time')
 plt.ylabel('Écarts-types')
 plt.title('Évolution des 15 écarts-types')
