@@ -8,7 +8,7 @@ It also enables us to suggest what could be done by the next person working on t
 
 \begin{table}[ht]
 \centering
-\begin{tabular}{|p{6.5cm}|p{8.7cm}|}
+\begin{tabular}{|p{7.0cm}|p{8.2cm}|}
 \hline
 
 \rowcolor{darkblue}
@@ -21,12 +21,13 @@ It also enables us to suggest what could be done by the next person working on t
 
 
 
-\begin{minipage}[t]{6.5cm}
-    Optimization of the performance of a centrifugal pump using Data \\ Assimilation \hspace{0.2cm}
+\begin{minipage}[t]{7.0cm}
+    Optimization of the performance of a \\ centrifugal pump using Data Assimilation \\ \phantom{.} %\hspace{0.8cm}
 \end{minipage} & 
-\begin{minipage}[t]{8.5cm}
+\begin{minipage}[t]{8.0cm}
 %\begin{itemize}
-    Optimization of forcing parameters of the IBM using DA with CONES
+    Optimize the forcing parameters of an IBM\tablefootnote{All acronyms are defined from the next page or available in the \hyperref[sec:glossary]{glossary}.}
+ \\ in a centrifugal pump using DA with CONES
 %\end{itemize}
 \end{minipage} \\ 
 
@@ -34,15 +35,15 @@ It also enables us to suggest what could be done by the next person working on t
 \hline
 \textbf{Main customer} & \textbf{Used tools} \\ 
 \hline
-\begin{minipage}[t]{6.5cm}
+\begin{minipage}[t]{7.0cm}
 %\begin{itemize}
 - LMFL
 
 - ENSAM \hspace{0.2cm}
 %\end{itemize}
 \end{minipage} & 
-\begin{minipage}[t]{8.5cm}
-CONES, VSCode, Python, TGCC, Paraview, Git, OpenFoam (C++), Bash
+\begin{minipage}[t]{8.0cm}
+OpenFoam, CONES, VSCode, Git, Python,\\C++, Bash, TGCC, Paraview
 \end{minipage} \\ 
 
 
@@ -53,11 +54,11 @@ CONES, VSCode, Python, TGCC, Paraview, Git, OpenFoam (C++), Bash
 \hline
 \multicolumn{2}{|p{14cm}|}{
 \begin{minipage}[t]{14cm}
-- ...%Influence de paramètres de la méthode d'interpolation IDW
+- Coding the DA problem in OpenFoam and CONES
 
-- ...%Différences d'erreur entre la méthode IDW et linéaire
+- Convergence of the CFD solution%Influence de paramètres de la méthode d'interpolation IDW
 
-- ...%Optimisation de la rapidité du traitement
+- Convergence of the EnFK%Différences d'erreur entre la méthode IDW et linéaire  %Optimisation de la rapidité du traitement
 \hspace{0.5cm}
 \end{minipage}
 } \\ 
@@ -66,9 +67,8 @@ CONES, VSCode, Python, TGCC, Paraview, Git, OpenFoam (C++), Bash
 \hline
 \textbf{Results}\cellcolor{lightblue} & \textbf{Explanation of possible diﬀerences}\cellcolor{lightblue}\\ 
 \hline
-\begin{minipage}[t]{6.5cm}
+\begin{minipage}[t]{7.0cm}
     
-
 - X
 
 - Y
@@ -78,9 +78,9 @@ CONES, VSCode, Python, TGCC, Paraview, Git, OpenFoam (C++), Bash
 %\item Paramètres n \simeq 10 et p \simeq 10 optimaux pour la méthode IDW
 %\end{itemize}
 \end{minipage} & 
-\begin{minipage}[t]{8.5cm}
+\begin{minipage}[t]{8.0cm}
 
--X
+- X
 
 - Y
 
@@ -91,19 +91,16 @@ CONES, VSCode, Python, TGCC, Paraview, Git, OpenFoam (C++), Bash
 \hline
 \textbf{Encountered diﬀiculties} & \textbf{Work to be continued} \\ 
 \hline
-\begin{minipage}[t]{6.5cm}
+\begin{minipage}[t]{7.0cm}
 %\begin{itemize}
-- Getting to grips with the tools
+- Getting to grips with the tools OpenFoam and CONES \hphantom{.}
 
-- Y
 %\end{itemize}
 \end{minipage} & 
-\begin{minipage}[t]{8.5cm}
+\begin{minipage}[t]{8.0cm}
 %\begin{itemize}
 %- Optimiser la méthode linéaire pour les maillages prismatiques
-- X
-
-- Y
+- Use the same type of DA for the analysis of axial compressor internal flows
 
 
 % - Implémenter une méthode plus rapide pour les maillages non-structurés

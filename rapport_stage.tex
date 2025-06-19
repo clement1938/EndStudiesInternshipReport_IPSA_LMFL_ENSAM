@@ -3,6 +3,7 @@
 \hbadness=10000
 \hfuzz=100pt
 
+\usepackage{tablefootnote}
 \usepackage[utf8]{inputenc}
 \usepackage[hidelinks]{hyperref} 
 \usepackage[T1]{fontenc}
@@ -138,9 +139,16 @@
 
 \setlength{\parskip}{0.5\baselineskip}
 
+
+\DeclareAcronym{CFL}{
+  short = CFL,
+  long = Courant-Friedrichs-Lewy,
+  short-indefinite = un,
+}
+
 \DeclareAcronym{AI}{
   short = AI,
-  long = Intelligence Artificielle,
+  long = Artificial Intelligence,
   short-indefinite = une,
 }
 
@@ -509,13 +517,13 @@
 
 
   \newcommand\BackgroundPic{
-  \put(0 cm, 5.0 cm){
+  \put(0 cm, 3.5 cm){
   \parbox[b][0.5\paperheight]{\paperwidth}{
   \centering
-  {\includegraphics[width=\paperwidth,height=0.30\paperheight, %\transparent{0.4}
-  keepaspectratio]{images/logo/ipsagarde.png}}
+  {\includegraphics[width=\paperwidth,height=0.32\paperheight, %\transparent{0.4}
+  keepaspectratio]{images/numericalPump/Pump_sim2.png}}
   \vspace{2.0cm} % Adjust the spacing between the image and the title
-  \makebox[\paperwidth]{\textbf{TITRE IMAGE PAGE DE GARDE}} % Center the title below the image
+  \makebox[\paperwidth]{\textbf{Cross-section of the pump model}} % Center the title below the image
   }}}
 
 \captionsetup[table]{name=Tableau}
@@ -536,7 +544,7 @@
 \fancypagestyle{custompage}{
   \fancyhf{} % Clear header/footer
   \fancyhead[L]{Livrable Stage M1 \\ Clément THIBAULT}
-  \fancyhead[R]{\includegraphics*[width=0.2\textwidth]{images/logo/newCerfacs+Fond.png}}
+  \fancyhead[R]{\includegraphics*[width=0.2\textwidth]{images/logo/ipsagarde.png}}
   \fancyfoot[C]{page 2}
   \fancyfoot[R]{\includegraphics*[width=0.1\textwidth]{images/logo/ipsagarde.png}}
 }
@@ -573,7 +581,9 @@
 \addcontentsline{toc}{chapter}{Bibliography}
 \newpage
 
-\printacronyms[name=List of acronyms, heading=chapter*] % Glossaire après si besoin
+\printacronyms[name=List of acronyms, heading=chapter*]
+\addcontentsline{toc}{chapter}{List of acronyms}
+\label{sec:glossary}
 
 \input{quatre_couv/quatre_couv.tex}
 

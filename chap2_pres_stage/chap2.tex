@@ -1,11 +1,6 @@
 \chapter{Optimizing the performance of a centrifugal pump by data assimilation}
 
 
-Calcul du deltaT de la simu pimple de la pompe :
-Vitesse de rotation : 1200rmp soit 20tr/S (0.05s/tr)
-Supposons que nous (1/49)tr/it
-Alors dt = 1/(49*20) = 1/FPS = 1/980 = 0.0010204081632653062
-
 \begin{comment}
     
     3 times
@@ -20,13 +15,12 @@ Alors dt = 1/(49*20) = 1/FPS = 1/980 = 0.0010204081632653062
 \end{comment}
 
 
-Par rapport à l'aléatoire, les variation sont random mais avec une graine de reproducibilité (sed) qui permet d'avoir le même résultat à chaque fois qu'on lance la simulation.
+The random variations are random but with a reproducibility seed (sed) that allows to have the same result each time the simulation is launched.
 
+%%Nbr de processeurs : sur rome : 128 coeurs par noeuds, 30 membres d'ensemble + python : 127×30+1 = 3811 arrondi à 3840 car noeuds complets : 30 noeuds
 
-Nbr de processeurs : sur rome : 128 coeurs par noeuds, 30 membres d'ensemble + python : 127×30+1 = 3811 arrondi à 3840 car noeuds complets : 30 noeuds
-
-En combien de temps l'information de pression remonte-t-elle dans le diffuseur ?
-Peut-être faire deux filtres de Kalman (ouverture)
+%En combien de temps l'information de pression remonte-t-elle dans le diffuseur ?
+%Peut-être faire deux filtres de Kalman imbriqués ?(ouverture)
 
 "Ouverture / idée" : DA temps réel dans avion impossible pour encore longtemps.
 Solution : Contrôle actif de la puissance en fonction des mesures de pression dans le compresseur :
@@ -35,8 +29,8 @@ Pour ça, se ref au sujet de thèse de Tarane
 obs pression --> modèle de reconstruction du champ de vitesse --> modèle de reconaissance de patternes de décrochage --> contrôle de la puissance
 
 
-144 coeurs : 54it/min
-300-> 336 coeurs : 100it/min (+- 20\%)
+%144 coeurs : 54it/min
+%300-> 336 coeurs : 100it/min (+- 20\%)
 
 %Le plan du rapport doit être équilibré, c’est-à-dire que les paragraphes, à l’intérieur de chacune des deux parties principales (I. Présentation de l’entreprise, II. Présentation du travail réalisé) doivent être à peu près d’égale mesure. On évitera, par exemple, le mélange de paragraphes de 3 lignes avec d’autres de 60 lignes ; le rapport entre ces petits blocs de texte doit rester de 1 à 3.`
 
@@ -165,8 +159,37 @@ $Ma = \cfrac{R_2 \Omega}{c} = 0.095$ \textrm{\textbf{(incompressible)}}
 
 
 
-\subsection{EnKF}
 
+To compute the time step $\Delta_{t}$ of the pimpleFoam simulation of the pump, we can use the \ac{CFL} condition, which states that:
+\begin{equation}
+    \Delta_{t} = \frac{CFL \cdot \Delta_{x}}{\|U_{\infty}\|},
+\end{equation}
+where:
+
+- $CFL$ is the Courant number, typically set to 0.5 for stability. A way to visualize this is to think of it as the fraction of the distance a wave travels in one time step relative to the distance between two cells in the azimuthal direction at the tip of the impeller.
+- $\Delta_{x}$ is the distance between two cells in the azimuthal direction at the tip of the impeller in our model, which is given as 1.5 mm or 0.0015 m.
+- $\|U_{\infty}\|$ is the magnitude of the velocity at infinity, which can be approximated by the tangential velocity at the tip of the impeller.
+\begin{equation}
+    \|U_{\infty}\| = \omega \cdot r_{tip}
+\end{equation}
+where:
+- $\omega$ is the angular velocity in radians per second,
+- $r$ is the radius at the tip of the impeller.
+Assuming the rotating speed is given in revolutions per minute (rpm), we can convert it to radians per second:
+\begin{equation}
+    \omega = \frac{1200 \text{ rpm} \cdot 2\pi \text{ rad}}{60 \text{ s}} = 125.66 \text{ rps}.
+\end{equation}
+Assuming the radius at the tip of the impeller is $r = 0.2566 \text{ m}$ (which is 0.2566m), we can compute the tangential velocity:
+\begin{equation}
+    \|U_{\infty}\| = 125.66 \text{ rps} \cdot 0.2566 \text{ m} =  \text{32.24 m/s}.
+\end{equation}
+Assuming the distance between two cells in the azimuthal direction at the tip of the impeller is $\Delta_{x} = 0.0015 \text{ m}$ (which is 1.5 mm), we can now compute the time step $\Delta_{t}$:
+\begin{equation}
+    \Delta_{t} = \frac{0.5 \cdot 0.0015 \text{ m}}{32.24 \text{ m/s}} = 2.3 \times 10^{-5} \text{ s} % \approx 2.3 \mu s.
+\end{equation}
+
+
+\subsection{EnKF}
 
 \subsection{The library CONES}
 CONES is a library coded in Python/C++ developed for ... since 2022 ??? at LMFL
@@ -302,6 +325,43 @@ Boundary conditions are defines as that:
 
 
 
+
+
+Ajouter annexe avec batch :
+
+\begin{verbatim}
+#!/bin/bash
+#MSUB -r LCP35
+#MSUB -o LCP35_%I.out
+#MSUB -e LCP35_%I.err
+#MSUB -q rome
+#MSUB -A gen1741
+#MSUB -n 4446 # 35*127 + 1
+#MSUB -c 2  # To change if necessary
+##MSUB -N 1 # Nb of calcul node
+#MSUB -T  43200  # Execution time in seconds (12h)
+##MSUB -Q long # (upto 3 days)
+##MSUB -Q test # (short, high priority jobs)
+#MSUB -m scratch
+##MSUB -@ clement.thibault@ipsa.fr:begin,end
+
+set -x
+cd ${BRIDGE_MSUB_PWD}
+module purge
+module load gnu/8 mpi/openmpi/4 flavor/python3/cuda python3/3.10.6 openfoam/9 ; source $FOAM_SOURCE_FILE
+
+#./modifConesDict.sh
+#./modifControlDict.sh
+#./reInitParams.sh
+
+./visuNParams.sh
+
+ccc_mprun -f app_mySF35.conf
+\end{verbatim}
+
+
+
+
 S'aider du plan de la présentation MALEAF
 
 Expliquer comment j'applique la DA sur le cas test de la pompe centrifuge (pas d'equation)
@@ -338,7 +398,6 @@ Pb de la DA : plus rapide que DNS mais toujours plus lent que RANS et le temps d
 
 The PIV data is acquired in a rectangular zone of 0.08 m x 0.124 m.
 The cathesian coordinates are given in a local system, where the absolute origin is at the center of the pump.
-
 
 
 \begin{figure}[H]

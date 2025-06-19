@@ -4,7 +4,7 @@ from matplotlib.animation import FuncAnimation
 from matplotlib import cm
 
 # === Chargement des données ===
-data = np.loadtxt("UpdatedCoefficients7.txt", skiprows=1)  # Ignorer la première ligne qui contient les en-têtes
+data = np.loadtxt("UpdatedCoefficients14.txt", skiprows=1)  # Ignorer la première ligne qui contient les en-têtes
 
 time = data[:, 0]
 nrmse = data[:, 1:11]   # 10 colonnes de NRMSE
@@ -13,13 +13,24 @@ params = data[:,11::2]  # colonnes 11,13,... → les 15
 colors = plt.cm.tab20(np.linspace(0, 1, params.shape[1]))
 stds = data[:, 12::2]   # colonnes 12,14,... → les 15 stds
 
+# === Affichage des NRMSE cumulés ===
+plt.figure(figsize=(10, 6))
+plt.plot(time, np.sum(nrmse, axis=1), label='Somme des NRMSE', color='red')
+plt.xlabel('Time')
+plt.ylabel('Somme des NRMSE')
+plt.title('Somme des 10 NRMSE au cours du temps')
+plt.grid(True)
+plt.legend(loc='upper right', fontsize='small')
+plt.tight_layout()
+plt.show()
+
 # === Affichage des NRMSE individuellement ===
 plt.figure(figsize=(12, 6))
 for i in range(nrmse.shape[1]):
     plt.plot(time, nrmse[:, i], label=f'NRMSE {i+1}', color=colors[i])
 plt.xlabel('Time')
 plt.ylabel('NRMSE')
-plt.title('Évolution individuelle des 10 NRMSE')
+plt.title('Évolution individuelle des 10 NRMSE') 
 plt.grid(True)
 plt.legend(loc='upper right', fontsize='small', ncol=2)
 plt.tight_layout()
@@ -91,6 +102,7 @@ def update(frame):
         a, b, c = coeffs[3*i], coeffs[3*i+1], coeffs[3*i+2]
         fx = a * x**2 + b * x + c
         fx[x < 0.1] = a * 0.1**2 + b * 0.1 + c  # plateau à gauche
+        # fx[x < 0.1] = a * 0.1**2 + b * 0.1 + c   : peut être inférieur à 0.
 
         lines[i].set_data(x, fx)
         axs[i].set_ylabel(f"f{i+1}(x)")
@@ -98,7 +110,7 @@ def update(frame):
         axs[i].set_ylim(np.min(fx)-1e-2, np.max(fx)+1e-2)
         axs[i].legend([f"it={frame}, a={a:.2g}, b={b:.2g}, c={c:.2g}"], loc="best", fontsize="x-small")
 
-    fig.suptitle(f"Itération {frame+1} — Time = {time[frame]:.1f}", fontsize=14)
+    fig.suptitle(f"Itération {frame+1} — Pic = {time[frame]:.1f}", fontsize=14)
     return lines
 
 # Lancement animation
