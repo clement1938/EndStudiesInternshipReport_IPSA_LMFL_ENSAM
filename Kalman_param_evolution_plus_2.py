@@ -31,7 +31,7 @@ for i in range(nrmse.shape[1]):
     plt.plot(time, nrmse[:, i], label=f'NRMSE {i+1}', color=colors[i])
 plt.xlabel('Time')
 plt.ylabel('NRMSE')
-plt.title('Évolution individuelle des 10 NRMSE')
+plt.title('Évolution individuelle des 10 NRMSE') 
 plt.grid(True)
 plt.legend(loc='upper right', fontsize='small', ncol=2)
 plt.tight_layout()
@@ -112,7 +112,7 @@ def update(frame):
         axs[i].set_ylim(np.min(fx)-1e-2, np.max(fx)+1e-2)
         axs[i].legend([f"it={frame}, a={a:.2g}, b={b:.2g}, c={c:.2g}"], loc="best", fontsize="x-small")
 
-    fig.suptitle(f"Itération {frame+1} — Time = {time[frame]:.1f}", fontsize=14)
+    fig.suptitle(f"Itération {frame+1} — Pic = {time[frame]:.1f}", fontsize=14)
     return lines
 
 # Lancement animation
