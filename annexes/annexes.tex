@@ -9,12 +9,48 @@
 
 \renewcommand{\thetable}{A\arabic{table}}
 \renewcommand{\thefigure}{A\arabic{figure}}
-\setcounter{table}{0}
+\setcounter{table}{0}  % A ajuster si nécessaire
 \setcounter{figure}{2}
 
 %\section{Détails des objectifs et actions liées à l'écoresponsabilité}
 
 % Chaque annexe porte un numéro et un titre.
+
+
+Batch code used to run the simulation on the Rome partition of TGCC cluster.
+
+\begin{verbatim}
+#!/bin/bash                     # To be run with bash
+#MSUB -r LCP35                  # Job name
+#MSUB -o LCP35_%I.out           # Output name. %I is the job ID
+#MSUB -e LCP35_%I.err           # Error name. %I is the job ID
+#MSUB -q rome                   # Partition
+#MSUB -A gen1741                # Project ID
+#MSUB -n 4446                   # Cores nb (35 members x 127 OF) + 1 python
+##MSUB -c 2                     # To allocate 2 cores per task (default is 1)
+##MSUB -N 1                     # Nb of calcul node (128 cores per node on rome)
+#MSUB -T  43200                 # Elapsed time limit in seconds
+##MSUB -Q long                  # (upto 3 days)
+##MSUB -Q test                  # (short, high priority jobs)
+#MSUB -m scratch                # Excecute in scratch directory
+#MSUB -@ name@mail.fr:begin,end # Email address
+
+set -x
+cd ${BRIDGE_MSUB_PWD}
+module purge
+module load gnu/8 mpi/openmpi/4 flavor/python3/cuda python3/3.10.6 openfoam/9
+source $FOAM_SOURCE_FILE
+
+./visuNParams.sh                # Script .sh
+ccc_mprun -f app_mySF35.conf    # Run the application with the configuration file
+\end{verbatim}
+
+\newpage
+
+
+
+
+\begin{comment}
 
 \begin{table}[H]
     \centering
@@ -167,3 +203,5 @@
     T_{ij} = \rho u_i u_j + \left[  \left( p - p_0 \right) - c_0^2 \left( \rho - \rho_0 \right) \right]\delta_{ij} - \tau_{ij}
   \end{equation}
   where $\tau_{ij}$ is the viscous stress tensor.
+
+\end{comment}
