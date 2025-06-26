@@ -250,6 +250,62 @@
       \field{title}{Flow Patterns Around Heart Valves: A Numerical Method}
       \field{year}{1972}
     \endentry
+    \entry{retiFrancescoDiGiorgio1963}{article}{}
+      \name{author}{2}{}{%
+        {{hash=49684eade9ea896c9aef9fe478c6e9cc}{%
+           family={Reti},
+           familyi={R\bibinitperiod},
+           given={Ladislao},
+           giveni={L\bibinitperiod}}}%
+        {{hash=52e3b8a0f0f58430ae590816a85aa84e}{%
+           family={Di\bibnamedelima Giorgio\bibnamedelima Martini},
+           familyi={D\bibinitperiod\bibinitdelim G\bibinitperiod\bibinitdelim M\bibinitperiod},
+           given={Francesco},
+           giveni={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{5043d2359ce1f7e167a7619999ef7c11}
+      \strng{fullhash}{5043d2359ce1f7e167a7619999ef7c11}
+      \strng{bibnamehash}{5043d2359ce1f7e167a7619999ef7c11}
+      \strng{authorbibnamehash}{5043d2359ce1f7e167a7619999ef7c11}
+      \strng{authornamehash}{5043d2359ce1f7e167a7619999ef7c11}
+      \strng{authorfullhash}{5043d2359ce1f7e167a7619999ef7c11}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{jstor}
+      \field{issn}{0040165X}
+      \field{journaltitle}{Technology and Culture}
+      \field{langid}{english}
+      \field{number}{3}
+      \field{shortjournal}{Technology and Culture}
+      \field{title}{Francesco Di {{Giorgio Martini}}'s {{Treatise}} on {{Engineering}} and {{Its Plagiarists}}}
+      \field{urlday}{26}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{volume}{4}
+      \field{year}{1963}
+      \field{yeardivision}{summer}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{287}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.2307/3100858
+      \endverb
+      \verb{eprint}
+      \verb 3100858
+      \endverb
+      \verb{file}
+      \verb /home/clementt/Zotero/storage/9I3RNJGD/Reti and Di Giorgio Martini - 1963 - Francesco di Giorgio Martini's Treatise on Engineering and Its Plagiarists.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.jstor.org/stable/3100858?origin=crossref
+      \endverb
+      \verb{url}
+      \verb https://www.jstor.org/stable/3100858?origin=crossref
+      \endverb
+    \endentry
   \enddatalist
 \endrefsection
 \endinput

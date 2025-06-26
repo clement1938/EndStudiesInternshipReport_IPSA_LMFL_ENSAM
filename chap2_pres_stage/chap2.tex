@@ -25,7 +25,11 @@ Then, Tom MOUSSIE and Miguel, my co-officies, explained to me the basics of Open
 
 \section{Data Assimilation}
 
-PAS d'equation ici, sinon je me fait frapper
+% PAS d'equation ici, sinon je me fait frapper
+
+DA\cite{aschDataAssimilationMethods2016} is a technique used to improve the accuracy of numerical models by combining them with observational data. It is widely used in various fields, including meteorology, oceanography, and engineering. The goal of data assimilation is to obtain a more accurate representation of the state of a system by integrating information from different physical measurements or hight fidelity sources. An illustration of the data assimilation process is shown in Figure \ref{fig:DAmap}.
+
+% changer l'endroit de la citation
 
 \begin{figure}[H]
     \centering
@@ -35,25 +39,25 @@ PAS d'equation ici, sinon je me fait frapper
 \end{figure}
 
 
-Data assimilation\cite{aschDataAssimilationMethods2016} is a technique used to improve the accuracy of numerical models by combining them with observational data. It is widely used in various fields, including meteorology, oceanography, and engineering. The goal of data assimilation is to obtain a more accurate representation of the state of a system by integrating information from different physical measurements or hight fidelity sources.
-
-
 \subsection{State of the art} % Introduction
 
-DA
+Our approach to data assimilation is based on the \ac{EnKF}, which is a Monte Carlo method that uses a set of model states (the ensemble) to estimate the state of the system. The EnKF is particularly well-suited for nonlinear systems and has been successfully applied in various fields, including computational fluid dynamics (CFD).
 
 
 EnKF for DA in CFD has been used at LMFL since a few years, with the work of Tom MOUSSIE\cite{moussieStatisticalInferenceUpstream2024a} and his colleagues. The EnKF method is a powerful tool for assimilating data into computational fluid dynamics (CFD) simulations, allowing for the correction of model predictions based on observed data.
 
-Today, we can theorically run a Direct 
+Today, we can theorically run a \ac{DNS} which resolves exactly the Navier-Stokes equations, but it is still too expensive to be used in practice. Therefore, we use \ac{LES} or \ac{RANS} models to simulate the flow. The EnKF method can be applied to these models to improve some of theme parameters or physical state, to improve the physical accuracy.
 
+% Je cherche à transmettre quelle idée ?
+% State of art : ce qui a été fait avant, ce qui est fait aujourd'hui, ce qui est fait dans le cadre de mon stage
 
-Expliquer en quoi / cas test ou ca a fonctionné en CFD en utilisant des paramètres écoulement. (aller de + en plus en détail jusqu'a param IBM car gros cas test couteux en body-fitted)
+Expliquer en quoi / cas test ou ca a fonctionné en CFD en utilisant des paramètres écoulement.
 
 It can be used in CFD cases\cite{moussieStatisticalInferenceUpstream2024a}
 
 
-The IBM theory has been developed in 1972 by Charles S. Peskin\cite{IBM_base}
+The IBM theory has been developed in 1972 by Charles S. Peskin\cite{IBM_base}.
+The Immersed Boundary Method (IBM) is a numerical technique used to simulate fluid-structure interactions, particularly in cases where the structure is immersed in a fluid flow. It allows for the simulation of complex geometries and moving boundaries without the need for body-fitted meshes, which can be computationally expensive and difficult to implement.
 
 
 IBM mais pas technique
@@ -62,9 +66,7 @@ IBM mais pas technique
 
 Objectif : amélioration params forcage stationaire
 
-\subsection{Presentation of the test case: the centrifugal pump}
-
-Centrifugal pumps are used since 1475
+Centrifugal pumps are used since 1475\cite{retiFrancescoDiGiorgio1963} and are still widely used today in various applications, such as water supply, irrigation, and industrial processes. They are known for their efficiency and reliability, making them a popular choice for many fluid transport applications.
 
 \begin{figure}[H]
     \centering
@@ -73,14 +75,34 @@ Centrifugal pumps are used since 1475
     \label{fig:old_centrifugal_pump}
 \end{figure}
 
+\subsection{Presentation of the test case: the centrifugal pump}
+
+The studied centrifugal pump is a SHF impeller, which is a type of centrifugal pump designed for high flow rates and low head applications.
+
+
+
 Parler de la partie expérimentale
 
 Results in the file are High-Speed \ac{PIV} data obtained by Antoine DAZIN in 2011\cite{dazinHighspeedStereoscopicPIV2011a} at a PIV frequency of 980 Hz on a SHF impeller
 The operating conditions of the machine where :
-N= 1200 rpm
-Qv = 0.256 m3/s (design flow rate of the pump)
+\begin{itemize}
+    \item  Rotational speed: 1200 rpm
+    \item  Flow rate: 0.256 m\textsuperscript{3}/s (design flow rate of the pump)
+    %\item  Diffuser height: 0.040 m
+    %\item  Diffuser inlet radius: 0.257 m
+    %\item  Diffuser outlet radius: 0.300 m
+    %\item  Diffuser angle: 30\textdegree
+    %\item  Diffuser width: 0.040 m
+    %\item  Diffuser length: 0.200 m
+    %\item  Diffuser inlet area: 0.0646 m\textsuperscript{2}
+    %\item  Diffuser outlet area: 0.0942 m\textsuperscript{2}
+\end{itemize}
+
  
-The 6 directories are corresponding to tests realised at 
+
+The data is stored in a directory structure that contains 6 directories
+
+The 6 directories are corresponding to two tests realised at 
 25\%, 50\% et 75\% of the diffuser height.
 
 \begin{figure}[H]
@@ -94,7 +116,8 @@ Each test was repeated twice for the same operating condition and the same heigh
 
 In each directory, there are 1581 files corresponding to instantaneous ASCII data file.
 The 9 columns are corrresponding to :
-x (m),y(m),Vx(m/s),Vy(m/s),r(m),theta(rad),Vr(m/s),Vtheta(m/s),Vz(m/s),???
+
+x (m),y(m),Vx(m/s),Vy(m/s),r(m),theta(rad),Vr(m/s),Vtheta(m/s),Vz(m/s),Unknown
  
 The pdf is a paper where can be found the experimental conditions even if the analysis are focussed on another flow rate.
 
@@ -115,7 +138,7 @@ Données hautes fidélités,...
 
 \subsection{Governing equations}
 - Equations (Incompressible, turbulence,...)
-- Ajout IBM -> Methodo forcage continue
+- Ajout IBM -> Methodo (forcage continue ici (vs interpolation ?)) -> avantages
 
 
 $Re_\Omega=\cfrac{R_2^2 \Omega}{\nu} = 5.53\times10^5$ 
@@ -135,6 +158,16 @@ $Ma = \cfrac{R_2 \Omega}{c} = 0.095$ \textrm{\textbf{(incompressible)}}
 \end{equation*}
 
 \subsection{The open source code OpenFoam}
+
+To implemente the IBM forcage, we use the open source code OpenFoam, which is a C++ library for computational fluid dynamics (CFD). OpenFoam provides a wide range of tools for solving the Navier-Stokes equations, including solvers, meshing tools, and post-processing tools. It is widely used in the CFD community and has a large user base.
+
+More precisely, for example, to implemente the IBM forcage on the speed U, we compute the forcing term $\boldsymbol{f}_P$ as follows:
+\begin{lstlisting}[language=C++]
+// Compute the forcing term
+volVectorField fP = -fP_ * (U - U_ib); EXEMPLE DE MISE EN FORME A CORRIGER
+// Add the forcing term to the momentum equation
+U += fP;
+\end{lstlisting}
 
 \begin{figure}[H]
     \centering
@@ -177,9 +210,11 @@ Assuming the distance between two cells in the azimuthal direction at the tip of
 
 \subsection{EnKF}
 
+Toujours mentionner les paramètres utilisés (dans le controlDict et le CONESDict)
+
 \subsection{The library CONES}
 CONES is a library coded in Python/C++ developed for ... since 2022 ??? at LMFL
-It's parallelized and can be used on supercomputers. It is mainly designed to work with OpenFoam and DA codes as \ac{EnKF}.\label{instants_partages}
+It's parallelized and can be used on supercomputers. It is mainly designed to work with OpenFoam and DA codes as EnKF.\label{instants_partages}
 
 Simulations are performed using the C++ framework OpenFOAM, used to discretize the equations previously presented. Standing for \textsl{Open Source Field Operation and Manipulation}, OpenFOAM is an open-source project which provides many tools, referred to as executables %\citep[see][]{greenshields2021}. These executable files can be divided into three separate categories:
 \begin{itemize}
@@ -309,15 +344,42 @@ Boundary conditions are defines as that:
     \label{coords360}
 \end{figure}
 
+
+Explication de coords\_seventh.txt, coords\_360.txt et coords\_7.txt
+
+Tentative d'explication en français :
+
+J'ai d'un coté une simulation numérique de la pompe centrifuge, qui est un modèle numérique de la pompe. De l'autre coté, j'ai des données expérimentales de PIV, qui sont des données expérimentales de la pompe centrifuge. Je veux utiliser les données expérimentales pour améliorer le modèle numérique de la pompe centrifuge.
+Pour cela, j'utilise la méthode de l'assimilation de données, qui est une méthode qui permet d'améliorer un modèle numérique en utilisant des données expérimentales. La méthode que j'utilise est l'Ensemble Kalman Filter (EnKF), qui est une méthode d'assimilation de données qui utilise un ensemble de modèles numériques pour améliorer le modèle numérique. 
+Cela se fait en deux étapes :
+\begin{enumerate}
+    \item Je fais une simulation numérique de la pompe centrifuge, en utilisant le modèle numérique de la pompe centrifuge. Cette simulation numérique me donne un ensemble de modèles numériques, qui sont les membres de l'ensemble.
+    \item Je compare les données expérimentales de PIV avec les données numériques de la simulation numérique. Pour cela, je fais une interpolation des données expérimentales de PIV sur les points de l'ensemble de modèles numériques. Cette interpolation me donne un ensemble de données expérimentales, qui sont les observations.
+\end{enumerate}
+
+La comparaison entre les données expérimentales et les données numériques me permet de calculer l'écart entre les deux, qui est appelé l'innovation (mettre référence partie mathématique). L'innovation est utilisée pour mettre à jour les membres de l'ensemble de modèles numériques, en utilisant la méthode de l'EnKF. Cette mise à jour me permet d'améliorer le modèle numérique de la pompe centrifuge.
+
+1. Ma simulation numérique de la pompe est stationaire en utilisant la méthode MRF. Cela signifie que le champ de vitesse est constant dans le temps. Cepandant, il n'est pas constant dans l'espace, car il dépend de la position dans le diffuseur. Un motif de vitesse répété sept fois est donc censé être visible (cela n'est pas vraiment le cas en instantionnaire).
+
+2. Les données PIV sont acquises à une vitesse de rotation de la pompe et une fréquence telle que 49 images sont acquises par tour de roue, soit 7 immages entre deux passage d'aubes successives. Dans le référentiel de la pompe, les images sont prises à un une différence de 360/49deg. 
+
+Nous voulons comparer des données consitantes. Nous pourrions syncroniser une simulation instationnaire avec les données PIV. Mais nous avons choisis de faire une simulatio instationnaire dans un premier temps.
+
+Nous pourrions reconstruire le champ spatial PIV (nous avons assez d'angle de vue et de données pour cale -> ref article Antoine).
+Cependant, la vitesse de rotation n'est pas très précise, mais surtout, la méthode MRF inverse la forme du sillage.
+
+Nous avons donc choisis de moyenner temporellement les données PIV (ce qui reviens à moyenner spatialement).
+Du coté de la simulation, nous avons donc besoin de moyenner azimutalement les données numériques pour les rendre compatibles avec les données PIV.
+
 \begin{figure}[H]
     \includegraphics[width=0.8\textwidth]{images/coordsVisu.png}
     \caption{CHANGER}
     \label{CHANGER}
 \end{figure}
 
+Imager avec des illustrations et vue en coupe ParaView
 
-
-
+Pour cela j'ai commencé en moyennant 1/7 mais les paramètres étant locaux (non globaux), j'ai ensuite moyenné sur 360 degrés, ce qui permet de mieux prendre en compte les variations locales des paramètres. Cependant, nous pouvons converger vers une moyenne physique qui atteinds un minimum local mais qui ne respecte pas d'avoir 7 fois le même pattern. Cela permet à Fx d'être très différent de Fy mais aussi à la simulation de diverger avec des paramètres et vitesses erronéees. Pour palier ce problème, je compare la moyenne des patternes sur mes 7 segments de 360/7 degrés.
 
 
 
@@ -325,7 +387,7 @@ Boundary conditions are defines as that:
 
 S'aider du plan de la présentation MALEAF + thèse M
 
-Expliquer comment j'applique la DA sur le cas test de la pompe centrifuge (pas d'equation)
+%Expliquer comment j'applique la DA sur le cas test de la pompe centrifuge (pas d'equation)
 
 Nous avons fait l'EnKF sans l'état\dots
 Sans inflation pour commencer. Si on converge vers une solution qui ne nous satisfait pas, on peut essayer d'ajouter... Cela permet de s'échaper d'un minimum local en ajoutant du bruit artificiellement. 

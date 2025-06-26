@@ -2367,8 +2367,9 @@
     <bcf:citekey order="4" intorder="1">moussieStatisticalInferenceUpstream2024a</bcf:citekey>
     <bcf:citekey order="5" intorder="1">moussieStatisticalInferenceUpstream2024a</bcf:citekey>
     <bcf:citekey order="6" intorder="1">IBM_base</bcf:citekey>
-    <bcf:citekey order="7" intorder="1">dazinHighspeedStereoscopicPIV2011a</bcf:citekey>
-    <bcf:citekey order="8" intorder="1" nocite="1">*</bcf:citekey>
+    <bcf:citekey order="7" intorder="1">retiFrancescoDiGiorgio1963</bcf:citekey>
+    <bcf:citekey order="8" intorder="1">dazinHighspeedStereoscopicPIV2011a</bcf:citekey>
+    <bcf:citekey order="9" intorder="1" nocite="1">*</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">
