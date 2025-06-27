@@ -856,6 +856,14 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/inconsolata/t1zi4.fd
 INPUT /usr/share/texlive/texmf-dist/tex/latex/inconsolata/t1zi4.fd
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/inconsolata/t1-zi4r-0.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/inconsolata/t1-zi4r-0.tfm
+INPUT ./images/logo/logos.png
+INPUT ./images/logo/logos.png
+INPUT ./images/logo/logos.png
+INPUT ./images/logo/logos.png
+INPUT ./images/logo/ipsagarde.png
+INPUT ./images/logo/ipsagarde.png
+INPUT ./images/logo/ipsagarde.png
+INPUT ./images/logo/ipsagarde.png
 INPUT ./images/other/implicit_forcing.png
 INPUT ./images/other/implicit_forcing.png
 INPUT ./images/other/implicit_forcing.png
@@ -1053,6 +1061,7 @@ INPUT rapport_stage.run.xml
 OUTPUT rapport_stage.run.xml
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb

@@ -98,6 +98,26 @@ The operating conditions of the machine where :
     %\item  Diffuser outlet area: 0.0942 m\textsuperscript{2}
 \end{itemize}
 
+\begin{table}[!h]
+    \centering
+    \begin{tabular}{c c c}
+        \multicolumn{3}{c}{\textbf{Impeller characteristics}} \\ \hline 
+         $R_1$ & Tip inlet radius & $141.1\,mm$  \\
+         $R_2$ & Outlet radius & $257.5\,mm$ \\ 
+         $Z$ & Number of blades & $7$ \\
+         $Q_d$ & Design flow rate & $0.236\,m^3/s$ \\
+         $K$ & Mean blade thickness & $9\,mm$ \\
+         $\Omega$ & Rotating velocity & $1\,200\,rpm$ \\ 
+         $\beta_2$ & Outside blade angle (from peripheral velocity $U=R_2\Omega$) & $22.5^{\circ}$ \\ \hline \hline
+        \multicolumn{3}{c}{\textbf{Vaneless diffuser characteristics}} \\ \hline
+         $b_3$ & Diffuser width & $38.5\,mm$ \\
+         $R_3$ & Inlet radius (without leakage, i.e., $R_3=R_2$) & $257.5\,mm$ \\
+         $R_4$ & Diffuser outlet radius & $385.5\,mm$ \\
+         $t$ & Thickness of the upper and lower sections of the diffuser & $20\,mm$
+    \end{tabular}
+    \caption{Summary of the main geometrical and operating parameters of the impeller and diffuser at design conditions, employed in the numerical modelling of the centrifugal pump.}
+    \label{tab:pump_parameters}
+\end{table}
  
 
 The data is stored in a directory structure that contains 6 directories
@@ -137,9 +157,23 @@ Données hautes fidélités,...
 \section{Numerical ingredients}
 
 \subsection{Governing equations}
+
 - Equations (Incompressible, turbulence,...)
 - Ajout IBM -> Methodo (forcage continue ici (vs interpolation ?)) -> avantages
 
+
+% A écrire à ma facon, juste équations intéréssantes ici
+Darcy's law in the body interface region $\Sigma_b$ and the solid region $\Omega_b$. To do so, a spatial dependent tensor $\boldsymbol{D}(\boldsymbol{x})$ must be defined. The resulting penalty term is modelled as follows:
+
+\begin{equation}
+     \boldsymbol{f}_P = \left\{
+        \begin{array}{ll}
+        \boldsymbol{0} & \textrm{if } \boldsymbol{x} \in \Omega_f \\
+        -\nu \, \boldsymbol{D} \left(\boldsymbol{u} - \boldsymbol{u_{ib}} \right) & \textrm{if } \boldsymbol{x} \in (\Sigma_b \cup \Omega_b)
+        \end{array} \right.
+    \label{eqn:forcePenDarcy}
+\end{equation}
+$\boldsymbol{u_{ib}}(\boldsymbol{x}, t)$ is a target velocity representing the immersed body's physical behaviour. ... $\boldsymbol{u_{ib}}=\boldsymbol{0}$. The components $D_{ij}$ of the tensor $\boldsymbol{D}$ are usually controlled to obtain the best compromise between the accuracy and stability of the numerical solver %\cite{Verzicco2022_arfm}. The choice performed is crucial in the proximity of the grid transition between the fluid $\Omega_f$ and the interface $\Sigma_b$ regions.
 
 $Re_\Omega=\cfrac{R_2^2 \Omega}{\nu} = 5.53\times10^5$ 
 
