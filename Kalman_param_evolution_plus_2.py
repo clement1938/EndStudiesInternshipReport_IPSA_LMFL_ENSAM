@@ -8,7 +8,7 @@ from matplotlib.animation import FuncAnimation
 from matplotlib import cm
 
 # === Chargement des données ===
-data = np.loadtxt("UpdatedCoefficients16.txt", skiprows=1)  # Ignorer la première ligne qui contient les en-têtes
+data = np.loadtxt("UpdatedCoefficients21.txt", skiprows=1)  # Ignorer la première ligne qui contient les en-têtes
 # 18 17 16 very good 
 
 time = data[:, 0]

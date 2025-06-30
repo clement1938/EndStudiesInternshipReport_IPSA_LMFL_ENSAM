@@ -69,9 +69,9 @@ OpenFoam, CONES, VSCode, Git, Python,\\C++, Bash, TGCC, Paraview
 \hline
 \begin{minipage}[t]{7.0cm}
     
-- X
+- Diminution of 20\% of the NRMSE with DA (almost 100\% expected)
 
-- Y
+- Implementation of inflation in CONES
 
 - Z
 
@@ -80,11 +80,9 @@ OpenFoam, CONES, VSCode, Git, Python,\\C++, Bash, TGCC, Paraview
 \end{minipage} & 
 \begin{minipage}[t]{8.0cm}
 
-- X
+- The shape of the rotating impeller combined with the IBM permit no-physical flow that induce recirculation buble in the diffuser where DA sensors are located.
 
-- Y
 
-- Z
 \end{minipage} \\ 
 
 \rowcolor{lightblue}
@@ -101,6 +99,10 @@ OpenFoam and CONES
 - Code everithing directly on the TGCC
 
 terminal
+
+- Initialized physical field of complex 
+
+instationary simulation
 \end{minipage}
 \hphantom{.}
 
@@ -111,7 +113,9 @@ terminal
 %- Optimiser la méthode linéaire pour les maillages prismatiques
 - Use the same type of DA for the analysis of axial compressor internal flows
 
+- Synchronize PIV and simulation in the DA
 
+- Implemente interpolation IBM method
 % - Implémenter une méthode plus rapide pour les maillages non-structurés
 
 %\end{itemize}

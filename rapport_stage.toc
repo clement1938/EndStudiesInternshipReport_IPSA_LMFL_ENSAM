@@ -27,7 +27,6 @@
 \contentsline {subparagraph}{5.Creation of a file for the interpolation}{23}{section*.27}%
 \contentsline {subsection}{\numberline {2.4.2}Preparation/modifation on OpenFoam and CONES}{24}{subsection.2.4.2}%
 \contentsline {section}{\numberline {2.5}Results}{24}{section.2.5}%
-\contentsline {section}{\numberline {2.6}Conclusion}{24}{section.2.6}%
 \contentsline {chapter}{Conclusion}{25}{chapter*.28}%
 \contentsline {chapter}{Annexes}{27}{section*.32}%
 \contentsline {chapter}{Bibliography}{28}{chapter*.33}%
