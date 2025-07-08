@@ -306,6 +306,70 @@
       \verb https://www.jstor.org/stable/3100858?origin=crossref
       \endverb
     \endentry
+    \entry{villanuevaAugmentedStateEstimation2023}{online}{}
+      \name{author}{4}{}{%
+        {{hash=f91cdc852bc57eba94e99c4be232151d}{%
+           family={Villanueva},
+           familyi={V\bibinitperiod},
+           given={Lucas},
+           giveni={L\bibinitperiod}}}%
+        {{hash=c551fe4bafcc26f83581248614676df2}{%
+           family={Valero},
+           familyi={V\bibinitperiod},
+           given={Miguel\bibnamedelima Martinez},
+           giveni={M\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=5c5fc9520fd48f8f7d3235d1932b9d70}{%
+           family={Glumac},
+           familyi={G\bibinitperiod},
+           given={Anina\bibnamedelima Sarkic},
+           giveni={A\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=4e04623514f4c380cf23d542eb767cf3}{%
+           family={Meldi},
+           familyi={M\bibinitperiod},
+           given={Marcello},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{b3519261d0b7e74a94bd249fbea7be05}
+      \strng{fullhash}{a46fc3e22f804ce00ee7ee1fe0cbc93b}
+      \strng{bibnamehash}{b3519261d0b7e74a94bd249fbea7be05}
+      \strng{authorbibnamehash}{b3519261d0b7e74a94bd249fbea7be05}
+      \strng{authornamehash}{b3519261d0b7e74a94bd249fbea7be05}
+      \strng{authorfullhash}{a46fc3e22f804ce00ee7ee1fe0cbc93b}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{A data-driven investigation of the flow around a high-rise building is performed combining heterogeneous experimental samples and RANS CFD. The coupling is performed using techniques based on the Ensemble Kalman Filter (EnKF), including advanced manipulations such as localization and inflation. The augmented state estimation obtained via EnKF has also been employed to improve the predictive features of the model via an optimization of the five free global model constant of the K − ε turbulence model used to close the equations. The optimized values are very far from the classical values prescribed as general recommendations and implemented in codes, but also different from other data-driven analyses reported in the literature. The results obtained with this new optimized parametric description show a global improvement for both the velocity field and the pressure field. In addition, some topological improvement for the flow organization are observed downstream, far from the location of the sensors.}
+      \field{day}{26}
+      \field{eprintclass}{physics}
+      \field{eprinttype}{arXiv}
+      \field{langid}{english}
+      \field{month}{1}
+      \field{pubstate}{prepublished}
+      \field{title}{Augmented State Estimation of Urban Settings Using Intrusive Sequential {{Data Assimilation}}}
+      \field{urlday}{8}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{year}{2023}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.2301.11195
+      \endverb
+      \verb{eprint}
+      \verb 2301.11195
+      \endverb
+      \verb{file}
+      \verb /home/clementt/Zotero/storage/QL763IRI/Villanueva et al. - 2023 - Augmented state estimation of urban settings using intrusive sequential Data Assimilation.pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2301.11195
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2301.11195
+      \endverb
+      \keyw{Computer Science - Computational Engineering Finance and Science,Physics - Fluid Dynamics}
+    \endentry
   \enddatalist
 \endrefsection
 \endinput

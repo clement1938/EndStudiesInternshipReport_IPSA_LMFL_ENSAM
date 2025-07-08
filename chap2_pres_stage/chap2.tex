@@ -1,11 +1,6 @@
 \chapter{Optimizing the performance of a centrifugal pump by data assimilation}
 
 
-Voir "TD -> Done et "TDSave -> Done" pour voir tt ce que j'ai fais
-
-
-The random variations are random but with a reproducibility seed (sed) that allows to have the same result each time the simulation is launched.
-
 
 %En combien de temps l'information de pression remonte-t-elle dans le diffuseur ?
 
@@ -16,12 +11,11 @@ The random variations are random but with a reproducibility seed (sed) that allo
 %– Le récit de l’expérience préprofessionnelle doit faire état de toutes les fonctions exercées par le stagiaire à son poste. Il doit comporter des développements techniques (illustrés par des schémas expliqués et commentés, par exemple), mais il s’agit avant tout de donner au lecteur une idée de ce que furent l’emploi du temps du stagiaire, ses tâches quotidiennes, les contraintes du métier, la nature des relations humaines dans cet environnement, les difficultés rencontrées et les résultats obtenus.
 %– Les connaissances techniques acquises doivent transparaître dans le document. Le correcteur évaluera si celui-ci fait état d’une maîtrise réelle des outils (informatiques, mécaniques, etc.) utilisés pendant le stage. En outre, il estimera le niveau des connaissances techniques acquises que la rédaction du rapport aura su mettre en évidence.
 
-\newpage
-
 The internship began in February 2025. I was provided with a fix computer, and credentials to connect to the Irene and Cassiopée supercomputers. Marcello MELDI, Antoine DAZIN and Miguel MARTINEZ VALERO which are my internship supervisors, showed me around the lab.
 Then, Tom MOUSSIE and Miguel, my co-officies, explained to me the basics of OpenFoam and CONES, the DA code. I was able to run a few tests on OpenFoam on the supercomputers, which allowed me to familiarize myself with the tools and the code. % PARLER DE LA CONFIG DE CONES
 
-Introduction par thèse de Miguel
+
+% Introduction par thèse de Miguel
 
 %Lors de mes essais sur le supercalculateur, j'ai utilisé une partition qui offre une puissance de calcul totale de 723 Tflop/s. Elle est composée de 185 nœuds Intel 2x18 cœurs Skylake, cadencés à 2,3 GHz avec 96 Go de mémoire. Ces ressources m'ont permis d'effectuer les tests demandant le plus de ressources.
 
@@ -35,7 +29,7 @@ DA\cite{aschDataAssimilationMethods2016} is a technique used to improve the accu
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/other/DAmap.png}
+    \includegraphics[width=0.60\textwidth]{images/other/DAmap.png}
     \caption{The big picture for DA methods and algorithms\cite{aschDataAssimilationMethods2016}}
     \label{fig:DAmap}
 \end{figure}
@@ -45,17 +39,22 @@ DA\cite{aschDataAssimilationMethods2016} is a technique used to improve the accu
 
 Our approach to data assimilation is based on the \ac{EnKF}, which is a Monte Carlo method that uses a set of model states (the ensemble) to estimate the state of the system. The EnKF is particularly well-suited for nonlinear systems and has been successfully applied in various fields, including computational fluid dynamics (CFD).
 
+EnKF for DA in CFD has been used at LMFL since a few years, with the work of Lucas Villanueva\cite{villanuevaAugmentedStateEstimation2023}, Miguel M.Valero\cite{villanuevaAugmentedStateEstimation2023}, Tom Moussie\cite{moussieStatisticalInferenceUpstream2024a}, Sarp Er, Paolo Errante\cite{moussieStatisticalInferenceUpstream2024a} and Marcello Meldi\cite{villanuevaAugmentedStateEstimation2023}\cite{moussieStatisticalInferenceUpstream2024a} and his colleagues. The EnKF method is a powerful tool for assimilating data into computational fluid dynamics (CFD) simulations, allowing for the correction of model predictions based on observed data.
 
-EnKF for DA in CFD has been used at LMFL since a few years, with the work of Tom MOUSSIE\cite{moussieStatisticalInferenceUpstream2024a} and his colleagues. The EnKF method is a powerful tool for assimilating data into computational fluid dynamics (CFD) simulations, allowing for the correction of model predictions based on observed data.
+
 
 Today, we can theorically run a \ac{DNS} which resolves exactly the Navier-Stokes equations, but it is still too expensive to be used in practice. Therefore, we use \ac{LES} or \ac{RANS} models to simulate the flow. The EnKF method can be applied to these models to improve some of theme parameters or physical state, to improve the physical accuracy.
+
+
+Expliquer en quoi / cas test ou ca a fonctionné en CFD en utilisant des paramètres écoulement. -> cas test cavity
+
 
 % Je cherche à transmettre quelle idée ?
 % State of art : ce qui a été fait avant, ce qui est fait aujourd'hui, ce qui est fait dans le cadre de mon stage
 
-Expliquer en quoi / cas test ou ca a fonctionné en CFD en utilisant des paramètres écoulement.
 
-It can be used in CFD cases\cite{moussieStatisticalInferenceUpstream2024a}
+
+
 
 
 The IBM theory has been developed in 1972 by Charles S. Peskin\cite{IBM_base}.
@@ -65,6 +64,8 @@ The Immersed Boundary Method (IBM) is a numerical technique used to simulate flu
 IBM mais pas technique
 
 (aller de + en plus en détail jusqu'a param IBM car gros cas test couteux en body-fitted)
+
+Et là cas tests de thèse miguel (1 et 2)
 
 Objectif : amélioration params forcage stationaire
 
@@ -82,23 +83,10 @@ Centrifugal pumps are used since 1475\cite{retiFrancescoDiGiorgio1963} and are s
 The studied centrifugal pump is a SHF impeller, which is a type of centrifugal pump designed for high flow rates and low head applications.
 
 
-
 Parler de la partie expérimentale
 
 Results in the file are High-Speed \ac{PIV} data obtained by Antoine DAZIN in 2011\cite{dazinHighspeedStereoscopicPIV2011a} at a PIV frequency of 980 Hz on a SHF impeller
 The operating conditions of the machine where :
-\begin{itemize}
-    \item  Rotational speed: 1200 rpm
-    \item  Flow rate: 0.256 m\textsuperscript{3}/s (design flow rate of the pump)
-    %\item  Diffuser height: 0.040 m
-    %\item  Diffuser inlet radius: 0.257 m
-    %\item  Diffuser outlet radius: 0.300 m
-    %\item  Diffuser angle: 30\textdegree
-    %\item  Diffuser width: 0.040 m
-    %\item  Diffuser length: 0.200 m
-    %\item  Diffuser inlet area: 0.0646 m\textsuperscript{2}
-    %\item  Diffuser outlet area: 0.0942 m\textsuperscript{2}
-\end{itemize}
 
 \begin{table}[!h]
     \centering
@@ -107,7 +95,7 @@ The operating conditions of the machine where :
          $R_1$ & Tip inlet radius & $141.1\,mm$  \\
          $R_2$ & Outlet radius & $257.5\,mm$ \\ 
          $Z$ & Number of blades & $7$ \\
-         $Q_d$ & Design flow rate & $0.236\,m^3/s$ \\
+         $Q_d$ & Design flow rate & $0.236\,m^3/s$ \\ % 0.256 ???
          $K$ & Mean blade thickness & $9\,mm$ \\
          $\Omega$ & Rotating velocity & $1\,200\,rpm$ \\ 
          $\beta_2$ & Outside blade angle (from peripheral velocity $U=R_2\Omega$) & $22.5^{\circ}$ \\ \hline \hline
@@ -180,6 +168,8 @@ $\boldsymbol{u_{ib}}(\boldsymbol{x}, t)$ is a target velocity representing the i
 $Re_\Omega=\cfrac{R_2^2 \Omega}{\nu} = 5.53\times10^5$ 
 
 $Ma = \cfrac{R_2 \Omega}{c} = 0.095$ \textrm{\textbf{(incompressible)}}
+
+Reprendre ma présentation (dimensiosn de p)
 
 \begin{equation*}
     \boldsymbol{\nabla} \cdot (\boldsymbol{u}\boldsymbol{u}) = -\nabla p + \nu \nabla^2 \boldsymbol{u}  \overbrace{-\frac{\xi}{\eta} \left(\boldsymbol{u} - \boldsymbol{u_{ib}} \right)}^{\boldsymbol{f}_P}
@@ -409,7 +399,7 @@ Du coté de la simulation, nous avons donc besoin de moyenner azimutalement les 
 
 \begin{figure}[H]
     \includegraphics[width=0.8\textwidth]{images/coordsVisu.png}
-    \caption{CHANGER}
+    \caption{METTRE LA FIGURE AVEC LES PTS MOYENNES ROUGES ET VIOLETS}
     \label{CHANGER}
 \end{figure}
 
@@ -619,3 +609,10 @@ f(obs) -> controle de la puissance
 Pour ça, se ref au sujet de thèse de Tarane
 obs pression --> modèle de reconstruction du champ de vitesse --> modèle de reconaissance de patternes de décrochage --> contrôle de la puissance
 Peut-être faire deux filtres de Kalman imbriqués ? hyperparamètres type fenetre observation, variance initiale, ...
+
+
+
+Voir "TD -> Done et "TDSave -> Done" pour voir tt ce que j'ai fais
+
+
+The random variations are random but with a reproducibility seed (sed) that allows to have the same result each time the simulation is launched.

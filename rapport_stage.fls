@@ -439,6 +439,8 @@ INPUT /usr/share/texlive/texmf-dist/tex/generic/dirtree/dirtree.sty
 INPUT /usr/share/texlive/texmf-dist/tex/generic/dirtree/dirtree.tex
 INPUT /usr/share/texlive/texmf-dist/tex/generic/dirtree/dirtree.tex
 INPUT /usr/share/texlive/texmf-dist/tex/generic/dirtree/dirtree.tex
+INPUT /usr/share/texlive/texmf-dist/tex/latex/textpos/textpos.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/textpos/textpos.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/forest/forest.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/forest/forest.sty
 INPUT /usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.code.tex
@@ -595,6 +597,7 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
 INPUT /usr/share/texlive/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
 INPUT /usr/share/texlive/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
 INPUT /usr/share/texlive/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
@@ -691,6 +694,9 @@ INPUT ./remerciement/remerciement.tex
 INPUT remerciement/remerciement.tex
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm2488.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx2488.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1440.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1440.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecti1095.tfm
 INPUT ./images/other/page_2.png
 INPUT ./images/other/page_2.png
 INPUT ./images/other/page_2.png
@@ -720,8 +726,6 @@ INPUT ./images/logo/ipsagarde.png
 INPUT ./bilan_technique/bilan_technique.tex
 INPUT ./bilan_technique/bilan_technique.tex
 INPUT bilan_technique/bilan_technique.tex
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1440.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1440.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm0900.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr9.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmmi9.tfm
@@ -794,14 +798,6 @@ INPUT ./images/logo/ipsagarde.png
 INPUT ./chap2_pres_stage/chap2.tex
 INPUT ./chap2_pres_stage/chap2.tex
 INPUT chap2_pres_stage/chap2.tex
-INPUT ./images/logo/logos.png
-INPUT ./images/logo/logos.png
-INPUT ./images/logo/logos.png
-INPUT ./images/logo/logos.png
-INPUT ./images/logo/ipsagarde.png
-INPUT ./images/logo/ipsagarde.png
-INPUT ./images/logo/ipsagarde.png
-INPUT ./images/logo/ipsagarde.png
 INPUT ./images/other/DAmap.png
 INPUT ./images/other/DAmap.png
 INPUT ./images/other/DAmap.png
@@ -830,11 +826,6 @@ INPUT ./images/logo/ipsagarde.png
 INPUT ./images/logo/ipsagarde.png
 INPUT ./images/logo/ipsagarde.png
 INPUT ./images/logo/ipsagarde.png
-INPUT ./images/experimentalPump/impeller_position.png
-INPUT ./images/experimentalPump/impeller_position.png
-INPUT ./images/experimentalPump/impeller_position.png
-INPUT ./images/experimentalPump/impeller_position.png
-INPUT ./images/experimentalPump/impeller_position.png
 INPUT ./images/logo/logos.png
 INPUT ./images/logo/logos.png
 INPUT ./images/logo/logos.png
@@ -843,6 +834,11 @@ INPUT ./images/logo/ipsagarde.png
 INPUT ./images/logo/ipsagarde.png
 INPUT ./images/logo/ipsagarde.png
 INPUT ./images/logo/ipsagarde.png
+INPUT ./images/experimentalPump/impeller_position.png
+INPUT ./images/experimentalPump/impeller_position.png
+INPUT ./images/experimentalPump/impeller_position.png
+INPUT ./images/experimentalPump/impeller_position.png
+INPUT ./images/experimentalPump/impeller_position.png
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx6.tfm
@@ -1030,7 +1026,6 @@ INPUT ./images/logo/ipsagarde.png
 INPUT ./images/logo/ipsagarde.png
 INPUT ./images/logo/ipsagarde.png
 INPUT ./images/logo/ipsagarde.png
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecti1095.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/eccc1095.tfm
 INPUT ./images/logo/logos.png
 INPUT ./images/logo/logos.png
