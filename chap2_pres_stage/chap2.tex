@@ -35,6 +35,19 @@ DA\cite{aschDataAssimilationMethods2016} is a technique used to improve the accu
 \end{figure}
 
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.60\textwidth]{images/enkf_shem.png}
+    \caption{Illustration of the EnKF process (100\% confidence in observations)}
+    \label{fig:EnKFIllustration}
+\end{figure}
+
+
+Expliquer  théorème de Bayes etc... dans la partie maths ? (c'est ici ?)
+Expliquer plus en détail l'EnKF avec la fameuse figure.
+
+
+
 \subsection{State of the art} % Introduction
 
 Our approach to data assimilation is based on the \ac{EnKF}, which is a Monte Carlo method that uses a set of model states (the ensemble) to estimate the state of the system. The EnKF is particularly well-suited for nonlinear systems and has been successfully applied in various fields, including computational fluid dynamics (CFD).
@@ -46,13 +59,58 @@ EnKF for DA in CFD has been used at LMFL since a few years, with the work of Luc
 Today, we can theorically run a \ac{DNS} which resolves exactly the Navier-Stokes equations, but it is still too expensive to be used in practice. Therefore, we use \ac{LES} or \ac{RANS} models to simulate the flow. The EnKF method can be applied to these models to improve some of theme parameters or physical state, to improve the physical accuracy.
 
 
+
 Expliquer en quoi / cas test ou ca a fonctionné en CFD en utilisant des paramètres écoulement. -> cas test cavity
+
+
+\begin{comment}
+    
+\begin{figure}[H]
+    \centering
+    \subfigure[Initial state]{
+        \includegraphics[width=0.3\textwidth]{images/cavity2_1ms.png}
+        \label{fig:cavity2_1ms}
+    }
+    \hfill
+    \subfigure[State after one EnKF iteration]{
+        \includegraphics[width=0.3\textwidth]{images/cavity2_3ms.png}
+        \label{fig:cavity2_3ms}
+    }
+    \hfill
+    \subfigure[Converged state after 2 EnKF iterations]{
+        \includegraphics[width=0.3\textwidth]{images/cavity_5ms.png}
+        \label{fig:cavity_5ms}
+    }
+    \caption{Evolution of the state through EnKF iterations}
+\end{figure}
+\end{comment}
+
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{images/cavity2_1ms.png}
+        \caption{Initial state}
+        \label{fig:cavity2_1ms}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{images/cavity2_3ms.png}
+        \caption{After one EnKF it.}
+        \label{fig:cavity2_3ms}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{images/cavity_5ms.png}
+        \caption{Converged after 2 EnKF it.}
+        \label{fig:cavity_5ms}
+    \end{subfigure}
+    \caption{Evolution of the state through EnKF iterations}
+\end{figure}
 
 
 % Je cherche à transmettre quelle idée ?
 % State of art : ce qui a été fait avant, ce qui est fait aujourd'hui, ce qui est fait dans le cadre de mon stage
-
-
 
 
 
@@ -73,8 +131,8 @@ Centrifugal pumps are used since 1475\cite{retiFrancescoDiGiorgio1963} and are s
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{images/other/pompe_centrifuge.jpg}
-    \caption{Old centrifugal pump (personnal picture)}
+    \includegraphics[width=0.45\textwidth]{images/other/pompe_centrifuge.jpg}
+    \caption{Old centrifugal pump used to move straw (personnal picture)}
     \label{fig:old_centrifugal_pump}
 \end{figure}
 
