@@ -110,14 +110,14 @@ They are differents ways to discretize the space when we do CFD (see Figure \ref
 
 In our case, we impose a forcing term on the Navier-Stokes equations to simulate the effect of the immersed boundary on the fluid flow. // ref à plus tard. The problem is that it it lead to a few constants that need to be tuned to obtain the best results. For that, we use the EnKF method to optimize these constants. The EnKF method will be used to assimilate data from the flow at the observation points and to update the forcing term until it converges to the optimal value.
 
-These high fidelity data are obtained from an experiment realised by Antoine Dazin\cite{dazinHighspeedStereoscopicPIV2011a} in 2011 at the LMFL. The experiment was realised on the SHF centrifugal pump. //RESEDA ?
+These high fidelity data are obtained from an experiment explained in the next subsection
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.45\textwidth]{images/IBM_Mesh.pdf}
     \caption{...}
     \label{fig:IBM_Mesh}
 \end{figure}
-
+Quel niveau de détail ici ?
 
 % DONE (aller de + en plus en détail jusqu'a param IBM car gros cas test couteux en body-fitted)
 
@@ -132,18 +132,20 @@ This lead us to the idea of using the EnKF method to optimize the parameters of 
 \subsection{Presentation of the test case: the centrifugal pump}
 
 
+Parler rapidement qu'on a des données (pression et PIV)
+
 Centrifugal pumps are used since 1475\cite{retiFrancescoDiGiorgio1963} and are still widely used today in various applications, such as water supply, irrigation, turbomachines, and industrial processes. They are known for their low cost, efficiency and reliability, making them a popular choice for many fluid transport applications.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.45\textwidth]{images/other/pompe_centrifuge.jpg}
+    \includegraphics[width=0.40\textwidth]{images/other/pompe_centrifuge.jpg}
     \caption{Old centrifugal pump used to move hay (personnal picture)}
     \label{fig:old_centrifugal_pump}
 \end{figure}
 
 
 The studied centrifugal pump is a SHF impeller, which is a type of centrifugal pump designed for high flow rates and low head applications.
-
+These high fidelity data are obtained from an experiment realised by Antoine Dazin\cite{dazinHighspeedStereoscopicPIV2011a} in 2011 at the LMFL. The experiment was realised on the SHF impeller on the RESEDA centrifugal pump benchmark. -> a vérifier dans la thèse de Miguel
 % PARLER
 
 Results in the file are High-Speed \ac{PIV} data obtained by Antoine DAZIN in 2011\cite{dazinHighspeedStereoscopicPIV2011a} at a PIV frequency of 980 Hz on a SHF impeller % Expliquer la PIV ?
@@ -203,7 +205,7 @@ With $Q_{pump_{in}} = Q_{dif_{in}}$ because the mass flow rate is constant and t
 
 \section{Numerical ingredients}
 
-\subsection{Governing equations}
+\subsection{CFD governing equations}
 
 
 
@@ -213,10 +215,10 @@ With $Q_{pump_{in}} = Q_{dif_{in}}$ because the mass flow rate is constant and t
     \underbrace{- \xi \nu \boldsymbol{D} \left( \boldsymbol{u} - \boldsymbol{u}_{ib} \right)}_{\boldsymbol{f}_P}
 \end{equation}
 
-\ref{fig:IBM_Mesh}
+
 
 with $[p] = M \cdot L^{-1} \cdot T^{-2}$ 
-(formalisme divisé par la masse volumique $\rho$ et $[\boldsymbol{u}] = L \cdot T^{-1}$ en incompressible).
+(formalisme divisé par la masse volumique $\rho$. Donc $[\boldsymbol{u}] = L \cdot T^{-1}$ - en incompressible).
 
 \begin{equation}
     \xi = \left\{
@@ -226,7 +228,9 @@ with $[p] = M \cdot L^{-1} \cdot T^{-2}$
     \end{array} \right.
 \end{equation}
 
-When  $D \rightarrow \infty$, \\ \textbf{champ IBM = champ body-fitted }
+see Figure \ref{fig:IBM_Mesh}
+
+When  $D \rightarrow \infty$, problèmes
         
 mais des valeurs trop élevées de $D$ peut mener à des instabilités <- A mentionner qqpart 
 
@@ -420,7 +424,7 @@ The \texttt{constant} directory contains the different physical properties of th
 The \texttt{0} directory contains the initial solution's fields. The \texttt{postProcessing} directory stores data from the running simulation, such as forces and probes' data. The \texttt{processor0...N} directories directly result from the geometry decomposition, which is proceeded through the \texttt{decomposeParDict} dictionary. The \texttt{dummy.foam} is an empty file which allows to visualize the simulation with \texttt{ParaView}. 
 
 
-\subsection{Modeling}
+\subsection{Pump modeling}
 
 The objective of the model is to try to find same physical behavior as the experimental data. We call that digital twin.
 
@@ -445,7 +449,12 @@ Boundary conditions are defines as that:
 
 "Résultats de la simulation avec 3e5" -> 3e7
 
-\section{Application of the DA}
+
+
+
+
+Graçe aux données xp (mentionné partie 2.1.2, on peut faire d la DA)
+
 
 
 \begin{figure}[H]
@@ -460,12 +469,12 @@ Notre but : faire fit ces 2 courbes :
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{images/numVSxp.png}
+    \includegraphics[width=1\textwidth]{images/numVSxp.png}
     \caption{implicit forcing term in OpenFoam}
     \label{numVSxp}
 \end{figure}
 
-
+Mais surtout obtenir le bon rendement ! (sujet du stage)
 
 \begin{figure}[H]
     \includegraphics[width=0.4\textwidth]{images/numericalPump/diffuseurMesh.png}
@@ -479,6 +488,10 @@ Notre but : faire fit ces 2 courbes :
     \label{coords360}
 \end{figure}
 
+Limitations IBM à améliorer avec DA
+
+
+\section{Application of the DA}
 
 Explication de coords\_seventh.txt, coords\_360.txt et coords\_7.txt
 
@@ -542,12 +555,15 @@ The observation window was defined by observing the number of iterations require
 
 Pb de la DA : plus rapide que DNS mais toujours plus lent que RANS et le temps d'attente et de calcul sur supercalculateur (sur 4000 processeurs) est de l'orde de plusieurs jours. On peut donc se demander si la DA est vraiment utile dans ce cas. En effet, la DA est plus rapide que la DNS mais pas que la RANS. Cependant, il faut prendre en compte le fait que la DA permet de réduire le temps de calcul de la simulation numérique en permettant d'optimiser les paramètres de l'IBM. De plus, la DA peut être utilisée pour d'autres cas d'étude où la DNS est trop coûteuse.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/other/queue_IRENE.png}
-    \caption{IRENE queue}
-    \label{queue_IRENE}
-\end{figure}
+
+
+Pb perso : jusqu'à plusieurs jours d'attente pour lancer une simu.
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=0.5\textwidth]{images/other/queue_IRENE.png}
+%    \caption{IRENE queue}
+%    \label{queue_IRENE}
+%\end{figure}
 
 \subsection{Preprocessing of PIV data}
 
@@ -704,20 +720,56 @@ Parler des modifs dans le code ici.
 
 \section{Results}
 
-\subsection{Simple application of the EnKF}
+Comparer les 3 résultats : avant DA, après simple et "complex" DA
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/numericalPump/assymetrie.png}
+    \caption{Velocity field for Dx = 4e7 and Dy = 2e7}
+    \label{fig:assymetry}
+\end{figure}
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/UpdtC14_10NMRSE.png}
+    \caption{Evolution of the NRMSEs over EnKF analysis phases}
+    \label{fig:UpdtC14_10NMRSE}
+\end{figure}
 
 
 \dots
 
 Explication des écarts par différentes choses 
 
-\subsection{More sofisticated application of the EnKF}
 
 Tt ce que j'ai implémenté en plus (déjà détaillé partie précédente normalement)
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/numericalPump/radialExpension.png}
+    \caption{Radial expension of Dz over the impeller radius}
+    \label{fig:radialExpension}
+\end{figure}
+
+
+
+Essayer d'améliorer le rendu de l'image ci-dessous en mettant la pompe en transparence
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/numericalPump/LIC.png}
+    \caption{Formation of the recirculation bubble in the diffuser}
+    \label{fig:LIC}
+\end{figure}
 
 Explication des écarts par la bulle de recirculation.
 
 \subsection{Conclusion ans perspective}
+
+Problème de méthode et pas de miracle ave cette méthode IBM. Interpolation, instationnaire (avantage : on ne contraint plus avec MRF et donc plus facile de réconcilier solution numérique physique et mathématique)
+
 
 Ouverture : méthode IBM interpolation, article non référencé.
 
