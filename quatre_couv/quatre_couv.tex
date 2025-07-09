@@ -1,6 +1,11 @@
 \cleardoublepage
 \paragraph{Résumé}
 \vspace{0,5cm}
+
+Vérifier les consignes
+
+
+\begin{comment}
 L'objectif de ce stage était d'implémenter une méthode d'\textbf{interpolation linéaire} dans \textbf{Antares} puis de comparer sa précision avec la \textbf{méthode IDW} dans le cas de propagation acoustique avec l'analogie FWH, tout en optimisant la vitesse d'exécution du code.
 Premièrement, une recherche documentaire sur les méthodes d'interpolation implémentables dans notre cas a été menée.
 Ensuite, la méthode linéaire a été implémentée en utilisant une méthode particulière pour les cellules non triangulaires ou rectangulaires.
@@ -8,9 +13,14 @@ L'efficacité a été augmentée dans les cas multi-instants partagés en évita
 Le code est jusqu'à \(n\) fois plus rapide pour une base ayant \(n\) instants partagés.
 La méthode linéaire a été testée sur des cas simples et industriels. Elle fonctionne correctement sur tous les types de cellules, sauf dans certains cas très complexes comme des prismes ayant des faces opposées de tailles différentes et/ou non parallèles.
 Dans le cas de l'aéroacoustique, la méthode linéaire est plus précise que IDW dans tous les cas testés. Cependant, des résultats expérimentaux ont montré que des coefficients (\(N\), \(p\)) autour de (10, 10) donnaient de très bons résultats. Dans ce cas, IDW peut s'avérer plus précis que la méthode linéaire.
+\end{comment}
 
 \paragraph{Abstract}
 \vspace{0,5cm}
+
+
+\begin{comment}
+
 The objective of this internship was to implement a \textbf{linear interpolation} method in \textbf{Antares} and then to compare its accuracy with the \textbf{IDW method} in the case of acoustic propagation using the FWH analogy, while optimizing the code execution speed.
 First, a literature review on interpolation methods applicable to our case was conducted.
 Secondly, the linear method was implemented using a special method for non-triangular or rectangular cells.
@@ -20,6 +30,7 @@ The code is almost \(n\) times faster for a database with \(n\) shared instants.
 The linear method has been tested on simple and industrial cases.
 It works correctly on all cell types, except in some very complex cases, such as prisms with non-parallel and/or differently sized opposing faces.
 In the case of aeroacoustics, the linear method is more accurate than IDW in all tested scenarios. However, experimental results have shown that coefficients (\(N\), \(p\)) around (10, 10) produce very good results. In such cases, IDW may prove to be more accurate than the linear method.
+\end{comment}
 
 
 

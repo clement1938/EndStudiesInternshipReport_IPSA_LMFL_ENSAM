@@ -306,6 +306,92 @@
       \verb https://www.jstor.org/stable/3100858?origin=crossref
       \endverb
     \endentry
+    \entry{valero2025immersed}{article}{}
+      \name{author}{2}{}{%
+        {{hash=49b0874dbebae1d3ae8703c3a803693b}{%
+           family={Valero},
+           familyi={V\bibinitperiod},
+           given={M.\bibnamedelimi M.},
+           giveni={M\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=1777331499fe05a4eba1d6a32170c4ee}{%
+           family={Meldi},
+           familyi={M\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{02ba28b93da2f1d45d47cf0d1a4982f0}
+      \strng{fullhash}{02ba28b93da2f1d45d47cf0d1a4982f0}
+      \strng{bibnamehash}{02ba28b93da2f1d45d47cf0d1a4982f0}
+      \strng{authorbibnamehash}{02ba28b93da2f1d45d47cf0d1a4982f0}
+      \strng{authornamehash}{02ba28b93da2f1d45d47cf0d1a4982f0}
+      \strng{authorfullhash}{02ba28b93da2f1d45d47cf0d1a4982f0}
+      \field{extraname}{1}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Computational Physics}
+      \field{title}{An immersed boundary method using online sequential data assimilation}
+      \field{volume}{524}
+      \field{year}{2025}
+      \field{pages}{113697}
+      \range{pages}{1}
+    \endentry
+    \entry{valeroEnhancedStateEstimation2025}{online}{}
+      \name{author}{2}{}{%
+        {{hash=b64e173aef1d6c42dee3e1f50e613d4e}{%
+           family={Valero},
+           familyi={V\bibinitperiod},
+           given={Miguel\bibnamedelima M.},
+           giveni={M\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=4e04623514f4c380cf23d542eb767cf3}{%
+           family={Meldi},
+           familyi={M\bibinitperiod},
+           given={Marcello},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{e777693e6a4880e762461fc7e951d16d}
+      \strng{fullhash}{e777693e6a4880e762461fc7e951d16d}
+      \strng{bibnamehash}{e777693e6a4880e762461fc7e951d16d}
+      \strng{authorbibnamehash}{e777693e6a4880e762461fc7e951d16d}
+      \strng{authornamehash}{e777693e6a4880e762461fc7e951d16d}
+      \strng{authorfullhash}{e777693e6a4880e762461fc7e951d16d}
+      \field{extraname}{2}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{A novel strategy is proposed to improve the accuracy of state estimation and reconstruction from low-fidelity models and sparse data from sensors. This strategy combines ensemble Data Assimilation (DA) and Machine Learning (ML) tools, exploiting their complementary features. ML techniques rely on the data produced by DA methods during analysis phases to train physicsinformed corrective algorithms, which are then coupled with the low-fidelity models when data from sensors is unavailable. The methodology is validated via the analysis of the turbulent plane channel flow test case for Reτ ≈ 550. Here, the low-fidelity model consists of coarse-grained simulations coupled with the Immersed Boundary Method (IBM), while observation is sampled by a highly refined body-fitted calculation. The analysis demonstrates the capabilities of the algorithm based on DA and ML to accurately predict the flow features with significantly reduced computational costs. This approach exhibits potential for future synergistic applications of DA and ML, leveraging the robustness and efficiency of ML models alongside the physical interpretability ensured by DA algorithms.}
+      \field{day}{30}
+      \field{eprintclass}{physics}
+      \field{eprinttype}{arXiv}
+      \field{langid}{english}
+      \field{month}{1}
+      \field{pubstate}{prepublished}
+      \field{title}{Enhanced {{State Estimation}} for Turbulent Flows Combining {{Ensemble Data Assimilation}} and {{Machine Learning}}}
+      \field{urlday}{9}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.2501.18262
+      \endverb
+      \verb{eprint}
+      \verb 2501.18262
+      \endverb
+      \verb{file}
+      \verb /home/clementt/Zotero/storage/7ZI7TBZ9/Valero and Meldi - 2025 - Enhanced State Estimation for turbulent flows combining Ensemble Data Assimilation and Machine Learn.pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2501.18262
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2501.18262
+      \endverb
+      \keyw{Physics - Fluid Dynamics}
+    \endentry
     \entry{villanuevaAugmentedStateEstimation2023}{online}{}
       \name{author}{4}{}{%
         {{hash=f91cdc852bc57eba94e99c4be232151d}{%

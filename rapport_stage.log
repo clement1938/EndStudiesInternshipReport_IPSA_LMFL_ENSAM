@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.4.8)  9 JUL 2025 10:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.4.8)  9 JUL 2025 15:35
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1515,7 +1515,7 @@ Package pdftex.def Info: images/numericalPump/Pump_sim2.png  used on input line 
 <images/other/page_2.png, id=122, 167.62625pt x 58.2175pt>
 File: images/other/page_2.png Graphic file (type png)
 <use images/other/page_2.png>
-Package pdftex.def Info: images/other/page_2.png  used on input line 70.
+Package pdftex.def Info: images/other/page_2.png  used on input line 71.
 (pdftex.def)             Requested size: 31.66418pt x 10.99658pt.
 )
 <images/logo/logos.png, id=123, 862.22125pt x 141.52875pt>
@@ -1542,22 +1542,22 @@ File: images/logo/ipsagarde.png Graphic file (type png)
 Package pdftex.def Info: images/logo/ipsagarde.png  used on input line 602.
 (pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
  [3] (./bilan_technique/bilan_technique.tex
-Overfull \hbox (28.45276pt too wide) in paragraph at lines 94--108
+Overfull \hbox (28.45276pt too wide) in paragraph at lines 95--109
 [][]
  []
 
 
-Overfull \hbox (2.43765pt too wide) in paragraph at lines 11--125
+Overfull \hbox (2.43765pt too wide) in paragraph at lines 11--126
  [][] 
  []
 
 File: images/logo/logos.png Graphic file (type png)
 <use images/logo/logos.png>
-Package pdftex.def Info: images/logo/logos.png  used on input line 130.
+Package pdftex.def Info: images/logo/logos.png  used on input line 131.
 (pdftex.def)             Requested size: 113.81102pt x 18.68011pt.
 File: images/logo/ipsagarde.png Graphic file (type png)
 <use images/logo/ipsagarde.png>
-Package pdftex.def Info: images/logo/ipsagarde.png  used on input line 130.
+Package pdftex.def Info: images/logo/ipsagarde.png  used on input line 131.
 (pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
 [4]) (./introduction/intro.tex)
 File: images/logo/logos.png Graphic file (type png)
@@ -1570,7 +1570,7 @@ Package pdftex.def Info: images/logo/ipsagarde.png  used on input line 607.
 (pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
  [5{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] (./chap1_pres_entreprise/chap1.tex
 Chapter 1.
-<images/other/LMFL_facilities.png, id=201, 1057.9525pt x 478.78876pt>
+<images/other/LMFL_facilities.png, id=200, 1057.9525pt x 478.78876pt>
 File: images/other/LMFL_facilities.png Graphic file (type png)
 <use images/other/LMFL_facilities.png>
 Package pdftex.def Info: images/other/LMFL_facilities.png  used on input line 14.
@@ -1620,12 +1620,12 @@ Package pdftex.def Info: images/logo/ipsagarde.png  used on input line 610.
 (pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
  [8] (./chap2_pres_stage/chap2.tex
 Chapter 2.
-<images/other/DAmap.png, id=258, 885.3075pt x 785.93625pt>
+<images/other/DAmap.png, id=257, 885.3075pt x 785.93625pt>
 File: images/other/DAmap.png Graphic file (type png)
 <use images/other/DAmap.png>
 Package pdftex.def Info: images/other/DAmap.png  used on input line 32.
 (pdftex.def)             Requested size: 273.14923pt x 242.48645pt.
-<images/enkf_shem.png, id=261, 953.5625pt x 710.655pt>
+<images/enkf_shem.png, id=260, 953.5625pt x 710.655pt>
 File: images/enkf_shem.png Graphic file (type png)
 <use images/enkf_shem.png>
 Package pdftex.def Info: images/enkf_shem.png  used on input line 40.
@@ -1634,307 +1634,4 @@ File: images/logo/logos.png Graphic file (type png)
 <use images/logo/logos.png>
 Package pdftex.def Info: images/logo/logos.png  used on input line 44.
 (pdftex.def)             Requested size: 113.81102pt x 18.68011pt.
-File: images/logo/ipsagarde.png Graphic file (type png)
-<use images/logo/ipsagarde.png>
-Package pdftex.def Info: images/logo/ipsagarde.png  used on input line 44.
-(pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
-[9
-
- <./images/other/DAmap.png>] Excluding 'comment' comment.
-<images/cavity2_1ms.png, id=279, 669.50125pt x 670.505pt>
-File: images/cavity2_1ms.png Graphic file (type png)
-<use images/cavity2_1ms.png>
-Package pdftex.def Info: images/cavity2_1ms.png  used on input line 92.
-(pdftex.def)             Requested size: 136.57462pt x 136.77916pt.
-<images/cavity2_3ms.png, id=280, 669.50125pt x 670.505pt>
-File: images/cavity2_3ms.png Graphic file (type png)
-<use images/cavity2_3ms.png>
-Package pdftex.def Info: images/cavity2_3ms.png  used on input line 98.
-(pdftex.def)             Requested size: 136.57462pt x 136.77916pt.
-<images/cavity_5ms.png, id=281, 669.50125pt x 670.505pt>
-File: images/cavity_5ms.png Graphic file (type png)
-<use images/cavity_5ms.png>
-Package pdftex.def Info: images/cavity_5ms.png  used on input line 104.
-(pdftex.def)             Requested size: 136.57462pt x 136.77916pt.
-File: images/logo/logos.png Graphic file (type png)
-<use images/logo/logos.png>
-Package pdftex.def Info: images/logo/logos.png  used on input line 110.
-(pdftex.def)             Requested size: 113.81102pt x 18.68011pt.
-File: images/logo/ipsagarde.png Graphic file (type png)
-<use images/logo/ipsagarde.png>
-Package pdftex.def Info: images/logo/ipsagarde.png  used on input line 110.
-(pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
- [10 <./images/enkf_shem.png>]
-<images/other/pompe_centrifuge.jpg, id=297, 1541.76pt x 2055.68pt>
-File: images/other/pompe_centrifuge.jpg Graphic file (type jpg)
-<use images/other/pompe_centrifuge.jpg>
-Package pdftex.def Info: images/other/pompe_centrifuge.jpg  used on input line 134.
-(pdftex.def)             Requested size: 204.85846pt x 273.14479pt.
-File: images/logo/logos.png Graphic file (type png)
-<use images/logo/logos.png>
-Package pdftex.def Info: images/logo/logos.png  used on input line 144.
-(pdftex.def)             Requested size: 113.81102pt x 18.68011pt.
-File: images/logo/ipsagarde.png Graphic file (type png)
-<use images/logo/ipsagarde.png>
-Package pdftex.def Info: images/logo/ipsagarde.png  used on input line 144.
-(pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
- [11 <./images/cavity2_1ms.png> <./images/cavity2_3ms.png> <./images/cavity_5ms.png> <./images/other/pompe_centrifuge.jpg>]
-<images/experimentalPump/impeller_position.png, id=315, 243.91125pt x 386.19281pt>
-File: images/experimentalPump/impeller_position.png Graphic file (type png)
-<use images/experimentalPump/impeller_position.png>
-Package pdftex.def Info: images/experimentalPump/impeller_position.png  used on input line 178.
-(pdftex.def)             Requested size: 182.09486pt x 288.318pt.
-File: images/logo/logos.png Graphic file (type png)
-<use images/logo/logos.png>
-Package pdftex.def Info: images/logo/logos.png  used on input line 185.
-(pdftex.def)             Requested size: 113.81102pt x 18.68011pt.
-File: images/logo/ipsagarde.png Graphic file (type png)
-<use images/logo/ipsagarde.png>
-Package pdftex.def Info: images/logo/ipsagarde.png  used on input line 185.
-(pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
- [12 <./images/experimentalPump/impeller_position.png>]
-File: images/logo/logos.png Graphic file (type png)
-<use images/logo/logos.png>
-Package pdftex.def Info: images/logo/logos.png  used on input line 248.
-(pdftex.def)             Requested size: 113.81102pt x 18.68011pt.
-File: images/logo/ipsagarde.png Graphic file (type png)
-<use images/logo/ipsagarde.png>
-Package pdftex.def Info: images/logo/ipsagarde.png  used on input line 248.
-(pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
- [13] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2023/02/27 1.9 listings language file
-) (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2023/02/27 1.9 listings language file
-) (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
-File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
-)
-LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 10.95pt on input line 249.
-<images/other/implicit_forcing.png, id=351, 381.67593pt x 387.69844pt>
-File: images/other/implicit_forcing.png Graphic file (type png)
-<use images/other/implicit_forcing.png>
-Package pdftex.def Info: images/other/implicit_forcing.png  used on input line 258.
-(pdftex.def)             Requested size: 227.62206pt x 231.21289pt.
-File: images/logo/logos.png Graphic file (type png)
-<use images/logo/logos.png>
-Package pdftex.def Info: images/logo/logos.png  used on input line 292.
-(pdftex.def)             Requested size: 113.81102pt x 18.68011pt.
-File: images/logo/ipsagarde.png Graphic file (type png)
-<use images/logo/ipsagarde.png>
-Package pdftex.def Info: images/logo/ipsagarde.png  used on input line 292.
-(pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
- [14 <./images/other/implicit_forcing.png (PNG copy)>]
-<images/other/OF_arbo.png, id=372, 256.96pt x 380.42125pt>
-File: images/other/OF_arbo.png Graphic file (type png)
-<use images/other/OF_arbo.png>
-Package pdftex.def Info: images/other/OF_arbo.png  used on input line 359.
-(pdftex.def)             Requested size: 136.57462pt x 202.19696pt.
-File: images/logo/logos.png Graphic file (type png)
-<use images/logo/logos.png>
-Package pdftex.def Info: images/logo/logos.png  used on input line 363.
-(pdftex.def)             Requested size: 113.81102pt x 18.68011pt.
-File: images/logo/ipsagarde.png Graphic file (type png)
-<use images/logo/ipsagarde.png>
-Package pdftex.def Info: images/logo/ipsagarde.png  used on input line 363.
-(pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
- [15]
-File: images/logo/logos.png Graphic file (type png)
-<use images/logo/logos.png>
-Package pdftex.def Info: images/logo/logos.png  used on input line 389.
-(pdftex.def)             Requested size: 113.81102pt x 18.68011pt.
-File: images/logo/ipsagarde.png Graphic file (type png)
-<use images/logo/ipsagarde.png>
-Package pdftex.def Info: images/logo/ipsagarde.png  used on input line 389.
-(pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
- [16 <./images/other/OF_arbo.png>]
-<images/model/RESEDA_sketch.pdf, id=393, 478.78876pt x 255.95625pt>
-File: images/model/RESEDA_sketch.pdf Graphic file (type pdf)
-<use images/model/RESEDA_sketch.pdf>
-Package pdftex.def Info: images/model/RESEDA_sketch.pdf  used on input line 400.
-(pdftex.def)             Requested size: 227.62206pt x 121.68593pt.
-<images/coordsSeventh.png, id=394, 433.62pt x 433.62pt>
-File: images/coordsSeventh.png Graphic file (type png)
-<use images/coordsSeventh.png>
-Package pdftex.def Info: images/coordsSeventh.png  used on input line 414.
-(pdftex.def)             Requested size: 227.62206pt x 227.62082pt.
-File: images/logo/logos.png Graphic file (type png)
-<use images/logo/logos.png>
-Package pdftex.def Info: images/logo/logos.png  used on input line 418.
-(pdftex.def)             Requested size: 113.81102pt x 18.68011pt.
-File: images/logo/ipsagarde.png Graphic file (type png)
-<use images/logo/ipsagarde.png>
-Package pdftex.def Info: images/logo/ipsagarde.png  used on input line 418.
-(pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
- [17 <./images/model/RESEDA_sketch.pdf>]
-<images/numericalPump/diffuseurMesh.png, id=557, 771.88374pt x 549.05125pt>
-File: images/numericalPump/diffuseurMesh.png Graphic file (type png)
-<use images/numericalPump/diffuseurMesh.png>
-Package pdftex.def Info: images/numericalPump/diffuseurMesh.png  used on input line 420.
-(pdftex.def)             Requested size: 182.09486pt x 129.52135pt.
-<images/coords360.png, id=558, 433.62pt x 433.62pt>
-File: images/coords360.png Graphic file (type png)
-<use images/coords360.png>
-Package pdftex.def Info: images/coords360.png  used on input line 426.
-(pdftex.def)             Requested size: 182.09486pt x 182.09268pt.
-File: images/logo/logos.png Graphic file (type png)
-<use images/logo/logos.png>
-Package pdftex.def Info: images/logo/logos.png  used on input line 436.
-(pdftex.def)             Requested size: 113.81102pt x 18.68011pt.
-File: images/logo/ipsagarde.png Graphic file (type png)
-<use images/logo/ipsagarde.png>
-Package pdftex.def Info: images/logo/ipsagarde.png  used on input line 436.
-(pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
- [18 <./images/coordsSeventh.png> <./images/numericalPump/diffuseurMesh.png> <./images/coords360.png>]
-<images/coordsVisu.png, id=573, 578.16pt x 578.16pt>
-File: images/coordsVisu.png Graphic file (type png)
-<use images/coordsVisu.png>
-Package pdftex.def Info: images/coordsVisu.png  used on input line 459.
-(pdftex.def)             Requested size: 364.19667pt x 364.18979pt.
-File: images/logo/logos.png Graphic file (type png)
-<use images/logo/logos.png>
-Package pdftex.def Info: images/logo/logos.png  used on input line 463.
-(pdftex.def)             Requested size: 113.81102pt x 18.68011pt.
-File: images/logo/ipsagarde.png Graphic file (type png)
-<use images/logo/ipsagarde.png>
-Package pdftex.def Info: images/logo/ipsagarde.png  used on input line 463.
-(pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
- [19]
-File: images/logo/logos.png Graphic file (type png)
-<use images/logo/logos.png>
-Package pdftex.def Info: images/logo/logos.png  used on input line 488.
-(pdftex.def)             Requested size: 113.81102pt x 18.68011pt.
-File: images/logo/ipsagarde.png Graphic file (type png)
-<use images/logo/ipsagarde.png>
-Package pdftex.def Info: images/logo/ipsagarde.png  used on input line 488.
-(pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
- [20 <./images/coordsVisu.png>]
-<images/other/queue_IRENE.png, id=595, 1848.9075pt x 239.89626pt>
-File: images/other/queue_IRENE.png Graphic file (type png)
-<use images/other/queue_IRENE.png>
-Package pdftex.def Info: images/other/queue_IRENE.png  used on input line 496.
-(pdftex.def)             Requested size: 227.62206pt x 29.53305pt.
-PGFPlots: reading {autre/points_piv_tikz.txt}
-File: images/logo/logos.png Graphic file (type png)
-<use images/logo/logos.png>
-Package pdftex.def Info: images/logo/logos.png  used on input line 558.
-(pdftex.def)             Requested size: 113.81102pt x 18.68011pt.
-File: images/logo/ipsagarde.png Graphic file (type png)
-<use images/logo/ipsagarde.png>
-Package pdftex.def Info: images/logo/ipsagarde.png  used on input line 558.
-(pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
- [21 <./images/other/queue_IRENE.png>]
-File: images/logo/logos.png Graphic file (type png)
-<use images/logo/logos.png>
-Package pdftex.def Info: images/logo/logos.png  used on input line 589.
-(pdftex.def)             Requested size: 113.81102pt x 18.68011pt.
-File: images/logo/ipsagarde.png Graphic file (type png)
-<use images/logo/ipsagarde.png>
-Package pdftex.def Info: images/logo/ipsagarde.png  used on input line 589.
-(pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
- [22]
-File: images/logo/logos.png Graphic file (type png)
-<use images/logo/logos.png>
-Package pdftex.def Info: images/logo/logos.png  used on input line 649.
-(pdftex.def)             Requested size: 113.81102pt x 18.68011pt.
-File: images/logo/ipsagarde.png Graphic file (type png)
-<use images/logo/ipsagarde.png>
-Package pdftex.def Info: images/logo/ipsagarde.png  used on input line 649.
-(pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
- [23])
-File: images/logo/logos.png Graphic file (type png)
-<use images/logo/logos.png>
-Package pdftex.def Info: images/logo/logos.png  used on input line 613.
-(pdftex.def)             Requested size: 113.81102pt x 18.68011pt.
-File: images/logo/ipsagarde.png Graphic file (type png)
-<use images/logo/ipsagarde.png>
-Package pdftex.def Info: images/logo/ipsagarde.png  used on input line 613.
-(pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
- [24] (./conclusion/conclusion.tex)
-File: images/logo/logos.png Graphic file (type png)
-<use images/logo/logos.png>
-Package pdftex.def Info: images/logo/logos.png  used on input line 616.
-(pdftex.def)             Requested size: 113.81102pt x 18.68011pt.
-File: images/logo/ipsagarde.png Graphic file (type png)
-<use images/logo/ipsagarde.png>
-Package pdftex.def Info: images/logo/ipsagarde.png  used on input line 616.
-(pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
- [25
-
-]
-File: images/logo/logos.png Graphic file (type png)
-<use images/logo/logos.png>
-Package pdftex.def Info: images/logo/logos.png  used on input line 616.
-(pdftex.def)             Requested size: 113.81102pt x 18.68011pt.
-File: images/logo/ipsagarde.png Graphic file (type png)
-<use images/logo/ipsagarde.png>
-Package pdftex.def Info: images/logo/ipsagarde.png  used on input line 616.
-(pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
- [26] (./annexes/annexes.tex
-File: images/logo/logos.png Graphic file (type png)
-<use images/logo/logos.png>
-Package pdftex.def Info: images/logo/logos.png  used on input line 48.
-(pdftex.def)             Requested size: 113.81102pt x 18.68011pt.
-File: images/logo/ipsagarde.png Graphic file (type png)
-<use images/logo/ipsagarde.png>
-Package pdftex.def Info: images/logo/ipsagarde.png  used on input line 48.
-(pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
- [27] Excluding 'comment' comment.)
-File: images/logo/logos.png Graphic file (type png)
-<use images/logo/logos.png>
-Package pdftex.def Info: images/logo/logos.png  used on input line 624.
-(pdftex.def)             Requested size: 113.81102pt x 18.68011pt.
-File: images/logo/ipsagarde.png Graphic file (type png)
-<use images/logo/ipsagarde.png>
-Package pdftex.def Info: images/logo/ipsagarde.png  used on input line 624.
-(pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
- [28
-
-] (./quatre_couv/quatre_couv.tex
-File: images/logo/logos.png Graphic file (type png)
-<use images/logo/logos.png>
-Package pdftex.def Info: images/logo/logos.png  used on input line 1.
-(pdftex.def)             Requested size: 113.81102pt x 18.68011pt.
-File: images/logo/ipsagarde.png Graphic file (type png)
-<use images/logo/ipsagarde.png>
-Package pdftex.def Info: images/logo/ipsagarde.png  used on input line 1.
-(pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
- [29
-
-] Excluding 'comment' comment.)
-File: images/logo/logos.png Graphic file (type png)
-<use images/logo/logos.png>
-Package pdftex.def Info: images/logo/logos.png  used on input line 633.
-(pdftex.def)             Requested size: 113.81102pt x 18.68011pt.
-File: images/logo/ipsagarde.png Graphic file (type png)
-<use images/logo/ipsagarde.png>
-Package pdftex.def Info: images/logo/ipsagarde.png  used on input line 633.
-(pdftex.def)             Requested size: 45.52718pt x 33.53746pt.
- [30
-
-] (./rapport_stage.aux)
- ***********
-LaTeX2e <2023-11-01> patch level 1
-L3 programming layer <2024-01-22>
- ***********
-Package rerunfilecheck Info: File `rapport_stage.out' has not changed.
-(rerunfilecheck)             Checksum: F86EAC3B71A7834A8CF06F6D58D9F6D3;4517.
-Package logreq Info: Writing requests to 'rapport_stage.run.xml'.
-\openout1 = `rapport_stage.run.xml'.
-
- ) 
-Here is how much of TeX's memory you used:
- 73365 strings out of 474222
- 1832803 string characters out of 5748734
- 2595459 words of memory out of 5000000
- 94350 multiletter control sequences out of 15000+600000
- 607022 words of font info for 256 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 125i,19n,137p,1631b,2069s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx2074.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0600.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm2074.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsl1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1095.pfb>
-Output written on rapport_stage.pdf (30 pages, 3849277 bytes).
-PDF statistics:
- 860 PDF objects out of 1000 (max. 8388607)
- 613 compressed objects within 7 object streams
- 125 named destinations out of 1000 (max. 500000)
- 56989 words of extra memory for PDF output out of 61914 (max. 10000000)
-
+File: images/logo/ipsagarde.png Graphic file (t

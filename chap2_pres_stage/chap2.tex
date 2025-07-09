@@ -43,14 +43,14 @@ DA\cite{aschDataAssimilationMethods2016} is a technique used to improve the accu
 \end{figure}
 
 
-Expliquer  théorème de Bayes etc... dans la partie maths ? (c'est ici ?)
-Expliquer plus en détail l'EnKF avec la fameuse figure.
+// Expliquer  théorème de Bayes etc... dans la partie maths (à ref ici)
+%Expliquer plus en détail l'EnKF avec la fameuse figure.
 
 
 
 \subsection{State of the art} % Introduction
 
-Our approach to data assimilation is based on the \ac{EnKF}, which is a Monte Carlo method that uses a set of model states (the ensemble) to estimate the state of the system. The EnKF is particularly well-suited for nonlinear systems and has been successfully applied in various fields, including computational fluid dynamics (CFD).
+\paragraph{EnKF} Our approach to data assimilation is based on the \ac{EnKF}, which is a Monte Carlo method that uses a set of model states (the ensemble) to estimate the state of the system. The EnKF is particularly well-suited for nonlinear systems and has been successfully applied in various fields, including computational fluid dynamics (CFD).
 
 EnKF for DA in CFD has been used at LMFL since a few years, with the work of Lucas Villanueva\cite{villanuevaAugmentedStateEstimation2023}, Miguel M.Valero\cite{villanuevaAugmentedStateEstimation2023}, Tom Moussie\cite{moussieStatisticalInferenceUpstream2024a}, Sarp Er, Paolo Errante\cite{moussieStatisticalInferenceUpstream2024a} and Marcello Meldi\cite{villanuevaAugmentedStateEstimation2023}\cite{moussieStatisticalInferenceUpstream2024a} and his colleagues. The EnKF method is a powerful tool for assimilating data into computational fluid dynamics (CFD) simulations, allowing for the correction of model predictions based on observed data.
 
@@ -58,55 +58,35 @@ EnKF for DA in CFD has been used at LMFL since a few years, with the work of Luc
 
 Today, we can theorically run a \ac{DNS} which resolves exactly the Navier-Stokes equations, but it is still too expensive to be used in practice. Therefore, we use \ac{LES} or \ac{RANS} models to simulate the flow. The EnKF method can be applied to these models to improve some of theme parameters or physical state, to improve the physical accuracy.
 
-
-
-Expliquer en quoi / cas test ou ca a fonctionné en CFD en utilisant des paramètres écoulement. -> cas test cavity
-
-
-\begin{comment}
-    
-\begin{figure}[H]
-    \centering
-    \subfigure[Initial state]{
-        \includegraphics[width=0.3\textwidth]{images/cavity2_1ms.png}
-        \label{fig:cavity2_1ms}
-    }
-    \hfill
-    \subfigure[State after one EnKF iteration]{
-        \includegraphics[width=0.3\textwidth]{images/cavity2_3ms.png}
-        \label{fig:cavity2_3ms}
-    }
-    \hfill
-    \subfigure[Converged state after 2 EnKF iterations]{
-        \includegraphics[width=0.3\textwidth]{images/cavity_5ms.png}
-        \label{fig:cavity_5ms}
-    }
-    \caption{Evolution of the state through EnKF iterations}
-\end{figure}
-\end{comment}
-
+A good example based on the simple and academic \textit{cavity test case} illustrate it well.
+The cavity test case is a simple flow in a square cavity, where the flow is driven by a moving lid. The flow is characterized by a recirculation zone and a vortex in the center of the cavity. The EnKF method can be used to assimilate data from the flow, such as velocity or pressure measurements, to improve the accuracy of the simulation. The EnKF method can also be used to estimate the parameters of the model, such as the viscosity or the turbulence model coefficients, to improve the physical accuracy of the simulation.
+In our case, we are going to optimise the velocity wall condition.
+For that, we use the result on 5 locations of a precise converged simulation with a to boundary condition of 5 m.s$^{-1}$ as a reference. We will then assimilate data from the flow, at the 5 observation points\ref{fig:cavity2_1ms}.
+We start from a simulation with a wall condition of 1 m.s$^{-1}$, which is not the correct value. The EnKF method will then be used to correct the wall condition by assimilating the data from the flow at the 5 observation points. The EnKF method will iteratively update the wall condition until it converges to the correct value, which is 5 m.s$^{-1}$ in this case.
 
 \begin{figure}[H]
     \centering
     \begin{subfigure}[b]{0.3\textwidth}
-        \includegraphics[width=\textwidth]{images/cavity2_1ms.png}
+        \includegraphics[width=\textwidth]{images/cavity/cavity3_1ms.png}
         \caption{Initial state}
         \label{fig:cavity2_1ms}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.3\textwidth}
-        \includegraphics[width=\textwidth]{images/cavity2_3ms.png}
+        \includegraphics[width=\textwidth]{images/cavity/cavity3_3ms.png}
         \caption{After one EnKF it.}
         \label{fig:cavity2_3ms}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.3\textwidth}
-        \includegraphics[width=\textwidth]{images/cavity_5ms.png}
+        \includegraphics[width=\textwidth]{images/cavity/cavity3_5ms.png}
         \caption{Converged after 2 EnKF it.}
         \label{fig:cavity_5ms}
     \end{subfigure}
-    \caption{Evolution of the state through EnKF iterations}
+    \caption{Evolution of the state through EnKF iterations (\includegraphics[width=0.014\textwidth]{images/cavity/legende.png}: observation point)}
 \end{figure}
+
+
 
 
 % Je cherche à transmettre quelle idée ?
@@ -115,35 +95,58 @@ Expliquer en quoi / cas test ou ca a fonctionné en CFD en utilisant des paramè
 
 
 
-The IBM theory has been developed in 1972 by Charles S. Peskin\cite{IBM_base}.
-The Immersed Boundary Method (IBM) is a numerical technique used to simulate fluid-structure interactions, particularly in cases where the structure is immersed in a fluid flow. It allows for the simulation of complex geometries and moving boundaries without the need for body-fitted meshes, which can be computationally expensive and difficult to implement.
+\paragraph{IBM} The IBM theory has been developed in 1972 by Charles S. Peskin\cite{IBM_base}.
+The Immersed Boundary Method (IBM) is a numerical technique used to simulate fluid-structure interactions, particularly in cases where the structure is immersed in a fluid flow. It permit to keep numerical precision on complex geometries and moving boundaries without the need for body-fitted meshes, which can be computationally expensive and difficult to implement.
+
+They are differents ways to discretize the space when we do CFD (see Figure \ref{fig:solidworksMesh}\footnote{\url{https://www.solidworks.com/sw/docs/flow_basis_of_cad_embedded_cfd_whitepaper.pdf}}). The most common are structured meshes, unstructured meshes and body-fitted meshes. The body-fitted meshes are the most accurate but also the most expensive in terms of computational resources. The IBM allows to use unstructured meshes, which are less accurate but more efficient in terms of computational resources.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/solidworksMesh.png}
+    \caption{Differents ways to mesh}
+    \label{fig:solidworksMesh}
+\end{figure}
 
 
-IBM mais pas technique
+In our case, we impose a forcing term on the Navier-Stokes equations to simulate the effect of the immersed boundary on the fluid flow. // ref à plus tard. The problem is that it it lead to a few constants that need to be tuned to obtain the best results. For that, we use the EnKF method to optimize these constants. The EnKF method will be used to assimilate data from the flow at the observation points and to update the forcing term until it converges to the optimal value.
 
-(aller de + en plus en détail jusqu'a param IBM car gros cas test couteux en body-fitted)
+These high fidelity data are obtained from an experiment realised by Antoine Dazin\cite{dazinHighspeedStereoscopicPIV2011a} in 2011 at the LMFL. The experiment was realised on the SHF centrifugal pump. //RESEDA ?
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{images/IBM_Mesh.pdf}
+    \caption{...}
+    \label{fig:IBM_Mesh}
+\end{figure}
 
-Et là cas tests de thèse miguel (1 et 2)
 
-Objectif : amélioration params forcage stationaire
+% DONE (aller de + en plus en détail jusqu'a param IBM car gros cas test couteux en body-fitted)
 
-Centrifugal pumps are used since 1475\cite{retiFrancescoDiGiorgio1963} and are still widely used today in various applications, such as water supply, irrigation, and industrial processes. They are known for their efficiency and reliability, making them a popular choice for many fluid transport applications.
+This year, my supervisors M. VELRO and M. Meldi published an article\cite{valero2025immersed} about the optimisation of the IBM forcing and turbulence terms, that gives very good results. More recently, they obtain very good results on the optimisation of this parameters on a ascillating cylinder. // Tt ça à vérifier en relisant la thèse de Miguel.
+
+% DONE Et là cas tests de thèse miguel (1 et 2)
+
+This lead us to the idea of using the EnKF method to optimize the parameters of the IBM forcing term on a centrifugal pump, which is a more complex case than the previous ones. The goal is to improve the performance of the pump by optimizing the parameters of the IBM forcing term, which will lead to a better simulation of the fluid flow and a better understanding of the pump's behaviour.
+
+% Puis amener cas 3 (pompe) pour transitionnre vers la sous-parite suivante
+
+\subsection{Presentation of the test case: the centrifugal pump}
+
+
+Centrifugal pumps are used since 1475\cite{retiFrancescoDiGiorgio1963} and are still widely used today in various applications, such as water supply, irrigation, turbomachines, and industrial processes. They are known for their low cost, efficiency and reliability, making them a popular choice for many fluid transport applications.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.45\textwidth]{images/other/pompe_centrifuge.jpg}
-    \caption{Old centrifugal pump used to move straw (personnal picture)}
+    \caption{Old centrifugal pump used to move hay (personnal picture)}
     \label{fig:old_centrifugal_pump}
 \end{figure}
 
-\subsection{Presentation of the test case: the centrifugal pump}
 
 The studied centrifugal pump is a SHF impeller, which is a type of centrifugal pump designed for high flow rates and low head applications.
 
+% PARLER
 
-Parler de la partie expérimentale
-
-Results in the file are High-Speed \ac{PIV} data obtained by Antoine DAZIN in 2011\cite{dazinHighspeedStereoscopicPIV2011a} at a PIV frequency of 980 Hz on a SHF impeller
+Results in the file are High-Speed \ac{PIV} data obtained by Antoine DAZIN in 2011\cite{dazinHighspeedStereoscopicPIV2011a} at a PIV frequency of 980 Hz on a SHF impeller % Expliquer la PIV ?
 The operating conditions of the machine where :
 
 \begin{table}[!h]
@@ -168,11 +171,6 @@ The operating conditions of the machine where :
 \end{table}
 
 
-The data is stored in a directory structure that contains 6 directories
-
-The 6 directories are corresponding to two tests realised at 
-25\%, 50\% et 75\% of the diffuser height.
-
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.4\textwidth]{images/experimentalPump/impeller_position.png}
@@ -180,35 +178,69 @@ The 6 directories are corresponding to two tests realised at
     \label{fig:PIVPlans}
 \end{figure}
 
+The data is stored in a directory structure that contains 6 directories
+The 6 directories are corresponding to two tests realised at 25\%, 50\% et 75\% of the diffuser height.
 Each test was repeated twice for the same operating condition and the same height (R1, R2)
-
 In each directory, there are 1581 files corresponding to instantaneous ASCII data file.
 The 9 columns are corrresponding to :
 
-x (m),y(m),Vx(m/s),Vy(m/s),r(m),theta(rad),Vr(m/s),Vtheta(m/s),Vz(m/s),Unknown
- 
-The pdf is a paper where can be found the experimental conditions even if the analysis are focussed on another flow rate.
+%centrer
+$x(m),y(m),V_x(m.s^{-1}),V_y(m.s^{-1}),r(m),\theta(rad),Vr(m.s^{-1}),V_{\theta}(m.s^{-1}),V_z(m.s^{-1}),\textit{Unknown}$
 
-The theorical average speed at the input of the diffuseur is equal to \[\frac{Q_{diff_{in}}}{S_{diff_{in}}} = \frac{Q_{pump_{in}}}{2\pi R_{3} h_{diff}} = 3.65m.s^{-1}\]. $Q_{pump_{in}} = Q_{diff_{in}}$ because the mass flow rate is constant and the flow is incompressible.
+%The pdf is a paper where can be found the experimental conditions even if the analysis are focussed on another flow rate.
 
-Détail : R3 = 0.257m; h=0.0400m; Q = 0.236m3/s -> S=0.0646m2
+The theorical average speed at the input of the diffuseur is equal to \[\frac{Q_{dif_{in}}}{S_{dif_{in}}} = \frac{Q_{pump_{in}}}{2\pi R_{3} h_{dif}} = 3.65m.s^{-1}\]
+With $Q_{pump_{in}} = Q_{dif_{in}}$ because the mass flow rate is constant and the flow is incompressible.
 
+%Détail : R3 = 0.257m; h=0.0400m; Q = 0.236m3/s -> S=0.0646m2
 
-\title{Fonctionning}
+\title{Fonctionning}  % ????
 \title{Utility}
 
 
-
-Données hautes fidélités,...
+%Données hautes fidélités,...
 
 
 \section{Numerical ingredients}
 
 \subsection{Governing equations}
 
-- Equations (Incompressible, turbulence,...)
-- Ajout IBM -> Methodo (forcage continue ici (vs interpolation ?)) -> avantages
 
+
+\begin{equation}
+    (\boldsymbol{u} \cdot \boldsymbol{\nabla})\, \boldsymbol{u} = 
+    -\frac{1}{\rho} \nabla p + \nu \nabla^2 \boldsymbol{u} 
+    \underbrace{- \xi \nu \boldsymbol{D} \left( \boldsymbol{u} - \boldsymbol{u}_{ib} \right)}_{\boldsymbol{f}_P}
+\end{equation}
+
+\ref{fig:IBM_Mesh}
+
+with $[p] = M \cdot L^{-1} \cdot T^{-2}$ 
+(formalisme divisé par la masse volumique $\rho$ et $[\boldsymbol{u}] = L \cdot T^{-1}$ en incompressible).
+
+\begin{equation}
+    \xi = \left\{
+    \begin{array}{ll}
+        0 & \textrm{if } \boldsymbol{x} \in \Omega_f \\
+        1 & \textrm{if } \boldsymbol{x} \in (\Sigma_b \cup \Omega_b)
+    \end{array} \right.
+\end{equation}
+
+When  $D \rightarrow \infty$, \\ \textbf{champ IBM = champ body-fitted }
+        
+mais des valeurs trop élevées de $D$ peut mener à des instabilités <- A mentionner qqpart 
+
+
+
+
+Fluid mechanics is governed by the NS equations :
+
+
+
+
+- Equations (Incompressible, turbulence,...)
+- Ajout IBM\ref{fig:IBM_Mesh} -> Methodo (forcage continue ici (vs interpolation ?)) -> avantages
+- Ajout MRF
 
 % A écrire à ma facon, juste équations intéréssantes ici
 Darcy's law in the body interface region $\Sigma_b$ and the solid region $\Omega_b$. To do so, a spatial dependent tensor $\boldsymbol{D}(\boldsymbol{x})$ must be defined. The resulting penalty term is modelled as follows:
@@ -256,8 +288,8 @@ U += fP;
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{images/other/implicit_forcing.png}
-    \caption{Model}
-    \label{model}
+    \caption{implicit forcing term in OpenFoam}
+    \label{implicit_forcing}
 \end{figure}
 
 
@@ -297,10 +329,10 @@ Assuming the distance between two cells in the azimuthal direction at the tip of
 Toujours mentionner les paramètres utilisés (dans le controlDict et le CONESDict)
 
 \subsection{The library CONES}
-CONES is a library coded in Python/C++ developed for ... since 2022 (regarder sur le GitHub) ??? at LMFL
+CONES is a library coded in Python/C++ developed for ... since 2022 at LMFL. -> appuyer sur "seule online pour CFD à la connaissance du labo"
 It's parallelized and can be used on supercomputers. It is mainly designed to work with OpenFoam and DA codes as EnKF.\label{instants_partages}
 
-Simulations are performed using the C++ framework OpenFOAM, used to discretize the equations previously presented. Standing for \textsl{Open Source Field Operation and Manipulation}, OpenFOAM is an open-source project which provides many tools, referred to as executables %\citep[see][]{greenshields2021}. These executable files can be divided into three separate categories:
+Simulations are performed using the C++ framework OpenFOAM, used to discretize the equations previously presented. Standing for \textsl{Open Source Field Operation and Manipulation}, OpenFOAM is an open-source which provides many tools, referred to as executables %\citep[see][]{greenshields2021}. These executable files can be divided into three separate categories:
 \begin{itemize}
     \item[$-$] \textbf{Pre-processing}, including meshing and decomposing tools.
     \item[$-$] \textbf{Solving}, including in-built and custom solvers. Each solver is built to answer a specific CFD problem. 
@@ -309,6 +341,13 @@ Simulations are performed using the C++ framework OpenFOAM, used to discretize t
 
 OpenFOAM is not provided with a graphical interface, which is why a simulation is built by writing ``dictionaries'', in which are stored the necessary information for the simulation (mesh, turbulence model, maximum number of characteristic times, $\dots$). Thus, a specific directory structure must be observed, as outlined in ... % \autoref{fig:OpenFOAM_directory_structure}:
 % décrire la structure du dossier OpenFOAM et ce que chaque fichier fait (dans mon cas de simulation)
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/EnKF_Cones.pdf}
+    \caption{Model}
+    \label{model}
+\end{figure}
 
 
 \begin{forest}
@@ -406,7 +445,7 @@ Boundary conditions are defines as that:
 
 "Résultats de la simulation avec 3e5" -> 3e7
 
-\section{Application de la DA}
+\section{Application of the DA}
 
 
 \begin{figure}[H]
@@ -415,6 +454,18 @@ Boundary conditions are defines as that:
     \caption{Interpolation points over 360/7 degrees}
     \label{coordsSeventh}
 \end{figure}
+
+
+Notre but : faire fit ces 2 courbes : 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/numVSxp.png}
+    \caption{implicit forcing term in OpenFoam}
+    \label{numVSxp}
+\end{figure}
+
+
 
 \begin{figure}[H]
     \includegraphics[width=0.4\textwidth]{images/numericalPump/diffuseurMesh.png}
@@ -456,8 +507,8 @@ Nous avons donc choisis de moyenner temporellement les données PIV (ce qui revi
 Du coté de la simulation, nous avons donc besoin de moyenner azimutalement les données numériques pour les rendre compatibles avec les données PIV.
 
 \begin{figure}[H]
-    \includegraphics[width=0.8\textwidth]{images/coordsVisu.png}
-    \caption{METTRE LA FIGURE AVEC LES PTS MOYENNES ROUGES ET VIOLETS}
+    \includegraphics[width=0.8\textwidth]{images/numericalPump/coords.png}
+    \caption{}
     \label{CHANGER}
 \end{figure}
 
@@ -469,7 +520,7 @@ Pour cela j'ai commencé en moyennant 1/7 mais les paramètres étant locaux (no
 
 
 
-S'aider du plan de la présentation MALEAF + thèse M
+%S'aider du plan de la présentation MALEAF + thèse M
 
 %Expliquer comment j'applique la DA sur le cas test de la pompe centrifuge (pas d'equation)
 
@@ -639,7 +690,7 @@ Inflation...
 
 At pump flow rate = pump design flow rate So Q?/Q? =1
 
-\subsection{Preparation/modifation on OpenFoam and CONES}
+\subsection{Modifications on OpenFoam and CONES} %Preparation
 
 Tout ce qu'il y a dans le CONES dict
 Parler des modifs dans le code ici.
@@ -653,10 +704,24 @@ Parler des modifs dans le code ici.
 
 \section{Results}
 
+\subsection{Simple application of the EnKF}
 
 
+\dots
+
+Explication des écarts par différentes choses 
+
+\subsection{More sofisticated application of the EnKF}
+
+Tt ce que j'ai implémenté en plus (déjà détaillé partie précédente normalement)
+
+Explication des écarts par la bulle de recirculation.
+
+\subsection{Conclusion ans perspective}
 
 Ouverture : méthode IBM interpolation, article non référencé.
+
+\cite{valeroEnhancedStateEstimation2025} -> ML turbulent channel flow Miguel
 
 "Ouverture / idée" : DA temps réel dans avion impossible pour encore longtemps.
 Solution : Contrôle actif de la puissance en fonction des mesures de pression dans le compresseur :
