@@ -14,25 +14,25 @@
 \contentsline {subsection}{\numberline {2.1.2}Presentation of the data from the centrifugal pump test case}{14}{subsection.2.1.2}%
 \contentsline {section}{\numberline {2.2}Numerical ingredients}{16}{section.2.2}%
 \contentsline {subsection}{\numberline {2.2.1}CFD governing equations}{16}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}The open source code OpenFoam}{16}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.2}The open source code OpenFoam}{17}{subsection.2.2.2}%
 \contentsline {subsection}{\numberline {2.2.3}EnKF}{18}{subsection.2.2.3}%
 \contentsline {subsection}{\numberline {2.2.4}The library CONES}{18}{subsection.2.2.4}%
 \contentsline {subsection}{\numberline {2.2.5}Pump modeling}{20}{subsection.2.2.5}%
-\contentsline {section}{\numberline {2.3}IBM preliminary results}{20}{section.2.3}%
+\contentsline {section}{\numberline {2.3}IBM preliminary results}{21}{section.2.3}%
 \contentsline {section}{\numberline {2.4}Application of the DA}{22}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}Preprocessing of PIV data}{24}{subsection.2.4.1}%
-\contentsline {subparagraph}{Zone d'acquisition PIV}{24}{section*.27}%
-\contentsline {subparagraph}{1.}{25}{section*.29}%
-\contentsline {subparagraph}{2.Average}{25}{section*.30}%
-\contentsline {subparagraph}{3.Sampling}{25}{section*.31}%
-\contentsline {subparagraph}{4.Shaping for CONES}{26}{section*.32}%
-\contentsline {subparagraph}{5.Creation of a file for the interpolation}{26}{section*.33}%
+\contentsline {subsection}{\numberline {2.4.1}Preprocessing of PIV data}{25}{subsection.2.4.1}%
+\contentsline {subparagraph}{Zone d'acquisition PIV}{25}{section*.29}%
+\contentsline {subparagraph}{1.}{26}{section*.31}%
+\contentsline {subparagraph}{2.Average}{26}{section*.32}%
+\contentsline {subparagraph}{3.Sampling}{26}{section*.33}%
+\contentsline {subparagraph}{4.Shaping for CONES}{26}{section*.34}%
+\contentsline {subparagraph}{5.Creation of a file for the interpolation}{26}{section*.35}%
 \contentsline {subsection}{\numberline {2.4.2}Modifications on OpenFoam and CONES}{27}{subsection.2.4.2}%
 \contentsline {section}{\numberline {2.5}Results}{27}{section.2.5}%
-\contentsline {subsection}{\numberline {2.5.1}Conclusion ans perspective}{28}{subsection.2.5.1}%
-\contentsline {chapter}{Conclusion}{29}{chapter*.38}%
-\contentsline {chapter}{Annexes}{30}{section*.42}%
-\contentsline {chapter}{Bibliography}{31}{chapter*.43}%
-\contentsline {chapter}{List of acronyms}{32}{chapter*.44}%
-\contentsline {paragraph}{Résumé}{33}{section*.45}%
-\contentsline {paragraph}{Abstract}{33}{section*.46}%
+\contentsline {subsection}{\numberline {2.5.1}Conclusion ans perspective}{29}{subsection.2.5.1}%
+\contentsline {chapter}{Conclusion}{30}{chapter*.40}%
+\contentsline {chapter}{Annexes}{31}{section*.44}%
+\contentsline {chapter}{Bibliography}{32}{chapter*.45}%
+\contentsline {chapter}{List of acronyms}{33}{chapter*.46}%
+\contentsline {paragraph}{Résumé}{34}{section*.47}%
+\contentsline {paragraph}{Abstract}{34}{section*.48}%

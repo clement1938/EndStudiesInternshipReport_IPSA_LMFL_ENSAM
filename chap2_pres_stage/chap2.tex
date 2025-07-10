@@ -116,24 +116,53 @@ This lead us to the idea of using the EnKF method to optimize the parameters of 
 
 Centrifugal pumps are used since 1475\cite{retiFrancescoDiGiorgio1963} and are still widely used today in various applications, such as water supply, irrigation, turbomachines, and industrial processes. They are known for their low cost, efficiency and reliability, making them a popular choice for many fluid transport applications.
 
+
+
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.40\textwidth]{images/other/pompe_centrifuge.jpg}
-    \caption{Old centrifugal pump used to move hay (personnal picture)}
-    \label{fig:old_centrifugal_pump}
+    \begin{subfigure}[b]{0.34\textwidth}
+        \includegraphics[width=\textwidth]{images/other/pompe_centrifuge.jpg}
+        \caption{Old centrifugal pump used to move hay (personnal picture)}
+        \label{fig:old_centrifugal_pump}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.62\textwidth}
+        \includegraphics[width=\textwidth]{images/experimentalPump/RESEDA_benchmark_impeller_pic.png}
+        \caption{SHF impeller used in the RESEDA benchmark}
+        \label{fig:RESEDA_benchmark_impeller}
+    \end{subfigure}
+    \caption{Centrifugal pumps}
 \end{figure}
 
 
 The studied centrifugal pump is a \ac{SHF} impeller, which is a type of centrifugal pump designed for high flow rates and low head applications.
 Differents high fidelity data has been record on the diffuser of the pump at the LMFL:
 \begin{itemize}
-    \item High-Speed \ac{PIV} data\cite{dazinHighspeedStereoscopicPIV2011a} obtained by Antoine Dazin in 2011;
-    \item Pressure data\cite{fanEffectLeakagePerformanceb} obtained by Meng Fan in 2022.
+    \item High-Speed \ac{PIV} data obtained by Antoine Dazin\cite{dazinHighspeedStereoscopicPIV2011a} in 2011;
+    \item Pressure data obtained by Meng Fan\cite{fanEffectLeakagePerformanceb} in 2022.
 \end{itemize}
 
-M. Fan has also capture the inlet and outlet pressure that allow to compute the performance of the pump, which is defined as ...///
 
-// Ajouter des images de la pompe, de l'expérience, des PIV, des pressions, diffuseur etc. //
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{images/experimentalPump/diffuser.png}
+        \caption{Vaneless diffuser of the centrifugal pump}
+        \label{fig:diffuer}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{images/experimentalPump/pressure_taps.png}
+        \caption{Pressure taps on the diffuser}
+        \label{fig:pressureTaps}
+    \end{subfigure}
+    \caption{Diffuser and pressure taps of the centrifugal pump}
+\end{figure}
+
+M. Fan has also capture the inlet and outlet pressure that allow to compute the performance of the pump, which is defined as -> see part XX...///
+
+// Ajouter des images des PIV //
 
 
 The operating conditions of the machine where :
@@ -162,10 +191,19 @@ The operating conditions of the machine where :
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{images/experimentalPump/impeller_position.png}
+    \includegraphics[width=0.8\textwidth]{images/PIV_measurements_sketch.pdf}
     \caption{Position of the PIV plans}
     \label{fig:PIVPlans}
 \end{figure}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{images/PIV_measurements_sketch.pdf}
+    \caption{Position of the PIV plans}
+    \label{fig:PIVPlans}
+\end{figure}
+
 
 The data is stored in a directory structure that contains 6 directories
 The 6 directories are corresponding to two tests realised at 25\%, 50\% et 75\% of the diffuser height.
@@ -182,6 +220,9 @@ The theorical average speed at the input of the diffuseur is equal to \[\frac{Q_
 With $Q_{pump_{in}} = Q_{dif_{in}}$ because the mass flow rate is constant and the flow is incompressible.
 
 %Détail : R3 = 0.257m; h=0.0400m; Q = 0.236m3/s -> S=0.0646m2
+
+// Ici j'ai présenté les données XP, je parlerais de leurs traitement dans la partie 2.4.1
+
 
 \title{Fonctionning}  % ????
 \title{Utility}
