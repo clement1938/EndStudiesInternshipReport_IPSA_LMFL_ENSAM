@@ -170,6 +170,46 @@
       \verb http://link.springer.com/10.1007/s00348-010-1030-x
       \endverb
     \endentry
+    \entry{fanEffectLeakagePerformanceb}{article}{}
+      \name{author}{4}{}{%
+        {{hash=aa227619f5b725e382791bff743f5aa9}{%
+           family={Fan},
+           familyi={F\bibinitperiod},
+           given={Meng},
+           giveni={M\bibinitperiod}}}%
+        {{hash=c7d992ce9b813391b54f63851b4b9a92}{%
+           family={Dazin},
+           familyi={D\bibinitperiod},
+           given={Antoine},
+           giveni={A\bibinitperiod}}}%
+        {{hash=934b7faf7784a8c4678481c7ab09db9d}{%
+           family={Romano},
+           familyi={R\bibinitperiod},
+           given={Francesco},
+           giveni={F\bibinitperiod}}}%
+        {{hash=7a99d3dc1c4109b2dff0265893d97af3}{%
+           family={Bois},
+           familyi={B\bibinitperiod},
+           given={Gérard},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{201df2562a6b93a549eafeb37717a372}
+      \strng{fullhash}{4284e4d8b6976b304dd65662c5c7dd03}
+      \strng{bibnamehash}{201df2562a6b93a549eafeb37717a372}
+      \strng{authorbibnamehash}{201df2562a6b93a549eafeb37717a372}
+      \strng{authornamehash}{201df2562a6b93a549eafeb37717a372}
+      \strng{authorfullhash}{4284e4d8b6976b304dd65662c5c7dd03}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{An analysis of a pump vaneless diffuser model is presented with a particular focus on the leakage effect between the impeller outlet and diffuser inlet section. RANS and URANS simulations are conducted for three different leakage configurations. The k − ω SST turbulence model is used, carrying out the simulation by the open-source software OpenFOAM. Results obtained for each numerical configuration are analyzed and discussed. Comparison with experimental results corresponding to one of the tested configurations is also presented. They show that the leakage flow slightly influences the overall pump performance and more specifically the vaneless diffuser one. When considering the real flow rate obtained by CFD, including leakage effects, comparison with the experimental results get closer both for the overall pump and for the vaneless diffuser performances. A special focus on the instability onset in the vaneless diffuser is also proposed for each leakage configuration which leads to selecting the best way to reproduce experimental behavior from an adequate CFD approach and correct boundary conditions.}
+      \field{langid}{english}
+      \field{title}{Effect of Leakage on the Performance of the Vaneless Diffuser of a Centrifugal Pump Model}
+      \verb{file}
+      \verb /home/clementt/Zotero/storage/ATTUGTW4/Fan et al. - Effect of leakage on the performance of the vaneless diffuser of a centrifugal pump model.pdf
+      \endverb
+    \endentry
     \entry{moussieStatisticalInferenceUpstream2024a}{article}{}
       \name{author}{3}{}{%
         {{hash=7d1fc99b76c34515079e92e9becf2854}{%

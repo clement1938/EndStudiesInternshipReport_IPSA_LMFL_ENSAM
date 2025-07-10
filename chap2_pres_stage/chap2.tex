@@ -1,39 +1,38 @@
 \chapter{Optimizing the performance of a centrifugal pump by data assimilation}
 
-
-
-%En combien de temps l'information de pression remonte-t-elle dans le diffuseur ?
-
-
-%144 coeurs : 54it/min
-%300-> 336 coeurs : 100it/min (+- 20\%)
-
 %– Le récit de l’expérience préprofessionnelle doit faire état de toutes les fonctions exercées par le stagiaire à son poste. Il doit comporter des développements techniques (illustrés par des schémas expliqués et commentés, par exemple), mais il s’agit avant tout de donner au lecteur une idée de ce que furent l’emploi du temps du stagiaire, ses tâches quotidiennes, les contraintes du métier, la nature des relations humaines dans cet environnement, les difficultés rencontrées et les résultats obtenus.
 %– Les connaissances techniques acquises doivent transparaître dans le document. Le correcteur évaluera si celui-ci fait état d’une maîtrise réelle des outils (informatiques, mécaniques, etc.) utilisés pendant le stage. En outre, il estimera le niveau des connaissances techniques acquises que la rédaction du rapport aura su mettre en évidence.
 
-The internship began in February 2025. I was provided with a fix computer, and credentials to connect to the Irene and Cassiopée supercomputers. Marcello MELDI, Antoine DAZIN and Miguel MARTINEZ VALERO which are my internship supervisors, showed me around the lab.
-Then, Tom MOUSSIE and Miguel, my co-officies, explained to me the basics of OpenFoam and CONES, the DA code. I was able to run a few tests on OpenFoam on the supercomputers, which allowed me to familiarize myself with the tools and the code. % PARLER DE LA CONFIG DE CONES
+The internship began in February 2025. I was provided with a fix computer, credentials to connect to the Irene and Cassiopée supercomputers, and the link to the CONES's gitlab\footnote{\url{https://gitlab.ensam.eu/pe431/cones-dev}}. Marcello MELDI, Antoine DAZIN and Miguel MARTINEZ VALERO which are my internship supervisors, showed me around the lab.
+Then, Tom MOUSSIE and Miguel, my co-officies, explained to me the basics of OpenFoam and CONES, the DA code. I was able to run a few tests on OpenFoam on the supercomputers, which allowed me to familiarize myself with the tools and the code.
 
-
-% Introduction par thèse de Miguel
-
-%Lors de mes essais sur le supercalculateur, j'ai utilisé une partition qui offre une puissance de calcul totale de 723 Tflop/s. Elle est composée de 185 nœuds Intel 2x18 cœurs Skylake, cadencés à 2,3 GHz avec 96 Go de mémoire. Ces ressources m'ont permis d'effectuer les tests demandant le plus de ressources.
+% Pour l'introduction, regarder la thèse de Miguel
 
 \section{Data Assimilation}
 
-% PAS d'equation ici, sinon je me fait frapper
+% PAS d'equation ici, sinon je me fait frapper par le Mi
 
-DA\cite{aschDataAssimilationMethods2016} is a technique used to improve the accuracy of numerical models by combining them with observational data. It is widely used in various fields, including meteorology, oceanography, and engineering. The goal of data assimilation is to obtain a more accurate representation of the state of a system by integrating information from different physical measurements or hight fidelity sources. An illustration of the data assimilation process is shown in Figure \ref{fig:DAmap}.
+DA\cite{aschDataAssimilationMethods2016} is a technique used to improve the accuracy of numerical models by combining them with observational data. It is widely used in various fields, including meteorology, oceanography, and engineering. The goal of data assimilation is to obtain a more accurate representation of the state of a system by integrating information from different physical measurements or hight fidelity sources.
 
-% changer l'endroit de la citation
+\subsection{State of the art}
+
+
+It does exist many methods for data assimilation, distributed in three main categories: \textbf{variational methods}, \textbf{statistical methods} and \textbf{hybrid} (see \autoref{fig:DAmap}). Variational methods (also called classical methods), such as the 3D-Var and 4D-Var, use optimization techniques to find the best estimate of the state of a system by minimizing the difference between model predictions and observations. Statistical methods (also called sequential methods), such as the Kalman filter and its variants (e.g., EnKF), update the model state iteratively as new observations become available.
+
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.60\textwidth]{images/other/DAmap.png}
+    \includegraphics[width=0.7\textwidth]{images/other/DAmap.png}
     \caption{The big picture for DA methods and algorithms\cite{aschDataAssimilationMethods2016}}
     \label{fig:DAmap}
 \end{figure}
 
+
+\paragraph{EnKF} Our approach to data assimilation is based on the \ac{EnKF}, which is a Monte Carlo method that uses a set of model states (the ensemble) to estimate the state of the system. The EnKF is particularly well-suited for nonlinear systems and has been successfully applied in various fields, including computational fluid dynamics (CFD).
+
+EnKF for DA in CFD has been used at LMFL since a few years, with the work of Lucas Villanueva\cite{villanuevaAugmentedStateEstimation2023}, Miguel M.Valero\cite{villanuevaAugmentedStateEstimation2023}, Tom Moussie\cite{moussieStatisticalInferenceUpstream2024a}, Sarp Er, Paolo Errante\cite{moussieStatisticalInferenceUpstream2024a} and Marcello Meldi\cite{villanuevaAugmentedStateEstimation2023}\cite{moussieStatisticalInferenceUpstream2024a} and his colleagues. The EnKF method is a powerful tool for assimilating data into computational fluid dynamics (CFD) simulations, allowing for the correction of model predictions based on observed data.
+An illustration of the EnKF data assimilation process is shown in Figure \ref{fig:EnKFIllustration}.
+The maths behind the EnKF method is detail in the \autoref{subsec:EnKF}
 
 \begin{figure}[H]
     \centering
@@ -42,27 +41,14 @@ DA\cite{aschDataAssimilationMethods2016} is a technique used to improve the accu
     \label{fig:EnKFIllustration}
 \end{figure}
 
-
-// Expliquer  théorème de Bayes etc... dans la partie maths (à ref ici)
-%Expliquer plus en détail l'EnKF avec la fameuse figure.
-
-
-
-\subsection{State of the art} % Introduction
-
-\paragraph{EnKF} Our approach to data assimilation is based on the \ac{EnKF}, which is a Monte Carlo method that uses a set of model states (the ensemble) to estimate the state of the system. The EnKF is particularly well-suited for nonlinear systems and has been successfully applied in various fields, including computational fluid dynamics (CFD).
-
-EnKF for DA in CFD has been used at LMFL since a few years, with the work of Lucas Villanueva\cite{villanuevaAugmentedStateEstimation2023}, Miguel M.Valero\cite{villanuevaAugmentedStateEstimation2023}, Tom Moussie\cite{moussieStatisticalInferenceUpstream2024a}, Sarp Er, Paolo Errante\cite{moussieStatisticalInferenceUpstream2024a} and Marcello Meldi\cite{villanuevaAugmentedStateEstimation2023}\cite{moussieStatisticalInferenceUpstream2024a} and his colleagues. The EnKF method is a powerful tool for assimilating data into computational fluid dynamics (CFD) simulations, allowing for the correction of model predictions based on observed data.
-
-
-
-Today, we can theorically run a \ac{DNS} which resolves exactly the Navier-Stokes equations, but it is still too expensive to be used in practice. Therefore, we use \ac{LES} or \ac{RANS} models to simulate the flow. The EnKF method can be applied to these models to improve some of theme parameters or physical state, to improve the physical accuracy.
+\paragraph{CFD} Today, we can theorically run a \ac{DNS} which resolves exactly the Navier-Stokes equations, but it is still too expensive to be used in practice. Therefore, we generally use \ac{LES} or \ac{RANS} models to simulate the flow. The EnKF method can be applied to these models to improve some of theme parameters or physical state, to improve the physical accuracy.
 
 A good example based on the simple and academic \textit{cavity test case} illustrate it well.
 The cavity test case is a simple flow in a square cavity, where the flow is driven by a moving lid. The flow is characterized by a recirculation zone and a vortex in the center of the cavity. The EnKF method can be used to assimilate data from the flow, such as velocity or pressure measurements, to improve the accuracy of the simulation. The EnKF method can also be used to estimate the parameters of the model, such as the viscosity or the turbulence model coefficients, to improve the physical accuracy of the simulation.
+
 In our case, we are going to optimise the velocity wall condition.
-For that, we use the result on 5 locations of a precise converged simulation with a to boundary condition of 5 m.s$^{-1}$ as a reference. We will then assimilate data from the flow, at the 5 observation points\ref{fig:cavity2_1ms}.
-We start from a simulation with a wall condition of 1 m.s$^{-1}$, which is not the correct value. The EnKF method will then be used to correct the wall condition by assimilating the data from the flow at the 5 observation points. The EnKF method will iteratively update the wall condition until it converges to the correct value, which is 5 m.s$^{-1}$ in this case.
+For that, we use the result on 5 locations of a precise converged simulation with a to boundary condition of 5 m.s$^{-1}$ as a reference. We will then assimilate data from the flow, at the 5 observation points (see \autoref{fig:cavity2_1ms}).
+We start from a simulation with a wall condition of 1 m.s$^{-1}$, which is not the correct value. The EnKF method will then be used to correct the wall condition by assimilating the data from the flow at the 5 observation points. The EnKF method will iteratively update the wall condition until it converges to the correct value, which is 5 m.s$^{-1}$ in this case. In only 3 EnKF iterations, the wall condition converges to the correct value (with a relative error of 0.05 m.s$^{-1}$).
 
 \begin{figure}[H]
     \centering
@@ -83,7 +69,7 @@ We start from a simulation with a wall condition of 1 m.s$^{-1}$, which is not t
         \caption{Converged after 2 EnKF it.}
         \label{fig:cavity_5ms}
     \end{subfigure}
-    \caption{Evolution of the state through EnKF iterations (\includegraphics[width=0.014\textwidth]{images/cavity/legende.png}: observation point)}
+    \caption{Evolution of the state through EnKF iterations (\includegraphics[width=0.013\textwidth]{images/cavity/legende.png}: observation point)}
 \end{figure}
 
 
@@ -96,9 +82,9 @@ We start from a simulation with a wall condition of 1 m.s$^{-1}$, which is not t
 
 
 \paragraph{IBM} The IBM theory has been developed in 1972 by Charles S. Peskin\cite{IBM_base}.
-The Immersed Boundary Method (IBM) is a numerical technique used to simulate fluid-structure interactions, particularly in cases where the structure is immersed in a fluid flow. It permit to keep numerical precision on complex geometries and moving boundaries without the need for body-fitted meshes, which can be computationally expensive and difficult to implement.
+The IBM is a numerical technique used to simulate fluid-structure interactions, particularly in cases where the structure is immersed in a fluid flow. It permit to keep numerical precision on complex geometries and moving boundaries without the need for body-fitted meshes, which can be computationally expensive and difficult to implement.
 
-They are differents ways to discretize the space when we do CFD (see Figure \ref{fig:solidworksMesh}\footnote{\url{https://www.solidworks.com/sw/docs/flow_basis_of_cad_embedded_cfd_whitepaper.pdf}}). The most common are structured meshes, unstructured meshes and body-fitted meshes. The body-fitted meshes are the most accurate but also the most expensive in terms of computational resources. The IBM allows to use unstructured meshes, which are less accurate but more efficient in terms of computational resources.
+They are differents ways to discretize the space when we do CFD (see \autoref{fig:solidworksMesh}\footnote{\url{https://www.solidworks.com/sw/docs/flow_basis_of_cad_embedded_cfd_whitepaper.pdf}}). The most common are structured meshes, unstructured meshes and body-fitted meshes. The body-fitted meshes are the most accurate but also the most expensive in terms of computational resources. The IBM allows to use unstructured meshes, which are less accurate but more efficient in terms of computational resources.
 
 \begin{figure}[H]
     \centering
@@ -108,31 +94,25 @@ They are differents ways to discretize the space when we do CFD (see Figure \ref
 \end{figure}
 
 
-In our case, we impose a forcing term on the Navier-Stokes equations to simulate the effect of the immersed boundary on the fluid flow. // ref à plus tard. The problem is that it it lead to a few constants that need to be tuned to obtain the best results. For that, we use the EnKF method to optimize these constants. The EnKF method will be used to assimilate data from the flow at the observation points and to update the forcing term until it converges to the optimal value.
+In our case, we impose a forcing term on the Navier-Stokes equations to simulate the effect of the immersed boundary on the fluid flow. This term is add only on the penalization part $\Omega_b U \Sigma_b$ (see \autoref{fig:IBM_Mesh}). The maths behind the EnKF method is detail in the \autoref{subsec:CFD_governing_equations}. The problem of this method is that it it lead to a few constants that need to be tuned to obtain the best results. For that, we use the EnKF method to optimize these constants. The EnKF method will be used to assimilate data from the flow at the observation points and to update the forcing term until it converges to the optimal value.
 
-These high fidelity data are obtained from an experiment explained in the next subsection
+These high fidelity data are obtained from an experiment explained in the next \autoref{subsec:Presentation_of_the_data_from_the_centrifugal_pump_test_case}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.45\textwidth]{images/IBM_Mesh.pdf}
-    \caption{...}
+    \caption{IBM regions}
     \label{fig:IBM_Mesh}
 \end{figure}
-Quel niveau de détail ici ?
 
-% DONE (aller de + en plus en détail jusqu'a param IBM car gros cas test couteux en body-fitted)
-
-This year, my supervisors M. VELRO and M. Meldi published an article\cite{valero2025immersed} about the optimisation of the IBM forcing and turbulence terms, that gives very good results. More recently, they obtain very good results on the optimisation of this parameters on a ascillating cylinder. // Tt ça à vérifier en relisant la thèse de Miguel.
-
-% DONE Et là cas tests de thèse miguel (1 et 2)
+This year, my supervisors M. VELRO and M. Meldi published an article\cite{valero2025immersed} about the optimisation of the IBM forcing and turbulence terms, that gives very good results. More recently, they obtain very good results on the optimisation of this parameters on a ascillating cylinder.
+// Tt ça à vérifier en relisant la thèse de Miguel. //
 
 This lead us to the idea of using the EnKF method to optimize the parameters of the IBM forcing term on a centrifugal pump, which is a more complex case than the previous ones. The goal is to improve the performance of the pump by optimizing the parameters of the IBM forcing term, which will lead to a better simulation of the fluid flow and a better understanding of the pump's behaviour.
 
 % Puis amener cas 3 (pompe) pour transitionnre vers la sous-parite suivante
 
-\subsection{Presentation of the test case: the centrifugal pump}
-
-
-Parler rapidement qu'on a des données (pression et PIV)
+\subsection{Presentation of the data from the centrifugal pump test case}
+\label{subsec:Presentation_of_the_data_from_the_centrifugal_pump_test_case}
 
 Centrifugal pumps are used since 1475\cite{retiFrancescoDiGiorgio1963} and are still widely used today in various applications, such as water supply, irrigation, turbomachines, and industrial processes. They are known for their low cost, efficiency and reliability, making them a popular choice for many fluid transport applications.
 
@@ -145,10 +125,17 @@ Centrifugal pumps are used since 1475\cite{retiFrancescoDiGiorgio1963} and are s
 
 
 The studied centrifugal pump is a \ac{SHF} impeller, which is a type of centrifugal pump designed for high flow rates and low head applications.
-These high fidelity data are obtained from an experiment realised by Antoine Dazin\cite{dazinHighspeedStereoscopicPIV2011a} in 2011 at the LMFL. The experiment was realised on the SHF impeller on the RESEDA centrifugal pump benchmark. -> a vérifier dans la thèse de Miguel
-% PARLER
+Differents high fidelity data has been record on the diffuser of the pump at the LMFL:
+\begin{itemize}
+    \item High-Speed \ac{PIV} data\cite{dazinHighspeedStereoscopicPIV2011a} obtained by Antoine Dazin in 2011;
+    \item Pressure data\cite{fanEffectLeakagePerformanceb} obtained by Meng Fan in 2022.
+\end{itemize}
 
-Results in the file are High-Speed \ac{PIV} data obtained by Antoine DAZIN in 2011\cite{dazinHighspeedStereoscopicPIV2011a} at a PIV frequency of 980 Hz on a SHF impeller % Expliquer la PIV ?
+M. Fan has also capture the inlet and outlet pressure that allow to compute the performance of the pump, which is defined as ...///
+
+// Ajouter des images de la pompe, de l'expérience, des PIV, des pressions, diffuseur etc. //
+
+
 The operating conditions of the machine where :
 
 \begin{table}[!h]
@@ -206,7 +193,7 @@ With $Q_{pump_{in}} = Q_{dif_{in}}$ because the mass flow rate is constant and t
 \section{Numerical ingredients}
 
 \subsection{CFD governing equations}
-
+\label{subsec:CFD_governing_equations}
 
 
 \begin{equation}
@@ -328,7 +315,9 @@ Assuming the distance between two cells in the azimuthal direction at the tip of
 \end{equation}
 
 
+
 \subsection{EnKF}
+\label{subsec:EnKF}
 
 Toujours mentionner les paramètres utilisés (dans le controlDict et le CONESDict)
 
@@ -348,9 +337,9 @@ OpenFOAM is not provided with a graphical interface, which is why a simulation i
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{images/EnKF_Cones.pdf}
-    \caption{Model}
-    \label{model}
+    \includegraphics[width=1\textwidth]{images/EnKF_Cones.pdf}
+    \caption{CONES}
+    \label{fig:CONES}
 \end{figure}
 
 
@@ -440,22 +429,18 @@ Boundary conditions are defines as that:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{images/model/RESEDA_sketch.pdf}
-    \caption{Model}
-    \label{Model}
+    \includegraphics[width=1\textwidth]{images/model/RESEDA_sketch.pdf}
+    \caption{Model of the RESDA benchmark}
+    \label{fig:RESDA_Model}
 \end{figure}
 
 \section{IBM preliminary results}
 
-"Résultats de la simulation avec 3e5" -> 3e7
+"Résultats de la simulation avec 3e5" -> 3e7 avec image
 
 
 
-
-
-Graçe aux données xp (mentionné partie 2.1.2, on peut faire d la DA)
-
-
+Graçe aux données xp (mentionné partie 2.1.2, on peut faire de la DA)
 
 \begin{figure}[H]
     \centering
@@ -788,3 +773,15 @@ Voir "TD -> Done et "TDSave -> Done" pour voir tt ce que j'ai fais
 
 
 The random variations are random but with a reproducibility seed (sed) that allows to have the same result each time the simulation is launched.
+
+
+
+
+
+
+
+
+%En combien de temps l'information de pression remonte-t-elle dans le diffuseur ? -->> "directement"
+
+%144 coeurs : 54it/min
+%300-> 336 coeurs : 100it/min (+- 20\%)
