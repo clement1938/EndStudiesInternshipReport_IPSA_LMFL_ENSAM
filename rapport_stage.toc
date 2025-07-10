@@ -3,7 +3,7 @@
 \contentsline {chapter}{Summary sheet}{4}{section*.3}%
 \contentsline {chapter}{General Introduction}{5}{section*.5}%
 \contentsline {chapter}{\numberline {1}The LMFL Laboratory and Arts et Métiers Lille Campus}{6}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Presentation of the LMFL Laboratory and Its Missions -or- Scientific Environment and Host Institution}{6}{section.1.1}%
+\contentsline {section}{\numberline {1.1}Presentation of the LMFL laboratory and its missions //or// Scientific environment and host institution}{6}{section.1.1}%
 \contentsline {section}{\numberline {1.2}Social and environmental responsibility}{7}{section.1.2}%
 \contentsline {chapter}{\numberline {2}Optimizing the performance of a centrifugal pump by data assimilation}{10}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Data Assimilation}{10}{section.2.1}%

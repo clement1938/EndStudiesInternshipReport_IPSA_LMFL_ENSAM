@@ -1,33 +1,32 @@
 \section*{General Introduction}
 \addcontentsline{toc}{chapter}{General Introduction}
 
-Since I'm young, I've always been facinated by fluid mechanics. I remember watching planes flying and being amazed by the way they could fly. I was also interested by the way water flows in rivers and sailing boats. In high scool I continue more theoricaly my planes projects by using \ac{CFD}. This fascination led me to study physics and mathematics in a university level, where I descoverded applied mathematics including CFD, \ac{AI} and Kalman Filter.
+Since I was young, I've always been fascinated by fluid mechanics.
+I remember watching planes flying and being amazed by the way they could fly.
+I was also interested in the way water flows in rivers and sailing boats. In high school, I began working on plane-related projects and explored them more theoretically through \ac{CFD}.
+
+This fascination led me to study physics and mathematics at university, where I discovered applied mathematics including CFD, \ac{AI} and Kalman Filter.
 During my studies, I've become passionate about applied mathematics and fluid mechanics. That's why I did my last internship at \ac{CERFACS}.
-It convinced me to do a thesis in \ac{CFD} after \ac{IPSA}, my current ingeneering school. The subject proposed by \ac{LMFL} really suited me: CFD on an opensource library, coupled with AI and experimental data. So it was with enthusiasm that I started my internship on February 26, 2025, in this laboratory for a duration of six months.
+It convinced me to do a thesis in \ac{CFD} after \ac{IPSA}, my current engeneering school.
 
-In a few words, the LMFL is a public laboratory, composed by 38 researchers and around 25 phD students. The laboratory has three sites in Lille (\ac{ENSAM} and \ac{ONERA}) and on the Villeneuve d'Ascq campus (Centrale Lille, \ac{CNRS}, Université de Lille).
+The subject proposed by \ac{LMFL} really suited me: CFD using an open-source library, coupled with AI and experimental data. So it was with enthusiasm that I started my internship on February 26, 2025, in this laboratory for a duration of six months.
 
+Briefly, the LMFL is a public laboratory, consisting of 38 researchers and around 25 PhD students. The laboratory has three sites in Lille (\ac{ENSAM} and \ac{ONERA}) and on the Villeneuve d'Ascq campus (Centrale Lille, \ac{CNRS}, Université de Lille).
 
-
-
-%Mon maître de stage, Carlos MONTILLA, est responsable d’Antares \cite{antares} depuis un an. Antares est un code d’analyse de données privé sous forme de librairie python et C++, développé au CERFACS depuis 2012 et dont l’objectif est de réaliser du pré-traitement et post-traitement sur des simulations numériques utilisées par le laboratoire, ses actionnaires et autres partenaires. Il contient notamment un traitement d’interpolation et un traitement \ac{FWH}, principalement codé en Python par Carlos MONTILLA. La chaîne de calcul aéroacoustique (sous-section \ref{s243}) utilise le traitement d’interpolation avant de pouvoir utiliser le traitement FWH. L’objectif de l’interpolation d’Antares est de pouvoir interpoler les valeurs aux points d’un maillage ’cible’, issu d’une discrétisation de l’espace, en utilisant les valeurs aux points d’un maillage ’source’ ; par exemple, dans le cadre d’un raffinement de maillage entre deux itérations de calcul ou lors de la création d’une surface de contrôle dans un maillage 3D pour appliquer les équations de FWH à la propagation aéroacoustique.
-
-My main tasks during this internship were as follows:
+My main tasks during this internship were:
 
 \begin{itemize}
-    \item Convergence of the CFD solution;
-    \item Implementation of the \ac{DA} problem in OpenFoam and \ac{CONES};
-    \item Optimization of forcing parameters of the \ac{IBM} using \ac{DA} with CONES to correct a non-physical behavior using IBM;
-    % \item Z.  % \ac{DSP} à placer
+    \item Ensuring the convergence of the CFD solution;
+    \item Implementing the \ac{DA} problem in OpenFOAM and \ac{CONES};
+    \item Optimizing the forcing parameters of the \ac{IBM} using \ac{DA} with CONES to correct a non-physical behavior.
 \end{itemize}
 
-% A savoir, 3D, non structuré, temps de calcul, caractéristiques des équations à interpoler ...
 
-To explain the content of my internship in more detail, I will first present the LMFL research laboratory. In the second part, I'll present the work I carried out in the form of a report. This second part is divided into five sub-sections:
+To present the details of my internship work, I will first introduce the LMFL research laboratory. In the second part, I will describe the work I carried out, structured into the following five sections:
 \begin{enumerate}
-    \item Introduction to the DA problems;
+    \item Introduction to DA problems;
     \item Numerical ingredients of the CFD and DA problems;
-    \item IBM preliminary results;
-    \item Application of the DA to the IBM;
+    \item Preliminary results using IBM;
+    \item Application of DA to the IBM;
     \item Results and perspectives.
 \end{enumerate}

@@ -27,7 +27,9 @@ It also enables us to suggest what could be done by the next person working on t
 \begin{minipage}[t]{8.0cm}
 %\begin{itemize}
     Optimize the forcing parameters of an IBM\tablefootnote{All acronyms are defined from the next page or available in the \hyperref[sec:glossary]{glossary}.}
- \\ in a centrifugal pump using DA with CONES
+ \\ in a centrifugal pump using DA with CONES, to find the correct perfomance of the pump.
+    \hspace{0.4cm}
+    %\hphantom{.}
 %\end{itemize}
 \end{minipage} \\ 
 
@@ -43,7 +45,7 @@ It also enables us to suggest what could be done by the next person working on t
 %\end{itemize}
 \end{minipage} & 
 \begin{minipage}[t]{8.0cm}
-OpenFoam, CONES, VSCode, Git, Python,\\C++, Bash, TGCC, Paraview
+OpenFoam 9, CONES, VSCode, LaTeX, Git,\\Python,C++, Bash, TGCC, Paraview
 \end{minipage} \\ 
 
 
@@ -54,11 +56,11 @@ OpenFoam, CONES, VSCode, Git, Python,\\C++, Bash, TGCC, Paraview
 \hline
 \multicolumn{2}{|p{14cm}|}{
 \begin{minipage}[t]{14cm}
-- Coding the DA problem in OpenFoam and CONES
+- Coding the DA test case in OpenFoam and CONES
 
-- Convergence of the CFD solution%Influence de paramètres de la méthode d'interpolation IDW
+- Convergence of the CFD solution (physical and numerical stability/precision) %Influence de paramètres de la méthode d'interpolation IDW
 
-- Convergence of the EnFK%Différences d'erreur entre la méthode IDW et linéaire  %Optimisation de la rapidité du traitement
+- Convergence of the EnFK, adding tools as inflation   %Différences d'erreur entre la méthode IDW et linéaire  %Optimisation de la rapidité du traitement
 \hspace{0.5cm}
 \end{minipage}
 } \\ 
@@ -69,11 +71,13 @@ OpenFoam, CONES, VSCode, Git, Python,\\C++, Bash, TGCC, Paraview
 \hline
 \begin{minipage}[t]{7.0cm}
     
-- Diminution of 50\% of the mathematical NRMSE with DA (almost 100\% expected)
+- Diminution up to 50\% of the\\mathematical NRMSE with DA\\(almost 100\% expected)
 
-- Implementation of inflation in CONES
+- Implementation of inflation, in CONES
 
-- Descovering of a recirculation bubble in the diffuser\hspace{0.5cm}
+- Implementation of radial expansion,\\"azimutal interpolation" in OpenFoam 9
+
+- Descovering of a recirculation bubble in the diffuser\hspace{0.8cm}
 
 
 %\item Paramètres n \simeq 10 et p \simeq 10 optimaux pour la méthode IDW
@@ -81,8 +85,11 @@ OpenFoam, CONES, VSCode, Git, Python,\\C++, Bash, TGCC, Paraview
 \end{minipage} & 
 \begin{minipage}[t]{8.0cm}
 
-- The shape of the rotating impeller combined with the IBM permit no-physical flow that induce recirculation buble in the diffuser where DA sensors are located.
+- The direction of wake of the impeller in the diffuser is reversed because of the MRF method
 
+- The shape of the rotating impeller combined with the IBM permit no-physical flow that\\induce recirculation buble in the diffuser where DA sensors are located.
+
+- Results of the EnKF are not as good as expected because of the IBM method combined to MRF method, which is not adapted to the centrifugal pump geometry.\hspace{0.4cm}
 
 \end{minipage} \\ 
 
