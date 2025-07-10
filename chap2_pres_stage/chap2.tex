@@ -8,6 +8,8 @@ Then, Tom MOUSSIE and Miguel, my co-officies, explained to me the basics of Open
 
 % Pour l'introduction, regarder la thèse de Miguel
 
+J'aimerais ajouter une introduction "pourquoi ce sujet de stage existe ?" (où l'ajouter ?)
+
 \section{Data Assimilation}
 
 % PAS d'equation ici, sinon je me fait frapper par le Mi
@@ -114,9 +116,7 @@ This lead us to the idea of using the EnKF method to optimize the parameters of 
 \subsection{Presentation of the data from the centrifugal pump test case}
 \label{subsec:Presentation_of_the_data_from_the_centrifugal_pump_test_case}
 
-Centrifugal pumps are used since 1475\cite{retiFrancescoDiGiorgio1963} and are still widely used today in various applications, such as water supply, irrigation, turbomachines, and industrial processes. They are known for their low cost, efficiency and reliability, making them a popular choice for many fluid transport applications.
-
-
+\paragraph{The pump} Centrifugal pumps are used since 1475\cite{retiFrancescoDiGiorgio1963} and are still widely used today in various applications, such as water supply, irrigation, turbomachines, and industrial processes. They are known for their low cost, efficiency and reliability, making them a popular choice for many fluid transport applications. The studied centrifugal pump is a \ac{SHF} impeller, which is a type of centrifugal pump designed for high flow rates and low head applications.
 
 
 \begin{figure}[H]
@@ -135,12 +135,10 @@ Centrifugal pumps are used since 1475\cite{retiFrancescoDiGiorgio1963} and are s
     \caption{Centrifugal pumps}
 \end{figure}
 
-
-The studied centrifugal pump is a \ac{SHF} impeller, which is a type of centrifugal pump designed for high flow rates and low head applications.
 Differents high fidelity data has been record on the diffuser of the pump at the LMFL:
-\begin{itemize}
-    \item High-Speed \ac{PIV} data obtained by Antoine Dazin\cite{dazinHighspeedStereoscopicPIV2011a} in 2011;
-    \item Pressure data obtained by Meng Fan\cite{fanEffectLeakagePerformanceb} in 2022.
+\begin{itemize}[nosep]%, left=0pt]
+    \item High-Speed \ac{PIV} data obtained by Antoine Dazin~\cite{dazinHighspeedStereoscopicPIV2011a} in 2011;
+    \item Pressure data obtained by Meng Fan~\cite{fanEffectLeakagePerformanceb} in 2022.
 \end{itemize}
 
 
@@ -160,10 +158,8 @@ Differents high fidelity data has been record on the diffuser of the pump at the
     \caption{Diffuser and pressure taps of the centrifugal pump}
 \end{figure}
 
-M. Fan has also capture the inlet and outlet pressure that allow to compute the performance of the pump, which is defined as -> see part XX...///
 
-// Ajouter des images des PIV //
-
+\newpage
 
 The operating conditions of the machine where :
 
@@ -191,50 +187,105 @@ The operating conditions of the machine where :
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/PIV_measurements_sketch.pdf}
-    \caption{Position of the PIV plans}
-    \label{fig:PIVPlans}
+        \includegraphics[width=0.6\textwidth]{images/PIV_measurements_sketch.pdf}
+        \caption{Position of the PIV plans on the diffuser}
+        \label{fig:PIVMeasures}
 \end{figure}
-
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{images/PIV_measurements_sketch.pdf}
-    \caption{Position of the PIV plans}
-    \label{fig:PIVPlans}
+        \includegraphics[width=0.5\textwidth]{images/polar_slice_avg_theta_trimmed.pdf}
+        \caption{Position of the PIV points on a polar slice of the diffuser}
+        \label{fig:polar_slice_avg_theta_trimmed}
 \end{figure}
 
 
-The data is stored in a directory structure that contains 6 directories
-The 6 directories are corresponding to two tests realised at 25\%, 50\% et 75\% of the diffuser height.
+\paragraph{PIV data} The data are stored in a directory structure that contains six directories.
+The six directories are corresponding to two tests realised at 25\%, 50\% et 75\% of the diffuser height.
 Each test was repeated twice for the same operating condition and the same height (R1, R2)
 In each directory, there are 1581 files corresponding to instantaneous ASCII data file.
-The 9 columns are corrresponding to :
+The ten columns are corrresponding to :
 
 %centrer
 $x(m),y(m),V_x(m.s^{-1}),V_y(m.s^{-1}),r(m),\theta(rad),Vr(m.s^{-1}),V_{\theta}(m.s^{-1}),V_z(m.s^{-1}),\textit{Unknown}$
 
+And the 10,125 lines corresponds to the 81 locations over x and 125 locations over y of the PIV. Processing of these data are detail in the \autoref{subsec:PIV_acquisition_treatment}.
+
+\paragraph{Pressure data}
+
+In addition to the nine pressure tapes on the diffuser, M. Fan has also capture the inlet and outlet pressure that allow to compute the global performance of the pump (see //partie L.N.M à référencer//)
+
 %The pdf is a paper where can be found the experimental conditions even if the analysis are focussed on another flow rate.
 
-The theorical average speed at the input of the diffuseur is equal to \[\frac{Q_{dif_{in}}}{S_{dif_{in}}} = \frac{Q_{pump_{in}}}{2\pi R_{3} h_{dif}} = 3.65m.s^{-1}\]
-With $Q_{pump_{in}} = Q_{dif_{in}}$ because the mass flow rate is constant and the flow is incompressible.
+//The theorical average radial speed at the input of the diffuseur is equal to \[\frac{Q_{dif_{in}}}{S_{dif_{in}}} = \frac{Q_{pump_{in}}}{2\pi R_{3} h_{dif}} = 3.65m.s^{-1}\]
+With $Q_{pump_{in}} = Q_{dif_{in}}$ because the mass flow rate is constant and the flow is incompressible.// -> No need ??
 
 %Détail : R3 = 0.257m; h=0.0400m; Q = 0.236m3/s -> S=0.0646m2
 
-// Ici j'ai présenté les données XP, je parlerais de leurs traitement dans la partie 2.4.1
+%\title{Fonctionning}  % ????
+%\title{Utility}
 
 
-\title{Fonctionning}  % ????
-\title{Utility}
-
-
-%Données hautes fidélités,...
-
-
+\hspace{1cm}
 \section{Numerical ingredients}
 
 \subsection{CFD governing equations}
 \label{subsec:CFD_governing_equations}
+
+La CFD est basée sur les équations fondamentales qui décrivent la mécanique des fluides newtoniens: les équations aux dérivéees partielles non linéaires de de Navier-Stokes. 
+
+Elle regroupe les 3 principes physiques suivants, donnés ici dans une formulation eulérienne (explquer pk) :
+
+- Conservation de la masse, avec l'équation de continuité : \[
+\frac{\partial \rho}{\partial t} + \nabla \cdot (\rho \mathbf{u}) = 0
+\]
+ incompressible  :  \[
+\nabla \cdot \mathbf{u} = 0
+\]
+
+- Conservation de la quantité de mouvement, équation de bilan de la quantité de mouvement : 
+
+- Conservation de l'éngergie : 
+...
+\textbf{Conservation de la quantite de mouvement (équation de NavierStokes)} :
+\[
+    \rho \left( \frac{\partial \mathbf{u}}{\partial t} + (\mathbf{u} \cdot \nabla)\mathbf{u} \right) = -\nabla p + \mu \nabla^2 \mathbf{u} + \mathbf{f}
+\]
+
+\textbf{Conservation de l energie} :
+\[
+    \rho \left( \frac{\partial e}{\partial t} + \mathbf{u} \cdot \nabla e \right) = -p \nabla \cdot \mathbf{u} + \Phi
+\]
+
+
+équations de Navier-Stokes incompressibles, isothermes, en coordonnées cartésiennes :
+
+\begin{itemize}
+    \item \textbf{Conservation de la masse (équation de continuité)} :
+    \[
+        \frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} + \frac{\partial w}{\partial z} = 0
+    \]
+
+    \item \textbf{Conservation de la quantité de mouvement (x, y, z)} :
+    \[
+        \rho \left( \frac{\partial u}{\partial t} + u\frac{\partial u}{\partial x} + v\frac{\partial u}{\partial y} + w\frac{\partial u}{\partial z} \right) = -\frac{\partial p}{\partial x} + \mu \left( \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} + \frac{\partial^2 u}{\partial z^2} \right)
+    \]
+    \[
+        \rho \left( \frac{\partial v}{\partial t} + u\frac{\partial v}{\partial x} + v\frac{\partial v}{\partial y} + w\frac{\partial v}{\partial z} \right) = -\frac{\partial p}{\partial y} + \mu \left( \frac{\partial^2 v}{\partial x^2} + \frac{\partial^2 v}{\partial y^2} + \frac{\partial^2 v}{\partial z^2} \right)
+    \]
+    \[
+        \rho \left( \frac{\partial w}{\partial t} + u\frac{\partial w}{\partial x} + v\frac{\partial w}{\partial y} + w\frac{\partial w}{\partial z} \right) = -\frac{\partial p}{\partial z} + \mu \left( \frac{\partial^2 w}{\partial x^2} + \frac{\partial^2 w}{\partial y^2} + \frac{\partial^2 w}{\partial z^2} \right)
+    \]
+\end{itemize}
+
+
+
+Annexe des opérateurs grad, div, nabla, rot, laplacien, laplacien vectoriel, etc... %(voir https://fr.wikipedia.org/wiki/%C3%89quations_de_Navier-Stokes)
+
+Les solutions numériques ne sont pas démontrés
+
+
+
 
 
 \begin{equation}
@@ -309,13 +360,36 @@ Reprendre ma présentation (dimensiosn de p)
 
 To implemente the IBM forcage, we use the open source code OpenFoam, which is a C++ library for computational fluid dynamics (CFD). OpenFoam provides a wide range of tools for solving the Navier-Stokes equations, including solvers, meshing tools, and post-processing tools. It is widely used in the CFD community and has a large user base.
 
-More precisely, for example, to implemente the IBM forcage on the speed U, we compute the forcing term $\boldsymbol{f}_P$ as follows:
+More precisely, for example, to implemente the IBM forcage on the speed U, we add the forcing term $\boldsymbol{f}_P$ as follows:
 \begin{lstlisting}[language=C++]
-// Compute the forcing term
-volVectorField fP = -fP_ * (U - U_ib); EXEMPLE DE MISE EN FORME A CORRIGER
-// Add the forcing term to the momentum equation
-U += fP;
+// Momentum predictor step
+
+MRF.correctBoundaryVelocity(U) // Corrects U at boundaries to include MRF effects
+                               // (e.g., rotating walls)
+
+tmp<fvVectorMatrix> tUEqn
+(
+    fvm::div(phi, U)            // Convective term
+  + MRF.DDt(U)                  // Time derivative in the rotating reference frame
+  + turbulence->ddivDevSigma(U) // Turbulent diffusion term
+  + cmptMultiply(D, U - UIB)    // Forcing term: D * (U - UIB)
+ ==
+    fvModels.source(U)          // Source terms from external models
+                                // (e.g., body forces), here equal to 0
+);
+fvVectorMatrix& UEqn = tUEqn.ref();
+
+UEqn.relax() // Applies under-relaxation for numerical stability
+
+fvConstraints.constrain(UEqn); // Applies physical constraints
+                               // (e.g., boundary conditions)
 \end{lstlisting}
+
+With
+- \textit{cmptMultiply} the forward product
+- D -> esilon x viscosity x D
+- U the velocity of the field
+- UIB the velocity of the walls (here omega R)
 
 \begin{figure}[H]
     \centering
@@ -360,7 +434,9 @@ Assuming the distance between two cells in the azimuthal direction at the tip of
 \subsection{EnKF}
 \label{subsec:EnKF}
 
-Toujours mentionner les paramètres utilisés (dans le controlDict et le CONESDict)
+
+Préparer l'introduction des variables du controlDict et le CONESDict
+
 
 \subsection{The library CONES}
 CONES is a library coded in Python/C++ developed for ... since 2022 at LMFL. -> appuyer sur "seule online pour CFD à la connaissance du labo"
@@ -593,7 +669,8 @@ Pb perso : jusqu'à plusieurs jours d'attente pour lancer une simu.
 
 \subsection{Preprocessing of PIV data}
 
-\subparagraph{Zone d'acquisition PIV}
+\subparagraph{PIV acquisition treatment}
+\label{subsec:PIV_acquisition_treatment}
 \phantom{-}
 
 The PIV data is acquired in a rectangular zone of 0.08 m x 0.124 m.
@@ -686,6 +763,7 @@ and \texttt{obs\_coordinates.txt}. Describe shapes...
 
 
 \subparagraph{5.Creation of a file for the interpolation}
+
 Finally, we need to create an \texttt{coords\_seventh.txt} file for the interpolation function in CONES.
 We don't juste use the coordinates of the points in the PIV data, beacause we want to average over the angle \(\theta\) on the pump. The numerical simulation is $\frac{2\pi}{7}$ OU $2\pi/7$ periodic, so we interpolate in 150 points over theta between 0 and 2pi/7.
 To do that, wue just take the \texttt{obs\_coordinates.txt} file and duplicate 150 times the points over the angle \(\theta\) (between -pi/7 and pi/7). In our case, we chose 150 that will aproximately correspont to the shap of a cell at this radius.
@@ -739,10 +817,13 @@ Parler des modifs dans le code ici.
 
 
 
-- Réduction du pipe (avec recherche condition vitesse entrée)
+- Reduction of the pipe (with the research of the velocity inlet condition)
 
 
+Toujours mentionner les paramètres utilisés (dans le controlDict et le CONESDict)
 
+
+\subsection{Application of the DA}
 
 \section{Results}
 

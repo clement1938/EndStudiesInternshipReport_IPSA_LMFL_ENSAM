@@ -1,0 +1,176 @@
+\documentclass[11pt,a4paper]{report}
+
+\hbadness=10000
+\hfuzz=100pt
+
+\usepackage{tablefootnote}
+\usepackage[utf8]{inputenc}
+\usepackage[hidelinks]{hyperref} 
+\usepackage[T1]{fontenc}
+\usepackage[top=2cm,bottom=2cm,left=2.5cm,right=2.5cm]{geometry}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{caption}
+\usepackage{inconsolata}
+\usepackage{array}
+\usepackage{color}
+\usepackage{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage[export]{adjustbox}
+\usepackage[english]{babel}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{transparent}
+\usepackage{eso-pic}
+\usepackage{chngpage}
+\usepackage{shorttoc}
+\usepackage{comment}
+\usepackage{makeidx}
+\usepackage[backend=biber]{biblatex}
+\addbibresource{bibliographie/biblio.bib}
+\usepackage{csquotes}
+\usepackage{multirow}
+\usepackage{footnotehyper}
+\usepackage{xcolor}
+\usepackage{acro}
+\usepackage{pgfplots}
+\usepackage{ragged2e}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage{microtype}
+\usepackage{chngcntr}
+\usepackage{tocloft}
+\usepackage{nicefrac}
+
+\usepackage{dirtree}
+\usepackage[absolute,overlay]{textpos}
+
+\usepackage{forest}
+
+\definecolor{folderbg}{RGB}{124,166,198}
+\definecolor{folderborder}{RGB}{110,144,169}
+
+\def\Size{4pt}
+\tikzset{
+  folder/.pic={
+    \filldraw[draw=folderborder,top color=folderbg!50,bottom color=folderbg]
+      (-1.05*\Size,0.2\Size+5pt) rectangle ++(.75*\Size,-0.2\Size-5pt);  
+    \filldraw[draw=folderborder,top color=folderbg!50,bottom color=folderbg]
+      (-1.15*\Size,-\Size) rectangle (1.15*\Size,\Size);
+  },
+  file/.pic={
+    \draw[fill=white, draw=black] (0,0) rectangle (1*\Size,1*\Size);
+    \node at (0.5*\Size, 0.5*\Size) {\includegraphics[width=0.4cm]{images/other/file.png}};
+  }
+}
+
+
+\usepackage{tikz-qtree}
+\usepackage{siunitx}
+
+\usepackage[super]{nth}
+\usepackage[table]{xcolor}
+
+\newcommand{\annexref}[1]{annexe~\ref{#1}}
+
+
+\usetikzlibrary{patterns}
+\pgfplotsset{compat=1.17}
+
+\setlength{\parskip}{0.5\baselineskip}
+
+\lstset{ 
+    language=Python,                     % Langage
+    basicstyle=\ttfamily\footnotesize,   % Style de base
+    keywordstyle=\color{blue},           % Style des mots-clés
+    commentstyle=\color{green},          % Style des commentaires
+    stringstyle=\color{red},             % Style des chaînes de caractères
+    numbers=left,                        % Numérotation des lignes
+    numberstyle=\tiny\color{gray},       % Style des numéros de ligne
+    stepnumber=1,                        % Numérotation chaque ligne
+    numbersep=5pt,                       % Distance entre les numéros de ligne et le code
+    showspaces=false,                    % Ne pas afficher les espaces
+    showstringspaces=false,              % Ne pas afficher les espaces dans les chaînes de caractères
+    tabsize=4,                           % Taille des tabulations
+    captionpos=b,                        % Position des légendes (en bas)
+    breaklines=true,                     % Retour à la ligne automatique
+    breakatwhitespace=false,             % Retour à la ligne uniquement dans les espaces
+    frame=single,                        % Cadre autour du code
+    framerule=0.5pt,
+    rulecolor=\color{black},
+}
+\renewcommand{\lstlistingname}{Code}
+
+\newcommand{\dps}{\displaystyle}
+
+\pagestyle{fancy}
+%\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+%\fancyhead[C]{\leftmark} % Affiche le titre du chapitre courant au centre
+
+
+\setlength{\headheight}{25.22153pt}
+\setlength{\footskip}{37.6175pt}
+
+\definecolor{backcolour}{rgb}{0.96,0.96,0.95}
+\definecolor{lightbrown}{rgb}{0.71, 0.40, 0.11}
+\definecolor{myblue}{rgb}{0.3,0.4,0.9}
+\definecolor{green}{rgb}{0.0, 0.5, 0.0}
+\definecolor{aurometalsaurus}{rgb}{0.43, 0.5, 0.5}
+\definecolor{babyblue}{rgb}{0.54, 0.81, 0.94}
+\definecolor{bronze}{rgb}{0.8, 0.5, 0.2}
+\definecolor{brilliantrose}{rgb}{1.0, 0.33, 0.64}
+\definecolor{darkblue}{RGB}{0, 70, 127}
+\definecolor{lightblue}{RGB}{173, 216, 230}
+\definecolor{white}{RGB}{255, 255, 255}
+
+
+\fancypagestyle{plain}{
+  \fancyhead[L]{End-of-study thesis \\ Clément THIBAULT}
+  \fancyhead[R]{\includegraphics*[width=0.25\textwidth]{images/logo/logos.png}}
+  \fancyfoot[C]{page \thepage}
+  \fancyfoot[R]{\includegraphics*[width=0.1\textwidth]{images/logo/ipsagarde.png}}
+}
+
+\fancyhead[L]{End-of-study thesis \\ Clément THIBAULT}
+\fancyhead[R]{\includegraphics*[width=0.25\textwidth]{images/logo/logos.png}}
+\fancyfoot[C]{page \thepage}
+\renewcommand{\sectionmark}[1]{\markboth{}{}}
+\fancyfoot[R]{\includegraphics*[width=0.1\textwidth]{images/logo/ipsagarde.png}}
+
+
+  \newcommand\BackgroundPic{
+  \put(0 cm, 3.5 cm){
+  \parbox[b][0.5\paperheight]{\paperwidth}{
+  \centering
+  {\includegraphics[width=\paperwidth,height=0.32\paperheight, %\transparent{0.4}
+  keepaspectratio]{images/numericalPump/Pump_sim2.png}}
+  \vspace{2.0cm} % Adjust the spacing between the image and the title
+  \makebox[\paperwidth]{\textbf{Cross-section of the pump model}} % Center the title below the image
+  }}}
+
+\captionsetup[table]{name=Tableau}
+
+
+
+\begin{document}
+
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.70\textwidth}
+        \includegraphics[width=\textwidth]{images/PIV_measurements_sketch.pdf}
+        \caption{Position of the PIV plans on the diffuser}
+        \label{fig:PIVMeasures}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.60\textwidth}
+        \includegraphics[width=\textwidth]{images/polar_slice_avg_theta_trimmed.pdf}
+        \caption{Position of the PIV points on a polar slice of the diffuser}
+        \label{fig:polar_slice_avg_theta_trimmed}
+    \end{subfigure}
+    \caption{PIV measurements and polar slice of the diffuser}
+\end{figure}
+
+
+\end{document}
