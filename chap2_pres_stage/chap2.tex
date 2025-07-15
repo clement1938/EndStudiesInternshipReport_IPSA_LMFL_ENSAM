@@ -116,7 +116,7 @@ This lead us to the idea of using the EnKF method to optimize the parameters of 
 \subsection{Presentation of the data from the centrifugal pump test case}
 \label{subsec:Presentation_of_the_data_from_the_centrifugal_pump_test_case}
 
-\paragraph{The pump} Centrifugal pumps are used since 1475\cite{retiFrancescoDiGiorgio1963} and are still widely used today in various applications, such as water supply, irrigation, turbomachines, and industrial processes. They are known for their low cost, efficiency and reliability, making them a popular choice for many fluid transport applications. The studied centrifugal pump is a \ac{SHF} impeller, which is a type of centrifugal pump designed for high flow rates and low head applications.
+\paragraph{The pump} Centrifugal pumps are used since 1475\cite{retiFrancescoDiGiorgio1963} and are still widely used today in various applications, such as water supply, irrigation, turbomachines, and industrial processes. They are known for their low cost, efficiency and reliability, making them a popular choice for many fluid transport applications. The studied centrifugal pump is a \ac{SHF} impeller, which is a type of centrifugal pump designed for high flow rates and low head applications. The RESEDA benchmark is employed to study rotor/stator interactions and instabilities in centrifugal machines.
 
 
 \begin{figure}[H]
@@ -242,7 +242,6 @@ As we are at $Q/Q_d = 1$, we can retreive \[ \frac{\Delta P}{\rho U^2} = 0.4 \Ri
 \subsection{CFD governing equations}
 \label{subsec:CFD_governing_equations}
 
-\footnote{\url{https://help.altair.com/hwcfdsolvers/acusolve/topics/acusolve/training_manual/navier_stokes_equations_turbulence_r.htm}}
 
 \paragraph{Navier-Stokes equations} CFD is based on the fundamental equations that describe Newtonian fluid mechanics: the nonlinear Navier-Stokes partial differential equations.
 
@@ -537,206 +536,15 @@ Reprendre ma présentation (dimensiosn de p)
 
 \subsection{The open source code OpenFoam}
 
-To implemente the IBM forcage, we use the open source code OpenFoam, which is a C++ library for CFD. OpenFoam provides a wide range of tools for solving the Navier-Stokes equations, including solvers, meshing tools, and post-processing tools. It is widely used in the CFD community and has a large user base. It's developped since 2004 and is composed today of more than a million lines.
 
-
-
-
-
-
-
-
-
-More precisely, for example, to implemente the IBM forcage on the speed U, we add the forcing term $\boldsymbol{f}_P$ as follows:
-\begin{lstlisting}[language=C++]
-// Momentum predictor step
-
-MRF.correctBoundaryVelocity(U) // Corrects U at boundaries to include MRF effects
-                               // (e.g., rotating walls)
-
-tmp<fvVectorMatrix> tUEqn
-(
-    fvm::div(phi, U)            // Convective term
-  + MRF.DDt(U)                  // Time derivative in the rotating reference frame
-  + turbulence->ddivDevSigma(U) // Turbulent diffusion term
-  + cmptMultiply(D, U - UIB)    // Forcing term: D * (U - UIB)
- ==
-    fvModels.source(U)          // Source terms from external models
-                                // (e.g., body forces), here equal to 0
-);
-fvVectorMatrix& UEqn = tUEqn.ref();
-
-UEqn.relax() // Applies under-relaxation for numerical stability
-
-fvConstraints.constrain(UEqn); // Applies physical constraints
-                               // (e.g., boundary conditions)
-\end{lstlisting}
-
-With
-- \textit{cmptMultiply} the forward product
-- D -> esilon x viscosity x D
-- U the velocity of the field
-- UIB the velocity of the walls (here omega R)
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/other/implicit_forcing.png}
-    \caption{implicit forcing term in OpenFoam}
-    \label{implicit_forcing}
-\end{figure}
-
-
-// Je parle 2 fois du CFL ... //
-
-To compute the time step $\Delta_{t}$ of the pimpleFoam simulation of the pump, we can use the \ac{CFL} condition, which states that:
-\begin{equation}
-    \Delta_{t} = \frac{CFL \cdot \Delta_{x}}{\|U_{\infty}\|},
-\end{equation}
-where:
-
-- $CFL$ is the Courant number, typically set to 0.5 for stability. A way to visualize this is to think of it as the fraction of the distance a wave travels in one time step relative to the distance between two cells in the azimuthal direction at the tip of the impeller.
-- $\Delta_{x}$ is the distance between two cells in the azimuthal direction at the tip of the impeller in our model, which is given as 1.5 mm or 0.0015 m.
-- $\|U_{\infty}\|$ is the magnitude of the velocity at infinity, which can be approximated by the tangential velocity at the tip of the impeller.
-\begin{equation}
-    \|U_{\infty}\| = \omega \cdot r_{tip}
-\end{equation}
-where:
-- $\omega$ is the angular velocity in radians per second,
-- $r$ is the radius at the tip of the impeller.
-Assuming the rotating speed is given in revolutions per minute (rpm), we can convert it to radians per second:
-\begin{equation}
-    \omega = \frac{1200 \text{ rpm} \cdot 2\pi \text{ rad}}{60 \text{ s}} = 125.66 \text{ rps}.
-\end{equation}
-Assuming the radius at the tip of the impeller is $r = 0.2566 \text{ m}$ (which is 0.2566m), we can compute the tangential velocity:
-\begin{equation}
-    \|U_{\infty}\| = 125.66 \text{ rps} \cdot 0.2566 \text{ m} =  \text{32.24 m/s}.
-\end{equation}
-Assuming the distance between two cells in the azimuthal direction at the tip of the impeller is $\Delta_{x} = 0.0015 \text{ m}$ (which is 1.5 mm), we can now compute the time step $\Delta_{t}$:
-\begin{equation}
-    \Delta_{t} = \frac{0.5 \cdot 0.0015 \text{ m}}{32.24 \text{ m/s}} = 2.3 \times 10^{-5} \text{ s} % \approx 2.3 \mu s.
-\end{equation}
-
-
-
-\subsection{EnKF}
-\label{subsec:EnKF}
-
-As seen in the \autoref{subsec:stateOfArt}, we are going to use the stochstic EnKF to assimilate the high fidelity data.
-
-The estimation is calculated by using a set of observations y, a prior state x, and a linear model M. The estimation state is obtained through two operations, the forecast and the analysis, respectively using the superscript f and a.
-The first forecast step at time k computes the estimated state xk+1 and the error covariance matrix Pfk.
-
-
-The first forecast step at time \( k \) computes the estimated state \( \mathbf{x}_{k+1}^{f} \) and the error covariance matrix \( \mathbf{P}_{k+1}^{f} \),
-\begin{align}
-    \mathbf{x}_{k+1}^{f} &= \mathbf{M} \mathbf{x}_k \tag{3.24} \\
-    \mathbf{P}_{k+1}^{f} &= \mathbf{M} \mathbf{P}_k \mathbf{M}^\top + \mathbf{Q}_{k+1} \tag{3.25}
-\end{align}
-where \( \mathbf{Q} \) represents the variance matrix of the model.  
-Then, the analysis step in which the observation \( \mathbf{y} \) and forecast are combined,
-\begin{align}
-    \mathbf{K}_{k+1} &= \mathbf{P}_{k+1}^{f} \mathbf{H}^\top \left( \mathbf{H} \mathbf{P}_{k+1}^{f} \mathbf{H}^\top + \mathbf{R}_{k+1} \right)^{-1} \tag{3.26} \\
-    \mathbf{x}_{k+1}^{a} &= \mathbf{x}_{k+1}^{f} + \mathbf{K}_{k+1} \left( \mathbf{y}_{k+1} - \mathbf{H} \mathbf{x}_{k+1}^{f} \right) \tag{3.27} \\
-    \mathbf{P}_{k+1}^{a} &= (\mathbf{I} - \mathbf{K}_{k+1} \mathbf{H}) \mathbf{P}_{k+1}^{f} \tag{3.28}
-\end{align}
-where \( \mathbf{R} \) represents the variance matrix of the observations, and \( \mathbf{H} \) a linear operator which maps the true state space into the observed space.
-
-
-
-
-\begin{algorithm}[!h]
-    \caption{Scheme of the EnKF used in the present analyses for both state estimation and parameter optimisation.}
-    \label{alg:EnKF}
-    \begin{algorithmic}[1]
-
-        \State \textbf{Input:} $\mathcal{M}$, $\boldsymbol{R}$, $\boldsymbol{y}_k$, and a prior state system $\boldsymbol{u}_{i,0}^\prime = [\boldsymbol{u}_{i,0}, \theta_{i,0}]^T$
-
-        \For{$k = 1$ to $K$}
-            \For{$i = 1$ to $N_e$}
-                \State Advance in time: $\boldsymbol{u}_{i,k}^f = \mathcal{M}(\theta_{i,k-1})\,\boldsymbol{u}_{i,k-1}$
-                \State Observation: $\boldsymbol{Y}_{i,k} = \boldsymbol{y}_k + \boldsymbol{e}_i$, $\boldsymbol{e}_i \sim \mathcal{N}(0,\boldsymbol{R})$
-                \State Compute ensemble means: $\boldsymbol{\overline{u}}_k^{\prime^f} = \frac{1}{N_e}\sum_{i=1}^{N_e}\boldsymbol{u}_{i,k}^{\prime^f}$, etc.
-                \State Anomaly matrices: $\boldsymbol{X}_k = \frac{\boldsymbol{u}_{i,k}^{\prime^f} - \boldsymbol{\overline{u}}_k^{\prime^f}}{\sqrt{N_e - 1}}$, etc.
-                \State Kalman gain: $\boldsymbol{K}_k = \boldsymbol{L} \odot \boldsymbol{X}_k^f(\boldsymbol{S}_k)^T [...]$
-                \State Update: $\boldsymbol{u}_{i,k}^{\prime^a} = \boldsymbol{u}_{i,k}^{\prime^f} + \boldsymbol{K}_k (\boldsymbol{Y}_{i,k} - \mathcal{H}(\boldsymbol{u}_{i,k}^f))$
-                \State Covariance inflation: $\boldsymbol{u}_{i,k}^{\prime^a} = \boldsymbol{\overline{u}}_k^{\prime^a} + \lambda_k (\boldsymbol{u}_{i,k}^{\prime^a} - \boldsymbol{\overline{u}}_k^{\prime^a})$
-            \EndFor
-        \EndFor
-    \end{algorithmic}
-\end{algorithm}
-
-
-
-
-\begin{comment}
-
-\begin{algorithm}[!h]
-    \caption{Scheme of the EnKF used in the present analyses for both state estimation and parameter optimisation.}
-    \label{alg:EnKF}
-    
-    \KwIn{$\mathcal{M}$ (model), $\boldsymbol{R}$ (observation covariance), $\boldsymbol{y}_k$ (observations),\\
-    \qquad $\boldsymbol{u}_{i,0}^\prime = [\boldsymbol{u}_{i,0}, \theta_{i,0}]^T$ (initial states with $\boldsymbol{u}_{i,0} \sim \mathcal{N}(\boldsymbol{\overline{u}}_0, \boldsymbol{P}_0)$ and $\theta_{i,0} \sim \mathcal{N}(\overline{\theta}_0, \boldsymbol{P}_0)$)}
-    
-    \KwData{$k = 1, 2, ..., K$ is the iteration index; $i = 1, 2, ..., N_e$ is the ensemble index}
-
-    \For{$k \leftarrow 1$ \KwTo $K$}{
-        \For{$i \leftarrow 1$ \KwTo $N_e$}{
-        
-            \nl Advancement in time of the state vectors:\;
-            \qquad $\boldsymbol{u}_{i,k}^f = \mathcal{M}(\theta_{i,k-1})\,\boldsymbol{u}_{i,k-1}$\;
-            
-            \nl Generation of an observation matrix from the confidence level:\;
-            \qquad $\boldsymbol{Y}_{i,k} = \boldsymbol{y}_k + \boldsymbol{e}_i$, where $\boldsymbol{e}_i \sim \mathcal{N}(0,\boldsymbol{R})$\;
-            
-            \nl Estimation of the ensemble means:\;
-            \qquad $\boldsymbol{\overline{u}}_k^{\prime^f} = \frac{1}{N_e}\sum_{i=1}^{N_e} \boldsymbol{u}_{i,k}^{\prime^f}$,\;
-            \qquad $\overline{\mathcal{H}(\boldsymbol{u}_k^f)} = \frac{1}{N_e} \sum_{i=1}^{N_e} \mathcal{H}(\boldsymbol{u}_{i,k}^f)$\;
-            
-            \nl Compute anomalies:\;
-            \qquad $\boldsymbol{X}_k = \frac{\boldsymbol{u}_{i,k}^{\prime^f} - \boldsymbol{\overline{u}}_k^{\prime^f}}{\sqrt{N_e - 1}}$,\;
-            \qquad $\boldsymbol{S}_k = \frac{\mathcal{H}(\boldsymbol{u}_{i,k}^f) - \overline{\mathcal{H}(\boldsymbol{u}_k^f)}}{\sqrt{N_e - 1}}$\;
-            
-            \nl Kalman gain with localisation:\;
-            \qquad $\boldsymbol{K}_k = \boldsymbol{L} \odot \boldsymbol{X}_k (\boldsymbol{S}_k)^T \left[\boldsymbol{S}_k (\boldsymbol{S}_k)^T + \boldsymbol{R}\right]^{-1}$\;
-            
-            \nl Update state matrix:\;
-            \qquad $\boldsymbol{u}_{i,k}^{\prime^a} = \boldsymbol{u}_{i,k}^{\prime^f} + \boldsymbol{K}_k \left(\boldsymbol{Y}_{i,k} - \mathcal{H}(\boldsymbol{u}_{i,k}^f)\right)$\;
-            
-            \nl Deterministic covariance inflation:\;
-            \qquad $\boldsymbol{u}_{i,k}^{\prime^a} = \boldsymbol{\overline{u}}_k^{\prime^a} + \lambda_k \left(\boldsymbol{u}_{i,k}^{\prime^a} - \boldsymbol{\overline{u}}_k^{\prime^a}\right)$\;
-        }
-    }
-\end{algorithm}
-\end{comment}
-
-
-
-
-Préciser que dcp dans mon cas, que paramètres, et tt les observations même par rapport au temps
-Préparer l'introduction des variables du controlDict et le CONESDict
-
-
-\subsection{The CONES library}
-CONES is a library coded in Python/C++ developed for ... since 2022 at LMFL. -> appuyer sur "seule online pour CFD à la connaissance du labo"
-It's parallelized and can be used on supercomputers. It is mainly designed to work with OpenFoam and DA codes as EnKF.\label{instants_partages}
-
-Simulations are performed using the C++ framework OpenFOAM, used to discretize the equations previously presented. Standing for \textsl{Open Source Field Operation and Manipulation}, OpenFOAM is an open-source which provides many tools, referred to as executables %\citep[see][]{greenshields2021}. These executable files can be divided into three separate categories:
+Simulations are performed using the C++ framework OpenFOAM, used to discretize the equations previously presented. OpenFOAM is an open-source which provides many tools, referred to as executables %\citep[see][]{greenshields2021}. These executable files can be divided into three separate categories:
 \begin{itemize}
     \item[$-$] \textbf{Pre-processing}, including meshing and decomposing tools.
     \item[$-$] \textbf{Solving}, including in-built and custom solvers. Each solver is built to answer a specific CFD problem. 
     \item[$-$] \textbf{Post-processing}, including \texttt{ParaView}, an open-source visualization application.
 \end{itemize}
 
-OpenFOAM is not provided with a graphical interface, which is why a simulation is built by writing ``dictionaries'', in which are stored the necessary information for the simulation (mesh, turbulence model, maximum number of characteristic times, $\dots$). Thus, a specific directory structure must be observed, as outlined in ... % \autoref{fig:OpenFOAM_directory_structure}:
-% décrire la structure du dossier OpenFOAM et ce que chaque fichier fait (dans mon cas de simulation)
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{images/EnKF_Cones.pdf}
-    \caption{CONES}
-    \label{fig:CONES}
-\end{figure}
-
+OpenFOAM is not provided with a graphical interface, which is why a simulation is built by writing ``dictionaries'', in which are stored the necessary information for the simulation (mesh, turbulence model, maximum number of characteristic times, $\dots$).
 
 \begin{forest}
     for tree={
@@ -837,11 +645,225 @@ If it's called, the \texttt{postProcessing} directory stores data from the runni
 The \texttt{processor0...N-1} directories directly result from the geometry decomposition, which is proceeded through the \texttt{decomposeParDict} dictionary.
 The \texttt{dummy.foam} is an empty file which allows to visualize the simulation with \texttt{ParaView}. 
 
+
+To implemente the IBM forcage, we use the open source code OpenFoam, which is a C++ library for CFD. OpenFoam provides a wide range of tools for solving the Navier-Stokes equations, including solvers, meshing tools, and post-processing tools. It is widely used in the CFD community and has a large user base. It's developped since 2004 and is composed today of more than a million lines.
+
+
+
+
+More precisely, for example, to implemente the IBM forcage on the speed U, we add the forcing term $\boldsymbol{f}_P$ as follows:
+\begin{lstlisting}[language=C++]
+// Momentum predictor step
+
+MRF.correctBoundaryVelocity(U) // Corrects U at boundaries to include MRF effects
+                               // (e.g., rotating walls)
+
+tmp<fvVectorMatrix> tUEqn
+(
+    fvm::div(phi, U)            // Convective term
+  + MRF.DDt(U)                  // Time derivative in the rotating reference frame
+  + turbulence->ddivDevSigma(U) // Turbulent diffusion term
+  + cmptMultiply(D, U - UIB)    // Forcing term: D * (U - UIB)
+ ==
+    fvModels.source(U)          // Source terms from external models
+                                // (e.g., body forces), here equal to 0
+);
+fvVectorMatrix& UEqn = tUEqn.ref();
+
+UEqn.relax() // Applies under-relaxation for numerical stability
+
+fvConstraints.constrain(UEqn); // Applies physical constraints
+                               // (e.g., boundary conditions)
+\end{lstlisting}
+
+With
+- \textit{cmptMultiply} the forward product
+- D -> esilon x viscosity x D
+- U the velocity of the field
+- UIB the velocity of the walls (here omega R)
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/other/implicit_forcing.png}
+    \caption{implicit forcing term in OpenFoam}
+    \label{implicit_forcing}
+\end{figure}
+
+
+// Je parle 2 fois du CFL ... //
+
+To compute the time step $\Delta_{t}$ of the pimpleFoam simulation of the pump, we can use the \ac{CFL} condition, which states that:
+\begin{equation}
+    \Delta_{t} = \frac{CFL \cdot \Delta_{x}}{\|U_{\infty}\|},
+\end{equation}
+where:
+
+- $CFL$ is the Courant number, typically set to 0.5 for stability. A way to visualize this is to think of it as the fraction of the distance a wave travels in one time step relative to the distance between two cells in the azimuthal direction at the tip of the impeller.
+- $\Delta_{x}$ is the distance between two cells in the azimuthal direction at the tip of the impeller in our model, which is given as 1.5 mm or 0.0015 m.
+- $\|U_{\infty}\|$ is the magnitude of the velocity at infinity, which can be approximated by the tangential velocity at the tip of the impeller.
+\begin{equation}
+    \|U_{\infty}\| = \omega \cdot r_{tip}
+\end{equation}
+where:
+- $\omega$ is the angular velocity in radians per second,
+- $r$ is the radius at the tip of the impeller.
+Assuming the rotating speed is given in revolutions per minute (rpm), we can convert it to radians per second:
+\begin{equation}
+    \omega = \frac{1200 \text{ rpm} \cdot 2\pi \text{ rad}}{60 \text{ s}} = 125.66 \text{ rps}.
+\end{equation}
+Assuming the radius at the tip of the impeller is $r = 0.2566 \text{ m}$ (which is 0.2566m), we can compute the tangential velocity:
+\begin{equation}
+    \|U_{\infty}\| = 125.66 \text{ rps} \cdot 0.2566 \text{ m} =  \text{32.24 m/s}.
+\end{equation}
+Assuming the distance between two cells in the azimuthal direction at the tip of the impeller is $\Delta_{x} = 0.0015 \text{ m}$ (which is 1.5 mm), we can now compute the time step $\Delta_{t}$:
+\begin{equation}
+    \Delta_{t} = \frac{0.5 \cdot 0.0015 \text{ m}}{32.24 \text{ m/s}} = 2.3 \times 10^{-5} \text{ s} % \approx 2.3 \mu s.
+\end{equation}
+
+
+
+
+
+\subsection{EnKF}
+\label{subsec:EnKF}
+
+As seen in the \autoref{subsec:stateOfArt}, we are going to use the stochstic EnKF to assimilate the high fidelity data.
+
+The estimation is calculated by using a set of observations $\mathbf{y}$, a prior state $\mathbf{x}$, and a linear model $\mathbf{M}$. The estimation state is obtained through two operations, the forecast and the analysis, respectively using the superscript f and a.
+The first forecast step at time $\mathbf{k}$ computes the estimated state $\mathbf{x}_{k+1}$ and the error covariance matrix $\mathbf{P}_{k}^{f}$.
+
+
+The first forecast step at time \( k \) computes the estimated state \( \mathbf{x}_{k+1}^{f} \) and the error covariance matrix \( \mathbf{P}_{k+1}^{f} \),
+\begin{equation}
+    \mathbf{x}_{k+1}^{f} = \mathbf{M} \mathbf{x}_k 
+\end{equation}
+\begin{equation}
+    \mathbf{P}_{k+1}^{f} = \mathbf{M} \mathbf{P}_k \mathbf{M}^\top + \mathbf{Q}_{k+1}
+\end{equation}
+where \( \mathbf{Q} \) represents the variance matrix of the model.  
+Then, the analysis step in which the observation \( \mathbf{y} \) and forecast are combined,
+\begin{equation}
+    \mathbf{K}_{k+1} = \mathbf{P}_{k+1}^{f} \mathbf{H}^\top \left( \mathbf{H} \mathbf{P}_{k+1}^{f} \mathbf{H}^\top + \mathbf{R}_{k+1} \right)^{-1}
+\end{equation}
+\begin{equation}
+    \mathbf{x}_{k+1}^{a} = \mathbf{x}_{k+1}^{f} + \mathbf{K}_{k+1} \left( \mathbf{y}_{k+1} - \mathbf{H} \mathbf{x}_{k+1}^{f} \right)
+\end{equation}
+\begin{equation}
+    \mathbf{P}_{k+1}^{a} = (\mathbf{I} - \mathbf{K}_{k+1} \mathbf{H}) \mathbf{P}_{k+1}^{f}
+\end{equation}
+where \( \mathbf{R} \) represents the variance matrix of the observations, and \( \mathbf{H} \) a linear operator which maps the true state space into the observed space.
+
+
+
+
+%$\mathcal{M}$ (model), $\boldsymbol{R}$ (observation covariance), $\boldsymbol{y}_k$ (observations),\\
+%$\boldsymbol{u}_{i,0}^\prime = [\boldsymbol{u}_{i,0}, \theta_{i,0}]^T$ (initial states with $\boldsymbol{u}_{i,0} \sim \mathcal{N}(\boldsymbol{\overline{u}}_0, \boldsymbol{P}_0)$ and $\theta_{i,0} \sim \mathcal{N}(\overline{\theta}_0, \boldsymbol{P}_0)$)
+
+
+\begin{algorithm}[!h]
+    \caption{Scheme of the EnKF used in the present analyses for both state estimation and parameter optimisation.}
+    \label{alg:EnKF}
+    \begin{algorithmic}[1]
+        \State \textbf{Input:} $\mathcal{M}$ (model); $\boldsymbol{R}$ (observation covariance); $\boldsymbol{y}_k$ (observations);
+
+        $\boldsymbol{u}_{i,0}^\prime = [\boldsymbol{u}_{i,0}, \theta_{i,0}]^T$ (initial prior states with $\boldsymbol{u}_{i,0} \sim \mathcal{N}(\boldsymbol{\overline{u}}_0, \boldsymbol{P}_0)$ and $\theta_{i,0} \sim \mathcal{N}(\overline{\theta}_0, \boldsymbol{P}_0)$)
+
+        $k = 1, 2, ..., K$ is the iteration index; $i = 1, 2, ..., N_e$ is the ensemble index
+
+        \For{$k = 1$ to $K$}
+            \For{$i = 1$ to $N_e$}
+                \State Advance in time: $\boldsymbol{u}_{i,k}^f = \mathcal{M}(\theta_{i,k-1})\,\boldsymbol{u}_{i,k-1}$
+                \State Observation: $\boldsymbol{Y}_{i,k} = \boldsymbol{y}_k + \boldsymbol{e}_i$, $\boldsymbol{e}_i \sim \mathcal{N}(0,\boldsymbol{R})$
+                \State Compute ensemble means: $\boldsymbol{\overline{u}}_k^{\prime^f} = \frac{1}{N_e}\sum_{i=1}^{N_e}\boldsymbol{u}_{i,k}^{\prime^f}$, etc.
+                \State Anomaly matrices: $\boldsymbol{X}_k = \frac{\boldsymbol{u}_{i,k}^{\prime^f} - \boldsymbol{\overline{u}}_k^{\prime^f}}{\sqrt{N_e - 1}}$, etc.
+                \State Kalman gain: $\boldsymbol{K}_k = \boldsymbol{L} \odot \boldsymbol{X}_k^f(\boldsymbol{S}_k)^T [...]$
+                \State Update: $\boldsymbol{u}_{i,k}^{\prime^a} = \boldsymbol{u}_{i,k}^{\prime^f} + \boldsymbol{K}_k (\boldsymbol{Y}_{i,k} - \mathcal{H}(\boldsymbol{u}_{i,k}^f))$
+                \State Covariance inflation: $\boldsymbol{u}_{i,k}^{\prime^a} = \boldsymbol{\overline{u}}_k^{\prime^a} + \lambda_k (\boldsymbol{u}_{i,k}^{\prime^a} - \boldsymbol{\overline{u}}_k^{\prime^a})$
+            \EndFor
+        \EndFor
+    \end{algorithmic}
+\end{algorithm}
+
+
+
+
+\begin{comment}
+
+\begin{algorithm}[!h]
+    \caption{Scheme of the EnKF used in the present analyses for both state estimation and parameter optimisation.}
+    \label{alg:EnKF}
+    
+    \KwIn{$\mathcal{M}$ (model), $\boldsymbol{R}$ (observation covariance), $\boldsymbol{y}_k$ (observations),\\
+    \qquad $\boldsymbol{u}_{i,0}^\prime = [\boldsymbol{u}_{i,0}, \theta_{i,0}]^T$ (initial states with $\boldsymbol{u}_{i,0} \sim \mathcal{N}(\boldsymbol{\overline{u}}_0, \boldsymbol{P}_0)$ and $\theta_{i,0} \sim \mathcal{N}(\overline{\theta}_0, \boldsymbol{P}_0)$)}
+    
+    \KwData{$k = 1, 2, ..., K$ is the iteration index; $i = 1, 2, ..., N_e$ is the ensemble index}
+
+    \For{$k \leftarrow 1$ \KwTo $K$}{
+        \For{$i \leftarrow 1$ \KwTo $N_e$}{
+        
+            \nl Advancement in time of the state vectors:\;
+            \qquad $\boldsymbol{u}_{i,k}^f = \mathcal{M}(\theta_{i,k-1})\,\boldsymbol{u}_{i,k-1}$\;
+            
+            \nl Generation of an observation matrix from the confidence level:\;
+            \qquad $\boldsymbol{Y}_{i,k} = \boldsymbol{y}_k + \boldsymbol{e}_i$, where $\boldsymbol{e}_i \sim \mathcal{N}(0,\boldsymbol{R})$\;
+            
+            \nl Estimation of the ensemble means:\;
+            \qquad $\boldsymbol{\overline{u}}_k^{\prime^f} = \frac{1}{N_e}\sum_{i=1}^{N_e} \boldsymbol{u}_{i,k}^{\prime^f}$,\;
+            \qquad $\overline{\mathcal{H}(\boldsymbol{u}_k^f)} = \frac{1}{N_e} \sum_{i=1}^{N_e} \mathcal{H}(\boldsymbol{u}_{i,k}^f)$\;
+            
+            \nl Compute anomalies:\;
+            \qquad $\boldsymbol{X}_k = \frac{\boldsymbol{u}_{i,k}^{\prime^f} - \boldsymbol{\overline{u}}_k^{\prime^f}}{\sqrt{N_e - 1}}$,\;
+            \qquad $\boldsymbol{S}_k = \frac{\mathcal{H}(\boldsymbol{u}_{i,k}^f) - \overline{\mathcal{H}(\boldsymbol{u}_k^f)}}{\sqrt{N_e - 1}}$\;
+            
+            \nl Kalman gain with localisation:\;
+            \qquad $\boldsymbol{K}_k = \boldsymbol{L} \odot \boldsymbol{X}_k (\boldsymbol{S}_k)^T \left[\boldsymbol{S}_k (\boldsymbol{S}_k)^T + \boldsymbol{R}\right]^{-1}$\;
+            
+            \nl Update state matrix:\;
+            \qquad $\boldsymbol{u}_{i,k}^{\prime^a} = \boldsymbol{u}_{i,k}^{\prime^f} + \boldsymbol{K}_k \left(\boldsymbol{Y}_{i,k} - \mathcal{H}(\boldsymbol{u}_{i,k}^f)\right)$\;
+            
+            \nl Deterministic covariance inflation:\;
+            \qquad $\boldsymbol{u}_{i,k}^{\prime^a} = \boldsymbol{\overline{u}}_k^{\prime^a} + \lambda_k \left(\boldsymbol{u}_{i,k}^{\prime^a} - \boldsymbol{\overline{u}}_k^{\prime^a}\right)$\;
+        }
+    }
+\end{algorithm}
+\end{comment}
+
+
+
+
+Préciser que dcp dans mon cas, que paramètres, et tt les observations même par rapport au temps
+Préparer l'introduction des variables du controlDict et le CONESDict
+
+
+\subsection{The CONES library}
+CONES is a library coded in Python/C++ developed for "Coupling OpenFoam with Numerical EnvironmentS" since 2022 at LMFL.
+Is the only code that permit online DA in CFD codes (it use \ac{MPI} process to do it).
+It's parallelized and can be used on supercomputers. It is mainly designed to work with OpenFoam and DA codes as EnKF.\label{instants_partages}%??
+
+
+Thus, a specific directory structure must be observed, as outlined in ... % \autoref{fig:OpenFOAM_directory_structure}:
+% décrire la structure du dossier OpenFOAM et ce que chaque fichier fait (dans mon cas de simulation)
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/EnKF_ConesWithouCWIPI.pdf}
+    \caption{CONES structure}
+    \label{fig:CONES}
+\end{figure}
+
+
 \subsection{Pump modeling}
 
 The objective of the model is to try to find same physical behavior as the experimental data. We call that digital twin.
 
-For that we have first to discretize the numerical model of the pump. The mesh is generated using the \texttt{blockMesh} utility, which is a built-in OpenFOAM tool. The mesh is composed of 12 million cells. The mesh is composed of hexahedral cells. (quasi only, exepted some interface, cf figure). We don't need complex mesh because we dont neek to fit the geometry of the impeller.
+For that we have first to discretize the numerical model of the pump. The mesh is generated using the \texttt{blockMesh} utility, which is a built-in OpenFOAM tool. The mesh is composed of around 11 million cells. The mesh is composed of hexahedral cells. (quasi only, exepted some interface, cf \autoref{fig:interfaceMesh}). We don't need complex mesh because we dont neek to fit the geometry of the impeller.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/numericalPump/frontalView.pdf}
+    \caption{Mesh interface between the pipe and the impeller}
+    \label{fig:interfaceMesh}
+\end{figure}
 
 Boundary conditions are defines as that:
 \begin{itemize}
@@ -851,6 +873,7 @@ Boundary conditions are defines as that:
 \end{itemize}
 
 
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{images/model/RESEDA_sketch.pdf}
@@ -858,13 +881,15 @@ Boundary conditions are defines as that:
     \label{fig:RESDA_Model}
 \end{figure}
 
+
+\newpage
 \section{IBM preliminary results}
 
-"Résultats de la simulation avec 3e5" -> 3e7 avec image
 
+With the conditions specified in the \autoref{subsec:Presentation_of_the_data_from_the_centrifugal_pump_test_case}, and a value of 3e7 for the all five forcing parameters, we obtain these velocity and pressure profils.
 
+%"Résultats de la simulation avec 3e5" -> 3e7 avec image
 
-Graçe aux données xp (mentionné partie 2.1.2, on peut faire de la DA)
 
 \begin{figure}[H]
     \centering
@@ -873,6 +898,8 @@ Graçe aux données xp (mentionné partie 2.1.2, on peut faire de la DA)
     \label{coordsSeventh}
 \end{figure}
 
+
+5 pts d'observations décrits plus haut ?
 
 Notre but : faire fit ces 2 courbes : 
 
@@ -898,7 +925,7 @@ Mais surtout obtenir le bon rendement ! (sujet du stage)
 \end{figure}
 
 Limitations IBM à améliorer avec DA
-
+Graçe aux données xp (mentionné partie 2.1.2, on peut faire de la DA)
 
 \section{Application of the DA}
 
@@ -1206,6 +1233,8 @@ The random variations are random but with a reproducibility seed (sed) that allo
 
 //The theorical average radial speed at the input of the diffuseur is equal to \[\frac{Q_{dif_{in}}}{S_{dif_{in}}} = \frac{Q_{pump_{in}}}{2\pi R_{3} h_{dif}} = 3.65m.s^{-1}\]
 With $Q_{pump_{in}} = Q_{dif_{in}}$ because the mass flow rate is constant and the flow is incompressible.// -> No need ??
+
+Parler du cas test profil d'aile de Tom
 
 
 
