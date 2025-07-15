@@ -213,12 +213,19 @@ And the 10,125 lines corresponds to the 81 locations over x and 125 locations ov
 
 \paragraph{Pressure data}
 
-In addition to the nine pressure tapes on the diffuser, M. Fan has also capture the inlet and outlet pressure that allow to compute the global performance of the pump (see //partie L.N.M à référencer//)
+In addition to the nine pressure tapes on the diffuser, M. Fan has also capture (\autoref{fig:PumpPerf}) the inlet and outlet pressure that allow to compute the global performance of the pump (see //partie L.N.M à référencer//)
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\textwidth]{images/experimentalPump/perfo2.png}
+    \caption{Overall pump performance versus reduced pump flow rate Q}
+    \label{fig:PumpPerf}
+\end{figure}
+
+As we are at $Q/Q_d = 1$, we can retreive \[ \frac{\Delta P}{\rho U^2} = 0.4 \Rightarrow \Delta P = 0.4 \times \rho \times U^2 = 0.4 \times 1.225 \times 32.24^2 \approx 415~\text{Pa} \]
+
 
 %The pdf is a paper where can be found the experimental conditions even if the analysis are focussed on another flow rate.
-
-//The theorical average radial speed at the input of the diffuseur is equal to \[\frac{Q_{dif_{in}}}{S_{dif_{in}}} = \frac{Q_{pump_{in}}}{2\pi R_{3} h_{dif}} = 3.65m.s^{-1}\]
-With $Q_{pump_{in}} = Q_{dif_{in}}$ because the mass flow rate is constant and the flow is incompressible.// -> No need ??
 
 %Détail : R3 = 0.257m; h=0.0400m; Q = 0.236m3/s -> S=0.0646m2
 
@@ -283,7 +290,6 @@ Elle regroupe les 3 principes physiques suivants, donnés ici dans une formulati
 Annexe des opérateurs grad, div, nabla, rot, laplacien, laplacien vectoriel, etc... %(voir https://fr.wikipedia.org/wiki/%C3%89quations_de_Navier-Stokes)
 
 Les solutions numériques ne sont pas démontrés
-
 
 
 
@@ -897,9 +903,8 @@ Voir "TD -> Done et "TDSave -> Done" pour voir tt ce que j'ai fais
 The random variations are random but with a reproducibility seed (sed) that allows to have the same result each time the simulation is launched.
 
 
-
-
-
+//The theorical average radial speed at the input of the diffuseur is equal to \[\frac{Q_{dif_{in}}}{S_{dif_{in}}} = \frac{Q_{pump_{in}}}{2\pi R_{3} h_{dif}} = 3.65m.s^{-1}\]
+With $Q_{pump_{in}} = Q_{dif_{in}}$ because the mass flow rate is constant and the flow is incompressible.// -> No need ??
 
 
 

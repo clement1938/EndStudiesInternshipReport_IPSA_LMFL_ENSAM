@@ -19,24 +19,24 @@
 \contentsline {subsection}{\numberline {2.2.1}CFD governing equations}{16}{subsection.2.2.1}%
 \contentsline {subsection}{\numberline {2.2.2}The open source code OpenFoam}{18}{subsection.2.2.2}%
 \contentsline {subsection}{\numberline {2.2.3}EnKF}{19}{subsection.2.2.3}%
-\contentsline {subsection}{\numberline {2.2.4}The library CONES}{19}{subsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.2.4}The library CONES}{20}{subsection.2.2.4}%
 \contentsline {subsection}{\numberline {2.2.5}Pump modeling}{22}{subsection.2.2.5}%
 \contentsline {section}{\numberline {2.3}IBM preliminary results}{22}{section.2.3}%
 \contentsline {section}{\numberline {2.4}Application of the DA}{24}{section.2.4}%
 \contentsline {subsection}{\numberline {2.4.1}Preprocessing of PIV data}{26}{subsection.2.4.1}%
-\contentsline {subparagraph}{PIV acquisition treatment}{26}{section*.32}%
-\contentsline {subparagraph}{1.}{27}{section*.34}%
-\contentsline {subparagraph}{2.Average}{27}{section*.35}%
-\contentsline {subparagraph}{3.Sampling}{27}{section*.36}%
-\contentsline {subparagraph}{4.Shaping for CONES}{28}{section*.37}%
-\contentsline {subparagraph}{5.Creation of a file for the interpolation}{28}{section*.38}%
+\contentsline {subparagraph}{PIV acquisition treatment}{26}{section*.33}%
+\contentsline {subparagraph}{1.}{27}{section*.35}%
+\contentsline {subparagraph}{2.Average}{27}{section*.36}%
+\contentsline {subparagraph}{3.Sampling}{27}{section*.37}%
+\contentsline {subparagraph}{4.Shaping for CONES}{28}{section*.38}%
+\contentsline {subparagraph}{5.Creation of a file for the interpolation}{28}{section*.39}%
 \contentsline {subsection}{\numberline {2.4.2}Modifications on OpenFoam and CONES}{29}{subsection.2.4.2}%
 \contentsline {subsection}{\numberline {2.4.3}Application of the DA}{29}{subsection.2.4.3}%
 \contentsline {section}{\numberline {2.5}Results}{29}{section.2.5}%
 \contentsline {subsection}{\numberline {2.5.1}Conclusion ans perspective}{30}{subsection.2.5.1}%
-\contentsline {chapter}{Conclusion}{31}{chapter*.43}%
-\contentsline {chapter}{Annexes}{32}{section*.47}%
-\contentsline {chapter}{Bibliography}{33}{chapter*.48}%
-\contentsline {chapter}{List of acronyms}{34}{chapter*.49}%
-\contentsline {paragraph}{Résumé}{35}{section*.50}%
-\contentsline {paragraph}{Abstract}{35}{section*.51}%
+\contentsline {chapter}{Conclusion}{32}{chapter*.44}%
+\contentsline {chapter}{Annexes}{33}{section*.48}%
+\contentsline {chapter}{Bibliography}{34}{chapter*.49}%
+\contentsline {chapter}{List of acronyms}{35}{chapter*.50}%
+\contentsline {paragraph}{Résumé}{36}{section*.51}%
+\contentsline {paragraph}{Abstract}{36}{section*.52}%
