@@ -48,6 +48,14 @@
 
 \usepackage{enumitem}
 
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{mathtools}    % amélioration de amsmath
+\usepackage{bm}           % pour les vecteurs/matrices en gras
+
+%\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\usepackage{dsfont}           % Pour les ensembles (ex : indicatrice)
+
 %\usepackage[T1]{fontenc}\usepackage{textcomp}
 %\usepackage{mathpazo}
 %\usepackage{courier}
@@ -141,6 +149,19 @@
 \pgfplotsset{compat=1.17}
 
 \setlength{\parskip}{0.5\baselineskip}
+
+
+\DeclareAcronym{MRF}{
+  short = MRF,
+  long = Multiple Reference Frame,
+  short-indefinite = le,
+}
+
+\DeclareAcronym{SST}{
+  short = SST,
+  long = Shear Stress Transport,
+  short-indefinite = le,
+}
 
 \DeclareAcronym{SHF}{
   short = SHF,

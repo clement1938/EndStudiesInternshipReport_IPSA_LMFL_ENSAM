@@ -17,7 +17,7 @@ J'aimerais ajouter une introduction "pourquoi ce sujet de stage existe ?" (où l
 DA\cite{aschDataAssimilationMethods2016} is a technique used to improve the accuracy of numerical models by combining them with observational data. It is widely used in various fields, including meteorology, oceanography, and engineering. The goal of data assimilation is to obtain a more accurate representation of the state of a system by integrating information from different physical measurements or hight fidelity sources.
 
 \subsection{State of the art}
-
+\label{subsec:stateOfArt}
 
 It does exist many methods for data assimilation, distributed in three main categories: \textbf{variational methods}, \textbf{statistical methods} and \textbf{hybrid} (see \autoref{fig:DAmap}). Variational methods (also called classical methods), such as the 3D-Var and 4D-Var, use optimization techniques to find the best estimate of the state of a system by minimizing the difference between model predictions and observations. Statistical methods (also called sequential methods), such as the Kalman filter and its variants (e.g., EnKF), update the model state iteratively as new observations become available.
 
@@ -234,22 +234,48 @@ As we are at $Q/Q_d = 1$, we can retreive \[ \frac{\Delta P}{\rho U^2} = 0.4 \Ri
 
 
 \hspace{1cm}
+
+\newpage
+
 \section{Numerical ingredients}
 
 \subsection{CFD governing equations}
 \label{subsec:CFD_governing_equations}
 
-La CFD est basée sur les équations fondamentales qui décrivent la mécanique des fluides newtoniens: les équations aux dérivéees partielles non linéaires de de Navier-Stokes. 
+\footnote{\url{https://help.altair.com/hwcfdsolvers/acusolve/topics/acusolve/training_manual/navier_stokes_equations_turbulence_r.htm}}
 
-Elle regroupe les 3 principes physiques suivants, donnés ici dans une formulation eulérienne (explquer pk) :
+\paragraph{Navier-Stokes equations} CFD is based on the fundamental equations that describe Newtonian fluid mechanics: the nonlinear Navier-Stokes partial differential equations.
 
-- Conservation de la masse, avec l'équation de continuité : \[
-\frac{\partial \rho}{\partial t} + \nabla \cdot (\rho \mathbf{u}) = 0
-\]
- incompressible  :  \[
-\nabla \cdot \mathbf{u} = 0
-\]
+These equations express three physical conservation principles, given here in their Eulerian form (i.e., fixed spatial reference frame), which is the standard in CFD because it describes how fluid properties evolve at fixed locations in space — ideal for mesh-based numerical simulations.
 
+\begin{itemize}
+    \item \textbf{Mass conservation (Continuity equation):}
+    \begin{equation}
+        \frac{\partial \rho}{\partial t} + div(\rho \mathbf{U}) = 0   %         \frac{\partial \rho}{\partial t} + \nabla \cdot (\rho \mathbf{U}) = 0
+        \label{eq:mass_conservation}
+    \end{equation}
+
+    \item \textbf{Momentum conservation (second Newton Law):}     % (Navier–Stokes equation)
+    \begin{equation}
+        \frac{\partial (\rho \mathbf{U})}{\partial t} + \nabla \cdot (\rho \mathbf{U} \otimes \mathbf{U}) = -\nabla p + \nabla \cdot \boldsymbol{\tau} + \mathbf{f}
+    \end{equation}
+    where \( \boldsymbol{\tau} \) is the viscous stress tensor and \( \mathbf{f} \) includes body forces (e.g., gravity, source terms).
+
+    \item \textbf{Energy conservation (First law of thermodynamics):}
+    \begin{equation}
+        \frac{\partial (\rho E)}{\partial t} + \nabla \cdot (\mathbf{U} (\rho E + p)) = \nabla \cdot (k \nabla T) + \Phi
+    \end{equation}
+    where \( E = e + \frac{1}{2} \mathbf{U}^2 \) is the total energy per unit mass, \( k \) is the thermal conductivity, \( T \) the temperature, and \( \Phi \) the viscous dissipation.
+\end{itemize}
+
+
+
+As we considere that we are in \textbf{incompressible} flow (because we are at low mach numeber), \autoref{eq:mass_conservation} becomes
+    \begin{equation}
+        \nabla \cdot \mathbf{u} = 0
+    \end{equation}
+
+\begin{comment}
 - Conservation de la quantité de mouvement, équation de bilan de la quantité de mouvement : 
 
 - Conservation de l'éngergie : 
@@ -263,8 +289,6 @@ Elle regroupe les 3 principes physiques suivants, donnés ici dans une formulati
 \[
     \rho \left( \frac{\partial e}{\partial t} + \mathbf{u} \cdot \nabla e \right) = -p \nabla \cdot \mathbf{u} + \Phi
 \]
-
-
 équations de Navier-Stokes incompressibles, isothermes, en coordonnées cartésiennes :
 
 \begin{itemize}
@@ -284,15 +308,175 @@ Elle regroupe les 3 principes physiques suivants, donnés ici dans une formulati
         \rho \left( \frac{\partial w}{\partial t} + u\frac{\partial w}{\partial x} + v\frac{\partial w}{\partial y} + w\frac{\partial w}{\partial z} \right) = -\frac{\partial p}{\partial z} + \mu \left( \frac{\partial^2 w}{\partial x^2} + \frac{\partial^2 w}{\partial y^2} + \frac{\partial^2 w}{\partial z^2} \right)
     \]
 \end{itemize}
+\end{comment}
+
+RANS
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\textwidth]{images/sketch-turbulent-flow-modeling-DNS-LES-RAS.png}
+    \caption{Turbulence}
+    \label{fig:Turbulence}
+\end{figure}
+\footnote{\url{https://www.cfdsupport.com/openfoam-training-by-cfd-support/node346/}}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\textwidth]{images/DNSLESRANS.png}
+    \caption{Turbulence}
+    \label{fig:Turbulence2}
+\end{figure}
+\footnote{\url{https://blog.diphyx.com/comprehensive-guide-review-to-choosing-the-right-cfd-software-in-2023-features-performance-and-7ebc0623bfa6}}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\textwidth]{images/turbCascade.png}
+    \caption{Turbulence}
+    \label{fig:Turbulence3}
+\end{figure}
+\footnote{\url{https://help.altair.com/hwcfdsolvers/acusolve/topics/acusolve/training_manual/turbulence_modeling_r.htm}}
+
+
+Kolmogorove Scale
+
+In our simulation, we are going to use a $k-\omega$ \ac{SST} turbulence model. Is a two-equations eddy-viscosity model: it's combine the $K-\epsilon$ and the $K-\Omega$ turbulence approximations.
+
+$K-\Omega$ is know to be a good model in near-wall region but a bad prediction in bulk flow.
+$K-\epsilon$ make a good numerical prediction in the bulk flow field but is less accurate near solid surfaces
+
+
+Kinematic Eddy Viscosity
+
+$\nu _T  = {\frac{a_1 k}{\mbox{max}(a_1 \omega, S F_2)}}$
+Turbulence Kinetic Energy
+
+
+
+
+
+\[
+\frac{\partial k}{\partial t} + U_j \frac{\partial k}{\partial x_j} = P_k - \beta^* k\omega + \frac{\partial}{\partial x_j} \left[ \left( \nu + \sigma_k \nu_T \right) \frac{\partial k}{\partial x_j} \right]
+\]
+
+\[
+\frac{\partial \omega}{\partial t} + U_j \frac{\partial \omega}{\partial x_j} = \alpha S^2 - \beta \omega^2 + \frac{\partial}{\partial x_j} \left[ \left( \nu + \sigma_{\omega} \nu_T \right) \frac{\partial \omega}{\partial x_j} \right] + 2(1 - F_1)\sigma_{\omega 2} \frac{1}{\omega} \frac{\partial k}{\partial x_i} \frac{\partial \omega}{\partial x_i}
+\]
+
+\[
+F_2 = \tanh \left[ \left[ \max \left( \frac{2\sqrt{k}}{\beta^* \omega y}, \frac{500 \nu}{y^2 \omega} \right) \right]^2 \right]
+\]
+
+\[
+P_k = \min \left( \tau_{ij} \frac{\partial U_i}{\partial x_j}, 10\beta^* k \omega \right)
+\]
+
+\[
+F_1 = \tanh \left\{ \left\{ \min \left[ \max \left( \frac{\sqrt{k}}{\beta^* \omega y}, \frac{500 \nu}{y^2 \omega} \right), \frac{4 \sigma_{\omega 2} k}{CD_{k\omega} y^2} \right] \right\}^4 \right\}
+\]
+
+\[
+CD_{k\omega} = \max \left( 2\rho \sigma_{\omega 2} \frac{1}{\omega} \frac{\partial k}{\partial x_i} \frac{\partial \omega}{\partial x_i}, 10^{-10} \right)
+\]
+
+\[
+\phi = \phi_1 F_1 + \phi_2 (1 - F_1)
+\]
+
+\[
+\alpha_1 = \frac{5}{9}, \quad \alpha_2 = 0.44
+\]
+
+\[
+\beta_1 = \frac{3}{40}, \quad \beta_2 = 0.0828
+\]
+
+\[
+\beta^* = \frac{9}{100}
+\]
+
+\begin{comment}
+${{\partial k} \over {\partial t}} + U_j {{\partial k} \over {\partial x_j }} = P_k - \beta ^* k\omega  + {\partial  \over {\partial x_j }}\left[ {\left( {\nu  + \sigma_k \nu _T } \right){{\partial k} \over {\partial x_j }}} \right]$
+Specific Dissipation Rate
+
+${{\partial \omega } \over {\partial t}} + U_j {{\partial \omega } \over {\partial x_j }} = \alpha S^2 - \beta \omega ^2  + {\partial  \over {\partial x_j }}\left[ {\left( {\nu  + \sigma_{\omega} \nu _T } \right){{\partial \omega } \over {\partial x_j }}} \right] + 2( 1 - F_1 ) \sigma_{\omega 2} {1 \over \omega} {{\partial k } \over {\partial x_i}} {{\partial \omega } \over {\partial x_i}} $
+Closure Coefficients and Auxilary Relations
+
+$F_2=\mbox{tanh} \left[ \left[ \mbox{max} \left( { 2 \sqrt{k} \over \beta^* \omega y } , { 500 \nu \over y^2 \omega } \right) \right]^2 \right]$
+
+$P_k=\mbox{min} \left(\tau _{ij} {{\partial U_i } \over {\partial x_j }} , 10\beta^* k \omega \right)$
+
+$F_1=\mbox{tanh} \left\{ \left\{ \mbox{min} \left[ \mbox{max} \left( {\sqrt{k} \over \beta ^* \omega y}, {500 \nu \over y^2 \omega} \right) , {4 \sigma_{\omega 2} k \over CD_{k\omega} y^2} \right] \right\} ^4 \right\}$
+
+$CD_{k\omega}=\mbox{max} \left( 2\rho\sigma_{\omega 2} {1 \over \omega} {{\partial k} \over {\partial x_i}} {{\partial \omega} \over {\partial x_i}}, 10 ^{-10} \right )$
+
+$\phi = \phi_1 F_1 + \phi_2 (1 - F_1)$
+
+$\alpha_1  = {{5} \over {9}},   \alpha_2  = 0.44$
+
+$\beta_1  = {{3} \over {40}},  \beta_2  = 0.0828$
+
+$\beta^*  = {9 \over {100}}$
+\end{comment}
+
+$\sigma_{k1}  = 0.85,  \sigma_{k2}  = 1$
+
+$\sigma_{\omega 1}  = 0.5,  \sigma_{\omega 2}  = 0.856$
+
+
+To simulate the rotation of the pump, with stationary result, we use a \ac{MRF} method.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\textwidth]{images/MRF.png}  %https://www.mr-cfd.com/services/fluent-modules/moving-reference-frame/
+    \caption{Turbulence}
+    \label{fig:MRF}
+\end{figure}
+
+The principle is to add relative frame terme in a moving part while the other part stay fixe. Neither the mesh or the body is moving.
+
+
+// Dans le cas où on fait tourner la pompe en instationnaire : 
+
+
+\ac{CFL} is the Courant number, typically set to 0.5 for stability. A way to visualize this is to think of it as the fraction of the distance a wave travels in one time step relative to the distance between two cells in the azimuthal direction at the tip of the impeller.
+- $\Delta_{x}$ is the distance between two cells in the azimuthal direction at the tip of the impeller in our model, which is given as 1.5 mm or 0.0015 m.
+- $\|U_{\infty}\|$ is the magnitude of the velocity at infinity, which can be approximated by the tangential velocity at the tip of the impeller.
+\begin{equation}
+    \|U_{\infty}\| = \omega \cdot r_{tip}
+\end{equation}
+where:
+- $\omega$ is the angular velocity in radians per second,
+- $r$ is the radius at the tip of the impeller.
+Assuming the rotating speed is given in revolutions per minute (rpm), we can convert it to radians per second:
+\begin{equation}
+    \omega = \frac{1200 \text{ rpm} \cdot 2\pi \text{ rad}}{60 \text{ s}} = 125.66 \text{ rps}.
+\end{equation}
+Assuming the radius at the tip of the impeller is $r = 0.2566 \text{ m}$ (which is 0.2566m), we can compute the tangential velocity:
+\begin{equation}
+    \|U_{\infty}\| = 125.66 \text{ rps} \cdot 0.2566 \text{ m} =  \text{32.24 m/s}.
+\end{equation}
+Assuming the distance between two cells in the azimuthal direction at the tip of the impeller is $\Delta_{x} = 0.0015 \text{ m}$ (which is 1.5 mm), we can now compute the time step $\Delta_{t}$:
+\begin{equation}
+    \Delta_{t} = \frac{0.5 \cdot 0.0015 \text{ m}}{32.24 \text{ m/s}} = 2.3 \times 10^{-5} \text{ s} % \approx 2.3 \mu s.
+\end{equation}
+
+
 
 
 
 Annexe des opérateurs grad, div, nabla, rot, laplacien, laplacien vectoriel, etc... %(voir https://fr.wikipedia.org/wiki/%C3%89quations_de_Navier-Stokes)
-
-Les solutions numériques ne sont pas démontrés
-
+Mentionner que les solutions numériques ne sont pas démontrés
 
 
+
+
+
+
+
+\paragraph{IBM equations}
+
+As see in the section \autoref{subsec:stateOfArt}, instead of use bodyfitted mesh, we are going to consider porous medium and adding a forcing terme in the physical part (see \autoref{fig:IBM_Mesh}).
 
 \begin{equation}
     (\boldsymbol{u} \cdot \boldsymbol{\nabla})\, \boldsymbol{u} = 
@@ -301,9 +485,7 @@ Les solutions numériques ne sont pas démontrés
 \end{equation}
 
 
-
-with $[p] = M \cdot L^{-1} \cdot T^{-2}$ 
-(formalisme divisé par la masse volumique $\rho$. Donc $[\boldsymbol{u}] = L \cdot T^{-1}$ - en incompressible).
+Here, we are dividing both side of the eqautions by $\rho$ for simplicity as we are in incompressible flow. So $[p] = M \cdot L^{-1} \cdot T^{-2} and [\boldsymbol{u}] = L \cdot T^{-1}$
 
 \begin{equation}
     \xi = \left\{
@@ -313,18 +495,9 @@ with $[p] = M \cdot L^{-1} \cdot T^{-2}$
     \end{array} \right.
 \end{equation}
 
-see Figure \ref{fig:IBM_Mesh}
-
-When  $D \rightarrow \infty$, problèmes
+To fit the mathematical solution, $D$ have to tend to the infinite. But this lead to numerical instabilities. %$D \rightarrow \infty$, problèmes
         
-mais des valeurs trop élevées de $D$ peut mener à des instabilités <- A mentionner qqpart 
-
-
-
-
-Fluid mechanics is governed by the NS equations :
-
-
+%mais des valeurs trop élevées de $D$ peut mener à des instabilités <- A mentionner qqpart 
 
 
 - Equations (Incompressible, turbulence,...)
@@ -364,7 +537,15 @@ Reprendre ma présentation (dimensiosn de p)
 
 \subsection{The open source code OpenFoam}
 
-To implemente the IBM forcage, we use the open source code OpenFoam, which is a C++ library for computational fluid dynamics (CFD). OpenFoam provides a wide range of tools for solving the Navier-Stokes equations, including solvers, meshing tools, and post-processing tools. It is widely used in the CFD community and has a large user base.
+To implemente the IBM forcage, we use the open source code OpenFoam, which is a C++ library for CFD. OpenFoam provides a wide range of tools for solving the Navier-Stokes equations, including solvers, meshing tools, and post-processing tools. It is widely used in the CFD community and has a large user base. It's developped since 2004 and is composed today of more than a million lines.
+
+
+
+
+
+
+
+
 
 More precisely, for example, to implemente the IBM forcage on the speed U, we add the forcing term $\boldsymbol{f}_P$ as follows:
 \begin{lstlisting}[language=C++]
@@ -405,7 +586,7 @@ With
 \end{figure}
 
 
-
+// Je parle 2 fois du CFL ... //
 
 To compute the time step $\Delta_{t}$ of the pimpleFoam simulation of the pump, we can use the \ac{CFL} condition, which states that:
 \begin{equation}
@@ -440,11 +621,102 @@ Assuming the distance between two cells in the azimuthal direction at the tip of
 \subsection{EnKF}
 \label{subsec:EnKF}
 
+As seen in the \autoref{subsec:stateOfArt}, we are going to use the stochstic EnKF to assimilate the high fidelity data.
 
+The estimation is calculated by using a set of observations y, a prior state x, and a linear model M. The estimation state is obtained through two operations, the forecast and the analysis, respectively using the superscript f and a.
+The first forecast step at time k computes the estimated state xk+1 and the error covariance matrix Pfk.
+
+
+The first forecast step at time \( k \) computes the estimated state \( \mathbf{x}_{k+1}^{f} \) and the error covariance matrix \( \mathbf{P}_{k+1}^{f} \),
+\begin{align}
+    \mathbf{x}_{k+1}^{f} &= \mathbf{M} \mathbf{x}_k \tag{3.24} \\
+    \mathbf{P}_{k+1}^{f} &= \mathbf{M} \mathbf{P}_k \mathbf{M}^\top + \mathbf{Q}_{k+1} \tag{3.25}
+\end{align}
+where \( \mathbf{Q} \) represents the variance matrix of the model.  
+Then, the analysis step in which the observation \( \mathbf{y} \) and forecast are combined,
+\begin{align}
+    \mathbf{K}_{k+1} &= \mathbf{P}_{k+1}^{f} \mathbf{H}^\top \left( \mathbf{H} \mathbf{P}_{k+1}^{f} \mathbf{H}^\top + \mathbf{R}_{k+1} \right)^{-1} \tag{3.26} \\
+    \mathbf{x}_{k+1}^{a} &= \mathbf{x}_{k+1}^{f} + \mathbf{K}_{k+1} \left( \mathbf{y}_{k+1} - \mathbf{H} \mathbf{x}_{k+1}^{f} \right) \tag{3.27} \\
+    \mathbf{P}_{k+1}^{a} &= (\mathbf{I} - \mathbf{K}_{k+1} \mathbf{H}) \mathbf{P}_{k+1}^{f} \tag{3.28}
+\end{align}
+where \( \mathbf{R} \) represents the variance matrix of the observations, and \( \mathbf{H} \) a linear operator which maps the true state space into the observed space.
+
+
+
+
+\begin{algorithm}[!h]
+    \caption{Scheme of the EnKF used in the present analyses for both state estimation and parameter optimisation.}
+    \label{alg:EnKF}
+    \begin{algorithmic}[1]
+
+        \State \textbf{Input:} $\mathcal{M}$, $\boldsymbol{R}$, $\boldsymbol{y}_k$, and a prior state system $\boldsymbol{u}_{i,0}^\prime = [\boldsymbol{u}_{i,0}, \theta_{i,0}]^T$
+
+        \For{$k = 1$ to $K$}
+            \For{$i = 1$ to $N_e$}
+                \State Advance in time: $\boldsymbol{u}_{i,k}^f = \mathcal{M}(\theta_{i,k-1})\,\boldsymbol{u}_{i,k-1}$
+                \State Observation: $\boldsymbol{Y}_{i,k} = \boldsymbol{y}_k + \boldsymbol{e}_i$, $\boldsymbol{e}_i \sim \mathcal{N}(0,\boldsymbol{R})$
+                \State Compute ensemble means: $\boldsymbol{\overline{u}}_k^{\prime^f} = \frac{1}{N_e}\sum_{i=1}^{N_e}\boldsymbol{u}_{i,k}^{\prime^f}$, etc.
+                \State Anomaly matrices: $\boldsymbol{X}_k = \frac{\boldsymbol{u}_{i,k}^{\prime^f} - \boldsymbol{\overline{u}}_k^{\prime^f}}{\sqrt{N_e - 1}}$, etc.
+                \State Kalman gain: $\boldsymbol{K}_k = \boldsymbol{L} \odot \boldsymbol{X}_k^f(\boldsymbol{S}_k)^T [...]$
+                \State Update: $\boldsymbol{u}_{i,k}^{\prime^a} = \boldsymbol{u}_{i,k}^{\prime^f} + \boldsymbol{K}_k (\boldsymbol{Y}_{i,k} - \mathcal{H}(\boldsymbol{u}_{i,k}^f))$
+                \State Covariance inflation: $\boldsymbol{u}_{i,k}^{\prime^a} = \boldsymbol{\overline{u}}_k^{\prime^a} + \lambda_k (\boldsymbol{u}_{i,k}^{\prime^a} - \boldsymbol{\overline{u}}_k^{\prime^a})$
+            \EndFor
+        \EndFor
+    \end{algorithmic}
+\end{algorithm}
+
+
+
+
+\begin{comment}
+
+\begin{algorithm}[!h]
+    \caption{Scheme of the EnKF used in the present analyses for both state estimation and parameter optimisation.}
+    \label{alg:EnKF}
+    
+    \KwIn{$\mathcal{M}$ (model), $\boldsymbol{R}$ (observation covariance), $\boldsymbol{y}_k$ (observations),\\
+    \qquad $\boldsymbol{u}_{i,0}^\prime = [\boldsymbol{u}_{i,0}, \theta_{i,0}]^T$ (initial states with $\boldsymbol{u}_{i,0} \sim \mathcal{N}(\boldsymbol{\overline{u}}_0, \boldsymbol{P}_0)$ and $\theta_{i,0} \sim \mathcal{N}(\overline{\theta}_0, \boldsymbol{P}_0)$)}
+    
+    \KwData{$k = 1, 2, ..., K$ is the iteration index; $i = 1, 2, ..., N_e$ is the ensemble index}
+
+    \For{$k \leftarrow 1$ \KwTo $K$}{
+        \For{$i \leftarrow 1$ \KwTo $N_e$}{
+        
+            \nl Advancement in time of the state vectors:\;
+            \qquad $\boldsymbol{u}_{i,k}^f = \mathcal{M}(\theta_{i,k-1})\,\boldsymbol{u}_{i,k-1}$\;
+            
+            \nl Generation of an observation matrix from the confidence level:\;
+            \qquad $\boldsymbol{Y}_{i,k} = \boldsymbol{y}_k + \boldsymbol{e}_i$, where $\boldsymbol{e}_i \sim \mathcal{N}(0,\boldsymbol{R})$\;
+            
+            \nl Estimation of the ensemble means:\;
+            \qquad $\boldsymbol{\overline{u}}_k^{\prime^f} = \frac{1}{N_e}\sum_{i=1}^{N_e} \boldsymbol{u}_{i,k}^{\prime^f}$,\;
+            \qquad $\overline{\mathcal{H}(\boldsymbol{u}_k^f)} = \frac{1}{N_e} \sum_{i=1}^{N_e} \mathcal{H}(\boldsymbol{u}_{i,k}^f)$\;
+            
+            \nl Compute anomalies:\;
+            \qquad $\boldsymbol{X}_k = \frac{\boldsymbol{u}_{i,k}^{\prime^f} - \boldsymbol{\overline{u}}_k^{\prime^f}}{\sqrt{N_e - 1}}$,\;
+            \qquad $\boldsymbol{S}_k = \frac{\mathcal{H}(\boldsymbol{u}_{i,k}^f) - \overline{\mathcal{H}(\boldsymbol{u}_k^f)}}{\sqrt{N_e - 1}}$\;
+            
+            \nl Kalman gain with localisation:\;
+            \qquad $\boldsymbol{K}_k = \boldsymbol{L} \odot \boldsymbol{X}_k (\boldsymbol{S}_k)^T \left[\boldsymbol{S}_k (\boldsymbol{S}_k)^T + \boldsymbol{R}\right]^{-1}$\;
+            
+            \nl Update state matrix:\;
+            \qquad $\boldsymbol{u}_{i,k}^{\prime^a} = \boldsymbol{u}_{i,k}^{\prime^f} + \boldsymbol{K}_k \left(\boldsymbol{Y}_{i,k} - \mathcal{H}(\boldsymbol{u}_{i,k}^f)\right)$\;
+            
+            \nl Deterministic covariance inflation:\;
+            \qquad $\boldsymbol{u}_{i,k}^{\prime^a} = \boldsymbol{\overline{u}}_k^{\prime^a} + \lambda_k \left(\boldsymbol{u}_{i,k}^{\prime^a} - \boldsymbol{\overline{u}}_k^{\prime^a}\right)$\;
+        }
+    }
+\end{algorithm}
+\end{comment}
+
+
+
+
+Préciser que dcp dans mon cas, que paramètres, et tt les observations même par rapport au temps
 Préparer l'introduction des variables du controlDict et le CONESDict
 
 
-\subsection{The library CONES}
+\subsection{The CONES library}
 CONES is a library coded in Python/C++ developed for ... since 2022 at LMFL. -> appuyer sur "seule online pour CFD à la connaissance du labo"
 It's parallelized and can be used on supercomputers. It is mainly designed to work with OpenFoam and DA codes as EnKF.\label{instants_partages}
 
@@ -488,6 +760,20 @@ OpenFOAM is not provided with a graphical interface, which is why a simulation i
       before computing xy={l=15pt},
     }  
   [root
+    [0
+      [k      
+      ]
+      [omega    
+      ]
+      [p    
+      ]
+      [U    
+      ]
+    ]
+    [0.orig
+      [0
+      ]
+    ]
     [system
       [controlDict
       ]
@@ -500,14 +786,26 @@ OpenFOAM is not provided with a graphical interface, which is why a simulation i
       [fvSolution
       ]
     ]
-    [templates
+    [constant
+      [momentumTransport
+      ]
+      [transportProperties
+      ]
+      [MRFProperties
+      ]
     ]
-    [tests
+    [dummy.foam
+    ]
+    [processor0
+    ]
+    [processor...
+    ]
+    [processorN-1
     ]
   ]
   \end{forest}
 
-
+OR
 
 \begin{figure}[H]
     \centering
@@ -530,11 +828,14 @@ The \texttt{constant} directory contains the different physical properties of th
 \begin{itemize}
     \item[$-$] The \texttt{momentumTransport} dictionary defines the simulation type (\ac{RANS} or \ac{LES}), as well as the turbulence model.
     \item[$-$] The \texttt{transportProperties} dictionary defines the transport model (Newtonian for instance) and some transport coefficients, such as the kinematic viscosity $\nu$. 
-    \item[$-$] The \texttt{turbulenceProperties} dictionary defines the different parameters of the chosen turbulence model.
+    \item[$-$] The \texttt{MRFProperties} dictionary defines in our case to specifie the rotating zone with the origin, rotation axis and rotation speed.
 \end{itemize}
 
-The \texttt{0} directory contains the initial solution's fields. The \texttt{postProcessing} directory stores data from the running simulation, such as forces and probes' data. The \texttt{processor0...N} directories directly result from the geometry decomposition, which is proceeded through the \texttt{decomposeParDict} dictionary. The \texttt{dummy.foam} is an empty file which allows to visualize the simulation with \texttt{ParaView}. 
-
+The \texttt{0} directory contains the initial solution's fields.
+A compiled solver can be call in the terminal on the case directory to run the simulation.
+If it's called, the \texttt{postProcessing} directory stores data from the running simulation, such as forces and probes' data.
+The \texttt{processor0...N-1} directories directly result from the geometry decomposition, which is proceeded through the \texttt{decomposeParDict} dictionary.
+The \texttt{dummy.foam} is an empty file which allows to visualize the simulation with \texttt{ParaView}. 
 
 \subsection{Pump modeling}
 

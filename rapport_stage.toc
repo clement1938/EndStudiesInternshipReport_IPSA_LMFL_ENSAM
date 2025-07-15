@@ -15,28 +15,30 @@
 \contentsline {paragraph}{The pump}{14}{section*.15}%
 \contentsline {paragraph}{PIV data}{15}{section*.21}%
 \contentsline {paragraph}{Pressure data}{16}{section*.22}%
-\contentsline {section}{\numberline {2.2}Numerical ingredients}{16}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}CFD governing equations}{16}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}The open source code OpenFoam}{18}{subsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.2.3}EnKF}{19}{subsection.2.2.3}%
-\contentsline {subsection}{\numberline {2.2.4}The library CONES}{20}{subsection.2.2.4}%
-\contentsline {subsection}{\numberline {2.2.5}Pump modeling}{22}{subsection.2.2.5}%
-\contentsline {section}{\numberline {2.3}IBM preliminary results}{22}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Application of the DA}{24}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}Preprocessing of PIV data}{26}{subsection.2.4.1}%
-\contentsline {subparagraph}{PIV acquisition treatment}{26}{section*.33}%
-\contentsline {subparagraph}{1.}{27}{section*.35}%
-\contentsline {subparagraph}{2.Average}{27}{section*.36}%
-\contentsline {subparagraph}{3.Sampling}{27}{section*.37}%
-\contentsline {subparagraph}{4.Shaping for CONES}{28}{section*.38}%
-\contentsline {subparagraph}{5.Creation of a file for the interpolation}{28}{section*.39}%
-\contentsline {subsection}{\numberline {2.4.2}Modifications on OpenFoam and CONES}{29}{subsection.2.4.2}%
-\contentsline {subsection}{\numberline {2.4.3}Application of the DA}{29}{subsection.2.4.3}%
-\contentsline {section}{\numberline {2.5}Results}{29}{section.2.5}%
-\contentsline {subsection}{\numberline {2.5.1}Conclusion ans perspective}{30}{subsection.2.5.1}%
-\contentsline {chapter}{Conclusion}{32}{chapter*.44}%
-\contentsline {chapter}{Annexes}{33}{section*.48}%
-\contentsline {chapter}{Bibliography}{34}{chapter*.49}%
-\contentsline {chapter}{List of acronyms}{35}{chapter*.50}%
-\contentsline {paragraph}{Résumé}{36}{section*.51}%
-\contentsline {paragraph}{Abstract}{36}{section*.52}%
+\contentsline {section}{\numberline {2.2}Numerical ingredients}{17}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}CFD governing equations}{17}{subsection.2.2.1}%
+\contentsline {paragraph}{Navier-Stokes equations}{17}{section*.24}%
+\contentsline {paragraph}{IBM equations}{20}{section*.29}%
+\contentsline {subsection}{\numberline {2.2.2}The open source code OpenFoam}{21}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}EnKF}{22}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}The CONES library}{23}{subsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.2.5}Pump modeling}{27}{subsection.2.2.5}%
+\contentsline {section}{\numberline {2.3}IBM preliminary results}{27}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Application of the DA}{29}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Preprocessing of PIV data}{31}{subsection.2.4.1}%
+\contentsline {subparagraph}{PIV acquisition treatment}{31}{section*.49}%
+\contentsline {subparagraph}{1.}{32}{section*.51}%
+\contentsline {subparagraph}{2.Average}{32}{section*.52}%
+\contentsline {subparagraph}{3.Sampling}{32}{section*.53}%
+\contentsline {subparagraph}{4.Shaping for CONES}{33}{section*.54}%
+\contentsline {subparagraph}{5.Creation of a file for the interpolation}{33}{section*.55}%
+\contentsline {subsection}{\numberline {2.4.2}Modifications on OpenFoam and CONES}{34}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.3}Application of the DA}{34}{subsection.2.4.3}%
+\contentsline {section}{\numberline {2.5}Results}{34}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Conclusion ans perspective}{35}{subsection.2.5.1}%
+\contentsline {chapter}{Conclusion}{37}{chapter*.60}%
+\contentsline {chapter}{Annexes}{38}{section*.64}%
+\contentsline {chapter}{Bibliography}{39}{chapter*.65}%
+\contentsline {chapter}{List of acronyms}{41}{chapter*.66}%
+\contentsline {paragraph}{Résumé}{42}{section*.67}%
+\contentsline {paragraph}{Abstract}{42}{section*.68}%
