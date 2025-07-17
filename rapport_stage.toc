@@ -27,22 +27,23 @@
 \contentsline {subsection}{\numberline {2.2.5}Pump modeling}{26}{subsection.2.2.5}%
 \contentsline {section}{\numberline {2.3}IBM preliminary results}{28}{section.2.3}%
 \contentsline {section}{\numberline {2.4}Application of the DA}{30}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}Preprocessing of PIV data}{31}{subsection.2.4.1}%
-\contentsline {subparagraph}{PIV acquisition treatment}{31}{subsection.2.4.1}%
-\contentsline {subparagraph}{1.}{32}{figure.caption.25}%
-\contentsline {subparagraph}{2.Average}{32}{equation.2.4.18}%
+\contentsline {subsection}{\numberline {2.4.1}Preprocessing of PIV data}{30}{subsection.2.4.1}%
+\contentsline {subparagraph}{PIV acquisition treatment}{30}{subsection.2.4.1}%
+\contentsline {subparagraph}{1.}{31}{figure.caption.25}%
+\contentsline {subparagraph}{2.Average}{31}{equation.2.4.18}%
 \contentsline {subparagraph}{3.Sampling}{32}{equation.2.4.18}%
-\contentsline {subparagraph}{4.Shaping for CONES}{33}{equation.2.4.18}%
-\contentsline {subparagraph}{5.Creation of a file for the interpolation}{33}{equation.2.4.18}%
-\contentsline {subsection}{\numberline {2.4.2}Modifications on OpenFoam and CONES}{34}{subsection.2.4.2}%
+\contentsline {subparagraph}{4.Shaping for CONES}{32}{equation.2.4.18}%
+\contentsline {subparagraph}{5.Creation of a file for the interpolation}{32}{equation.2.4.18}%
+\contentsline {subsection}{\numberline {2.4.2}Modifications on OpenFoam and CONES}{33}{subsection.2.4.2}%
 \contentsline {subsection}{\numberline {2.4.3}Application of the DA}{34}{subsection.2.4.3}%
 \contentsline {section}{\numberline {2.5}Results}{34}{section.2.5}%
 \contentsline {subsection}{\numberline {2.5.1}Conclusion ans perspective}{36}{subsection.2.5.1}%
-\contentsline {chapter}{Conclusion}{38}{chapter*.32}%
-\contentsline {chapter}{Annexes}{39}{chapter*.32}%
-\contentsline {section}{Annex 1\ -- Batch code}{39}{annex.1}%
-\contentsline {section}{Annex 2\ -- OpenFOAM Directory Tree}{40}{annex.2}%
-\contentsline {chapter}{Bibliography}{41}{chapter*.33}%
-\contentsline {chapter}{List of acronyms}{43}{chapter*.34}%
-\contentsline {paragraph}{Résumé}{44}{chapter*.34}%
-\contentsline {paragraph}{Abstract}{44}{chapter*.34}%
+\contentsline {chapter}{Conclusion}{37}{chapter*.32}%
+\contentsline {chapter}{Table des annexes}{39}{chapter*.33}%
+\contentsline {chapter}{Annexes}{40}{chapter*.33}%
+\contentsline {section}{Annex 1\ -- Batch code}{40}{annex.1}%
+\contentsline {section}{Annex 2\ -- OpenFOAM Directory Tree}{41}{annex.2}%
+\contentsline {chapter}{Bibliography}{42}{chapter*.34}%
+\contentsline {chapter}{List of acronyms}{44}{chapter*.35}%
+\contentsline {paragraph}{Résumé}{45}{chapter*.35}%
+\contentsline {paragraph}{Abstract}{45}{chapter*.35}%
