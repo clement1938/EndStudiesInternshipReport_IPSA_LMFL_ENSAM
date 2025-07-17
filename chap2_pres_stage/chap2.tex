@@ -605,10 +605,14 @@ fvConstraints.constrain(UEqn); // Applies physical constraints
 \end{lstlisting}
 
 With
+
 - \textit{cmptMultiply} the forward product
-- D -> esilon x viscosity x D
-- U the velocity of the field
-- UIB the velocity of the walls (here omega R)
+
+- $D = \xi \nu D'_u$
+
+- $U$ the velocity of the field
+
+- $UIB$ the velocity of the walls (here $\Omega \times R$)
 
 %\begin{figure}[H]
 %    \centering
@@ -817,8 +821,8 @@ A good indicator of the accuracy of the simulation is the performance of the pum
 
 \begin{figure}[H]
     \includegraphics[width=0.4\textwidth]{images/numericalPump/diffuseurMesh.png}
-    \caption{diffuseur Mesh}
-    \label{diffuseurMesh}
+    \caption{Diffuser Mesh}
+    \label{diffuserMesh}
 \end{figure}
 
 
@@ -1043,7 +1047,7 @@ Supposons 1000 itération en moyenne entre chaque phase d'analyse, et 300 phases
 
 Comment calculer la variance que je veux mettre ?
 Expérience : 5\%
-De mon coté : je vise qu'en moyenne un membre d'ensemble ait un écart de 1e7 par rapport au temps précédent (pour des valeurs autour de 5e7), donc, pour 30 membres d'ensemble, environ 95\% = 2 sigma dans 5e7+-1e7, càd sigma = 0.5e7 = 10\%. Ensuite, le nombre d'itération entre les phases d'analyse est déterminé en regardans combien d'itération sont nécessaires pour faire varier la solution dans le diffuseur (influe, rapidement, converge doucement mais ce qui nous intéresse c'est que ça prenne la tendace) lorsqu'un paramètre de forcage est modifié (supposé très inférieure pour la turbulence car appliquée de partout)
+De mon coté : je vise qu'en moyenne un membre d'ensemble ait un écart de 1e7 par rapport au temps précédent (pour des valeurs autour de 5e7), donc, pour 30 membres d'ensemble, environ 95\% = 2 sigma dans 5e7+-1e7, càd sigma = 0.5e7 = 10\%. Ensuite, le nombre d'itération entre les phases d'analyse est déterminé en regardans combien d'itération sont nécessaires pour faire varier la solution dans le diffuser (influe, rapidement, converge doucement mais ce qui nous intéresse c'est que ça prenne la tendace) lorsqu'un paramètre de forcage est modifié (supposé très inférieure pour la turbulence car appliquée de partout)
 
 The observation window was defined by observing the number of iterations required for the influence of the IBM to reach the diffuser and take the form of the converged result. We are not interested in the turbulence parameters to determine the observation window because they are present throughout the domain, their influence is almost direct (not necessarily their convergence). We chose 800 iterations
 
@@ -1139,7 +1143,7 @@ Voir "TD -> Done et "TDSave -> Done" pour voir tt ce que j'ai fais
 The random variations are random but with a reproducibility seed (sed) that allows to have the same result each time the simulation is launched.
 
 
-//The theorical average radial speed at the input of the diffuseur is equal to \[\frac{Q_{dif_{in}}}{S_{dif_{in}}} = \frac{Q_{pump_{in}}}{2\pi R_{3} h_{dif}} = 3.65m.s^{-1}\]
+//The theorical average radial speed at the input of the diffuser is equal to \[\frac{Q_{dif_{in}}}{S_{dif_{in}}} = \frac{Q_{pump_{in}}}{2\pi R_{3} h_{dif}} = 3.65m.s^{-1}\]
 With $Q_{pump_{in}} = Q_{dif_{in}}$ because the mass flow rate is constant and the flow is incompressible.// -> No need ??
 
 Parler du cas test profil d'aile de Tom
@@ -1151,7 +1155,7 @@ Parler du cas test profil d'aile de Tom
     \label{coords360}
 \end{figure}
 
-%En combien de temps l'information de pression remonte-t-elle dans le diffuseur ? -->> "directement"
+%En combien de temps l'information de pression remonte-t-elle dans le diffuser ? -->> "directement"
 
 %144 coeurs : 54it/min
 %300-> 336 coeurs : 100it/min (+- 20\%)
