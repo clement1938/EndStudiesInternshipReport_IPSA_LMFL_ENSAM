@@ -10,14 +10,14 @@
 \renewcommand{\thetable}{A\arabic{table}}
 \renewcommand{\thefigure}{A\arabic{figure}}
 \setcounter{table}{0}  % A ajuster si nécessaire
-\setcounter{figure}{2}
+\setcounter{figure}{0} % A ajuster si nécessaire
 
 %\section{Détails des objectifs et actions liées à l'écoresponsabilité}
 
 % Chaque annexe porte un numéro et un titre.
 
 
-Batch code used to run the simulation on the Rome partition of TGCC cluster.
+\annex{Batch code}{annex:BatchCode}
 
 \begin{verbatim}
 #!/bin/bash                     # To be run with bash
@@ -45,7 +45,78 @@ source $FOAM_SOURCE_FILE
 ccc_mprun -f app_mySF35.conf    # Run the application with the configuration file
 \end{verbatim}
 
+
 \newpage
+
+\annex{OpenFOAM Directory Tree}{annex:OpenFoamArbo}
+
+
+\begin{forest}
+    for tree={
+      font=\ttfamily,
+      grow'=0,
+      child anchor=west,
+      parent anchor=south,
+      anchor=west,
+      calign=first,
+      inner xsep=7pt,
+      edge path={
+        \noexpand\path [draw, \forestoption{edge}]
+        (!u.south west) +(7.5pt,0) |- (.child anchor) pic {folder} \forestoption{edge label};
+      },
+      before typesetting nodes={
+        if n=1
+          {insert before={[,phantom]}}
+          {}
+      },
+      fit=band,
+      before computing xy={l=15pt},
+    }  
+  [root
+    [0
+      [k      
+      ]
+      [omega    
+      ]
+      [p    
+      ]
+      [U    
+      ]
+    ]
+    [0.orig
+      [0
+      ]
+    ]
+    [system
+      [controlDict
+      ]
+      [blockMeshDict
+      ]
+      [decomposeParDict
+      ]
+      [fvSchemes
+      ]
+      [fvSolution
+      ]
+    ]
+    [constant
+      [momentumTransport
+      ]
+      [transportProperties
+      ]
+      [MRFProperties
+      ]
+    ]
+    [dummy.foam
+    ]
+    [processor0
+    ]
+    [processor...
+    ]
+    [processorN-1
+    ]
+  ]
+  \end{forest}
 
 
 

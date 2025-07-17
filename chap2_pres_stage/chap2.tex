@@ -252,9 +252,9 @@ As we are at $Q/Q_d = 1$, we can retreive \[ \frac{\Delta P}{\rho U^2} = 0.4 \Ri
 \label{subsec:CFD_governing_equations}
 
 
-\paragraph{Navier-Stokes equations} CFD is based on the fundamental equations that describe Newtonian fluid mechanics: the nonlinear Navier-Stokes partial differential equations.
+\paragraph{Navier-Stokes equations} CFD is based on the fundamental equations that describe Newtonian fluid mechanics, base on the the nonlinear Navier-Stokes partial differential equations.
 
-These equations express three physical conservation principles, given here in their Eulerian form (i.e., fixed spatial reference frame), which is the standard in CFD because it describes how fluid properties evolve at fixed locations in space — ideal for mesh-based numerical simulations.
+These equations express three physical conservation principles, given here in their Eulerian form (i.e., fixed spatial reference frame), which is the standard in CFD because it describes how fluid properties evolve at fixed locations in space, that is ideal for mesh-based numerical simulations.
 
 \begin{itemize}
     \item \textbf{Mass conservation (Continuity equation):}
@@ -318,34 +318,41 @@ As we considere that we are in \textbf{incompressible} flow (because we are at l
 \end{itemize}
 \end{comment}
 
-RANS
+
+
+
+\paragraph{Turbulence modeling}  This equations permit to run a DNS simulation, that would be too costly in our case.
+Instead of running simulation that precision go down to the Kolmogorove scale, we use classical RANS CFD modelisation.
+The \autoref{fig:Modelisation_of_turbulence}\footnote{\url{https://www.cfdsupport.com/openfoam-training-by-cfd-support/node346/}} and \autoref{fig:Modelisation_of_turbulence2}\footnote{\url{https://blog.diphyx.com/comprehensive-guide-review-to-choosing-the-right-cfd-software-in-2023-features-performance-and-7ebc0623bfa6}}\footnote{\url{https://help.altair.com/hwcfdsolvers/acusolve/topics/acusolve/training_manual/turbulence_modeling_r.htm}}
+ illustrates well the tree main differents type of CFD models.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.65\textwidth]{images/sketch-turbulent-flow-modeling-DNS-LES-RAS.png}
-    \caption{Turbulence}
-    \label{fig:Turbulence}
+    \caption{Modelisation of turbulence}
+    \label{fig:Modelisation_of_turbulence}
 \end{figure}
-\footnote{\url{https://www.cfdsupport.com/openfoam-training-by-cfd-support/node346/}}
 
 \begin{figure}[H]
+    \begin{subfigure}{0.42\textwidth}
     \centering
-    \includegraphics[width=0.65\textwidth]{images/DNSLESRANS.png}
-    \caption{Turbulence}
-    \label{fig:Turbulence2}
+        \includegraphics[width=1\textwidth]{images/DNSLESRANS.png}
+        \caption{Illustration of different turbulence models}
+        \label{fig:Turbulence2}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.57\textwidth}
+        \includegraphics[width=1\textwidth]{images/turbCascade.png}
+        \caption{Turbulence model on the energy cascade}
+        \label{fig:Turbulence3}
+    \end{subfigure}
+    \caption{Turbulence models}
+    \label{fig:Modelisation_of_turbulence2}
 \end{figure}
-\footnote{\url{https://blog.diphyx.com/comprehensive-guide-review-to-choosing-the-right-cfd-software-in-2023-features-performance-and-7ebc0623bfa6}}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.65\textwidth]{images/turbCascade.png}
-    \caption{Turbulence}
-    \label{fig:Turbulence3}
-\end{figure}
-\footnote{\url{https://help.altair.com/hwcfdsolvers/acusolve/topics/acusolve/training_manual/turbulence_modeling_r.htm}}
 
 
 Kolmogorove Scale
+
 
 In our simulation, we are going to use a $k-\omega$ \ac{SST} turbulence model. Is a two-equations eddy-viscosity model: it's combine the $K-\epsilon$ and the $K-\Omega$ turbulence approximations.
 
@@ -353,23 +360,23 @@ $K-\Omega$ is know to be a good model in near-wall region but a bad prediction i
 $K-\epsilon$ make a good numerical prediction in the bulk flow field but is less accurate near solid surfaces
 
 
-Kinematic Eddy Viscosity
-
-$\nu _T  = {\frac{a_1 k}{\mbox{max}(a_1 \omega, S F_2)}}$
-Turbulence Kinetic Energy
+Kinematic Eddy Viscosity\footnote{\url{https://www.cfd-online.com/Wiki/SST_k-omega_model}}
+ : \[\nu _T  = {\frac{a_1 k}{\mbox{max}(a_1 \omega, S F_2)}}\]
 
 
 
-
-
-\[
+Turbulence Kinetic Energy : \[
 \frac{\partial k}{\partial t} + U_j \frac{\partial k}{\partial x_j} = P_k - \beta^* k\omega + \frac{\partial}{\partial x_j} \left[ \left( \nu + \sigma_k \nu_T \right) \frac{\partial k}{\partial x_j} \right]
 \]
 
+
+Specific Dissipation Rate :
 \[
 \frac{\partial \omega}{\partial t} + U_j \frac{\partial \omega}{\partial x_j} = \alpha S^2 - \beta \omega^2 + \frac{\partial}{\partial x_j} \left[ \left( \nu + \sigma_{\omega} \nu_T \right) \frac{\partial \omega}{\partial x_j} \right] + 2(1 - F_1)\sigma_{\omega 2} \frac{1}{\omega} \frac{\partial k}{\partial x_i} \frac{\partial \omega}{\partial x_i}
 \]
 
+
+Closure Coefficients and Auxilary Relations :
 \[
 F_2 = \tanh \left[ \left[ \max \left( \frac{2\sqrt{k}}{\beta^* \omega y}, \frac{500 \nu}{y^2 \omega} \right) \right]^2 \right]
 \]
@@ -386,53 +393,22 @@ F_1 = \tanh \left\{ \left\{ \min \left[ \max \left( \frac{\sqrt{k}}{\beta^* \ome
 CD_{k\omega} = \max \left( 2\rho \sigma_{\omega 2} \frac{1}{\omega} \frac{\partial k}{\partial x_i} \frac{\partial \omega}{\partial x_i}, 10^{-10} \right)
 \]
 
-\[
-\phi = \phi_1 F_1 + \phi_2 (1 - F_1)
-\]
-
-\[
-\alpha_1 = \frac{5}{9}, \quad \alpha_2 = 0.44
-\]
-
-\[
-\beta_1 = \frac{3}{40}, \quad \beta_2 = 0.0828
-\]
-
-\[
-\beta^* = \frac{9}{100}
-\]
-
-\begin{comment}
-${{\partial k} \over {\partial t}} + U_j {{\partial k} \over {\partial x_j }} = P_k - \beta ^* k\omega  + {\partial  \over {\partial x_j }}\left[ {\left( {\nu  + \sigma_k \nu _T } \right){{\partial k} \over {\partial x_j }}} \right]$
-Specific Dissipation Rate
-
-${{\partial \omega } \over {\partial t}} + U_j {{\partial \omega } \over {\partial x_j }} = \alpha S^2 - \beta \omega ^2  + {\partial  \over {\partial x_j }}\left[ {\left( {\nu  + \sigma_{\omega} \nu _T } \right){{\partial \omega } \over {\partial x_j }}} \right] + 2( 1 - F_1 ) \sigma_{\omega 2} {1 \over \omega} {{\partial k } \over {\partial x_i}} {{\partial \omega } \over {\partial x_i}} $
-Closure Coefficients and Auxilary Relations
-
-$F_2=\mbox{tanh} \left[ \left[ \mbox{max} \left( { 2 \sqrt{k} \over \beta^* \omega y } , { 500 \nu \over y^2 \omega } \right) \right]^2 \right]$
-
-$P_k=\mbox{min} \left(\tau _{ij} {{\partial U_i } \over {\partial x_j }} , 10\beta^* k \omega \right)$
-
-$F_1=\mbox{tanh} \left\{ \left\{ \mbox{min} \left[ \mbox{max} \left( {\sqrt{k} \over \beta ^* \omega y}, {500 \nu \over y^2 \omega} \right) , {4 \sigma_{\omega 2} k \over CD_{k\omega} y^2} \right] \right\} ^4 \right\}$
-
-$CD_{k\omega}=\mbox{max} \left( 2\rho\sigma_{\omega 2} {1 \over \omega} {{\partial k} \over {\partial x_i}} {{\partial \omega} \over {\partial x_i}}, 10 ^{-10} \right )$
-
 $\phi = \phi_1 F_1 + \phi_2 (1 - F_1)$
 
-$\alpha_1  = {{5} \over {9}},   \alpha_2  = 0.44$
+$\alpha_1 = \frac{5}{9}, \quad \alpha_2 = 0.44$
 
-$\beta_1  = {{3} \over {40}},  \beta_2  = 0.0828$
+$\beta_1 = \frac{3}{40}, \quad \beta_2 = 0.0828$
 
-$\beta^*  = {9 \over {100}}$
-\end{comment}
+$\beta^* = \frac{9}{100}$
 
 $\sigma_{k1}  = 0.85,  \sigma_{k2}  = 1$
 
 $\sigma_{\omega 1}  = 0.5,  \sigma_{\omega 2}  = 0.856$
 
 
-To simulate the rotation of the pump, with stationary result, we use a \ac{MRF} method.
 
+
+\paragraph{MRF method}  To simulate the rotation of the pump, with stationary RANS result, we use a \ac{MRF} method.
 
 \begin{figure}[H]
     \centering
@@ -444,27 +420,37 @@ To simulate the rotation of the pump, with stationary result, we use a \ac{MRF} 
 The principle is to add relative frame terme in a moving part while the other part stay fixe. Neither the mesh or the body is moving.
 
 
-// Dans le cas où on fait tourner la pompe en instationnaire : 
+In the U-RANS case, the impeller is moving. Also, very large eddy are simulated.
 
+To do so, the CFL hac \ac{CFL} or the courant number has to be computed. Typically set to 0.5 for stability. A way to visualize this is to think of it as the fraction of the distance a wave travels in one time step relative to the distance between two cells in the azimuthal direction at the tip of the impeller.
 
-\ac{CFL} is the Courant number, typically set to 0.5 for stability. A way to visualize this is to think of it as the fraction of the distance a wave travels in one time step relative to the distance between two cells in the azimuthal direction at the tip of the impeller.
 - $\Delta_{x}$ is the distance between two cells in the azimuthal direction at the tip of the impeller in our model, which is given as 1.5 mm or 0.0015 m.
+
 - $\|U_{\infty}\|$ is the magnitude of the velocity at infinity, which can be approximated by the tangential velocity at the tip of the impeller.
+
 \begin{equation}
     \|U_{\infty}\| = \omega \cdot r_{tip}
 \end{equation}
+
 where:
+
 - $\omega$ is the angular velocity in radians per second,
+
 - $r$ is the radius at the tip of the impeller.
+
 Assuming the rotating speed is given in revolutions per minute (rpm), we can convert it to radians per second:
 \begin{equation}
     \omega = \frac{1200 \text{ rpm} \cdot 2\pi \text{ rad}}{60 \text{ s}} = 125.66 \text{ rps}.
 \end{equation}
+
 Assuming the radius at the tip of the impeller is $r = 0.2566 \text{ m}$ (which is 0.2566m), we can compute the tangential velocity:
+
 \begin{equation}
     \|U_{\infty}\| = 125.66 \text{ rps} \cdot 0.2566 \text{ m} =  \text{32.24 m/s}.
 \end{equation}
+
 Assuming the distance between two cells in the azimuthal direction at the tip of the impeller is $\Delta_{x} = 0.0015 \text{ m}$ (which is 1.5 mm), we can now compute the time step $\Delta_{t}$:
+
 \begin{equation}
     \Delta_{t} = \frac{0.5 \cdot 0.0015 \text{ m}}{32.24 \text{ m/s}} = 2.3 \times 10^{-5} \text{ s} % \approx 2.3 \mu s.
 \end{equation}
@@ -508,9 +494,7 @@ To fit the mathematical solution, $D$ have to tend to the infinite. But this lea
 %mais des valeurs trop élevées de $D$ peut mener à des instabilités <- A mentionner qqpart 
 
 
-- Equations (Incompressible, turbulence,...)
-- Ajout IBM\ref{fig:IBM_Mesh} -> Methodo (forcage continue ici (vs interpolation ?)) -> avantages
-- Ajout MRF
+Methodo (forcage continue ici (vs interpolation ?)) -> avantages
 
 % A écrire à ma facon, juste équations intéréssantes ici
 Darcy's law in the body interface region $\Sigma_b$ and the solid region $\Omega_b$. To do so, a spatial dependent tensor $\boldsymbol{D}(\boldsymbol{x})$ must be defined. The resulting penalty term is modelled as follows:
@@ -555,74 +539,9 @@ Simulations are performed using the C++ framework OpenFOAM, used to discretize t
 
 OpenFOAM is not provided with a graphical interface, which is why a simulation is built by writing ``dictionaries'', in which are stored the necessary information for the simulation (mesh, turbulence model, maximum number of characteristic times, $\dots$).
 
-\begin{forest}
-    for tree={
-      font=\ttfamily,
-      grow'=0,
-      child anchor=west,
-      parent anchor=south,
-      anchor=west,
-      calign=first,
-      inner xsep=7pt,
-      edge path={
-        \noexpand\path [draw, \forestoption{edge}]
-        (!u.south west) +(7.5pt,0) |- (.child anchor) pic {folder} \forestoption{edge label};
-      },
-      before typesetting nodes={
-        if n=1
-          {insert before={[,phantom]}}
-          {}
-      },
-      fit=band,
-      before computing xy={l=15pt},
-    }  
-  [root
-    [0
-      [k      
-      ]
-      [omega    
-      ]
-      [p    
-      ]
-      [U    
-      ]
-    ]
-    [0.orig
-      [0
-      ]
-    ]
-    [system
-      [controlDict
-      ]
-      [blockMeshDict
-      ]
-      [decomposeParDict
-      ]
-      [fvSchemes
-      ]
-      [fvSolution
-      ]
-    ]
-    [constant
-      [momentumTransport
-      ]
-      [transportProperties
-      ]
-      [MRFProperties
-      ]
-    ]
-    [dummy.foam
-    ]
-    [processor0
-    ]
-    [processor...
-    ]
-    [processorN-1
-    ]
-  ]
-  \end{forest}
+See Annex~\ref{annex:OpenFoamArbo}.
 
-OR
+Ou si plus lisible :
 
 \begin{figure}[H]
     \centering
@@ -691,45 +610,19 @@ With
 - U the velocity of the field
 - UIB the velocity of the walls (here omega R)
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/other/implicit_forcing.png}
-    \caption{implicit forcing term in OpenFoam}
-    \label{implicit_forcing}
-\end{figure}
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=0.5\textwidth]{images/other/implicit_forcing.png}
+%    \caption{implicit forcing term in OpenFoam}
+%    \label{implicit_forcing}
+%\end{figure}
 
-
-// Je parle 2 fois du CFL ... //
 
 To compute the time step $\Delta_{t}$ of the pimpleFoam simulation of the pump, we can use the \ac{CFL} condition, which states that:
 \begin{equation}
     \Delta_{t} = \frac{CFL \cdot \Delta_{x}}{\|U_{\infty}\|},
 \end{equation}
-where:
-
-- $CFL$ is the Courant number, typically set to 0.5 for stability. A way to visualize this is to think of it as the fraction of the distance a wave travels in one time step relative to the distance between two cells in the azimuthal direction at the tip of the impeller.
-- $\Delta_{x}$ is the distance between two cells in the azimuthal direction at the tip of the impeller in our model, which is given as 1.5 mm or 0.0015 m.
-- $\|U_{\infty}\|$ is the magnitude of the velocity at infinity, which can be approximated by the tangential velocity at the tip of the impeller.
-\begin{equation}
-    \|U_{\infty}\| = \omega \cdot r_{tip}
-\end{equation}
-where:
-- $\omega$ is the angular velocity in radians per second,
-- $r$ is the radius at the tip of the impeller.
-Assuming the rotating speed is given in revolutions per minute (rpm), we can convert it to radians per second:
-\begin{equation}
-    \omega = \frac{1200 \text{ rpm} \cdot 2\pi \text{ rad}}{60 \text{ s}} = 125.66 \text{ rps}.
-\end{equation}
-Assuming the radius at the tip of the impeller is $r = 0.2566 \text{ m}$ (which is 0.2566m), we can compute the tangential velocity:
-\begin{equation}
-    \|U_{\infty}\| = 125.66 \text{ rps} \cdot 0.2566 \text{ m} =  \text{32.24 m/s}.
-\end{equation}
-Assuming the distance between two cells in the azimuthal direction at the tip of the impeller is $\Delta_{x} = 0.0015 \text{ m}$ (which is 1.5 mm), we can now compute the time step $\Delta_{t}$:
-\begin{equation}
-    \Delta_{t} = \frac{0.5 \cdot 0.0015 \text{ m}}{32.24 \text{ m/s}} = 2.3 \times 10^{-5} \text{ s} % \approx 2.3 \mu s.
-\end{equation}
-
-
+where: $CFL$ is the Courant number, detail in the \autoref{subsec:CFD_governing_equations}
 
 
 
@@ -747,7 +640,7 @@ The first forecast step at time \( k \) computes the estimated state \( \mathbf{
     \mathbf{x}_{k+1}^{f} = \mathbf{M} \mathbf{x}_k 
 \end{equation}
 \begin{equation}
-    \mathbf{P}_{k+1}^{f} = \mathbf{M} \mathbf{P}_k \mathbf{M}^\top + \mathbf{Q}_{k+1}
+    \mathbf{P}_{k+1}^{f} = \mathbf{M}_{k+1} \mathbf{P}_k^a \mathbf{M}_{k+1}^\top + \mathbf{Q}
 \end{equation}
 where \( \mathbf{Q} \) represents the variance matrix of the model.  
 Then, the analysis step in which the observation \( \mathbf{y} \) and forecast are combined,
@@ -907,9 +800,6 @@ With the conditions specified in the \autoref{subsec:Presentation_of_the_data_fr
     \label{coordsSeventh}
 \end{figure}
 
-
-5 pts d'observations décrits plus haut ? -> 
-
 As seen in the \autoref{subsec:Presentation_of_the_data_from_the_centrifugal_pump_test_case}, \autoref{fig:polar_slice_avg_theta_trimmed}, we use five observations points on the three PIV plans.
 We are able to plot this curves, comparing the velocities of the simulation and of the PIV data.
 
@@ -921,9 +811,9 @@ We are able to plot this curves, comparing the velocities of the simulation and 
 \end{figure}
 
 Our goal is to make these curves fit as well as possible.
-We already see that there is a big difference.
+We already see that there is a notable difference bteween the radial velocity in the plan at 75\%. The numerical simulation predict a negative velocity instead of a positive one. This is explaned by a non physical recirculation buble as you can see in the %\autoref{...}
 
-Mais surtout obtenir le bon rendement ! (sujet du stage)
+A good indicator of the accuracy of the simulation is the performance of the pump. It's directly linked to the pressure difference between the outlet and the inlet. As seen in at the end of the \autoref{subsec:Presentation_of_the_data_from_the_centrifugal_pump_test_case}, we should obtain around 415Pa. In our case, we obtain a pressure difference of around 306Pa, that is far from what we excpect.
 
 \begin{figure}[H]
     \includegraphics[width=0.4\textwidth]{images/numericalPump/diffuseurMesh.png}
@@ -935,39 +825,38 @@ Mais surtout obtenir le bon rendement ! (sujet du stage)
 Limitations IBM à améliorer avec DA
 Graçe aux données xp (mentionné partie 2.1.2, on peut faire de la DA)
 
+
+
+\newpage
 \section{Application of the DA}
 
 Explication de coords\_seventh.txt, coords\_360.txt et coords\_7.txt
 
-Tentative d'explication en français :
 
-J'ai d'un coté une simulation numérique de la pompe centrifuge, qui est un modèle numérique de la pompe. De l'autre coté, j'ai des données expérimentales de PIV, qui sont des données expérimentales de la pompe centrifuge. Je veux utiliser les données expérimentales pour améliorer le modèle numérique de la pompe centrifuge.
-Pour cela, j'utilise la méthode de l'assimilation de données, qui est une méthode qui permet d'améliorer un modèle numérique en utilisant des données expérimentales. La méthode que j'utilise est l'Ensemble Kalman Filter (EnKF), qui est une méthode d'assimilation de données qui utilise un ensemble de modèles numériques pour améliorer le modèle numérique. 
-Cela se fait en deux étapes :
+In this work, we aim to improve the numerical model of a centrifugal pump using experimental data obtained from PIV. On one side, we have a numerical simulation of the pump (the digital twin), and on the other, experimental PIV measurements. To combine the strengths of both, we use data assimilation, a method that updates a numerical model using real-world data.
+We specifically use the EnKF, a data assimilation technique that relies on an ensemble of simulations to estimate and reduce uncertainty in the model. The process can be summarized in two main steps:
+
 \begin{enumerate}
-    \item Je fais une simulation numérique de la pompe centrifuge, en utilisant le modèle numérique de la pompe centrifuge. Cette simulation numérique me donne un ensemble de modèles numériques, qui sont les membres de l'ensemble.
-    \item Je compare les données expérimentales de PIV avec les données numériques de la simulation numérique. Pour cela, je fais une interpolation des données expérimentales de PIV sur les points de l'ensemble de modèles numériques. Cette interpolation me donne un ensemble de données expérimentales, qui sont les observations.
+    \item \textbf{Forecast Step} We run a steady-state numerical simulation of the pump using the Multiple Reference Frame (MRF) and the IBM methods. This yields an ensemble of model states, representing the expected flow field within the pump.
+    \item \textbf{Analysis Step} We compare the simulation results with the experimental PIV data. To do this, we interpolate the PIV measurements onto the mesh of the numerical model, creating an ensemble of observation vectors. We then compute the difference between the simulated and measured data, known as the innovation (see mathematical formulation in \autoref{subsec:CFD_governing_equations}). This innovation is used to update the ensemble through the EnKF algorithm, improving the numerical model.
 \end{enumerate}
 
-La comparaison entre les données expérimentales et les données numériques me permet de calculer l'écart entre les deux, qui est appelé l'innovation (mettre référence partie mathématique). L'innovation est utilisée pour mettre à jour les membres de l'ensemble de modèles numériques, en utilisant la méthode de l'EnKF. Cette mise à jour me permet d'améliorer le modèle numérique de la pompe centrifuge.
 
-1. Ma simulation numérique de la pompe est stationaire en utilisant la méthode MRF. Cela signifie que le champ de vitesse est constant dans le temps. Cepandant, il n'est pas constant dans l'espace, car il dépend de la position dans le diffuseur. Un motif de vitesse répété sept fois est donc censé être visible (cela n'est pas vraiment le cas en instantionnaire).
+\begin{enumerate}
+    \item \textbf{Nature of the Numerical Simulation} The simulation is stationary (time-independent) and uses the MRF approach to model rotation. While the velocity field remains constant over time, it varies in space—especially in the diffuser region. Because of the pump's geometry, we expect a periodic velocity pattern that repeats every 1/7th of a revolution (due to the 7 blades). However, this repeating pattern is not clearly visible in unsteady simulations due to wake deformation.
+    \item \textbf{Nature of the Experimental Data} The PIV system captures 49 images per full rotor revolution, meaning there are 7 images between two successive blades. In the rotating frame of reference, each image corresponds to a phase shift of approximately 360°/49.
+\end{enumerate}
 
-2. Les données PIV sont acquises à une vitesse de rotation de la pompe et une fréquence telle que 49 images sont acquises par tour de roue, soit 7 immages entre deux passage d'aubes successives. Dans le référentiel de la pompe, les images sont prises à un une différence de 360/49deg. 
 
-Nous voulons comparer des données consitantes. Nous pourrions syncroniser une simulation instationnaire avec les données PIV. Mais nous avons choisis de faire une simulatio instationnaire dans un premier temps.
+Ideally, to compare consistent datasets, we could run a time-resolved unsteady simulation and synchronize it with the PIV snapshots. However, for this initial study, we chose to work with a steady MRF simulation.
 
-Nous pourrions reconstruire le champ spatial PIV (nous avons assez d'angle de vue et de données pour cale -> ref article Antoine).
-Cependant, la vitesse de rotation n'est pas très précise, mais surtout, la méthode MRF inverse la forme du sillage.
+Although we could attempt to reconstruct the spatial velocity field from the phase-averaged PIV data (as done in [citer article Antoine]), there are two main limitations:
 
-Nous avons donc choisis de moyenner temporellement les données PIV (ce qui reviens à moyenner spatialement).
-Du coté de la simulation, nous avons donc besoin de moyenner azimutalement les données numériques pour les rendre compatibles avec les données PIV.
+To address these issues, we opted to average the PIV data over time, which is equivalent to spatial (azimuthal) averaging in the rotating frame. On the simulation side, we therefore perform azimuthal averaging of the numerical results to make them consistent with the experimental data.
 
-\begin{figure}[H]
-    \includegraphics[width=0.8\textwidth]{images/numericalPump/coords.png}
-    \caption{}
-    \label{CHANGER}
-\end{figure}
+This approach ensures that the data fed into the EnKF—both the forecast and the observations—are comparable and compatible in both spatial and statistical sense.
+
+
 
 Imager avec des illustrations et vue en coupe ParaView
 
@@ -1154,13 +1043,21 @@ At pump flow rate = pump design flow rate So Q?/Q? =1
 
 \subsection{Modifications on OpenFoam and CONES} %Preparation
 
+
+\begin{figure}[H]
+    \includegraphics[width=0.8\textwidth]{images/numericalPump/coords.png}
+    \caption{}
+    \label{CHANGER}
+\end{figure}
+
+
+
 Tout ce qu'il y a dans le CONES dict
 Parler des modifs dans le code ici.
 
 
 
 - Reduction of the pipe (with the research of the velocity inlet condition)
-
 
 Toujours mentionner les paramètres utilisés (dans le controlDict et le CONESDict)
 
@@ -1169,7 +1066,7 @@ Toujours mentionner les paramètres utilisés (dans le controlDict et le CONESDi
 
 \section{Results}
 
-Comparer les 3 résultats : avant DA, après simple et "complex" DA
+Comparer les 2-3 résultats : (avant DA, déjà fait section précédente), après simple et "complex" DA
 
 
 \begin{figure}[H]
