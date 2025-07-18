@@ -2375,8 +2375,9 @@
     <bcf:citekey order="12" intorder="1">retiFrancescoDiGiorgio1963</bcf:citekey>
     <bcf:citekey order="13" intorder="1">dazinHighspeedStereoscopicPIV2011a</bcf:citekey>
     <bcf:citekey order="14" intorder="1">fanEffectLeakagePerformanceb</bcf:citekey>
-    <bcf:citekey order="15" intorder="1">valeroEnhancedStateEstimation2025</bcf:citekey>
-    <bcf:citekey order="17" intorder="1" nocite="1">*</bcf:citekey>
+    <bcf:citekey order="15" intorder="1">angotPenalizationMethodTake1999a</bcf:citekey>
+    <bcf:citekey order="16" intorder="1">valeroEnhancedStateEstimation2025</bcf:citekey>
+    <bcf:citekey order="18" intorder="1" nocite="1">*</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">

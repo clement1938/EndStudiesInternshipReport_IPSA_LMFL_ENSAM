@@ -39,6 +39,57 @@
       \field{type}{phdthesis}
       \true{nocite}
     \endentry
+    \entry{angotPenalizationMethodTake1999a}{article}{}
+      \name{author}{3}{}{%
+        {{hash=3b7b1e8da951c37bc6e6664dc4507257}{%
+           family={Angot},
+           familyi={A\bibinitperiod},
+           given={Philippe},
+           giveni={P\bibinitperiod}}}%
+        {{hash=d660fadedc7970631457f4c1d9940e9b}{%
+           family={Bruneau},
+           familyi={B\bibinitperiod},
+           given={Charles-Henri},
+           giveni={C\bibinithyphendelim H\bibinitperiod}}}%
+        {{hash=203abdc5a0eabb3e4541ec10c66f5394}{%
+           family={Fabrie},
+           familyi={F\bibinitperiod},
+           given={Pierre},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{6b4e563dabb4f596d86e0b1deb4af5b5}
+      \strng{fullhash}{6b4e563dabb4f596d86e0b1deb4af5b5}
+      \strng{bibnamehash}{6b4e563dabb4f596d86e0b1deb4af5b5}
+      \strng{authorbibnamehash}{6b4e563dabb4f596d86e0b1deb4af5b5}
+      \strng{authornamehash}{6b4e563dabb4f596d86e0b1deb4af5b5}
+      \strng{authorfullhash}{6b4e563dabb4f596d86e0b1deb4af5b5}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{From the Navier-Stokes/Brinkman model, a penalization method has been derived by several authors to compute incompressible Navier-Stokes equations around obstacles. In this paper, convergence theorems and error estimates are derived for two kinds of penalization. The first one corresponds to \$L\textasciicircum 2\$penalization inducing a Darcy equation in the solid body, the second one corresponds to a \$H\textasciicircum 1\$penalization and induces a Brinkman equation in the body. Numerical tests are performed to confirm the efficiency and accuracy of the method.}
+      \field{day}{1}
+      \field{issn}{0945-3245}
+      \field{journaltitle}{Numerische Mathematik}
+      \field{month}{2}
+      \field{number}{4}
+      \field{shortjournal}{Numerische Mathematik}
+      \field{title}{A Penalization Method to Take into Account Obstacles in Incompressible Viscous Flows}
+      \field{volume}{81}
+      \field{year}{1999}
+      \field{dateera}{ce}
+      \field{pages}{497\bibrangedash 520}
+      \range{pages}{24}
+      \verb{doi}
+      \verb 10.1007/s002110050401
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/s002110050401
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/s002110050401
+      \endverb
+    \endentry
     \entry{aschDataAssimilationMethods2016}{book}{}
       \name{author}{3}{}{%
         {{hash=fc15b2c738c78e9fa3b3666bdb1efa21}{%
