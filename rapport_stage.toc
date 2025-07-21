@@ -23,14 +23,14 @@
 \contentsline {paragraph}{U-RANS}{20}{figure.caption.18}%
 \contentsline {paragraph}{IBM equations}{21}{equation.2.2.11}%
 \contentsline {subsection}{\numberline {2.2.2}The open source code OpenFoam}{21}{subsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.2.3}EnKF}{23}{subsection.2.2.3}%
-\contentsline {subsection}{\numberline {2.2.4}The CONES library}{24}{subsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.2.3}EnKF}{24}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}The CONES library}{25}{subsection.2.2.4}%
 \contentsline {subsection}{\numberline {2.2.5}Pump modeling}{25}{subsection.2.2.5}%
 \contentsline {section}{\numberline {2.3}IBM preliminary results}{27}{section.2.3}%
 \contentsline {section}{\numberline {2.4}Application of the DA}{29}{section.2.4}%
 \contentsline {subsection}{\numberline {2.4.1}Preprocessing of PIV data}{29}{subsection.2.4.1}%
 \contentsline {subparagraph}{PIV acquisition treatment}{29}{subsection.2.4.1}%
-\contentsline {subparagraph}{1.}{30}{figure.caption.26}%
+\contentsline {subparagraph}{1.}{30}{figure.caption.27}%
 \contentsline {subparagraph}{2.Average}{30}{equation.2.4.20}%
 \contentsline {subparagraph}{3.Sampling}{31}{equation.2.4.20}%
 \contentsline {subparagraph}{4.Shaping for CONES}{31}{equation.2.4.20}%
@@ -39,12 +39,12 @@
 \contentsline {subsection}{\numberline {2.4.3}Application of the DA}{33}{subsection.2.4.3}%
 \contentsline {section}{\numberline {2.5}Results}{33}{section.2.5}%
 \contentsline {subsection}{\numberline {2.5.1}Conclusion ans perspective}{35}{subsection.2.5.1}%
-\contentsline {chapter}{Conclusion}{36}{chapter*.33}%
-\contentsline {chapter}{Table des annexes}{38}{chapter*.34}%
-\contentsline {chapter}{Annexes}{39}{chapter*.34}%
+\contentsline {chapter}{Conclusion}{36}{chapter*.34}%
+\contentsline {chapter}{Table des annexes}{38}{chapter*.35}%
+\contentsline {chapter}{Annexes}{39}{chapter*.35}%
 \contentsline {section}{Annex 1\ -- Batch code}{39}{annex.1}%
 \contentsline {section}{Annex 2\ -- OpenFOAM Directory Tree}{40}{annex.2}%
-\contentsline {chapter}{Bibliography}{41}{chapter*.35}%
-\contentsline {chapter}{List of acronyms}{43}{chapter*.36}%
-\contentsline {paragraph}{Résumé}{44}{chapter*.36}%
-\contentsline {paragraph}{Abstract}{44}{chapter*.36}%
+\contentsline {chapter}{Bibliography}{41}{chapter*.36}%
+\contentsline {chapter}{List of acronyms}{43}{chapter*.37}%
+\contentsline {paragraph}{Résumé}{44}{chapter*.37}%
+\contentsline {paragraph}{Abstract}{44}{chapter*.37}%
