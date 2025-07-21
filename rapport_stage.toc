@@ -5,46 +5,46 @@
 \contentsline {chapter}{\numberline {1}The LMFL laboratory and Arts et Métiers Lille campus}{6}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Scientific environment and host institution}{6}{section.1.1}%
 \contentsline {section}{\numberline {1.2}Social and environmental responsibility}{7}{section.1.2}%
-\contentsline {chapter}{\numberline {2}Optimizing the performance of a centrifugal pump by data assimilation}{10}{chapter.2}%
+\contentsline {chapter}{\numberline {2}Optimizing the performance of a centrifugal pump with data assimilation}{10}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Data Assimilation}{10}{section.2.1}%
 \contentsline {subsection}{\numberline {2.1.1}State of the art}{10}{subsection.2.1.1}%
 \contentsline {paragraph}{EnKF}{11}{figure.caption.4}%
-\contentsline {paragraph}{CFD}{12}{figure.caption.5}%
-\contentsline {paragraph}{IBM}{12}{figure.caption.6}%
-\contentsline {subsection}{\numberline {2.1.2}Presentation of the data from the centrifugal pump test case}{14}{subsection.2.1.2}%
-\contentsline {paragraph}{The pump}{14}{subsection.2.1.2}%
-\contentsline {paragraph}{PIV data}{15}{figure.caption.13}%
-\contentsline {paragraph}{Pressure data}{16}{figure.caption.13}%
-\contentsline {section}{\numberline {2.2}Numerical ingredients}{17}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}CFD governing equations}{17}{subsection.2.2.1}%
-\contentsline {paragraph}{Navier-Stokes equations}{17}{subsection.2.2.1}%
-\contentsline {paragraph}{Turbulence modeling}{18}{equation.2.2.7}%
-\contentsline {paragraph}{MRF method}{20}{figure.caption.17}%
-\contentsline {paragraph}{U-RANS}{20}{figure.caption.18}%
-\contentsline {paragraph}{IBM equations}{21}{equation.2.2.11}%
-\contentsline {subsection}{\numberline {2.2.2}The open source code OpenFoam}{21}{subsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.2.3}EnKF}{24}{subsection.2.2.3}%
-\contentsline {subsection}{\numberline {2.2.4}The CONES library}{25}{subsection.2.2.4}%
+\contentsline {paragraph}{IBM}{12}{figure.caption.5}%
+\contentsline {subsection}{\numberline {2.1.2}Presentation of the data from the centrifugal pump test case}{13}{subsection.2.1.2}%
+\contentsline {paragraph}{The pump}{13}{subsection.2.1.2}%
+\contentsline {section}{\numberline {2.2}Numerical ingredients}{16}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}CFD governing equations}{16}{subsection.2.2.1}%
+\contentsline {paragraph}{Navier-Stokes equations}{16}{subsection.2.2.1}%
+\contentsline {paragraph}{Turbulence modeling}{17}{equation.2.2.7}%
+\contentsline {paragraph}{MRF method}{19}{figure.caption.15}%
+\contentsline {paragraph}{U-RANS}{19}{figure.caption.16}%
+\contentsline {paragraph}{IBM equations}{20}{equation.2.2.11}%
+\contentsline {subsection}{\numberline {2.2.2}The open source code OpenFOAM}{20}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}EnKF}{23}{subsection.2.2.3}%
+\contentsline {paragraph}{CFD}{24}{algorithm.1}%
+\contentsline {subsection}{\numberline {2.2.4}The CONES library}{24}{subsection.2.2.4}%
 \contentsline {subsection}{\numberline {2.2.5}Pump modeling}{25}{subsection.2.2.5}%
 \contentsline {section}{\numberline {2.3}IBM preliminary results}{27}{section.2.3}%
 \contentsline {section}{\numberline {2.4}Application of the DA}{29}{section.2.4}%
 \contentsline {subsection}{\numberline {2.4.1}Preprocessing of PIV data}{29}{subsection.2.4.1}%
 \contentsline {subparagraph}{PIV acquisition treatment}{29}{subsection.2.4.1}%
-\contentsline {subparagraph}{1.}{30}{figure.caption.27}%
-\contentsline {subparagraph}{2.Average}{30}{equation.2.4.20}%
+\contentsline {paragraph}{PIV data}{30}{subsection.2.4.1}%
+\contentsline {paragraph}{Pressure data}{30}{subsection.2.4.1}%
+\contentsline {subparagraph}{1.}{31}{figure.caption.27}%
+\contentsline {subparagraph}{2.Average}{31}{equation.2.4.20}%
 \contentsline {subparagraph}{3.Sampling}{31}{equation.2.4.20}%
-\contentsline {subparagraph}{4.Shaping for CONES}{31}{equation.2.4.20}%
-\contentsline {subparagraph}{5.Creation of a file for the interpolation}{31}{equation.2.4.20}%
-\contentsline {subsection}{\numberline {2.4.2}Modifications on OpenFoam and CONES for the DA}{32}{subsection.2.4.2}%
-\contentsline {subsection}{\numberline {2.4.3}Application of the DA}{33}{subsection.2.4.3}%
-\contentsline {section}{\numberline {2.5}Results}{33}{section.2.5}%
-\contentsline {subsection}{\numberline {2.5.1}Conclusion ans perspective}{35}{subsection.2.5.1}%
-\contentsline {chapter}{Conclusion}{36}{chapter*.34}%
-\contentsline {chapter}{Table des annexes}{38}{chapter*.35}%
-\contentsline {chapter}{Annexes}{39}{chapter*.35}%
-\contentsline {section}{Annex 1\ -- Batch code}{39}{annex.1}%
-\contentsline {section}{Annex 2\ -- OpenFOAM Directory Tree}{40}{annex.2}%
-\contentsline {chapter}{Bibliography}{41}{chapter*.36}%
-\contentsline {chapter}{List of acronyms}{43}{chapter*.37}%
-\contentsline {paragraph}{Résumé}{44}{chapter*.37}%
-\contentsline {paragraph}{Abstract}{44}{chapter*.37}%
+\contentsline {subparagraph}{4.Shaping for CONES}{32}{equation.2.4.20}%
+\contentsline {subparagraph}{5.Creation of a file for the interpolation}{32}{equation.2.4.20}%
+\contentsline {subsection}{\numberline {2.4.2}Modifications on OpenFOAM and CONES for the DA}{33}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.3}Application of the DA}{34}{subsection.2.4.3}%
+\contentsline {section}{\numberline {2.5}Results}{34}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Conclusion ans perspective}{36}{subsection.2.5.1}%
+\contentsline {chapter}{Conclusion}{37}{chapter*.34}%
+\contentsline {chapter}{Table des annexes}{39}{chapter*.35}%
+\contentsline {chapter}{Annexes}{40}{chapter*.35}%
+\contentsline {section}{Annex 1\ -- Batch code}{40}{annex.1}%
+\contentsline {section}{Annex 2\ -- OpenFOAM Directory Tree}{41}{annex.2}%
+\contentsline {chapter}{Bibliography}{42}{chapter*.36}%
+\contentsline {chapter}{List of acronyms}{44}{chapter*.37}%
+\contentsline {paragraph}{Résumé}{45}{chapter*.37}%
+\contentsline {paragraph}{Abstract}{45}{chapter*.37}%
