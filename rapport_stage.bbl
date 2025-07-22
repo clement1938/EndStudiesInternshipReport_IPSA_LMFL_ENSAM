@@ -426,6 +426,7 @@
       \field{title}{An immersed boundary method using online sequential data assimilation}
       \field{volume}{524}
       \field{year}{2025}
+      \true{nocite}
       \field{pages}{113697}
       \range{pages}{1}
     \endentry
@@ -483,6 +484,49 @@
       \verb http://arxiv.org/abs/2501.18262
       \endverb
       \keyw{Physics - Fluid Dynamics}
+    \endentry
+    \entry{annurev:/content/journals/10.1146/annurev-fluid-120720-022129}{article}{}
+      \name{author}{1}{}{%
+        {{hash=ba7ecce71f84907313df2946ead4a5d4}{%
+           family={Verzicco},
+           familyi={V\bibinitperiod},
+           given={Roberto},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Annual Reviews}%
+      }
+      \strng{namehash}{ba7ecce71f84907313df2946ead4a5d4}
+      \strng{fullhash}{ba7ecce71f84907313df2946ead4a5d4}
+      \strng{bibnamehash}{ba7ecce71f84907313df2946ead4a5d4}
+      \strng{authorbibnamehash}{ba7ecce71f84907313df2946ead4a5d4}
+      \strng{authornamehash}{ba7ecce71f84907313df2946ead4a5d4}
+      \strng{authorfullhash}{ba7ecce71f84907313df2946ead4a5d4}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Immersed boundary methods (IBMs) are versatile and efficient computational techniques to solve flow problems in complex geometric configurations that retain the simplicity and efficiency of Cartesian structured meshes. Although these methods became known in the 1970s and gained credibility only in the new millennium, they had already been conceived and implemented at the beginning of the 1960s, even if the early computers of those times did not allow researchers to exploit their potential. Nowadays IBMs are established numerical schemes employed for the solution of many complex problems in which fluid mechanics may account for only part of the multiphysics dynamics. Despite the indisputable advantages, these methods also have drawbacks, and each problem should be carefully analyzed before deciding which particular IBM implementation is most suitable and whether additional modeling is necessary. High–Reynolds number flows constitute one of the main limitations of IBMs owing to the resolution of thin wall shear layers, which cannot benefit from anisotropic grid refinement at the boundaries. To alleviate this weakness, researchers have developed IBM-compliant wall models and local grid refinement strategies, although in these cases possible pitfalls must also be considered.}
+      \field{issn}{1545-4479}
+      \field{issue}{Volume 55, 2023}
+      \field{journaltitle}{Annual Review of Fluid Mechanics}
+      \field{title}{Immersed Boundary Methods: {{Historical}} Perspective and Future Outlook}
+      \field{type}{Journal Article}
+      \field{volume}{55}
+      \field{year}{2023}
+      \field{dateera}{ce}
+      \field{pages}{129\bibrangedash 155}
+      \range{pages}{27}
+      \verb{doi}
+      \verb 10.1146/annurev-fluid-120720-022129
+      \endverb
+      \verb{urlraw}
+      \verb https://www.annualreviews.org/content/journals/10.1146/annurev-fluid-120720-022129
+      \endverb
+      \verb{url}
+      \verb https://www.annualreviews.org/content/journals/10.1146/annurev-fluid-120720-022129
+      \endverb
+      \keyw{complex flows,immersed boundary methods,multiphysics problems,wall models}
     \endentry
     \entry{villanuevaAugmentedStateEstimation2023}{online}{}
       \name{author}{4}{}{%
