@@ -161,6 +161,12 @@
 \setlength{\parskip}{0.5\baselineskip}
 
 
+\DeclareAcronym{BC}{
+  short = BC,
+  long = Boundary Conditions,
+  short-indefinite = une,
+}
+
 \DeclareAcronym{U-RANS}{
   short = U-RANS,
   long = Unsteady Reynolds-Averaged Navier–Stokes,
@@ -647,6 +653,12 @@
 
 
 
+
+
+
+
+
+
 \begin{document}
 
 \AddToShipoutPicture*{\BackgroundPic}
@@ -683,6 +695,8 @@
 
 \input{chap1_pres_entreprise/chap1.tex}
 \newpage
+
+\acresetall % Permet de redonner la définition des acronymes avec \ac{id}
 
 \input{chap2_pres_stage/chap2.tex}
 \newpage

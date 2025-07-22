@@ -6,45 +6,43 @@
 \contentsline {section}{\numberline {1.1}Scientific environment and host institution}{6}{section.1.1}%
 \contentsline {section}{\numberline {1.2}Social and environmental responsibility}{7}{section.1.2}%
 \contentsline {chapter}{\numberline {2}Optimizing the performance of a centrifugal pump with data assimilation}{10}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Data Assimilation}{10}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}State of the art}{10}{subsection.2.1.1}%
+\contentsline {section}{\numberline {2.1}State of the art}{10}{section.2.1}%
 \contentsline {paragraph}{EnKF}{11}{figure.caption.4}%
 \contentsline {paragraph}{IBM}{12}{figure.caption.5}%
-\contentsline {subsection}{\numberline {2.1.2}Presentation of the data from the centrifugal pump test case}{13}{subsection.2.1.2}%
-\contentsline {paragraph}{The pump}{13}{subsection.2.1.2}%
-\contentsline {section}{\numberline {2.2}Numerical ingredients}{16}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}CFD governing equations}{16}{subsection.2.2.1}%
-\contentsline {paragraph}{Navier-Stokes equations}{16}{subsection.2.2.1}%
-\contentsline {paragraph}{Turbulence modeling}{17}{equation.2.2.7}%
-\contentsline {paragraph}{MRF method}{19}{figure.caption.15}%
-\contentsline {paragraph}{U-RANS}{19}{figure.caption.16}%
-\contentsline {paragraph}{IBM equations}{20}{equation.2.2.11}%
-\contentsline {subsection}{\numberline {2.2.2}The open source code OpenFOAM}{20}{subsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.2.3}EnKF}{23}{subsection.2.2.3}%
-\contentsline {paragraph}{CFD}{24}{algorithm.1}%
-\contentsline {subsection}{\numberline {2.2.4}The CONES library}{24}{subsection.2.2.4}%
-\contentsline {subsection}{\numberline {2.2.5}Pump modeling}{25}{subsection.2.2.5}%
-\contentsline {section}{\numberline {2.3}IBM preliminary results}{27}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Application of the DA}{29}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}Preprocessing of PIV data}{29}{subsection.2.4.1}%
-\contentsline {subparagraph}{PIV acquisition treatment}{29}{subsection.2.4.1}%
-\contentsline {paragraph}{PIV data}{30}{subsection.2.4.1}%
-\contentsline {paragraph}{Pressure data}{30}{subsection.2.4.1}%
-\contentsline {subparagraph}{1.}{31}{figure.caption.27}%
-\contentsline {subparagraph}{2.Average}{31}{equation.2.4.20}%
-\contentsline {subparagraph}{3.Sampling}{31}{equation.2.4.20}%
-\contentsline {subparagraph}{4.Shaping for CONES}{32}{equation.2.4.20}%
-\contentsline {subparagraph}{5.Creation of a file for the interpolation}{32}{equation.2.4.20}%
-\contentsline {subsection}{\numberline {2.4.2}Modifications on OpenFOAM and CONES for the DA}{33}{subsection.2.4.2}%
-\contentsline {subsection}{\numberline {2.4.3}Application of the DA}{34}{subsection.2.4.3}%
-\contentsline {section}{\numberline {2.5}Results}{34}{section.2.5}%
-\contentsline {subsection}{\numberline {2.5.1}Conclusion ans perspective}{36}{subsection.2.5.1}%
-\contentsline {chapter}{Conclusion}{37}{chapter*.34}%
-\contentsline {chapter}{Table des annexes}{39}{chapter*.35}%
-\contentsline {chapter}{Annexes}{40}{chapter*.35}%
-\contentsline {section}{Annex 1\ -- Batch code}{40}{annex.1}%
-\contentsline {section}{Annex 2\ -- OpenFOAM Directory Tree}{41}{annex.2}%
-\contentsline {chapter}{Bibliography}{42}{chapter*.36}%
-\contentsline {chapter}{List of acronyms}{44}{chapter*.37}%
-\contentsline {paragraph}{Résumé}{45}{chapter*.37}%
-\contentsline {paragraph}{Abstract}{45}{chapter*.37}%
+\contentsline {paragraph}{The pump}{14}{figure.caption.7}%
+\contentsline {section}{\numberline {2.2}Numerical ingredients}{15}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}CFD governing equations}{15}{subsection.2.2.1}%
+\contentsline {paragraph}{Navier-Stokes equations}{15}{subsection.2.2.1}%
+\contentsline {paragraph}{Turbulence modelling}{16}{equation.2.2.7}%
+\contentsline {paragraph}{MRF method}{18}{figure.caption.11}%
+\contentsline {paragraph}{U-RANS}{18}{figure.caption.12}%
+\contentsline {paragraph}{IBM equations}{19}{equation.2.2.10}%
+\contentsline {subsection}{\numberline {2.2.2}The open-source code OpenFOAM}{19}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}EnKF}{22}{subsection.2.2.3}%
+\contentsline {paragraph}{CFD}{22}{algorithm.1}%
+\contentsline {subsection}{\numberline {2.2.4}The CONES library}{23}{subsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.2.5}Pump modelling}{24}{subsection.2.2.5}%
+\contentsline {section}{\numberline {2.3}IBM preliminary results}{26}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Application of the DA}{28}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Preprocessing of PIV data}{28}{subsection.2.4.1}%
+\contentsline {subparagraph}{PIV acquisition treatment}{28}{subsection.2.4.1}%
+\contentsline {paragraph}{PIV data}{30}{figure.caption.25}%
+\contentsline {paragraph}{Pressure data}{31}{figure.caption.25}%
+\contentsline {subparagraph}{1.}{32}{figure.caption.27}%
+\contentsline {subparagraph}{2.Average}{32}{equation.2.4.19}%
+\contentsline {subparagraph}{3.Sampling}{32}{equation.2.4.19}%
+\contentsline {subparagraph}{4.Shaping for CONES}{33}{equation.2.4.19}%
+\contentsline {subparagraph}{5.Creation of a file for the interpolation}{33}{equation.2.4.19}%
+\contentsline {subsection}{\numberline {2.4.2}Modifications on OpenFOAM and CONES for the DA}{34}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.3}Application of the DA}{35}{subsection.2.4.3}%
+\contentsline {section}{\numberline {2.5}Results}{35}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Conclusion ans perspective}{37}{subsection.2.5.1}%
+\contentsline {chapter}{Conclusion}{38}{chapter*.34}%
+\contentsline {chapter}{Table des annexes}{40}{chapter*.35}%
+\contentsline {chapter}{Annexes}{41}{chapter*.35}%
+\contentsline {section}{Annex 1\ -- Batch code}{41}{annex.1}%
+\contentsline {section}{Annex 2\ -- OpenFOAM Directory Tree}{42}{annex.2}%
+\contentsline {chapter}{Bibliography}{43}{chapter*.36}%
+\contentsline {chapter}{List of acronyms}{45}{chapter*.37}%
+\contentsline {paragraph}{Résumé}{46}{chapter*.37}%
+\contentsline {paragraph}{Abstract}{46}{chapter*.37}%
