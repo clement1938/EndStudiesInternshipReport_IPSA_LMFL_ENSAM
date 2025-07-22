@@ -15,7 +15,7 @@
 \contentsline {figure}{\numberline {2.10}{\ignorespaces Tree of the OpenFOAM dictionaries}}{21}{figure.caption.14}%
 \contentsline {figure}{\numberline {2.11}{\ignorespaces Evolution of the state through EnKF iterations (\includegraphics [width=0.013\textwidth ]{images/cavity/legende.png}: observation point)}}{24}{figure.caption.15}%
 \contentsline {figure}{\numberline {2.12}{\ignorespaces CONES structure}}{25}{figure.caption.16}%
-\contentsline {figure}{\numberline {2.13}{\ignorespaces Mesh interface between the pipe and the impeller}}{25}{figure.caption.17}%
+\contentsline {figure}{\numberline {2.13}{\ignorespaces Mesh interface between the pipe and the impeller}}{26}{figure.caption.17}%
 \contentsline {figure}{\numberline {2.14}{\ignorespaces Model of the RESEDA benchmark}}{26}{figure.caption.18}%
 \contentsline {figure}{\numberline {2.15}{\ignorespaces Interpolation points over 360/7 degrees}}{27}{figure.caption.19}%
 \contentsline {figure}{\numberline {2.16}{\ignorespaces Comparison between the profiles inside the diffuser for the numerical simulation (continuous lines), and the PIV data (dashed lines). In particular, (\bluelinePython ) represents the radial velocity $u_r$, (\orangeline ) depicts the azimuthal velocity $u_\theta $, and (\greenline ) illustrates the vertical velocity $u_z$.}}{27}{figure.caption.20}%

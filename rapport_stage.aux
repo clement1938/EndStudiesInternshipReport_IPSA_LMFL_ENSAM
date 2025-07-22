@@ -106,6 +106,8 @@
 \newlabel{subsec:CFD_governing_equations}{{2.2.1}{16}{CFD governing equations}{subsection.2.2.1}{}}
 \@writefile{toc}{\contentsline {paragraph}{Navier-Stokes equations}{16}{subsection.2.2.1}\protected@file@percent }
 \newlabel{eq:mass_conservation}{{2.1}{16}{Navier-Stokes equations}{equation.2.2.1}{}}
+\ACRO{recordpage}{Ma}{16}{1}{16}
+\ACRO{recordpage}{Re}{16}{1}{16}
 \@writefile{toc}{\contentsline {paragraph}{Turbulence modelling}{17}{equation.2.2.7}\protected@file@percent }
 \ACRO{recordpage}{DNS}{17}{1}{17}
 \ACRO{recordpage}{RANS}{17}{1}{17}
@@ -130,6 +132,7 @@
 \abx@aux@cite{0}{angotPenalizationMethodTake1999a}
 \abx@aux@segm{0}{0}{angotPenalizationMethodTake1999a}
 \@writefile{toc}{\contentsline {paragraph}{IBM equations}{20}{equation.2.2.10}\protected@file@percent }
+\newlabel{eq:IBM}{{2.11}{20}{IBM equations}{equation.2.2.11}{}}
 \newlabel{eqn:forcePenDarcy}{{2.13}{20}{IBM equations}{equation.2.2.13}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2.2}The open-source code OpenFOAM}{20}{subsection.2.2.2}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {2.9}{\ignorespaces Tree of the OpenFOAM dictionaries}}{21}{figure.caption.13}\protected@file@percent }
@@ -142,12 +145,12 @@
 \ACRO{recordpage}{BC}{22}{1}{22}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2.3}EnKF}{23}{subsection.2.2.3}\protected@file@percent }
 \newlabel{subsec:EnKF}{{2.2.3}{23}{EnKF}{subsection.2.2.3}{}}
-\@writefile{toc}{\contentsline {paragraph}{CFD}{23}{algorithm.1}\protected@file@percent }
-\ACRO{recordpage}{DNS}{23}{1}{23}
-\ACRO{recordpage}{LES}{23}{1}{23}
-\ACRO{recordpage}{RANS}{23}{1}{23}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Scheme of the EnKF used in the present analyses for parameter optimization.}}{24}{algorithm.1}\protected@file@percent }
 \newlabel{alg:EnKF}{{1}{24}{Scheme of the EnKF used in the present analyses for parameter optimization}{algorithm.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{CFD}{24}{algorithm.1}\protected@file@percent }
+\ACRO{recordpage}{DNS}{24}{1}{24}
+\ACRO{recordpage}{LES}{24}{1}{24}
+\ACRO{recordpage}{RANS}{24}{1}{24}
 \newlabel{fig:cavity2_1ms}{{2.11a}{24}{Initial state}{figure.caption.15}{}}
 \newlabel{sub@fig:cavity2_1ms}{{a}{24}{Initial state}{figure.caption.15}{}}
 \newlabel{fig:cavity2_3ms}{{2.11b}{24}{After one EnKF it}{figure.caption.15}{}}
@@ -155,14 +158,14 @@
 \newlabel{fig:cavity_5ms}{{2.11c}{24}{Converged after 2 EnKF it}{figure.caption.15}{}}
 \newlabel{sub@fig:cavity_5ms}{{c}{24}{Converged after 2 EnKF it}{figure.caption.15}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.11}{\ignorespaces Evolution of the state through EnKF iterations (\includegraphics [width=0.013\textwidth ]{images/cavity/legende.png}: observation point)}}{24}{figure.caption.15}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.4}The CONES library}{24}{subsection.2.2.4}\protected@file@percent }
-\ACRO{recordpage}{MPI}{24}{1}{24}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.4}The CONES library}{25}{subsection.2.2.4}\protected@file@percent }
+\ACRO{recordpage}{MPI}{25}{1}{25}
 \newlabel{instants_partages}{{2.2.4}{25}{The CONES library}{subsection.2.2.4}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.12}{\ignorespaces CONES structure}}{25}{figure.caption.16}\protected@file@percent }
 \newlabel{fig:CONES}{{2.12}{25}{CONES structure}{figure.caption.16}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2.5}Pump modelling}{25}{subsection.2.2.5}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2.13}{\ignorespaces Mesh interface between the pipe and the impeller}}{25}{figure.caption.17}\protected@file@percent }
-\newlabel{fig:interfaceMesh}{{2.13}{25}{Mesh interface between the pipe and the impeller}{figure.caption.17}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.13}{\ignorespaces Mesh interface between the pipe and the impeller}}{26}{figure.caption.17}\protected@file@percent }
+\newlabel{fig:interfaceMesh}{{2.13}{26}{Mesh interface between the pipe and the impeller}{figure.caption.17}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.14}{\ignorespaces Model of the RESEDA benchmark}}{26}{figure.caption.18}\protected@file@percent }
 \newlabel{fig:RESEDA_Model}{{2.14}{26}{Model of the RESEDA benchmark}{figure.caption.18}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.3}Experimental data and pre-processing}{27}{section.2.3}\protected@file@percent }
@@ -194,11 +197,14 @@
 \@writefile{toc}{\contentsline {subparagraph}{4.Shaping for CONES}{31}{equation.2.3.19}\protected@file@percent }
 \@writefile{toc}{\contentsline {subparagraph}{5.Creation of a file for the interpolation}{31}{equation.2.3.19}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {2.4}IBM preliminary results}{32}{section.2.4}\protected@file@percent }
+\newlabel{sec:IBM_preliminary_results}{{2.4}{32}{IBM preliminary results}{section.2.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}Modifications on OpenFOAM}{34}{subsection.2.4.1}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {2.22}{\ignorespaces \relax }}{34}{figure.caption.28}\protected@file@percent }
 \newlabel{CHANGER}{{2.22}{34}{\relax }{figure.caption.28}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.5}Application of the DA}{35}{section.2.5}\protected@file@percent }
+\newlabel{sec:Application_of_the_DA}{{2.5}{35}{Application of the DA}{section.2.5}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.6}Results}{35}{section.2.6}\protected@file@percent }
+\newlabel{sec:Results}{{2.6}{35}{Results}{section.2.6}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.23}{\ignorespaces Velocity field for Dx = 4e7 and Dy = 2e7}}{36}{figure.caption.29}\protected@file@percent }
 \newlabel{fig:assymetry}{{2.23}{36}{Velocity field for Dx = 4e7 and Dy = 2e7}{figure.caption.29}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.24}{\ignorespaces Evolution of the NRMSEs over EnKF analysis phases}}{36}{figure.caption.30}\protected@file@percent }
@@ -239,6 +245,8 @@
 \abx@aux@defaultrefcontext{0}{valeroEnhancedStateEstimation2025}{nty/global//global/global}
 \abx@aux@defaultrefcontext{0}{annurev:/content/journals/10.1146/annurev-fluid-120720-022129}{nty/global//global/global}
 \abx@aux@defaultrefcontext{0}{villanuevaAugmentedStateEstimation2023}{nty/global//global/global}
+\ACRO{usage}{Re=={1}}
+\ACRO{usage}{Ma=={1}}
 \ACRO{usage}{BC=={1}}
 \ACRO{usage}{U-RANS=={1}}
 \ACRO{usage}{OpenFOAM=={2}}
@@ -330,13 +338,15 @@
 \ACRO{pages}{EnKF=={13@1@13}}
 \ACRO{pages}{CFD=={5@1@5|11@1@11|14@1@14}}
 \ACRO{pages}{LMFL=={5@1@5|14@1@14}}
+\ACRO{pages}{Ma=={16@1@16}}
+\ACRO{pages}{Re=={16@1@16}}
 \ACRO{pages}{SST=={17@1@17}}
 \ACRO{pages}{MRF=={19@1@19}}
 \ACRO{pages}{U-RANS=={19@1@19}}
 \ACRO{pages}{CFL=={12@1@12|19@1@19}}
 \ACRO{pages}{BC=={22@1@22}}
-\ACRO{pages}{DNS=={17@1@17|22@1@22|23@1@23}}
-\ACRO{pages}{LES=={22@1@22|23@1@23}}
-\ACRO{pages}{RANS=={17@1@17|22@1@22|23@1@23}}
-\ACRO{pages}{MPI=={24@1@24}}
+\ACRO{pages}{DNS=={17@1@17|22@1@22|24@1@24}}
+\ACRO{pages}{LES=={22@1@22|24@1@24}}
+\ACRO{pages}{RANS=={17@1@17|22@1@22|24@1@24}}
+\ACRO{pages}{MPI=={25@1@25}}
 \gdef \@abspage@last{47}

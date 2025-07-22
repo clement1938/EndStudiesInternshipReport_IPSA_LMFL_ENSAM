@@ -20,8 +20,8 @@
 \contentsline {paragraph}{IBM equations}{20}{equation.2.2.10}%
 \contentsline {subsection}{\numberline {2.2.2}The open-source code OpenFOAM}{20}{subsection.2.2.2}%
 \contentsline {subsection}{\numberline {2.2.3}EnKF}{23}{subsection.2.2.3}%
-\contentsline {paragraph}{CFD}{23}{algorithm.1}%
-\contentsline {subsection}{\numberline {2.2.4}The CONES library}{24}{subsection.2.2.4}%
+\contentsline {paragraph}{CFD}{24}{algorithm.1}%
+\contentsline {subsection}{\numberline {2.2.4}The CONES library}{25}{subsection.2.2.4}%
 \contentsline {subsection}{\numberline {2.2.5}Pump modelling}{25}{subsection.2.2.5}%
 \contentsline {section}{\numberline {2.3}Experimental data and pre-processing}{27}{section.2.3}%
 \contentsline {paragraph}{PIV data}{29}{figure.caption.25}%

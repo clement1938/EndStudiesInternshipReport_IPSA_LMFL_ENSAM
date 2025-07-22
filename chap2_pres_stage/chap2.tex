@@ -63,17 +63,13 @@ In contrast, an unstructured mesh is a mesh where cells cannot be described in a
 
 The body-fitted meshes are the most accurate but also the most expensive in terms of computational resources in case the grids update at each time step.
 
-////////
-
-
 IBM is a numerical technique that simulates viscous flow with embedded boundaries on grids that do not conform to those boundaries. This allows to keep numerical efficiency on complex geometries and moving boundaries without the need for body-fitted meshes, which can be computationally expensive and difficult to implement.
-
 
 In 1972 Charles S. Peskin\cite{IBM_base} developped the IBM method. His goal was to reduce the computational time, mainly due to the computation of the mesh refinment based on the \ac{CFL}. He added an IBM forcing term on Navier-Stokes equations, only on the simulated artificial heart valve part. He overcomes the numerical instabilitys due to the boundary forces by using an iterative method for solving a fixed-point problem for boundary forces.
 
 In 1999 \cite{angotPenalizationMethodTake1999a} discovered that using the penalization IMB, the velocity penalized at the wall as the same as the one from a body-fitted approach if "D", a forcing parameter define in the \autoref{subsec:CFD_governing_equations}, tend to infinity.
 
-IBM are usually less accurate and need more cells element to keep good precision in the near-wall region, but more efficient in terms of computational resources when the geometrie is moving. So it's more and more used in CFD \cite{annurev:/content/journals/10.1146/annurev-fluid-120720-022129}.
+IBM are usually less accurate and need more cells element to keep good precision in the near-wall region, but more efficient in terms of computational resources when the geometrie is moving. So it's more and more used in CFD \cite{annurev:/content/journals/10.1146/annurev-fluid-120720-022129}. The maths behind the method are detail in the \autoref{eq:IBM}.
 
 
 \begin{figure}[H]
@@ -136,14 +132,17 @@ EnKF for DA in CFD has been used at \ac{LMFL} for a few years now.
 
 This led us to the idea of using the EnKF method to optimize the parameters of the IBM forcing term on a centrifugal pump, which is a more complex case than the previous ones. It combines 3D turbulent boundary layer, such as the turbulent plane channel flow and a moving body susch as the oscillating cylinder. Also, it's complex shape induce 11 million (11M) cells. Finally, the rotor/stator interaction in centrifugal machines is a very complexe procedure affected by highly unsteady flow phenomena, turbulent boundary layers and instabilities. CFD is generally not able to capture it properly with traditional physical models. The goal is the to improve the prediction of the flow on the diffuser, to capture the good performance of the pump by optimizing the parameters of the IBM forcing term, which will lead to a better simulation of the fluid flow and a better understanding of the pump's behaviour.
 
-To do that, the tasks are the folowing:
+In this context, we would like to employ these two innovative methodologies to improve the original CFD predictive capabilities
+for a centrifugal pump test case, leveraging some PIV measurements at the diffuser, and the information from pressure
+taps at both the impeller inlet and the diffuser. To do so, we pursue the following objectives, folowing the manuscript organisation:
+
 \begin{enumerate}
     \item Do a state of the art about the centrifugal pumps, CFD methods including IBM and DA including EnKF, detail in this \autoref{sec:stateOfArt};
     \item understand some numerical ingredients as CFD governing equations, the open-source code OpenFoam, the EnKF method, the CONES library and the pump modeling that are explained in the \autoref{subsec:CFD_governing_equations};
-    \item pre-process the experimental data to be able to compare them to the numerical model;
-    \item modify OpenFOAM to obtain first simulation results using IBM;
-    \item modify CONES to adapte it to the pump case and apply the DA to modify the IBM parameters;
-    \item analyse the results of the DA on the optimization of the field in the diffuser and the accuracy of the perfomance of the pump.
+    \item pre-process the experimental data to be able to compare them to the numerical model, \autoref{sec:Experimental_data_and_pre-processing};
+    \item modify OpenFOAM to obtain first simulation results using IBM, \autoref{sec:IBM_preliminary_results};
+    \item modify CONES to adapte it to the pump case and apply the DA to modify the IBM parameters, \autoref{sec:Application_of_the_DA};
+    \item analyse the results of the DA on the optimization of the field in the diffuser and the accuracy of the perfomance of the pump, \autoref{sec:Results}.
 \end{enumerate}
 
 
@@ -171,12 +170,6 @@ To do that, the tasks are the folowing:
 \subsection{CFD governing equations}
 \label{subsec:CFD_governing_equations}
 
-/////////////////
-In our case, we impose a forcing term on the Navier-Stokes equations to simulate the effect of the immersed boundary on the fluid flow. This term is added only on the penalization part $\Omega_b U \Sigma_b$ (see \autoref{fig:IBM_Mesh}). The maths behind the EnKF method is detailed in the \autoref{subsec:CFD_governing_equations}. The problem of this method is that it leads to a few constants that need to be tuned to obtain the best results. For that, we use the EnKF method to optimize these constants. The EnKF method will be used to assimilate data from the flow at the observation points and to update the forcing term until it converges to the optimal value. These high-fidelity data are obtained from an experiment explained in the next \autoref
-{sec:Experimental_data_and_pre-processing}.
-///////////////////
-
-
 \paragraph{Navier-Stokes equations} CFD is based on the fundamental equations of fluid mechanics. When the fluid is assumed to be Newtonian, these equations reduce to the nonlinear Navier–Stokes partial differential equations.
 
 These equations express three physical conservation principles, given here in their Eulerian form (i.e., fixed spatial reference frame), which is the standard in CFD because it describes how fluid properties evolve at fixed locations in space, which is ideal for mesh-based numerical simulations.
@@ -188,7 +181,7 @@ These equations express three physical conservation principles, given here in th
         \label{eq:mass_conservation}
     \end{equation}
 
-    With $p$ the pressure, $\rho$ the density and $U$ the velocity.
+    With $p$ the pressure, $\rho$ the density and $\mathbf{U}$ the velocity.
 
     \item \textbf{Momentum conservation (second Newton Law):}     % (Navier–Stokes equation)
     \begin{equation}
@@ -200,28 +193,34 @@ These equations express three physical conservation principles, given here in th
     \begin{equation}
         \frac{\partial (\rho E)}{\partial t} + \nabla \cdot (\mathbf{U} (\rho E + p)) = \nabla \cdot (k \nabla T) + \Phi
     \end{equation}
-    where \( E = e + \frac{1}{2} \mathbf{U}^2 \) is the total energy per unit mass, \( k \) is the thermal conductivity, \( T \) the temperature, and \( \Phi \) the viscous dissipation.
+    where \( E = e + \frac{1}{2} \mathbf{U}^2 \) is the total energy per unit mass, \( k \) is the thermal conductivity, \( T \) the temperature, and \( \Phi \) the viscous dissipation and $e$ the potential energy.
 \end{itemize}
 
-Two main indicators of the main behaviour of the fluid are the Mach number and the Reynolds number.
+Two main indicators of the main behaviour of the fluid are the \ac{Ma} and the \ac{Re}.
 
-The Mach number, $Ma$, is defined by the velocity of the fluid divided by the speed of the soud (relative to the fluid). In CFD, fluid is usually considered as incompressible for Mach lower than 0.3.
+The Ma, $Ma$, is defined by the velocity of the fluid divided by the speed of the soud (relative to the fluid). In CFD, fluid is usually considered as incompressible for Mach lower than 0.3.
 In our case, in atmospheric conditions,
 
 \begin{equation}
     Ma = \cfrac{R_2 \Omega}{c} = 0.095 \textrm{\textbf{(incompressible)}}
 \end{equation}
 
-As we consider that we are in \textbf{incompressible} flow conditions (because we are at low mach numeber), \autoref{eq:mass_conservation} becomes
+As we consider that we are in \textbf{incompressible} flow conditions (because we are at low Ma), \autoref{eq:mass_conservation} becomes
 \begin{equation}
     \nabla \cdot \mathbf{u} = 0
 \end{equation}
 
-The dimensionless Reynolds number measure the ratio between inertial and viscous forces. It indicates if the fluid is turbulent, laminar or both, it caratcterise the flow regime. 
-Let's computes the Reynolds number around where the velocity should be the highest.
+And the pressure and velocity are solved iteratively, contrary on compressibles flows.
+
+The dimensionless Re measure the ratio between inertial and viscous forces. It indicates if the flow is turbulent, laminar or both, it caratcterizes the flow regime. 
+Let's compute the Re around where the velocity should be the highest.
+
 \begin{equation}
     Re = \frac{UL}{\nu}
 \end{equation}
+
+Where $U$ is the velocity of the fluid, $L$ is the characteristic length and $\nu$ the kinematic viscosity of the fluid.
+
 \begin{equation}
     Re_{r_{tip}}=\cfrac{R_2^2 \Omega}{\nu} = 5.53\times10^5
 \end{equation}
@@ -431,13 +430,14 @@ Assuming the distance between two cells in the azimuthal direction at the tip of
 As see in the \autoref{sec:stateOfArt}, instead of use body-fitted mesh, we are going to consider porous medium and adding a forcing term in the physical part (see \autoref{fig:IBM_Mesh}).
 
 \begin{equation}
+    \label{eq:IBM}
     (\boldsymbol{u} \cdot \boldsymbol{\nabla})\, \boldsymbol{u} = 
     -\frac{1}{\rho} \nabla p + \nu \nabla^2 \boldsymbol{u} 
     \underbrace{- \xi \nu \boldsymbol{D} \left( \boldsymbol{u} - \boldsymbol{u}_{ib} \right)}_{\boldsymbol{f}_P}
 \end{equation}
 
 
-Here, we are dividing both side of the equations by $\rho$ for simplicity hhiwh can be considerd uniform as we assume incompressible conditions. So $[p] = M \cdot L^{-1} \cdot T^{-2}$ and $[\boldsymbol{u}] = L \cdot T^{-1}$
+Here, we are dividing both side of the equations by $\rho$ for simplicity hhiwh can be considered uniform as we assume incompressible conditions. So $[p] = M \cdot L^{-1} \cdot T^{-2}$ and $[\boldsymbol{u}] = L \cdot T^{-1}$
 
 \begin{equation}
     \xi = \left\{
@@ -447,6 +447,13 @@ Here, we are dividing both side of the equations by $\rho$ for simplicity hhiwh 
     \end{array} \right.
 \end{equation}
 
+
+
+
+/////////////////
+In our case, we impose a forcing term on the Navier-Stokes equations to simulate the effect of the immersed boundary on the fluid flow. This term is added only on the penalization part $\Omega_b U \Sigma_b$ (see \autoref{fig:IBM_Mesh}). The maths behind the EnKF method is detailed in the \autoref{subsec:CFD_governing_equations}. The problem of this method is that it leads to a few constants that need to be tuned to obtain the best results. For that, we use the EnKF method to optimize these constants. The EnKF method will be used to assimilate data from the flow at the observation points and to update the forcing term until it converges to the optimal value. These high-fidelity data are obtained from an experiment explained in the next \autoref
+{sec:Experimental_data_and_pre-processing}.
+///////////////////
 
 Differents techniques exist to penalise the immersed part. In our cas, we are going to use a classical penalisation method proposed by Angot et al.\cite{angotPenalizationMethodTake1999a} which enters the family of continuous forcing approach.
 The Darcy's law is used in the body interface region $\Sigma_b$ and the solid region $\Omega_b$. To do so, a spatial dependent tensor $\boldsymbol{D}(\boldsymbol{x})$ must be defined. The resulting penalty term is modelled as follows:
@@ -907,7 +914,7 @@ In addition to the nine pressure tapes on the diffuser, M. Fan has also captured
     \label{fig:PumpPerf}
 \end{figure}
 
-As we are at $Q/Q_d = 1$, we can retreive \[ \frac{\Delta P}{\rho U^2} = 0.4 \Rightarrow \Delta P = 0.4 \times \rho \times U^2 = 0.4 \times 1.225 \times 32.24^2 \approx 415~\text{Pa} \]
+As we are at $Q/Q_d = 1$, we can retreive \[ \frac{\Delta P}{\rho U^2} = 0.4 \Rightarrow \Delta p = 0.4 \times \rho \times U^2 = 0.4 \times 1.225 \times 32.24^2 \approx 415~\text{Pa} \]
 
 
 //////////////
@@ -1022,6 +1029,7 @@ Graçe aux données xp (mentionné partie 2.1.2, on peut faire de la DA)
 
 \newpage
 \section{IBM preliminary results}
+\label{sec:IBM_preliminary_results}
 
 Explication de coords\_seventh.txt, coords\_360.txt et coords\_7.txt
 
@@ -1094,7 +1102,7 @@ As we are in a steady simulation, the restult of the numerical pressure is divid
 \end{equation}
 
 So the state vector is now 46.
-Incertitude on P will be less to take more take it account.
+Incertitude on p will be less to take more take it account.
 Inflation...
 
 At pump flow rate = pump design flow rate So Q?/Q? =1
@@ -1157,7 +1165,10 @@ Toujours mentionner les paramètres utilisés (dans le controlDict et le CONESDi
 
 
 \section{Application of the DA}
+\label{sec:Application_of_the_DA}
+
 \section{Results}
+\label{sec:Results}
 
 ///// Reprendre les objectifs définis à la fin de la section 2.1 //////
 

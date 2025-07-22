@@ -625,6 +625,8 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
 INPUT /usr/share/texlive/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
 INPUT /usr/share/texlive/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
 INPUT /usr/share/texlive/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
@@ -953,6 +955,11 @@ INPUT ./images/turbCascade.png
 INPUT ./images/turbCascade.png
 INPUT ./images/turbCascade.png
 INPUT ./images/turbCascade.png
+INPUT ./images/k-omega-sst.png
+INPUT ./images/k-omega-sst.png
+INPUT ./images/k-omega-sst.png
+INPUT ./images/k-omega-sst.png
+INPUT ./images/k-omega-sst.png
 INPUT ./images/logo/logos.png
 INPUT ./images/logo/logos.png
 INPUT ./images/logo/logos.png
@@ -961,11 +968,6 @@ INPUT ./images/logo/ipsagarde.png
 INPUT ./images/logo/ipsagarde.png
 INPUT ./images/logo/ipsagarde.png
 INPUT ./images/logo/ipsagarde.png
-INPUT ./images/k-omega-sst.png
-INPUT ./images/k-omega-sst.png
-INPUT ./images/k-omega-sst.png
-INPUT ./images/k-omega-sst.png
-INPUT ./images/k-omega-sst.png
 INPUT ./images/logo/logos.png
 INPUT ./images/logo/logos.png
 INPUT ./images/logo/logos.png
