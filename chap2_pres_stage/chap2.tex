@@ -264,12 +264,12 @@ Where $U$ is the velocity of the fluid, $L$ is the characteristic length and $\n
 \end{comment}
 
 
-\paragraph{Turbulence modelling}  This equations permit to run a \ac{DNS} simulation, that would be too costly in our case.
-The Kolmogorove scale, define by the spatial scale from which viscosity allows the kinetic energy of a flow to be dissipated, is very small.
-So we need to modelise this scale, using classical \ac{RANS} CFD modelisation in our case.
-The \autoref{fig:Modelisation_of_turbulence}\footnote{\url{https://www.cfdsupport.com/openfoam-training-by-cfd-support/node346/}} and \autoref{fig:Modelisation_of_turbulence2}\footnote{\url{https://blog.diphyx.com/comprehensive-guide-review-to-choosing-the-right-cfd-software-in-2023-features-performance-and-7ebc0623bfa6}}
-\footnote{\url{https://help.altair.com/hwcfdsolvers/acusolve/topics/acusolve/training_manual/turbulence_modeling_r.htm}}
- illustrates well the tree main differents type of CFD models.
+\paragraph{Turbulence modelling}  This equations permit runnig all the scales in case of turbulent flows, i.e. a \ac{DNS} simulation, that would be too costly in our case.
+The Kolmogorove scale, define by the spatial scale from which viscosity allows the kinetic energy of a flow to be dissipated, is very small. In fluid mechanics, turbulent flows consist of several scales which are responsible for different phenomena. As illustrated in the folowing \autoref{fig:Modelisation_of_turbulence}\footnote{\url{https://www.cfdsupport.com/openfoam-training-by-cfd-support/node346/}} and \autoref{fig:Turbulence3}\footnote{\url{https://help.altair.com/hwcfdsolvers/acusolve/topics/acusolve/training_manual/turbulence_modeling_r.htm}}, large scales are responsible dor the production of turbulence and energy, whiwh is shifted through the inertial range toward the Kolmogorov scale, responsible for the dissipation phenomena.
+There are two major ways to model the turbulence.
+The first one is by using \ac{LES}, that simulates only the small scale eddy usually in the near-wall region.
+The second one is the \ac{RANS} that model every scall of eddy. The result is a stady-state and it less precise but fastly computed than LES.
+The \autoref{fig:Turbulence2}\footnote{\url{https://blog.diphyx.com/comprehensive-guide-review-to-choosing-the-right-cfd-software-in-2023-features-performance-and-7ebc0623bfa6}} illustrates well a visualization of the fiels of the three type of CFD models.
 
 \begin{figure}[H]
 
@@ -289,6 +289,7 @@ The \autoref{fig:Modelisation_of_turbulence}\footnote{\url{https://www.cfdsuppor
         \label{fig:Turbulence2}
     \end{subfigure}
     \hfill
+    \centering
     \begin{subfigure}{0.57\textwidth}
         \includegraphics[width=1\textwidth]{images/turbCascade.png}
         \caption{Turbulence model on the energy cascade}
@@ -298,9 +299,9 @@ The \autoref{fig:Modelisation_of_turbulence}\footnote{\url{https://www.cfdsuppor
     \label{fig:Modelisation_of_turbulence2}
 \end{figure}
 
+In our study, we are going to have a look on the \ac{U-RANS} method use the same principle as the RANS method but it's unsteady, allowing to make turn physically in our case.
 
-
-More precisely, in our simulation, we are going to use a $k-\omega$ \ac{SST} turbulence model. It is a two-equation eddy-viscosity model: it's combines the $K-\epsilon$ and the $K-\omega$ turbulence approximations.
+More precisely, in our RANS and U-RANS simulation, we are going to use a $k-\omega$ \ac{SST} turbulence model. It is a two-equation eddy-viscosity model: it combines the $K-\epsilon$ and the $K-\omega$ turbulence approximations plus a blending region between both.
 
 $K-\omega$ is known to be a good model in the near-wall region but a bad prediction in bulk flow.
 $K-\epsilon$ make a good numerical prediction in the bulk flow field but is less accurate near solid surfaces.
@@ -312,42 +313,44 @@ $K-\epsilon$ make a good numerical prediction in the bulk flow field but is less
     \label{fig:kOmega_SST}
 \end{figure}
 
-$k-\omega SST$ model is define as folow :
-
-// Est-ce que je numérote toutes les équations dans mon rapport ? Ou aucune ? //  -> Toutes
-
-- Kinematic Eddy Viscosity\footnote{\url{https://www.cfd-online.com/Wiki/SST_k-omega_model}}
- : \[\nu _T  = {\frac{a_1 k}{\mbox{max}(a_1 \omega, S F_2)}}\]
+$k-\omega SST$ model is defined as follows :
 
 
+- Kinematic Eddy Viscosity\footnote{\url{https://www.cfd-online.com/Wiki/SST_k-omega_model}}:
+\begin{equation}
+    \nu _T  = {\frac{a_1 k}{\mbox{max}(a_1 \omega, S F_2)}}
+\end{equation}
 
-- Turbulence Kinetic Energy : \[
-\frac{\partial k}{\partial t} + U_j \frac{\partial k}{\partial x_j} = P_k - \beta^* k\omega + \frac{\partial}{\partial x_j} \left[ \left( \nu + \sigma_k \nu_T \right) \frac{\partial k}{\partial x_j} \right]
-\]
+
+
+- Turbulence Kinetic Energy :
+\begin{equation}
+    \frac{\partial k}{\partial t} + U_j \frac{\partial k}{\partial x_j} = P_k - \beta^* k\omega + \frac{\partial}{\partial x_j} \left[ \left( \nu + \sigma_k \nu_T \right) \frac{\partial k}{\partial x_j} \right]
+\end{equation}
 
 
 - Specific Dissipation Rate :
-\[
-\frac{\partial \omega}{\partial t} + U_j \frac{\partial \omega}{\partial x_j} = \alpha S^2 - \beta \omega^2 + \frac{\partial}{\partial x_j} \left[ \left( \nu + \sigma_{\omega} \nu_T \right) \frac{\partial \omega}{\partial x_j} \right] + 2(1 - F_1)\sigma_{\omega 2} \frac{1}{\omega} \frac{\partial k}{\partial x_i} \frac{\partial \omega}{\partial x_i}
-\]
+\begin{equation}
+    \frac{\partial \omega}{\partial t} + U_j \frac{\partial \omega}{\partial x_j} = \alpha S^2 - \beta \omega^2 + \frac{\partial}{\partial x_j} \left[ \left( \nu + \sigma_{\omega} \nu_T \right) \frac{\partial \omega}{\partial x_j} \right] + 2(1 - F_1)\sigma_{\omega 2} \frac{1}{\omega} \frac{\partial k}{\partial x_i} \frac{\partial \omega}{\partial x_i}
+\end{equation}
 
 
 - Closure Coefficients and Auxiliary Relations :
-\[
-F_2 = \tanh \left[ \left[ \max \left( \frac{2\sqrt{k}}{\beta^* \omega y}, \frac{500 \nu}{y^2 \omega} \right) \right]^2 \right]
-\]
+\begin{equation}
+    F_2 = \tanh \left[ \left[ \max \left( \frac{2\sqrt{k}}{\beta^* \omega y}, \frac{500 \nu}{y^2 \omega} \right) \right]^2 \right]
+\end{equation}
 
-\[
-P_k = \min \left( \tau_{ij} \frac{\partial U_i}{\partial x_j}, 10\beta^* k \omega \right)
-\]
+\begin{equation}
+    P_k = \min \left( \tau_{ij} \frac{\partial U_i}{\partial x_j}, 10\beta^* k \omega \right)
+\end{equation}
 
-\[
-F_1 = \tanh \left\{ \left\{ \min \left[ \max \left( \frac{\sqrt{k}}{\beta^* \omega y}, \frac{500 \nu}{y^2 \omega} \right), \frac{4 \sigma_{\omega 2} k}{CD_{k\omega} y^2} \right] \right\}^4 \right\}
-\]
+\begin{equation}
+    F_1 = \tanh \left\{ \left\{ \min \left[ \max \left( \frac{\sqrt{k}}{\beta^* \omega y}, \frac{500 \nu}{y^2 \omega} \right), \frac{4 \sigma_{\omega 2} k}{CD_{k\omega} y^2} \right] \right\}^4 \right\}
+\end{equation}
 
-\[
-CD_{k\omega} = \max \left( 2\rho \sigma_{\omega 2} \frac{1}{\omega} \frac{\partial k}{\partial x_i} \frac{\partial \omega}{\partial x_i}, 10^{-10} \right)
-\]
+\begin{equation}
+    CD_{k\omega} = \max \left( 2\rho \sigma_{\omega 2} \frac{1}{\omega} \frac{\partial k}{\partial x_i} \frac{\partial \omega}{\partial x_i}, 10^{-10} \right)
+\end{equation}
 
 $\phi = \phi_1 F_1 + \phi_2 (1 - F_1)$
 
@@ -363,7 +366,7 @@ $\sigma_{\omega 1}  = 0.5,  \sigma_{\omega 2}  = 0.856$
 
 
 
-
+////// MRF a revoir ////////
 \paragraph{MRF method}  To simulate the rotation of the pump, with a steady-state RANS simulation, we use employ \ac{MRF} method.
 The principle is to add relative frame term in a moving part while the other part stays fixe. Neither the mesh nor the body is moving.
 The mathematical method is just to resolve the eqations in the stationary zone on one side. On the other side, equations are resolved in the relative frame, then the relativ motion is added. In our case, the relative motion is a constant rotation speed
@@ -416,7 +419,7 @@ Assuming the distance between two cells in the azimuthal direction at the tip of
 
 
 
-//Annexe des opérateurs grad, div, nabla, rot, laplacien, laplacien vectoriel, etc... %(voir https://fr.wikipedia.org/wiki/%C3%89quations_de_Navier-Stokes)
+ %(voir https://fr.wikipedia.org/wiki/%C3%89quations_de_Navier-Stokes)
 % Mentionner que les solutions numériques ne sont pas démontrés?//
 
 
@@ -1257,6 +1260,7 @@ Parler du cas test profil d'aile de Tom
 
 Methodo (forcage continue (vs interpolation ?)) -> avantages
 
+////Annexe des opérateurs grad, div, nabla, rot, laplacien, laplacien vectoriel, etc...////
 
 %En combien de temps l'information de pression remonte-t-elle dans le diffuser ? -->> "directement"
 
