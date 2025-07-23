@@ -278,6 +278,9 @@ The first one is by using \ac{LES}, that simulates only the small scale eddy usu
 The second one is the \ac{RANS} that model every scall of eddy. The result is a stady-state and it less precise but fastly computed than LES.
 The \autoref{fig:Turbulence2}\footnote{\url{https://blog.diphyx.com/comprehensive-guide-review-to-choosing-the-right-cfd-software-in-2023-features-performance-and-7ebc0623bfa6}} illustrates well a visualization of the fiels of the three type of CFD models.
 
+
+/////////////  Attention à la figure 2.5 parce que les labels ne sont pas correctes (la DNS et la LES n'utilisent pas des modèles de turbulence et la figure c ne regarde pas vraiment la RANS que tu as fait)  //////////
+
 \begin{figure}[H]
 
 \end{figure}
@@ -521,6 +524,7 @@ We can also write \autoref{eqn:forcePenDarcy}, once inculding in Naviers-Stokes 
 %\end{equation*}
 
 \begin{equation}
+    \label{eq:IBMBody}
     \xi = \left\{
    \begin{array}{ll}
    0 & \textrm{if } \boldsymbol{x} \in \Omega_f \\
@@ -546,17 +550,13 @@ As we use a RANS turbulence model, we need also to penalize the $k$ and $\omega$
 
 Finnaly, the forcing temrs are define as follows\footnote{\url{https://www.simscale.com/forum/t/defining-turbulent-boundary-conditions/80895}}\footnote{\url{https://www.openfoam.com/documentation/guides/latest/doc/guide-bcs-wall-turbulence-omegaWallFunction.html}},
 
-\begin{equation}
-    \boldsymbol{f}_{P_u} = \xi \nu \boldsymbol{D} (\boldsymbol{u} - \boldsymbol{u}_{\text{ib}}) 
-    \rightarrow 
-    \boldsymbol{u}_{\text{ib}} = \cancel{\boldsymbol{u}_r} + \boldsymbol{\Omega} \times \boldsymbol{r}
-\end{equation}
-\begin{equation}
-    \boldsymbol{f}_{P_\mathcal{K}} = \xi \nu D_{\eta} (\mathcal{K}-\mathcal{K}_{ib}) \rightarrow \mathcal{K}_{ib} = 0 \\
-\end{equation}
-\begin{equation}
-    \boldsymbol{f}_{P_\omega} = \xi \nu D_{\omega} (\omega-\omega_{ib}) \rightarrow \omega_{ib} = (\omega_{vis}^2+\omega_{log}^2)^{1/2}
-\end{equation}
+\begin{align}
+    \label{eq:IB}
+    \boldsymbol{f}_{P_u} &= \xi \nu \boldsymbol{D} \left( \boldsymbol{u} - \boldsymbol{u}_{\text{ib}} \right) \notag \\
+    \boldsymbol{f}_{P_\mathcal{K}} &= \xi \nu D_{\eta} \left( \mathcal{K} - \mathcal{K}_{\text{ib}} \right) \notag \\
+    \boldsymbol{f}_{P_\omega} &= \xi \nu D_{\omega} \left( \omega - \omega_{\text{ib}} \right)
+\end{align}
+
 
 where $\omega_{vis}=\frac{6 \nu}{\beta_1 y_{\mathrm{ref}}^2}$ et $\omega_{log} = \frac{\sqrt{\mathcal{K}}}{C_\mu \kappa y_\mathrm{ref}}$
 
@@ -652,7 +652,7 @@ With
     \item \textit{cmptMultiply} the element-wise matrix multiplication;
     \item $Dprime = \xi \nu D$, with $Dprime$ denoting the reduced form of $D$. The prime symbol is used to distinguish the non-dimensional quantity from its physical counterpart;
     \item $U$ the flow velocity;
-    \item $UIB$ (here $\Omega \times R$) is the imposed velocity at the walls.
+    \item $UIB$ is the imposed velocity at the walls. %(here $\Omega \times R$) 
 \end{itemize}
 
 %\begin{figure}[H]
@@ -673,23 +673,117 @@ With
 \subsection{EnKF}
 \label{subsec:EnKF}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.33\textwidth]{images/Bayesian_theory.pdf}
+    \caption{Kalman Filter algorithm scheme}
+    \label{BayesianTh}
+\end{figure}
+
 As seen in the \autoref{sec:stateOfArt}, we are going to use the stochastic EnKF to assimilate the high-fidelity data.
-But first, let's explaine the Kalman Filter.
+But first, let's explaine the Kalman Filter\footnote{\url{https://cones-dev-pe431-2dbff22738a4d54c2b947e6fa9a9a77fadd187b3bd1a85c.gitlab-pages.ensam.eu/data_assimilation.html}}.
 
-\paragraph{Kalman Filter}\footnote{\url{https://cones-dev-pe431-2dbff22738a4d54c2b947e6fa9a9a77fadd187b3bd1a85c.gitlab-pages.ensam.eu/data_assimilation.html}}
+\paragraph{Kalman Filter}
+
 The estimation is calculated by using a set of observations $\mathbf{y}$, a prior state $\mathbf{x}$, and a linear model $\mathbf{M}$. The estimation state is obtained through two operations, the forecast and the analysis, respectively using the superscript \textit{f} and \textit{a}.
-The first forecast step at time \textit{k} computes the estimated state $\mathbf{x}_{k+1}$ and the error covariance matrix $\mathbf{P}_{k}^{f}$.
 
-
-The first forecast step at time \( k \) computes the estimated state \( \mathbf{x}_{k+1}^{f} \) and the error covariance matrix \( \mathbf{P}_{k+1}^{f} \),
+The system state $\mathbf{x}_k$ is as follows:
 \begin{equation}
-    \mathbf{x}_{k+1}^{f} = \mathbf{M} \mathbf{x}_k 
+\left[
+\begin{array}{c}
+\mathbf{u}_k \\
+\boldsymbol{\theta}_k
+\end{array}
+\right]
+\in \mathbb{R}^{(n_{\text{vars}} \cdot n_{\text{cells}} + n_{\theta}) \times m}
+\end{equation}
+
+where:
+\begin{itemize}
+    \item $\mathbf{u}_k$ is the state matrix (can contain velocities, pressure, temperature...) of the domain at the time instant $k$, which we don't care about in our case;
+    \item $\boldsymbol{\theta}_k$ are the model coefficients, assumed time-invariant in our case;
+    \item $m$ is the number of ensemble members.
+\end{itemize}
+
+The observation data $\mathbf{y}_k$ is defined as:
+\begin{equation}
+\left[ \mathbf{y}_k \right]_{n_{\text{obs}}, m} \sim \mathcal{N}(y_k, \mathbf{R}_k)
+\end{equation}
+
+Observation data may be built using:
+\begin{itemize}
+    \item Velocity, pressure, temperature and more... values;
+    \item Some discret model parameters such instantaneous global force coefficients $C_D$, $C_L$, $C_f$. In our case, It will be five IBM forcing parameters.
+\end{itemize}
+
+
+
+\textbf{Prediction step:}
+\begin{align}
+    \hat{\mathbf{x}}_{k|k-1} &= \mathbf{M}_k \hat{\mathbf{x}}_{k-1|k-1} + \mathbf{B}_k \mathbf{u}_k \\
+    \mathbf{P}_{k|k-1} &= \mathbf{M}_k \mathbf{P}_{k-1|k-1} \mathbf{F}_k^\top + \mathbf{Q}_k
+\end{align}
+
+\vspace{1em}
+\textbf{Update step:}
+\begin{align}
+    \tilde{\mathbf{y}}_k &= \mathbf{z}_k - \mathbf{H}_k \hat{\mathbf{x}}_{k|k-1} \\
+    \mathbf{S}_k &= \mathbf{H}_k \mathbf{P}_{k|k-1} \mathbf{H}_k^\top + \mathbf{R}_k \\
+    \mathbf{K}_k &= \mathbf{P}_{k|k-1} \mathbf{H}_k^\top \mathbf{S}_k^{-1} \\
+    \hat{\mathbf{x}}_{k|k} &= \hat{\mathbf{x}}_{k|k-1} + \mathbf{K}_k \tilde{\mathbf{y}}_k \\
+    \mathbf{P}_{k|k} &= (\mathbf{I} - \mathbf{K}_k \mathbf{H}_k) \mathbf{P}_{k|k-1}
+\end{align}
+
+\vspace{1em}
+\textbf{Where:}
+
+\begin{multicols}{2}
+\setlength{\itemsep}{0pt}
+\setlength{\parskip}{0pt}
+\begin{itemize}
+    \item $\hat{\mathbf{x}}_{k|k-1}$: predicted state at $k$
+    \item $\hat{\mathbf{x}}_{k-1|k-1}$: updated state at $k{-}1$
+    \item $\mathbf{M}_k$: state transition matrix
+    \item $\mathbf{B}_k$: control input matrix
+    \item $\mathbf{u}_k$: control input
+    \item $\mathbf{P}_{k|k-1}$: predicted covariance
+    \item $\mathbf{P}_{k-1|k-1}$: updated covariance at $k{-}1$
+    \item $\mathbf{Q}_k$: process noise
+    \item $\mathbf{z}_k$: measurement
+    \item $\mathbf{H}_k$: observation matrix
+    \item $\tilde{\mathbf{y}}_k$: innovation
+    \item $\mathbf{S}_k$: innovation covariance
+    \item $\mathbf{K}_k$: Kalman gain
+    \item $\mathbf{R}_k$: measurement noise
+    \item $\mathbf{I}$: identity matrix
+    \item $\hat{\mathbf{x}}_{k|k}$: updated state
+    \item $\mathbf{P}_{k|k}$: updated covariance
+\end{itemize}
+\end{multicols}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/KF_algorithm-1.png}
+    \caption{Kalman Filter algorithm scheme}
+    \label{KF1}
+\end{figure}
+
+Kalman filter present two main drawbacks that concern our case. First, as the \ac{EKF}, it's only works for moderate deviations from linearity and Gaussianity. If $M$ represent the Navier-Stokes equations, then is very not linear. Secondly, for a CFD mesh, the covariance matrix $\mathbf{P}_k$ would have a dimention of $(n_{vars} \times n_{cells}, n_{vars} \times n_{cells})$.
+
+The EnKF allows high dimensional systems by avoid the explicit definition of $\mathbf{P}_k$ and it's Monte-Carlo realistations are much more design for non-linear models. A problem can be the underestimation of $\mathbf{P}_k^a$ but the inflation, define later on this subsection, and localisation, helps mitigate this issue.
+
+
+\begin{comment}
+    First \textbf{forecast step (or prediction)} at time \( k \) computes the estimated state \( \mathbf{x}_{k+1}^{f} \) and the error covariance matrix \( \mathbf{P}_{k+1}^{f} \),
+\begin{equation}
+    \mathbf{x}_{k+1}^{f} = \mathbf{M} \mathbf{x}_k
 \end{equation}
 \begin{equation}
     \mathbf{P}_{k+1}^{f} = \mathbf{M}_{k+1} \mathbf{P}_k^a \mathbf{M}_{k+1}^\top + \mathbf{Q}
 \end{equation}
 where \( \mathbf{Q} \) represents the variance matrix of the model.  
-Then, the analysis step in which the observation \( \mathbf{y} \) and forecast are combined,
+
+Then, the \textbf{analysis step (or correction)} is computed, in which the observation \( \mathbf{y} \) and forecast are combined,
 \begin{equation}
     \mathbf{K}_{k+1} = \mathbf{P}_{k+1}^{f} \mathbf{H}^\top \left( \mathbf{H} \mathbf{P}_{k+1}^{f} \mathbf{H}^\top + \mathbf{R}_{k+1} \right)^{-1}
 \end{equation}
@@ -700,35 +794,85 @@ Then, the analysis step in which the observation \( \mathbf{y} \) and forecast a
     \mathbf{P}_{k+1}^{a} = (\mathbf{I} - \mathbf{K}_{k+1} \mathbf{H}) \mathbf{P}_{k+1}^{f}
 \end{equation}
 where \( \mathbf{R} \) represents the covariance matrix of the observations, and \( \mathbf{H} \) a linear operator which maps the true state space into the observed space.
+\end{comment}
 
-M are the Navier-Stokes equations discretized in the computation domain
-$y$ can be some local sensors (such as PIV data) or global variables (such as the performance)
-$x$ are some discrete model parameters (such as the IBM parameters)
+
 
 \paragraph{Ensemble Kalman Filter}
-Pk on introduis le KF pour la CFD ?
+
+We saw previously in this subsection that today, we can theorically run a \ac{DNS} which resolves exactly the Navier-Stokes equations, but it is still too expensive to be used in practice. Therefore, we generally use \ac{LES} or \ac{RANS} models to simulate the flow. The EnKF method can be applied to these models to adjust specific model parameters or flow fields, enhancing the overall physical consistency of the simulation.
+
+A good example based on the simple and academic \textit{cavity test case} illustrates it well.
+The cavity test case is a simple flow in a square cavity, where the flow is driven by a moving lid. The flow is characterized by a recirculation zone and a vortex in the center of the cavity. The EnKF method can be used to assimilate data from the flow, such as velocity or pressure measurements, to improve the accuracy of the simulation. The EnKF method can also be used to estimate the parameters of the model, such as viscosity or turbulence model coefficients, to improve the physical accuracy of the simulation.
+
+In our test case, we are going to optimise the velocity wall condition.
+To do so, we use the result on 5 locations of a precise converged simulation with a to boundary condition of 5 m.s$^{-1}$ as a reference. We will then assimilate data from the flow, at the 5 observation points (see \autoref{fig:cavity2_1ms}).
+We start from a simulation with a wall condition of 1 m.s$^{-1}$, which is not the correct value. The EnKF method will then be used to correct the wall condition by assimilating the data from the flow at the 5 observation points. The EnKF method will iteratively update the wall condition until it converges to the correct value, which is 5 m.s$^{-1}$ in this case. In only 3 EnKF iterations, the wall condition converges to the correct value (with a relative error of 0.05 m.s$^{-1}$).
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{images/cavity/cavity3_1ms.png}
+        \caption{Initial state}
+        \label{fig:cavity2_1ms}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{images/cavity/cavity3_3ms.png}
+        \caption{After one EnKF it.}
+        \label{fig:cavity2_3ms}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{images/cavity/cavity3_5ms.png}
+        \caption{Converged after 2 EnKF it.}
+        \label{fig:cavity_5ms}
+    \end{subfigure}
+    \caption{Evolution of the state through EnKF iterations (\includegraphics[width=0.013\textwidth]{images/cavity/legende.png}: observation point)}
+\end{figure}
 
 
-Illustrer l'inflation déterministic :
+The following matrices are needed to build the EnKF algorithm:
 
-Some \textit{deterministic inflation} is included to increase the variability of the state predicted by the EnKF:
+\begin{enumerate}
+  \item \textbf{Observation covariance matrix} $\mathbf{R}_k$: we assume Gaussian, non-correlated uncertainty for the observations ($\sigma_{i,k}$ is the standard deviation for the variable $i$ at time instant $k$).
+  \[
+  [\mathbf{R}_k]_{n_{\text{obs}}, n_{\text{obs}}} = \sigma_{i,k}^2 \, [\mathbb{I}]_{n_{\text{obs}}, n_{\text{obs}}}
+  \]
 
-\begin{equation}
-    \boldsymbol{u}_{i,k}^a = \boldsymbol{\overline{u}}_k^a + \lambda_k \left(\boldsymbol{u}_{i,k}^a - \boldsymbol{\overline{u}}_k^a   \right)
-    \label{eqn:inflation}
-\end{equation}
+  \item \textbf{Sampling matrix} $\mathcal{H} \left( \mathbf{x}_i^f \right)$: it is the projection of the model into the position of the observations.
+  \[
+  \left[ \mathcal{H} \left( \mathbf{x}_i^f \right) \right]_{n_{\text{obs}}, m}
+  \]
 
-\hspace{0.3cm}
+  \item \textbf{Anomaly matrices} for the system’s state $\mathbf{x}_i^f$ and sampling $\mathcal{H} \left( \mathbf{x}_i^f \right) = \mathbf{s}_i^f$ matrices. They measure the deviation of each realization with respect to the mean.
+  \[
+  \mathbf{X}_i = \frac{\mathbf{x}_i - \bar{\mathbf{x}}}{\sqrt{m-1}}, \quad 
+  \mathbf{S}_i = \frac{\mathbf{s}_i - \bar{\mathbf{s}}}{\sqrt{m-1}}
+  \]
+  with
+  \[
+  [\mathbf{X}]_{n_{\text{vars}} \times (n_{\text{cells}} + n_{\theta}), m}, \quad 
+  [\mathbf{S}]_{n_{\text{obs}}, m}
+  \]
+
+  \item \textbf{Kalman Gain matrix}:
+  \[
+  \mathbf{K} = \mathbf{X} \mathbf{S}^\top \left( \mathbf{S} \mathbf{S}^\top + \mathbf{R} \right)^{-1}
+  \]
+  with
+  \[
+  [\mathbf{K}_k]_{n_{\text{vars}} \times (n_{\text{cells}} + n_{\theta}), n_{\text{obs}}}
+  \]
+\end{enumerate}
+
+
+
+
+
 %$\mathcal{M}$ (model), $\boldsymbol{R}$ (observation covariance), $\boldsymbol{y}_k$ (observations),\\
 %$\boldsymbol{u}_{i,0}^\prime = [\boldsymbol{u}_{i,0}, \theta_{i,0}]^T$ (initial states with $\boldsymbol{u}_{i,0} \sim \mathcal{N}(\boldsymbol{\overline{u}}_0, \boldsymbol{P}_0)$ and $\theta_{i,0} \sim \mathcal{N}(\overline{\theta}_0, \boldsymbol{P}_0)$)
 
-
-
-With $\boldsymbol{\overline{u}}_k^{\prime^f} = [\boldsymbol{\overline{u}}_k^f, \overline{\theta}_{k-1}]^T$ and $\boldsymbol{u}_{i,k}^{\prime^f} = [\boldsymbol{u}_{i,k}^f, \theta_{i, k-1}]^T$
-
-Choisir entre "u" et "x"
-
-In our case, $\boldsymbol{\overline{u}}_k^{\prime^f} = [\overline{\theta}_{k-1}]^T$, $\boldsymbol{u}_{i,k}^{\prime^f} = [\theta_{i, k-1}]^T$ and $\lambda_k = 0$, $\boldsymbol{y}_k = \boldsymbol{y}$.
 
 For RANS representation, there is no physical time advancement of the model, so each instant is represented through a different interation of the solver, and 
 
@@ -755,6 +899,25 @@ For RANS representation, there is no physical time advancement of the model, so 
         \EndFor
     \end{algorithmic}
 \end{algorithm}
+
+Observation data $y$ can be some local sensors (such as PIV data) or global variables (such as the performance)
+
+With $\boldsymbol{\overline{u}}_k^{\prime^f} = [\boldsymbol{\overline{u}}_k^f, \overline{\theta}_{k-1}]^T$ and $\boldsymbol{u}_{i,k}^{\prime^f} = [\boldsymbol{u}_{i,k}^f, \theta_{i, k-1}]^T$
+
+Choisir entre "u" et "x"
+
+In our case, $\boldsymbol{\overline{u}}_k^{\prime^f} = [\overline{\theta}_{k-1}]^T$, $\boldsymbol{u}_{i,k}^{\prime^f} = [\theta_{i, k-1}]^T$ and $\lambda_k = 0$, $\boldsymbol{y}_k = \boldsymbol{y}$.
+
+
+
+Some \textit{deterministic inflation} is included to increase the variability of the state predicted by the EnKF:
+
+\begin{equation}
+    \boldsymbol{u}_{i,k}^a = \boldsymbol{\overline{u}}_k^a + \lambda_k \left(\boldsymbol{u}_{i,k}^a - \boldsymbol{\overline{u}}_k^a   \right)
+    \label{eqn:inflation}
+\end{equation}
+//// Illustrer l'inflation déterministic : ////
+
 
 
 
@@ -788,52 +951,30 @@ For RANS representation, there is no physical time advancement of the model, so 
 
 
 
-/// sub section ... // :
-
-\paragraph{CFD} Today, we can theorically run a \ac{DNS} which resolves exactly the Navier-Stokes equations, but it is still too expensive to be used in practice. Therefore, we generally use \ac{LES} or \ac{RANS} models to simulate the flow. The EnKF method can be applied to these models to adjust specific model parameters or flow fields, enhancing the overall physical consistency of the simulation.
-
-
-A good example based on the simple and academic \textit{cavity test case} illustrates it well.
-The cavity test case is a simple flow in a square cavity, where the flow is driven by a moving lid. The flow is characterized by a recirculation zone and a vortex in the center of the cavity. The EnKF method can be used to assimilate data from the flow, such as velocity or pressure measurements, to improve the accuracy of the simulation. The EnKF method can also be used to estimate the parameters of the model, such as viscosity or turbulence model coefficients, to improve the physical accuracy of the simulation.
-
-In our case, we are going to optimise the velocity wall condition.
-To do so, we use the result on 5 locations of a precise converged simulation with a to boundary condition of 5 m.s$^{-1}$ as a reference. We will then assimilate data from the flow, at the 5 observation points (see \autoref{fig:cavity2_1ms}).
-We start from a simulation with a wall condition of 1 m.s$^{-1}$, which is not the correct value. The EnKF method will then be used to correct the wall condition by assimilating the data from the flow at the 5 observation points. The EnKF method will iteratively update the wall condition until it converges to the correct value, which is 5 m.s$^{-1}$ in this case. In only 3 EnKF iterations, the wall condition converges to the correct value (with a relative error of 0.05 m.s$^{-1}$).
-
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}[b]{0.3\textwidth}
-        \includegraphics[width=\textwidth]{images/cavity/cavity3_1ms.png}
-        \caption{Initial state}
-        \label{fig:cavity2_1ms}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.3\textwidth}
-        \includegraphics[width=\textwidth]{images/cavity/cavity3_3ms.png}
-        \caption{After one EnKF it.}
-        \label{fig:cavity2_3ms}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.3\textwidth}
-        \includegraphics[width=\textwidth]{images/cavity/cavity3_5ms.png}
-        \caption{Converged after 2 EnKF it.}
-        \label{fig:cavity_5ms}
-    \end{subfigure}
-    \caption{Evolution of the state through EnKF iterations (\includegraphics[width=0.013\textwidth]{images/cavity/legende.png}: observation point)}
-\end{figure}
-
-
-
-//Préparer l'introduction des variables du controlDict et le CONESDict//
-
 
 \subsection{The CONES library}
 CONES is a library coded in Python/C++, stands for "Coupling OpenFOAM with Numerical EnvironmentS" and has been developed since 2022 at LMFL.
 Is the only code that permits online DA in CFD codes (it uses \ac{MPI} process to do it).
-It's parallelized and can be used on supercomputers. It is mainly designed to work with OpenFOAM and DA codes as EnKF.\label{instants_partages}%??
+It's parallelized and can be used on supercomputers. It is mainly designed to work with OpenFOAM and DA codes as EnKF.\label{instants_partages}
 
 
-A specific directory structure must be observed, as outlined in \autoref{fig:CONES} // A Expliquer // % \autoref{fig:OpenFOAM_directory_structure}:
+A specific directory structure must be observed, as outlined in \autoref{fig:CONES}.
+Let's take our OpenFOAM/EnKF example as support to explaine CONES. Concretly, on one side, $m$ OpenFOAM simulations are running with run at the same time on $n$ processors and on the other side, the EnKF run on $e$ processors (usually only one is enough).
+At the beginin, all variables are initialized on both sides, using MPI process.
+Then, all simulation run at same time (with different initial states).
+Sampled data ($H(u_k^f)$) and 
+$
+    \left[
+    \begin{array}{c}
+    \mathbf{u}_k \\
+    \boldsymbol{\theta_k}
+    \end{array}
+    \right]^f
+$
+are send to the EnKF. Using $y_k$, EnKF algorithm can computes and send back the updated velocity field (not computed in our case) ans the parameters $\theta_k^a$ to the different ensemble members (each are different befor converging).
+With thi new parameters, the loop can be done again.
+
+% \autoref{fig:OpenFOAM_directory_structure}:
 % décrire la structure du dossier OpenFOAM et ce que chaque fichier fait (dans mon cas de simulation)
 
 \begin{figure}[H]
@@ -848,13 +989,17 @@ A specific directory structure must be observed, as outlined in \autoref{fig:CON
 
 %The objective of the model is to try to find same physical behaviour as the experimental data. We call that digital twin.
 
-For that we have first to discretize the numerical model of the pump. The mesh is generated using the \texttt{blockMesh} utility, which is a built-in OpenFOAM tool. The mesh is composed of around 11 million cells. The mesh is composed of hexahedral cells. (quasi only, exepted some interface, cf \autoref{fig:interfaceMesh}). We don't need complex mesh because we dont neek to fit the geometry of the impeller.
+\autoref{fig:RESEDA_Model} illustrates the model of the pump on a $yz$ plane, for $x=0$. The suction pipe has a length of $H = 10 R_1$, allowing the near-wall boundary lawer to developped. Then, a cylinder containing the impeller is define. Is where the IBM and MRF will be applied.
+At the entrance of the impeller - outlet of the suction pipe junction and at the outlet of the impeller - inlet of the diffuser junction, there was leakage as the whole impeller was moving during the experiment.
+We assume a zero-leakage as we aren't in a very hight mass flow rate.
+
+In our simulation, the z-axis aligns with the rotational axis, and the reference frame is centred at the impeller. The plane at $z = 0$ divides the diffuser into two identical halves.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{images/numericalPump/frontalView.pdf}
-    \caption{Mesh interface between the pipe and the impeller}
-    \label{fig:interfaceMesh}
+    \includegraphics[width=1\textwidth]{images/model/RESEDA_sketch.pdf}
+    \caption{Model of the RESEDA benchmark}
+    \label{fig:RESEDA_Model}
 \end{figure}
 
 Boundary conditions are defines as that:
@@ -865,13 +1010,27 @@ Boundary conditions are defines as that:
 \end{itemize}
 
 
+The penalisation coefficients used in the \autoref{eq:IB} are defines as follow :
+
+
+\begin{align}
+    \boldsymbol{u}_{\text{ib}} &= \cancel{\boldsymbol{u}_r} + \boldsymbol{\Omega} \times \boldsymbol{r} \notag \\
+    \mathcal{K}_{\text{ib}} &= 0 \notag \\
+    \omega_{\text{ib}} &= \left( \omega_{\text{vis}}^2 + \omega_{\text{log}}^2 \right)^{1/2}
+\end{align}
+
+
+
+To process CFD, we need to discretize the numerical model of the pump. The mesh is generated using the \texttt{blockMesh} utility, which is a built-in OpenFOAM tool. It is composed of around 11 million hexahedral cells. (quasi only, exepted some interface, cf \autoref{fig:interfaceMesh}). We don't need complex mesh because we dont neek to fit the geometry of the impeller as we use IBM.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{images/model/RESEDA_sketch.pdf}
-    \caption{Model of the RESEDA benchmark}
-    \label{fig:RESEDA_Model}
+    \includegraphics[width=0.5\textwidth]{images/numericalPump/frontalView.pdf}
+    \caption{Mesh interface between the pipe and the impeller}
+    \label{fig:interfaceMesh}
 \end{figure}
+
+// Parler de y+ //
 
 
 \newpage
@@ -1343,6 +1502,9 @@ Methodo (forcage continue (vs interpolation ?)) -> avantages
 ////Annexe des opérateurs grad, div, nabla, rot, laplacien, laplacien vectoriel, etc...////
 
 The EnKF method will be used to assimilate data from the flow at the observation points and to update the forcing term until it converges to the optimal value. These high-fidelity data are obtained from an experiment explained in the next \autoref{sec:Experimental_data_and_pre-processing}.
+
+//Préparer l'introduction des variables du controlDict et le CONESDict//
+
 
 %En combien de temps l'information de pression remonte-t-elle dans le diffuser ? -->> "directement"
 

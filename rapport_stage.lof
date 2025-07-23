@@ -13,20 +13,22 @@
 \contentsline {figure}{\numberline {2.8}{\ignorespaces IBM regions}}{21}{figure.caption.12}%
 \contentsline {figure}{\numberline {2.9}{\ignorespaces Tree of the OpenFOAM dictionaries}}{23}{figure.caption.13}%
 \contentsline {figure}{\numberline {2.10}{\ignorespaces Tree of the OpenFOAM dictionaries}}{23}{figure.caption.14}%
-\contentsline {figure}{\numberline {2.11}{\ignorespaces Evolution of the state through EnKF iterations (\includegraphics [width=0.013\textwidth ]{images/cavity/legende.png}: observation point)}}{27}{figure.caption.15}%
-\contentsline {figure}{\numberline {2.12}{\ignorespaces CONES structure}}{27}{figure.caption.16}%
-\contentsline {figure}{\numberline {2.13}{\ignorespaces Mesh interface between the pipe and the impeller}}{28}{figure.caption.17}%
-\contentsline {figure}{\numberline {2.14}{\ignorespaces Model of the RESEDA benchmark}}{28}{figure.caption.18}%
-\contentsline {figure}{\numberline {2.15}{\ignorespaces Interpolation points over 360/7 degrees}}{29}{figure.caption.19}%
-\contentsline {figure}{\numberline {2.16}{\ignorespaces Comparison between the profiles inside the diffuser for the numerical simulation (continuous lines), and the PIV data (dashed lines). In particular, (\bluelinePython ) represents the radial velocity $u_r$, (\orangeline ) depicts the azimuthal velocity $u_\theta $, and (\greenline ) illustrates the vertical velocity $u_z$.}}{29}{figure.caption.20}%
-\contentsline {figure}{\numberline {2.17}{\ignorespaces Diffuser Mesh}}{30}{figure.caption.21}%
-\contentsline {figure}{\numberline {2.18}{\ignorespaces Diffuser and pressure taps of the centrifugal pump}}{30}{figure.caption.22}%
-\contentsline {figure}{\numberline {2.19}{\ignorespaces Position of the PIV planes on the diffuser}}{31}{figure.caption.24}%
-\contentsline {figure}{\numberline {2.20}{\ignorespaces Position of the PIV points on a polar slice of the diffuser}}{31}{figure.caption.25}%
-\contentsline {figure}{\numberline {2.21}{\ignorespaces Overall pump performance versus reduced pump flow rate Q}}{32}{figure.caption.26}%
-\contentsline {figure}{\numberline {2.22}{\ignorespaces \relax }}{36}{figure.caption.28}%
-\contentsline {figure}{\numberline {2.23}{\ignorespaces Velocity field for Dx = 4e7 and Dy = 2e7}}{38}{figure.caption.29}%
-\contentsline {figure}{\numberline {2.24}{\ignorespaces Evolution of the NRMSEs over EnKF analysis phases}}{38}{figure.caption.30}%
-\contentsline {figure}{\numberline {2.25}{\ignorespaces Radial expension of Dz over the impeller radius}}{38}{figure.caption.31}%
-\contentsline {figure}{\numberline {2.26}{\ignorespaces Formation of the recirculation bubble in the diffuser}}{39}{figure.caption.32}%
-\contentsline {figure}{\numberline {2.27}{\ignorespaces Interpolation points over 360 degrees}}{40}{figure.caption.33}%
+\contentsline {figure}{\numberline {2.11}{\ignorespaces Kalman Filter algorithm scheme}}{25}{figure.caption.15}%
+\contentsline {figure}{\numberline {2.12}{\ignorespaces Kalman Filter algorithm scheme}}{26}{figure.caption.16}%
+\contentsline {figure}{\numberline {2.13}{\ignorespaces Evolution of the state through EnKF iterations (\includegraphics [width=0.013\textwidth ]{images/cavity/legende.png}: observation point)}}{27}{figure.caption.17}%
+\contentsline {figure}{\numberline {2.14}{\ignorespaces CONES structure}}{29}{figure.caption.18}%
+\contentsline {figure}{\numberline {2.15}{\ignorespaces Model of the RESEDA benchmark}}{30}{figure.caption.19}%
+\contentsline {figure}{\numberline {2.16}{\ignorespaces Mesh interface between the pipe and the impeller}}{30}{figure.caption.20}%
+\contentsline {figure}{\numberline {2.17}{\ignorespaces Interpolation points over 360/7 degrees}}{32}{figure.caption.21}%
+\contentsline {figure}{\numberline {2.18}{\ignorespaces Comparison between the profiles inside the diffuser for the numerical simulation (continuous lines), and the PIV data (dashed lines). In particular, (\bluelinePython ) represents the radial velocity $u_r$, (\orangeline ) depicts the azimuthal velocity $u_\theta $, and (\greenline ) illustrates the vertical velocity $u_z$.}}{32}{figure.caption.22}%
+\contentsline {figure}{\numberline {2.19}{\ignorespaces Diffuser Mesh}}{33}{figure.caption.23}%
+\contentsline {figure}{\numberline {2.20}{\ignorespaces Diffuser and pressure taps of the centrifugal pump}}{33}{figure.caption.24}%
+\contentsline {figure}{\numberline {2.21}{\ignorespaces Position of the PIV planes on the diffuser}}{34}{figure.caption.26}%
+\contentsline {figure}{\numberline {2.22}{\ignorespaces Position of the PIV points on a polar slice of the diffuser}}{34}{figure.caption.27}%
+\contentsline {figure}{\numberline {2.23}{\ignorespaces Overall pump performance versus reduced pump flow rate Q}}{35}{figure.caption.28}%
+\contentsline {figure}{\numberline {2.24}{\ignorespaces \relax }}{39}{figure.caption.30}%
+\contentsline {figure}{\numberline {2.25}{\ignorespaces Velocity field for Dx = 4e7 and Dy = 2e7}}{41}{figure.caption.31}%
+\contentsline {figure}{\numberline {2.26}{\ignorespaces Evolution of the NRMSEs over EnKF analysis phases}}{41}{figure.caption.32}%
+\contentsline {figure}{\numberline {2.27}{\ignorespaces Radial expension of Dz over the impeller radius}}{41}{figure.caption.33}%
+\contentsline {figure}{\numberline {2.28}{\ignorespaces Formation of the recirculation bubble in the diffuser}}{42}{figure.caption.34}%
+\contentsline {figure}{\numberline {2.29}{\ignorespaces Interpolation points over 360 degrees}}{43}{figure.caption.35}%

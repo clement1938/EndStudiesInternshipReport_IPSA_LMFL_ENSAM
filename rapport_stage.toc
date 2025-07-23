@@ -20,30 +20,29 @@
 \contentsline {paragraph}{IBM equations}{21}{equation.2.2.21}%
 \contentsline {subsection}{\numberline {2.2.2}The open-source code OpenFOAM}{22}{subsection.2.2.2}%
 \contentsline {subsection}{\numberline {2.2.3}EnKF}{25}{subsection.2.2.3}%
-\contentsline {paragraph}{Kalman Filter}{25}{subsection.2.2.3}%
-\contentsline {paragraph}{Ensemble Kalman Filter}{25}{equation.2.2.32}%
-\contentsline {paragraph}{CFD}{26}{algorithm.1}%
-\contentsline {subsection}{\numberline {2.2.4}The CONES library}{27}{subsection.2.2.4}%
-\contentsline {subsection}{\numberline {2.2.5}Pump modelling}{27}{subsection.2.2.5}%
-\contentsline {section}{\numberline {2.3}Experimental data and pre-processing}{29}{section.2.3}%
-\contentsline {paragraph}{PIV data}{31}{figure.caption.25}%
-\contentsline {paragraph}{Pressure data}{31}{figure.caption.25}%
-\contentsline {subparagraph}{1.}{33}{figure.caption.27}%
-\contentsline {subparagraph}{2.Average}{33}{equation.2.3.34}%
-\contentsline {subparagraph}{3.Sampling}{33}{equation.2.3.34}%
-\contentsline {subparagraph}{4.Shaping for CONES}{33}{equation.2.3.34}%
-\contentsline {subparagraph}{5.Creation of a file for the interpolation}{33}{equation.2.3.34}%
-\contentsline {section}{\numberline {2.4}IBM preliminary results}{34}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}Modifications on OpenFOAM}{36}{subsection.2.4.1}%
-\contentsline {section}{\numberline {2.5}Application of the DA}{37}{section.2.5}%
-\contentsline {section}{\numberline {2.6}Results}{37}{section.2.6}%
-\contentsline {subsection}{\numberline {2.6.1}Conclusion ans perspective}{39}{subsection.2.6.1}%
-\contentsline {chapter}{Conclusion}{41}{chapter*.34}%
-\contentsline {chapter}{Table des annexes}{43}{chapter*.35}%
-\contentsline {chapter}{Annexes}{44}{chapter*.35}%
-\contentsline {section}{Annex 1\ -- Batch code}{44}{annex.1}%
-\contentsline {section}{Annex 2\ -- OpenFOAM Directory Tree}{45}{annex.2}%
-\contentsline {chapter}{Bibliography}{47}{chapter*.36}%
-\contentsline {chapter}{List of acronyms}{49}{chapter*.37}%
-\contentsline {paragraph}{Résumé}{50}{chapter*.37}%
-\contentsline {paragraph}{Abstract}{50}{chapter*.37}%
+\contentsline {paragraph}{Kalman Filter}{25}{figure.caption.15}%
+\contentsline {paragraph}{Ensemble Kalman Filter}{27}{figure.caption.16}%
+\contentsline {subsection}{\numberline {2.2.4}The CONES library}{29}{subsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.2.5}Pump modelling}{29}{subsection.2.2.5}%
+\contentsline {section}{\numberline {2.3}Experimental data and pre-processing}{32}{section.2.3}%
+\contentsline {paragraph}{PIV data}{34}{figure.caption.27}%
+\contentsline {paragraph}{Pressure data}{34}{figure.caption.27}%
+\contentsline {subparagraph}{1.}{36}{figure.caption.29}%
+\contentsline {subparagraph}{2.Average}{36}{equation.2.3.37}%
+\contentsline {subparagraph}{3.Sampling}{36}{equation.2.3.37}%
+\contentsline {subparagraph}{4.Shaping for CONES}{36}{equation.2.3.37}%
+\contentsline {subparagraph}{5.Creation of a file for the interpolation}{36}{equation.2.3.37}%
+\contentsline {section}{\numberline {2.4}IBM preliminary results}{37}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Modifications on OpenFOAM}{39}{subsection.2.4.1}%
+\contentsline {section}{\numberline {2.5}Application of the DA}{40}{section.2.5}%
+\contentsline {section}{\numberline {2.6}Results}{40}{section.2.6}%
+\contentsline {subsection}{\numberline {2.6.1}Conclusion ans perspective}{42}{subsection.2.6.1}%
+\contentsline {chapter}{Conclusion}{44}{chapter*.36}%
+\contentsline {chapter}{Table des annexes}{46}{chapter*.37}%
+\contentsline {chapter}{Annexes}{47}{chapter*.37}%
+\contentsline {section}{Annex 1\ -- Batch code}{47}{annex.1}%
+\contentsline {section}{Annex 2\ -- OpenFOAM Directory Tree}{48}{annex.2}%
+\contentsline {chapter}{Bibliography}{50}{chapter*.38}%
+\contentsline {chapter}{List of acronyms}{52}{chapter*.39}%
+\contentsline {paragraph}{Résumé}{53}{chapter*.39}%
+\contentsline {paragraph}{Abstract}{53}{chapter*.39}%
