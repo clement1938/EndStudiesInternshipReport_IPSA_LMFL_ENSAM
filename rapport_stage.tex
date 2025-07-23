@@ -3,9 +3,14 @@
 \hbadness=10000
 \hfuzz=100pt
 
-\usepackage{tablefootnote}
-\usepackage[utf8]{inputenc}
-\usepackage[hidelinks]{hyperref} 
+\usepackage[utf8]{inputenc}          % encodage (OK si pas en XeLaTeX ou LuaLaTeX)
+\usepackage[hyphens]{url}           % permet le retour à la ligne dans les URL
+\usepackage[hidelinks, breaklinks=true]{hyperref}  % doit venir APRÈS url
+\urlstyle{same}                     % garde l'apparence normale des URL
+\usepackage{tablefootnote}          % si tu veux faire des notes dans les tableaux
+
+\usepackage{cancel}
+
 \usepackage[T1]{fontenc}
 \usepackage[top=2cm,bottom=2cm,left=2.5cm,right=2.5cm]{geometry}
 \usepackage{amsmath,amsfonts,amssymb}
@@ -160,6 +165,12 @@
 
 \setlength{\parskip}{0.5\baselineskip}
 
+
+\DeclareAcronym{PDF}{
+  short = PDF,
+  long = Probability Density Function,
+  short-indefinite = une,
+}
 
 \DeclareAcronym{Re}{
   short = Re,

@@ -262,6 +262,80 @@
       \verb /home/clementt/Zotero/storage/ATTUGTW4/Fan et al. - Effect of leakage on the performance of the vaneless diffuser of a centrifugal pump model.pdf
       \endverb
     \endentry
+    \entry{doi:10.2514/6.1993-2906}{incollection}{}
+      \name{author}{1}{}{%
+        {{hash=db6e1f0b84b52aee92626452b23230d7}{%
+           family={Menter},
+           familyi={M\bibinitperiod},
+           given={F.},
+           giveni={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{db6e1f0b84b52aee92626452b23230d7}
+      \strng{fullhash}{db6e1f0b84b52aee92626452b23230d7}
+      \strng{bibnamehash}{db6e1f0b84b52aee92626452b23230d7}
+      \strng{authorbibnamehash}{db6e1f0b84b52aee92626452b23230d7}
+      \strng{authornamehash}{db6e1f0b84b52aee92626452b23230d7}
+      \strng{authorfullhash}{db6e1f0b84b52aee92626452b23230d7}
+      \field{extraname}{1}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{23rd Fluid Dynamics, Plasmadynamics, and Lasers Conference}
+      \field{title}{Zonal Two Equation K-w Turbulence Models for Aerodynamic Flows}
+      \verb{doi}
+      \verb 10.2514/6.1993-2906
+      \endverb
+      \verb{eprint}
+      \verb https://arc.aiaa.org/doi/pdf/10.2514/6.1993-2906
+      \endverb
+      \verb{urlraw}
+      \verb https://arc.aiaa.org/doi/abs/10.2514/6.1993-2906
+      \endverb
+      \verb{url}
+      \verb https://arc.aiaa.org/doi/abs/10.2514/6.1993-2906
+      \endverb
+    \endentry
+    \entry{doi:10.2514/3.12149}{article}{}
+      \name{author}{1}{}{%
+        {{hash=ca8cc69133803e5ae1143779ce96f51d}{%
+           family={Menter},
+           familyi={M\bibinitperiod},
+           given={F.\bibnamedelimi R.},
+           giveni={F\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+      }
+      \strng{namehash}{ca8cc69133803e5ae1143779ce96f51d}
+      \strng{fullhash}{ca8cc69133803e5ae1143779ce96f51d}
+      \strng{bibnamehash}{ca8cc69133803e5ae1143779ce96f51d}
+      \strng{authorbibnamehash}{ca8cc69133803e5ae1143779ce96f51d}
+      \strng{authornamehash}{ca8cc69133803e5ae1143779ce96f51d}
+      \strng{authorfullhash}{ca8cc69133803e5ae1143779ce96f51d}
+      \field{extraname}{2}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{AIAA Journal}
+      \field{number}{8}
+      \field{title}{Two-Equation Eddy-Viscosity Turbulence Models for Engineering Applications}
+      \field{volume}{32}
+      \field{year}{1994}
+      \field{dateera}{ce}
+      \field{pages}{1598\bibrangedash 1605}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.2514/3.12149
+      \endverb
+      \verb{eprint}
+      \verb https://doi.org/10.2514/3.12149
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.2514/3.12149
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.2514/3.12149
+      \endverb
+    \endentry
     \entry{moussieStatisticalInferenceUpstream2024a}{article}{}
       \name{author}{3}{}{%
         {{hash=7d1fc99b76c34515079e92e9becf2854}{%
@@ -342,6 +416,36 @@
       \field{title}{Flow Patterns Around Heart Valves: A Numerical Method}
       \field{year}{1972}
     \endentry
+    \entry{rabierVariationalDataAssimilation}{article}{}
+      \name{author}{2}{}{%
+        {{hash=2318f8b8a7bc7c2784854045ccf613ed}{%
+           family={Rabier},
+           familyi={R\bibinitperiod},
+           given={Florence},
+           giveni={F\bibinitperiod}}}%
+        {{hash=c33c93aef28985b52159e6050e9c21b3}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Zhiquan},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \strng{namehash}{e362490bd165dbc2064f832ad1d668b6}
+      \strng{fullhash}{e362490bd165dbc2064f832ad1d668b6}
+      \strng{bibnamehash}{e362490bd165dbc2064f832ad1d668b6}
+      \strng{authorbibnamehash}{e362490bd165dbc2064f832ad1d668b6}
+      \strng{authornamehash}{e362490bd165dbc2064f832ad1d668b6}
+      \strng{authorfullhash}{e362490bd165dbc2064f832ad1d668b6}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Data assimilation is briefly described in its variational formulation. Both three- and four-dimensional variational assimilation are presented with an emphasis on their comparison, strengths and weaknesses. A toy model is used to illustrate the benefit of including the time dimension in the analysis, before summarizing a few operational results.}
+      \field{langid}{english}
+      \field{title}{Variational {{Data Assimilation}}: {{Theory}} and {{Overview}}}
+      \verb{file}
+      \verb /home/clementt/Zotero/storage/W7R5VHF4/Rabier and Liu - Variational Data Assimilation Theory and Overview.pdf
+      \endverb
+    \endentry
     \entry{retiFrancescoDiGiorgio1963}{article}{}
       \name{author}{2}{}{%
         {{hash=49684eade9ea896c9aef9fe478c6e9cc}{%
@@ -397,6 +501,59 @@
       \verb{url}
       \verb https://www.jstor.org/stable/3100858?origin=crossref
       \endverb
+    \endentry
+    \entry{SHAH2013715}{article}{}
+      \name{author}{4}{}{%
+        {{hash=88fa628f97b95684d453ac923d45ca2e}{%
+           family={Shah},
+           familyi={S\bibinitperiod},
+           given={S.R.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=ddc3d0b3bda1be9d8ac59370582db5a8}{%
+           family={Jain},
+           familyi={J\bibinitperiod},
+           given={S.V.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=adf7dcf833dd67eb86587ee7853e4fae}{%
+           family={Patel},
+           familyi={P\bibinitperiod},
+           given={R.N.},
+           giveni={R\bibinitperiod}}}%
+        {{hash=0db6912ce4f422304e9aa22a453ad17f}{%
+           family={Lakhera},
+           familyi={L\bibinitperiod},
+           given={V.J.},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{55c430febeb7c40f416b0553f91bc54c}
+      \strng{fullhash}{7ef6f459c06310678c06d3f26bdca3f2}
+      \strng{bibnamehash}{55c430febeb7c40f416b0553f91bc54c}
+      \strng{authorbibnamehash}{55c430febeb7c40f416b0553f91bc54c}
+      \strng{authornamehash}{55c430febeb7c40f416b0553f91bc54c}
+      \strng{authorfullhash}{7ef6f459c06310678c06d3f26bdca3f2}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The flow analysis inside the centrifugal pump is highly complex mainly due to 3D flow structure involving turbulence, secondary flow, cavitation and unsteadiness. In recent years, a growing availability of computational resources and progress in the accuracy of numerical methods brought turbo machinery Computational Fluid Dynamics (CFD) methods from pure research work into the competitive industrial markets. The critical review of CFD analysis of centrifugal pumps along with the future scopes for further improvement is presented in this paper. CFD technique has been applied by the researchers to carry out different investigations on centrifugal pumps viz. performance prediction at design and off-design conditions, parametric study, cavitation analysis, diffuser pump analysis, performance of pump running in turbine mode etc. Unsteady Reynolds-averaged Navier–Stokes equations together with two equation k-ɛ turbulence model were found to be appropriate for CFD analysis of centrifugal pump. Volute flow study and impeller-volute interaction appeared as an interesting research fields for the further improvement in the pump performance. The most active areas of research and development are the analysis of two phase flow, pump handling non -Newtonian fluids and fluid–structure interaction.}
+      \field{issn}{1877-7058}
+      \field{journaltitle}{Procedia Engineering}
+      \field{title}{{{CFD}} for Centrifugal Pumps: A Review of the State-of-the-Art}
+      \field{volume}{51}
+      \field{year}{2013}
+      \field{dateera}{ce}
+      \field{pages}{715\bibrangedash 720}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1016/j.proeng.2013.01.102
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S1877705813001033
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S1877705813001033
+      \endverb
+      \keyw{Centrifugal pumps,CFD,Flow analysis,Numerical simulation,Review}
     \endentry
     \entry{valero2025immersed}{article}{}
       \name{author}{2}{}{%
