@@ -1,0 +1,755 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{alexis}{thesis}{}
+      \name{author}{1}{}{%
+        {{hash=28fdcdb0cdda1cd18d1909efa993b827}{%
+           family={{Alexis Boudin}},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{28fdcdb0cdda1cd18d1909efa993b827}
+      \strng{fullhash}{28fdcdb0cdda1cd18d1909efa993b827}
+      \strng{bibnamehash}{28fdcdb0cdda1cd18d1909efa993b827}
+      \strng{authorbibnamehash}{28fdcdb0cdda1cd18d1909efa993b827}
+      \strng{authornamehash}{28fdcdb0cdda1cd18d1909efa993b827}
+      \strng{authorfullhash}{28fdcdb0cdda1cd18d1909efa993b827}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{Numerical Methods for Large Eddy Simulation in Turbomachinery (in progress)}}
+      \field{type}{phdthesis}
+      \true{nocite}
+    \endentry
+    \entry{angotPenalizationMethodTake1999a}{article}{}
+      \name{author}{3}{}{%
+        {{hash=3b7b1e8da951c37bc6e6664dc4507257}{%
+           family={Angot},
+           familyi={A\bibinitperiod},
+           given={Philippe},
+           giveni={P\bibinitperiod}}}%
+        {{hash=d660fadedc7970631457f4c1d9940e9b}{%
+           family={Bruneau},
+           familyi={B\bibinitperiod},
+           given={Charles-Henri},
+           giveni={C\bibinithyphendelim H\bibinitperiod}}}%
+        {{hash=203abdc5a0eabb3e4541ec10c66f5394}{%
+           family={Fabrie},
+           familyi={F\bibinitperiod},
+           given={Pierre},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{6b4e563dabb4f596d86e0b1deb4af5b5}
+      \strng{fullhash}{6b4e563dabb4f596d86e0b1deb4af5b5}
+      \strng{bibnamehash}{6b4e563dabb4f596d86e0b1deb4af5b5}
+      \strng{authorbibnamehash}{6b4e563dabb4f596d86e0b1deb4af5b5}
+      \strng{authornamehash}{6b4e563dabb4f596d86e0b1deb4af5b5}
+      \strng{authorfullhash}{6b4e563dabb4f596d86e0b1deb4af5b5}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{From the Navier-Stokes/Brinkman model, a penalization method has been derived by several authors to compute incompressible Navier-Stokes equations around obstacles. In this paper, convergence theorems and error estimates are derived for two kinds of penalization. The first one corresponds to \$L\textasciicircum 2\$penalization inducing a Darcy equation in the solid body, the second one corresponds to a \$H\textasciicircum 1\$penalization and induces a Brinkman equation in the body. Numerical tests are performed to confirm the efficiency and accuracy of the method.}
+      \field{day}{1}
+      \field{issn}{0945-3245}
+      \field{journaltitle}{Numerische Mathematik}
+      \field{month}{2}
+      \field{number}{4}
+      \field{shortjournal}{Numerische Mathematik}
+      \field{title}{A Penalization Method to Take into Account Obstacles in Incompressible Viscous Flows}
+      \field{volume}{81}
+      \field{year}{1999}
+      \field{dateera}{ce}
+      \field{pages}{497\bibrangedash 520}
+      \range{pages}{24}
+      \verb{doi}
+      \verb 10.1007/s002110050401
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/s002110050401
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/s002110050401
+      \endverb
+    \endentry
+    \entry{aschDataAssimilationMethods2016}{book}{}
+      \name{author}{3}{}{%
+        {{hash=fc15b2c738c78e9fa3b3666bdb1efa21}{%
+           family={Asch},
+           familyi={A\bibinitperiod},
+           given={Mark},
+           giveni={M\bibinitperiod}}}%
+        {{hash=cc77ad17a63f114d6e3a11f91b002cb0}{%
+           family={Bocquet},
+           familyi={B\bibinitperiod},
+           given={Marc},
+           giveni={M\bibinitperiod}}}%
+        {{hash=0e31b0278013129e832e8c224e4a0ebf}{%
+           family={Nodet},
+           familyi={N\bibinitperiod},
+           given={Maëlle},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Philadelphia}%
+      }
+      \list{publisher}{1}{%
+        {Society for Industrial and Applied Mathematics}%
+      }
+      \strng{namehash}{993bcce1b461b6007c250a92890b95bb}
+      \strng{fullhash}{993bcce1b461b6007c250a92890b95bb}
+      \strng{bibnamehash}{993bcce1b461b6007c250a92890b95bb}
+      \strng{authorbibnamehash}{993bcce1b461b6007c250a92890b95bb}
+      \strng{authornamehash}{993bcce1b461b6007c250a92890b95bb}
+      \strng{authorfullhash}{993bcce1b461b6007c250a92890b95bb}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{isbn}{978-1-61197-454-6}
+      \field{langid}{english}
+      \field{number}{11}
+      \field{pagetotal}{1}
+      \field{series}{Fundamentals of Algorithms}
+      \field{shorttitle}{Data Assimilation}
+      \field{title}{Data Assimilation: Methods, Algorithms, and Applications}
+      \field{year}{2016}
+      \field{dateera}{ce}
+      \verb{file}
+      \verb /home/clementt/Zotero/storage/HRHI8T8A/Asch et al. - 2016 - Data assimilation methods, algorithms, and applications.pdf
+      \endverb
+      \keyw{Algorithms,Inverse problems (Differential equations),Numerical analysis}
+    \endentry
+    \entry{dazinHighspeedStereoscopicPIV2011a}{article}{}
+      \name{author}{8}{}{%
+        {{hash=6a3e3698109e0722d74d25566cf7fe24}{%
+           family={Dazin},
+           familyi={D\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=fa75cf219398f6d1886926dfa2b665b8}{%
+           family={Cavazzini},
+           familyi={C\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod}}}%
+        {{hash=09ab98625473bf414c0c867e33a38c47}{%
+           family={Pavesi},
+           familyi={P\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod}}}%
+        {{hash=6ba21a21ee3400a8bd38fd8eb0468683}{%
+           family={Dupont},
+           familyi={D\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+        {{hash=dffe277f40ab7c17c411594ccc9442c2}{%
+           family={Coudert},
+           familyi={C\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=68ea8a94eb8a8305dbeb55787c058850}{%
+           family={Ardizzon},
+           familyi={A\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod}}}%
+        {{hash=5ad7ae688422e07b46202665266d4fbb}{%
+           family={Caignaert},
+           familyi={C\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod}}}%
+        {{hash=bd5a816bbe365db339b92121e8d50491}{%
+           family={Bois},
+           familyi={B\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{d3be4bc66f333cdfcc95059fa0d4e947}
+      \strng{fullhash}{e3cc8f6f13acfb356c4f2faa00d13a8d}
+      \strng{bibnamehash}{d3be4bc66f333cdfcc95059fa0d4e947}
+      \strng{authorbibnamehash}{d3be4bc66f333cdfcc95059fa0d4e947}
+      \strng{authornamehash}{d3be4bc66f333cdfcc95059fa0d4e947}
+      \strng{authorfullhash}{e3cc8f6f13acfb356c4f2faa00d13a8d}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{This paper presents an experimental analysis of the unsteady phenomena developing in a vaneless diffuser of a radial flow pump. Partial flow operating conditions were investigated using 2D/3C high repetition rate PIV, coupled with unsteady pressure transducers. Pressure measurements were acquired on the shroud wall of the vaneless diffuser and on the suction pipe of the pump, whereas PIV flow fields were determined on three different heights in the hub to shroud direction, inside the diffuser. The classical Fourier analysis was applied to both pressure signals to identify the spectral characteristics of the developing instabilities, and the high-order spectral analysis was exploited to investigate possible non-linear interaction mechanisms between different unsteady structures. A dedicated PIV averaging procedure was developed and applied to the PIV flow fields so as to capture and visualize the topology of the spectrally identified phenomena. The influence of these phenomena on the diffuser efficiency was also investigated.}
+      \field{issn}{0723-4864, 1432-1114}
+      \field{journaltitle}{Experiments in Fluids}
+      \field{langid}{english}
+      \field{month}{7}
+      \field{number}{1}
+      \field{shortjournal}{Exp Fluids}
+      \field{title}{High-Speed Stereoscopic {{PIV}} Study of Rotating Instabilities in a Radial Vaneless Diffuser}
+      \field{urlday}{18}
+      \field{urlmonth}{4}
+      \field{urlyear}{2025}
+      \field{volume}{51}
+      \field{year}{2011}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{83\bibrangedash 93}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1007/s00348-010-1030-x
+      \endverb
+      \verb{file}
+      \verb /home/clementt/Zotero/storage/K7CG4MCQ/Dazin et al. - 2011 - High-speed stereoscopic PIV study of rotating instabilities in a radial vaneless diffuser.pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://link.springer.com/10.1007/s00348-010-1030-x
+      \endverb
+      \verb{url}
+      \verb http://link.springer.com/10.1007/s00348-010-1030-x
+      \endverb
+    \endentry
+    \entry{fanEffectLeakagePerformanceb}{article}{}
+      \name{author}{4}{}{%
+        {{hash=aa227619f5b725e382791bff743f5aa9}{%
+           family={Fan},
+           familyi={F\bibinitperiod},
+           given={Meng},
+           giveni={M\bibinitperiod}}}%
+        {{hash=c7d992ce9b813391b54f63851b4b9a92}{%
+           family={Dazin},
+           familyi={D\bibinitperiod},
+           given={Antoine},
+           giveni={A\bibinitperiod}}}%
+        {{hash=934b7faf7784a8c4678481c7ab09db9d}{%
+           family={Romano},
+           familyi={R\bibinitperiod},
+           given={Francesco},
+           giveni={F\bibinitperiod}}}%
+        {{hash=7a99d3dc1c4109b2dff0265893d97af3}{%
+           family={Bois},
+           familyi={B\bibinitperiod},
+           given={Gérard},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{201df2562a6b93a549eafeb37717a372}
+      \strng{fullhash}{4284e4d8b6976b304dd65662c5c7dd03}
+      \strng{bibnamehash}{201df2562a6b93a549eafeb37717a372}
+      \strng{authorbibnamehash}{201df2562a6b93a549eafeb37717a372}
+      \strng{authornamehash}{201df2562a6b93a549eafeb37717a372}
+      \strng{authorfullhash}{4284e4d8b6976b304dd65662c5c7dd03}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{An analysis of a pump vaneless diffuser model is presented with a particular focus on the leakage effect between the impeller outlet and diffuser inlet section. RANS and URANS simulations are conducted for three different leakage configurations. The k − ω SST turbulence model is used, carrying out the simulation by the open-source software OpenFOAM. Results obtained for each numerical configuration are analyzed and discussed. Comparison with experimental results corresponding to one of the tested configurations is also presented. They show that the leakage flow slightly influences the overall pump performance and more specifically the vaneless diffuser one. When considering the real flow rate obtained by CFD, including leakage effects, comparison with the experimental results get closer both for the overall pump and for the vaneless diffuser performances. A special focus on the instability onset in the vaneless diffuser is also proposed for each leakage configuration which leads to selecting the best way to reproduce experimental behavior from an adequate CFD approach and correct boundary conditions.}
+      \field{langid}{english}
+      \field{title}{Effect of Leakage on the Performance of the Vaneless Diffuser of a Centrifugal Pump Model}
+      \field{year}{2022}
+      \verb{file}
+      \verb /home/clementt/Zotero/storage/ATTUGTW4/Fan et al. - Effect of leakage on the performance of the vaneless diffuser of a centrifugal pump model.pdf
+      \endverb
+    \endentry
+    \entry{doi:10.2514/6.1993-2906}{incollection}{}
+      \name{author}{1}{}{%
+        {{hash=db6e1f0b84b52aee92626452b23230d7}{%
+           family={Menter},
+           familyi={M\bibinitperiod},
+           given={F.},
+           giveni={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{db6e1f0b84b52aee92626452b23230d7}
+      \strng{fullhash}{db6e1f0b84b52aee92626452b23230d7}
+      \strng{bibnamehash}{db6e1f0b84b52aee92626452b23230d7}
+      \strng{authorbibnamehash}{db6e1f0b84b52aee92626452b23230d7}
+      \strng{authornamehash}{db6e1f0b84b52aee92626452b23230d7}
+      \strng{authorfullhash}{db6e1f0b84b52aee92626452b23230d7}
+      \field{extraname}{1}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{23rd Fluid Dynamics, Plasmadynamics, and Lasers Conference}
+      \field{title}{Zonal Two Equation K-w Turbulence Models for Aerodynamic Flows}
+      \verb{doi}
+      \verb 10.2514/6.1993-2906
+      \endverb
+      \verb{eprint}
+      \verb https://arc.aiaa.org/doi/pdf/10.2514/6.1993-2906
+      \endverb
+      \verb{urlraw}
+      \verb https://arc.aiaa.org/doi/abs/10.2514/6.1993-2906
+      \endverb
+      \verb{url}
+      \verb https://arc.aiaa.org/doi/abs/10.2514/6.1993-2906
+      \endverb
+    \endentry
+    \entry{doi:10.2514/3.12149}{article}{}
+      \name{author}{1}{}{%
+        {{hash=ca8cc69133803e5ae1143779ce96f51d}{%
+           family={Menter},
+           familyi={M\bibinitperiod},
+           given={F.\bibnamedelimi R.},
+           giveni={F\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+      }
+      \strng{namehash}{ca8cc69133803e5ae1143779ce96f51d}
+      \strng{fullhash}{ca8cc69133803e5ae1143779ce96f51d}
+      \strng{bibnamehash}{ca8cc69133803e5ae1143779ce96f51d}
+      \strng{authorbibnamehash}{ca8cc69133803e5ae1143779ce96f51d}
+      \strng{authornamehash}{ca8cc69133803e5ae1143779ce96f51d}
+      \strng{authorfullhash}{ca8cc69133803e5ae1143779ce96f51d}
+      \field{extraname}{2}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{AIAA Journal}
+      \field{number}{8}
+      \field{title}{Two-Equation Eddy-Viscosity Turbulence Models for Engineering Applications}
+      \field{volume}{32}
+      \field{year}{1994}
+      \field{dateera}{ce}
+      \field{pages}{1598\bibrangedash 1605}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.2514/3.12149
+      \endverb
+      \verb{eprint}
+      \verb https://doi.org/10.2514/3.12149
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.2514/3.12149
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.2514/3.12149
+      \endverb
+    \endentry
+    \entry{moussieStatisticalInferenceUpstream2024a}{article}{}
+      \name{author}{3}{}{%
+        {{hash=7d1fc99b76c34515079e92e9becf2854}{%
+           family={Moussie},
+           familyi={M\bibinitperiod},
+           given={Tom},
+           giveni={T\bibinitperiod}}}%
+        {{hash=dd012d18153de400d5887b02a7e2a52d}{%
+           family={Errante},
+           familyi={E\bibinitperiod},
+           given={Paolo},
+           giveni={P\bibinitperiod}}}%
+        {{hash=4e04623514f4c380cf23d542eb767cf3}{%
+           family={Meldi},
+           familyi={M\bibinitperiod},
+           given={Marcello},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{8dd2bc195b242638de97168d55ad13d8}
+      \strng{fullhash}{8dd2bc195b242638de97168d55ad13d8}
+      \strng{bibnamehash}{8dd2bc195b242638de97168d55ad13d8}
+      \strng{authorbibnamehash}{8dd2bc195b242638de97168d55ad13d8}
+      \strng{authornamehash}{8dd2bc195b242638de97168d55ad13d8}
+      \strng{authorfullhash}{8dd2bc195b242638de97168d55ad13d8}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The Benchmarck on the Aerodynamics of a Rectangular 5:1 Cylinder is studied using a data-driven technique which bridges numerical simulation and available experimental results. Because of intrinsic features of the tools used for investigation, in particular in terms of set-up and boundary conditions, significant discrepancies have been observed in the literature when comparing experimental and numerical results. An approach based on the Ensemble Kalman Filter is here used to optimize a synthetic turbulent inlet used as boundary condition in the numerical calculation, in order to reduce the discrepancy with the available experiments. The data-driven method successfully optimizes the boundary condition features, which produce a significant improvement of the accuracy in the prediction of the flow. These findings open perspectives of application towards the analysis of realistic cases, where boundary conditions are complex and usually unknown.}
+      \field{issn}{1386-6184, 1573-1987}
+      \field{journaltitle}{Flow, Turbulence and Combustion}
+      \field{langid}{english}
+      \field{month}{11}
+      \field{number}{4}
+      \field{shortjournal}{Flow Turbulence Combust}
+      \field{title}{Statistical {{Inference}} of {{Upstream Turbulence Intensity}} for the {{Flow Around}} a {{Bluff Body}} with {{Massive Separation}}}
+      \field{urlday}{6}
+      \field{urlmonth}{5}
+      \field{urlyear}{2025}
+      \field{volume}{113}
+      \field{year}{2024}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{853\bibrangedash 889}
+      \range{pages}{37}
+      \verb{doi}
+      \verb 10.1007/s10494-024-00573-z
+      \endverb
+      \verb{file}
+      \verb /home/clementt/Zotero/storage/NSU45CMU/Moussie et al. - 2024 - Statistical Inference of Upstream Turbulence Intensity for the Flow Around a Bluff Body with Massive.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://link.springer.com/10.1007/s10494-024-00573-z
+      \endverb
+      \verb{url}
+      \verb https://link.springer.com/10.1007/s10494-024-00573-z
+      \endverb
+    \endentry
+    \entry{IBM_base}{article}{}
+      \name{author}{1}{}{%
+        {{hash=e0e1eadfb4014d1d181e08219c6b5259}{%
+           family={Peskin},
+           familyi={P\bibinitperiod},
+           given={Charles\bibnamedelima S},
+           giveni={C\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \strng{namehash}{e0e1eadfb4014d1d181e08219c6b5259}
+      \strng{fullhash}{e0e1eadfb4014d1d181e08219c6b5259}
+      \strng{bibnamehash}{e0e1eadfb4014d1d181e08219c6b5259}
+      \strng{authorbibnamehash}{e0e1eadfb4014d1d181e08219c6b5259}
+      \strng{authornamehash}{e0e1eadfb4014d1d181e08219c6b5259}
+      \strng{authorfullhash}{e0e1eadfb4014d1d181e08219c6b5259}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Computational Physics}
+      \field{title}{Flow Patterns Around Heart Valves: A Numerical Method}
+      \field{year}{1972}
+    \endentry
+    \entry{rabierVariationalDataAssimilation}{article}{}
+      \name{author}{2}{}{%
+        {{hash=2318f8b8a7bc7c2784854045ccf613ed}{%
+           family={Rabier},
+           familyi={R\bibinitperiod},
+           given={Florence},
+           giveni={F\bibinitperiod}}}%
+        {{hash=c33c93aef28985b52159e6050e9c21b3}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Zhiquan},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \strng{namehash}{e362490bd165dbc2064f832ad1d668b6}
+      \strng{fullhash}{e362490bd165dbc2064f832ad1d668b6}
+      \strng{bibnamehash}{e362490bd165dbc2064f832ad1d668b6}
+      \strng{authorbibnamehash}{e362490bd165dbc2064f832ad1d668b6}
+      \strng{authornamehash}{e362490bd165dbc2064f832ad1d668b6}
+      \strng{authorfullhash}{e362490bd165dbc2064f832ad1d668b6}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Data assimilation is briefly described in its variational formulation. Both three- and four-dimensional variational assimilation are presented with an emphasis on their comparison, strengths and weaknesses. A toy model is used to illustrate the benefit of including the time dimension in the analysis, before summarizing a few operational results.}
+      \field{langid}{english}
+      \field{title}{Variational {{Data Assimilation}}: {{Theory}} and {{Overview}}}
+      \verb{file}
+      \verb /home/clementt/Zotero/storage/W7R5VHF4/Rabier and Liu - Variational Data Assimilation Theory and Overview.pdf
+      \endverb
+    \endentry
+    \entry{retiFrancescoDiGiorgio1963}{article}{}
+      \name{author}{2}{}{%
+        {{hash=49684eade9ea896c9aef9fe478c6e9cc}{%
+           family={Reti},
+           familyi={R\bibinitperiod},
+           given={Ladislao},
+           giveni={L\bibinitperiod}}}%
+        {{hash=52e3b8a0f0f58430ae590816a85aa84e}{%
+           family={Di\bibnamedelima Giorgio\bibnamedelima Martini},
+           familyi={D\bibinitperiod\bibinitdelim G\bibinitperiod\bibinitdelim M\bibinitperiod},
+           given={Francesco},
+           giveni={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{5043d2359ce1f7e167a7619999ef7c11}
+      \strng{fullhash}{5043d2359ce1f7e167a7619999ef7c11}
+      \strng{bibnamehash}{5043d2359ce1f7e167a7619999ef7c11}
+      \strng{authorbibnamehash}{5043d2359ce1f7e167a7619999ef7c11}
+      \strng{authornamehash}{5043d2359ce1f7e167a7619999ef7c11}
+      \strng{authorfullhash}{5043d2359ce1f7e167a7619999ef7c11}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{jstor}
+      \field{issn}{0040165X}
+      \field{journaltitle}{Technology and Culture}
+      \field{langid}{english}
+      \field{number}{3}
+      \field{shortjournal}{Technology and Culture}
+      \field{title}{Francesco Di {{Giorgio Martini}}'s {{Treatise}} on {{Engineering}} and {{Its Plagiarists}}}
+      \field{urlday}{26}
+      \field{urlmonth}{6}
+      \field{urlyear}{2025}
+      \field{volume}{4}
+      \field{year}{1963}
+      \field{yeardivision}{summer}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{287}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.2307/3100858
+      \endverb
+      \verb{eprint}
+      \verb 3100858
+      \endverb
+      \verb{file}
+      \verb /home/clementt/Zotero/storage/9I3RNJGD/Reti and Di Giorgio Martini - 1963 - Francesco di Giorgio Martini's Treatise on Engineering and Its Plagiarists.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.jstor.org/stable/3100858?origin=crossref
+      \endverb
+      \verb{url}
+      \verb https://www.jstor.org/stable/3100858?origin=crossref
+      \endverb
+    \endentry
+    \entry{SHAH2013715}{article}{}
+      \name{author}{4}{}{%
+        {{hash=88fa628f97b95684d453ac923d45ca2e}{%
+           family={Shah},
+           familyi={S\bibinitperiod},
+           given={S.R.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=ddc3d0b3bda1be9d8ac59370582db5a8}{%
+           family={Jain},
+           familyi={J\bibinitperiod},
+           given={S.V.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=adf7dcf833dd67eb86587ee7853e4fae}{%
+           family={Patel},
+           familyi={P\bibinitperiod},
+           given={R.N.},
+           giveni={R\bibinitperiod}}}%
+        {{hash=0db6912ce4f422304e9aa22a453ad17f}{%
+           family={Lakhera},
+           familyi={L\bibinitperiod},
+           given={V.J.},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{55c430febeb7c40f416b0553f91bc54c}
+      \strng{fullhash}{7ef6f459c06310678c06d3f26bdca3f2}
+      \strng{bibnamehash}{55c430febeb7c40f416b0553f91bc54c}
+      \strng{authorbibnamehash}{55c430febeb7c40f416b0553f91bc54c}
+      \strng{authornamehash}{55c430febeb7c40f416b0553f91bc54c}
+      \strng{authorfullhash}{7ef6f459c06310678c06d3f26bdca3f2}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The flow analysis inside the centrifugal pump is highly complex mainly due to 3D flow structure involving turbulence, secondary flow, cavitation and unsteadiness. In recent years, a growing availability of computational resources and progress in the accuracy of numerical methods brought turbo machinery Computational Fluid Dynamics (CFD) methods from pure research work into the competitive industrial markets. The critical review of CFD analysis of centrifugal pumps along with the future scopes for further improvement is presented in this paper. CFD technique has been applied by the researchers to carry out different investigations on centrifugal pumps viz. performance prediction at design and off-design conditions, parametric study, cavitation analysis, diffuser pump analysis, performance of pump running in turbine mode etc. Unsteady Reynolds-averaged Navier–Stokes equations together with two equation k-ɛ turbulence model were found to be appropriate for CFD analysis of centrifugal pump. Volute flow study and impeller-volute interaction appeared as an interesting research fields for the further improvement in the pump performance. The most active areas of research and development are the analysis of two phase flow, pump handling non -Newtonian fluids and fluid–structure interaction.}
+      \field{issn}{1877-7058}
+      \field{journaltitle}{Procedia Engineering}
+      \field{title}{{{CFD}} for Centrifugal Pumps: A Review of the State-of-the-Art}
+      \field{volume}{51}
+      \field{year}{2013}
+      \field{dateera}{ce}
+      \field{pages}{715\bibrangedash 720}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1016/j.proeng.2013.01.102
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S1877705813001033
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S1877705813001033
+      \endverb
+      \keyw{Centrifugal pumps,CFD,Flow analysis,Numerical simulation,Review}
+    \endentry
+    \entry{valero2025immersed}{article}{}
+      \name{author}{2}{}{%
+        {{hash=49b0874dbebae1d3ae8703c3a803693b}{%
+           family={Valero},
+           familyi={V\bibinitperiod},
+           given={M.\bibnamedelimi M.},
+           giveni={M\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=1777331499fe05a4eba1d6a32170c4ee}{%
+           family={Meldi},
+           familyi={M\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{02ba28b93da2f1d45d47cf0d1a4982f0}
+      \strng{fullhash}{02ba28b93da2f1d45d47cf0d1a4982f0}
+      \strng{bibnamehash}{02ba28b93da2f1d45d47cf0d1a4982f0}
+      \strng{authorbibnamehash}{02ba28b93da2f1d45d47cf0d1a4982f0}
+      \strng{authornamehash}{02ba28b93da2f1d45d47cf0d1a4982f0}
+      \strng{authorfullhash}{02ba28b93da2f1d45d47cf0d1a4982f0}
+      \field{extraname}{1}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Computational Physics}
+      \field{title}{An immersed boundary method using online sequential data assimilation}
+      \field{volume}{524}
+      \field{year}{2025}
+      \true{nocite}
+      \field{pages}{113697}
+      \range{pages}{1}
+    \endentry
+    \entry{valeroEnhancedStateEstimation2025}{online}{}
+      \name{author}{2}{}{%
+        {{hash=b64e173aef1d6c42dee3e1f50e613d4e}{%
+           family={Valero},
+           familyi={V\bibinitperiod},
+           given={Miguel\bibnamedelima M.},
+           giveni={M\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=4e04623514f4c380cf23d542eb767cf3}{%
+           family={Meldi},
+           familyi={M\bibinitperiod},
+           given={Marcello},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{e777693e6a4880e762461fc7e951d16d}
+      \strng{fullhash}{e777693e6a4880e762461fc7e951d16d}
+      \strng{bibnamehash}{e777693e6a4880e762461fc7e951d16d}
+      \strng{authorbibnamehash}{e777693e6a4880e762461fc7e951d16d}
+      \strng{authornamehash}{e777693e6a4880e762461fc7e951d16d}
+      \strng{authorfullhash}{e777693e6a4880e762461fc7e951d16d}
+      \field{extraname}{2}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{A novel strategy is proposed to improve the accuracy of state estimation and reconstruction from low-fidelity models and sparse data from sensors. This strategy combines ensemble Data Assimilation (DA) and Machine Learning (ML) tools, exploiting their complementary features. ML techniques rely on the data produced by DA methods during analysis phases to train physicsinformed corrective algorithms, which are then coupled with the low-fidelity models when data from sensors is unavailable. The methodology is validated via the analysis of the turbulent plane channel flow test case for Reτ ≈ 550. Here, the low-fidelity model consists of coarse-grained simulations coupled with the Immersed Boundary Method (IBM), while observation is sampled by a highly refined body-fitted calculation. The analysis demonstrates the capabilities of the algorithm based on DA and ML to accurately predict the flow features with significantly reduced computational costs. This approach exhibits potential for future synergistic applications of DA and ML, leveraging the robustness and efficiency of ML models alongside the physical interpretability ensured by DA algorithms.}
+      \field{day}{30}
+      \field{eprintclass}{physics}
+      \field{eprinttype}{arXiv}
+      \field{langid}{english}
+      \field{month}{1}
+      \field{pubstate}{prepublished}
+      \field{title}{Enhanced {{State Estimation}} for Turbulent Flows Combining {{Ensemble Data Assimilation}} and {{Machine Learning}}}
+      \field{urlday}{9}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.2501.18262
+      \endverb
+      \verb{eprint}
+      \verb 2501.18262
+      \endverb
+      \verb{file}
+      \verb /home/clementt/Zotero/storage/7ZI7TBZ9/Valero and Meldi - 2025 - Enhanced State Estimation for turbulent flows combining Ensemble Data Assimilation and Machine Learn.pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2501.18262
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2501.18262
+      \endverb
+      \keyw{Physics - Fluid Dynamics}
+    \endentry
+    \entry{annurev:/content/journals/10.1146/annurev-fluid-120720-022129}{article}{}
+      \name{author}{1}{}{%
+        {{hash=ba7ecce71f84907313df2946ead4a5d4}{%
+           family={Verzicco},
+           familyi={V\bibinitperiod},
+           given={Roberto},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Annual Reviews}%
+      }
+      \strng{namehash}{ba7ecce71f84907313df2946ead4a5d4}
+      \strng{fullhash}{ba7ecce71f84907313df2946ead4a5d4}
+      \strng{bibnamehash}{ba7ecce71f84907313df2946ead4a5d4}
+      \strng{authorbibnamehash}{ba7ecce71f84907313df2946ead4a5d4}
+      \strng{authornamehash}{ba7ecce71f84907313df2946ead4a5d4}
+      \strng{authorfullhash}{ba7ecce71f84907313df2946ead4a5d4}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Immersed boundary methods (IBMs) are versatile and efficient computational techniques to solve flow problems in complex geometric configurations that retain the simplicity and efficiency of Cartesian structured meshes. Although these methods became known in the 1970s and gained credibility only in the new millennium, they had already been conceived and implemented at the beginning of the 1960s, even if the early computers of those times did not allow researchers to exploit their potential. Nowadays IBMs are established numerical schemes employed for the solution of many complex problems in which fluid mechanics may account for only part of the multiphysics dynamics. Despite the indisputable advantages, these methods also have drawbacks, and each problem should be carefully analyzed before deciding which particular IBM implementation is most suitable and whether additional modeling is necessary. High–Reynolds number flows constitute one of the main limitations of IBMs owing to the resolution of thin wall shear layers, which cannot benefit from anisotropic grid refinement at the boundaries. To alleviate this weakness, researchers have developed IBM-compliant wall models and local grid refinement strategies, although in these cases possible pitfalls must also be considered.}
+      \field{issn}{1545-4479}
+      \field{issue}{Volume 55, 2023}
+      \field{journaltitle}{Annual Review of Fluid Mechanics}
+      \field{title}{Immersed Boundary Methods: {{Historical}} Perspective and Future Outlook}
+      \field{type}{Journal Article}
+      \field{volume}{55}
+      \field{year}{2023}
+      \field{dateera}{ce}
+      \field{pages}{129\bibrangedash 155}
+      \range{pages}{27}
+      \verb{doi}
+      \verb 10.1146/annurev-fluid-120720-022129
+      \endverb
+      \verb{urlraw}
+      \verb https://www.annualreviews.org/content/journals/10.1146/annurev-fluid-120720-022129
+      \endverb
+      \verb{url}
+      \verb https://www.annualreviews.org/content/journals/10.1146/annurev-fluid-120720-022129
+      \endverb
+      \keyw{complex flows,immersed boundary methods,multiphysics problems,wall models}
+    \endentry
+    \entry{villanuevaAugmentedStateEstimation2023}{online}{}
+      \name{author}{4}{}{%
+        {{hash=f91cdc852bc57eba94e99c4be232151d}{%
+           family={Villanueva},
+           familyi={V\bibinitperiod},
+           given={Lucas},
+           giveni={L\bibinitperiod}}}%
+        {{hash=c551fe4bafcc26f83581248614676df2}{%
+           family={Valero},
+           familyi={V\bibinitperiod},
+           given={Miguel\bibnamedelima Martinez},
+           giveni={M\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=5c5fc9520fd48f8f7d3235d1932b9d70}{%
+           family={Glumac},
+           familyi={G\bibinitperiod},
+           given={Anina\bibnamedelima Sarkic},
+           giveni={A\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=4e04623514f4c380cf23d542eb767cf3}{%
+           family={Meldi},
+           familyi={M\bibinitperiod},
+           given={Marcello},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{b3519261d0b7e74a94bd249fbea7be05}
+      \strng{fullhash}{a46fc3e22f804ce00ee7ee1fe0cbc93b}
+      \strng{bibnamehash}{b3519261d0b7e74a94bd249fbea7be05}
+      \strng{authorbibnamehash}{b3519261d0b7e74a94bd249fbea7be05}
+      \strng{authornamehash}{b3519261d0b7e74a94bd249fbea7be05}
+      \strng{authorfullhash}{a46fc3e22f804ce00ee7ee1fe0cbc93b}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{A data-driven investigation of the flow around a high-rise building is performed combining heterogeneous experimental samples and RANS CFD. The coupling is performed using techniques based on the Ensemble Kalman Filter (EnKF), including advanced manipulations such as localization and inflation. The augmented state estimation obtained via EnKF has also been employed to improve the predictive features of the model via an optimization of the five free global model constant of the K − ε turbulence model used to close the equations. The optimized values are very far from the classical values prescribed as general recommendations and implemented in codes, but also different from other data-driven analyses reported in the literature. The results obtained with this new optimized parametric description show a global improvement for both the velocity field and the pressure field. In addition, some topological improvement for the flow organization are observed downstream, far from the location of the sensors.}
+      \field{day}{26}
+      \field{eprintclass}{physics}
+      \field{eprinttype}{arXiv}
+      \field{langid}{english}
+      \field{month}{1}
+      \field{pubstate}{prepublished}
+      \field{title}{Augmented State Estimation of Urban Settings Using Intrusive Sequential {{Data Assimilation}}}
+      \field{urlday}{8}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{year}{2023}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.2301.11195
+      \endverb
+      \verb{eprint}
+      \verb 2301.11195
+      \endverb
+      \verb{file}
+      \verb /home/clementt/Zotero/storage/QL763IRI/Villanueva et al. - 2023 - Augmented state estimation of urban settings using intrusive sequential Data Assimilation.pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2301.11195
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2301.11195
+      \endverb
+      \keyw{Computer Science - Computational Engineering Finance and Science,Physics - Fluid Dynamics}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

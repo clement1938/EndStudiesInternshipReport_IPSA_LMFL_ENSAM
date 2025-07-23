@@ -1097,11 +1097,6 @@ INPUT ./images/EnKF_ConesWithouCWIPI.pdf
 INPUT ./images/EnKF_ConesWithouCWIPI.pdf
 INPUT ./images/EnKF_ConesWithouCWIPI.pdf
 INPUT ./images/EnKF_ConesWithouCWIPI.pdf
-INPUT ./images/numericalPump/frontalView.pdf
-INPUT ./images/numericalPump/frontalView.pdf
-INPUT ./images/numericalPump/frontalView.pdf
-INPUT ./images/numericalPump/frontalView.pdf
-INPUT ./images/numericalPump/frontalView.pdf
 INPUT ./images/logo/logos.png
 INPUT ./images/logo/logos.png
 INPUT ./images/logo/logos.png
@@ -1110,6 +1105,11 @@ INPUT ./images/logo/ipsagarde.png
 INPUT ./images/logo/ipsagarde.png
 INPUT ./images/logo/ipsagarde.png
 INPUT ./images/logo/ipsagarde.png
+INPUT ./images/numericalPump/frontalView.pdf
+INPUT ./images/numericalPump/frontalView.pdf
+INPUT ./images/numericalPump/frontalView.pdf
+INPUT ./images/numericalPump/frontalView.pdf
+INPUT ./images/numericalPump/frontalView.pdf
 INPUT ./images/model/RESEDA_sketch.pdf
 INPUT ./images/model/RESEDA_sketch.pdf
 INPUT ./images/model/RESEDA_sketch.pdf

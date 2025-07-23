@@ -20,6 +20,8 @@
 \contentsline {paragraph}{IBM equations}{21}{equation.2.2.21}%
 \contentsline {subsection}{\numberline {2.2.2}The open-source code OpenFOAM}{22}{subsection.2.2.2}%
 \contentsline {subsection}{\numberline {2.2.3}EnKF}{25}{subsection.2.2.3}%
+\contentsline {paragraph}{Kalman Filter}{25}{subsection.2.2.3}%
+\contentsline {paragraph}{Ensemble Kalman Filter}{25}{equation.2.2.32}%
 \contentsline {paragraph}{CFD}{26}{algorithm.1}%
 \contentsline {subsection}{\numberline {2.2.4}The CONES library}{27}{subsection.2.2.4}%
 \contentsline {subsection}{\numberline {2.2.5}Pump modelling}{27}{subsection.2.2.5}%
@@ -27,10 +29,10 @@
 \contentsline {paragraph}{PIV data}{31}{figure.caption.25}%
 \contentsline {paragraph}{Pressure data}{31}{figure.caption.25}%
 \contentsline {subparagraph}{1.}{33}{figure.caption.27}%
-\contentsline {subparagraph}{2.Average}{33}{equation.2.3.33}%
-\contentsline {subparagraph}{3.Sampling}{33}{equation.2.3.33}%
-\contentsline {subparagraph}{4.Shaping for CONES}{33}{equation.2.3.33}%
-\contentsline {subparagraph}{5.Creation of a file for the interpolation}{33}{equation.2.3.33}%
+\contentsline {subparagraph}{2.Average}{33}{equation.2.3.34}%
+\contentsline {subparagraph}{3.Sampling}{33}{equation.2.3.34}%
+\contentsline {subparagraph}{4.Shaping for CONES}{33}{equation.2.3.34}%
+\contentsline {subparagraph}{5.Creation of a file for the interpolation}{33}{equation.2.3.34}%
 \contentsline {section}{\numberline {2.4}IBM preliminary results}{34}{section.2.4}%
 \contentsline {subsection}{\numberline {2.4.1}Modifications on OpenFOAM}{36}{subsection.2.4.1}%
 \contentsline {section}{\numberline {2.5}Application of the DA}{37}{section.2.5}%

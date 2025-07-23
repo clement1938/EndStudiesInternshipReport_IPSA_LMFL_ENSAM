@@ -13,7 +13,7 @@
 \contentsline {figure}{\numberline {2.8}{\ignorespaces IBM regions}}{21}{figure.caption.12}%
 \contentsline {figure}{\numberline {2.9}{\ignorespaces Tree of the OpenFOAM dictionaries}}{23}{figure.caption.13}%
 \contentsline {figure}{\numberline {2.10}{\ignorespaces Tree of the OpenFOAM dictionaries}}{23}{figure.caption.14}%
-\contentsline {figure}{\numberline {2.11}{\ignorespaces Evolution of the state through EnKF iterations (\includegraphics [width=0.013\textwidth ]{images/cavity/legende.png}: observation point)}}{26}{figure.caption.15}%
+\contentsline {figure}{\numberline {2.11}{\ignorespaces Evolution of the state through EnKF iterations (\includegraphics [width=0.013\textwidth ]{images/cavity/legende.png}: observation point)}}{27}{figure.caption.15}%
 \contentsline {figure}{\numberline {2.12}{\ignorespaces CONES structure}}{27}{figure.caption.16}%
 \contentsline {figure}{\numberline {2.13}{\ignorespaces Mesh interface between the pipe and the impeller}}{28}{figure.caption.17}%
 \contentsline {figure}{\numberline {2.14}{\ignorespaces Model of the RESEDA benchmark}}{28}{figure.caption.18}%

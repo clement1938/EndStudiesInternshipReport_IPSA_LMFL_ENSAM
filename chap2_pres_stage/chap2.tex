@@ -674,10 +674,9 @@ With
 \label{subsec:EnKF}
 
 As seen in the \autoref{sec:stateOfArt}, we are going to use the stochastic EnKF to assimilate the high-fidelity data.
+But first, let's explaine the Kalman Filter.
 
-////// Kalman Filer //////
-See the CONES Tom Documentation\footnote{\url{https://cones-dev-pe431-2dbff22738a4d54c2b947e6fa9a9a77fadd187b3bd1a85c.gitlab-pages.ensam.eu/data_assimilation.html}}
-
+\paragraph{Kalman Filter}\footnote{\url{https://cones-dev-pe431-2dbff22738a4d54c2b947e6fa9a9a77fadd187b3bd1a85c.gitlab-pages.ensam.eu/data_assimilation.html}}
 The estimation is calculated by using a set of observations $\mathbf{y}$, a prior state $\mathbf{x}$, and a linear model $\mathbf{M}$. The estimation state is obtained through two operations, the forecast and the analysis, respectively using the superscript \textit{f} and \textit{a}.
 The first forecast step at time \textit{k} computes the estimated state $\mathbf{x}_{k+1}$ and the error covariance matrix $\mathbf{P}_{k}^{f}$.
 
@@ -702,14 +701,22 @@ Then, the analysis step in which the observation \( \mathbf{y} \) and forecast a
 \end{equation}
 where \( \mathbf{R} \) represents the covariance matrix of the observations, and \( \mathbf{H} \) a linear operator which maps the true state space into the observed space.
 
-//////////// EnKF ///////////////
-
-Pk on introduis le KF pour la CFD ?
 M are the Navier-Stokes equations discretized in the computation domain
-"y" can be some local sensors (such as PIV data) or global variables (such as the performance)
-"x" are some discrete model parameters (such as the IBM parameters)
+$y$ can be some local sensors (such as PIV data) or global variables (such as the performance)
+$x$ are some discrete model parameters (such as the IBM parameters)
 
-Définir l'inflation déterministic
+\paragraph{Ensemble Kalman Filter}
+Pk on introduis le KF pour la CFD ?
+
+
+Illustrer l'inflation déterministic :
+
+Some \textit{deterministic inflation} is included to increase the variability of the state predicted by the EnKF:
+
+\begin{equation}
+    \boldsymbol{u}_{i,k}^a = \boldsymbol{\overline{u}}_k^a + \lambda_k \left(\boldsymbol{u}_{i,k}^a - \boldsymbol{\overline{u}}_k^a   \right)
+    \label{eqn:inflation}
+\end{equation}
 
 \hspace{0.3cm}
 %$\mathcal{M}$ (model), $\boldsymbol{R}$ (observation covariance), $\boldsymbol{y}_k$ (observations),\\
