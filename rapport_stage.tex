@@ -9,6 +9,8 @@
 \urlstyle{same}                     % garde l'apparence normale des URL
 \usepackage{tablefootnote}          % si tu veux faire des notes dans les tableaux
 
+\usepackage[table,dvipsnames]{xcolor}
+
 \usepackage{cancel}
 \usepackage{multicol} 
 
@@ -38,7 +40,6 @@
 \usepackage{csquotes}
 \usepackage{multirow}
 \usepackage{footnotehyper}
-\usepackage{xcolor}
 \usepackage{acro}
 \usepackage{pgfplots}
 \usepackage{ragged2e}
@@ -142,8 +143,6 @@
 
 \usepackage[super]{nth}
 
-\usepackage[table]{xcolor}
-
 
 %\counterwithin{table}{section}
 %\renewcommand{\thetable}{\thesection.\arabic{table}} % Format table number as section.table
@@ -167,6 +166,11 @@
 \setlength{\parskip}{0.5\baselineskip}
 
 
+\DeclareAcronym{ML}{
+  short = ML,
+  long = Machine Learning,
+  short-indefinite = le,
+}
 
 \DeclareAcronym{EKF}{
   short = EKF,

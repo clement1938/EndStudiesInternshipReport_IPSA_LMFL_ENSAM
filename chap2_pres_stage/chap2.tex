@@ -121,7 +121,7 @@ EnKF for DA in CFD has been used at \ac{LMFL} for a few years now.
 
 
 % Je cherche à transmettre quelle idée ?
-% State of art : ce qui a été fait avant, ce qui est fait aujourd'hui, ce qui est fait dans le cadre de mon stage
+% State of art: ce qui a été fait avant, ce qui est fait aujourd'hui, ce qui est fait dans le cadre de mon stage
 
 
 %(Article in writing process)
@@ -152,7 +152,7 @@ In this context, we aim to apply both of these innovative methodologies to enhan
 
 %The pdf is a paper where can be found the experimental conditions even if the analysis are focussed on another flow rate.
 
-%Détail : R3 = 0.257m; h=0.0400m; Q = 0.236m3/s -> S=0.0646m2
+%Détail: R3 = 0.257m; h=0.0400m; Q = 0.236m3/s -> S=0.0646m2
 
 %\title{Fonctionning}  % ????
 %\title{Utility}
@@ -237,28 +237,28 @@ Where $U$ is the velocity of the fluid, $L$ is the characteristic length and $\n
 
 
 \begin{comment}
-- Conservation de la quantité de mouvement, équation de bilan de la quantité de mouvement : 
+- Conservation de la quantité de mouvement, équation de bilan de la quantité de mouvement: 
 
-- Conservation de l'éngergie : 
+- Conservation de l'éngergie: 
 ...
-\textbf{Conservation de la quantite de mouvement (équation de NavierStokes)} :
+\textbf{Conservation de la quantite de mouvement (équation de NavierStokes)}:
 \[
     \rho \left( \frac{\partial \mathbf{u}}{\partial t} + (\mathbf{u} \cdot \nabla)\mathbf{u} \right) = -\nabla p + \mu \nabla^2 \mathbf{u} + \mathbf{f}
 \]
 
-\textbf{Conservation de l energie} :
+\textbf{Conservation de l energie}:
 \[
     \rho \left( \frac{\partial e}{\partial t} + \mathbf{u} \cdot \nabla e \right) = -p \nabla \cdot \mathbf{u} + \Phi
 \]
-équations de Navier-Stokes incompressibles, isothermes, en coordonnées cartésiennes :
+équations de Navier-Stokes incompressibles, isothermes, en coordonnées cartésiennes:
 
 \begin{itemize}
-    \item \textbf{Conservation de la masse (équation de continuité)} :
+    \item \textbf{Conservation de la masse (équation de continuité)}:
     \[
         \frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} + \frac{\partial w}{\partial z} = 0
     \]
 
-    \item \textbf{Conservation de la quantité de mouvement (x, y, z)} :
+    \item \textbf{Conservation de la quantité de mouvement (x, y, z)}:
     \[
         \rho \left( \frac{\partial u}{\partial t} + u\frac{\partial u}{\partial x} + v\frac{\partial u}{\partial y} + w\frac{\partial u}{\partial z} \right) = -\frac{\partial p}{\partial x} + \mu \left( \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} + \frac{\partial^2 u}{\partial z^2} \right)
     \]
@@ -272,39 +272,51 @@ Where $U$ is the velocity of the fluid, $L$ is the characteristic length and $\n
 \end{comment}
 
 
-\paragraph{Turbulence modelling}  This equations permit runnig all the scales in case of turbulent flows, i.e. a \ac{DNS}, that would be too costly in our case.
-The Kolmogorove scale, define by the spatial scale from which viscosity allows the kinetic energy of a flow to be dissipated, is very small. In fluid mechanics, turbulent flows consist of several scales which are responsible for different phenomena. As illustrated in the folowing \autoref{fig:Modelisation_of_turbulence}\footnote{\url{https://www.cfdsupport.com/openfoam-training-by-cfd-support/node346/}} and \autoref{fig:Turbulence3}\footnote{\url{https://help.altair.com/hwcfdsolvers/acusolve/topics/acusolve/training_manual/turbulence_modeling_r.htm}}, large scales are responsible dor the production of turbulence and energy, whiwh is shifted through the inertial range toward the Kolmogorov scale, responsible for the dissipation phenomena.
-There are two major ways to model the turbulence.
-The first one is by using \ac{LES}, that simulates only the small scale eddy usually in the near-wall region.
-The second one is the \ac{RANS} that model every scall of eddy. The result is a stady-state and it less precise but fastly computed than LES.
-The \autoref{fig:Turbulence2}\footnote{\url{https://blog.diphyx.com/comprehensive-guide-review-to-choosing-the-right-cfd-software-in-2023-features-performance-and-7ebc0623bfa6}} illustrates well a visualization of the fiels of the three type of CFD models.
+%\paragraph{Turbulence modelling}  This equations permit runnig all the scales in case of turbulent flows, i.e. a \ac{DNS}, that would be too costly in our case.
+%The Kolmogorove scale, define by the spatial scale from which viscosity allows the kinetic energy of a flow to be dissipated, is very small. In fluid mechanics, turbulent flows consist of several scales which are responsible for different phenomena. As illustrated in the folowing \autoref{fig:Modelisation_of_turbulence}\footnote{\url{https://www.cfdsupport.com/openfoam-training-by-cfd-support/node346/}} and \autoref{fig:Turbulence3}\footnote{\url{https://help.altair.com/hwcfdsolvers/acusolve/topics/acusolve/training_manual/turbulence_modeling_r.htm}}, large scales are responsible dor the production of turbulence and energy, whiwh is shifted through the inertial range toward the Kolmogorov scale, responsible for the dissipation phenomena.
+%There are two major ways to model the turbulence.
+%The first one is by using \ac{LES}, that simulates only the small scale eddy usually in the near-wall region.
+%The second one is the \ac{RANS} that model every scall of eddy. The result is a stady-state and it less precise but fastly computed than LES.
+%The \autoref{fig:Turbulence2}\footnote{\url{https://blog.diphyx.com/comprehensive-guide-review-to-choosing-the-right-cfd-software-in-2023-features-performance-and-7ebc0623bfa6}} illustrates well a visualization of the fiels of the three type of CFD models.
 
 
-/////////////  Attention à la figure 2.5 parce que les labels ne sont pas correctes (la DNS et la LES n'utilisent pas des modèles de turbulence et la figure c ne regarde pas vraiment la RANS que tu as fait)  //////////
+In turbulent flows, a wide range of spatial and temporal scales coexist. Solving the Navier–Stokes equations without any turbulence model (i.e., via Direct Numerical Simulation (DNS)) would theoretically capture all these scales. However, DNS is computationally unaffordable in most practical cases, as it requires resolving down to the smallest dissipative scales, known as Kolmogorov scales.
+
+These Kolmogorov scales define the smallest spatial structures in the flow where kinetic energy is dissipated by viscosity. As shown schematically in Figure~\ref{fig:Turbulence3}\footnote{\url{https://help.altair.com/hwcfdsolvers/acusolve/topics/acusolve/training_manual/turbulence_modeling_r.htm}}, turbulence consists of large energy-containing eddies, which transfer their energy through a cascade in the inertial range, down to the smallest dissipative structures.
+
+To reduce computational cost, turbulence modelling is employed. Two main approaches exist:
+\begin{itemize}
+    \item \textbf{Large Eddy Simulation (LES)}: it resolves the large, energy-carrying structures and models only the small-scale turbulence. LES is more accurate than RANS but more computationally expensive, particularly near walls (see Figure~\ref{fig:Turbulence1}\footnote{\url{https://www.cfdsupport.com/openfoam-training-by-cfd-support/node346/}}).
+    \item \textbf{Reynolds-Averaged Navier–Stokes (RANS)}: it models the entire turbulence spectrum through statistical averaging and closure models. It is less accurate but significantly cheaper, often used in steady-state simulations.
+\end{itemize}
+
+Note that DNS and LES do not rely on turbulence models in the traditional sense like RANS does; instead, they resolve or partially resolve turbulence dynamics directly. Also, caution must be taken when interpreting visual comparisons of DNS, LES, and RANS fields (see Figure~\ref{fig:Turbulence2})\footnote{\url{https://blog.diphyx.com/comprehensive-guide-review-to-choosing-the-right-cfd-software-in-2023-features-performance-and-7ebc0623bfa6}}, as the underlying assumptions and modelling strategies differ.
+
+
 
 \begin{figure}[H]
 
 \end{figure}
 
 \begin{figure}[H]
-    \begin{subfigure}{0.5\textwidth}
+    \begin{subfigure}{0.48\textwidth}
     \centering
-        \includegraphics[width=0.70\textwidth]{images/sketch-turbulent-flow-modeling-DNS-LES-RAS.png}
-        \caption{Near wall modelisation of turbulence}
-        \label{fig:Modelisation_of_turbulence}
+        \includegraphics[width=1\textwidth]{images/turbCascade.png}
+        \caption{Turbulence model on the energy cascade}
+        \label{fig:Turbulence3}
     \end{subfigure}
-    \begin{subfigure}{0.42\textwidth}
+    \begin{subfigure}{0.41\textwidth}
     \centering
         \includegraphics[width=1\textwidth]{images/DNSLESRANS.png}
-        \caption{Illustration of different turbulence models}
+        \caption{Illustration of different CFD models}
         \label{fig:Turbulence2}
     \end{subfigure}
     \hfill
     \centering
-    \begin{subfigure}{0.57\textwidth}
-        \includegraphics[width=1\textwidth]{images/turbCascade.png}
-        \caption{Turbulence model on the energy cascade}
-        \label{fig:Turbulence3}
+    \begin{subfigure}{0.75\textwidth}
+        \includegraphics[width=1\textwidth]{images/sketch-turbulent-flow-modeling-DNS-LES-RAS.png}
+        \caption{Near wall modelisation of turbulence}
+        \label{fig:Turbulence1}
     \end{subfigure}
     \caption{Turbulence models}
     \label{fig:Modelisation_of_turbulence2}
@@ -324,7 +336,7 @@ $K-\epsilon$ make a good numerical prediction in the bulk flow field but is less
     \label{fig:kOmega_SST}
 \end{figure}
 
-$k-\omega SST$ model is defined as follows\footnote{\url{https://www.cfd-online.com/Wiki/SST_k-omega_model}}\cite{doi:10.2514/6.1993-2906}\cite{doi:10.2514/3.12149} :
+$k-\omega SST$ model is defined as follows\footnote{\url{https://www.cfd-online.com/Wiki/SST_k-omega_model}}\cite{doi:10.2514/6.1993-2906}\cite{doi:10.2514/3.12149}:
 
 
 - Norm of the strain tensor
@@ -344,19 +356,19 @@ $k-\omega SST$ model is defined as follows\footnote{\url{https://www.cfd-online.
     P_k = \tau_{ij} \frac{\partial U_i}{\partial x_j}
 \end{equation}
 
-- Turbulence Kinetic Energy :
+- Turbulence Kinetic Energy:
 \begin{equation}
     \frac{\partial k}{\partial t} + U_j \frac{\partial k}{\partial x_j} = P_k - \beta^* k\omega + \frac{\partial}{\partial x_j} \left[ \left( \nu + \sigma_k \nu_T \right) \frac{\partial k}{\partial x_j} \right]
 \end{equation}
 
 
-- Specific Dissipation Rate :
+- Specific Dissipation Rate:
 \begin{equation}
     \frac{\partial \omega}{\partial t} + U_j \frac{\partial \omega}{\partial x_j} = \alpha S^2 - \beta \omega^2 + \frac{\partial}{\partial x_j} \left[ \left( \nu + \sigma_{\omega} \nu_T \right) \frac{\partial \omega}{\partial x_j} \right] + 2(1 - F_1)\sigma_{\omega 2} \frac{1}{\omega} \frac{\partial k}{\partial x_i} \frac{\partial \omega}{\partial x_i}
 \end{equation}
 
 
-- Closure Coefficients and Auxiliary Relations :
+- Closure Coefficients and Auxiliary Relations:
 \begin{equation}
     F_2 = \tanh \left[ \left[ \max \left( \frac{2\sqrt{k}}{\beta^* \omega y}, \frac{500 \nu}{y^2 \omega} \right) \right]^2 \right]
 \end{equation}
@@ -364,6 +376,8 @@ $k-\omega SST$ model is defined as follows\footnote{\url{https://www.cfd-online.
 \begin{equation}
     P_k = \min \left( \tau_{ij} \frac{\partial U_i}{\partial x_j}, 10\beta^* k \omega \right)
 \end{equation}
+
+$F_1$ controls the blending between the $k-\epsilon$ and $k-\omega$ models. $F_1$ correspond to the $k_\epsilon$ model and $F_1 = 1$ correspond to the $k_\omega$ model.
 
 \begin{equation}
     F_1 = \tanh \left\{ \left\{ \min \left[ \max \left( \frac{\sqrt{k}}{\beta^* \omega y}, \frac{500 \nu}{y^2 \omega} \right), \frac{4 \sigma_{\omega 2} k}{CD_{k\omega} y^2} \right] \right\}^4 \right\}
@@ -385,6 +399,21 @@ $\sigma_{k1}  = 0.85,  \sigma_{k2}  = 1$
 
 $\sigma_{\omega 1}  = 0.5,  \sigma_{\omega 2}  = 0.856$
 
+
+On the $\omega$ region, we can define a near-wall model when the mesh is too coarsed to capture the inner sublayer (see \autoref{fig:NearWallModelling})\footnote{\url{https://2021.help.altair.com/2021/hwsolvers/acusolve/topics/acusolve/training_manual/near_wall_modeling_r.htm}}.
+
+We can define the nomalized wall ditance as:
+\begin{equation}
+    y^+ = \frac{\rho u_{tau} y}{\mu}
+\end{equation}
+where $y$ is the distance from the wall and $\mu$ the fluid dynamic viscosity.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/NearWallModelling.png}
+    \caption{Near wall model}
+    \label{fig:NearWallModelling}
+\end{figure}
 
 
 \paragraph{MRF method}
@@ -450,7 +479,7 @@ The CFL is computed locally at each mesh element. Let computes the $\Delta_t$ at
 
 - $\Delta_{x}$ is the distance between two cells in the azimuthal direction at the tip of the impeller in our model, which is given as 1.5 mm or 0.0015 m.
 
-- $\|U_{\infty}\|$ is the magnitude of the velocity at infinity, which can be approximated by the tangential velocity at the tip of the impeller.
+- $\|U_{\infty}\|$ is the magnitude of the maximal velocity usually "at infinity distance" from the body, which can be approximated by the tangential velocity at the tip of the impeller in our case.
 
 \begin{equation}
     \|U_{\infty}\| = \Omega \cdot r_{tip}
@@ -510,10 +539,10 @@ The Darcy's law is used in the body interface region $\Sigma_b$ and the solid re
 \end{equation}
 
 $\boldsymbol{u_{ib}}(\boldsymbol{x}, t)$ is a target velocity representing the immersed body's physical behaviour. In our case, $\boldsymbol{u_{ib}} = \Omega \times \boldsymbol{R}$. The components $D_{ij}$ of the tensor $\boldsymbol{D}$ are usually controlled to obtain the best compromise between the accuracy and stability of the numerical solver.
-To converge to the correct result, $D$ should tend to the infinite. But this lead to numerical instabilities. %$D \rightarrow \infty$, problèmes
+To converge to the correct result, $\mathbf{D}$ should tend to the infinite. But this lead to numerical instabilities. %$D \rightarrow \infty$, problèmes
 %\cite{Verzicco2022_arfm}. The choice performed is crucial in the proximity of the grid transition between the fluid $\Omega_f$ and the interface $\Sigma_b$ regions.
 
-We can also write \autoref{eqn:forcePenDarcy}, once inculding in Naviers-Stokes equations, as :
+We can also write \autoref{eqn:forcePenDarcy}, once inculding in Naviers-Stokes equations, as:
 
 \begin{equation}
     \label{eq:IBM}
@@ -547,23 +576,26 @@ Here, we are dividing both side of the equations by $\rho$ for simplicity which 
 %    \end{array} \right.
 %\end{equation}
 
-As we use a RANS turbulence model, we need also to penalize the $k$ and $\omega$ coefficients.
+As we use a RANS turbulence model, in addition to the velocity, we need to penalize the $k$ and $\omega$ coefficients.
 
 
-Finnaly, the forcing temrs are define as follows\footnote{\url{https://www.simscale.com/forum/t/defining-turbulent-boundary-conditions/80895}}\footnote{\url{https://www.openfoam.com/documentation/guides/latest/doc/guide-bcs-wall-turbulence-omegaWallFunction.html}},
+
+
+Finnaly, the forcing terms are define as follows\footnote{\url{https://www.simscale.com/forum/t/defining-turbulent-boundary-conditions/80895}, \url{https://www.openfoam.com/documentation/guides/latest/doc/guide-bcs-wall-turbulence-omegaWallFunction.html}},
 
 \begin{align}
     \label{eq:IB}
-    \boldsymbol{f}_{P_u} &= \xi \nu \boldsymbol{D} \left( \boldsymbol{u} - \boldsymbol{u}_{\text{ib}} \right) \notag \\
-    \boldsymbol{f}_{P_\mathcal{K}} &= \xi \nu D_{\eta} \left( \mathcal{K} - \mathcal{K}_{\text{ib}} \right) \notag \\
+    \boldsymbol{f}_{P_u} &= \xi \nu \boldsymbol{D} \left( \boldsymbol{u} - \boldsymbol{u}_{\text{ib}} \right) \\
+    \boldsymbol{f}_{P_\mathcal{K}} &= \xi \nu D_{\eta} \left( \mathcal{K} - \mathcal{K}_{\text{ib}} \right) \\
     \boldsymbol{f}_{P_\omega} &= \xi \nu D_{\omega} \left( \omega - \omega_{\text{ib}} \right)
 \end{align}
 
 
-where $\omega_{vis}=\frac{6 \nu}{\beta_1 y_{\mathrm{ref}}^2}$ et $\omega_{log} = \frac{\sqrt{\mathcal{K}}}{C_\mu \kappa y_\mathrm{ref}}$
+
+The problem of this method is that $\mathbf{D}, D_{\eta}$ and $D_{\omega}$ need to be tuned to obtain the best results. For that, we use the EnKF method to optimize these constants.
 
 
-The problem of this method is that it leads to a few constants that need to be tuned to obtain the best results. For that, we use the EnKF method to optimize these constants.
+
 
 %The maths behind the EnKF method is detailed in the \autoref{subsec:CFD_governing_equations}. 
 
@@ -583,7 +615,7 @@ OpenFOAM provides a wide range of tools for solving the Navier-Stokes equations,
 
 OpenFOAM is not provided with a graphical interface, which is why a simulation is built by writing ``dictionaries'', in which is stored the necessary information for the simulation (mesh, turbulence model, maximum number of characteristic times, $\dots$). See tree structure Annex~\ref{annex:OpenFoamArbo}.
 
-// Ou si plus lisible : //
+// Ou si plus lisible: //
 
 \begin{figure}[H]
     \centering
@@ -592,7 +624,7 @@ OpenFOAM is not provided with a graphical interface, which is why a simulation i
     \label{arboOF}
 \end{figure}
 
-// Ou si plus lisible : //
+// Ou si plus lisible: //
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.33\textwidth]{images/other/OF_arbo.png}
@@ -878,7 +910,7 @@ The following matrices are needed to build the EnKF algorithm:
 
 For RANS representation, there is no physical time advancement of the model, so each instant is represented through a different interation of the solver, and 
 
-\begin{algorithm}[h!]
+\begin{algorithm}[!ht]
     \caption{Scheme of the EnKF used in the present analyses for parameter optimization.}
     \label{alg:EnKF}
     \begin{algorithmic}[1]
@@ -918,10 +950,16 @@ Some \textit{deterministic inflation} is included to increase the variability of
     \boldsymbol{u}_{i,k}^a = \boldsymbol{\overline{u}}_k^a + \lambda_k \left(\boldsymbol{u}_{i,k}^a - \boldsymbol{\overline{u}}_k^a   \right)
     \label{eqn:inflation}
 \end{equation}
-//// Illustrer l'inflation déterministic : ////
 
+Here is an illustration of the deterministic inflation, that increase the variability of the member ensemble to avoid a too fast collaps and permit to have more chance to find a lower local (or in a better case, global) minimum solution:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/inflation.png}
+    \caption{Deterministic inflation}
+    \label{fig:inflation}
+\end{figure}
 
-
+I coded it but it was finally no needed for the centrifugal pump case.
 
 \begin{comment}
 \begin{algorithm}[h!]
@@ -953,9 +991,8 @@ Some \textit{deterministic inflation} is included to increase the variability of
 
 
 
-
 \subsection{The CONES library}
-CONES is a library coded in Python/C++, stands for "Coupling OpenFOAM with Numerical EnvironmentS" and has been developed since 2022 at LMFL.
+CONES is a library coded in Python/C++, has been developed since 2022 at LMFL. % stands for "Coupling OpenFOAM with Numerical EnvironmentS" and
 Is the only code that permits online DA in CFD codes (it uses \ac{MPI} process to do it).
 It's parallelized and can be used on supercomputers. It is mainly designed to work with OpenFOAM and DA codes as EnKF.\label{instants_partages}
 
@@ -991,8 +1028,8 @@ With thi new parameters, the loop can be done again.
 
 %The objective of the model is to try to find same physical behaviour as the experimental data. We call that digital twin.
 
-\autoref{fig:RESEDA_Model} illustrates the model of the pump on a $yz$ plane, for $x=0$. The suction pipe has a length of $H = 10 R_1$, allowing the near-wall boundary lawer to developped. Then, a cylinder containing the impeller is define. Is where the IBM and MRF will be applied.
-At the entrance of the impeller - outlet of the suction pipe junction and at the outlet of the impeller - inlet of the diffuser junction, there was leakage as the whole impeller was moving during the experiment.
+\autoref{fig:RESEDA_Model} illustrates the model of the pump on a $yz$ plane, for $x=0$. The suction pipe has a length of $H = 10 R_1$, allowing the near-wall boundary lawer to developped. Then, a cylinder containing the impeller is define (the impeller in .stl can be find on github\footnote{\url{https://github.com/fromano88/CentrifugalPump}}). Is where the IBM and MRF will be applied.
+At the entrance of the impeller/outlet of the suction pipe junction and at the outlet of the impeller/inlet of the diffuser junction, there was leakage as the whole impeller was moving during the experiment.
 We assume a zero-leakage as we aren't in a very hight mass flow rate.
 
 In our simulation, the z-axis aligns with the rotational axis, and the reference frame is centred at the impeller. The plane at $z = 0$ divides the diffuser into two identical halves.
@@ -1012,15 +1049,27 @@ Boundary conditions are defines as that:
 \end{itemize}
 
 
-The penalisation coefficients used in the \autoref{eq:IB} are defines as follow :
+The penalisation coefficients used in the \autoref{eq:IB} are defines as follow:
 
 
 \begin{align}
-    \boldsymbol{u}_{\text{ib}} &= \cancel{\boldsymbol{u}_r} + \boldsymbol{\Omega} \times \boldsymbol{r} \notag \\
-    \mathcal{K}_{\text{ib}} &= 0 \notag \\
+    \boldsymbol{u}_{\text{ib}} &= \cancel{\boldsymbol{u}_r} + \boldsymbol{\Omega} \times \boldsymbol{r} \\
+    \mathcal{K}_{\text{ib}} &= 0 \\
     \omega_{\text{ib}} &= \left( \omega_{\text{vis}}^2 + \omega_{\text{log}}^2 \right)^{1/2}
 \end{align}
 
+where $\omega_{vis}=\frac{6 \nu}{\beta_1 y_{\mathrm{ref}}^2}$ is the viscous sublayer and $\omega_{log} = \frac{\sqrt{\mathcal{K}}}{C_\mu \kappa y_\mathrm{ref}}$ is the logarithmic region 
+
+
+\ref{fig:NearWallModelling}
+
+
+//////////
+
+Regarding the near-wall treatment, at the suction pipe, y + envegale 1, enabling direct resolution of the viscous sublayer and imposition of boundary conditions without wall functions. On the other hand, the highest y + value in the body-fitted regions corresponds to y + envegale 83, so some of the mesh elements (mainly close to the lower wall of the diffuser) are located in the logarithmic region, thus requiring wall functions. Within the rotating cylinder and around the impeller, the mesh resolution yields y + envegale 100. The friction velocity u tau is assumed to be around 20 - 25 times smaller than the peripheral velocity U2 . The
+blades are discretised to ensure an average of six mesh elements across their solid thickness, preventing excessively thin regions.
+
+/////
 
 
 To process CFD, we need to discretize the numerical model of the pump. The mesh is generated using the \texttt{blockMesh} utility, which is a built-in OpenFOAM tool. It is composed of around 11 million hexahedral cells. (quasi only, exepted some interface, cf \autoref{fig:interfaceMesh}). We don't need complex mesh because we dont neek to fit the geometry of the impeller as we use IBM.
@@ -1094,7 +1143,7 @@ A good indicator of the accuracy of the simulation is the performance of the pum
 \end{figure}
 
 
-The operating conditions of the machine were :
+The operating conditions of the machine were:
 
 \begin{table}[h!]
     \centering
@@ -1139,7 +1188,7 @@ The operating conditions of the machine were :
 The six directories correspond to two tests realised at 25\%, 50\% et 75\% of the diffuser height.
 Each test was repeated twice for the same operating condition and the same height (R1, R2).
 In each directory, there are 1581 files corresponding to instantaneous ASCII data file.
-The ten columns are corrresponding to% :
+The ten columns are corrresponding to%:
 
 \begin{center}
     $x(m),y(m),V_x(m.s^{-1}),V_y(m.s^{-1}),r(m),\theta(rad),Vr(m.s^{-1}),V_{\theta}(m.s^{-1}),V_z(m.s^{-1}),\textit{Unknown}$
@@ -1187,8 +1236,8 @@ The cathesian coordinates are given in a local system, where the absolute origin
         \node[red, rotate=90] at (0.053-0.031, 0.062) {$\theta = x_{abs} = 0$};
 
 
-        % CentreAbs : (0,0)    -> CentreRel : (-0.0245,0.257.5)
-        % BoutRel   : (0.06, 0.12) -> boutAbs : ...
+        % CentreAbs: (0,0)    -> CentreRel: (-0.0245,0.257.5)
+        % BoutRel: (0.06, 0.12) -> boutAbs: ...
 
         \draw[darkblue, very thick, dashed] (0.037756, 0) -- (0.0445, 0.124);
         \draw[darkblue, very thick, dashed] (0.051012, 0) -- (0.0645, 0.124);
@@ -1286,7 +1335,7 @@ We specifically use the EnKF, a data assimilation technique that relies on an en
     \item \textbf{Analysis Step} We compare the simulation results with the experimental PIV data. To do this, we interpolate the PIV measurements onto the mesh of the numerical model, creating an ensemble of observation vectors. We then compute the difference between the simulated and measured data, known as the innovation (see mathematical formulation in \autoref{subsec:CFD_governing_equations}). This innovation is used to update the ensemble through the EnKF algorithm, improving the numerical model.
 \end{enumerate}
 
-The measurements are done as folow :
+The measurements are done as folow:
 
 \begin{enumerate}
     \item \textbf{Nature of the Numerical Simulation} The simulation is stationary (time-independent) and uses the MRF approach to model rotation. While the velocity field remains constant over time, it varies in space—especially in the diffuser region. Because of the pump's geometry, we expect a periodic velocity pattern that repeats every 1/7th of a revolution (due to the 7 blades). However, this repeating pattern is not clearly visible in unsteady simulations due to wake deformation.
@@ -1326,7 +1375,7 @@ Then, it computes the interpolation and average the data over the angle \(\theta
 A sixth coefficients DP has been add.
 It's represent the difference of pressure between the inlet of the pipe and the outlet of the diffuser. 
 The numerical coefficient are interpolating, respectively at (0,0,-0.35) and (0,0.390,0).
-For the high-fidelity value, we can find experimental data form the same pump [M. Fan 2022], that's match with M. Fan simulation (eq to approximately \(\eta\) = 0.4). So can also compute :
+For the high-fidelity value, we can find experimental data form the same pump [M. Fan 2022], that's match with M. Fan simulation (eq to approximately \(\eta\) = 0.4). So can also compute:
 
 
 
@@ -1385,17 +1434,17 @@ Il en est de même pour le nombre de phases d'analyse.
 Supposons 1000 itération en moyenne entre chaque phase d'analyse, et 300 phases d'analyse, cela nous fait 300 000 itérations à simuler, soit 93h, sur env. 2800 coeurs, soit 264kh.processeur de calcul.
 
 Comment calculer la variance que je veux mettre ?
-Expérience : 5\%
-De mon coté : je vise qu'en moyenne un membre d'ensemble ait un écart de 1e7 par rapport au temps précédent (pour des valeurs autour de 5e7), donc, pour 30 membres d'ensemble, environ 95\% = 2 sigma dans 5e7+-1e7, càd sigma = 0.5e7 = 10\%. Ensuite, le nombre d'itération entre les phases d'analyse est déterminé en regardans combien d'itération sont nécessaires pour faire varier la solution dans le diffuser (influe, rapidement, converge doucement mais ce qui nous intéresse c'est que ça prenne la tendace) lorsqu'un paramètre de forcage est modifié (supposé très inférieure pour la turbulence car appliquée de partout)
+Expérience: 5\%
+De mon coté: je vise qu'en moyenne un membre d'ensemble ait un écart de 1e7 par rapport au temps précédent (pour des valeurs autour de 5e7), donc, pour 30 membres d'ensemble, environ 95\% = 2 sigma dans 5e7+-1e7, càd sigma = 0.5e7 = 10\%. Ensuite, le nombre d'itération entre les phases d'analyse est déterminé en regardans combien d'itération sont nécessaires pour faire varier la solution dans le diffuser (influe, rapidement, converge doucement mais ce qui nous intéresse c'est que ça prenne la tendace) lorsqu'un paramètre de forcage est modifié (supposé très inférieure pour la turbulence car appliquée de partout)
 
 The observation window was defined by observing the number of iterations required for the influence of the IBM to reach the diffuser and take the form of the converged result. We are not interested in the turbulence parameters to determine the observation window because they are present throughout the domain, their influence is almost direct (not necessarily their convergence). We chose 800 iterations
 
 
-Pb de la DA : plus rapide que DNS mais toujours plus lent que RANS et le temps d'attente et de calcul sur supercalculateur (sur 4000 processeurs) est de l'orde de plusieurs jours. On peut donc se demander si la DA est vraiment utile dans ce cas. En effet, la DA est plus rapide que la DNS mais pas que la RANS. Cependant, il faut prendre en compte le fait que la DA permet de réduire le temps de calcul de la simulation numérique en permettant d'optimiser les paramètres de l'IBM. De plus, la DA peut être utilisée pour d'autres cas d'étude où la DNS est trop coûteuse.
+Pb de la DA: plus rapide que DNS mais toujours plus lent que RANS et le temps d'attente et de calcul sur supercalculateur (sur 4000 processeurs) est de l'orde de plusieurs jours. On peut donc se demander si la DA est vraiment utile dans ce cas. En effet, la DA est plus rapide que la DNS mais pas que la RANS. Cependant, il faut prendre en compte le fait que la DA permet de réduire le temps de calcul de la simulation numérique en permettant d'optimiser les paramètres de l'IBM. De plus, la DA peut être utilisée pour d'autres cas d'étude où la DNS est trop coûteuse.
 
 
 
-Pb perso : jusqu'à plusieurs jours d'attente pour lancer une simu.
+Pb perso: jusqu'à plusieurs jours d'attente pour lancer une simu.
 
 
 Tout ce qu'il y a dans le CONES dict
@@ -1416,7 +1465,7 @@ Toujours mentionner les paramètres utilisés (dans le controlDict et le CONESDi
 
 ///// Reprendre les objectifs définis à la fin de la section 2.1 //////
 
-Comparer les 2-3 résultats : (avant DA, déjà fait section précédente), après simple et "complex" DA
+Comparer les 2-3 résultats: (avant DA, déjà fait section précédente), après simple et "complex" DA
 
 
 \begin{figure}[H]
@@ -1464,15 +1513,15 @@ Explication des écarts par la bulle de recirculation.
 
 \subsection{Conclusion ans perspective}
 
-Problème de méthode et pas de miracle ave cette méthode IBM. Interpolation, instationnaire (avantage : on ne contraint plus avec MRF et donc plus facile de réconcilier solution numérique physique et mathématique)
+Problème de méthode et pas de miracle ave cette méthode IBM. Interpolation, instationnaire (avantage: on ne contraint plus avec MRF et donc plus facile de réconcilier solution numérique physique et mathématique)
 
 
-Ouverture : méthode IBM interpolation, article non référencé.
+Ouverture: méthode IBM interpolation, article non référencé.
 
 \cite{valeroEnhancedStateEstimation2025} -> ML turbulent channel flow Miguel
 
-"Ouverture / idée" : DA temps réel dans avion impossible pour encore longtemps.
-Solution : Contrôle actif de la puissance en fonction des mesures de pression dans le compresseur :
+"Ouverture / idée": DA temps réel dans avion impossible pour encore longtemps.
+Solution: Contrôle actif de la puissance en fonction des mesures de pression dans le compresseur:
 f(obs) -> controle de la puissance
 Pour ça, se ref au sujet de thèse de Tarane
 obs pression --> modèle de reconstruction du champ de vitesse --> modèle de reconaissance de patternes de décrochage --> contrôle de la puissance
@@ -1510,5 +1559,5 @@ The EnKF method will be used to assimilate data from the flow at the observation
 
 %En combien de temps l'information de pression remonte-t-elle dans le diffuser ? -->> "directement"
 
-%144 coeurs : 54it/min
-%300-> 336 coeurs : 100it/min (+- 20\%)
+%144 coeurs: 54it/min
+%300-> 336 coeurs: 100it/min (+- 20\%)
