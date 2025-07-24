@@ -28,7 +28,7 @@ Then, Tom MOUSSIE and Miguel MARTINEZ VALERO, my co-officies, explained me the b
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[b]{0.33\textwidth}
+    \begin{subfigure}[b]{0.34\textwidth}
         \includegraphics[width=\textwidth]{images/other/pompe_centrifuge.jpg}
         \caption{Old centrifugal pump used to move hay (personal picture)}
         \label{fig:old_centrifugal_pump}
@@ -65,9 +65,9 @@ The body-fitted meshes are the most accurate but also the most expensive in term
 
 IBM is a numerical technique that simulates viscous flow with embedded boundaries on grids that do not conform to those boundaries. This allows to keep numerical efficiency on complex geometries and moving boundaries without the need for body-fitted meshes, which can be computationally expensive and difficult to implement.
 
-In 1972 Charles S. Peskin\cite{IBM_base} developped the IBM method. His goal was to reduce the computational time, mainly due to the computation of the mesh refinment based on the \ac{CFL}. He added an IBM forcing term on Navier-Stokes equations, only on the simulated artificial heart valve part. He overcomes the numerical instabilitys due to the boundary forces by using an iterative method for solving a fixed-point problem for boundary forces.
+In 1972 Charles S. Peskin\cite{IBM_base} developped the IBM method. His goal was to reduce the computational time, mainly due to the computation of the mesh refinment based on the \ac{CFL} (define \autoref{eq:CFL}). He added an IBM forcing term on Navier-Stokes equations, only on the simulated artificial heart valve part. He overcomes the numerical instabilitys due to the boundary forces by using an iterative method for solving a fixed-point problem for boundary forces.
 
-In 1999 \cite{angotPenalizationMethodTake1999a} discovered that using the penalization IMB, the velocity penalized at the wall as the same as the one from a body-fitted approach if "D", a forcing parameter define in the \autoref{subsec:CFD_governing_equations}, tend to infinity.
+In 1999 \cite{angotPenalizationMethodTake1999a} discovered that using the penalization IMB, the velocity penalized at the wall as the same as the one from a body-fitted approach if $\mathbf{D}$, a forcing parameter define in the \autoref{subsec:CFD_governing_equations}, tend to infinity.
 
 IBM are usually less accurate and need more cells element to keep good precision in the near-wall region, but more efficient in terms of computational resources when the geometrie is moving. So it's more and more used in CFD \cite{annurev:/content/journals/10.1146/annurev-fluid-120720-022129}. The maths behind the method are detail in the \autoref{eq:IBM}.
 
@@ -111,6 +111,7 @@ EnKF for DA in CFD has been used at \ac{LMFL} for a few years now.
 \begin{itemize}
     \item In 2023, Lucas Villanueva, with Miguel M.Valero and Marcello Meldi from LMFL wrote an article\cite{villanuevaAugmentedStateEstimation2023} about the amelioration of the flow around a building preforming EnKF on five CFD parameters, showing a global improvement for both the velocity field and the pressure field;
     \item In 2024, Tom Moussie, with Paolo Errante and Marcello Meldi from LMFL wrote an article\cite{moussieStatisticalInferenceUpstream2024a} successfully optimizes the boudary condition of the academical rectangular 5:1 cylinder benchmarck using EnKF, leading to a significant improvement of the accuracy in the prediction of the turbulent flow;
+    \item This year, Miguel M.Valero and Marcello Meldi published an article combining EnKF, \ac{ML} and IBM on a turbulent channel flow \cite{valeroEnhancedStateEstimation2025}. It shows that this combination can gives very good ans low cost results;
     \item During my internship, Tom Moussie submit an article on the determination of the incidence angle of a 2D wing using EnKF, and Miguel submit also an article about the optimization of forcing parameters of an IBM around an 2D oscillating cylinder, showing very good results.
 \end{itemize}
 
@@ -127,6 +128,8 @@ EnKF for DA in CFD has been used at \ac{LMFL} for a few years now.
 
 
 This led us to the idea of using the EnKF method to optimize the parameters of the IBM forcing term on a centrifugal pump, which is a more complex case than the previous ones. It combines 3D turbulent boundary layer, such as the turbulent plane channel flow and a moving body susch as the oscillating cylinder. Also, it's complex shape induce 11 million (11M) cells. Finally, the rotor/stator interaction in centrifugal machines is a very complexe procedure affected by highly unsteady flow phenomena, turbulent boundary layers and instabilities. CFD is generally not able to capture it properly with traditional physical models. The goal is the to improve the prediction of the flow on the diffuser, to capture the good performance of the pump by optimizing the parameters of the IBM forcing term, which will lead to a better simulation of the fluid flow and a better understanding of the pump's behaviour.
+
+\newpage
 
 In this context, we would like to employ these two innovative methodologies to improve the original CFD predictive capabilities
 for a centrifugal pump test case, leveraging some PIV measurements at the diffuser, and the information from pressure
@@ -440,6 +443,7 @@ The additional terms $2 \vec{\Omega} \times \vec{u}_R$ (Coriolis force) and $\ve
 To do so, the \ac{CFL} or the courant number has to be computed. 
 
 \begin{equation}
+    \label{eq:CFL}
     CFL = \frac{\Delta_t}{\Delta_x} \times \mathbf{U}
 \end{equation}
 
