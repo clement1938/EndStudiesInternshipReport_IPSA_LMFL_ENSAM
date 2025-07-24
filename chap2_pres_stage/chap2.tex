@@ -127,13 +127,11 @@ EnKF for DA in CFD has been used at \ac{LMFL} for a few years now.
 %(Article in writing process)
 
 
-This led us to the idea of using the EnKF method to optimize the parameters of the IBM forcing term on a centrifugal pump, which is a more complex case than the previous ones. It combines 3D turbulent boundary layer, such as the turbulent plane channel flow and a moving body susch as the oscillating cylinder. Also, it's complex shape induce 11 million (11M) cells. Finally, the rotor/stator interaction in centrifugal machines is a very complexe procedure affected by highly unsteady flow phenomena, turbulent boundary layers and instabilities. CFD is generally not able to capture it properly with traditional physical models. The goal is the to improve the prediction of the flow on the diffuser, to capture the good performance of the pump by optimizing the parameters of the IBM forcing term, which will lead to a better simulation of the fluid flow and a better understanding of the pump's behaviour.
+This led us to explore the use of the EnKF method to optimize the parameters of the IBM forcing term on a centrifugal pump — a more complex case than the previous ones. It combines the 3D turbulent boundary layer characteristics of the turbulent plane channel flow with the moving body configuration of the oscillating cylinder. Its complex geometry requires around 11 million cells. On top of that, rotor/stator interaction in centrifugal machines is highly unsteady and involves turbulent boundary layers and instabilities, making it particularly challenging to model. Traditional CFD approaches often fail to capture these effects accurately. Our goal here is to improve flow prediction at the diffuser by optimizing the IBM forcing parameters, which should enhance the overall simulation and provide a better understanding of the pump’s behavior.
 
 \newpage
 
-In this context, we would like to employ these two innovative methodologies to improve the original CFD predictive capabilities
-for a centrifugal pump test case, leveraging some PIV measurements at the diffuser, and the information from pressure
-taps at both the impeller inlet and the diffuser. To do so, we pursue the following objectives, folowing the manuscript organisation:
+In this context, we aim to apply both of these innovative methodologies to enhance the original CFD predictions on a centrifugal pump test case. The approach leverages PIV measurements at the diffuser, along with pressure tap data from the impeller inlet and the diffuser. To achieve this, the manuscript is organized around the following steps:
 
 \begin{enumerate}
     \item Do a state of the art about the centrifugal pumps, CFD methods including IBM and DA including EnKF, detail in this \autoref{sec:stateOfArt};
