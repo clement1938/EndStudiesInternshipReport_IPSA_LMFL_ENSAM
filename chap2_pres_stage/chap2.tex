@@ -1028,7 +1028,7 @@ With thi new parameters, the loop can be done again.
 
 %The objective of the model is to try to find same physical behaviour as the experimental data. We call that digital twin.
 
-\autoref{fig:RESEDA_Model} illustrates the model of the pump on a $yz$ plane, for $x=0$. The suction pipe has a length of $H = 10 R_1$, allowing the near-wall boundary lawer to developped. Then, a cylinder containing the impeller is define (the impeller in .stl can be find on github\footnote{\url{https://github.com/fromano88/CentrifugalPump}}). Is where the IBM and MRF will be applied.
+\autoref{fig:RESEDA_Model} illustrates the model of the pump on a $yz$ plane, for $x=0$. The suction pipe has a length of $H = 10 R_1$, allowing the near-wall boundary lawer to developped. Then, a cylinder, where the IBM and MRF will be applied, containing the impeller, is define (the impeller in .stl can be find on github\footnote{\url{https://github.com/fromano88/CentrifugalPump}}).
 At the entrance of the impeller/outlet of the suction pipe junction and at the outlet of the impeller/inlet of the diffuser junction, there was leakage as the whole impeller was moving during the experiment.
 We assume a zero-leakage as we aren't in a very hight mass flow rate.
 
@@ -1048,6 +1048,19 @@ Boundary conditions are defines as that:
     \item[$-$] Wall: no-slip wall
 \end{itemize}
 
+To process CFD, we need to discretize the numerical model of the pump. The mesh is generated using the \texttt{blockMesh} utility, which is a built-in OpenFOAM tool. It is composed of around 11 million hexahedral cells. (quasi only, exepted some interface, cf \autoref{fig:interfaceMesh}). We don't need complex mesh because we dont neek to fit the geometry of the impeller as we use IBM.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/numericalPump/frontalView.pdf}
+    \caption{Mesh interface between the pipe and the impeller}
+    \label{fig:interfaceMesh}
+\end{figure}
+
+
+Regarding the near-wall treatment, at the suction pipe, y + envegale 1, enabling direct resolution of the viscous sublayer and imposition of boundary conditions without wall functions. On the other hand, the highest y + value in the body-fitted regions corresponds to y + envegale 83, so some of the mesh elements (mainly close to the lower wall of the diffuser) are located in the logarithmic region, thus requiring wall functions. Within the rotating cylinder and around the impeller, the mesh resolution yields y + envegale 100. The friction velocity u tau is assumed to be around 20 - 25 times smaller than the peripheral velocity U2 . The
+blades are discretised to ensure an average of six mesh elements across their solid thickness, preventing excessively thin regions.
+
 
 The penalisation coefficients used in the \autoref{eq:IB} are defines as follow:
 
@@ -1058,72 +1071,14 @@ The penalisation coefficients used in the \autoref{eq:IB} are defines as follow:
     \omega_{\text{ib}} &= \left( \omega_{\text{vis}}^2 + \omega_{\text{log}}^2 \right)^{1/2}
 \end{align}
 
-where $\omega_{vis}=\frac{6 \nu}{\beta_1 y_{\mathrm{ref}}^2}$ is the viscous sublayer and $\omega_{log} = \frac{\sqrt{\mathcal{K}}}{C_\mu \kappa y_\mathrm{ref}}$ is the logarithmic region 
-
-
-\ref{fig:NearWallModelling}
-
-
-//////////
-
-Regarding the near-wall treatment, at the suction pipe, y + envegale 1, enabling direct resolution of the viscous sublayer and imposition of boundary conditions without wall functions. On the other hand, the highest y + value in the body-fitted regions corresponds to y + envegale 83, so some of the mesh elements (mainly close to the lower wall of the diffuser) are located in the logarithmic region, thus requiring wall functions. Within the rotating cylinder and around the impeller, the mesh resolution yields y + envegale 100. The friction velocity u tau is assumed to be around 20 - 25 times smaller than the peripheral velocity U2 . The
-blades are discretised to ensure an average of six mesh elements across their solid thickness, preventing excessively thin regions.
-
-/////
-
-
-To process CFD, we need to discretize the numerical model of the pump. The mesh is generated using the \texttt{blockMesh} utility, which is a built-in OpenFOAM tool. It is composed of around 11 million hexahedral cells. (quasi only, exepted some interface, cf \autoref{fig:interfaceMesh}). We don't need complex mesh because we dont neek to fit the geometry of the impeller as we use IBM.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/numericalPump/frontalView.pdf}
-    \caption{Mesh interface between the pipe and the impeller}
-    \label{fig:interfaceMesh}
-\end{figure}
-
-// Parler de y+ //
+where $\omega_{vis}=\frac{6 \nu}{\beta_1 y_{\mathrm{ref}}^2}$ is the viscous sublayer and $\omega_{log} = \frac{\sqrt{\mathcal{K}}}{C_\mu \kappa y_\mathrm{ref}}$ is the logarithmic region (see \ref{fig:NearWallModelling}).
 
 
 \newpage
 \section{Experimental data and pre-processing}
 \label{sec:Experimental_data_and_pre-processing}
 
-With the conditions specified in the /// là où il y a le tableau en question ///, and a value of 3e7 for the all five forcing parameters, we obtain these velocity and pressure profils.
-
-%"Résultats de la simulation avec 3e5" -> 3e7 avec image
-
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/coordsSeventh.png}
-    \caption{Interpolation points over 360/7 degrees}
-    \label{coordsSeventh}
-\end{figure}
-
-As seen in /// Figure a référer ou mettre ici ///, \autoref{fig:polar_slice_avg_theta_trimmed}, we use five observations points on the three PIV plans.
-We are able to plot this curves, comparing the velocities of the simulation and of the PIV data.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{images/numVSxp.pdf}
-    \caption{Comparison between the profiles inside the diffuser for the numerical simulation (continuous lines), and the PIV data (dashed lines). In particular, (\protect\bluelinePython) represents the radial velocity $u_r$, (\protect\orangeline) depicts the azimuthal velocity $u_\theta$, and (\protect\greenline) illustrates the vertical velocity $u_z$.} % \textit{(a)} Position of the PIV measurement planes, \textit{(b)} simplification of the experimental data (time- and azimuthally-averaged) for employment in the Data Assimilation experiment, and \textit{(c)} c
-    \label{fig:numVSxp}
-\end{figure}
-
-Our goal is to make these curves fit as well as possible.
-We already see that there is a notable difference bteween the radial velocity in the plan at 75\%. The numerical simulation predict a negative velocity instead of a positive one. This is explaned by a non physical recirculation buble as you can see in the %\autoref{...}
-
-A good indicator of the accuracy of the simulation is the performance of the pump. It's directly linked to the pressure difference between the outlet and the inlet. As seen // previously in this chapter ?? //, we should obtain around 415Pa. In our case, we obtain a pressure difference of around 306Pa, that is far from what we excpect.
-
-\begin{figure}[H]
-    \includegraphics[width=0.4\textwidth]{images/numericalPump/diffuseurMesh.png}
-    \caption{Diffuser Mesh}
-    \label{diffuserMesh}
-\end{figure}
-
-
-/////////////
-
+As discussed in \autoref{sec:stateOfArt}, the RESEDA benchmark facility is located at LMFL, where PIV and pressure data have been acquired.
 
 
 \begin{figure}[H]
@@ -1182,11 +1137,13 @@ The operating conditions of the machine were:
 \end{figure}
 
 
-//////////////////
+
+
+
 
 \paragraph{PIV data} Data is stored in a directory structure that contains six directories.
 The six directories correspond to two tests realised at 25\%, 50\% et 75\% of the diffuser height.
-Each test was repeated twice for the same operating condition and the same height (R1, R2).
+Each test was repeated twice for the same operating condition and the same height ($R_1$, $R_2$).
 In each directory, there are 1581 files corresponding to instantaneous ASCII data file.
 The ten columns are corrresponding to%:
 
@@ -1194,24 +1151,7 @@ The ten columns are corrresponding to%:
     $x(m),y(m),V_x(m.s^{-1}),V_y(m.s^{-1}),r(m),\theta(rad),Vr(m.s^{-1}),V_{\theta}(m.s^{-1}),V_z(m.s^{-1}),\textit{Unknown}$
 \end{center}
 
-And the 10,125 lines correspond to the 81 locations over x and 125 locations over y of the PIV. Processing of these data is detailed in the // This section ?? //
-
-\paragraph{Pressure data}
-
-In addition to the nine pressure tapes on the diffuser, M. Fan has also captured (\autoref{fig:PumpPerf}) the inlet and outlet pressure that allows to compute the global performance of the pump.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.65\textwidth]{images/experimentalPump/perfo2.png}
-    \caption{Overall pump performance versus reduced pump flow rate Q}
-    \label{fig:PumpPerf}
-\end{figure}
-
-As we are at $Q/Q_d = 1$, we can retreive \[ \frac{\Delta P}{\rho U^2} = 0.4 \Rightarrow \Delta p = 0.4 \times \rho \times U^2 = 0.4 \times 1.225 \times 32.24^2 \approx 415~\text{Pa} \]
-
-
-//////////////
-
+And the 10,125 lines correspond to the 81 locations over x and 125 locations over y of the PIV.
 
 
 The PIV data is acquired in a rectangular zone of 0.08 m x 0.124 m.
@@ -1219,82 +1159,95 @@ The cathesian coordinates are given in a local system, where the absolute origin
 
 
 \begin{figure}[H]
-    \centering
-    \begin{tikzpicture}
-        \begin{axis}[
-            axis equal,
-            xlabel={$x$ (m)},
-            ylabel={$y$ (m)},
-            width=8cm,
-            height=12cm,
-            grid=both,
-            xmin=0, xmax=0.08,
-            ymin=0, ymax=0.124,
-            title={Zone d'acquisition PIV}
-        ]
-        \draw[red, very thick, dashed] (0.0245, 0) -- (0.0245, 0.124);
-        \node[red, rotate=90] at (0.053-0.031, 0.062) {$\theta = x_{abs} = 0$};
+    \begin{center}
+        \begin{tikzpicture}
+            \begin{axis}[
+                axis equal,
+                xlabel={$x$ (m)},
+                ylabel={$y$ (m)},
+                width=8cm,
+                height=12cm,
+                grid=both,
+                xmin=0, xmax=0.08,
+                ymin=0, ymax=0.124,
+                %title={PIV acquisition zone}
+            ]
+            \draw[red, very thick, dashed] (0.0245, 0) -- (0.0245, 0.124);
+            \node[red, rotate=90] at (0.053-0.031, 0.062) {$\theta = x_{abs} = 0$};
 
 
-        % CentreAbs: (0,0)    -> CentreRel: (-0.0245,0.257.5)
-        % BoutRel: (0.06, 0.12) -> boutAbs: ...
+            % CentreAbs: (0,0)    -> CentreRel: (-0.0245,0.257.5)
+            % BoutRel: (0.06, 0.12) -> boutAbs: ...
 
-        \draw[darkblue, very thick, dashed] (0.037756, 0) -- (0.0445, 0.124);
-        \draw[darkblue, very thick, dashed] (0.051012, 0) -- (0.0645, 0.124);
-        %\draw[darkblue, very thick, dashed] (0.02*(0.2575/0.3855)+0.0245, 0) -- (0.0245+0.02, 0.124);
-        %\node[darkblue, rotate=90] at (0.053-0.031, 0.062) {$\theta = x_{abs} = 0$};
-        
-        \draw[->, >=stealth, color=darkblue, thick] (0.0245, 0.0145) -- (0.07-0.031, 0.0145);
-        \node[darkblue, rotate=0] at (0.062-0.031, 0.017) {$\vec{x}$}; % _{abs}
+            \draw[darkblue, very thick, dashed] (0.037756, 0) -- (0.0445, 0.124);
+            \draw[darkblue, very thick, dashed] (0.051012, 0) -- (0.0645, 0.124);
+            %\draw[darkblue, very thick, dashed] (0.02*(0.2575/0.3855)+0.0245, 0) -- (0.0245+0.02, 0.124);
+            %\node[darkblue, rotate=90] at (0.053-0.031, 0.062) {$\theta = x_{abs} = 0$};
+            
+            \draw[->, >=stealth, color=darkblue, thick] (0.0245, 0.0145) -- (0.07-0.031, 0.0145);
+            \node[darkblue, rotate=0] at (0.062-0.031, 0.017) {$\vec{x}$}; % _{abs}
 
-        \draw[->, >=stealth, color=darkblue, thick]  (0.0245, 0.0145) -- (0.0245, 2*0.0145);
-        \node[darkblue, rotate=0] at (0.021, 0.0195) {$\vec{y}$}; %_{abs}
+            \draw[->, >=stealth, color=darkblue, thick]  (0.0245, 0.0145) -- (0.0245, 2*0.0145);
+            \node[darkblue, rotate=0] at (0.021, 0.0195) {$\vec{y}$}; %_{abs}
 
-        \draw[->, >=stealth, color=red, thick]  (0.0245, 0.1) -- (0.0245, 0.1145);
-        \node[red, rotate=0] at (0.062-0.032, 0.108) {$\vec{U_{r}}$};
+            \draw[->, >=stealth, color=red, thick]  (0.0245, 0.1) -- (0.0245, 0.1145);
+            \node[red, rotate=0] at (0.062-0.032, 0.108) {$\vec{U_{r}}$};
 
-        \draw[->, >=stealth, color=red, thick]  (0.0245, 0.1) -- (0.01, 0.1);
-        \node[red, rotate=0] at (0.0245-0.01, 0.1-0.005) {$\vec{U_{\theta}}$};
+            \draw[->, >=stealth, color=red, thick]  (0.0245, 0.1) -- (0.01, 0.1);
+            \node[red, rotate=0] at (0.0245-0.01, 0.1-0.005) {$\vec{U_{\theta}}$};
 
 
-        \addplot+[
-            only marks,
-            mark=*,
-            mark size=0.3pt,
-            color=blue
-        ] table [x index=0, y index=1] {autre/points_piv_tikz.txt};
-        \end{axis}
-    \end{tikzpicture}
+            \addplot+[
+                only marks,
+                mark=*,
+                mark size=0.3pt,
+                color=blue
+            ] table [x index=0, y index=1] {autre/points_piv_tikz.txt};
+            \end{axis}
+        \end{tikzpicture}
+    \end{center}
+    \caption{PIV acquisition zone in the RESEDA experiment, with orientation of the $(r,\theta)$ velocity components.}
 \end{figure}
 
-Dans la simulation numérique, l'axe z est vers le centre de la Terre, contrairement à l'expérience où il est vers le haut.
-La roue tourne dans le sens trigonométrique dans le repère de la simulation numérique et dans le sens antitrigonométrique dans l'expérimentation.
-Actuellement, je respecte le formalisme de la simu num pour le repère.
 
-Parler des coefficients de relaxation.
 
 \subparagraph{1.}
 
-First, we need to know how to convert the coordinates from the local system to the absolute system.
-We find that between the line 55 and 56, the radius is constant and pass from lower than \(\pi\) to upper. In fact, for the plan at 75\%, it is the same approache but between the line 65 and 66 because of some technical experimental constraints.
-We also did plot x over theta for three differents values of theta and find out an intersection point for x = 0.0245.
-So now, we know that for x = 0.0245, theta = \(\frac{\pi}{2}\)
-%We could use the absolute system is defined by the following equations:
+First, we need to determine how to convert the coordinates from the local system to the absolute system.
+We observe that between lines 55 and 56, the radius remains constant while the angular position \(\theta\) transitions from below to above \(\pi\). 
+For the 75\% plane, a similar approach is used, but between lines 65 and 66, due to experimental constraints.
+
+We also plotted \(x\) versus \(\theta\) for three different values of \(\theta\) and found an intersection point at \(x = 0.0245\).
+Therefore, we now know that for \(x = 0.0245\), \(\theta = \frac{\pi}{2}\).
+
+The absolute coordinate system is then defined by the following equations:
 \begin{equation}
     \begin{cases}
-        x_{rel} = x_{abs} + 0.0245 \\
-        y_{rel} = x_{abs} + R_{2} \\ % R2 = 257.5
+        x_{\text{rel}} = x_{\text{abs}} + 0.0245 \\
+        y_{\text{rel}} = x_{\text{abs}} + R_{2} \\
     \end{cases}
 \end{equation}
 
-\subparagraph{2.Average}
-For now we are in stationary case (time invariant). So we are going to deal with data average over time.
-There are around 49 maps (=file) by turn. So to agerage the data over the time, we can average over the \(\phi\) (\(\phi\) appartiens à 0-211rd) (=maps). That into the six directory.
+with $R_{2} = 257.5$ mm
+
+\subparagraph{2. Average}
+
+Since we are dealing with a stationary case (time-invariant), we perform a time average of the data.
+
+There are approximately 49 velocity maps (i.e., 49 files) per impeller rotation. To compute the time-averaged field, we average over the azimuthal angle \(\phi\), which spans from 0 to approximately 211 radians. This corresponds to the 49 snapshots.
+
+These files are distributed across six directories, each corresponding to a different acquisition plane.
 
 
-\subparagraph{3.Sampling}
-We will also average data between R1 and R2 to go to 3 files (of 10x81x125 elements).
-Now, we keep only the data on the line x = 0.0245 (in fact we average data between x = 0.024 and x = 0.025). Data are then truncate at line 89, where the radius is upper than 0.3, because of some laser reflexion on the pump during the PIV experiment.
+
+\subparagraph{3. Sampling}
+
+We further average the data between radii \(R_1\) and \(R_2\), resulting in three files of size \(10 \times 81 \times 125\).
+
+At this stage, we retain only the data along the line \(x = 0.0245\). More precisely, we average the data between \(x = 0.024\) and \(x = 0.025\).
+
+Finally, the data are truncated at line 89, where the radius exceeds 0.3~m. This truncation is necessary due to laser reflections on the pump casing during the PIV experiments.
+
 
 
 \subparagraph{4.Shaping for CONES}
@@ -1312,8 +1265,68 @@ To be consistent with axis further, we take points between -pi/7 + pi/2 and pi/7
 
 Here is the plot of the experimental data and the numerical data (for D = 3e7 (introduire la variable)), at the same points (both are averages over time and over the angle \(\theta\)).
 
+
+
+
+With the conditions specified in the \autoref{tab:pump_parameters}, and a value of 3e7 for the all five forcing parameters, we obtain these velocity and pressure profils.
+
+%"Résultats de la simulation avec 3e5" -> 3e7 avec image
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/coordsSeventh.png}
+    \caption{Interpolation points over 360/7 degrees}
+    \label{coordsSeventh}
+\end{figure}
+
+As seen in /// Figure a référer ou mettre ici ///, \autoref{fig:polar_slice_avg_theta_trimmed}, we use five observations points on the three PIV plans.
+We are able to plot this curves, comparing the velocities of the simulation and of the PIV data.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/numVSxp.pdf}
+    \caption{Comparison between the profiles inside the diffuser for the numerical simulation (continuous lines), and the PIV data (dashed lines). In particular, (\protect\bluelinePython) represents the radial velocity $u_r$, (\protect\orangeline) depicts the azimuthal velocity $u_\theta$, and (\protect\greenline) illustrates the vertical velocity $u_z$.} % \textit{(a)} Position of the PIV measurement planes, \textit{(b)} simplification of the experimental data (time- and azimuthally-averaged) for employment in the Data Assimilation experiment, and \textit{(c)} c
+    \label{fig:numVSxp}
+\end{figure}
+
+Our goal is to make these curves fit as well as possible.
+We already see that there is a notable difference bteween the radial velocity in the plan at 75\%. The numerical simulation predict a negative velocity instead of a positive one. This is explaned by a non physical recirculation buble as you can see in the %\autoref{...}
+
+A good indicator of the accuracy of the simulation is the performance of the pump. It's directly linked to the pressure difference between the outlet and the inlet. As seen // previously in this chapter ?? //, we should obtain around 415Pa. In our case, we obtain a pressure difference of around 306Pa, that is far from what we excpect.
+
+\begin{figure}[H]
+    \includegraphics[width=0.4\textwidth]{images/numericalPump/diffuseurMesh.png}
+    \caption{Diffuser Mesh}
+    \label{diffuserMesh}
+\end{figure}
+
+
+\paragraph{Pressure data}
+
+In addition to the nine pressure tapes on the diffuser, M. Fan has also captured (\autoref{fig:PumpPerf}) the inlet and outlet pressure that allows to compute the global performance of the pump.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\textwidth]{images/experimentalPump/perfo2.png}
+    \caption{Overall pump performance versus reduced pump flow rate Q}
+    \label{fig:PumpPerf}
+\end{figure}
+
+As we are at $Q/Q_d = 1$, we can retreive \[ \frac{\Delta P}{\rho U^2} = 0.4 \Rightarrow \Delta p = 0.4 \times \rho \times U^2 = 0.4 \times 1.225 \times 32.24^2 \approx 415~\text{Pa} \]
+
+
 /////////
 
+
+
+Dans la simulation numérique, l'axe z est vers le centre de la Terre, contrairement à l'expérience où il est vers le haut.
+La roue tourne dans le sens trigonométrique dans le repère de la simulation numérique et dans le sens antitrigonométrique dans l'expérimentation.
+Actuellement, je respecte le formalisme de la simu num pour le repère.
+
+Parler des coefficients de relaxation.
+
+/////////
 
 Limitations IBM à améliorer avec DA
 Graçe aux données xp (mentionné partie 2.1.2, on peut faire de la DA)
