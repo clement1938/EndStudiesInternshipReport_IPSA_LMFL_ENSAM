@@ -807,9 +807,9 @@ Observation data may be built using:
     \label{KF1}
 \end{figure}
 
-Kalman filter presents two main drawbacks that concern our case. First, as the \ac{EKF}, it's only works for moderate deviations from linearity and Gaussianity. If $M$ represent the Navier-Stokes equations, then is very not linear. Secondly, for a CFD mesh, the covariance matrix $\mathbf{P}_k$ would have a dimention of $(n_{vars} \times n_{cells}, n_{vars} \times n_{cells})$.
+Kalman filter presents two main drawbacks that concern our case. First, as the \ac{EKF}, it only works for moderate deviations from linearity and Gaussianity. If $M$ represents the Navier-Stokes equations, then equations are very not linear. Secondly, for a CFD mesh, the covariance matrix $\mathbf{P}_k$ would have a dimention of $(n_{vars} \times n_{cells}, n_{vars} \times n_{cells})$.
 
-The EnKF allows high dimensional systems by avoid the explicit definition of $\mathbf{P}_k$ and it's Monte-Carlo realistations are much more design for non-linear models. A problem can be the underestimation of $\mathbf{P}_k^a$ but the inflation, define later on this subsection, and localisation, helps mitigate this issue.
+The EnKF allows high dimensional systems by avoiding the explicit definition of $\mathbf{P}_k$ and its Monte-Carlo realistations are much more design for non-linear models. A problem can be the underestimation of $\mathbf{P}_k^a$ but the inflation, define later on this subsection, and localisation, helps mitigate this issue.
 
 
 \begin{comment}
@@ -846,7 +846,7 @@ The cavity test case is a simple flow in a square cavity, where the flow is driv
 
 In our test case, we are going to optimise the velocity wall condition.
 To do so, we use the result on 5 locations of a precise converged simulation with a to boundary condition of 5 m.s$^{-1}$ as a reference. We will then assimilate data from the flow, at the 5 observation points (see \autoref{fig:cavity2_1ms}).
-We start from a simulation with a wall condition of 1 m.s$^{-1}$, which is not the correct value. The EnKF method will then be used to correct the wall condition by assimilating the data from the flow at the 5 observation points. The EnKF method will iteratively update the wall condition until it converges to the correct value, which is 5 m.s$^{-1}$ in this case. In only 3 EnKF iterations, the wall condition converges to the correct value (with a relative error of 0.05 m.s$^{-1}$).
+We start from a simulation with a wall condition of 1 m.s$^{-1}$, which is not the correct value. The EnKF method will then be used to correct the wall condition by assimilating the data from the flow at the 5 observation points. The EnKF method will iteratively update the wall condition until it converges to the correct value, which is 5 m.s$^{-1}$ in this case. After only three EnKF iterations, the wall condition converges to the correct value (with a relative error of 0.05 m.s$^{-1}$).
 
 \begin{figure}[H]
     \centering
@@ -913,7 +913,7 @@ The following matrices are needed to build the EnKF algorithm:
 %$\boldsymbol{u}_{i,0}^\prime = [\boldsymbol{u}_{i,0}, \theta_{i,0}]^T$ (initial states with $\boldsymbol{u}_{i,0} \sim \mathcal{N}(\boldsymbol{\overline{u}}_0, \boldsymbol{P}_0)$ and $\theta_{i,0} \sim \mathcal{N}(\overline{\theta}_0, \boldsymbol{P}_0)$)
 
 
-For RANS representation, there is no physical time advancement of the model, so each instant is represented through a different interation of the solver, and 
+For RANS representation, there is no physical time advancement of the model, so each instant is represented through a different interation of the solver.%, and 
 
 \begin{algorithm}[!ht]
     \caption{Scheme of the EnKF used in the present analyses for parameter optimization.}
@@ -939,11 +939,11 @@ For RANS representation, there is no physical time advancement of the model, so 
     \end{algorithmic}
 \end{algorithm}
 
-Observation data $y$ can be some local sensors (such as PIV data) or global variables (such as the performance)
+Observation data $y$ can be some local sensors (such as PIV data) or global variables (such as performance)
 
 With $\boldsymbol{\overline{u}}_k^{\prime^f} = [\boldsymbol{\overline{u}}_k^f, \overline{\theta}_{k-1}]^T$ and $\boldsymbol{u}_{i,k}^{\prime^f} = [\boldsymbol{u}_{i,k}^f, \theta_{i, k-1}]^T$
 
-Choisir entre "u" et "x"
+////// Choisir entre "u" et "x" ///////////
 
 In our case, $\boldsymbol{\overline{u}}_k^{\prime^f} = [\overline{\theta}_{k-1}]^T$, $\boldsymbol{u}_{i,k}^{\prime^f} = [\theta_{i, k-1}]^T$ and $\lambda_k = 0$, $\boldsymbol{y}_k = \boldsymbol{y}$.
 
@@ -964,7 +964,7 @@ Here is an illustration of the deterministic inflation, that increase the variab
     \label{fig:inflation}
 \end{figure}
 
-I coded it but it was finally no needed for the centrifugal pump case.
+I coded it but it finally was not needed for the centrifugal pump case.
 
 \begin{comment}
 \begin{algorithm}[h!]
@@ -997,14 +997,14 @@ I coded it but it was finally no needed for the centrifugal pump case.
 
 
 \subsection{The CONES library}
-CONES is a library coded in Python/C++, has been developed since 2022 at LMFL. % stands for "Coupling OpenFOAM with Numerical EnvironmentS" and
-Is the only code that permits online DA in CFD codes (it uses \ac{MPI} process to do it).
+CONES is a library coded in Python/C++, that has been developed since 2022 at LMFL. % stands for "Coupling OpenFOAM with Numerical EnvironmentS" and
+It is the only code that permits online DA in CFD codes (it uses \ac{MPI} process to do it).
 It's parallelized and can be used on supercomputers. It is mainly designed to work with OpenFOAM and DA codes as EnKF.\label{instants_partages}
 
 
 A specific directory structure must be observed, as outlined in \autoref{fig:CONES}.
-Let's take our OpenFOAM/EnKF example as support to explaine CONES. Concretly, on one side, $m$ OpenFOAM simulations are running with run at the same time on $n$ processors and on the other side, the EnKF run on $e$ processors (usually only one is enough).
-At the beginin, all variables are initialized on both sides, using MPI process.
+Let's take our OpenFOAM/EnKF example as support to explain CONES. Concretly, on one side, $m$ OpenFOAM simulations are running with run at the same time on $n$ processors and on the other side, the EnKF runs on $e$ processors (usually only one is enough).
+At the begining, all variables are initialized on both sides, using MPI process.
 Then, all simulation run at same time (with different initial states).
 Sampled data ($H(u_k^f)$) and 
 $
@@ -1015,8 +1015,8 @@ $
     \end{array}
     \right]^f
 $
-are send to the EnKF. Using $y_k$, EnKF algorithm can computes and send back the updated velocity field (not computed in our case) ans the parameters $\theta_k^a$ to the different ensemble members (each are different befor converging).
-With thi new parameters, the loop can be done again.
+are send to the EnKF. Using $y_k$, EnKF algorithm can compute and send back the updated velocity field (not computed in our case) and the parameters $\theta_k^a$ to the different ensemble members (each are different befor converging).
+With these new parameters, the loop can be done again.
 
 % \autoref{fig:OpenFOAM_directory_structure}:
 % décrire la structure du dossier OpenFOAM et ce que chaque fichier fait (dans mon cas de simulation)
@@ -1033,7 +1033,7 @@ With thi new parameters, the loop can be done again.
 
 %The objective of the model is to try to find same physical behaviour as the experimental data. We call that digital twin.
 
-\autoref{fig:RESEDA_Model} illustrates the model of the pump on a $yz$ plane, for $x=0$. The suction pipe has a length of $H = 10 R_1$, allowing the near-wall boundary lawer to developped. Then, a cylinder, where the IBM and MRF will be applied, containing the impeller, is define (the impeller in .stl can be find on github\footnote{\url{https://github.com/fromano88/CentrifugalPump}}).
+\autoref{fig:RESEDA_Model} illustrates the model of the pump on a $yz$ plane, for $x=0$. The suction pipe has a length of $H = 10 R_1$, allowing the near-wall boundary lawer to develop. Then, a cylinder, where the IBM and MRF will be applied, containing the impeller, is defined (the impeller in .stl can be find on github\footnote{\url{https://github.com/fromano88/CentrifugalPump}}).
 At the entrance of the impeller/outlet of the suction pipe junction and at the outlet of the impeller/inlet of the diffuser junction, there was leakage as the whole impeller was moving during the experiment.
 We assume a zero-leakage as we aren't in a very hight mass flow rate.
 
@@ -1046,14 +1046,14 @@ In our simulation, the z-axis aligns with the rotational axis, and the reference
     \label{fig:RESEDA_Model}
 \end{figure}
 
-Boundary conditions are defines as that:
+Boundary conditions are defined as follows:
 \begin{itemize}
     \item[$-$] Inlet: velocity inlet
     \item[$-$] Outlet: pressure outlet
     \item[$-$] Wall: no-slip wall
 \end{itemize}
 
-To process CFD, we need to discretize the numerical model of the pump. The mesh is generated using the \texttt{blockMesh} utility, which is a built-in OpenFOAM tool. It is composed of around 11 million hexahedral cells. (quasi only, exepted some interface, cf \autoref{fig:interfaceMesh}). We don't need complex mesh because we dont neek to fit the geometry of the impeller as we use IBM.
+To process CFD, we need to discretize the numerical model of the pump. The mesh is generated using the \texttt{blockMesh} utility, which is a built-in OpenFOAM tool. It is composed of around 11 million hexahedral cells. (quasi only, exepted some interface, cf \autoref{fig:interfaceMesh}). We don't need complex mesh because we don't need to fit the geometry of the impeller as we use IBM.
 
 \begin{figure}[H]
     \centering
@@ -1067,7 +1067,7 @@ Regarding the near-wall treatment, at the suction pipe, y + envegale 1, enabling
 blades are discretised to ensure an average of six mesh elements across their solid thickness, preventing excessively thin regions.
 
 
-The penalisation coefficients used in the \autoref{eq:IB} are defines as follow:
+The penalisation coefficients used in the \autoref{eq:IB} are defined as follows:
 
 
 \begin{align}
@@ -1256,22 +1256,19 @@ Finally, the data are truncated at line 89, where the radius exceeds 0.3~m. This
 
 
 \subparagraph{4.Shaping for CONES}
-Cones keep data in a particular way. We need to convert the data in a format that cones can read.
-From 3 files (of 10x81x125 elements), to the files \texttt{fieldCylindrical.txt}
-and \texttt{obs\_coordinates.txt}. Describe shapes... (voir ma branche CONES)
-
+CONES keep data in a particular way. We need to convert the data in a format that cones can read.
+From 3 files (of $10 \times 81 \times 125$ elements) to the files 
+\texttt{fieldCylindrical.txt} (of size $n_{\text{obs}} \times n_{\text{dim}} \times n_{\text{vars}}$ lines) 
+and \texttt{obs\_coordinates.txt} (of size $n_{\text{obs}}$ lines $\times n_{\text{dim}}$ columns).
 
 \subparagraph{5.Creation of a file for the interpolation}
 
-Finally, we need to create an \texttt{coords\_seventh.txt} file for the interpolation function in CONES.
-We don't juste use the coordinates of the points in the PIV data, beacause we want to average over the angle \(\theta\) on the pump. The numerical simulation is $\frac{2\pi}{7}$ OU $2\pi/7$ periodic, so we interpolate in 150 points over theta between 0 and 2pi/7.
-To do that, wue just take the \texttt{obs\_coordinates.txt} file and duplicate 150 times the points over the angle \(\theta\) (between -pi/7 and pi/7). In our case, we chose 150 that will aproximately correspont to the shap of a cell at this radius.
-To be consistent with axis further, we take points between -pi/7 + pi/2 and pi/7 + pi/2
+Finally, we need to create the \texttt{coords\_seventh.txt} file for the interpolation function in CONES.
+We don't just use the coordinates of the points in the PIV data, beacause we want to average over the angle \(\theta\) on the pump. The numerical simulation is $2\pi/7$ periodic, so we interpolate in 150 points over theta between 0 and $2\pi/7$. %$\frac{2\pi}{7}$
+To do that, we just take the \texttt{obs\_coordinates.txt} file and duplicate 150 times the points over the angle \(\theta\) (between $-\pi/7$ and $\pi/7$). In our case, we chose 150 that will aproximately correspond to the shap of a cell at this radius.
+To be consistent with axis further, we take points between $-\pi/7 + \pi/2$ and $\pi/7 + \pi/2$.
 
-Here is the plot of the experimental data and the numerical data (for D = 3e7 (introduire la variable)), at the same points (both are averages over time and over the angle \(\theta\)).
-
-
-
+Here is the plot of the experimental data and the numerical data (for $\mathbf{D} = (3e7, 3e7, 3e7), D_k = 3e7, D_{\omega} = 3e7$), at the same points (both are averages over time and over the angle \(\theta\)). /////// Ajouter figure ///////
 
 With the conditions specified in the \autoref{tab:pump_parameters}, and a value of 3e7 for the all five forcing parameters, we obtain these velocity and pressure profils.
 
@@ -1285,8 +1282,8 @@ With the conditions specified in the \autoref{tab:pump_parameters}, and a value 
     \label{coordsSeventh}
 \end{figure}
 
-As seen in /// Figure a référer ou mettre ici ///, \autoref{fig:polar_slice_avg_theta_trimmed}, we use five observations points on the three PIV plans.
-We are able to plot this curves, comparing the velocities of the simulation and of the PIV data.
+As seen in \autoref{fig:polar_slice_avg_theta_trimmed}, we use five observations points on the three PIV plans.
+We are able to plot these curves, comparing the velocities of the simulation and of the PIV data.
 
 \begin{figure}[H]
     \centering
@@ -1295,12 +1292,13 @@ We are able to plot this curves, comparing the velocities of the simulation and 
     \label{fig:numVSxp}
 \end{figure}
 
-Our goal is to make these curves fit as well as possible.
-We already see that there is a notable difference bteween the radial velocity in the plan at 75\%. The numerical simulation predict a negative velocity instead of a positive one. This is explaned by a non physical recirculation buble as you can see in the %\autoref{...}
+Our goal is to make these curves fit as much as possible.
+We already see that there is a notable difference beteween the experimental and numercial radial velocity in the plan at 75\%. The numerical simulation predicts a negative velocity instead of a positive one. This is explained by a non physical recirculation bubble as you can see in the /// CITER FIGURE ////%\autoref{...}
 
-A good indicator of the accuracy of the simulation is the performance of the pump. It's directly linked to the pressure difference between the outlet and the inlet. As seen // previously in this chapter ?? //, we should obtain around 415Pa. In our case, we obtain a pressure difference of around 306Pa, that is far from what we excpect.
+A good indicator of the accuracy of the simulation is the performance of the pump. It's directly linked to the pressure difference between the outlet and the inlet. As seen // previously in this chapter -> Actuellement décrit ci-dessous ET un peu plus bas //, we should obtain around 415Pa. In our case, we obtain a pressure difference of around 306Pa, far from what we expect.
 
 \begin{figure}[H]
+    \centering
     \includegraphics[width=0.4\textwidth]{images/numericalPump/diffuseurMesh.png}
     \caption{Diffuser Mesh}
     \label{diffuserMesh}
@@ -1345,7 +1343,7 @@ Graçe aux données xp (mentionné partie 2.1.2, on peut faire de la DA)
 Explication de coords\_seventh.txt, coords\_360.txt et coords\_7.txt
 
 
-In this work, we aim to improve the numerical model of a centrifugal pump using experimental data obtained from PIV. On one side, we have a numerical simulation of the pump (the digital twin), and on the other, experimental PIV measurements. To combine the strengths of both, we use data assimilation, a method that updates a numerical model using real-world data.
+In this work, we aim to improve the numerical model of a centrifugal pump using experimental data obtained from PIV. On one side, we have a numerical simulation of the pump (the digital twin), and on the other side, experimental PIV measurements. To combine the strengths of both, we use data assimilation, a method that updates a numerical model using real-world data.
 We specifically use the EnKF, a data assimilation technique that relies on an ensemble of simulations to estimate and reduce uncertainty in the model. The process can be summarized in two main steps:
 
 \begin{enumerate}
