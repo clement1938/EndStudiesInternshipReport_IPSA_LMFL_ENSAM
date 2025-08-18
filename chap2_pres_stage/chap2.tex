@@ -4,6 +4,8 @@
 %– Les connaissances techniques acquises doivent transparaître dans le document. Le correcteur évaluera si celui-ci fait état d’une maîtrise réelle des outils (informatiques, mécaniques, etc.) utilisés pendant le stage. En outre, il estimera le niveau des connaissances techniques acquises que la rédaction du rapport aura su mettre en évidence.
 
 MIEUX INTRODUIRE PK CE STAGE, DA EXEMPLE MTO ETC -> Pa
+Limitations IBM à améliorer avec DA
+Graçe aux données xp (mentionné partie 2.1.2, on peut faire de la DA)
 
 To understand fluid behaviour, scientists rely on physical measurements and governing equations. While analytical solutions exist for simple cases, more complex flows require numerical simulations. However, high-fidelity simulations remain too computationally expensive for industrial use.
 This limitation has led to the development of approximate models involving tunable parameters. These parameters are calibrated for specific flow conditions, using experimental data. Techniques such as the \ac{IBM}, which will be detailed later, use a global approach, while the physics of the flow cans locally be very different. That's why it rely on such high-fidelity data calibration.
@@ -1157,8 +1159,6 @@ The ten columns are corrresponding to%:
 \end{center}
 
 And the 10,125 lines correspond to the 81 locations over x and 125 locations over y of the PIV.
-
-
 The PIV data is acquired in a rectangular zone of 0.08 m x 0.124 m.
 The cathesian coordinates are given in a local system, where the absolute origin is at the center of the pump.
 
@@ -1214,7 +1214,11 @@ The cathesian coordinates are given in a local system, where the absolute origin
     \caption{PIV acquisition zone in the RESEDA experiment, with orientation of the $(r,\theta)$ velocity components.}
 \end{figure}
 
-
+\textbf{Pre-processing on the velocity data}\footnote{
+In the numerical simulation, the z-axis is toward the center of the Earth, unlike in the experiment, where it is upwards.
+Then, the wheel rotates counterclockwise in the numerical simulation frame and counterclockwise in the experiment.
+Here, the numerical simulation formalism was the reference for the frame.
+}
 
 \subparagraph{1.}
 
@@ -1237,29 +1241,23 @@ with $R_{2} = 257.5$ mm
 
 \subparagraph{2. Average}
 
-Since we are dealing with a stationary case (time-invariant), we perform a time average of the data.
-
-There are approximately 49 velocity maps (i.e., 49 files) per impeller rotation. To compute the time-averaged field, we average over the azimuthal angle \(\phi\), which spans from 0 to approximately 211 radians. This corresponds to the 49 snapshots.
-
+Since we are dealing with a stationary simulation (time-invariant), we perform a time average of the data.
+There are approximately 49 velocity maps (i.e., 49 files) per impeller rotation. To compute the time-averaged field, we average over the azimuthal angle \(\theta\).%, which spans from 0 to approximately 211 radians. This corresponds to the 49 snapshots.
 These files are distributed across six directories, each corresponding to a different acquisition plane.
-
 
 
 \subparagraph{3. Sampling}
 
-We further average the data between radii \(R_1\) and \(R_2\), resulting in three files of size \(10 \times 81 \times 125\).
-
+We further average the data between radii \(R_1\) and \(R_2\), resulting in three files of size $81 \times 125$ lines and $10$ columns.
 At this stage, we retain only the data along the line \(x = 0.0245\). More precisely, we average the data between \(x = 0.024\) and \(x = 0.025\).
-
 Finally, the data are truncated at line 89, where the radius exceeds 0.3~m. This truncation is necessary due to laser reflections on the pump casing during the PIV experiments.
-
 
 
 \subparagraph{4.Shaping for CONES}
 CONES keep data in a particular way. We need to convert the data in a format that cones can read.
 From 3 files (of $10 \times 81 \times 125$ elements) to the files 
 \texttt{fieldCylindrical.txt} (of size $n_{\text{obs}} \times n_{\text{dim}} \times n_{\text{vars}}$ lines) 
-and \texttt{obs\_coordinates.txt} (of size $n_{\text{obs}}$ lines $\times n_{\text{dim}}$ columns).
+and \texttt{obs\_coordinates.txt} (of size $n_{\text{obs}}$ lines and $n_{\text{dim}}$ columns).
 
 \subparagraph{5.Creation of a file for the interpolation}
 
@@ -1267,6 +1265,63 @@ Finally, we need to create the \texttt{coords\_seventh.txt} file for the interpo
 We don't just use the coordinates of the points in the PIV data, beacause we want to average over the angle \(\theta\) on the pump. The numerical simulation is $2\pi/7$ periodic, so we interpolate in 150 points over theta between 0 and $2\pi/7$. %$\frac{2\pi}{7}$
 To do that, we just take the \texttt{obs\_coordinates.txt} file and duplicate 150 times the points over the angle \(\theta\) (between $-\pi/7$ and $\pi/7$). In our case, we chose 150 that will aproximately correspond to the shap of a cell at this radius.
 To be consistent with axis further, we take points between $-\pi/7 + \pi/2$ and $\pi/7 + \pi/2$.
+
+
+\paragraph{Pressure data}
+
+In addition to the nine pressure tapes on the diffuser, Fan et al.~\cite{fanEffectLeakagePerformanceb} has also captured (\autoref{fig:PumpPerf}) the inlet and outlet pressure that allows to compute the global performance of the pump.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\textwidth]{images/experimentalPump/perfo2.png}
+    \caption{Overall pump performance versus reduced pump flow rate Q}
+    \label{fig:PumpPerf}
+\end{figure}
+
+As we are at $Q/Q_d = 1$, we can retreive \[ \frac{\Delta P}{\rho U^2} = 0.4 \Rightarrow \Delta p = 0.4 \times \rho \times U^2 = 0.4 \times 1.225 \times 32.24^2 \approx 415~\text{Pa} \]
+
+\newpage
+\section{IBM preliminary results and modifications on OpenFOAM}
+\label{sec:IBM_preliminary_results}
+
+\textbf{IBM preliminary results}
+
+
+In this work, we aim to improve the numerical model of a centrifugal pump using experimental data obtained from PIV. On one side, we have a numerical simulation of the pump (the digital twin), and on the other side, experimental PIV measurements. To combine the strengths of both, we use data assimilation, a method that updates a numerical model using real-world data.
+We specifically use the EnKF, a data assimilation technique that relies on an ensemble of simulations to estimate and reduce uncertainty in the model. The process can be summarized in two main steps:
+
+\begin{enumerate}
+    \item \textbf{Forecast Step} We run a steady-state numerical simulation of the pump using the Multiple Reference Frame (MRF) and the IBM methods. This yields an ensemble of model states, representing the expected flow field within the pump.
+    \item \textbf{Analysis Step} We compare the simulation results with the experimental PIV data. To do this, we interpolate the PIV measurements onto the mesh of the numerical model, creating an ensemble of observation vectors. We then compute the difference between the simulated and measured data, known as the innovation (see mathematical formulation in \autoref{subsec:CFD_governing_equations}). This innovation is used to update the ensemble through the EnKF algorithm, improving the numerical model.
+\end{enumerate}
+
+The measurements are done as folow:
+
+\begin{enumerate}
+    \item \textbf{Nature of the Numerical Simulation} The simulation is stationary (time-independent) and uses the MRF approach to model rotation. While the velocity field remains constant over time, it varies in space, especially in the diffuser region. Because of the pump's geometry, we expect a periodic velocity pattern that repeats every 1/7th of a revolution (due to the 7 blades). However, this repeating pattern is not clearly visible in unsteady simulations due to wake deformation.
+    \item \textbf{Nature of the Experimental Data} The PIV system captures 49 images per full rotor revolution, meaning there are 7 images between two successive blades. In the rotating frame of reference, each image corresponds to a phase shift of approximately 360°/49.
+\end{enumerate}
+
+
+Ideally, to compare consistent datasets, we could run a time-resolved unsteady simulation and synchronize it with the PIV snapshots. However, for this initial study, we chose to work with a steady MRF simulation.
+
+Although we could attempt to reconstruct the spatial velocity field from the phase-averaged PIV data (as done in [citer article Antoine]), there are two main limitations:
+
+To address these issues, we opted to average the PIV data over time, which is equivalent to spatial (azimuthal) averaging in the rotating frame. On the simulation side, we therefore perform azimuthal averaging of the numerical results to make them consistent with the experimental data.
+
+This approach ensures that the data fed into the EnKF—both the forecast and the observations—are comparable and compatible in both spatial and statistical sense.
+
+
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=0.5\textwidth]{images/other/queue_IRENE.png}
+%    \caption{IRENE queue}
+%    \label{queue_IRENE}
+%\end{figure}
+
+
+
+
 
 Here is the plot of the experimental data and the numerical data (for $\mathbf{D} = (3e7, 3e7, 3e7), D_k = 3e7, D_{\omega} = 3e7$), at the same points (both are averages over time and over the angle \(\theta\)). /////// Ajouter figure ///////
 
@@ -1304,80 +1359,7 @@ A good indicator of the accuracy of the simulation is the performance of the pum
     \label{diffuserMesh}
 \end{figure}
 
-
-\paragraph{Pressure data}
-
-In addition to the nine pressure tapes on the diffuser, M. Fan has also captured (\autoref{fig:PumpPerf}) the inlet and outlet pressure that allows to compute the global performance of the pump.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.65\textwidth]{images/experimentalPump/perfo2.png}
-    \caption{Overall pump performance versus reduced pump flow rate Q}
-    \label{fig:PumpPerf}
-\end{figure}
-
-As we are at $Q/Q_d = 1$, we can retreive \[ \frac{\Delta P}{\rho U^2} = 0.4 \Rightarrow \Delta p = 0.4 \times \rho \times U^2 = 0.4 \times 1.225 \times 32.24^2 \approx 415~\text{Pa} \]
-
-
-/////////
-
-
-
-Dans la simulation numérique, l'axe z est vers le centre de la Terre, contrairement à l'expérience où il est vers le haut.
-La roue tourne dans le sens trigonométrique dans le repère de la simulation numérique et dans le sens antitrigonométrique dans l'expérimentation.
-Actuellement, je respecte le formalisme de la simu num pour le repère.
-
-Parler des coefficients de relaxation.
-
-/////////
-
-Limitations IBM à améliorer avec DA
-Graçe aux données xp (mentionné partie 2.1.2, on peut faire de la DA)
-
-
-
-\newpage
-\section{IBM preliminary results}
-\label{sec:IBM_preliminary_results}
-
 Explication de coords\_seventh.txt, coords\_360.txt et coords\_7.txt
-
-
-In this work, we aim to improve the numerical model of a centrifugal pump using experimental data obtained from PIV. On one side, we have a numerical simulation of the pump (the digital twin), and on the other side, experimental PIV measurements. To combine the strengths of both, we use data assimilation, a method that updates a numerical model using real-world data.
-We specifically use the EnKF, a data assimilation technique that relies on an ensemble of simulations to estimate and reduce uncertainty in the model. The process can be summarized in two main steps:
-
-\begin{enumerate}
-    \item \textbf{Forecast Step} We run a steady-state numerical simulation of the pump using the Multiple Reference Frame (MRF) and the IBM methods. This yields an ensemble of model states, representing the expected flow field within the pump.
-    \item \textbf{Analysis Step} We compare the simulation results with the experimental PIV data. To do this, we interpolate the PIV measurements onto the mesh of the numerical model, creating an ensemble of observation vectors. We then compute the difference between the simulated and measured data, known as the innovation (see mathematical formulation in \autoref{subsec:CFD_governing_equations}). This innovation is used to update the ensemble through the EnKF algorithm, improving the numerical model.
-\end{enumerate}
-
-The measurements are done as folow:
-
-\begin{enumerate}
-    \item \textbf{Nature of the Numerical Simulation} The simulation is stationary (time-independent) and uses the MRF approach to model rotation. While the velocity field remains constant over time, it varies in space—especially in the diffuser region. Because of the pump's geometry, we expect a periodic velocity pattern that repeats every 1/7th of a revolution (due to the 7 blades). However, this repeating pattern is not clearly visible in unsteady simulations due to wake deformation.
-    \item \textbf{Nature of the Experimental Data} The PIV system captures 49 images per full rotor revolution, meaning there are 7 images between two successive blades. In the rotating frame of reference, each image corresponds to a phase shift of approximately 360°/49.
-\end{enumerate}
-
-
-Ideally, to compare consistent datasets, we could run a time-resolved unsteady simulation and synchronize it with the PIV snapshots. However, for this initial study, we chose to work with a steady MRF simulation.
-
-Although we could attempt to reconstruct the spatial velocity field from the phase-averaged PIV data (as done in [citer article Antoine]), there are two main limitations:
-
-To address these issues, we opted to average the PIV data over time, which is equivalent to spatial (azimuthal) averaging in the rotating frame. On the simulation side, we therefore perform azimuthal averaging of the numerical results to make them consistent with the experimental data.
-
-This approach ensures that the data fed into the EnKF—both the forecast and the observations—are comparable and compatible in both spatial and statistical sense.
-
-
-%\begin{figure}[H]
-%    \centering
-%    \includegraphics[width=0.5\textwidth]{images/other/queue_IRENE.png}
-%    \caption{IRENE queue}
-%    \label{queue_IRENE}
-%\end{figure}
-
-
-
-
 
 
 potentiellement en annexe
@@ -1416,9 +1398,9 @@ Inflation...
 
 At pump flow rate = pump design flow rate So Q?/Q? =1
 
-\subsection{Modifications on OpenFOAM} %Preparation   %  and CONES for the DA
+%\subsection{Modifications on OpenFOAM} %Preparation   %  and CONES for the DA
 
-//// Seule sous-section ??? //////
+\textbf{Modifications on OpenFOAM}
 
 Check consistance U, u, P, p, gras, italique,... dans les équations
 
@@ -1474,6 +1456,10 @@ Parler des modifs dans le code ici.
 - Reduction of the pipe (with the research of the velocity inlet condition)
 
 Toujours mentionner les paramètres utilisés (dans le controlDict et le CONESDict)
+
+
+Parler des coefficients de relaxation.
+
 
 
 \section{Application of the DA}
