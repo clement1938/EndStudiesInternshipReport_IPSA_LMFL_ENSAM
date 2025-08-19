@@ -1323,7 +1323,7 @@ As we are at $Q/Q_d = 1$, we can retreive:
     \Delta P_{P} = \rho U_{2}^{2} \eta
 \end{equation}
 
-AAAAFor the high-fidelity value, we can find experimental data form the same pump \cite{fanEffectLeakagePerformanceb}, that's match with M. Fan simulation (eq to approximately \(\eta\) = 0.4). So wa can also compute:
+For the high-fidelity value, we can find experimental data form the same pump \cite{fanEffectLeakagePerformanceb}, that's match with M. Fan simulation (eq to approximately \(\eta\) = 0.4). So wa can also compute:
 
 ${U_{2}}^2$ is the impeller tip speed computed from the impeller diameter and the rotation speed of the pump.
 
@@ -1390,73 +1390,46 @@ Instead of read coords, the interpolation function read the data in a file named
 Then, it computes the interpolation and average the data over the angle \(\theta\) (between -$\pi/7$ and $\pi/7$), by doing a somme over \(\theta\) and dividing by the number of points (150). To go back from 150x5x3x3 (to detail) to 5x3x3 data. All of those computation are mad in a cylindrical referencial.}
 
 
-///////////////////////////////
 
-////////// 
-So the state vector is now 46.
-Incertitude on p will be less to take more take it account.
-Inflation...
 
-At pump flow rate = pump design flow rate So Q?/Q? =1
-
+%At pump flow rate = pump design flow rate So Q?/Q? =1
 %\subsection{Modifications on OpenFOAM} %Preparation   %  and CONES for the DA
-
-\textbf{Modifications on OpenFOAM}
-
-Check consistance U, u, P, p, gras, italique,... dans les équations
 
 
 
 %S'aider du plan de la présentation MALEAF + thèse M
-
 %Expliquer comment j'applique la DA sur le cas test de la pompe centrifuge (pas d'equation)
 
-Nous avons fait l'EnKF sans l'état\dots
-Sans inflation pour commencer. Si on converge vers une solution qui ne nous satisfait pas, on peut essayer d'ajouter... Cela permet de s'échaper d'un minimum local en ajoutant du bruit artificiellement. 
-
-Nous avons fait une simu RANS mais nous aurion pu faire une simu URANS (ou LES ou DDES) avec un modèle de turbulence... 
-
-L'expérience montre un ordre de grandeur de centaines d'itération entre les phases d'analyse, mais cela dépend beaucoup du cas.
-Il en est de même pour le nombre de phases d'analyse.
-Supposons 1000 itération en moyenne entre chaque phase d'analyse, et 300 phases d'analyse, cela nous fait 300 000 itérations à simuler, soit 93h, sur env. 2800 coeurs, soit 264kh.processeur de calcul.
-
-Comment calculer la variance que je veux mettre ?
-Expérience: 5\%
-De mon coté: je vise qu'en moyenne un membre d'ensemble ait un écart de 1e7 par rapport au temps précédent (pour des valeurs autour de 5e7), donc, pour 30 membres d'ensemble, environ 95\% = 2 sigma dans 5e7+-1e7, càd sigma = 0.5e7 = 10\%. Ensuite, le nombre d'itération entre les phases d'analyse est déterminé en regardans combien d'itération sont nécessaires pour faire varier la solution dans le diffuser (influe, rapidement, converge doucement mais ce qui nous intéresse c'est que ça prenne la tendace) lorsqu'un paramètre de forcage est modifié (supposé très inférieure pour la turbulence car appliquée de partout)
-
-The observation window was defined by observing the number of iterations required for the influence of the IBM to reach the diffuser and take the form of the converged result. We are not interested in the turbulence parameters to determine the observation window because they are present throughout the domain, their influence is almost direct (not necessarily their convergence). We chose 800 iterations
-
-
-Pb de la DA: plus rapide que DNS mais toujours plus lent que RANS et le temps d'attente et de calcul sur supercalculateur (sur 4000 processeurs) est de l'orde de plusieurs jours. On peut donc se demander si la DA est vraiment utile dans ce cas. En effet, la DA est plus rapide que la DNS mais pas que la RANS. Cependant, il faut prendre en compte le fait que la DA permet de réduire le temps de calcul de la simulation numérique en permettant d'optimiser les paramètres de l'IBM. De plus, la DA peut être utilisée pour d'autres cas d'étude où la DNS est trop coûteuse.
 
 
 
-Pb perso: jusqu'à plusieurs jours d'attente pour lancer une simu.
 
-
-Tout ce qu'il y a dans le CONES dict
-Parler des modifs dans le code ici.
-
-
-
-- Reduction of the pipe (with the research of the velocity inlet condition)
-
-Toujours mentionner les paramètres utilisés (dans le controlDict et le CONESDict)
-
-
-Parler des coefficients de relaxation.
-
-
-
-\section{Application of the DA}
+\section{First simple application of the DA}
 \label{sec:Application_of_the_DA}
 
-\section{Results}
+As represented on the \autoref{fig:CONES}, we need to adapt the OpenFOAM and CONES codes to apply the EnKF on the centrifugal pump case.
+
+\textbf{Modifications on OpenFOAM}
+
+
+\textbf{Adaptations on CONES}
+
+\textbf{Parameters}
+
+
+
+\section{Analysis and Results}
 \label{sec:Results}
 
 ///// Reprendre les objectifs définis à la fin de la section 2.1 //////
 
+Nous avons fait l'EnKF sans l'état\dots
+Sans inflation pour commencer. Si on converge vers une solution qui ne nous satisfait pas, on peut essayer d'ajouter... Cela permet de s'échaper d'un minimum local en ajoutant du bruit artificiellement. 
+
 Comparer les 2-3 résultats: (avant DA, déjà fait section précédente), après simple et "complex" DA
+So the state vector is now 46.
+Incertitude on p will be less to take more take it account.
+Inflation...
 
 Explication de coords\_seventh.txt, coords\_360.txt et coords\_7.txt
 \begin{figure}[H]
@@ -1514,6 +1487,40 @@ Essayer d'améliorer le rendu de l'image ci-dessous en mettant la pompe en trans
     \label{fig:LIC}
 \end{figure}
 
+
+Nous avons fait une simu RANS mais nous aurion pu faire une simu URANS (ou LES ou DDES) avec un modèle de turbulence... 
+
+L'expérience montre un ordre de grandeur de centaines d'itération entre les phases d'analyse, mais cela dépend beaucoup du cas.
+Il en est de même pour le nombre de phases d'analyse.
+Supposons 1000 itération en moyenne entre chaque phase d'analyse, et 300 phases d'analyse, cela nous fait 300 000 itérations à simuler, soit 93h, sur env. 2800 coeurs, soit 264kh.processeur de calcul.
+
+Comment calculer la variance que je veux mettre ?
+Expérience: 5\%
+De mon coté: je vise qu'en moyenne un membre d'ensemble ait un écart de 1e7 par rapport au temps précédent (pour des valeurs autour de 5e7), donc, pour 30 membres d'ensemble, environ 95\% = 2 sigma dans 5e7+-1e7, càd sigma = 0.5e7 = 10\%. Ensuite, le nombre d'itération entre les phases d'analyse est déterminé en regardans combien d'itération sont nécessaires pour faire varier la solution dans le diffuser (influe, rapidement, converge doucement mais ce qui nous intéresse c'est que ça prenne la tendace) lorsqu'un paramètre de forcage est modifié (supposé très inférieure pour la turbulence car appliquée de partout)
+
+The observation window was defined by observing the number of iterations required for the influence of the IBM to reach the diffuser and take the form of the converged result. We are not interested in the turbulence parameters to determine the observation window because they are present throughout the domain, their influence is almost direct (not necessarily their convergence). We chose 800 iterations
+
+
+Pb de la DA: plus rapide que DNS mais toujours plus lent que RANS et le temps d'attente et de calcul sur supercalculateur (sur 4000 processeurs) est de l'orde de plusieurs jours. On peut donc se demander si la DA est vraiment utile dans ce cas. En effet, la DA est plus rapide que la DNS mais pas que la RANS. Cependant, il faut prendre en compte le fait que la DA permet de réduire le temps de calcul de la simulation numérique en permettant d'optimiser les paramètres de l'IBM. De plus, la DA peut être utilisée pour d'autres cas d'étude où la DNS est trop coûteuse.
+
+
+
+Pb perso: jusqu'à plusieurs jours d'attente pour lancer une simu.
+
+
+Tout ce qu'il y a dans le CONES dict
+Parler des modifs dans le code ici.
+
+
+
+- Reduction of the pipe (with the research of the velocity inlet condition)
+
+Toujours mentionner les paramètres utilisés (dans le controlDict et le CONESDict)
+
+
+Parler des coefficients de relaxation.
+
+
 Explication des écarts par la bulle de recirculation.
 
 \subsection{Conclusion ans perspective}
@@ -1531,6 +1538,7 @@ f(obs) -> controle de la puissance
 Pour ça, se ref au sujet de thèse de Tarane
 obs pression --> modèle de reconstruction du champ de vitesse --> modèle de reconaissance de patternes de décrochage --> contrôle de la puissance
 Peut-être faire deux filtres de Kalman imbriqués ? hyperparamètres type fenetre observation, variance initiale, ...
+
 
 
 
@@ -1569,3 +1577,4 @@ The EnKF method will be used to assimilate data from the flow at the observation
 
 Limitations IBM à améliorer avec DA
 Graçe aux données xp (mentionné partie 2.1.2, on peut faire de la DA)
+Check consistance U, u, P, p, gras, italique,... dans les équations
