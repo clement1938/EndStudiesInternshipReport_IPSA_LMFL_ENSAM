@@ -3,9 +3,9 @@
 %– Le récit de l’expérience préprofessionnelle doit faire état de toutes les fonctions exercées par le stagiaire à son poste. Il doit comporter des développements techniques (illustrés par des schémas expliqués et commentés, par exemple), mais il s’agit avant tout de donner au lecteur une idée de ce que furent l’emploi du temps du stagiaire, ses tâches quotidiennes, les contraintes du métier, la nature des relations humaines dans cet environnement, les difficultés rencontrées et les résultats obtenus.
 %– Les connaissances techniques acquises doivent transparaître dans le document. Le correcteur évaluera si celui-ci fait état d’une maîtrise réelle des outils (informatiques, mécaniques, etc.) utilisés pendant le stage. En outre, il estimera le niveau des connaissances techniques acquises que la rédaction du rapport aura su mettre en évidence.
 
-MIEUX INTRODUIRE PK CE STAGE, DA EXEMPLE MTO ETC -> Pa
-Limitations IBM à améliorer avec DA
-Graçe aux données xp (mentionné partie 2.1.2, on peut faire de la DA)
+% MIEUX INTRODUIRE PK CE STAGE, DA EXEMPLE MTO ETC -> Pa
+
+To introduce the topic of my internship, let's take a simple example: the weather forecast. Meteorologists use data assimilation to improve weather predictions by combining numerical models with real-time observations. This process helps correct model errors and provides more accurate forecasts.
 
 To understand fluid behaviour, scientists rely on physical measurements and governing equations. While analytical solutions exist for simple cases, more complex flows require numerical simulations. However, high-fidelity simulations remain too computationally expensive for industrial use.
 This limitation has led to the development of approximate models involving tunable parameters. These parameters are calibrated for specific flow conditions, using experimental data. Techniques such as the \ac{IBM}, which will be detailed later, use a global approach, while the physics of the flow cans locally be very different. That's why it rely on such high-fidelity data calibration.
@@ -1220,6 +1220,28 @@ Then, the wheel rotates counterclockwise in the numerical simulation frame and c
 Here, the numerical simulation formalism was the reference for the frame.
 }
 
+In this work, we aim to improve the numerical model of a centrifugal pump using experimental data obtained from PIV. On one side, we have a numerical simulation of the pump (the digital twin), and on the other side, experimental PIV measurements. To combine the strengths of both, we use data assimilation, a method that updates a numerical model using real-world data.
+We specifically use the EnKF, a data assimilation technique that relies on an ensemble of simulations to estimate and reduce uncertainty in the model. The process can be summarized in two main steps:
+
+\begin{enumerate}
+    \item \textbf{Forecast Step} We run a steady-state numerical simulation of the pump using the Multiple Reference Frame (MRF) and the IBM methods. This yields an ensemble of model states, representing the expected flow field within the pump.
+    \item \textbf{Analysis Step} We compare the simulation results with the experimental PIV data. To do this, we interpolate the PIV measurements onto the mesh of the numerical model, creating an ensemble of observation vectors. We then compute the difference between the simulated and measured data, known as the innovation (see mathematical formulation in \autoref{subsec:CFD_governing_equations}). This innovation is used to update the ensemble through the EnKF algorithm, improving the numerical model.
+\end{enumerate}
+
+The measurements are done as folow:
+
+\begin{enumerate}
+    \item \textbf{Nature of the Numerical Simulation} The simulation is stationary (time-independent) and uses the MRF approach to model rotation. While the velocity field remains constant over time, it varies in space, especially in the diffuser region. Because of the pump's geometry, we expect a periodic velocity pattern that repeats every 1/7th of a revolution (due to the 7 blades). However, this repeating pattern is not clearly visible in unsteady simulations due to wake deformation.
+    \item \textbf{Nature of the Experimental Data} The PIV system captures 49 images per full rotor revolution, meaning there are 7 images between two successive blades. In the rotating frame of reference, each image corresponds to a phase shift of approximately 360°/49.
+\end{enumerate}
+
+
+Ideally, to compare consistent datasets, we could run a time-resolved unsteady simulation and synchronize it with the PIV snapshots. However, for this initial study, we chose to work with a steady MRF simulation.
+Although we could attempt to reconstruct the spatial velocity field from the phase-averaged PIV data (as done by Dazin et al. \cite{dazinHighspeedStereoscopicPIV2011a}), there are two main limitations:
+
+To address these issues, we opted to average the PIV data over time, which is equivalent to spatial (azimuthal) averaging in the rotating frame. On the simulation side, we therefore perform azimuthal averaging of the numerical results to make them consistent with the experimental data.
+This approach ensures that the data fed into the EnKF, both the forecast and the observations, are comparable and compatible in both spatial and statistical sense.
+
 \subparagraph{1.}
 
 First, we need to determine how to convert the coordinates from the local system to the absolute system.
@@ -1262,73 +1284,19 @@ and \texttt{obs\_coordinates.txt} (of size $n_{\text{obs}}$ lines and $n_{\text{
 \subparagraph{5.Creation of a file for the interpolation}
 
 Finally, we need to create the \texttt{coords\_seventh.txt} file for the interpolation function in CONES.
-We don't just use the coordinates of the points in the PIV data, beacause we want to average over the angle \(\theta\) on the pump. The numerical simulation is $2\pi/7$ periodic, so we interpolate in 150 points over theta between 0 and $2\pi/7$. %$\frac{2\pi}{7}$
+We don't just use the coordinates of the points in the PIV data, beacause we want to average over the angle \(\theta\) on the pump. The numerical simulation is $2\pi/7$ periodic, so we interpolate in 150 points over theta between 0 and $2\pi/7$, as illustrated in the \autoref{fig:diffuserMesh}. %$\frac{2\pi}{7}$
 To do that, we just take the \texttt{obs\_coordinates.txt} file and duplicate 150 times the points over the angle \(\theta\) (between $-\pi/7$ and $\pi/7$). In our case, we chose 150 that will aproximately correspond to the shap of a cell at this radius.
 To be consistent with axis further, we take points between $-\pi/7 + \pi/2$ and $\pi/7 + \pi/2$.
-
-
-\paragraph{Pressure data}
-
-In addition to the nine pressure tapes on the diffuser, Fan et al.~\cite{fanEffectLeakagePerformanceb} has also captured (\autoref{fig:PumpPerf}) the inlet and outlet pressure that allows to compute the global performance of the pump.
+\footnote{Concretely, to average the data over the angle \(\theta\), we modify the interpolation function in CONES.
+Instead of read coords, the interpolation function read the data in a file named \texttt{coords\_seventh.txt}.
+Then, it computes the interpolation and average the data over the angle \(\theta\) (between -$\pi/7$ and $\pi/7$), by doing a somme over \(\theta\) and dividing by the number of points (150). To go back from 150x5x3x3 (to detail) to 5x3x3 data. All of those computation are mad in a cylindrical referencial.}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.65\textwidth]{images/experimentalPump/perfo2.png}
-    \caption{Overall pump performance versus reduced pump flow rate Q}
-    \label{fig:PumpPerf}
+    \includegraphics[width=0.4\textwidth]{images/numericalPump/diffuseurMesh.png}
+    \caption{Imaginary points to compute the average of the data over the angle \(\theta\) in the diffuser}
+    \label{fig:diffuserMesh}
 \end{figure}
-
-As we are at $Q/Q_d = 1$, we can retreive \[ \frac{\Delta P}{\rho U^2} = 0.4 \Rightarrow \Delta p = 0.4 \times \rho \times U^2 = 0.4 \times 1.225 \times 32.24^2 \approx 415~\text{Pa} \]
-
-\newpage
-\section{IBM preliminary results and modifications on OpenFOAM}
-\label{sec:IBM_preliminary_results}
-
-\textbf{IBM preliminary results}
-
-
-In this work, we aim to improve the numerical model of a centrifugal pump using experimental data obtained from PIV. On one side, we have a numerical simulation of the pump (the digital twin), and on the other side, experimental PIV measurements. To combine the strengths of both, we use data assimilation, a method that updates a numerical model using real-world data.
-We specifically use the EnKF, a data assimilation technique that relies on an ensemble of simulations to estimate and reduce uncertainty in the model. The process can be summarized in two main steps:
-
-\begin{enumerate}
-    \item \textbf{Forecast Step} We run a steady-state numerical simulation of the pump using the Multiple Reference Frame (MRF) and the IBM methods. This yields an ensemble of model states, representing the expected flow field within the pump.
-    \item \textbf{Analysis Step} We compare the simulation results with the experimental PIV data. To do this, we interpolate the PIV measurements onto the mesh of the numerical model, creating an ensemble of observation vectors. We then compute the difference between the simulated and measured data, known as the innovation (see mathematical formulation in \autoref{subsec:CFD_governing_equations}). This innovation is used to update the ensemble through the EnKF algorithm, improving the numerical model.
-\end{enumerate}
-
-The measurements are done as folow:
-
-\begin{enumerate}
-    \item \textbf{Nature of the Numerical Simulation} The simulation is stationary (time-independent) and uses the MRF approach to model rotation. While the velocity field remains constant over time, it varies in space, especially in the diffuser region. Because of the pump's geometry, we expect a periodic velocity pattern that repeats every 1/7th of a revolution (due to the 7 blades). However, this repeating pattern is not clearly visible in unsteady simulations due to wake deformation.
-    \item \textbf{Nature of the Experimental Data} The PIV system captures 49 images per full rotor revolution, meaning there are 7 images between two successive blades. In the rotating frame of reference, each image corresponds to a phase shift of approximately 360°/49.
-\end{enumerate}
-
-
-Ideally, to compare consistent datasets, we could run a time-resolved unsteady simulation and synchronize it with the PIV snapshots. However, for this initial study, we chose to work with a steady MRF simulation.
-
-Although we could attempt to reconstruct the spatial velocity field from the phase-averaged PIV data (as done in [citer article Antoine]), there are two main limitations:
-
-To address these issues, we opted to average the PIV data over time, which is equivalent to spatial (azimuthal) averaging in the rotating frame. On the simulation side, we therefore perform azimuthal averaging of the numerical results to make them consistent with the experimental data.
-
-This approach ensures that the data fed into the EnKF—both the forecast and the observations—are comparable and compatible in both spatial and statistical sense.
-
-
-%\begin{figure}[H]
-%    \centering
-%    \includegraphics[width=0.5\textwidth]{images/other/queue_IRENE.png}
-%    \caption{IRENE queue}
-%    \label{queue_IRENE}
-%\end{figure}
-
-
-
-
-
-Here is the plot of the experimental data and the numerical data (for $\mathbf{D} = (3e7, 3e7, 3e7), D_k = 3e7, D_{\omega} = 3e7$), at the same points (both are averages over time and over the angle \(\theta\)). /////// Ajouter figure ///////
-
-With the conditions specified in the \autoref{tab:pump_parameters}, and a value of 3e7 for the all five forcing parameters, we obtain these velocity and pressure profils.
-
-%"Résultats de la simulation avec 3e5" -> 3e7 avec image
-
 
 \begin{figure}[H]
     \centering
@@ -1337,61 +1305,94 @@ With the conditions specified in the \autoref{tab:pump_parameters}, and a value 
     \label{coordsSeventh}
 \end{figure}
 
-As seen in \autoref{fig:polar_slice_avg_theta_trimmed}, we use five observations points on the three PIV plans.
-We are able to plot these curves, comparing the velocities of the simulation and of the PIV data.
+\paragraph{Pressure data}
+
+In addition to the nine pressure tapes on the diffuser, Dazin et al.~\cite{dazinHighspeedStereoscopicPIV2011a} has also captured (\autoref{fig:PumpPerf}) the inlet and outlet pressure that allows to compute the global performance of the pump, that match with M. Fan simulation \cite{fanEffectLeakagePerformanceb}% (eq to approximately \(\eta\) = 0.4).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\textwidth]{images/experimentalPump/perfo2.png}
+    \caption{Overall pump performance versus reduced pump flow rate Q\cite{dazinHighspeedStereoscopicPIV2011a}}
+    \label{fig:PumpPerf}
+\end{figure}
+
+As we are at $Q/Q_d = 1$, we can retreive:
+
+\begin{equation}
+    \frac{\Delta P_{P}}{\rho U_{2}^{2}} = \eta \Leftrightarrow
+    \Delta P_{P} = \rho U_{2}^{2} \eta \Leftrightarrow
+\end{equation}
+
+For the high-fidelity value, we can find experimental data form the same pump \cite{fanEffectLeakagePerformanceb}, that's match with M. Fan simulation (eq to approximately \(\eta\) = 0.4). So wa can also compute:
+
+${U_{2}}^2$ is the impeller tip speed computed from the impeller diameter and the rotation speed of the pump.
+
+\begin{equation}
+    U_{2} = {(\Omega * R2)}^2 = {(2 \times \pi \times 1200 / 60 \times 0.2566)}^2 = 32,2 m/s
+\end{equation}
+
+Finally:
+
+\begin{equation}
+    \Delta P_{p} = 1.225 \times 32.24^2 \times 0.4 \approx 415~\text{Pa}
+\end{equation}
+
+
+
+%As we are in a steady simulation, the restult of the numerical pressure is divided by the density of the fluid.
+
+%\begin{equation}
+%    \Delta P_{P} = 32.2^{2} \times 0.4 = 415 Pa
+%\end{equation}
+
+
+
+
+\newpage
+\section{IBM preliminary results and modifications on OpenFOAM}
+\label{sec:IBM_preliminary_results}
+
+\textbf{IBM preliminary results}
+
+Once the pump model implemented in OpenFOAM, we can run the simulation with the IBM.
+After empirical tests and with experience of the laboratory, we found that the parameters $\mathbf{D} = (3e7, 3e7, 3e7), D_k = 3e7$ ans $D_{\omega} = 3e7$ are godd starting point for the IBM parameters. And it verify a converged CFD solution.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\textwidth]{images/numericalPump/mvt.png}
+    \caption{First results of the IBM for all parameters equal to 3e7. Slice at $z=0$ for $\mathbf{D} = (3e7, 3e7, 3e7), D_k = 3e7, D_{\omega} = 3e7$}
+    \label{fig:Pumpfirst}
+\end{figure}
+
+With the conditions specified in the \autoref{tab:pump_parameters}, and a value of 3e7 for the all five forcing parameters, we obtain these velocity profils comparing comparing the velocities of the simulation and of the PIV data. Both are averages over time and over the angle \(\theta\):
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{images/numVSxp.pdf}
-    \caption{Comparison between the profiles inside the diffuser for the numerical simulation (continuous lines), and the PIV data (dashed lines). In particular, (\protect\bluelinePython) represents the radial velocity $u_r$, (\protect\orangeline) depicts the azimuthal velocity $u_\theta$, and (\protect\greenline) illustrates the vertical velocity $u_z$.} % \textit{(a)} Position of the PIV measurement planes, \textit{(b)} simplification of the experimental data (time- and azimuthally-averaged) for employment in the Data Assimilation experiment, and \textit{(c)} c
+    \caption{Comparison between the profiles inside the diffuser for the numerical simulation (continuous lines), and the PIV data (dashed lines). In particular, (\protect\bluelinePython) represents the radial velocity $u_r$, (\protect\orangeline) depicts the azimuthal velocity $u_\theta$, and (\protect\greenline) illustrates the vertical velocity $u_z$. $\mathbf{D} = (3e7, 3e7, 3e7), D_k = 3e7, D_{\omega} = 3e7$} % \textit{(a)} Position of the PIV measurement planes, \textit{(b)} simplification of the experimental data (time- and azimuthally-averaged) for employment in the Data Assimilation experiment, and \textit{(c)} c
     \label{fig:numVSxp}
 \end{figure}
 
+As seen in \autoref{fig:polar_slice_avg_theta_trimmed}, we use five observations points on the three PIV plans.
 Our goal is to make these curves fit as much as possible.
-We already see that there is a notable difference beteween the experimental and numercial radial velocity in the plan at 75\%. The numerical simulation predicts a negative velocity instead of a positive one. This is explained by a non physical recirculation bubble as you can see in the /// CITER FIGURE ////%\autoref{...}
-
-A good indicator of the accuracy of the simulation is the performance of the pump. It's directly linked to the pressure difference between the outlet and the inlet. As seen // previously in this chapter -> Actuellement décrit ci-dessous ET un peu plus bas //, we should obtain around 415Pa. In our case, we obtain a pressure difference of around 306Pa, far from what we expect.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.4\textwidth]{images/numericalPump/diffuseurMesh.png}
-    \caption{Diffuser Mesh}
-    \label{diffuserMesh}
-\end{figure}
-
-Explication de coords\_seventh.txt, coords\_360.txt et coords\_7.txt
 
 
-potentiellement en annexe
+We already seen that there is a notable difference beteween the experimental and numercial radial velocity in the plan at 75\%. The numerical simulation predicts a negative velocity instead of a positive one. This is explained by a non physical recirculation bubble as you can see in the \autoref{fig:LIC} deeper exmplained in the folowing part. %\autoref{...}
 
-Concretely, to average the data over the angle \(\theta\), we need to modify the interpolation function in CONES.
-Instead of read coords, the interpolation function read the data in the \texttt{coords\_seventh.txt} file.
-
-Then, it computes the interpolation and average the data over the angle \(\theta\) (between -pi/7 and pi/7), by doing a somme over \(\theta\) and dividing by the number of points (150). To go back from 150x5x3x3 (to detail) to 5x3x3 data. All of those computation are mad in a cylindrical referencial. Ref au schéma tikz
-
-
-A sixth coefficients DP has been add.
-It's represent the difference of pressure between the inlet of the pipe and the outlet of the diffuser. 
-The numerical coefficient are interpolating, respectively at (0,0,-0.35) and (0,0.390,0).
-For the high-fidelity value, we can find experimental data form the same pump [M. Fan 2022], that's match with M. Fan simulation (eq to approximately \(\eta\) = 0.4). So can also compute:
+A good indicator of the accuracy of the simulation is the performance of the pump. It's directly linked to the pressure difference between the outlet and the inlet. As seen in the previous \autoref{sec:Experimental_data_and_pre-processing}, we should obtain around 415Pa. In our case, we obtain a pressure difference of around 306 Pa, far from what we expect.
 
 
 
-U\_{2} is the impeller tip speed computed from the impeller diameter and the rotation speed of the pump.
 
-\begin{equation}
-    \frac{\Delta P_{P}}{\rho U_{2}^{2}} = \eta \Leftrightarrow
-    \Delta P_{P} = \rho U_{2}^{2} \eta
-\end{equation}
 
-U2carré = (omega * R2)² = (2 * pi * 1200 / 60 * 0.2566)² = 32,2 m/s
+\footnote{Concretely, to average the data over the angle \(\theta\), we modify the interpolation function in CONES.
+Instead of read coords, the interpolation function read the data in a file named \texttt{coords\_seventh.txt}.
+Then, it computes the interpolation and average the data over the angle \(\theta\) (between -$\pi/7$ and $\pi/7$), by doing a somme over \(\theta\) and dividing by the number of points (150). To go back from 150x5x3x3 (to detail) to 5x3x3 data. All of those computation are mad in a cylindrical referencial.}
 
-As we are in a steady simulation, the restult of the numerical pressure is divided by the density of the fluid.
 
-\begin{equation}
-    \Delta P_{P} = 32.2^{2} \times 0.4 = 415 Pa
-\end{equation}
+///////////////////////////////
 
+////////// 
 So the state vector is now 46.
 Incertitude on p will be less to take more take it account.
 Inflation...
@@ -1403,21 +1404,6 @@ At pump flow rate = pump design flow rate So Q?/Q? =1
 \textbf{Modifications on OpenFOAM}
 
 Check consistance U, u, P, p, gras, italique,... dans les équations
-
-
-\begin{figure}[H]
-    \includegraphics[width=0.8\textwidth]{images/numericalPump/coords.png}
-    \caption{}
-    \label{CHANGER}
-\end{figure}
-
-
-
-Imager avec des illustrations et vue en coupe ParaView
-
-Pour cela j'ai commencé en moyennant 1/7 mais les paramètres étant locaux (non globaux), j'ai ensuite moyenné sur 360 degrés, ce qui permet de mieux prendre en compte les variations locales des paramètres. Cependant, nous pouvons converger vers une moyenne physique qui atteinds un minimum local mais qui ne respecte pas d'avoir 7 fois le même pattern. Cela permet à Fx d'être très différent de Fy mais aussi à la simulation de diverger avec des paramètres et vitesses erronéees. Pour palier ce problème, je compare la moyenne des patternes sur mes 7 segments de 360/7 degrés.
-
-
 
 
 
@@ -1472,6 +1458,15 @@ Parler des coefficients de relaxation.
 
 Comparer les 2-3 résultats: (avant DA, déjà fait section précédente), après simple et "complex" DA
 
+Explication de coords\_seventh.txt, coords\_360.txt et coords\_7.txt
+\begin{figure}[H]
+    \includegraphics[width=0.8\textwidth]{images/numericalPump/coords.png}
+    \caption{}
+    \label{CHANGER}
+\end{figure}
+
+
+Pour cela j'ai commencé en moyennant 1/7 mais les paramètres étant locaux (non globaux), j'ai ensuite moyenné sur 360 degrés, ce qui permet de mieux prendre en compte les variations locales des paramètres. Cependant, nous pouvons converger vers une moyenne physique qui atteinds un minimum local mais qui ne respecte pas d'avoir 7 fois le même pattern. Cela permet à Fx d'être très différent de Fy mais aussi à la simulation de diverger avec des paramètres et vitesses erronéees. Pour palier ce problème, je compare la moyenne des patternes sur mes 7 segments de 360/7 degrés.
 
 \begin{figure}[H]
     \centering
@@ -1491,6 +1486,11 @@ Comparer les 2-3 résultats: (avant DA, déjà fait section précédente), aprè
 
 
 \dots
+
+
+A sixth coefficients $D_p$ has been add.
+It's represent the difference of pressure between the inlet of the pipe and the outlet of the diffuser. 
+The numerical coefficient are interpolating, respectively at (0,0,-0.35) and (0,0.390,0).
 
 Explication des écarts par différentes choses 
 
@@ -1566,3 +1566,6 @@ The EnKF method will be used to assimilate data from the flow at the observation
 
 %144 coeurs: 54it/min
 %300-> 336 coeurs: 100it/min (+- 20\%)
+
+Limitations IBM à améliorer avec DA
+Graçe aux données xp (mentionné partie 2.1.2, on peut faire de la DA)
