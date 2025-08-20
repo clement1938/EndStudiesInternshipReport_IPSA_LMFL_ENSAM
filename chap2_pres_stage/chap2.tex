@@ -1408,8 +1408,8 @@ Finally, we have to initialize a repesitroy for the test case, i.e., the centrif
 
 \textbf{Parameters} \\
 
-To determine the variance for the initial perturbation, two perspectives were considered. The experience at lab shows that an initial perturbation of around $5\%$ is good. From our side, the target was that, on average, an ensemble member differs by approximately $1 \times 10^7$ from the previous time step, for parameter values of order $3 \times 10^7$. With 30 ensemble members, this corresponds to about $95\%$ of the values (i.e., within $2\sigma$) being contained in the interval $[5 \times 10^7 \pm 1 \times 10^7]$. This leads to a standard deviation of $\sigma = 0.5 \times 10^7$, or about $10\%$.
-We finally choose a variance of 5\% for the first test. /// A RELIRE //
+To determine the variance for the initial perturbation, two perspectives were considered. The experience at lab shows that an initial perturbation of around $5\%$ is good. From our side, the target was that, on average, an ensemble member differs by approximately $1 \times 10^7$ from the previous time step, for parameter values of order $3 \times 10^7$. With 30 ensemble members, this corresponds to about $95\%$ of the values (i.e., within $2\sigma$) being contained in the interval $[3 \times 10^7 \pm 1 \times 10^7]$. This leads to a standard deviation of $\sigma = 0.3 \times 10^7$, or about $10\%$.
+We finally choose a variance of 5\% for the first test. /// A RELIRE ET VERIFIER //
 
 Let us introduce the observation window.  
 The observation window was defined by observing the number of iterations required for the influence of the IBM forcing to reach the diffuser and take the form of the converged result. Turbulence parameters were not considered for defining this window, since their effect is present throughout the domain and their influence is almost immediate (although their convergence is slower).  
@@ -1518,10 +1518,7 @@ The minimum is found based on the blue cercles "coords\_seventh" interpolated po
 \textbf{6.Pressure observation} Finnaly, we can also add a pressure observation to the DA, which allows to take into account the pressure difference between the inlet and the outlet of the pump. This can help to improve the convergence of the solution and to have a more physical result. The pressure observation represents the difference of pressure between the inlet of the pipe and the outlet of the diffuser. The numerical coefficient are interpolating, respectively at (0,0,-0.35) and (0,0.390,0). Incertitude on p will be less than the measured one to take more take it account.
 This implementation add on element oh the observation vector.
 
-%Nous avons fait l'EnKF sans l'état\dots
 %Sans inflation pour commencer. Si on converge vers une solution qui ne nous satisfait pas, on peut essayer d'ajouter... Cela permet de s'échaper d'un minimum local en ajoutant du bruit artificiellement. 
-
-
 
 \begin{figure}[H]
     \centering
@@ -1530,31 +1527,12 @@ This implementation add on element oh the observation vector.
     \label{fig:assymetry}
 \end{figure}
 
-
-
-
-
-
-
-% ///// Reprendre les objectifs définis à la fin de la section 2.1 //////
-% Essayer d'améliorer le rendu de l'image ci-dessous en mettant la pompe en transparence
-% Nous avons fait une simu RANS mais nous aurions pu faire une simu URANS (ou LES ou DDES) avec un modèle de turbulence... 
-
-
-%L'expérience montre un ordre de grandeur de centaines d'itération entre les phases d'analyse, mais cela dépend beaucoup du cas.
-%Il en est de même pour le nombre de phases d'analyse.
-
-
-
-
-Pb de la DA: plus rapide que DNS mais toujours plus lent que RANS et le temps d'attente et de calcul sur supercalculateur (sur 4000 processeurs) est de l'orde de plusieurs jours. On peut donc se demander si la DA est vraiment utile dans ce cas. En effet, la DA est plus rapide que la DNS mais pas que la RANS. Cependant, il faut prendre en compte le fait que la DA permet de réduire le temps de calcul de la simulation numérique en permettant d'optimiser les paramètres de l'IBM. De plus, la DA peut être utilisée pour d'autres cas d'étude où la DNS est trop coûteuse.
-
-
-
-
+After applying these strategies, the solution is still not satisfactory, as we can see in the \autoref{fig:UpdtC14_10NMRSE} where the NRMSEs are still high and the velocity field is still not physical and not converged.
 
 \subsection{Conclusion and outlook}
 \textbf{Conclusion}
+% ///// Reprendre les objectifs définis à la fin de la section 2.1 //////
+
 After done a state of art on the topics, numerical ingredients and usefull libraries was presented.
 An explanation of pre-processing of the experimental data was given, as well as the implementation of the IBM method in OpenFOAM.
 Then, we presented the first results of the numerical simulation and the first application of the DA method on the centrifugal pump case.
@@ -1566,10 +1544,9 @@ The results show that the IBM method as applied here does not give us a physical
 
 
 
-
-
-
 \textbf{NOTES PERSO CI-DESSOUS}
+
+Outlook : Pb de la DA: plus rapide que LES mais toujours plus lent que RANS et le temps d'attente et de calcul sur supercalculateur (sur 4000 processeurs) est de l'orde de plusieurs jours. On peut donc se demander si la DA est vraiment utile dans ce cas. En effet, la DA est plus rapide que la LES mais pas que la RANS. Cependant, il faut prendre en compte le fait que la DA permet de réduire le temps de calcul de la simulation numérique en permettant d'optimiser les paramètres de l'IBM. De plus, la DA peut être utilisée pour d'autres cas d'étude où la LES est trop coûteuse.
 
 Pb perso: jusqu'à plusieurs jours d'attente pour lancer une simu.
 
@@ -1594,8 +1571,6 @@ obs pression --> modèle de reconstruction du champ de vitesse --> modèle de re
 Peut-être faire deux filtres de Kalman imbriqués ? hyperparamètres type fenetre observation, variance initiale, ...
 
 
-
-
 Voir "TD -> Done et "TDSave -> Done" pour voir tt ce que j'ai fais
 
 The random variations are random but with a reproducibility seed (sed) that allows to have the same result each time the simulation is launched.
@@ -1609,8 +1584,6 @@ With $Q_{pump_{in}} = Q_{dif_{in}}$ because the mass flow rate is constant and t
     \caption{Interpolation points over 360 degrees}
     \label{coords360}
 \end{figure}
-
-
 
 Methodo (forcage continue (vs interpolation ?)) -> avantages
 
@@ -1632,3 +1605,11 @@ Check consistance U, u, P, p, gras, italique,... dans les équations
 Comparer les 2-3 résultats: (avant DA, déjà fait section précédente), après simple et "complex" DA
 
 Supposons 1000 itération en moyenne entre chaque phase d'analyse, et 300 phases d'analyse, cela nous fait 300 000 itérations à simuler, soit 93h, sur env. 2800 coeurs, soit 264kh.processeur de calcul.
+
+Verif que j'ai mis ttes les images présentes dans le dossier "images"
+Intro simple - globale
+
+% Essayer d'améliorer le rendu de l'image ci-dessous en mettant la pompe en transparence
+
+%L'expérience montre un ordre de grandeur de centaines d'itération entre les phases d'analyse, mais cela dépend beaucoup du cas.
+%Il en est de même pour le nombre de phases d'analyse.

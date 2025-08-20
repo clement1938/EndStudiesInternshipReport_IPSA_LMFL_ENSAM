@@ -1,0 +1,668 @@
+\documentclass[10pt, aspectratio=169, dvipsnames]{beamer}
+\usetheme{Boadilla}
+\usefonttheme{serif} % default family is serif
+
+\usepackage{comment}
+
+\usepackage[11pt]{moresize}
+\usepackage[export]{adjustbox}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{amsmath, bm}
+%\usepackage{epsfig}
+\usepackage{multimedia}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{mathtools}
+\usepackage{multicol}
+\usepackage{array, makecell}
+\usepackage{svg}
+\usepackage{array}
+\usepackage{algorithm2e}
+\usepackage{changepage}
+\usepackage{xcolor}
+%\usepackage{picture}
+\usepackage{physics}
+\usepackage{pifont}
+\usepackage{tikz}
+\usepackage{mathdots}
+\usepackage{yhmath}
+\usepackage{cancel}
+\usepackage{color}
+\usepackage{siunitx}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{extarrows}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{nicematrix}
+\usepackage{colortbl}
+\usepackage{animate}
+\usetikzlibrary{decorations.pathreplacing}
+\usepackage[usestackEOL]{stackengine}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    linktoc=all,
+    citecolor=blue
+           }
+\usepackage[style=ieee, citestyle=numeric-comp, backend=biber]{biblatex}
+
+\usepackage{fancyvrb}
+\usepackage{fvextra}
+
+\newcommand{\backupbegin}{
+   \newcounter{framenumberappendix}
+   \setcounter{framenumberappendix}{\value{framenumber}}
+   }
+
+\newcommand{\backupend}{
+   \addtocounter{framenumberappendix}{-\value{framenumber}}
+   \addtocounter{framenumber}{\value{framenumberappendix}} 
+}
+
+\definecolor{mplBlue}{RGB}{31,119,180}
+\newcommand{\bluecross}{\tikz\draw[mplBlue, thick] (-0.07,-0.07) -- (0.07,0.07) (-0.07,0.07) -- (0.07,-0.07);}
+\newcommand{\bluelinePython}{\raisebox{2pt}{\tikz{\draw[-,mplBlue,solid,line width = 1pt](0,0) -- (5mm,0);}}}
+
+\definecolor{orange}{RGB}{255,165,0}
+\newcommand{\orangeline}{\raisebox{2pt}{\tikz{\draw[-,orange,solid,line width = 1pt](0,0) -- (5mm,0);}}}
+
+\definecolor{green}{RGB}{0,150,0}
+\newcommand{\greenlinedotted}{\raisebox{2pt}{\tikz{\draw[-,green,dotted,line width = 1.5pt](0,0) -- (5mm,0);}}}
+
+\newcommand{\greenline}{\raisebox{2pt}{\tikz{\draw[-,green,solid,line width = 1pt](0,0) -- (5mm,0);}}}
+
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+
+\newcommand\danger[1][]{%
+\begin{tikzpicture}[baseline=-0.8ex, inner xsep=0pt,#1]
+\node[]{$\triangle$};
+\node[yshift=0.125ex, scale=0.45]{!};
+\end{tikzpicture}\space}
+
+\titlegraphic{
+\begin{tikzpicture}[overlay,remember picture]
+\node[right=0.2cm, yshift=-1cm] at (current page.150){
+	\includegraphics[width=3.5cm]{logos/Logo ENSAM.png}
+};
+\end{tikzpicture}
+
+
+\begin{tikzpicture}[overlay,remember picture]
+\node[left=0.2cm, yshift=-1cm] at (current page.30){
+	\includegraphics[width=2.5cm]{logos/Logo LMFL.png}
+};
+\end{tikzpicture}
+}
+
+
+\title[Projet MALEAF]{\structure{Assimilation de données pour une pompe centrifuge}}
+
+
+\author[C. Thibault, M.M. Valero]{Clément THIBAULT\textsuperscript{\dag}, Miguel M. VALERO\textsuperscript{\dag}}%, Marcello MELDI\textsuperscript{\dag}}
+\institute{\textsuperscript{{\dag}}Univ. Lille, CNRS, ONERA, Arts et Métiers ParisTech, Centrale Lille, UMR 9014- LMFL- Laboratoire de Mécanique des fluides de Lille - Kampé de Feriet, F-59000 Lille, France}
+\date{4 juin 2025}
+
+\setbeamersize{text margin left=10mm,text margin right=10mm}
+
+\setbeamercolor{lower separation line head}{bg=red}
+\makeatletter
+\setbeamertemplate{frametitle}{%
+  \nointerlineskip%
+    \vskip0.0cm%
+   \begin{beamercolorbox}[wd=\paperwidth,leftskip=.1cm,rightskip=.3cm plus1fil,vmode]{frametitle}%
+        \begin{minipage}{1.5cm}%
+        \begin{flushleft}
+            \includegraphics[height=1cm, width=1.6cm, trim = {0 3cm 0 3cm}, clip]{logos/Logo ENSAM.png}%
+        \end{flushleft}
+        \end{minipage}%
+        \begin{minipage}{13cm}%
+        \vspace{0.25cm}
+    \usebeamerfont*{frametitle}\insertframetitle\centering%
+      \ifx\insertframesubtitle\@empty%
+        \strut\par%
+      \else
+        \par{\usebeamerfont*{framesubtitle}{\usebeamercolor[fg]{framesubtitle}\insertframesubtitle}\strut\par}%
+      \fi%%
+        \end{minipage}%
+        \begin{minipage}{1.5cm}%
+        \begin{flushleft}
+            \includegraphics[height=0.8cm, width=1.3cm]{logos/Logo LMFL.png}%
+        \end{flushleft}
+        \end{minipage}%
+  \end{beamercolorbox}%
+  \vskip-0.05cm
+  \begin{beamercolorbox}[colsep=1.0pt,wd=\paperwidth]{lower separation line head}
+  \end{beamercolorbox}
+}
+\makeatother
+
+\usepackage{nicematrix,tikz}
+\usetikzlibrary{fit}
+%\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{fadings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{shadows.blur}
+\usetikzlibrary{shapes}
+
+\makeatletter
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertshortauthor%~~\beamer@ifempty{\insertshortinstitute}{}{(\insertshortinstitute)}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+    \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+\makeatother
+
+%\setbeamertemplate{sections/subsections in toc}[square]
+\begin{document}
+
+\setbeamertemplate{caption}{\raggedright\insertcaption\par} 
+
+\definecolor{myyellow}{RGB}{237, 177, 32} % RGB values for yellow in matplotlib
+\newcommand{\yellowline}{\raisebox{2pt}{\tikz{\draw[-,myyellow,solid,line width = 1pt](0,0) -- (5mm,0);}}}
+\newcommand{\blacklinedashed}{\raisebox{2pt}{\tikz{\draw[-,black,dashed,line width = 1pt](0,0) -- (5.1mm,0);}}}
+\newcommand{\blacklinesolid}{\raisebox{2pt}{\tikz{\draw[-,black,solid,line width = 1pt](0,0) -- (5mm,0);}}}
+\newcommand{\blacklinedotted}{\raisebox{2pt}{\tikz{\draw[-,black,dotted,line width = 1.5pt](0,0) -- (5mm,0);}}}
+\definecolor{greySTRONG}{RGB}{127.5,127.5,127.5}
+\definecolor{greySOFT}{RGB}{204,204,204}
+\newcommand{\greylinesolidstrong}{\raisebox{2pt}{\tikz{\draw[-,greySTRONG,solid,line width = 1.5pt](0,0) -- (5mm,0)}}}
+\newcommand{\greylinedashedstrong}{\raisebox{2pt}{\tikz{\draw[-,greySTRONG,dashed,line width = 1.5pt](0,0) -- (5mm,0)}}}
+\newcommand{\greylinedottedstrong}{\raisebox{2pt}{\tikz{\draw[-,greySTRONG,dotted,line width = 1.5pt](0,0) -- (5mm,0)}}}
+\newcommand{\greylinesolidsoft}{\raisebox{2pt}{\tikz{\draw[-,greySOFT,solid,line width = 1.5pt](0,0) -- (5mm,0)}}}
+\newcommand{\greylinedashedsoft}{\raisebox{2pt}{\tikz{\draw[-,greySOFT,dashed,line width = 1.5pt](0,0) -- (5mm,0)}}}
+\newcommand{\redline}{\raisebox{2pt}{\tikz{\draw[-,red,solid,line width = 1pt](0,0) -- (5mm,0);}}}
+\newcommand{\blueline}{\raisebox{2pt}{\tikz{\draw[-.,blue,solid,line width = 1pt](0,0) -- (5mm,0);}}}
+\newcommand{\bluelinedasheddotted}{\raisebox{2pt}{\tikz{\draw[-.,blue,dashdotted,line width = 1pt](0,0) -- (5mm,0);}}}
+\newcommand{\bluelinesolid}{\raisebox{2pt}{\tikz{\draw[-,blue,solid,line width = 1pt, opacity = 0.5](0,0) -- (5mm,0);}}}
+
+\definecolor{magenta}{RGB}{255,0,255}
+\newcommand{\magentaline}{\raisebox{2pt}{\tikz{\draw[-,magenta,dotted,line width = 0.7pt](0,0) -- (5mm,0);}}}
+
+\newcommand{\circlewhite}{\raisebox{-1pt}{\tikz{\draw[color=black,line width = 1pt] (0,0) circle [radius=0.1];}}}
+
+% Define the important command
+\newcommand{\important}[1]{%
+  \colorbox{yellow}{\parbox{\dimexpr\linewidth-2\fboxsep}{\textbf{#1}}}%
+}
+
+
+
+\begin{frame}
+\inserttitlegraphic
+\vspace{1 cm}
+\titlepage
+\end{frame}
+
+
+
+\section{Expérimentale}
+
+\begin{frame}{Expérimentale}
+
+\begin{columns}
+    \hspace{-0.1cm}
+    \begin{column}{0.3\textwidth}
+        %\begin{columns}
+            %\begin{column}{0.542\textwidth}
+        \includegraphics[scale=0.31]{figures/RESEDA_benchmark.png}
+            %\end{column}
+            %\begin{column}{0.458\textwidth}
+        \includegraphics[scale=0.20]{figures/image1.png}
+    \end{column}
+        %\end{columns}
+    %\end{column}
+    
+    \begin{column}{0.3\textwidth}
+        \includegraphics[scale=0.4]{figures/impeller_position.png}
+    \end{column}
+    \hspace{-1.5cm}
+    \begin{column}{0.45\textwidth}
+    \small{
+        \begin{itemize}
+            \item $Re_\Omega=\cfrac{R_2^2 \Omega}{\nu} = 5.53\times10^5$ \textrm{\textbf{(turbulent)}}
+            \item $Ma = \cfrac{R_2 \Omega}{c} = 0.095$ \textrm{\textbf{(incompressible)}}
+            \item Point de fonctionnement au point de design \[\frac{Q}{Q_d} = 1\]
+            \item Vitesse de rotation : 1 200 tr/min
+            \item 7 aubes
+            \item Données PIV à 980Hz
+        \end{itemize}
+    }
+    %\hspace{-4cm}
+
+    \end{column}
+
+\end{columns}
+
+\end{frame}
+
+
+\section{Modélisation}
+
+
+\begin{frame}{Modélisation}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \includegraphics[scale=0.5]{figures/RESEDA_sketch.pdf}
+            \footnotesize{\begin{itemize}
+                \item \textbf{Conditions aux limites :}
+                    \begin{itemize}
+                        \item Entrée $\rightarrow$ Vitesse%\texttt{flowRateInletVelocity}
+                        \item Sortie $\rightarrow$ Pression%\texttt{fixedValue} (for the pressure $p$)
+                    \end{itemize}
+                \item \textbf{IBM:} Appliquée au niveau de la roue %\structure{computational domain around the impeller}
+            \end{itemize}}       
+        \end{column}
+        \hspace{1cm}
+        \begin{column}{0.5\textwidth}
+            \includegraphics[scale=0.25]{figures/polar_slice_avg_theta_trimmed.pdf}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+
+\begin{frame}{Modélisation avec la méthode de frontières immergées}
+
+\begin{block}{\structure{\textbf{Penalisation IBM:}}}
+    Pénalisation continue de type IBM pour les écoulements incompressibles $\Rightarrow$ définition d’un \structure{terme de forçage direct local} $\boldsymbol{f}_P$ dans les équations de Navier–Stokes, afin d’\textbf{imposer les conditions aux limites sur la paroi immergée} $\boldsymbol{(ib)}$.
+\end{block}
+
+\vspace{-0.2cm}
+
+%\begin{equation*}
+%\rho\,\boldsymbol{\nabla} \cdot (\boldsymbol{u} \otimes \boldsymbol{u}) = -\boldsymbol{\nabla} p + \mu\, \nabla^2 \boldsymbol{u} \; \overbrace{-\,\chi\, \mu\, D \left(\boldsymbol{u} - \boldsymbol{u}_{ib} \right)}^{\boldsymbol{f}_P}
+%\end{equation*}
+
+
+
+\begin{columns}
+    \begin{column}{0.5\textwidth}
+        \centering
+        \begin{equation*}
+            (\boldsymbol{u} \cdot \boldsymbol{\nabla})\, \boldsymbol{u} = 
+            -\frac{1}{\rho} \nabla p + \nu \nabla^2 \boldsymbol{u} 
+            \underbrace{- \xi \nu \boldsymbol{D} \left( \boldsymbol{u} - \boldsymbol{u}_{ib} \right)}_{\boldsymbol{f}_P}
+        \end{equation*}
+
+        \includegraphics[scale=0.25]{figures/IBM_Mesh.pdf}
+        %\only<1>{\includegraphics[scale=0.25]{figures/IBM_Mesh.pdf}}
+        %\only<2>{\includegraphics[scale=0.25]{figures/implicit_forcing.png}}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+        avec $[p] = M \cdot L^{-1} \cdot T^{-2}$
+        \begin{equation*}
+            \xi = \left\{
+            \begin{array}{ll}
+                0 & \textrm{if } \boldsymbol{x} \in \Omega_f \\
+                1 & \textrm{if } \boldsymbol{x} \in (\Sigma_b \cup \Omega_b)
+            \end{array} \right.
+        \end{equation*}
+
+        \colorbox{blue!20}
+        {\parbox{0.85\textwidth}
+        { \centering Quand $D \rightarrow \infty$, \\ \textbf{champ IBM = champ body-fitted }}}
+
+        \vspace{0.2cm}
+        
+        \footnotesize{... mais des valeurs trop élevées de $D$ peut mener à des instabilités...}
+        
+    \end{column}
+\end{columns}
+    
+\end{frame}
+
+
+
+\begin{frame}{Modélisation avec la méthode de frontières immergées (IBM)}
+
+\begin{columns}
+    \hspace{-0.5cm}
+    \begin{column}{0.5\linewidth}
+    \begin{itemize}[<+->]
+        \item Simulation stationnaire avec la l'approche \structure{\textbf{Multiple Reference Frame (MRF)}}
+        \item Modèle de turbulence $\mathcal{K}-\omega$ SST $\rightarrow$ Cinq coefficients de pénalisation $D = (\boldsymbol{D_u}, D_\mathcal{K}, D_\omega)$
+        
+
+    \begin{eqnarray*}
+        \boldsymbol{f}_{P_u} &= \xi \nu \boldsymbol{D} (\boldsymbol{u}-\boldsymbol{u_{ib}}) \rightarrow \boldsymbol{u_{ib}} &= \cancel{\boldsymbol{u}_r} + \boldsymbol{\Omega} \times \boldsymbol{r} \\
+        \boldsymbol{f}_{P_\mathcal{K}} &= \xi \nu D_{\eta} (\mathcal{K}-\mathcal{K}_{ib}) \rightarrow \mathcal{K}_{ib} &= 0 \\
+        \boldsymbol{f}_{P_\omega} &= \xi \nu D_{\omega} (\omega-\omega_{ib}) \rightarrow \omega_{ib} &= (\omega_{vis}^2+\omega_{log}^2)^{1/2}
+    \end{eqnarray*}
+    où $\omega_{vis}=\frac{6 \nu}{\beta_1 y_{\mathrm{ref}}^2}$ et $\omega_{log} = \frac{\sqrt{\mathcal{K}}}{C_\mu \kappa y_\mathrm{ref}}$
+
+    \vspace{0.5cm}
+
+    %\centering
+    %\texttt{kOmegaSST\_penalization}
+
+        \end{itemize}
+
+    \end{column}
+    \begin{column}{0.5\linewidth}
+        \centering
+        \includegraphics[width=0.8\textwidth]{figures/pressure_profile.pdf}
+        \includegraphics[width=0.8\textwidth]{figures/velocity_profile.pdf}
+    \end{column}
+\end{columns}
+\end{frame}
+
+\section{Modélisation IBM}
+
+
+\begin{frame}{Modélisation IBM}
+
+    \begin{columns}
+        \begin{column}{0.5\linewidth}
+            \begin{itemize}
+                \item \structure{\textbf{Performance du diffuseur expérimentale et numérique similaire mais différente}}
+
+                \includegraphics[scale=0.4]{figures/diffuser_performance.pdf}
+
+                %\item \structure{\textbf{Performance of the impeller}} still needs to be checked with different IBM coefficients $\eta$
+            \end{itemize}
+        \end{column}
+
+        \only<1>{\begin{column}{0.5\linewidth}
+            \includegraphics[scale=0.7]{figures/pressure_taps.png}
+        \end{column}}
+
+        \only<2>{\begin{column}{0.5\linewidth}
+            \centering
+            \includegraphics[width=0.9\textwidth]{figures/velocity_verProfile.pdf}
+            \includegraphics[width=0.9\textwidth]{figures/pressure_verProfile.pdf}
+        \end{column}}
+        
+    \end{columns}
+    
+\end{frame}
+
+\begin{frame}{Modélisation IBM}
+
+    \begin{center}
+        \includegraphics[scale=0.3]{figures/numVSxp.pdf}
+    \end{center}
+
+    \begin{center}
+        \tiny{Comparaison entre les profils à l'intérieur du diffuseur pour la simulation numérique (lignes continues) et les données PIV (lignes pointillées). En particulier, (\protect\bluelinePython) représente la vitesse radiale $u_r$, (\protect\orangeline) montre la vitesse azimutale $u_\theta$, et (\protect\greenline) illustre la vitesse verticale $u_z$.}
+    \end{center}
+    
+\end{frame}
+
+
+\section{DA avec le Filtre de Kalman d'ensemble}
+
+\begin{frame}{DA avec l'EnKF - Premiers paramètres}
+
+    \begin{itemize}
+        \item optimisation des 5 paramètres de forcage ($3\times$ vitesse, énergie turbulente et dissipation)
+        \item paramètres initiaux tous égaux à $3 \times 10^7$
+        \item simulation RANS et données PIV moyennées temporellement
+        \item fenêtre d'observation : 800 itérations
+        \item 30 membres d'ensemble
+        \item pas d'optimisation d'état
+        \item 45 observations ($Ur U_{\theta} Uz$) sur 5 points sur 3 plans
+        \item bruit d'observation : 0,2 m/s, soit 1,5\% du max. d'observation sur la vitesse
+        %\item pas d'inflation
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{DA avec l'EnKF - Premiers résultats en stationaire}
+
+\begin{columns}
+    
+  \column{0.48\textwidth}
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.6\linewidth]{newFigures/assymetrie.png}
+            \caption{Champs de vitesse absolue pour\\
+            Dx = 4e7 et Dy = 2e7}
+            \label{fig:enter-label}
+        \end{figure}
+        
+        \column{0.48\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.6\linewidth]{newFigures/coords.png}
+                \caption{Points d'observation de vitesse numérique avant moyenne azimutale}
+                \label{fig:enter-label}
+            \end{figure}
+
+           
+    \end{columns}
+
+    Problème : mesure uniquement sur 1/7ème de la simulation numérique impliquant $Dx \neq Dy$.
+    La NRMSE diminue car ces parmètres cassent la bulle de recirculation mais le résultat n'est pas physique.
+    
+\end{frame}
+
+
+\begin{frame}{DA avec l'EnKF - Premiers résultats}
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\linewidth]{newFigures/UpdtC14_10NMRSE.png}
+        \caption{Bulle de recirculation localement détruite}
+        \label{fig:enter-label}
+    \end{figure}
+
+\end{frame}
+
+%\begin{frame}{DA avec l'EnKF - Premiers résultats}
+
+    %\begin{figure}
+        %\centering
+        %\includegraphics[width=0.6\linewidth]{newFigures/UpdtC14_10params.png}
+        %\caption{Enter Caption}
+        %\label{fig:enter-label}
+    %\end{figure}
+
+%\end{frame}
+
+
+%\begin{frame}{DA avec l'EnKF - Premiers résultats}
+
+%\begin{figure}
+    %\centering
+    %\includegraphics[width=0.6\linewidth]{newFigures/UpdtC14_NMRSE.png}
+    %\caption{Enter Caption}
+    %\label{fig:enter-label}
+%\end{figure}
+
+%\end{frame}
+
+
+
+\section{Limitations de l'IBM}
+
+\begin{frame}{Limitations de la méthode IBM}
+
+    \only<1>{%
+        \centering
+        \includegraphics[width=0.9\linewidth]{newFigures/LIC_Uy.png} \\
+        \vspace{0.2cm}
+        {\footnotesize Champ LIC (Line Integral Convolution) et $U_y$}
+    }
+
+    \only<2>{%
+        \centering
+        \includegraphics[width=0.9\linewidth]{newFigures/LIC.png} \\
+        \vspace{0.2cm}
+        {\footnotesize Bulle de recirculation}
+    }
+
+\end{frame}
+
+
+%\begin{frame}{Limitations de la méthode IBM}
+
+    %\begin{figure}
+        %\centering
+        %\includegraphics[width=0.9\linewidth]{newFigures/pen0.png}
+        %\caption{Enter Caption}
+        %\label{fig:enter-label}
+    %\end{figure}
+    
+%\end{frame}
+
+
+\begin{frame}{DA avec l'EnKF - Nouveaux paramètres}
+
+    \begin{itemize}
+        \item paramètres initiaux tous égaux à $3 \times 10^7$
+        \item fenêtre d'observation : 800 itérations
+        \item simulation RANS et données PIV moyennées temporellement
+        \item pas d'optimisation d'état
+        \item 35 membres d'ensemble
+    \end{itemize}
+
+    \setbeamercolor{item}{fg=red}
+
+    \begin{itemize}
+        \item Expansion radiale des paramètres $\boldsymbol{D}$ (permettant de décrire la courbe de l'aube) et optimisation des 12 paramètres de forcage $3\times (2\times$ vitesse, énergie turbulente et dissipation)
+        \item 106 observations : ($Ur U_{\theta} Uz$) sur 7 sections (avec 5 points sur 3 plans) + observaltion globale de pression
+        \item bruit d'observation : 0,2 m/s, soit 1,5\% du max. d'observation sur la vitesse et 5Pa soit 1,2\% du $\Delta P$ global sur la pression $\implies$ performance
+        \item paramètres minorés à $0 + \left| \mathcal{N}(0, 1000) \right|$
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{DA avec l'EnKF - Nouveaux paramètres}
+
+    \setbeamercolor{item}{fg=red}
+    \begin{itemize}
+        \item Expansion radiale des paramètres $\boldsymbol{D_u}$ (pouvant permettant de décrire la courbe de l'aube) et optimisation des 12 paramètres de forcage $3\times (2\times$ vitesse, énergie turbulente et dissipation)
+    \end{itemize}
+
+    \begin{columns}[c]
+
+        \column{0.48\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.6\linewidth]{newFigures/radial_exp.png}
+                \caption{Expansion radiale}
+                \label{fig:enter-label}
+            \end{figure}
+
+        \column{0.48\textwidth}
+                \[
+                \text{coeff} = 
+                \begin{cases}
+                a \cdot r_{\text{min}}^2 + b \cdot r_{\text{min}} + c & \text{si } r < r_{\text{min}} \\
+                a \cdot r^2 + b \cdot r + c & \text{sinon}
+                \end{cases}
+                \]       
+      
+      
+    \end{columns}
+    
+
+\end{frame}
+
+\begin{frame}{DA avec l'EnKF - Nouveaux paramètres}
+
+    \begin{columns}[c]
+
+        \column{0.48\textwidth}
+        \setbeamercolor{item}{fg=red}
+        \vspace{-2cm}
+        \begin{itemize}
+            \item 106 observations : ($Ur U_{\theta} Uz$) sur 7 sections (avec 5 points sur 3 plans) + observation globale de pression
+        \end{itemize}
+
+        \phantom{-}
+        
+        Évite un résultat de l'EnKF où les paramètres IBM cassent la périodicité.
+
+        \column{0.48\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=1\linewidth]{newFigures/coords.png}
+                \caption{Points d'observation de vitesse numérique avant moyenne azimutale}
+                \label{fig:enter-label}
+            \end{figure}
+            
+    \end{columns}
+
+\end{frame}
+
+
+
+\begin{frame}{DA avec l'EnKF - Nouveaux résultats}
+
+    \begin{columns}[c]
+
+        \column{0.48\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.7\linewidth]{newFigures/radial_exp.png}
+                \caption{Expansion radiale}
+                \label{fig:enter-label}
+            \end{figure}
+
+        \column{0.48\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.7\linewidth]{newFigures/coords.png}
+                \caption{Points d'observation de vitesse numérique avant moyenne azimutale}
+                \label{fig:enter-label}
+            \end{figure}
+    \end{columns}
+
+    Diminution moyenne de la NRMSE de quelques \%, avec des variations de paramètres très dépendantes des conditions initiales.
+    
+\end{frame}
+
+
+
+\begin{frame}{Conclusion, perspectives}
+    \begin{columns}[c]
+
+        \column{0.48\textwidth}
+             \begin{itemize}
+                \item Passage de la simulation en instationnaire permettant notamment de ne plus utiliser l'approche MRF
+                \item Imposition d'une condition de paroi sur le « carénage » de la pompe avec un maillage body-fitted
+                \item Utilisation d'une méthode IBM plus sophistiquée
+                \end{itemize}
+        
+        \column{0.48\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=1\linewidth]{newFigures/LIC.png}
+                \caption{Bulle de recirculation}
+                \label{fig:enter-label}
+            \end{figure}
+            
+    \end{columns}
+
+\end{frame}
+
+
+%\[
+%\text{Coût de calcul} = 100\,\text{it} \times 35\,\text{membres} \times 127\,\text{cœurs} \times 0{,}33\,\text{it/h} \approx 150\,\text{kheures}
+%\]
+
+
+\setbeamercolor{item}{fg=blue} % Revenir à la couleur par défaut
+
+\end{document}
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{recirculationBuble.png}
+    \caption{Enter Caption}
+    \label{fig:enter-label}
+\end{figure}
