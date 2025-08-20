@@ -16,7 +16,7 @@ Manual tuning is feasible for a small number of parameters but becomes inefficie
 %One such technique is the IBM, which will be explained later. This method includes parameters that need to be calibrated. We can do this empirically, by trial and error and using intuition. This can work when there is only a single parameter. However, this approach is time-consuming, imprecise, and unfeasible when dealing with more than a few parameters.
 %To address this, mathematical and numerical methods exist, such as the EnKF. This context led my supervisors to define the topic of my internship.
 
-The internship began in February 2025. I was provided with a fix computer, credentials to connect to the Irene and Cassiopée supercomputers, and the link to the \ac{CONES}'s gitlab\footnote{\url{https://gitlab.ensam.eu/pe431/cones-dev}}. Marcello MELDI, Antoine DAZIN and Miguel MARTINEZ VALERO who are my internship supervisors, showed me around the lab.
+The internship began in February 2025. I was provided with a fix computer, credentials to connect to the \ac{TGCC} (Irene - Skylake and Rome partitions) and Cassiopée supercomputers, and the link to the \ac{CONES}'s gitlab\footnote{\url{https://gitlab.ensam.eu/pe431/cones-dev}}. Marcello MELDI, Antoine DAZIN and Miguel MARTINEZ VALERO who are my internship supervisors, showed me around the lab.
 Then, Tom MOUSSIE and Miguel MARTINEZ VALERO, my co-officies, explained me the basics of \ac{OpenFOAM} and CONES, the DA code. I was able to run a few tests on OpenFOAM on the supercomputers, which allowed me to familiarize myself with the tools and the code.
 
 % Pour l'introduction, regarder la thèse de Miguel
@@ -115,7 +115,7 @@ EnKF for DA in CFD has been used at \ac{LMFL} for a few years now.
 \begin{itemize}
     \item In 2023, Lucas Villanueva, with Miguel M.Valero and Marcello Meldi from LMFL wrote an article\cite{villanuevaAugmentedStateEstimation2023} about the amelioration of the flow around a building preforming EnKF on five CFD parameters, showing a global improvement for both the velocity field and the pressure field;
     \item In 2024, Tom Moussie, with Paolo Errante and Marcello Meldi from LMFL wrote an article\cite{moussieStatisticalInferenceUpstream2024a} successfully optimizes the boudary condition of the academical rectangular 5:1 cylinder benchmarck using EnKF, leading to a significant improvement of the accuracy in the prediction of the turbulent flow;
-    \item This year, Miguel M.Valero and Marcello Meldi published an article combining EnKF, \ac{ML} and IBM on a turbulent channel flow \cite{valeroEnhancedStateEstimation2025}. It shows that this combination can gives very good ans low cost results;
+    \item This year, Miguel M.Valero and Marcello Meldi published an article combining EnKF, \ac{ML} and IBM on a turbulent channel flow \cite{valeroEnhancedStateEstimation2025}. It shows that this combination can gives very good and low cost results;
     \item During my internship, Tom Moussie submit an article on the determination of the incidence angle of a 2D wing using EnKF, and Miguel submit also an article about the optimization of forcing parameters of an IBM around an 2D oscillating cylinder, showing very good results.
 \end{itemize}
 
@@ -141,7 +141,7 @@ In this context, we aim to apply both of these innovative methodologies to enhan
     \item Do a state of the art about the centrifugal pumps, CFD methods including IBM and DA including EnKF, detail in this \autoref{sec:stateOfArt};
     \item understand some numerical ingredients as CFD governing equations, the open-source code OpenFoam, the EnKF method, the CONES library and the pump modeling that are explained in the \autoref{subsec:CFD_governing_equations};
     \item pre-process the experimental data to be able to compare them to the numerical model, \autoref{sec:Experimental_data_and_pre-processing};
-    \item modify OpenFOAM to obtain first simulation results using IBM, \autoref{sec:IBM_preliminary_results};
+    \item modify OpenFOAM to obtain first simulation results using IBM, \autoref{sec:IBM_preliminary_results}; //////////////////////// CHANGER /////////////////////
     \item modify CONES to adapte it to the pump case and apply the DA to modify the IBM parameters, \autoref{sec:Application_of_the_DA};
     \item analyse the results of the DA on the optimization of the field in the diffuser and the accuracy of the perfomance of the pump, \autoref{sec:Results}.
 \end{enumerate}
@@ -645,7 +645,7 @@ The \texttt{system} directory contains the main parameters regarding the simulat
     \item[$-$] The \texttt{controlDict} dictionary defines parameters such as start and end time, time steps, data output formatting, or data average computation;
     \item[$-$] the \texttt{blockMeshDict} dictionary defines the computational domain, mesh and boundary implementation conditions;
     \item[$-$] the \texttt{decomposeParDict} dictionary defines the geometry and mesh decomposition, with the objective to run the simulation in parallel, using multiple cores;
-    \item[$-$] the \texttt{fvSchemes} dictionary defines the discretisation schemes used in the CPUs equations;
+    \item[$-$] the \texttt{fvSchemes} dictionary defines the discretisation schemes used in the \ac{CPU}s equations;
     \item[$-$] the \texttt{fvSolution} dictionary defines the equation solvers, tolerances and other algorithm controls.
 \end{itemize}
 
@@ -1356,7 +1356,7 @@ Finally:
 %\textbf{IBM preliminary results}
 
 Once the pump model implemented in OpenFOAM, we can run the simulation with the IBM.
-After empirical tests and with experience of the laboratory, we found that the parameters $\mathbf{D} = (3e7, 3e7, 3e7), D_k = 3e7$ ans $D_{\omega} = 3e7$ are godd starting point for the IBM parameters. And it verify a converged CFD solution.
+After empirical tests and with experience of the laboratory, we found that the parameters $\mathbf{D} = (3e7, 3e7, 3e7), D_k = 3e7$ and $D_{\omega} = 3e7$ are godd starting point for the IBM parameters. And it verify a converged CFD solution.
 
 \begin{figure}[H]
     \centering
@@ -1405,24 +1405,40 @@ On the other side, although CONES is already adapted to work with OpenFOAM, we n
 \textbf{Test case}
 Finally, we have to initialize a repesitroy for the test case, i.e., the centrifugal pump. This includes defining the initial parameters, the observation points, and the initial state of the ensemble members, including a \texttt{conesDict}.
 
-\textbf{Parameters}
-Let introduce the observation window:
-The observation window was defined by observing the number of iterations required for the influence of the IBM to reach the diffuser and take the form of the converged result. We are not interested in the turbulence parameters to determine the observation window because they are present throughout the domain, their influence is almost direct (not necessarily their convergence).
 
-The \texttt{conesDict} containe the parameters of the EnKF algorithm such as the folowing. In our case, we set the number of ensemble members to 30, an observation window of 800 iterations, no inflation, no state optimisation (only parameters), and the absolute observation noise on the velocity of $0.2m/s$ (equivalent to $1.5\% of the maximal observation on the velocity$). These parameters have to be adjusted based on the specific requirements of the simulation and the characteristics of the data.
-An extract of the \texttt{conesDict} is given on the Annex~\ref{annex:conesDict}.
+\textbf{Parameters} \\
 
-As initial parameters to optimise, we use the same as in the previous section, i.e., $\mathbf{D} = (3e7, 3e7, 3e7), D_k = 3e7$ and $D_{\omega} = 3e7$, with a gaussian perturbation of 2\%.
+To determine the variance for the initial perturbation, two perspectives were considered. The experience at lab shows that an initial perturbation of around $5\%$ is good. From our side, the target was that, on average, an ensemble member differs by approximately $1 \times 10^7$ from the previous time step, for parameter values of order $3 \times 10^7$. With 30 ensemble members, this corresponds to about $95\%$ of the values (i.e., within $2\sigma$) being contained in the interval $[5 \times 10^7 \pm 1 \times 10^7]$. This leads to a standard deviation of $\sigma = 0.5 \times 10^7$, or about $10\%$.
+We finally choose a variance of 5\% for the first test. /// A RELIRE //
+
+Let us introduce the observation window.  
+The observation window was defined by observing the number of iterations required for the influence of the IBM forcing to reach the diffuser and take the form of the converged result. Turbulence parameters were not considered for defining this window, since their effect is present throughout the domain and their influence is almost immediate (although their convergence is slower).  
+
+The number of iterations between two analysis phases was determined by monitoring how many iterations are required for a parameter perturbation (e.g., $34\%$ change) to significantly affect the solution in the diffuser. What matters here is not full convergence, but that the solution starts to follow the correct trend. For turbulence parameters, this timescale is expected to be much shorter, since the forcing is applied everywhere in the domain.  
+We determined a number of 800 iterations for the observation window.
+
+The \texttt{conesDict} and the \texttt{controlDict} contains the parameters of the EnKF algorithm, such as the observation window and the following. In our case, we set the number of ensemble members to 30, no inflation, no state optimisation (only parameters), and an absolute observation noise on the velocity of $0.2 \, \text{m/s}$ (equivalent to $1.5\%$ of the maximum observed velocity). These parameters must be adjusted depending on the specific requirements of the simulation and the characteristics of the data. The number of iterations (800) was determined by testing the convergence trend of a single OpenFOAM simulation when parameters are modified by 34\% (i.e., seven times the standard deviation of the initial parameter perturbation). Since the standard deviation may temporarily increase with iterations, care must be taken when choosing this number.
+An extract of the \texttt{conesDict} is given in Annex~\ref{annex:conesDict}.  
+
+%MThe \texttt{conesDict} contains the parameters of the EnKF algorithm such as the folowing. In our case, we set the number of ensemble members to 30, an observation window of 800 iterations, no inflation, no state optimisation (only parameters), and the absolute observation noise on the velocity of $0.2m/s$ (equivalent to $1.5\%$ of the maximal observation on the velocity). These parameters have to be adjusted based on the specific requirements of the simulation and the characteristics of the data.
+%The number of iterations is set to 800 by testing the tendancy of the convergence of one OpenFOAM simulation when parameters are modify of 40\%, which is 20 times the standard deviation of the initial perturbation on parameters (the standard deviation can momenta,ly increase with iterations, so we need to be careful with the number of iterations).
+
+%As initial parameters to optimise, we use the same as in the previous section, i.e., $\mathbf{D} = (3e7, 3e7, 3e7), D_k = 3e7$ and $D_{\omega} = 3e7$, with a gaussian perturbation of 2\%.
+%Comment calculer la variance que je veux mettre ?
+%Expérience: 5\%
+%De mon coté: je vise qu'en moyenne un membre d'ensemble ait un écart de 1e7 par rapport au temps précédent (pour des valeurs autour de 5e7), donc, pour 30 membres d'ensemble, environ 95\% = 2 sigma dans 5e7+-1e7, càd sigma = 0.5e7 = 10\%. Ensuite, le nombre d'itération entre les phases d'analyse est déterminé en regardans combien d'itération sont nécessaires pour faire varier la solution dans le diffuser (influe, rapidement, converge doucement mais ce qui nous intéresse c'est que ça prenne la tendace) lorsqu'un paramètre de forcage est modifié (supposé très inférieure pour la turbulence car appliquée de partout)
 
 
 \textbf{First results}
 
-We obtained the first results of the optimisation with CONES, as shown in \autoref{fig:PumpfirstAssymetry}. The velocity field is represented on a slice at $z=0$. The resulting parameters are the folowing: $\mathbf{D} = (4e7, 2e7, 4e7), D_k = 3e7$ and $D_{\omega} = -3e7$
+After let the simulation run for around 50 iterations, we obtain the first results of the optimisation with CONES. The parameters are optimised to fit the PIV data, and the velocity field is represented on a slice at $z=0$. The resulting parameters are the folowing: $\mathbf{D} = (4e7, 2e7, 4e7), D_k = 3e7$ and $D_{\omega} = -3e7$. The sum of the NRMSEs on the velocity field diminished, of around 20\%. The global performance of the pump didn't change significantly.
+Usually, around 200 iterations are needed ton converged but is not need for a first result and cost a lot of CPU time (1270 CPU $\times$ hours per EnKF iteration).
+
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.65\textwidth]{images/numericalPump/assymetrie.png}
-    \caption{First results of CONES optimisation. Slice at $z=0$}
+    \caption{First results of CONES optimisation. Slice at $z=0$, with $\mathbf{D} = (4e7, 2e7, 4e7), D_k = 3e7$ and $D_{\omega} = -3e7$}
     \label{fig:PumpfirstAssymetry}
 \end{figure}
 
@@ -1430,7 +1446,7 @@ We would expected $D_x = D_y$ because the geometry is symmetric, but we see that
 $D_{\omega}$ is negative, which is not physical.
 
 
-
+\newpage
 \section{Analysis and Results}
 \label{sec:Results}
 
@@ -1446,6 +1462,7 @@ Looking at the physics of the pump CFD optimise by DA more in detail, we realize
 To try to counter this problem, a few strategies are employed, tested separately or in combination (each DA analysis cost a lot of CPU time, so we are limited in the number of analysis we can do):
 
 \textbf{1. $D_x = D_y$} strategy is to force $D_x = D_y$ (it helps the convergence by the way, by reducing the number of parameters to optimise).
+In that case, the parameters vector is reduced to $\mathbf{D} = (D_x, D_z, D_k, D_{\omega})$.
 
 \textbf{2. $D_{\omega} > 0$} strategy is to force $D_{\omega} > 0$, keeping a variance betweeen each other to allow the parameters to vary.
 
@@ -1458,6 +1475,7 @@ We used a second order polynomial to represent the radial expansion of the forci
     \item three parameters are not too many so that the optimisation is not too long and the convergence is not too difficult;
     \item it permit eliminat a step of the value to 0 at the blade tips for a continuity of order 0, which can be important for the numerical stability of the simulation.
 \end{itemize}
+In that case, the parameters vector passe from five values to fifteen values.
 
 \begin{figure}[H]
     \centering
@@ -1473,17 +1491,7 @@ We used a second order polynomial to represent the radial expansion of the forci
     \label{fig:bladeInterpolation}
 \end{figure}
 
-
-
-
-
-
-
-\dots
-
-
-
-
+After applying these strategies, the solution is still not satisfactory, as we can see in the \autoref{fig:UpdtC14_10NMRSE} where the NRMSEs are still high and the velocity field is still not physical and not converged. The NRMSEs are computed between the numerical simulation and the PIV data, and we can see that they are still high, especially for the radial velocity and velocity over z, because of the no physical recirculation bubble.
 
 \begin{figure}[H]
     \centering
@@ -1494,35 +1502,26 @@ We used a second order polynomial to represent the radial expansion of the forci
 
 \textbf{4. More global interpolation}
 
+The folowing explanations are based on the \autoref{fig:augmentedCoords}.
+The minimum is found based on the blue cercles "coords\_seventh" interpolated points and averaged on the "avg\_seventh\_360" red point localisation. To try to have a more uniform field solution, we can average the parameters over a larger area, i.e., over 360 degrees instead of $360/7$ degrees. This allows to have a more global view of the parameters and to avoid local minima (green squares "coords\_7" average on the red cercles). But this can also lead to a solution that does not respect the periodicity of the pump, i.e., the solution is not 7 times the same pattern. So we can also average the parameters over 7 segments of $360/7$ degrees, which allows to have a more uniform field solution while respecting the periodicity of the pump (orange cruses "coords\_360" and purple cercles "avg\_7"). In this last case, the length of the coordinate of the observation points is 105 (5 variables, 3 PIV planes, and 7 segments of $360/7$ degrees) and the length of the observation vector is 315 (3 dimensions, 105 points).
+%Pour cela j'ai commencé en moyennant 1/7 mais les paramètres étant locaux (non globaux), j'ai ensuite moyenné sur 360 degrés, ce qui permet de mieux prendre en compte les variations locales des paramètres. Cependant, nous pouvons converger vers une moyenne physique qui atteinds un minimum local mais qui ne respecte pas d'avoir 7 fois le même pattern. Cela permet à Fx d'être très différent de Fy mais aussi à la simulation de diverger avec des paramètres et vitesses erronéees. Pour palier ce problème, je compare la moyenne des patternes sur mes 7 segments de 360/7 degrés.
 
-Explication de coords\_seventh.txt, coords\_360.txt et coords\_7.txt
 \begin{figure}[H]
+    \centering
     \includegraphics[width=0.8\textwidth]{images/numericalPump/coords.png}
-    \caption{}
-    \label{CHANGER}
+    \caption{Illustration of the augmented coordinates for the interpolation of the field}
+    \label{fig:augmentedCoords}
 \end{figure}
 
-\textbf{5.Inflation} ////// strategy is to use a more complex DA method, such as the EnKF with inflation, which allows to escape from local minima by adding noise to the ensemble members. This can help to explore the parameter space more effectively and find a better solution.
+\textbf{5.Inflation} The inflation strategy (explained id the \autoref{eqn:inflation}) is to use a more complex DA method, such as the EnKF with inflation, which allows to escape from local minima by adding noise to the ensemble members. This can help to explore the parameter space more effectively and find a better solution. But we didn't had this problem in our cas so it hasn't been used.
+
+\textbf{6.Pressure observation} Finnaly, we can also add a pressure observation to the DA, which allows to take into account the pressure difference between the inlet and the outlet of the pump. This can help to improve the convergence of the solution and to have a more physical result. The pressure observation represents the difference of pressure between the inlet of the pipe and the outlet of the diffuser. The numerical coefficient are interpolating, respectively at (0,0,-0.35) and (0,0.390,0). Incertitude on p will be less than the measured one to take more take it account.
+This implementation add on element oh the observation vector.
+
+%Nous avons fait l'EnKF sans l'état\dots
+%Sans inflation pour commencer. Si on converge vers une solution qui ne nous satisfait pas, on peut essayer d'ajouter... Cela permet de s'échaper d'un minimum local en ajoutant du bruit artificiellement. 
 
 
-
-
-///// Reprendre les objectifs définis à la fin de la section 2.1 //////
-
-
-
-Nous avons fait l'EnKF sans l'état\dots
-Sans inflation pour commencer. Si on converge vers une solution qui ne nous satisfait pas, on peut essayer d'ajouter... Cela permet de s'échaper d'un minimum local en ajoutant du bruit artificiellement. 
-
-Comparer les 2-3 résultats: (avant DA, déjà fait section précédente), après simple et "complex" DA
-So the state vector is now 46.
-Incertitude on p will be less to take more take it account.
-Inflation...
-
-
-
-
-Pour cela j'ai commencé en moyennant 1/7 mais les paramètres étant locaux (non globaux), j'ai ensuite moyenné sur 360 degrés, ce qui permet de mieux prendre en compte les variations locales des paramètres. Cependant, nous pouvons converger vers une moyenne physique qui atteinds un minimum local mais qui ne respecte pas d'avoir 7 fois le même pattern. Cela permet à Fx d'être très différent de Fy mais aussi à la simulation de diverger avec des paramètres et vitesses erronéees. Pour palier ce problème, je compare la moyenne des patternes sur mes 7 segments de 360/7 degrés.
 
 \begin{figure}[H]
     \centering
@@ -1535,64 +1534,52 @@ Pour cela j'ai commencé en moyennant 1/7 mais les paramètres étant locaux (no
 
 
 
-\dots
 
 
-A sixth coefficients $D_p$ has been add.
-It's represent the difference of pressure between the inlet of the pipe and the outlet of the diffuser. 
-The numerical coefficient are interpolating, respectively at (0,0,-0.35) and (0,0.390,0).
-
-Explication des écarts par différentes choses 
+% ///// Reprendre les objectifs définis à la fin de la section 2.1 //////
+% Essayer d'améliorer le rendu de l'image ci-dessous en mettant la pompe en transparence
+% Nous avons fait une simu RANS mais nous aurions pu faire une simu URANS (ou LES ou DDES) avec un modèle de turbulence... 
 
 
-Tt ce que j'ai implémenté en plus (déjà détaillé partie précédente normalement)
-
+%L'expérience montre un ordre de grandeur de centaines d'itération entre les phases d'analyse, mais cela dépend beaucoup du cas.
+%Il en est de même pour le nombre de phases d'analyse.
 
 
 
-
-Essayer d'améliorer le rendu de l'image ci-dessous en mettant la pompe en transparence
-
-
-
-Nous avons fait une simu RANS mais nous aurion pu faire une simu URANS (ou LES ou DDES) avec un modèle de turbulence... 
-
-L'expérience montre un ordre de grandeur de centaines d'itération entre les phases d'analyse, mais cela dépend beaucoup du cas.
-Il en est de même pour le nombre de phases d'analyse.
-Supposons 1000 itération en moyenne entre chaque phase d'analyse, et 300 phases d'analyse, cela nous fait 300 000 itérations à simuler, soit 93h, sur env. 2800 coeurs, soit 264kh.processeur de calcul.
-
-Comment calculer la variance que je veux mettre ?
-Expérience: 5\%
-De mon coté: je vise qu'en moyenne un membre d'ensemble ait un écart de 1e7 par rapport au temps précédent (pour des valeurs autour de 5e7), donc, pour 30 membres d'ensemble, environ 95\% = 2 sigma dans 5e7+-1e7, càd sigma = 0.5e7 = 10\%. Ensuite, le nombre d'itération entre les phases d'analyse est déterminé en regardans combien d'itération sont nécessaires pour faire varier la solution dans le diffuser (influe, rapidement, converge doucement mais ce qui nous intéresse c'est que ça prenne la tendace) lorsqu'un paramètre de forcage est modifié (supposé très inférieure pour la turbulence car appliquée de partout)
-
-
-Code pour contrer les coefficients négatifs (non physiques)
 
 Pb de la DA: plus rapide que DNS mais toujours plus lent que RANS et le temps d'attente et de calcul sur supercalculateur (sur 4000 processeurs) est de l'orde de plusieurs jours. On peut donc se demander si la DA est vraiment utile dans ce cas. En effet, la DA est plus rapide que la DNS mais pas que la RANS. Cependant, il faut prendre en compte le fait que la DA permet de réduire le temps de calcul de la simulation numérique en permettant d'optimiser les paramètres de l'IBM. De plus, la DA peut être utilisée pour d'autres cas d'étude où la DNS est trop coûteuse.
 
 
 
+
+
+\subsection{Conclusion and outlook}
+\textbf{Conclusion}
+After done a state of art on the topics, numerical ingredients and usefull libraries was presented.
+An explanation of pre-processing of the experimental data was given, as well as the implementation of the IBM method in OpenFOAM.
+Then, we presented the first results of the numerical simulation and the first application of the DA method on the centrifugal pump case.
+The results show that the IBM method as applied here does not give us a physical result and the DA does not allow us to improve this result. The solution is not converged and the velocity field is not physical, with a recirculation bubble in the diffuser. Several strategies were tested to try to improve the solution, but none of them allowed to obtain a satisfactory result. The next step would be to try to improve the IBM method or to try an instationnary (URANS or LES) simulation to see if it can overcome these non-physical results.
+
+
+\textbf{Outlook}
+
+
+
+
+
+
+
+\textbf{NOTES PERSO CI-DESSOUS}
+
 Pb perso: jusqu'à plusieurs jours d'attente pour lancer une simu.
 
-
-Tout ce qu'il y a dans le CONES dict
-Parler des modifs dans le code ici.
-
-
-
-- Reduction of the pipe (with the research of the velocity inlet condition)
+Reduction of the pipe (with the research of the velocity inlet condition)
 
 Toujours mentionner les paramètres utilisés (dans le controlDict et le CONESDict)
 
+Problème de méthode et pas de miracle ave cette méthode IBM. Interpolation, instationnaire (avantage: on ne contraint plus avec MRF et donc plus facile de réconcilier solution numérique physique et mathématique)
 
 Parler des coefficients de relaxation.
-
-
-Explication des écarts par la bulle de recirculation.
-
-\subsection{Conclusion ans perspective}
-
-Problème de méthode et pas de miracle ave cette méthode IBM. Interpolation, instationnaire (avantage: on ne contraint plus avec MRF et donc plus facile de réconcilier solution numérique physique et mathématique)
 
 
 Ouverture: méthode IBM interpolation, article non référencé.
@@ -1611,15 +1598,11 @@ Peut-être faire deux filtres de Kalman imbriqués ? hyperparamètres type fenet
 
 Voir "TD -> Done et "TDSave -> Done" pour voir tt ce que j'ai fais
 
-
 The random variations are random but with a reproducibility seed (sed) that allows to have the same result each time the simulation is launched.
 
 
-//The theorical average radial speed at the input of the diffuser is equal to \[\frac{Q_{dif_{in}}}{S_{dif_{in}}} = \frac{Q_{pump_{in}}}{2\pi R_{3} h_{dif}} = 3.65m.s^{-1}\]
+The theorical average radial speed at the input of the diffuser is equal to \[\frac{Q_{dif_{in}}}{S_{dif_{in}}} = \frac{Q_{pump_{in}}}{2\pi R_{3} h_{dif}} = 3.65m.s^{-1}\]
 With $Q_{pump_{in}} = Q_{dif_{in}}$ because the mass flow rate is constant and the flow is incompressible.// -> No need ??
-
-Parler du cas test profil d'aile de Tom
-
 
 \begin{figure}[H]
     \includegraphics[width=0.4\textwidth]{images/coords360.png}
@@ -1628,20 +1611,24 @@ Parler du cas test profil d'aile de Tom
 \end{figure}
 
 
+
 Methodo (forcage continue (vs interpolation ?)) -> avantages
 
 ////Annexe des opérateurs grad, div, nabla, rot, laplacien, laplacien vectoriel, etc...////
 
 The EnKF method will be used to assimilate data from the flow at the observation points and to update the forcing term until it converges to the optimal value. These high-fidelity data are obtained from an experiment explained in the next \autoref{sec:Experimental_data_and_pre-processing}.
 
-//Préparer l'introduction des variables du controlDict et le CONESDict//
-
 
 %En combien de temps l'information de pression remonte-t-elle dans le diffuser ? -->> "directement"
-
 %144 coeurs: 54it/min
 %300-> 336 coeurs: 100it/min (+- 20\%)
 
 Limitations IBM à améliorer avec DA
+
 Graçe aux données xp (mentionné partie 2.1.2, on peut faire de la DA)
+
 Check consistance U, u, P, p, gras, italique,... dans les équations
+
+Comparer les 2-3 résultats: (avant DA, déjà fait section précédente), après simple et "complex" DA
+
+Supposons 1000 itération en moyenne entre chaque phase d'analyse, et 300 phases d'analyse, cela nous fait 300 000 itérations à simuler, soit 93h, sur env. 2800 coeurs, soit 264kh.processeur de calcul.
