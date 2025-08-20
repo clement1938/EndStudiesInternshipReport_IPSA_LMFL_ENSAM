@@ -1272,7 +1272,9 @@ These files are distributed across six directories, each corresponding to a diff
 
 We further average the data between radii \(R_1\) and \(R_2\), resulting in three files of size $81 \times 125$ lines and $10$ columns.
 At this stage, we retain only the data along the line \(x = 0.0245\). More precisely, we average the data between \(x = 0.024\) and \(x = 0.025\).
-Finally, the data are truncated at line 89, where the radius exceeds 0.3~m. This truncation is necessary due to laser reflections on the pump casing during the PIV experiments.
+Finally, the data are truncated at line 89, where the radius exceeds 0.3~m. This truncation is necessary due to laser reflections on the pump casing during the PIV experiments.\footnote{Concretely, to average the data over the angle \(\theta\), we modify the interpolation function in CONES.
+Instead of read coords, the interpolation function read the data in a file named \texttt{coords\_seventh.txt}.
+Then, it computes the interpolation and average the data over the angle \(\theta\) (between -$\pi/7$ and $\pi/7$), by doing a somme over \(\theta\) and dividing by the number of points (150). To go back from 150x5x3x3 (to detail) to 5x3x3 data. All of those computation are mad in a cylindrical referencial.}
 
 
 \subparagraph{4.Shaping for CONES}
@@ -1319,13 +1321,12 @@ In addition to the nine pressure tapes on the diffuser, Dazin et al.~\cite{dazin
 As we are at $Q/Q_d = 1$, we can retreive:
 
 \begin{equation}
-    \frac{\Delta P_{P}}{\rho U_{2}^{2}} = \eta \Leftrightarrow
-    \Delta P_{P} = \rho U_{2}^{2} \eta
+    \frac{\Delta P_{P}}{\rho U_{2}^{2}} = \eta \Leftrightarrow \Delta P_{P} = \rho U_{2}^{2} \eta
 \end{equation}
 
 For the high-fidelity value, we can find experimental data form the same pump \cite{fanEffectLeakagePerformanceb}, that's match with M. Fan simulation (eq to approximately \(\eta\) = 0.4). So wa can also compute:
 
-${U_{2}}^2$ is the impeller tip speed computed from the impeller diameter and the rotation speed of the pump.
+${U_{2}}$ is the impeller tip speed computed from the impeller diameter and the rotation speed of the pump.
 
 \begin{equation}
     U_{2} = {(\Omega \times R2)}^2 = {(2 \times \pi \times \frac{1200}{60} \times 0.2566)}^2 = 32,2 m/s
@@ -1349,10 +1350,10 @@ Finally:
 
 
 \newpage
-\section{IBM preliminary results and modifications on OpenFOAM}
+\section{IBM preliminary results}%and modifications on OpenFOAM 
 \label{sec:IBM_preliminary_results}
 
-\textbf{IBM preliminary results}
+%\textbf{IBM preliminary results}
 
 Once the pump model implemented in OpenFOAM, we can run the simulation with the IBM.
 After empirical tests and with experience of the laboratory, we found that the parameters $\mathbf{D} = (3e7, 3e7, 3e7), D_k = 3e7$ ans $D_{\omega} = 3e7$ are godd starting point for the IBM parameters. And it verify a converged CFD solution.
@@ -1383,45 +1384,132 @@ A good indicator of the accuracy of the simulation is the performance of the pum
 
 
 
-
-
-\footnote{Concretely, to average the data over the angle \(\theta\), we modify the interpolation function in CONES.
-Instead of read coords, the interpolation function read the data in a file named \texttt{coords\_seventh.txt}.
-Then, it computes the interpolation and average the data over the angle \(\theta\) (between -$\pi/7$ and $\pi/7$), by doing a somme over \(\theta\) and dividing by the number of points (150). To go back from 150x5x3x3 (to detail) to 5x3x3 data. All of those computation are mad in a cylindrical referencial.}
-
-
-
-
 %At pump flow rate = pump design flow rate So Q?/Q? =1
 %\subsection{Modifications on OpenFOAM} %Preparation   %  and CONES for the DA
-
-
 
 %S'aider du plan de la présentation MALEAF + thèse M
 %Expliquer comment j'applique la DA sur le cas test de la pompe centrifuge (pas d'equation)
 
 
-
-
-
 \section{First simple application of the DA}
 \label{sec:Application_of_the_DA}
 
-As represented on the \autoref{fig:CONES}, we need to adapt the OpenFOAM and CONES codes to apply the EnKF on the centrifugal pump case.
+As represented on the \autoref{fig:CONES}, we need to adapt the OpenFOAM and CONES codes to apply the EnKF on the centrifugal pump case. Among others, the MPI exchanges are coded.
 
 \textbf{Modifications on OpenFOAM}
-
+Previously, OpenFOAM has been adapted to our case, including the implementation of the IBM and MRF methods, as well as the definition of the mesh and boundary conditions. Now, we need to adapt OpenFOAM to work with CONES, by including MPI processes taht will allows to run a simulation with variables IBM parameters and that will be able to return interpolated averaged velocities to CONES.
 
 \textbf{Adaptations on CONES}
+On the other side, although CONES is already adapted to work with OpenFOAM, we need to adapt it to our case. We need to adatp the code to the type of observations.
+
+\textbf{Test case}
+Finally, we have to initialize a repesitroy for the test case, i.e., the centrifugal pump. This includes defining the initial parameters, the observation points, and the initial state of the ensemble members, including a \texttt{conesDict}.
 
 \textbf{Parameters}
+Let introduce the observation window:
+The observation window was defined by observing the number of iterations required for the influence of the IBM to reach the diffuser and take the form of the converged result. We are not interested in the turbulence parameters to determine the observation window because they are present throughout the domain, their influence is almost direct (not necessarily their convergence).
+
+The \texttt{conesDict} containe the parameters of the EnKF algorithm such as the folowing. In our case, we set the number of ensemble members to 30, an observation window of 800 iterations, no inflation, no state optimisation (only parameters), and the absolute observation noise on the velocity of $0.2m/s$ (equivalent to $1.5\% of the maximal observation on the velocity$). These parameters have to be adjusted based on the specific requirements of the simulation and the characteristics of the data.
+An extract of the \texttt{conesDict} is given on the Annex~\ref{annex:conesDict}.
+
+As initial parameters to optimise, we use the same as in the previous section, i.e., $\mathbf{D} = (3e7, 3e7, 3e7), D_k = 3e7$ and $D_{\omega} = 3e7$, with a gaussian perturbation of 2\%.
+
+
+\textbf{First results}
+
+We obtained the first results of the optimisation with CONES, as shown in \autoref{fig:PumpfirstAssymetry}. The velocity field is represented on a slice at $z=0$. The resulting parameters are the folowing: $\mathbf{D} = (4e7, 2e7, 4e7), D_k = 3e7$ and $D_{\omega} = -3e7$
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\textwidth]{images/numericalPump/assymetrie.png}
+    \caption{First results of CONES optimisation. Slice at $z=0$}
+    \label{fig:PumpfirstAssymetry}
+\end{figure}
+
+We would expected $D_x = D_y$ because the geometry is symmetric, but we see that the optimisation converged to a solution where $D_x \neq D_y$. The local minimum found by the optimisation give us a unsatisfactory solution.
+$D_{\omega}$ is negative, which is not physical.
 
 
 
 \section{Analysis and Results}
 \label{sec:Results}
 
+Looking at the physics of the pump CFD optimise by DA more in detail, we realize that the IBM method as applied here does not give us a physical result at all and the DA does not allow us to improve this result. It let the flow passing through the external part of the impeller (see \autoref{fig:LIC}), which is not physical. This imply a recirculation bubble in the diffuser that we would like to avoid.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/numericalPump/LIC.png}
+    \caption{Formation of the recirculation bubble in the diffuser}
+    \label{fig:LIC}
+\end{figure}
+
+To try to counter this problem, a few strategies are employed, tested separately or in combination (each DA analysis cost a lot of CPU time, so we are limited in the number of analysis we can do):
+
+\textbf{1. $D_x = D_y$} strategy is to force $D_x = D_y$ (it helps the convergence by the way, by reducing the number of parameters to optimise).
+
+\textbf{2. $D_{\omega} > 0$} strategy is to force $D_{\omega} > 0$, keeping a variance betweeen each other to allow the parameters to vary.
+
+\textbf{3. Radial expansion} strategy is to use a radial expansion of the five forcing coefficients as illustrated is the \autoref{fig:radialExpension} 
+We used a second order polynomial to represent the radial expansion of the forcing coefficients, for a few raisons:
+\begin{itemize}
+    \item it allows to have a more complete representation of the forcing coefficients, which can help to better fit the experimental data;
+    \item it allows to have a smooth variation of the coefficients over the impeller radius, which is more realistic than a constant value;
+    \item it allows to describe pretty weel the geometry in a quadratic way, which is more complete than a sinusoidal representation (see \autoref{fig:bladeInterpolation}) which would also require 3 parameters;
+    \item three parameters are not too many so that the optimisation is not too long and the convergence is not too difficult;
+    \item it permit eliminat a step of the value to 0 at the blade tips for a continuity of order 0, which can be important for the numerical stability of the simulation.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/numericalPump/radialExpension.png}
+    \caption{Radial expension of Dz over the impeller radius}
+    \label{fig:radialExpension}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/blade_interpolation_1.png}
+    \caption{Polynomial and sinusoidal interpolation of the blade shape}
+    \label{fig:bladeInterpolation}
+\end{figure}
+
+
+
+
+
+
+
+\dots
+
+
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/UpdtC14_10NMRSE.png}
+    \caption{Evolution of the NRMSEs over EnKF analysis phases}
+    \label{fig:UpdtC14_10NMRSE}
+\end{figure}
+
+\textbf{4. More global interpolation}
+
+
+Explication de coords\_seventh.txt, coords\_360.txt et coords\_7.txt
+\begin{figure}[H]
+    \includegraphics[width=0.8\textwidth]{images/numericalPump/coords.png}
+    \caption{}
+    \label{CHANGER}
+\end{figure}
+
+\textbf{5.Inflation} ////// strategy is to use a more complex DA method, such as the EnKF with inflation, which allows to escape from local minima by adding noise to the ensemble members. This can help to explore the parameter space more effectively and find a better solution.
+
+
+
+
 ///// Reprendre les objectifs définis à la fin de la section 2.1 //////
+
+
 
 Nous avons fait l'EnKF sans l'état\dots
 Sans inflation pour commencer. Si on converge vers une solution qui ne nous satisfait pas, on peut essayer d'ajouter... Cela permet de s'échaper d'un minimum local en ajoutant du bruit artificiellement. 
@@ -1431,12 +1519,7 @@ So the state vector is now 46.
 Incertitude on p will be less to take more take it account.
 Inflation...
 
-Explication de coords\_seventh.txt, coords\_360.txt et coords\_7.txt
-\begin{figure}[H]
-    \includegraphics[width=0.8\textwidth]{images/numericalPump/coords.png}
-    \caption{}
-    \label{CHANGER}
-\end{figure}
+
 
 
 Pour cela j'ai commencé en moyennant 1/7 mais les paramètres étant locaux (non globaux), j'ai ensuite moyenné sur 360 degrés, ce qui permet de mieux prendre en compte les variations locales des paramètres. Cependant, nous pouvons converger vers une moyenne physique qui atteinds un minimum local mais qui ne respecte pas d'avoir 7 fois le même pattern. Cela permet à Fx d'être très différent de Fy mais aussi à la simulation de diverger avec des paramètres et vitesses erronéees. Pour palier ce problème, je compare la moyenne des patternes sur mes 7 segments de 360/7 degrés.
@@ -1450,12 +1533,6 @@ Pour cela j'ai commencé en moyennant 1/7 mais les paramètres étant locaux (no
 
 
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/UpdtC14_10NMRSE.png}
-    \caption{Evolution of the NRMSEs over EnKF analysis phases}
-    \label{fig:UpdtC14_10NMRSE}
-\end{figure}
 
 
 \dots
@@ -1470,22 +1547,12 @@ Explication des écarts par différentes choses
 
 Tt ce que j'ai implémenté en plus (déjà détaillé partie précédente normalement)
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/numericalPump/radialExpension.png}
-    \caption{Radial expension of Dz over the impeller radius}
-    \label{fig:radialExpension}
-\end{figure}
+
 
 
 
 Essayer d'améliorer le rendu de l'image ci-dessous en mettant la pompe en transparence
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/numericalPump/LIC.png}
-    \caption{Formation of the recirculation bubble in the diffuser}
-    \label{fig:LIC}
-\end{figure}
+
 
 
 Nous avons fait une simu RANS mais nous aurion pu faire une simu URANS (ou LES ou DDES) avec un modèle de turbulence... 
@@ -1498,8 +1565,8 @@ Comment calculer la variance que je veux mettre ?
 Expérience: 5\%
 De mon coté: je vise qu'en moyenne un membre d'ensemble ait un écart de 1e7 par rapport au temps précédent (pour des valeurs autour de 5e7), donc, pour 30 membres d'ensemble, environ 95\% = 2 sigma dans 5e7+-1e7, càd sigma = 0.5e7 = 10\%. Ensuite, le nombre d'itération entre les phases d'analyse est déterminé en regardans combien d'itération sont nécessaires pour faire varier la solution dans le diffuser (influe, rapidement, converge doucement mais ce qui nous intéresse c'est que ça prenne la tendace) lorsqu'un paramètre de forcage est modifié (supposé très inférieure pour la turbulence car appliquée de partout)
 
-The observation window was defined by observing the number of iterations required for the influence of the IBM to reach the diffuser and take the form of the converged result. We are not interested in the turbulence parameters to determine the observation window because they are present throughout the domain, their influence is almost direct (not necessarily their convergence). We chose 800 iterations
 
+Code pour contrer les coefficients négatifs (non physiques)
 
 Pb de la DA: plus rapide que DNS mais toujours plus lent que RANS et le temps d'attente et de calcul sur supercalculateur (sur 4000 processeurs) est de l'orde de plusieurs jours. On peut donc se demander si la DA est vraiment utile dans ce cas. En effet, la DA est plus rapide que la DNS mais pas que la RANS. Cependant, il faut prendre en compte le fait que la DA permet de réduire le temps de calcul de la simulation numérique en permettant d'optimiser les paramètres de l'IBM. De plus, la DA peut être utilisée pour d'autres cas d'étude où la DNS est trop coûteuse.
 
