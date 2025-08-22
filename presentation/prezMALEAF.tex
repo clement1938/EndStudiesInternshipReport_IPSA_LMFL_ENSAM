@@ -28,14 +28,14 @@
 \usepackage{mathdots}
 \usepackage{yhmath}
 \usepackage{cancel}
-\usepackage{color}
+%\usepackage{color}
 \usepackage{siunitx}
 \usepackage{amssymb}
 \usepackage{gensymb}
 \usepackage{extarrows}
 \usepackage{booktabs}
 \usepackage{hyperref}
-\usepackage{nicematrix}
+%\usepackage{nicematrix}
 \usepackage{colortbl}
 \usepackage{animate}
 \usetikzlibrary{decorations.pathreplacing}
@@ -99,12 +99,14 @@
 }
 
 
-\title[Projet MALEAF]{\structure{Assimilation de données pour une pompe centrifuge}}
+\title[Stage de fin d'études]{\texorpdfstring{\structure{Optimisation de la performance d'une pompe centrifuge par assimilation de données}}{Optimisation de la performance d'une pompe centrifuge par assimilation de données}}
 
 
-\author[C. Thibault, M.M. Valero]{Clément THIBAULT\textsuperscript{\dag}, Miguel M. VALERO\textsuperscript{\dag}}%, Marcello MELDI\textsuperscript{\dag}}
+\author[Clément THIBAULT]{
+  Clément THIBAULT\texorpdfstring{\textsuperscript{\dag}}{\dag}
+}
 \institute{\textsuperscript{{\dag}}Univ. Lille, CNRS, ONERA, Arts et Métiers ParisTech, Centrale Lille, UMR 9014- LMFL- Laboratoire de Mécanique des fluides de Lille - Kampé de Feriet, F-59000 Lille, France}
-\date{4 juin 2025}
+\date{DATE}
 
 \setbeamersize{text margin left=10mm,text margin right=10mm}
 
@@ -276,8 +278,8 @@
 
 \begin{frame}{Modélisation avec la méthode de frontières immergées}
 
-\begin{block}{\structure{\textbf{Penalisation IBM:}}}
-    Pénalisation continue de type IBM pour les écoulements incompressibles $\Rightarrow$ définition d’un \structure{terme de forçage direct local} $\boldsymbol{f}_P$ dans les équations de Navier–Stokes, afin d’\textbf{imposer les conditions aux limites sur la paroi immergée} $\boldsymbol{(ib)}$.
+\begin{block}{\texorpdfstring{\structure{\textbf{Penalisation IBM:}}}{Penalisation IBM:}}
+        Pénalisation continue de type IBM pour les écoulements incompressibles $\Rightarrow$ définition d’un \texorpdfstring{\structure{terme de forçage direct local}}{terme de forçage direct local} $\boldsymbol{f}_P$ dans les équations de Navier–Stokes, afin d’\textbf{imposer les conditions aux limites sur la paroi immergée} $\boldsymbol{(ib)}$.
 \end{block}
 
 \vspace{-0.2cm}
@@ -332,7 +334,7 @@
     \hspace{-0.5cm}
     \begin{column}{0.5\linewidth}
     \begin{itemize}[<+->]
-        \item Simulation stationnaire avec la l'approche \structure{\textbf{Multiple Reference Frame (MRF)}}
+        \item Simulation stationnaire avec l'approche \texorpdfstring{\structure{\textbf{Multiple Reference Frame (MRF)}}}{Multiple Reference Frame (MRF)}
         \item Modèle de turbulence $\mathcal{K}-\omega$ SST $\rightarrow$ Cinq coefficients de pénalisation $D = (\boldsymbol{D_u}, D_\mathcal{K}, D_\omega)$
         
 
@@ -367,7 +369,7 @@
     \begin{columns}
         \begin{column}{0.5\linewidth}
             \begin{itemize}
-                \item \structure{\textbf{Performance du diffuseur expérimentale et numérique similaire mais différente}}
+                \item \texorpdfstring{\structure{\textbf{Performance du diffuseur expérimentale et numérique similaire mais différente}}}{Performance du diffuseur expérimentale et numérique similaire mais différente}
 
                 \includegraphics[scale=0.4]{figures/diffuser_performance.pdf}
 
@@ -419,34 +421,36 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{DA avec l'EnKF - Premiers résultats en stationaire}
-
-\begin{columns}
+\begin{comment}
     
-  \column{0.48\textwidth}
+\begin{frame}{\texorpdfstring{DA avec l'EnKF - Premiers résultats en stationaire}{DA avec l'EnKF - Premiers résultats en stationaire}}
+
+    \begin{columns}
+        
+    \column{0.48\textwidth}
         \begin{figure}
             \centering
             \includegraphics[width=0.6\linewidth]{newFigures/assymetrie.png}
-            \caption{Champs de vitesse absolue pour\\
-            Dx = 4e7 et Dy = 2e7}
-            \label{fig:enter-label}
+            \caption{\texorpdfstring{Champs de vitesse absolue pour\\ Dx = 4e7 et Dy = 2e7}{Champs de vitesse absolue pour Dx = 4e7 et Dy = 2e7}}
+            \label{fig:enter-label11}
         \end{figure}
-        
-        \column{0.48\textwidth}
-            \begin{figure}
-                \centering
-                \includegraphics[width=0.6\linewidth]{newFigures/coords.png}
-                \caption{Points d'observation de vitesse numérique avant moyenne azimutale}
-                \label{fig:enter-label}
-            \end{figure}
 
-           
+    \column{0.48\textwidth}
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.6\linewidth]{newFigures/coords.png}
+            \caption{\texorpdfstring{Points d'observation de vitesse numérique avant moyenne azimutale}{Points d'observation de vitesse numerique avant moyenne azimutale}}
+            \label{fig:enter-label12}
+        \end{figure}
+
+
     \end{columns}
 
     Problème : mesure uniquement sur 1/7ème de la simulation numérique impliquant $Dx \neq Dy$.
     La NRMSE diminue car ces parmètres cassent la bulle de recirculation mais le résultat n'est pas physique.
-    
+
 \end{frame}
+\end{comment}
 
 
 \begin{frame}{DA avec l'EnKF - Premiers résultats}

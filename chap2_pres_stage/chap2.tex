@@ -8,7 +8,7 @@
 To introduce the topic of my internship, let's take a simple example: the weather forecast. Meteorologists use data assimilation to improve weather predictions by combining numerical models with real-time observations. This process helps correct model errors and provides more accurate forecasts.
 
 To understand fluid behaviour, scientists rely on physical measurements and governing equations. While analytical solutions exist for simple cases, more complex flows require numerical simulations. However, high-fidelity simulations remain too computationally expensive for industrial use.
-This limitation has led to the development of approximate models involving tunable parameters. These parameters are calibrated for specific flow conditions, using experimental data. Techniques such as the \ac{IBM}, which will be detailed later, use a global approach, while the physics of the flow cans locally be very different. That's why it rely on such high-fidelity data calibration.
+This limitation has led to the development of approximate models involving tunable parameters. These parameters are calibrated for specific flow conditions, using experimental data. Techniques such as the \ac{IBM}, which will be detailed later, use a global approach, while the physics of the flow can locally be very different. That's why it relies on such high-fidelity data calibration.
 Manual tuning is feasible for a small number of parameters but becomes inefficient and inaccurate as complexity increases. This justifies the use of mathematical approaches like the EnKF, which motivated the definition of my internship topic.
 
 %When scientists want to understand fluid behaviour, they can collect physical data through measurements. They can also rely on physical laws. In very simple cases, analytical solutions can be found. For more complex cases, these physical laws can be discretized to run numerical simulations.
@@ -52,7 +52,7 @@ Different high-fidelity data has been recorded on the diffuser of the pump at th
     \item pressure data obtained by Fan et al.~\cite{fanEffectLeakagePerformanceb} in 2022.
 \end{itemize}
 
-Both experimental (traditionally) and numerical (increasingly in recent years) approchaes have been used to investigate the rotor-stator interactions to improve performance, develop accurate models and permit real-time monitoring and control.
+Both experimental (traditionally) and numerical (increasingly in recent years) approaches have been used to investigate the rotor-stator interactions to improve performance, develop accurate models and permit real-time monitoring and control.
 
 \paragraph{IBM} To obtain a numerical simulation of the flow in the pump, a \ac{CFD} can be performed.
 There are different ways to discretize the space when we do CFD (see \autoref{fig:solidworksMesh}\footnote{\url{https://www.solidworks.com/sw/docs/flow_basis_of_cad_embedded_cfd_whitepaper.pdf}}). The most common are structured meshes, unstructured meshes and body-fitted meshes.
@@ -69,21 +69,21 @@ The body-fitted meshes are the most accurate but also the most expensive in term
 
 IBM is a numerical technique that simulates viscous flow with embedded boundaries on grids that do not conform to those boundaries. This allows to keep numerical efficiency on complex geometries and moving boundaries without the need for body-fitted meshes, which can be computationally expensive and difficult to implement.
 
-In 1972 Charles S. Peskin\cite{IBM_base} developped the IBM method. His goal was to reduce the computational time, mainly due to the computation of the mesh refinment based on the \ac{CFL} (define \autoref{eq:CFL}). He added an IBM forcing term on Navier-Stokes equations, only on the simulated artificial heart valve part. He overcomes the numerical instabilitys due to the boundary forces by using an iterative method for solving a fixed-point problem for boundary forces.
+In 1972 Charles S. Peskin\cite{IBM_base} developped the IBM method. His goal was to reduce the computational time, mainly due to the computation of the mesh refinment based on the \ac{CFL} (see \autoref{eq:CFL}). He added an IBM forcing term on Navier-Stokes equations, only on the simulated artificial heart valve part. He overcame the numerical instabilitys due to the boundary forces by using an iterative method for solving a fixed-point problem for boundary forces.
 
-In 1999 \cite{angotPenalizationMethodTake1999a} discovered that using the penalization IMB, the velocity penalized at the wall as the same as the one from a body-fitted approach if $\mathbf{D}$, a forcing parameter define in the \autoref{subsec:CFD_governing_equations}, tend to infinity.
+In 1999 Angot et al. \cite{angotPenalizationMethodTake1999a} discovered that using the penalization IMB, the velocity penalized at the wall was the same as the one from a body-fitted approach if $\mathbf{D}$, a forcing parameter defines in the \autoref{subsec:CFD_governing_equations}, tend to infinity.
 
-IBM are usually less accurate and need more cells element to keep good precision in the near-wall region, but more efficient in terms of computational resources when the geometrie is moving. So it's more and more used in CFD \cite{annurev:/content/journals/10.1146/annurev-fluid-120720-022129}. The maths behind the method are detail in the \autoref{eq:IBM}.
+IBM are usually less accurate and need more cells element to keep good precision in the near-wall region, but more efficient in terms of computational resources when the geometry is moving. So it's more and more used in CFD \cite{annurev:/content/journals/10.1146/annurev-fluid-120720-022129}. The maths behind the method are detailed in the \autoref{eq:IBM}.
 
 
 \paragraph{Data Assimilation} \ac{DA} is a technique used to improve the accuracy of numerical models by combining them with observational data\cite{aschDataAssimilationMethods2016}. It is widely used in various fields, including meteorology, oceanography, and engineering. The goal of DA is to obtain a more accurate representation of the state of a system by integrating information from different physical measurements or hight-fidelity sources.
 
 
-There exist many methods for data assimilation, distributed in three main categories: \textbf{variational methods}, \textbf{statistical methods} and \textbf{hybrid} (see \autoref{fig:DAmap}).
+There exist many methods for data assimilation, distributed in three main categories: \textbf{variational}, \textbf{statistical} and \textbf{hybrid} methods (see \autoref{fig:DAmap}).
 \begin{itemize}
     \item Variational methods (also called classical methods), such as the 3D-Var and 4D-Var, use optimization techniques to find the best estimate of the state of a system by minimizing the difference between model predictions and observations\cite{rabierVariationalDataAssimilation};
     \item Statistical methods (also called sequential methods), such as the Kalman filter and its \ac{EnKF} variant, update the model state iteratively as new observations become available\cite{aschDataAssimilationMethods2016}. It is working by maximizing a certain \ac{PDF} $\left\langle e^a \right\rangle_k = 0$;
-    \item And Hybrid methods, combining both variational and statistical that we are not going to explaine here.
+    \item Hybrid methods, which combine both variational and statistical approaches. They are not discussed here, as they were not used in this work and fall outside the scope of our study.
 \end{itemize}
 
 
@@ -95,7 +95,7 @@ There exist many methods for data assimilation, distributed in three main catego
 \end{figure}
 
 
-\paragraph{EnKF} The EnKF, is statistica Monte Carlo DA method that uses a set of model states (reffered to as ensemble member) to estimate the state of the system. The EnKF is particularly well-suited tool for assimilating data on nonlinear and high-dimensional systems and has been successfully applied in various fields, including \ac{CFD} simulations, allowing for the correction of model predictions based on observed data.
+\paragraph{EnKF} The EnKF, is a statistical Monte Carlo DA method that uses a set of model states (reffered to as ensemble member) to estimate the state of the system. The EnKF is particularly a well-suited tool for assimilating data on nonlinear and high-dimensional systems and has been successfully applied in various fields, including \ac{CFD} simulations, allowing for the correction of model predictions based on observed data.
 %The EnKF method is a powerful tool for assimilating data into CFD simulations, allowing 
 It mainly consists of two steps:
 \begin{itemize}
@@ -114,9 +114,9 @@ The maths behind the EnKF method are detailed in the \autoref{subsec:EnKF}.
 EnKF for DA in CFD has been used at \ac{LMFL} for a few years now.
 \begin{itemize}
     \item In 2023, Lucas Villanueva, with Miguel M.Valero and Marcello Meldi from LMFL wrote an article\cite{villanuevaAugmentedStateEstimation2023} about the amelioration of the flow around a building preforming EnKF on five CFD parameters, showing a global improvement for both the velocity field and the pressure field;
-    \item In 2024, Tom Moussie, with Paolo Errante and Marcello Meldi from LMFL wrote an article\cite{moussieStatisticalInferenceUpstream2024a} successfully optimizes the boudary condition of the academical rectangular 5:1 cylinder benchmarck using EnKF, leading to a significant improvement of the accuracy in the prediction of the turbulent flow;
+    \item In 2024, Tom Moussie, with Paolo Errante and Marcello Meldi from LMFL wrote an article\cite{moussieStatisticalInferenceUpstream2024a} successfully optimizing the boudary condition of the academical rectangular 5:1 cylinder benchmarck using EnKF, leading to a significant improvement of the accuracy in the prediction of the turbulent flow;
     \item This year, Miguel M.Valero and Marcello Meldi published an article combining EnKF, \ac{ML} and IBM on a turbulent channel flow \cite{valeroEnhancedStateEstimation2025}. It shows that this combination can gives very good and low cost results;
-    \item During my internship, Tom Moussie submit an article on the determination of the incidence angle of a 2D wing using EnKF, and Miguel submit also an article about the optimization of forcing parameters of an IBM around an 2D oscillating cylinder, showing very good results.
+    \item During my internship, Tom Moussie submitted an article on the determination of the incidence angle of a 2D wing using EnKF, and Miguel also submitted also an article about the optimization of forcing parameters of an IBM around an 2D oscillating cylinder, showing very good results.
 \end{itemize}
 
 
@@ -135,14 +135,14 @@ This led us to explore the use of the EnKF method to optimize the parameters of 
 
 \newpage
 
-In this context, we aim to apply both of these innovative methodologies to enhance the original CFD predictions on a centrifugal pump test case. The approach leverages PIV measurements at the diffuser, along with pressure tap data from the impeller inlet and the diffuser. To achieve this, the manuscript is organized around the following steps:
+In this context, we aim to apply both of these innovative methodologies to enhance the original CFD predictions on a centrifugal pump test case. The approach leverages PIV measurements at the diffuser, along with pressure tap data from the impeller inlet and the diffuser. To achieve this, the thesis is organized around the following steps:
 
 \begin{enumerate}
     \item Do a state of the art about the centrifugal pumps, CFD methods including IBM and DA including EnKF, detail in this \autoref{sec:stateOfArt};
     \item understand some numerical ingredients as CFD governing equations, the open-source code OpenFoam, the EnKF method, the CONES library and the pump modeling that are explained in the \autoref{subsec:CFD_governing_equations};
     \item pre-process the experimental data to be able to compare them to the numerical model, \autoref{sec:Experimental_data_and_pre-processing};
-    \item modify OpenFOAM to obtain first simulation results using IBM, \autoref{sec:IBM_preliminary_results}; //////////////////////// CHANGER /////////////////////
-    \item modify CONES to adapte it to the pump case and apply the DA to modify the IBM parameters, \autoref{sec:Application_of_the_DA};
+    \item modify OpenFOAM to obtain first simulation results using IBM, \autoref{sec:IBM_preliminary_results};
+    \item modify CONES to adapt it to the pump case and apply the DA to modify the IBM parameters, \autoref{sec:Application_of_the_DA};
     \item analyse the results of the DA on the optimization of the field in the diffuser and the accuracy of the perfomance of the pump, \autoref{sec:Results}.
 \end{enumerate}
 
@@ -211,7 +211,7 @@ These equations express three physical conservation principles, given here in th
 
 Two main indicators of the main behaviour of the fluid are the \ac{Ma} and the \ac{Re}.
 
-The $Ma$, is defined by the velocity of the fluid divided by the speed of the soud (relative to the fluid). In CFD, fluid is usually considered as incompressible for Mach lower than 0.3.
+The $Ma$, is defined by the velocity of the fluid divided by the speed of the sound (relative to the fluid). In CFD, fluid is usually considered as incompressible for Mach lower than 0.3.
 In our case, in atmospheric conditions,
 
 \begin{equation}
@@ -290,11 +290,11 @@ These Kolmogorov scales define the smallest spatial structures in the flow where
 
 To reduce computational cost, turbulence modelling is employed. Two main approaches exist:
 \begin{itemize}
-    \item \textbf{Large Eddy Simulation (LES)}: it resolves the large, energy-carrying structures and models only the small-scale turbulence. LES is more accurate than RANS but more computationally expensive, particularly near walls (see Figure~\ref{fig:Turbulence1}\footnote{\url{https://www.cfdsupport.com/openfoam-training-by-cfd-support/node346/}}).
+    \item \textbf{Large Eddy Simulation (LES)}: it resolves the large, energy-carrying structures and models only the small-scale turbulence. LES is more accurate than RANS but more computationally expensive, particularly near walls (see Figure~\ref{fig:Turbulence1})\footnote{\url{https://www.cfdsupport.com/openfoam-training-by-cfd-support/node346/}}.
     \item \textbf{Reynolds-Averaged Navier–Stokes (RANS)}: it models the entire turbulence spectrum through statistical averaging and closure models. It is less accurate but significantly cheaper, often used in steady-state simulations.
 \end{itemize}
 
-Note that DNS and LES do not rely on turbulence models in the traditional sense like RANS does; instead, they resolve directly or partially resolve turbulence dynamics. Also, caution must be taken when interpreting visual comparisons of DNS, LES, and RANS fields (see Figure~\ref{fig:Turbulence2})\footnote{\url{https://blog.diphyx.com/comprehensive-guide-review-to-choosing-the-right-cfd-software-in-2023-features-performance-and-7ebc0623bfa6}}, as the underlying assumptions and modelling strategies differ.
+Note that DNS and LES do not rely on turbulence models in the traditional sense like RANS does; instead, they resolve directly or partially turbulence dynamics. Also, caution must be taken when interpreting visual comparisons of DNS, LES, and RANS fields (see Figure~\ref{fig:Turbulence2})\footnote{\url{https://blog.diphyx.com/comprehensive-guide-review-to-choosing-the-right-cfd-software-in-2023-features-performance-and-7ebc0623bfa6}}, as the underlying assumptions and modelling strategies differ.
 
 
 
@@ -326,7 +326,7 @@ Note that DNS and LES do not rely on turbulence models in the traditional sense 
     \label{fig:Modelisation_of_turbulence2}
 \end{figure}
 
-In our study, we are going to have a look on the \ac{U-RANS} method use the same principle as the RANS method but it's unsteady, allowing to make turn physically the pump in our case.
+In our study, we are going to have a look on the \ac{U-RANS} method using the same principle as the RANS method but it's unsteady, allowing to make turn physically the pump in our case.
 
 More precisely, in our RANS and U-RANS simulation, we are going to use a $k-\omega$ \ac{SST} turbulence model. It is a two-equation eddy-viscosity model: it combines the $K-\epsilon$ and the $K-\omega$ turbulence approximations plus a blending region between both.
 
@@ -480,7 +480,7 @@ To do so, the \ac{CFL} or the courant number has to be computed.
 
 Typically set to a maximum of 1 for stability. 
 
-The CFL number can be interpreted as the fraction of the cell size that a disturbance (or wave) travels during a single time step. In this case, it corresponds to the ratio between the distance covered at the impeller tip in one time step and the spacing between two cells in the azimuthal direction.
+The CFL number can be interpreted as the fraction of the cell size that a disturbance (or wave) travels during a single time step. In this case, it corresponds to the ratio between the distance covered at the impeller tip in one time step and the space between two cells in the azimuthal direction.
 %A way to visualize the CFL is to think of it as the fraction of the distance a wave travels in one time step relative to the distance between two cells in the azimuthal direction at the tip of the impeller.
 The CFL is computed locally at each mesh element. Let's compute the $\Delta_t$ at the tip of the impeller, where the velocity is the highest and $\Delta_x$ the lowest.
 
@@ -659,11 +659,11 @@ The \texttt{constant} directory contains the different physical properties of th
 The \texttt{0} directory contains the initial solution's fields and the \ac{BC} as well.
 A compiled solver can be called in the terminal of the case directory to run the simulation.
 If it's called, the \texttt{postProcessing} directory stores data from the running simulation, such as forces and probes' data.
-The \texttt{processor0...N-1} directories directly result from the geometry decomposition, which is proceeded through the \texttt{decomposeParDict} dictionary.
+The \texttt{processor0}, ..., \texttt{processor"N-1"} directories directly result from the geometry decomposition, which is proceeded through the \texttt{decomposeParDict} dictionary.
 The \texttt{dummy.foam} is an empty file which allows to visualize the simulation with \texttt{ParaView}. 
 
 
-More precisely, for example, to implemente the IBM forcage term on the speed "u", we can manually modify the momentum equation of the corresponding solver as follows:
+More precisely, for example, to implement the IBM forcage term on the speed "u", we can manually modify the momentum equation of the corresponding solver as follows:
 \begin{lstlisting}[language=C++]
 // Momentum predictor step
 
@@ -714,15 +714,17 @@ With
 \subsection{EnKF}
 \label{subsec:EnKF}
 
+
+//////Expliquer ci-dessous ////////
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.33\textwidth]{images/Bayesian_theory.pdf}
-    \caption{Kalman Filter algorithm scheme}
+    \caption{/////////TITRE A MODIFIER /////////}
     \label{BayesianTh}
 \end{figure}
 
 As seen in the \autoref{sec:stateOfArt}, we are going to use the stochastic EnKF to assimilate the high-fidelity data.
-But first, let's explaine the Kalman Filter\footnote{\url{https://cones-dev-pe431-2dbff22738a4d54c2b947e6fa9a9a77fadd187b3bd1a85c.gitlab-pages.ensam.eu/data_assimilation.html}}.
+But first, let's explain the Kalman Filter\footnote{\url{https://cones-dev-pe431-2dbff22738a4d54c2b947e6fa9a9a77fadd187b3bd1a85c.gitlab-pages.ensam.eu/data_assimilation.html}}.
 
 \paragraph{Kalman Filter}
 
@@ -742,7 +744,7 @@ The system state $\mathbf{x}_k$ is as follows:
 where:
 \begin{itemize}
     \item $\mathbf{u}_k$ is the state matrix (can contain velocities, pressure, temperature...) of the domain at the time instant $k$, which we don't care about in our case;
-    \item $\boldsymbol{\theta}_k$ are the model coefficients, assumed time-invariant in our case;
+    \item $\boldsymbol{\theta}_k$ are the model parameters; % coefficients;%, assumed time-invariant in our case;
     \item $m$ is the number of ensemble members.
 \end{itemize}
 
@@ -795,7 +797,7 @@ Observation data may be built using:
     \item $\tilde{\mathbf{y}}_k$: innovation
     \item $\mathbf{S}_k$: innovation covariance
     \item $\mathbf{K}_k$: Kalman gain
-    \item $\mathbf{R}_k$: measurement noise
+    \item $\mathbf{R}_k$: noise measurement
     \item $\mathbf{I}$: identity matrix
     \item $\hat{\mathbf{x}}_{k|k}$: updated state
     \item $\mathbf{P}_{k|k}$: updated covariance
@@ -805,13 +807,13 @@ Observation data may be built using:
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{images/KF_algorithm-1.png}
-    \caption{Kalman Filter algorithm scheme}
+    \caption{Kalman Filter process illustration}
     \label{KF1}
 \end{figure}
 
 Kalman filter presents two main drawbacks that concern our case. First, as the \ac{EKF}, it only works for moderate deviations from linearity and Gaussianity. If $M$ represents the Navier-Stokes equations, then equations are very not linear. Secondly, for a CFD mesh, the covariance matrix $\mathbf{P}_k$ would have a dimention of $(n_{vars} \times n_{cells}, n_{vars} \times n_{cells})$.
 
-The EnKF allows high dimensional systems by avoiding the explicit definition of $\mathbf{P}_k$ and its Monte-Carlo realistations are much more design for non-linear models. A problem can be the underestimation of $\mathbf{P}_k^a$ but the inflation, define later on this subsection, and localisation, helps mitigate this issue.
+The EnKF allows high dimensional systems by avoiding the explicit definition of $\mathbf{P}_k$ and its Monte-Carlo realisations are much more design for non-linear models. A problem can be the underestimation of $\mathbf{P}_k^a$ but the inflation, define later on this subsection, and localisation, helps mitigate this issue.
 
 
 \begin{comment}
@@ -923,7 +925,8 @@ For RANS representation, there is no physical time advancement of the model, so 
     \begin{algorithmic}[1]
         \State \textbf{Input:} $\mathcal{M}$ (model); $\boldsymbol{R}$ (observation covariance); $\boldsymbol{y}_k$ (observations);
 
-        $\boldsymbol{u}_{i,0}^\prime = [\boldsymbol{u}_{i,0}, \theta_{i,0}]^T$ (initial prior states with $\boldsymbol{u}_{i,0} \sim \mathcal{N}(\boldsymbol{\overline{u}}_0, \boldsymbol{P}_0)$ and $\theta_{i,0} \sim \mathcal{N}(\overline{\theta}_0, \boldsymbol{P}_0)$)
+        %$\boldsymbol{u}_{i,0}^\prime = [\boldsymbol{u}_{i,0}, \theta_{i,0}]^T$ (initial prior states with $\boldsymbol{u}_{i,0} \sim \mathcal{N}(\boldsymbol{\overline{u}}_0, \boldsymbol{P}_0)$ and $\theta_{i,0} \sim \mathcal{N}(\overline{\theta}_0, \boldsymbol{P}_0)$)
+        $\boldsymbol{x}_{i,0} = [\boldsymbol{u}_{i,0}, \theta_{i,0}]^T$ (initial prior states with $\boldsymbol{u}_{i,0} \sim \mathcal{N}(\boldsymbol{\overline{u}}_0, \boldsymbol{P}_0)$ and $\theta_{i,0} \sim \mathcal{N}(\overline{\theta}_0, \boldsymbol{P}_0)$)
 
         $k = 1, 2, ..., K$ is the iteration index; $i = 1, 2, ..., N_e$ is the ensemble index
 
@@ -931,11 +934,15 @@ For RANS representation, there is no physical time advancement of the model, so 
             \For{$i = 1$ to $N_e$}
                 \State Advance in time: $\boldsymbol{u}_{i,k}^f = \mathcal{M}(\theta_{i,k-1})\,\boldsymbol{u}_{i,k-1}$
                 \State Observation: $\boldsymbol{Y}_{i,k} = \boldsymbol{y}_k + \boldsymbol{e}_i$, $\boldsymbol{e}_i \sim \mathcal{N}(0,\boldsymbol{R})$
-                \State Compute ensemble means: $\boldsymbol{\overline{u}}_k^{\prime^f} = \frac{1}{N_e}\sum_{i=1}^{N_e}\boldsymbol{u}_{i,k}^{\prime^f}, \overline{\mathcal{H}(\boldsymbol{u}^f_k}) = \frac{1}{N_e}\sum_{i = 1}^{N_e} \mathcal{H}(\boldsymbol{u}_{i,k}^f)$
-                \State Anomaly matrices: $\boldsymbol{X}_k = \frac{\boldsymbol{u}_{i,k}^{\prime^f} - \boldsymbol{\overline{u}}_k^{\prime^f}}{\sqrt{N_e - 1}}$,\,$\boldsymbol{S}_k = \frac{\mathcal{H}(\boldsymbol{u}_{i,k}^f) - \overline{\mathcal{H}(\boldsymbol{u}^f_k)}}{\sqrt{N_e-1}}$
+                %\State Compute ensemble means: $\boldsymbol{\overline{u}}_k^{\prime^f} = \frac{1}{N_e}\sum_{i=1}^{N_e}\boldsymbol{u}_{i,k}^{\prime^f}, \overline{\mathcal{H}(\boldsymbol{u}^f_k}) = \frac{1}{N_e}\sum_{i = 1}^{N_e} \mathcal{H}(\boldsymbol{u}_{i,k}^f)$
+                \State Compute ensemble means: $\boldsymbol{\overline{x}}_k^{f} = \frac{1}{N_e}\sum_{i=1}^{N_e}\boldsymbol{x}_{i,k}^{f}, \overline{\mathcal{H}(\boldsymbol{u}^f_k}) = \frac{1}{N_e}\sum_{i = 1}^{N_e} \mathcal{H}(\boldsymbol{u}_{i,k}^f)$
+                %\State Anomaly matrices: $\boldsymbol{X}_k = \frac{\boldsymbol{u}_{i,k}^{\prime^f} - \boldsymbol{\overline{u}}_k^{\prime^f}}{\sqrt{N_e - 1}}$,\,$\boldsymbol{S}_k = \frac{\mathcal{H}(\boldsymbol{u}_{i,k}^f) - \overline{\mathcal{H}(\boldsymbol{u}^f_k)}}{\sqrt{N_e-1}}$
+                \State Anomaly matrices: $\boldsymbol{X}_k = \frac{\boldsymbol{x}_{i,k}^{f} - \boldsymbol{\overline{x}}_k^{f}}{\sqrt{N_e - 1}}$,\,$\boldsymbol{S}_k = \frac{\mathcal{H}(\boldsymbol{u}_{i,k}^f) - \overline{\mathcal{H}(\boldsymbol{u}^f_k)}}{\sqrt{N_e-1}}$
                 \State Kalman gain: $\boldsymbol{K}_k = \boldsymbol{L} \odot \boldsymbol{X}_k^f(\boldsymbol{S}_k)^T [\boldsymbol{S}_k(\boldsymbol{S}_k)^T + \boldsymbol{R}]^{-1}$ /// L to change ///
-                \State Update: $\boldsymbol{u}_{i,k}^{\prime^a} = \boldsymbol{u}_{i,k}^{\prime^f} + \boldsymbol{K}_k (\boldsymbol{Y}_{i,k} - \mathcal{H}(\boldsymbol{u}_{i,k}^f))$
-                \State (Deterministic) covariance inflation: $\boldsymbol{u}_{i,k}^{\prime^a} = \boldsymbol{\overline{u}}_k^{\prime^a} + \lambda_k (\boldsymbol{u}_{i,k}^{\prime^a} - \boldsymbol{\overline{u}}_k^{\prime^a})$
+                %\State Update: $\boldsymbol{u}_{i,k}^{\prime^a} = \boldsymbol{u}_{i,k}^{\prime^f} + \boldsymbol{K}_k (\boldsymbol{Y}_{i,k} - \mathcal{H}(\boldsymbol{u}_{i,k}^f))$
+                \State Update: $\boldsymbol{x}_{i,k}^{a} = \boldsymbol{x}_{i,k}^{f} + \boldsymbol{K}_k (\boldsymbol{Y}_{i,k} - \mathcal{H}(\boldsymbol{u}_{i,k}^f))$
+                %\State (Deterministic) covariance inflation: $\boldsymbol{u}_{i,k}^{\prime^a} = \boldsymbol{\overline{u}}_k^{\prime^a} + \lambda_k (\boldsymbol{u}_{i,k}^{\prime^a} - \boldsymbol{\overline{u}}_k^{\prime^a})$
+                \State (Deterministic) covariance inflation: $\boldsymbol{x}_{i,k}^{a} = \boldsymbol{\overline{x}}_k^{a} + \lambda_k (\boldsymbol{x}_{i,k}^{a} - \boldsymbol{\overline{x}}_k^{a})$
             \EndFor
         \EndFor
     \end{algorithmic}
@@ -943,20 +950,21 @@ For RANS representation, there is no physical time advancement of the model, so 
 
 Observation data $y$ can be some local sensors (such as PIV data) or global variables (such as performance)
 
-With $\boldsymbol{\overline{u}}_k^{\prime^f} = [\boldsymbol{\overline{u}}_k^f, \overline{\theta}_{k-1}]^T$ and $\boldsymbol{u}_{i,k}^{\prime^f} = [\boldsymbol{u}_{i,k}^f, \theta_{i, k-1}]^T$
+With $\boldsymbol{\overline{x}}_k^{f} = [\boldsymbol{\overline{u}}_k^f, \overline{\theta}_{k-1}]^T$ and $\boldsymbol{x}_{i,k}^{f} = [\boldsymbol{u}_{i,k}^f, \theta_{i, k-1}]^T$
 
-////// Choisir entre "u" et "x" ///////////
 
-In our case, $\boldsymbol{\overline{u}}_k^{\prime^f} = [\overline{\theta}_{k-1}]^T$, $\boldsymbol{u}_{i,k}^{\prime^f} = [\theta_{i, k-1}]^T$ and $\lambda_k = 0$, $\boldsymbol{y}_k = \boldsymbol{y}$.
+In our case, $\boldsymbol{\overline{x}}_k^{f} = [\overline{\theta}_{k-1}]^T$, $\boldsymbol{x}_{i,k}^{f} = [\theta_{i, k-1}]^T$, $\lambda_k = 0$ and $\boldsymbol{y}_k = \boldsymbol{y}$.
 
 
 
 Some \textit{deterministic inflation} is included to increase the variability of the state predicted by the EnKF:
 
 \begin{equation}
-    \boldsymbol{u}_{i,k}^a = \boldsymbol{\overline{u}}_k^a + \lambda_k \left(\boldsymbol{u}_{i,k}^a - \boldsymbol{\overline{u}}_k^a   \right)
+    \boldsymbol{\alpha}_{i,k}^a = \boldsymbol{\overline{\alpha}}_k^a + \lambda_k \left(\boldsymbol{\alpha}_{i,k}^a - \boldsymbol{\overline{\alpha}}_k^a   \right)
     \label{eqn:inflation}
 \end{equation}
+
+where $\boldsymbol{\alpha}$ can be either the state vector $\boldsymbol{u}$ or the model parameters $\theta$.
 
 Here is an illustration of the deterministic inflation, that increase the variability of the member ensemble to avoid a too fast collaps and permit to have more chance to find a lower local (or in a better case, global) minimum solution:
 \begin{figure}[H]
@@ -1036,7 +1044,7 @@ With these new parameters, the loop can be done again.
 %The objective of the model is to try to find same physical behaviour as the experimental data. We call that digital twin.
 
 \autoref{fig:RESEDA_Model} illustrates the model of the pump on a $yz$ plane, for $x=0$. The suction pipe has a length of $H = 10 R_1$, allowing the near-wall boundary lawer to develop. Then, a cylinder, where the IBM and MRF will be applied, containing the impeller, is defined (the impeller in .stl can be find on github\footnote{\url{https://github.com/fromano88/CentrifugalPump}}).
-At the entrance of the impeller/outlet of the suction pipe junction and at the outlet of the impeller/inlet of the diffuser junction, there was leakage as the whole impeller was moving during the experiment.
+At the entrance of the impeller/outlet of the suction pipe junction and at the outlet of the impeller/inlet of the diffuser junction, there was leakage as the whole impeller that was moving during the experiment.
 We assume a zero-leakage as we aren't in a very hight mass flow rate.
 
 In our simulation, the z-axis aligns with the rotational axis, and the reference frame is centred at the impeller. The plane at $z = 0$ divides the diffuser into two identical halves.
@@ -1055,7 +1063,7 @@ Boundary conditions are defined as follows:
     \item[$-$] Wall: no-slip wall
 \end{itemize}
 
-To process CFD, we need to discretize the numerical model of the pump. The mesh is generated using the \texttt{blockMesh} utility, which is a built-in OpenFOAM tool. It is composed of around 11 million hexahedral cells. (quasi only, exepted some interface, cf \autoref{fig:interfaceMesh}). We don't need complex mesh because we don't need to fit the geometry of the impeller as we use IBM.
+To process CFD, we need to discretize the numerical model of the pump. The mesh is generated using the \texttt{blockMesh} utility, which is a built-in OpenFOAM tool. It is composed of around 11 million hexahedral cells. (quasi only, excepted some interface, cf \autoref{fig:interfaceMesh}). We don't need complex mesh because we don't need to fit the geometry of the impeller as we use IBM.
 
 \begin{figure}[H]
     \centering
@@ -1078,7 +1086,7 @@ The penalisation coefficients used in the \autoref{eq:IB} are defined as follows
     \omega_{\text{ib}} &= \left( \omega_{\text{vis}}^2 + \omega_{\text{log}}^2 \right)^{1/2}
 \end{align}
 
-where $\omega_{vis}=\frac{6 \nu}{\beta_1 y_{\mathrm{ref}}^2}$ is the viscous sublayer and $\omega_{log} = \frac{\sqrt{\mathcal{K}}}{C_\mu \kappa y_\mathrm{ref}}$ is the logarithmic region (see \ref{fig:NearWallModelling}).
+where $\boldsymbol{u}_r = 0$, $\omega_{vis}=\frac{6 \nu}{\beta_1 y_{\mathrm{ref}}^2}$ is the viscous sublayer and $\omega_{log} = \frac{\sqrt{\mathcal{K}}}{C_\mu \kappa y_\mathrm{ref}}$ is the logarithmic region (see \ref{fig:NearWallModelling}).
 
 
 \newpage
@@ -1228,6 +1236,8 @@ We specifically use the EnKF, a data assimilation technique that relies on an en
     \item \textbf{Analysis Step} We compare the simulation results with the experimental PIV data. To do this, we interpolate the PIV measurements onto the mesh of the numerical model, creating an ensemble of observation vectors. We then compute the difference between the simulated and measured data, known as the innovation (see mathematical formulation in \autoref{subsec:CFD_governing_equations}). This innovation is used to update the ensemble through the EnKF algorithm, improving the numerical model.
 \end{enumerate}
 
+\newpage
+
 The measurements are done as folow:
 
 \begin{enumerate}
@@ -1237,7 +1247,7 @@ The measurements are done as folow:
 
 
 Ideally, to compare consistent datasets, we could run a time-resolved unsteady simulation and synchronize it with the PIV snapshots. However, for this initial study, we chose to work with a steady MRF simulation.
-Although we could attempt to reconstruct the spatial velocity field from the phase-averaged PIV data (as done by Dazin et al. \cite{dazinHighspeedStereoscopicPIV2011a}), there are two main limitations:
+%Although we could attempt to reconstruct the spatial velocity field from the phase-averaged PIV data (as done by Dazin et al. \cite{dazinHighspeedStereoscopicPIV2011a}), there are two main limitations:
 
 To address these issues, we opted to average the PIV data over time, which is equivalent to spatial (azimuthal) averaging in the rotating frame. On the simulation side, we therefore perform azimuthal averaging of the numerical results to make them consistent with the experimental data.
 This approach ensures that the data fed into the EnKF, both the forecast and the observations, are comparable and compatible in both spatial and statistical sense.
@@ -1245,7 +1255,7 @@ This approach ensures that the data fed into the EnKF, both the forecast and the
 \subparagraph{1.}
 
 First, we need to determine how to convert the coordinates from the local system to the absolute system.
-We observe that between lines 55 and 56, the radius remains constant while the angular position \(\theta\) transitions from below to above \(\pi\). 
+We observe that between lines 55 and 56, the radius remains constant while the angular position \(\theta\) shifts from below \(\pi\) to values above \(\pi\). 
 For the 75\% plane, a similar approach is used, but between lines 65 and 66, due to experimental constraints.
 
 We also plotted \(x\) versus \(\theta\) for three different values of \(\theta\) and found an intersection point at \(x = 0.0245\).
@@ -1274,11 +1284,11 @@ We further average the data between radii \(R_1\) and \(R_2\), resulting in thre
 At this stage, we retain only the data along the line \(x = 0.0245\). More precisely, we average the data between \(x = 0.024\) and \(x = 0.025\).
 Finally, the data are truncated at line 89, where the radius exceeds 0.3~m. This truncation is necessary due to laser reflections on the pump casing during the PIV experiments.\footnote{Concretely, to average the data over the angle \(\theta\), we modify the interpolation function in CONES.
 Instead of read coords, the interpolation function read the data in a file named \texttt{coords\_seventh.txt}.
-Then, it computes the interpolation and average the data over the angle \(\theta\) (between -$\pi/7$ and $\pi/7$), by doing a somme over \(\theta\) and dividing by the number of points (150). To go back from 150x5x3x3 (to detail) to 5x3x3 data. All of those computation are mad in a cylindrical referencial.}
+Then, it computes the interpolation and average the data over the angle \(\theta\) (between -$\pi/7$ and $\pi/7$), by doing a sum over \(\theta\) and dividing by the number of points (150). To go back from 150x5x3x3 (to detail) to 5x3x3 data. All of those computations are made in a cylindrical referencial.}
 
 
 \subparagraph{4.Shaping for CONES}
-CONES keep data in a particular way. We need to convert the data in a format that cones can read.
+CONES keeps data in a particular way. We need to convert the data in a format that CONES can read.
 From 3 files (of $10 \times 81 \times 125$ elements) to the files 
 \texttt{fieldCylindrical.txt} (of size $n_{\text{obs}} \times n_{\text{dim}} \times n_{\text{vars}}$ lines) 
 and \texttt{obs\_coordinates.txt} (of size $n_{\text{obs}}$ lines and $n_{\text{dim}}$ columns).
@@ -1291,7 +1301,7 @@ To do that, we just take the \texttt{obs\_coordinates.txt} file and duplicate 15
 To be consistent with axis further, we take points between $-\pi/7 + \pi/2$ and $\pi/7 + \pi/2$.
 \footnote{Concretely, to average the data over the angle \(\theta\), we modify the interpolation function in CONES.
 Instead of read coords, the interpolation function read the data in a file named \texttt{coords\_seventh.txt}.
-Then, it computes the interpolation and average the data over the angle \(\theta\) (between -$\pi/7$ and $\pi/7$), by doing a somme over \(\theta\) and dividing by the number of points (150). To go back from 150x5x3x3 (to detail) to 5x3x3 data. All of those computation are mad in a cylindrical referencial.}
+Then, it computes the interpolation and average the data over the angle \(\theta\) (between -$\pi/7$ and $\pi/7$), by doing a sum over \(\theta\) and dividing by the number of points (150). To go back from 150x5x3x3 (to detail) to 5x3x3 data. All of those computations are made in a cylindrical referencial.}
 
 \begin{figure}[H]
     \centering
@@ -1309,7 +1319,7 @@ Then, it computes the interpolation and average the data over the angle \(\theta
 
 \paragraph{Pressure data}
 
-In addition to the nine pressure tapes on the diffuser, Dazin et al.~\cite{dazinHighspeedStereoscopicPIV2011a} has also captured (\autoref{fig:PumpPerf}) the inlet and outlet pressure that allows to compute the global performance of the pump, that match with M. Fan simulation \cite{fanEffectLeakagePerformanceb}% (eq to approximately \(\eta\) = 0.4).
+In addition to the nine pressure tapes on the diffuser, Dazin et al.~\cite{dazinHighspeedStereoscopicPIV2011a} have also captured (\autoref{fig:PumpPerf}) the inlet and outlet pressure that allows to compute the global performance of the pump, that matches with M. Fan simulation \cite{fanEffectLeakagePerformanceb}% (eq to approximately \(\eta\) = 0.4).
 
 \begin{figure}[H]
     \centering
@@ -1324,7 +1334,7 @@ As we are at $Q/Q_d = 1$, we can retreive:
     \frac{\Delta P_{P}}{\rho U_{2}^{2}} = \eta \Leftrightarrow \Delta P_{P} = \rho U_{2}^{2} \eta
 \end{equation}
 
-For the high-fidelity value, we can find experimental data form the same pump \cite{fanEffectLeakagePerformanceb}, that's match with M. Fan simulation (eq to approximately \(\eta\) = 0.4). So wa can also compute:
+For the high-fidelity value, we can find experimental data from the same pump \cite{fanEffectLeakagePerformanceb}, that's matches with M. Fan simulation (eq to approximately \(\eta\) = 0.4). So we can also compute:
 
 ${U_{2}}$ is the impeller tip speed computed from the impeller diameter and the rotation speed of the pump.
 
@@ -1418,7 +1428,7 @@ The number of iterations between two analysis phases was determined by monitorin
 We determined a number of 800 iterations for the observation window.
 
 The \texttt{conesDict} and the \texttt{controlDict} contains the parameters of the EnKF algorithm, such as the observation window and the following. In our case, we set the number of ensemble members to 30, no inflation, no state optimisation (only parameters), and an absolute observation noise on the velocity of $0.2 \, \text{m/s}$ (equivalent to $1.5\%$ of the maximum observed velocity). These parameters must be adjusted depending on the specific requirements of the simulation and the characteristics of the data. The number of iterations (800) was determined by testing the convergence trend of a single OpenFOAM simulation when parameters are modified by 34\% (i.e., seven times the standard deviation of the initial parameter perturbation). Since the standard deviation may temporarily increase with iterations, care must be taken when choosing this number.
-An extract of the \texttt{conesDict} is given in Annex~\ref{annex:conesDict}.  
+An extract of the \texttt{conesDict} is given in appendix~\ref{annex:conesDict}.  
 
 %MThe \texttt{conesDict} contains the parameters of the EnKF algorithm such as the folowing. In our case, we set the number of ensemble members to 30, an observation window of 800 iterations, no inflation, no state optimisation (only parameters), and the absolute observation noise on the velocity of $0.2m/s$ (equivalent to $1.5\%$ of the maximal observation on the velocity). These parameters have to be adjusted based on the specific requirements of the simulation and the characteristics of the data.
 %The number of iterations is set to 800 by testing the tendancy of the convergence of one OpenFOAM simulation when parameters are modify of 40\%, which is 20 times the standard deviation of the initial perturbation on parameters (the standard deviation can momenta,ly increase with iterations, so we need to be careful with the number of iterations).
@@ -1552,7 +1562,7 @@ Pb perso: jusqu'à plusieurs jours d'attente pour lancer une simu.
 
 Reduction of the pipe (with the research of the velocity inlet condition)
 
-Toujours mentionner les paramètres utilisés (dans le controlDict et le CONESDict)
+Toujours mentionner les paramètres utilisés (dans le controlDict et le conesDict)
 
 Problème de méthode et pas de miracle ave cette méthode IBM. Interpolation, instationnaire (avantage: on ne contraint plus avec MRF et donc plus facile de réconcilier solution numérique physique et mathématique)
 
