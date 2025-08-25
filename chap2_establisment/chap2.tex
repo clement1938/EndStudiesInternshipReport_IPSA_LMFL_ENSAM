@@ -175,10 +175,25 @@ In this context, we aim to apply both of these innovative methodologies to enhan
 
 These equations express three physical conservation principles, given here in their Eulerian form (i.e., fixed spatial reference frame), which is the standard in CFD because it describes how fluid properties evolve at fixed locations in space, which is ideal for mesh-based numerical simulations.
 
+
+%\[
+%\boldsymbol{\tau}
+%= \mu\big(\nabla\mathbf{U}+(\nabla\mathbf{U})^{\!\top}\big)
+%-\tfrac{2}{3}\mu\,(\nabla\!\cdot\mathbf{U})\,\mathbf{I},
+
+%\rho\Big(\frac{\partial \mathbf{U}}{\partial t}+(\mathbf{U}\cdot\nabla)\mathbf{U}\Big)
+%= -\,\nabla P + \mu\nabla^{2}\mathbf{U}
+%+ (\mu+\lambda)\,\nabla(\nabla\!\cdot\mathbf{U}) + \mathbf{f},
+
+%\rho\Big(\frac{\partial \mathbf{U}}{\partial t}+(\mathbf{U}\cdot\nabla)\mathbf{U}\Big)
+%= -\,\nabla P + \mu\nabla^{2}\mathbf{U} + \mathbf{f}.
+%\]
+
+
 \begin{itemize}
     \item \textbf{Mass conservation (Continuity equation):}
     \begin{equation}
-        \frac{\partial \rho}{\partial t} + div(\rho \mathbf{U}) = 0   %         \frac{\partial \rho}{\partial t} + \nabla \cdot (\rho \mathbf{U}) = 0
+        \frac{\partial \rho}{\partial t} + \text{div}(\rho \mathbf{U}) = 0   %         \frac{\partial \rho}{\partial t} + \nabla \cdot (\rho \mathbf{U}) = 0
         \label{eq:mass_conservation}
     \end{equation}
 
@@ -186,7 +201,7 @@ These equations express three physical conservation principles, given here in th
 
     \item \textbf{Momentum conservation (second Newton Law):}     % (Navier–Stokes equation)
     \begin{equation}
-        \frac{\partial (\rho \mathbf{U})}{\partial t} + \nabla \cdot (\rho \mathbf{U} \otimes \mathbf{U}) = -\nabla P + \nabla \cdot \boldsymbol{\tau} + \mathbf{f}
+        \rho\Big(\frac{\partial \mathbf{U}}{\partial t}+(\mathbf{U}\cdot\nabla)\mathbf{U}\Big) = -\,\nabla P + \nabla\!\cdot\boldsymbol{\tau} + \mathbf{f}
     \end{equation}
     where $P$ is the pressure, \( \boldsymbol{\tau} \) is the viscous stress tensor and \( \mathbf{f} \) includes body forces (e.g., gravity, source terms).
 
@@ -215,8 +230,10 @@ The $Ma$, is defined by the velocity of the fluid divided by the speed of the so
 In our case, in atmospheric conditions,
 
 \begin{equation}
-    Ma = \cfrac{R_2 \Omega}{c} = 0.095 \phantom{-} \textrm{\textbf{(incompressible)}}
+    Ma = \cfrac{R_2 \Omega}{c} < 0.095 \phantom{-} \textrm{\textbf{(incompressible)}}
 \end{equation}
+
+With $R_2 = 0.2575m$ the external radius of the impeller, $\Omega = 2\pi \times 1200/60 = 125.7 rad/s$ the angular velocity of the impeller and $c = 343 m/s$ the speed of sound in air at 15°C.
 
 As we consider that we are in \textbf{incompressible} flow conditions (because we are at low Ma), \autoref{eq:mass_conservation} becomes
 \begin{equation}
@@ -284,7 +301,7 @@ $U$ is the velocity of the fluid, $L$ is the characteristic length and $\nu$ the
 %The \autoref{fig:Turbulence2}\footnote{\url{https://blog.diphyx.com/comprehensive-guide-review-to-choosing-the-right-cfd-software-in-2023-features-performance-and-7ebc0623bfa6}} illustrates well a visualization of the fiels of the three type of CFD models.
 
 
-In turbulent flows, a wide range of spatial and temporal scales coexist. Solving the Navier–Stokes equations without any turbulence model (i.e., via Direct Numerical Simulation (DNS)) would theoretically capture all these scales. However, DNS is computationally unaffordable in most practical cases, as it requires resolving down to the smallest dissipative scales, known as Kolmogorov scales.
+In turbulent flows, a wide range of spatial and temporal scales coexist. Solving the Navier–Stokes equations without any turbulence model (i.e., via \textbf{Direct Numerical Simulation (DNS)}) would theoretically capture all these scales. However, DNS is computationally unaffordable in most practical cases, as it requires resolving down to the smallest dissipative scales, known as Kolmogorov scales.
 
 These Kolmogorov scales define the smallest spatial structures in the flow where kinetic energy is dissipated by viscosity. As shown schematically in Figure~\ref{fig:Turbulence3}\footnote{\url{https://help.altair.com/hwcfdsolvers/acusolve/topics/acusolve/training_manual/turbulence_modeling_r.htm}}, turbulence consists of large energy-containing eddies, which transfer their energy through a cascade in the inertial range, down to the smallest dissipative structures.
 

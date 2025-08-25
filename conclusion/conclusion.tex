@@ -9,14 +9,36 @@
 %Dans le cas de l'aéroacoustique, la méthode linéaire est plus précise que IDW dans tous les cas testés. Cependant, des résultats expérimentaux ont montré que des coefficients (\(N\), \(p\)) autour de (10, 10) donnaient de très bons résultats. Dans ce cas, IDW peut s'avérer plus précis que la méthode linéaire.
 
 
-The goal of this internship was to optimise the numerical performance of a centrifugal pump using DA.
-After preparing the experimental data and adapted the OpenFoam solver and CONES code, data was able to be assimilate by the EnKF.
-First results was not convincing, because a recirculation bubble still present in the diffuser. Few more implementation didn't allow the reciculation bubble to break.
-Then, ...
+%The goal of this internship was to optimise the numerical performance of a centrifugal pump using DA.
+%After preparing the experimental data and adapted the OpenFoam solver and CONES code, data was able to be assimilate by the EnKF.
+%First results was not convincing, because a recirculation bubble still present in the diffuser. Few more implementation didn't allow the reciculation bubble to break.
+%Then, ...
 
-\subsection*{Technical and human review}
 
-Véirifier les consignes
+\textbf{Technical and human review}
+% ///// Reprendre les objectifs définis à la fin de la section 2.1 //////
+
+%Bilan technique et humain. Liez chaque aspect technique à un aspect humain. Ne traitez pas tout ce qui est technique d’un côté et tout ce qui relève de l’humain d’un autre. Réflexion personnelle sur les spécificités de l’entreprise, du secteur d’activité et du métier que vous avez découverts.
+
+The first thing that I discovered during this internship is the laboratory environment, which is different from a company. The work is more focused on research, and there is a lot of freedom to explore new ideas and methods. The team is very collaborative and supportive, and I learned a lot from my colleagues. I also discovered the importance of communication and documentation in a research environment, as it is essential to share knowledge and results with others. There are still similaritys with a company, such as the social and environmental responsibility, that I presented in a first part.
+
+After having done a state of art on the topics, we saw that the DA method is a good candidate to DNS or costly LES, for industrial applications, because it allows to have a good accuracy with a lower computational cost. I saw that an international expertise on application relies on this topic has been developed in the last few years on the laboratory. Numerical ingredients and usefull libraries were presented. The state of art was a good opportunity to learn more about the DA method and its applications. It was not too hard because most of information were already known by the laboratory. I also learned a lot about the IBM method and its applications, which is a good alternative to the traditional methods for the simulation of complex geometries.
+
+Then, an explanation of the pump modeling, the pre-processing of the experimental data and the implementation of the IBM method in OpenFOAM were given. The redaction of this part helps me to structure my thoughts and to better understand the different steps of the pre-processing. I also learned a lot about the IBM method and its implementation in OpenFOAM, which was not easy at the beginning because I had to learn a lot about OpenFOAM and C++ programming. The implementation of the IBM method was a good opportunity to learn more about OpenFOAM and its functionalities.
+
+Finally, we presented the first results of the numerical simulation and the first application of the DA method on the centrifugal pump case.
+The results show that the IBM method as applied here does not give us a result consistent with physical observations and the DA does not allow us to improve this result. The solution is not converging and the velocity field is not physical, with a recirculation bubble in the diffuser. Several strategies were tested to try to improve the solution, but none of them allowed to obtain a satisfactory result.
+
+I really enjoyed this internship beacause I learned a lot about all the topics that I love. That is why I decided to continue to work on this topic for my PhD thesis "Combining experimental and numerical techniques for the analysis of axial compressor internal flows using Data Assimilation" in the same laboratory.
+
+%\subsection*{Technical and human review}
+
+\textbf{Outlook}
+
+To continue this work, it would be interesting to try to change the IBM method (try the "interpolation method" for example) or to try an instationnary (URANS or LES) simulation to see if it can overcome these non-physical results.
+
+The DA method is still not widely used in the industry, but it has a lot of potential for the future. The main challenge is to adapt the DA method to the specific needs of the industry, such as the use of complex geometries and the need for real-time applications. I discovered that DA can be long to implement and sometimes difficult to converge. At same time, EnKF needs a huge number of CPUs. Sometimes, I need to wait several days to launch a simulation. It would be interesting to try to reduce the computational cost of the DA method, by using more efficient algorithms or by using machine learning techniques, as presented in the state of art.
+The IBM method is a good alternative to the traditional methods for the simulation of complex geometries, because it allows to have a good accuracy with a lower computational cost. An other challenge is to improve the accuracy of the IBM method.
 
 \begin{comment}
 J’ai été enthousiasmé par ce stage au CERFACS, à plusieurs titres. Il m’a non seulement permis de développer et renforcer de nombreuses connaissances dans le domaine informatique mais également sur le plan humain. Il m’a donné une belle occasion de découvrir la vie d’un laboratoire de recherche.
@@ -33,7 +55,7 @@ J'ai ressenti tout au long de mon stage l'importance de réaliser un travail ouv
 Enfin, ce stage n'a pas été qu'une expérience professionnelle enrichissante. Il a conforté mon intérêt pour les méthodes numériques appliquées et la recherche en calcul scientifique. Je suis particulièrement reconnaissant pour l'accompagnement dont j'ai bénéficié tout au long de cette expérience et pour les opportunités de développement personnel et professionnel qu'il m'a offert.
 \end{comment}
 
-\subsection*{Outlook}
+%\subsection*{Outlook}
 %Pour continuer à améliorer le traitement d'interpolation d'Antares, on pourrait implémenter l'une des méthodes d'ordre supérieur citées dans la section \ref{s223}.
 %On pourrait également compléter les tests de la méthode linéaire sur la chaîne aéroacoustique, en observant la polaire de l'amplitude en fonction de l'observateur dans le cas d'un Mac non nul.
 %Afin d'améliorer la rapidité, le code pourrait être passé en parallèle pour pouvoir s’exécuter sur plusieurs processeurs à la fois.
@@ -41,7 +63,7 @@ Enfin, ce stage n'a pas été qu'une expérience professionnelle enrichissante. 
 % Faire la ref
 
 
-\subsection*{Personal reflection}
+%\subsection*{Personal reflection}
 
 
 %Le CERFACS est un laboratoire privé à la pointe des simulations numériques. Il s'est d'abord spécialisé dans l'aérodynamique et s’intéresse maintenant de plus en plus à la combustion. Il adapte ses domaines de recherche aux domaines importants de l'industrie.
