@@ -51,9 +51,13 @@
 \usepackage{fvextra}
 
 \usetheme{Boadilla}
-\useoutertheme{miniframes}          % ou smoothbars pour version plus fluide
-\setbeamertemplate{mini frame}[circle] % cercles au lieu de rectangles
-\setbeamertemplate{mini frame in other subsection}[default][20] % griser les diapos hors section courante
+\useoutertheme{miniframes}
+\setbeamertemplate{mini frame}[circle]
+\setbeamertemplate{mini frame in other subsection}[default][20]
+
+% Définit la couleur du texte des titres de section en blanc dans la barre de navigation
+\setbeamercolor{section in head/foot}{fg=white}
+\setbeamercolor{section in head/foot shaded}{fg=white!50} % Pour les sections non actives
 
 
 \newcommand{\backupbegin}{
@@ -114,6 +118,74 @@
 
 \setbeamersize{text margin left=10mm,text margin right=10mm}
 
+\begin{comment}
+    \setbeamercolor{lower separation line head}{bg=red}
+    \makeatletter
+    \setbeamertemplate{frametitle}{%
+    \nointerlineskip%
+        \vskip0.0cm%
+    \begin{beamercolorbox}[wd=\paperwidth,leftskip=.1cm,rightskip=.3cm plus1fil,vmode]{frametitle}%
+            \begin{minipage}{3.3cm}%
+            \begin{flushleft}
+                \includegraphics[height=1cm, width=1.6cm, trim = {0 3cm 0 3cm}, clip]{../logos/Logo ENSAM.png}\hspace*{0.3cm}%
+                \includegraphics[height=1cm, width=1.6cm]{../logos/Logo LMFL.png}%
+            \end{flushleft}
+            \end{minipage}%
+            \begin{minipage}{9cm}%
+            \vspace{0.25cm}
+        \usebeamerfont*{frametitle}\insertframetitle\centering%
+        \ifx\insertframesubtitle\@empty%
+            \strut\par%
+        \else
+            \par{\usebeamerfont*{framesubtitle}{\usebeamercolor[fg]{framesubtitle}\insertframesubtitle}\strut\par}%
+        \fi%%
+            \end{minipage}%
+            \begin{minipage}{1.5cm}%
+            \begin{flushleft}
+                \includegraphics[height=0.8cm, width=1.3cm]{../logos/IPSA.png}%
+            \end{flushleft}
+            \end{minipage}%
+    \end{beamercolorbox}%
+    \vskip-0.05cm
+    \begin{beamercolorbox}[colsep=1.0pt,wd=\paperwidth]{lower separation line head}
+    \end{beamercolorbox}
+    }
+\end{comment}
+
+\begin{comment}
+\setbeamercolor{lower separation line head}{bg=red}
+\makeatletter
+\setbeamertemplate{frametitle}{%
+  \nointerlineskip%
+    \vskip0.0cm%
+   \begin{beamercolorbox}[wd=\paperwidth,leftskip=.1cm,rightskip=.3cm plus1fil,vmode]{frametitle}%
+        \begin{minipage}{4.5cm}%
+        \begin{flushleft}
+            \includegraphics[height=1cm, width=1.6cm, trim = {0 3cm 0 3cm}, clip]{../logos/Logo ENSAM.png}\hspace*{0.5cm}%
+            \includegraphics[height=1cm, width=1.6cm]{../logos/Logo LMFL.png}%
+        \end{flushleft}
+        \end{minipage}%
+        \begin{minipage}{9cm}%
+        \vspace{0.25cm}
+    \usebeamerfont*{frametitle}\insertframetitle\centering%
+      \ifx\insertframesubtitle\@empty%
+        \strut\par%
+      \else
+        \par{\usebeamerfont*{framesubtitle}{\usebeamercolor[fg]{framesubtitle}\insertframesubtitle}\strut\par}%
+      \fi%%
+        \end{minipage}%
+        \begin{minipage}{4.5cm}%
+        \begin{flushright}
+            \includegraphics[height=0.8cm, width=1.3cm]{../logos/IPSA.png}%
+        \end{flushright}
+        \end{minipage}%
+  \end{beamercolorbox}%
+  \vskip-0.05cm
+  \begin{beamercolorbox}[colsep=1.0pt,wd=\paperwidth]{lower separation line head}
+  \end{beamercolorbox}
+}
+\end{comment}
+
 \setbeamercolor{lower separation line head}{bg=red}
 \makeatletter
 \setbeamertemplate{frametitle}{%
@@ -122,8 +194,7 @@
    \begin{beamercolorbox}[wd=\paperwidth,leftskip=.1cm,rightskip=.3cm plus1fil,vmode]{frametitle}%
         \begin{minipage}{1.5cm}%
         \begin{flushleft}
-            \includegraphics[width=\linewidth, keepaspectratio, trim={0 3cm 0 3cm}, clip]{../logos/logos.png}
-%\includegraphics[height=1cm, trim = {0 3cm 0 3cm}, clip]{../logos/logos.png}% width=1.6cm, 
+            \includegraphics[height=1cm, width=1.6cm, trim = {0 3cm 0 3cm}, clip]{../logos/Logo ENSAM.png}%
         \end{flushleft}
         \end{minipage}%
         \begin{minipage}{13cm}%
@@ -137,7 +208,8 @@
         \end{minipage}%
         \begin{minipage}{1.5cm}%
         \begin{flushleft}
-            \includegraphics[height=0.8cm, width=1.3cm]{../logos/IPSA.png}%
+            %\includegraphics[height=0.8cm, width=1.3cm]{logos/Logo LMFL.png}%
+            \includegraphics[height=0.8cm, width=1.3cm]{../logos/IPSA.png}
         \end{flushleft}
         \end{minipage}%
   \end{beamercolorbox}%
@@ -145,6 +217,8 @@
   \begin{beamercolorbox}[colsep=1.0pt,wd=\paperwidth]{lower separation line head}
   \end{beamercolorbox}
 }
+
+
 \makeatother
 
 \usepackage{nicematrix,tikz}
@@ -223,45 +297,80 @@
 
 
 
-\section{Expérimentale}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%\begin{frame}{État de l'art}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Laboratoire et site d'acceuil}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{État de l'art} % La base de la CFD, ...
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Ingrédients numériques} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Données du cas d'étude} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{Expérimentale}
 
-\begin{columns}
-    \hspace{-0.1cm}
-    \begin{column}{0.3\textwidth}
-        %\begin{columns}
-            %\begin{column}{0.542\textwidth}
-        \includegraphics[scale=0.31]{../figures/RESEDA_benchmark.png}
-            %\end{column}
-            %\begin{column}{0.458\textwidth}
-        \includegraphics[scale=0.20]{../figures/image1.png}
-    \end{column}
-        %\end{columns}
-    %\end{column}
-    
-    \begin{column}{0.3\textwidth}
-        \includegraphics[scale=0.4]{../figures/impeller_position.png}
-    \end{column}
-    \hspace{-1.5cm}
-    \begin{column}{0.45\textwidth}
-    \small{
-        \begin{itemize}
-            \item $Re_\Omega=\cfrac{R_2^2 \Omega}{\nu} = 5.53\times10^5$ \textrm{\textbf{(turbulent)}}
-            \item $Ma = \cfrac{R_2 \Omega}{c} = 0.095$ \textrm{\textbf{(incompressible)}}
-            \item Point de fonctionnement au point de design \[\frac{Q}{Q_d} = 1\]
-            \item Vitesse de rotation : 1 200 tr/min
-            \item 7 aubes
-            \item Données PIV à 980Hz
-        \end{itemize}
-    }
-    %\hspace{-4cm}
+    \begin{columns}
+        \hspace{-0.1cm}
+        \begin{column}{0.3\textwidth}
+            %\begin{columns}
+                %\begin{column}{0.542\textwidth}
+            \includegraphics[scale=0.31]{../figures/RESEDA_benchmark.png}
+                %\end{column}
+                %\begin{column}{0.458\textwidth}
+            \includegraphics[scale=0.20]{../figures/image1.png}
+        \end{column}
+            %\end{columns}
+        %\end{column}
+        
+        \begin{column}{0.3\textwidth}
+            \includegraphics[scale=0.4]{../figures/impeller_position.png}
+        \end{column}
+        \hspace{-1.5cm}
+        \begin{column}{0.45\textwidth}
+        \small{
+            \begin{itemize}
+                \item $Re_\Omega=\cfrac{R_2^2 \Omega}{\nu} = 5.53\times10^5$ \textrm{\textbf{(turbulent)}}
+                \item $Ma = \cfrac{R_2 \Omega}{c} = 0.095$ \textrm{\textbf{(incompressible)}}
+                \item Point de fonctionnement au point de design \[\frac{Q}{Q_d} = 1\]
+                \item Vitesse de rotation : 1 200 tr/min
+                \item 7 aubes
+                \item Données PIV à 980Hz
+            \end{itemize}
+        }
+        %\hspace{-4cm}
 
-    \end{column}
+        \end{column}
 
-\end{columns}
+    \end{columns}
 
 \end{frame}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Préparation du cas d'étude} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \section{Modélisation}
@@ -337,6 +446,101 @@
 \end{columns}
     
 \end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Résultats}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{DA avec le Filtre de Kalman d'ensemble}
+
+\begin{frame}{DA avec l'EnKF - Premiers paramètres}
+
+    \begin{itemize}
+        \item optimisation des 5 paramètres de forcage ($3\times$ vitesse, énergie turbulente et dissipation)
+        \item paramètres initiaux tous égaux à $3 \times 10^7$
+        \item simulation RANS et données PIV moyennées temporellement
+        \item fenêtre d'observation : 800 itérations
+        \item 30 membres d'ensemble
+        \item pas d'optimisation d'état
+        \item 45 observations ($Ur U_{\theta} Uz$) sur 5 points sur 3 plans
+        \item bruit d'observation : 0,2 m/s, soit 1,5\% du max. d'observation sur la vitesse
+        %\item pas d'inflation
+    \end{itemize}
+\end{frame}
+
+\begin{comment}
+    
+\begin{frame}{\texorpdfstring{DA avec l'EnKF - Premiers résultats en stationaire}{DA avec l'EnKF - Premiers résultats en stationaire}}
+
+    \begin{columns}
+        
+    \column{0.48\textwidth}
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.6\linewidth]{new../figures/assymetrie.png}
+            \caption{\texorpdfstring{Champs de vitesse absolue pour\\ Dx = 4e7 et Dy = 2e7}{Champs de vitesse absolue pour Dx = 4e7 et Dy = 2e7}}
+            \label{fig:enter-label11}
+        \end{figure}
+
+    \column{0.48\textwidth}
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.6\linewidth]{new../figures/coords.png}
+            \caption{\texorpdfstring{Points d'observation de vitesse numérique avant moyenne azimutale}{Points d'observation de vitesse numerique avant moyenne azimutale}}
+            \label{fig:enter-label12}
+        \end{figure}
+
+
+    \end{columns}
+
+    Problème : mesure uniquement sur 1/7ème de la simulation numérique impliquant $Dx \neq Dy$.
+    La NRMSE diminue car ces parmètres cassent la bulle de recirculation mais le résultat n'est pas physique.
+
+\end{frame}
+\end{comment}
+
+
+\begin{frame}{DA avec l'EnKF - Premiers résultats}
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\linewidth]{../newFigures/UpdtC14_10NMRSE.png}
+        \caption{Bulle de recirculation localement détruite}
+        \label{fig:enter-label}
+    \end{figure}
+
+\end{frame}
+
+%\begin{frame}{DA avec l'EnKF - Premiers résultats}
+    %\begin{figure}
+        %\centering
+        %\includegraphics[width=0.6\linewidth]{../newFigures/UpdtC14_10params.png}
+        %\caption{Enter Caption}
+        %\label{fig:enter-label}
+    %\end{figure}
+%\end{frame}
+
+%\begin{frame}{DA avec l'EnKF - Premiers résultats}
+%\begin{figure}
+    %\centering
+    %\includegraphics[width=0.6\linewidth]{../newFigures/UpdtC14_NMRSE.png}
+    %\caption{Enter Caption}
+    %\label{fig:enter-label}
+%\end{figure}
+%\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusions et perspectives}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
 
 
 
@@ -416,88 +620,7 @@
 \end{frame}
 
 
-\section{DA avec le Filtre de Kalman d'ensemble}
 
-\begin{frame}{DA avec l'EnKF - Premiers paramètres}
-
-    \begin{itemize}
-        \item optimisation des 5 paramètres de forcage ($3\times$ vitesse, énergie turbulente et dissipation)
-        \item paramètres initiaux tous égaux à $3 \times 10^7$
-        \item simulation RANS et données PIV moyennées temporellement
-        \item fenêtre d'observation : 800 itérations
-        \item 30 membres d'ensemble
-        \item pas d'optimisation d'état
-        \item 45 observations ($Ur U_{\theta} Uz$) sur 5 points sur 3 plans
-        \item bruit d'observation : 0,2 m/s, soit 1,5\% du max. d'observation sur la vitesse
-        %\item pas d'inflation
-    \end{itemize}
-\end{frame}
-
-\begin{comment}
-    
-\begin{frame}{\texorpdfstring{DA avec l'EnKF - Premiers résultats en stationaire}{DA avec l'EnKF - Premiers résultats en stationaire}}
-
-    \begin{columns}
-        
-    \column{0.48\textwidth}
-        \begin{figure}
-            \centering
-            \includegraphics[width=0.6\linewidth]{new../figures/assymetrie.png}
-            \caption{\texorpdfstring{Champs de vitesse absolue pour\\ Dx = 4e7 et Dy = 2e7}{Champs de vitesse absolue pour Dx = 4e7 et Dy = 2e7}}
-            \label{fig:enter-label11}
-        \end{figure}
-
-    \column{0.48\textwidth}
-        \begin{figure}
-            \centering
-            \includegraphics[width=0.6\linewidth]{new../figures/coords.png}
-            \caption{\texorpdfstring{Points d'observation de vitesse numérique avant moyenne azimutale}{Points d'observation de vitesse numerique avant moyenne azimutale}}
-            \label{fig:enter-label12}
-        \end{figure}
-
-
-    \end{columns}
-
-    Problème : mesure uniquement sur 1/7ème de la simulation numérique impliquant $Dx \neq Dy$.
-    La NRMSE diminue car ces parmètres cassent la bulle de recirculation mais le résultat n'est pas physique.
-
-\end{frame}
-\end{comment}
-
-
-\begin{frame}{DA avec l'EnKF - Premiers résultats}
-
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.8\linewidth]{../newFigures/UpdtC14_10NMRSE.png}
-        \caption{Bulle de recirculation localement détruite}
-        \label{fig:enter-label}
-    \end{figure}
-
-\end{frame}
-
-%\begin{frame}{DA avec l'EnKF - Premiers résultats}
-
-    %\begin{figure}
-        %\centering
-        %\includegraphics[width=0.6\linewidth]{../newFigures/UpdtC14_10params.png}
-        %\caption{Enter Caption}
-        %\label{fig:enter-label}
-    %\end{figure}
-
-%\end{frame}
-
-
-%\begin{frame}{DA avec l'EnKF - Premiers résultats}
-
-%\begin{figure}
-    %\centering
-    %\includegraphics[width=0.6\linewidth]{../newFigures/UpdtC14_NMRSE.png}
-    %\caption{Enter Caption}
-    %\label{fig:enter-label}
-%\end{figure}
-
-%\end{frame}
 
 
 
