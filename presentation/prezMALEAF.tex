@@ -1,6 +1,4 @@
 \documentclass[10pt, aspectratio=169, dvipsnames]{beamer}
-\usetheme{Boadilla}
-\usefonttheme{serif} % default family is serif
 
 \usepackage{comment}
 
@@ -52,6 +50,12 @@
 \usepackage{fancyvrb}
 \usepackage{fvextra}
 
+\usetheme{Boadilla}
+\useoutertheme{miniframes}          % ou smoothbars pour version plus fluide
+\setbeamertemplate{mini frame}[circle] % cercles au lieu de rectangles
+\setbeamertemplate{mini frame in other subsection}[default][20] % griser les diapos hors section courante
+
+
 \newcommand{\backupbegin}{
    \newcounter{framenumberappendix}
    \setcounter{framenumberappendix}{\value{framenumber}}
@@ -85,15 +89,15 @@
 
 \titlegraphic{
 \begin{tikzpicture}[overlay,remember picture]
-\node[right=0.2cm, yshift=-1cm] at (current page.150){
-	\includegraphics[width=3.5cm]{logos/Logo ENSAM.png}
+\node[right=0.2cm, yshift=-1.6cm] at (current page.150){
+	\includegraphics[width=2.0cm]{../logos/both2.png}
 };
 \end{tikzpicture}
 
 
 \begin{tikzpicture}[overlay,remember picture]
-\node[left=0.2cm, yshift=-1cm] at (current page.30){
-	\includegraphics[width=2.5cm]{logos/Logo LMFL.png}
+\node[left=0.2cm, yshift=-1.6cm] at (current page.30){
+	\includegraphics[width=2.0cm]{../logos/IPSA.png}
 };
 \end{tikzpicture}
 }
@@ -105,8 +109,8 @@
 \author[Clément THIBAULT]{
   Clément THIBAULT\texorpdfstring{\textsuperscript{\dag}}{\dag}
 }
-\institute{\textsuperscript{{\dag}}Univ. Lille, CNRS, ONERA, Arts et Métiers ParisTech, Centrale Lille, UMR 9014- LMFL- Laboratoire de Mécanique des fluides de Lille - Kampé de Feriet, F-59000 Lille, France}
-\date{DATE}
+\institute{\textsuperscript{{\dag}} Institut Polytechnique des Sciences Avancées (IPSA) Toulouse - Laboratoire de Mécanique des fluides de Lille (LMFL)} % Univ. Lille, CNRS, ONERA, Arts et Métiers ParisTech, Centrale Lille, UMR 9014-  - Kampé de Feriet, F-59000 Lille, France
+\date{4 septembre 2025}
 
 \setbeamersize{text margin left=10mm,text margin right=10mm}
 
@@ -118,7 +122,8 @@
    \begin{beamercolorbox}[wd=\paperwidth,leftskip=.1cm,rightskip=.3cm plus1fil,vmode]{frametitle}%
         \begin{minipage}{1.5cm}%
         \begin{flushleft}
-            \includegraphics[height=1cm, width=1.6cm, trim = {0 3cm 0 3cm}, clip]{logos/Logo ENSAM.png}%
+            \includegraphics[width=\linewidth, keepaspectratio, trim={0 3cm 0 3cm}, clip]{../logos/logos.png}
+%\includegraphics[height=1cm, trim = {0 3cm 0 3cm}, clip]{../logos/logos.png}% width=1.6cm, 
         \end{flushleft}
         \end{minipage}%
         \begin{minipage}{13cm}%
@@ -132,7 +137,7 @@
         \end{minipage}%
         \begin{minipage}{1.5cm}%
         \begin{flushleft}
-            \includegraphics[height=0.8cm, width=1.3cm]{logos/Logo LMFL.png}%
+            \includegraphics[height=0.8cm, width=1.3cm]{../logos/IPSA.png}%
         \end{flushleft}
         \end{minipage}%
   \end{beamercolorbox}%
@@ -171,6 +176,13 @@
 
 %\setbeamertemplate{sections/subsections in toc}[square]
 \begin{document}
+% Slide de plan au début de chaque section
+\AtBeginSection[]{
+  \begin{frame}{Plan}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
 
 \setbeamertemplate{caption}{\raggedright\insertcaption\par} 
 
@@ -220,16 +232,16 @@
     \begin{column}{0.3\textwidth}
         %\begin{columns}
             %\begin{column}{0.542\textwidth}
-        \includegraphics[scale=0.31]{figures/RESEDA_benchmark.png}
+        \includegraphics[scale=0.31]{../figures/RESEDA_benchmark.png}
             %\end{column}
             %\begin{column}{0.458\textwidth}
-        \includegraphics[scale=0.20]{figures/image1.png}
+        \includegraphics[scale=0.20]{../figures/image1.png}
     \end{column}
         %\end{columns}
     %\end{column}
     
     \begin{column}{0.3\textwidth}
-        \includegraphics[scale=0.4]{figures/impeller_position.png}
+        \includegraphics[scale=0.4]{../figures/impeller_position.png}
     \end{column}
     \hspace{-1.5cm}
     \begin{column}{0.45\textwidth}
@@ -258,7 +270,7 @@
 \begin{frame}{Modélisation}
     \begin{columns}
         \begin{column}{0.5\textwidth}
-            \includegraphics[scale=0.5]{figures/RESEDA_sketch.pdf}
+            \includegraphics[scale=0.5]{../figures/RESEDA_sketch.pdf}
             \footnotesize{\begin{itemize}
                 \item \textbf{Conditions aux limites :}
                     \begin{itemize}
@@ -270,7 +282,7 @@
         \end{column}
         \hspace{1cm}
         \begin{column}{0.5\textwidth}
-            \includegraphics[scale=0.25]{figures/polar_slice_avg_theta_trimmed.pdf}
+            \includegraphics[scale=0.25]{../figures/polar_slice_avg_theta_trimmed.pdf}
         \end{column}
     \end{columns}
 \end{frame}
@@ -299,9 +311,9 @@
             \underbrace{- \xi \nu \boldsymbol{D} \left( \boldsymbol{u} - \boldsymbol{u}_{ib} \right)}_{\boldsymbol{f}_P}
         \end{equation*}
 
-        \includegraphics[scale=0.25]{figures/IBM_Mesh.pdf}
-        %\only<1>{\includegraphics[scale=0.25]{figures/IBM_Mesh.pdf}}
-        %\only<2>{\includegraphics[scale=0.25]{figures/implicit_forcing.png}}
+        \includegraphics[scale=0.25]{../figures/IBM_Mesh.pdf}
+        %\only<1>{\includegraphics[scale=0.25]{../figures/IBM_Mesh.pdf}}
+        %\only<2>{\includegraphics[scale=0.25]{../figures/implicit_forcing.png}}
     \end{column}
     \begin{column}{0.5\textwidth}
         avec $[p] = M \cdot L^{-1} \cdot T^{-2}$
@@ -355,8 +367,8 @@
     \end{column}
     \begin{column}{0.5\linewidth}
         \centering
-        \includegraphics[width=0.8\textwidth]{figures/pressure_profile.pdf}
-        \includegraphics[width=0.8\textwidth]{figures/velocity_profile.pdf}
+        \includegraphics[width=0.8\textwidth]{../figures/pressure_profile.pdf}
+        \includegraphics[width=0.8\textwidth]{../figures/velocity_profile.pdf}
     \end{column}
 \end{columns}
 \end{frame}
@@ -371,20 +383,20 @@
             \begin{itemize}
                 \item \texorpdfstring{\structure{\textbf{Performance du diffuseur expérimentale et numérique similaire mais différente}}}{Performance du diffuseur expérimentale et numérique similaire mais différente}
 
-                \includegraphics[scale=0.4]{figures/diffuser_performance.pdf}
+                \includegraphics[scale=0.4]{../figures/diffuser_performance.pdf}
 
                 %\item \structure{\textbf{Performance of the impeller}} still needs to be checked with different IBM coefficients $\eta$
             \end{itemize}
         \end{column}
 
         \only<1>{\begin{column}{0.5\linewidth}
-            \includegraphics[scale=0.7]{figures/pressure_taps.png}
+            \includegraphics[scale=0.7]{../figures/pressure_taps.png}
         \end{column}}
 
         \only<2>{\begin{column}{0.5\linewidth}
             \centering
-            \includegraphics[width=0.9\textwidth]{figures/velocity_verProfile.pdf}
-            \includegraphics[width=0.9\textwidth]{figures/pressure_verProfile.pdf}
+            \includegraphics[width=0.9\textwidth]{../figures/velocity_verProfile.pdf}
+            \includegraphics[width=0.9\textwidth]{../figures/pressure_verProfile.pdf}
         \end{column}}
         
     \end{columns}
@@ -394,7 +406,7 @@
 \begin{frame}{Modélisation IBM}
 
     \begin{center}
-        \includegraphics[scale=0.3]{figures/numVSxp.pdf}
+        \includegraphics[scale=0.3]{../figures/numVSxp.pdf}
     \end{center}
 
     \begin{center}
@@ -430,7 +442,7 @@
     \column{0.48\textwidth}
         \begin{figure}
             \centering
-            \includegraphics[width=0.6\linewidth]{newFigures/assymetrie.png}
+            \includegraphics[width=0.6\linewidth]{new../figures/assymetrie.png}
             \caption{\texorpdfstring{Champs de vitesse absolue pour\\ Dx = 4e7 et Dy = 2e7}{Champs de vitesse absolue pour Dx = 4e7 et Dy = 2e7}}
             \label{fig:enter-label11}
         \end{figure}
@@ -438,7 +450,7 @@
     \column{0.48\textwidth}
         \begin{figure}
             \centering
-            \includegraphics[width=0.6\linewidth]{newFigures/coords.png}
+            \includegraphics[width=0.6\linewidth]{new../figures/coords.png}
             \caption{\texorpdfstring{Points d'observation de vitesse numérique avant moyenne azimutale}{Points d'observation de vitesse numerique avant moyenne azimutale}}
             \label{fig:enter-label12}
         \end{figure}
@@ -457,7 +469,7 @@
 
     \begin{figure}
         \centering
-        \includegraphics[width=0.8\linewidth]{newFigures/UpdtC14_10NMRSE.png}
+        \includegraphics[width=0.8\linewidth]{../newFigures/UpdtC14_10NMRSE.png}
         \caption{Bulle de recirculation localement détruite}
         \label{fig:enter-label}
     \end{figure}
@@ -468,7 +480,7 @@
 
     %\begin{figure}
         %\centering
-        %\includegraphics[width=0.6\linewidth]{newFigures/UpdtC14_10params.png}
+        %\includegraphics[width=0.6\linewidth]{../newFigures/UpdtC14_10params.png}
         %\caption{Enter Caption}
         %\label{fig:enter-label}
     %\end{figure}
@@ -480,7 +492,7 @@
 
 %\begin{figure}
     %\centering
-    %\includegraphics[width=0.6\linewidth]{newFigures/UpdtC14_NMRSE.png}
+    %\includegraphics[width=0.6\linewidth]{../newFigures/UpdtC14_NMRSE.png}
     %\caption{Enter Caption}
     %\label{fig:enter-label}
 %\end{figure}
@@ -495,14 +507,14 @@
 
     \only<1>{%
         \centering
-        \includegraphics[width=0.9\linewidth]{newFigures/LIC_Uy.png} \\
+        \includegraphics[width=0.9\linewidth]{../newFigures/LIC_Uy.png} \\
         \vspace{0.2cm}
         {\footnotesize Champ LIC (Line Integral Convolution) et $U_y$}
     }
 
     \only<2>{%
         \centering
-        \includegraphics[width=0.9\linewidth]{newFigures/LIC.png} \\
+        \includegraphics[width=0.9\linewidth]{../newFigures/LIC.png} \\
         \vspace{0.2cm}
         {\footnotesize Bulle de recirculation}
     }
@@ -514,7 +526,7 @@
 
     %\begin{figure}
         %\centering
-        %\includegraphics[width=0.9\linewidth]{newFigures/pen0.png}
+        %\includegraphics[width=0.9\linewidth]{../newFigures/pen0.png}
         %\caption{Enter Caption}
         %\label{fig:enter-label}
     %\end{figure}
@@ -555,7 +567,7 @@
         \column{0.48\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=0.6\linewidth]{newFigures/radial_exp.png}
+                \includegraphics[width=0.6\linewidth]{../newFigures/radial_exp.png}
                 \caption{Expansion radiale}
                 \label{fig:enter-label}
             \end{figure}
@@ -593,7 +605,7 @@
         \column{0.48\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=1\linewidth]{newFigures/coords.png}
+                \includegraphics[width=1\linewidth]{../newFigures/coords.png}
                 \caption{Points d'observation de vitesse numérique avant moyenne azimutale}
                 \label{fig:enter-label}
             \end{figure}
@@ -611,7 +623,7 @@
         \column{0.48\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=0.7\linewidth]{newFigures/radial_exp.png}
+                \includegraphics[width=0.7\linewidth]{../newFigures/radial_exp.png}
                 \caption{Expansion radiale}
                 \label{fig:enter-label}
             \end{figure}
@@ -619,7 +631,7 @@
         \column{0.48\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=0.7\linewidth]{newFigures/coords.png}
+                \includegraphics[width=0.7\linewidth]{../newFigures/coords.png}
                 \caption{Points d'observation de vitesse numérique avant moyenne azimutale}
                 \label{fig:enter-label}
             \end{figure}
@@ -644,7 +656,7 @@
         \column{0.48\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=1\linewidth]{newFigures/LIC.png}
+                \includegraphics[width=1\linewidth]{../newFigures/LIC.png}
                 \caption{Bulle de recirculation}
                 \label{fig:enter-label}
             \end{figure}
