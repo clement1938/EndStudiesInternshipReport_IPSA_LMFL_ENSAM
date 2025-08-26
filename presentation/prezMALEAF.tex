@@ -50,6 +50,7 @@
 \usepackage{fancyvrb}
 \usepackage{fvextra}
 
+%\usetheme{Boadilla} % Darmstadt
 \usetheme{Boadilla}
 \useoutertheme{miniframes}
 \setbeamertemplate{mini frame}[circle]
@@ -58,7 +59,18 @@
 % Définit la couleur du texte des titres de section en blanc dans la barre de navigation
 \setbeamercolor{section in head/foot}{fg=white}
 \setbeamercolor{section in head/foot shaded}{fg=white!50} % Pour les sections non actives
+%\setbeamercolor{frametitle}{fg=white}
+\setbeamercolor{author in head/foot}{fg=white}
+\setbeamercolor{title in head/foot}{fg=white}
+\setbeamercolor{mini frame title}{fg=white}
 
+\setbeamercolor{mini frame title}{fg=white}
+\setbeamercolor{section in head/foot}{fg=white}
+\setbeamercolor{section in head/foot shaded}{fg=white!50}
+\setbeamercolor{subsection in head/foot}{fg=white}
+\setbeamercolor{subsection in head/foot shaded}{fg=white!50}
+
+%\setbeamercolor{date in head/foot}{fg=white}
 
 \newcommand{\backupbegin}{
    \newcounter{framenumberappendix}
@@ -94,14 +106,14 @@
 \titlegraphic{
 \begin{tikzpicture}[overlay,remember picture]
 \node[right=0.2cm, yshift=-1.6cm] at (current page.150){
-	\includegraphics[width=2.0cm]{../logos/both2.png}
+	\includegraphics[width=1.9cm]{../logos/IPSA.png}
 };
 \end{tikzpicture}
 
 
 \begin{tikzpicture}[overlay,remember picture]
 \node[left=0.2cm, yshift=-1.6cm] at (current page.30){
-	\includegraphics[width=2.0cm]{../logos/IPSA.png}
+	\includegraphics[width=5.0cm]{../logos/logos.png}
 };
 \end{tikzpicture}
 }
@@ -110,62 +122,43 @@
 \title[Stage de fin d'études]{\texorpdfstring{\structure{Optimisation de la performance d'une pompe centrifuge par assimilation de données}}{Optimisation de la performance d'une pompe centrifuge par assimilation de données}}
 
 
-\author[Clément THIBAULT]{
-  Clément THIBAULT\texorpdfstring{\textsuperscript{\dag}}{\dag}
+\author[
+  Clément THIBAULT
+  %Samy LABSIR,
+  %Marcello MELDI,
+  %Antoine DAZIN,
+  %Miguel MATINEZ VALERO
+]{
+  \textbf{Stagiaire :} Clément THIBAULT\texorpdfstring{\textsuperscript{1, 2}}{\textsuperscript{1, 2}} \\
+  \textbf{Superviseur IPSA :} Samy LABSIR\texorpdfstring{\textsuperscript{1}}{\textsuperscript{1}} \\
+  \textbf{Superviseurs entreprise :} Marcello MELDI\texorpdfstring{\textsuperscript{2}}{\textsuperscript{2}}, Antoine DAZIN\texorpdfstring{\textsuperscript{2}}{\textsuperscript{2}}, Miguel MATINEZ VALERO\texorpdfstring{\textsuperscript{2}}{\textsuperscript{2}}
 }
-\institute{\textsuperscript{{\dag}} Institut Polytechnique des Sciences Avancées (IPSA) Toulouse - Laboratoire de Mécanique des fluides de Lille (LMFL)} % Univ. Lille, CNRS, ONERA, Arts et Métiers ParisTech, Centrale Lille, UMR 9014-  - Kampé de Feriet, F-59000 Lille, France
+\institute[
+  Institut Polytechnique des Sciences Avancées (IPSA),
+  Laboratoire de Mécanique des Fluides de Lille (LMFL)
+]{
+  \textsuperscript{1} Institut Polytechnique des Sciences Avancées (IPSA) \\
+  \textsuperscript{2} Laboratoire de Mécanique des Fluides de Lille (LMFL)
+}
+
+
 \date{4 septembre 2025}
 
 \setbeamersize{text margin left=10mm,text margin right=10mm}
 
-\begin{comment}
-    \setbeamercolor{lower separation line head}{bg=red}
-    \makeatletter
-    \setbeamertemplate{frametitle}{%
-    \nointerlineskip%
-        \vskip0.0cm%
-    \begin{beamercolorbox}[wd=\paperwidth,leftskip=.1cm,rightskip=.3cm plus1fil,vmode]{frametitle}%
-            \begin{minipage}{3.3cm}%
-            \begin{flushleft}
-                \includegraphics[height=1cm, width=1.6cm, trim = {0 3cm 0 3cm}, clip]{../logos/Logo ENSAM.png}\hspace*{0.3cm}%
-                \includegraphics[height=1cm, width=1.6cm]{../logos/Logo LMFL.png}%
-            \end{flushleft}
-            \end{minipage}%
-            \begin{minipage}{9cm}%
-            \vspace{0.25cm}
-        \usebeamerfont*{frametitle}\insertframetitle\centering%
-        \ifx\insertframesubtitle\@empty%
-            \strut\par%
-        \else
-            \par{\usebeamerfont*{framesubtitle}{\usebeamercolor[fg]{framesubtitle}\insertframesubtitle}\strut\par}%
-        \fi%%
-            \end{minipage}%
-            \begin{minipage}{1.5cm}%
-            \begin{flushleft}
-                \includegraphics[height=0.8cm, width=1.3cm]{../logos/IPSA.png}%
-            \end{flushleft}
-            \end{minipage}%
-    \end{beamercolorbox}%
-    \vskip-0.05cm
-    \begin{beamercolorbox}[colsep=1.0pt,wd=\paperwidth]{lower separation line head}
-    \end{beamercolorbox}
-    }
-\end{comment}
 
-\begin{comment}
 \setbeamercolor{lower separation line head}{bg=red}
 \makeatletter
 \setbeamertemplate{frametitle}{%
   \nointerlineskip%
     \vskip0.0cm%
    \begin{beamercolorbox}[wd=\paperwidth,leftskip=.1cm,rightskip=.3cm plus1fil,vmode]{frametitle}%
-        \begin{minipage}{4.5cm}%
+        \begin{minipage}{1.8cm}%
         \begin{flushleft}
-            \includegraphics[height=1cm, width=1.6cm, trim = {0 3cm 0 3cm}, clip]{../logos/Logo ENSAM.png}\hspace*{0.5cm}%
-            \includegraphics[height=1cm, width=1.6cm]{../logos/Logo LMFL.png}%
+            \includegraphics[height=0.75cm]{../logos/IPSA.png}%, width=1.3cm, trim = {0 3cm 0 3cm}, clip
         \end{flushleft}
         \end{minipage}%
-        \begin{minipage}{9cm}%
+        \begin{minipage}{10.2cm}%
         \vspace{0.25cm}
     \usebeamerfont*{frametitle}\insertframetitle\centering%
       \ifx\insertframesubtitle\@empty%
@@ -174,46 +167,14 @@
         \par{\usebeamerfont*{framesubtitle}{\usebeamercolor[fg]{framesubtitle}\insertframesubtitle}\strut\par}%
       \fi%%
         \end{minipage}%
-        \begin{minipage}{4.5cm}%
-        \begin{flushright}
-            \includegraphics[height=0.8cm, width=1.3cm]{../logos/IPSA.png}%
-        \end{flushright}
-        \end{minipage}%
-  \end{beamercolorbox}%
-  \vskip-0.05cm
-  \begin{beamercolorbox}[colsep=1.0pt,wd=\paperwidth]{lower separation line head}
-  \end{beamercolorbox}
-}
-\end{comment}
-
-\setbeamercolor{lower separation line head}{bg=red}
-\makeatletter
-\setbeamertemplate{frametitle}{%
-  \nointerlineskip%
-    \vskip0.0cm%
-   \begin{beamercolorbox}[wd=\paperwidth,leftskip=.1cm,rightskip=.3cm plus1fil,vmode]{frametitle}%
-        \begin{minipage}{1.5cm}%
-        \begin{flushleft}
-            \includegraphics[height=1cm, width=1.6cm, trim = {0 3cm 0 3cm}, clip]{../logos/Logo ENSAM.png}%
-        \end{flushleft}
-        \end{minipage}%
-        \begin{minipage}{13cm}%
-        \vspace{0.25cm}
-    \usebeamerfont*{frametitle}\insertframetitle\centering%
-      \ifx\insertframesubtitle\@empty%
-        \strut\par%
-      \else
-        \par{\usebeamerfont*{framesubtitle}{\usebeamercolor[fg]{framesubtitle}\insertframesubtitle}\strut\par}%
-      \fi%%
-        \end{minipage}%
-        \begin{minipage}{1.5cm}%
+        \begin{minipage}{4cm}%
         \begin{flushleft}
             %\includegraphics[height=0.8cm, width=1.3cm]{logos/Logo LMFL.png}%
-            \includegraphics[height=0.8cm, width=1.3cm]{../logos/IPSA.png}
+            \includegraphics[height=0.6cm]{../logos/logos.png}%Logo ENSAM.png}  % , width=1.3cm
         \end{flushleft}
         \end{minipage}%
   \end{beamercolorbox}%
-  \vskip-0.05cm
+  \vskip -0.2cm
   \begin{beamercolorbox}[colsep=1.0pt,wd=\paperwidth]{lower separation line head}
   \end{beamercolorbox}
 }
@@ -301,30 +262,72 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \begin{frame}{LMFL et ENSAM Lille}
+        \begin{columns}
+            \begin{column}{0.60\textwidth}
+                \includegraphics[scale=0.25]{../images/other/LMFL_facilities.png}
+            \end{column}
+            \begin{column}{0.35\textwidth}
+                \begin{enumerate}
+                    \item Centrale Lille
+                    \item Université de Lille
+                    \item Arts et Métiers (ENSAM)
+                    \item ONERA
+                    \item CNRS
+                \end{enumerate}
+            \end{column}
+        \end{columns}
+    \end{frame}
 
+
+    \begin{frame}{Domaine d'expertise du LMFL sur le campus le l'ENSAM}
+        \begin{itemize}
+            \item Mécanique des fluides numérique
+            \item Ecoulements tourants
+            \item Assimilation de données
+        \end{itemize}
+    \end{frame}
+
+
+    \begin{frame}{Sujet du stage}
+
+        \begin{itemize}
+            \item \textbf{Pompes centrifuges} : équipements généralement industriels, utilisés dans divers secteurs (eau, pétrole, chimie, énergie).
+            \item \textbf{mécanique des fluides numérique numériquee} : important pour la prédiction du comportement physique, la conception et l'optimisation, mais confrontée à la complexité des écoulements.
+            \item \textbf{Optimisation de la performance} : essentielle pour réduire la consommation énergétique et les coûts opérationnels.
+            \item \textbf{Objectif du stage} : améliorer la performance d'une pompe centrifuge en utilisant des techniques d'assimilation de données (DA) pour ajuster les paramètres du modèle numérique.
+        \end{itemize}
+
+    \end{frame}
+
+\end{document}
 
 
 %\begin{frame}{État de l'art}
 
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Laboratoire et site d'acceuil}
+%\section{Laboratoire et site d'acceuil}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+    \begin{frame}{Contexte et objectifs du stage}
+    \end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{État de l'art et ingrédients numériques} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\begin{frame}{.....}
 
+
+\end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Données et préparation du cas d'étude} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\includegraphics[scale=0.5]{../images/profil_pression_entrancePipe.png}
 
 \begin{frame}{Expérimentale}
 
@@ -461,6 +464,7 @@
         \item bruit d'observation : 0,2 m/s, soit 1,5\% du max. d'observation sur la vitesse
         %\item pas d'inflation
     \end{itemize}
+
 \end{frame}
 
 \begin{comment}
@@ -787,7 +791,7 @@
 %\]
 
 
-\setbeamercolor{item}{fg=blue} % Revenir à la couleur par défaut
+%\setbeamercolor{item}{fg=blue} % Revenir à la couleur par défaut
 
 \end{document}
 
