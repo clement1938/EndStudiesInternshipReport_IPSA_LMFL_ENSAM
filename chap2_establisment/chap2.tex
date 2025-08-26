@@ -1,34 +1,50 @@
-\chapter{Establisment} % Optimizing the performance of a centrifugal pump with data assimilation
+\chapter{Context of the study} % Optimizing the performance of a centrifugal pump with data assimilation
 
 %– Le récit de l’expérience préprofessionnelle doit faire état de toutes les fonctions exercées par le stagiaire à son poste. Il doit comporter des développements techniques (illustrés par des schémas expliqués et commentés, par exemple), mais il s’agit avant tout de donner au lecteur une idée de ce que furent l’emploi du temps du stagiaire, ses tâches quotidiennes, les contraintes du métier, la nature des relations humaines dans cet environnement, les difficultés rencontrées et les résultats obtenus.
 %– Les connaissances techniques acquises doivent transparaître dans le document. Le correcteur évaluera si celui-ci fait état d’une maîtrise réelle des outils (informatiques, mécaniques, etc.) utilisés pendant le stage. En outre, il estimera le niveau des connaissances techniques acquises que la rédaction du rapport aura su mettre en évidence.
 
 % MIEUX INTRODUIRE PK CE STAGE, DA EXEMPLE MTO ETC -> Pa
 
-To introduce the topic of my internship, let's take a simple example: the weather forecast. Meteorologists use data assimilation to improve weather predictions by combining numerical models with real-time observations. This process helps correct model errors and provides more accurate forecasts.
+The internship began in February 2025. I was provided with a fix computer, credentials to connect to the \ac{TGCC} (Irene - Skylake and Rome partitions) and Cassiopée supercomputers, and the link to the \ac{CONES}'s gitlab\footnote{\url{https://gitlab.ensam.eu/pe431/cones-dev}}. Marcello MELDI, Antoine DAZIN and Miguel MARTINEZ VALERO who are my internship supervisors, showed me around the lab.
+Then, Tom MOUSSIE and Miguel MARTINEZ VALERO, my co-officies, explained me the basics of \ac{OpenFOAM} and CONES, the DA code. I was able to run a few tests on OpenFOAM on the supercomputers, which allowed me to familiarize myself with the tools and the code.
 
-To understand fluid behaviour, scientists rely on physical measurements and governing equations. While analytical solutions exist for simple cases, more complex flows require numerical simulations. However, high-fidelity simulations remain too computationally expensive for industrial use.
-This limitation has led to the development of approximate models involving tunable parameters. These parameters are calibrated for specific flow conditions, using experimental data. Techniques such as the \ac{IBM}, which will be detailed later, use a global approach, while the physics of the flow can locally be very different. That's why it relies on such high-fidelity data calibration.
-Manual tuning is feasible for a small number of parameters but becomes inefficient and inaccurate as complexity increases. This justifies the use of mathematical approaches like the EnKF, which motivated the definition of my internship topic.
+To introduce the topic of my internship, let’s start with a simple example: weather forecasting. Meteorologists improve predictions by combining numerical models with real-time observations through a process called data assimilation. This approach corrects model errors and leads to more reliable forecasts.
+
+Similarly, in fluid mechanics, scientists rely on measurements and governing equations to study flow behaviour. While analytical solutions exist for simple cases, realistic flows often require numerical simulations. Unfortunately, high-fidelity simulations are too computationally demanding for most industrial applications.
+
+To overcome this, simplified models with adjustable parameters are used. These parameters must be calibrated to specific flow conditions, typically using experimental data. For instance, techniques such as the \ac{IBM}, described later, adopt a global modelling strategy, even though the underlying flow physics can vary significantly at a local level. High-fidelity data are therefore essential for proper calibration.
+
+Manual parameter tuning works when only a few variables are involved, but it quickly becomes inefficient and unreliable as the number of parameters grows. This is why mathematical approaches such as the EnKF are increasingly used—and this motivation led to the definition of my internship topic.
+
+
+
+%To introduce the topic of my internship, let's take a simple example: the weather forecast. Meteorologists use data assimilation to improve weather predictions by combining numerical models with real-time observations. This process helps correct model errors and provides more accurate forecasts.
+%To understand fluid behaviour, scientists can also rely on physical measurements and governing equations. While analytical solutions exist for simple cases, more complex flows require numerical simulations. However, high-fidelity simulations remain too computationally expensive for industrial use.
+%This limitation has led to the development of approximate models involving tunable parameters. These parameters are calibrated for specific flow conditions, using experimental data. Techniques such as the \ac{IBM}, which will be detailed later, use a global approach, while the physics of the flow can locally be very different. That's why it relies on such high-fidelity data calibration.
+%Manual tuning is feasible for a small number of parameters but becomes inefficient and inaccurate as complexity increases. This justifies the use of mathematical approaches like the EnKF, which motivated the definition of my internship topic.
 
 %When scientists want to understand fluid behaviour, they can collect physical data through measurements. They can also rely on physical laws. In very simple cases, analytical solutions can be found. For more complex cases, these physical laws can be discretized to run numerical simulations.
 %Today, thanks to numerical computation, we are able to simulate the behaviour of fluids. However, the computational cost of an "exact" fluid simulation is still too high to be used in industrial applications. This has led researchers to develop models and techniques that approximate the behaviour of fluids. These models often contain variables that need to be adjusted to fit real-world data, which is usually obtained through experiments.
 %One such technique is the IBM, which will be explained later. This method includes parameters that need to be calibrated. We can do this empirically, by trial and error and using intuition. This can work when there is only a single parameter. However, this approach is time-consuming, imprecise, and unfeasible when dealing with more than a few parameters.
 %To address this, mathematical and numerical methods exist, such as the EnKF. This context led my supervisors to define the topic of my internship.
 
-The internship began in February 2025. I was provided with a fix computer, credentials to connect to the \ac{TGCC} (Irene - Skylake and Rome partitions) and Cassiopée supercomputers, and the link to the \ac{CONES}'s gitlab\footnote{\url{https://gitlab.ensam.eu/pe431/cones-dev}}. Marcello MELDI, Antoine DAZIN and Miguel MARTINEZ VALERO who are my internship supervisors, showed me around the lab.
-Then, Tom MOUSSIE and Miguel MARTINEZ VALERO, my co-officies, explained me the basics of \ac{OpenFOAM} and CONES, the DA code. I was able to run a few tests on OpenFOAM on the supercomputers, which allowed me to familiarize myself with the tools and the code.
+
 
 % Pour l'introduction, regarder la thèse de Miguel
 
 
 \newpage
-\section{State of the art}
+\section{State of the art and problem investigation}
 \label{sec:stateOfArt}
 
 % PAS d'equation ici, sinon je me fait frapper par le Mi
 
-\paragraph{The pump} Centrifugal pumps are used since 1475\cite{retiFrancescoDiGiorgio1963} and remain widely used today in various applications, such as water supply, irrigation, turbomachines, and industrial processes. They are known for their low cost, efficiency and reliability, making them a popular choice for many fluid transport applications. The studied centrifugal pump is a \ac{SHF} radial impeller, which is a type of centrifugal pump designed for high flow rates and low head applications. The RESEDA benchmark, located in the lab facilities, is used to study complex flow on centrifugal machines as rotor/stator interactions, instabilities, performance degradation, pressure fluctuation, highly unsteady effects,...\cite{SHAH2013715}
+\paragraph{The pump} Centrifugal pumps are used since 1475\cite{retiFrancescoDiGiorgio1963} and remain essential in many applications, such as water supply, irrigation, turbomachinery, and industrial processes. 
+
+However, despite this apparent simplicity, the internal flow physics is highly complex. Rotor–stator interactions, flow instabilities, pressure fluctuations, and unsteady effects all strongly influence the pump’s efficiency and the maximum power that can be extracted\cite{SHAH2013715}. This complexity justifies the need for detailed experimental and numerical studies.
+
+In this work, the studied configuration is a \ac{SHF} radial impeller pump, designed for high flow rates and low head applications. The RESEDA benchmark, available at the laboratory, provides a reference case to investigate these complex phenomena under controlled conditions. Its dimensions and rotational speed are chosen to reproduce realistic operating conditions while remaining compatible with experimental diagnostics.
+%Their popularity comes from their relatively low cost, efficiency, and reliability. They are known for their low cost, efficiency and reliability, making them a popular choice for many fluid transport applications. The studied centrifugal pump is a \ac{SHF} radial impeller, which is a type of centrifugal pump designed for high flow rates and low head applications. The RESEDA benchmark, located in the lab facilities, is used to study complex flow on centrifugal machines as rotor/stator interactions, instabilities, performance degradation, pressure fluctuation, highly unsteady effects,...\cite{SHAH2013715}
 
 \begin{figure}[H]
     \centering
@@ -54,7 +70,7 @@ Different high-fidelity data has been recorded on the diffuser of the pump at th
 
 Both experimental (traditionally) and numerical (increasingly in recent years) approaches have been used to investigate the rotor-stator interactions to improve performance, develop accurate models and permit real-time monitoring and control.
 
-\paragraph{IBM} To obtain a numerical simulation of the flow in the pump, a \ac{CFD} can be performed.
+\paragraph{CFD} To obtain a numerical simulation of the flow in the pump, a \ac{CFD} can be performed.
 There are different ways to discretize the space when we do CFD (see \autoref{fig:solidworksMesh}\footnote{\url{https://www.solidworks.com/sw/docs/flow_basis_of_cad_embedded_cfd_whitepaper.pdf}}). The most common are structured meshes, unstructured meshes and body-fitted meshes.
 \begin{figure}[H]
     \centering
@@ -67,7 +83,7 @@ In contrast, an unstructured mesh is a mesh where cells cannot be described in a
 
 The body-fitted meshes are the most accurate but also the most expensive in terms of computational resources in case the grids update at each time step.
 
-IBM is a numerical technique that simulates viscous flow with embedded boundaries on grids that do not conform to those boundaries. This allows to keep numerical efficiency on complex geometries and moving boundaries without the need for body-fitted meshes, which can be computationally expensive and difficult to implement.
+\paragraph{IBM} is a numerical technique that simulates viscous flow with embedded boundaries on grids that do not conform to those boundaries. This allows to keep numerical efficiency on complex geometries and moving boundaries without the need for body-fitted meshes, which can be computationally expensive and difficult to implement.
 
 In 1972 Charles S. Peskin\cite{IBM_base} developped the IBM method. His goal was to reduce the computational time, mainly due to the computation of the mesh refinment based on the \ac{CFL} (see \autoref{eq:CFL}). He added an IBM forcing term on Navier-Stokes equations, only on the simulated artificial heart valve part. He overcame the numerical instabilitys due to the boundary forces by using an iterative method for solving a fixed-point problem for boundary forces.
 
@@ -224,9 +240,9 @@ These equations express three physical conservation principles, given here in th
     \end{itemize}
 \end{itemize}
 
-Two main indicators of the main behaviour of the fluid are the \ac{Ma} and the \ac{Re}.
+Two main indicators of the main behaviour of the flow are the \ac{Ma} and the \ac{Re}.
 
-The $Ma$, is defined by the velocity of the fluid divided by the speed of the sound (relative to the fluid). In CFD, fluid is usually considered as incompressible for Mach lower than 0.3.
+The $Ma$, is defined by the velocity of the flow divided by the speed of the sound (relative to the flow). In CFD, flow is usually considered as incompressible for Mach lower than 0.3.
 In our case, in atmospheric conditions,
 
 \begin{equation}
@@ -237,7 +253,7 @@ With $R_2 = 0.2575m$ the external radius of the impeller, $\Omega = 2\pi \times 
 
 As we consider that we are in \textbf{incompressible} flow conditions (because we are at low Ma), \autoref{eq:mass_conservation} becomes
 \begin{equation}
-    \nabla \cdot \mathbf{u} = 0
+    \nabla \cdot \mathbf{U} = 0
 \end{equation}
 And the pressure and velocity are solved iteratively, contrary to compressible flows.
 
@@ -421,13 +437,14 @@ $\sigma_{k1}  = 0.85,  \sigma_{k2}  = 1$
 $\sigma_{\omega 1}  = 0.5,  \sigma_{\omega 2}  = 0.856$
 
 
-On the $\omega$ region, we can define a near-wall model when the mesh is too coarsed to capture the inner sublayer (see \autoref{fig:NearWallModelling})\footnote{\url{https://2021.help.altair.com/2021/hwsolvers/acusolve/topics/acusolve/training_manual/near_wall_modeling_r.htm}}.
+On the $\omega$ region, we can define a near-wall model where the mesh is too coarsed to capture the inner sublayer (see \autoref{fig:NearWallModelling})\footnote{\url{https://2021.help.altair.com/2021/hwsolvers/acusolve/topics/acusolve/training_manual/near_wall_modeling_r.htm}}.
 
 We can define the nomalized wall ditance as:
 \begin{equation}
     y^+ = \frac{\rho u_{tau} y}{\mu}
 \end{equation}
 where $y$ is the distance from the wall and $\mu$ the fluid dynamic viscosity.
+This will allows us to know where to use a near-wall model.
 
 \begin{figure}[H]
     \centering
