@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.20)  27 AUG 2025 15:54
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.20)  27 AUG 2025 16:27
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2372,8 +2372,6 @@ File: images/logo/ipsagarde.png Graphic file (type bmp)
 [42]
 File: images/numericalPump/LIC.png Graphic file (type bmp)
 <images/numericalPump/LIC.png>
-File: images/numericalPump/radialExpension.png Graphic file (type bmp)
-<images/numericalPump/radialExpension.png>
 
 
 File: images/logo/logos.png Graphic file (type bmp)
@@ -2388,10 +2386,10 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
 [43]
+File: images/numericalPump/radialExpension.png Graphic file (type bmp)
+<images/numericalPump/radialExpension.png>
 File: images/blade_interpolation_1.png Graphic file (type bmp)
 <images/blade_interpolation_1.png>
-File: images/numericalPump/coords.png Graphic file (type bmp)
-<images/numericalPump/coords.png>
 
 
 File: images/logo/logos.png Graphic file (type bmp)
@@ -2406,6 +2404,8 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
 [44]
+File: images/numericalPump/coords.png Graphic file (type bmp)
+<images/numericalPump/coords.png>
 File: images/numericalPump/assymetrie.png Graphic file (type bmp)
 <images/numericalPump/assymetrie.png>
 
@@ -2687,8 +2687,8 @@ Package logreq Info: Writing requests to 'rapport_stage.run.xml'.
  ) 
 Here is how much of TeX's memory you used:
  78020 strings out of 468441
- 1969353 string characters out of 5445543
- 2960216 words of memory out of 5000000
+ 1969361 string characters out of 5445543
+ 2960258 words of memory out of 5000000
  105447 multiletter control sequences out of 15000+600000
  735348 words of font info for 193 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191

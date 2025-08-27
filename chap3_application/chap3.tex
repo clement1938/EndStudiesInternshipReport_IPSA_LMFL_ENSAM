@@ -211,16 +211,20 @@ Looking at the physics of the pump CFD optimise by DA more in detail, we realize
     \label{fig:LIC}
 \end{figure}
 
-To try to counter this problem, a few strategies are deployed, tested separately or in combination (each DA analysis cost a lot of CPU time, so we are limited in the number of analysis we can do):
+To try to counter this problem, a few strategies are deployed one by one, tested separately or in combination (each DA analysis cost a lot of CPU time, so we are limited in the number of analysis we can do):
 
-\textbf{1.} \boldmath{$D_x = D_y$}
+\textbf{Strategie 1.} \boldmath{$D_x = D_y$}
 The strategy is to force $D_x = D_y$ (it helps the convergence by the way, by reducing the number of parameters to optimise).
 In that case, the parameters vector is reduced to $\mathbf{D} = (D_x, D_z, D_k, D_{\omega})$.
 
-\textbf{2.} \boldmath{$D_{\omega} > 0$}
+This strategy works well, until parameters gows up to make the simulation diverge. So it not solve the problem of the recirculation bubble, but it helps to have a more physical result. The sum of the \ac{NRMSE} on the velocity field decreased, of around 15\% before collaps again to a result with no circular repetition.
+
+\textbf{Strategie 2.} \boldmath{$D_{\omega} > 0$}
 The strategy is to force $D_{\omega} > 0$, keeping a variance between each other to allow the parameters to vary.
 
-\textbf{3. Radial expansion}
+This strategy has alwais been apply after the first simulation and always works wells.
+
+\textbf{Strategie 3. Radial expansion}
 The strategy is to use a radial expansion of the five forcing coefficients as illustrated in the \autoref{fig:radialExpension}.
 We used a second order polynomial to represent the radial expansion of the forcing coefficients, for a few raisons:
 \begin{itemize}
@@ -231,6 +235,8 @@ We used a second order polynomial to represent the radial expansion of the forci
     \item it permits to eliminates a step of the value to 0 at the blade tips for a continuity of order 0, which can be important for the numerical stability of the simulation.
 \end{itemize}
 In that case, the parameters vector change from five values to fifteen values.
+
+
 
 \begin{figure}[H]
     \centering
@@ -246,7 +252,7 @@ In that case, the parameters vector change from five values to fifteen values.
     \label{fig:bladeInterpolation}
 \end{figure}
 
-\textbf{4. More global interpolation}
+\textbf{Strategie 4. More global interpolation}
 
 The following explanations are based on the \autoref{fig:augmentedCoords}.
 The minimum is found based on the blue cercles "coords\_seventh" interpolated points and averaged on the "avg\_seventh\_360" red point localisation. To try to have a more uniform field solution, we can average the parameters over a larger area, i.e., over 360 degrees instead of $360/7$ degrees. This allows to have a more global view of the parameters and to avoid local minima (green squares "coords\_7" average on the red cercles). But this can also lead to a solution that does not respect the periodicity of the pump, i.e., the solution is not 7 times the same pattern. So we can also average the parameters over 7 segments of $360/7$ degrees, which allows to have a more uniform field solution while respecting the periodicity of the pump (orange cruses "coords\_360" and purple cercles "avg\_7"). In this last case, the length of the coordinate of the observation points is 105 (5 variables, 3 PIV planes, and 7 segments of $360/7$ degrees) and the length of the observation vector is 315 (3 dimensions, 105 points).
@@ -259,9 +265,9 @@ The minimum is found based on the blue cercles "coords\_seventh" interpolated po
     \label{fig:augmentedCoords}
 \end{figure}
 
-\textbf{5.Inflation} The inflation strategy (explained in the \autoref{eqn:inflation}) is to use a more complex DA method, such as the EnKF with inflation, which allows to escape from local minima by adding noise to the ensemble members. This can help to explore the parameter space more effectively and find a better solution. But we didn't have this problem in our case so it hasn't been used.
+\textbf{Strategie 5.Inflation} The inflation strategy (explained in the \autoref{eqn:inflation}) is to use a more complex DA method, such as the EnKF with inflation, which allows to escape from local minima by adding noise to the ensemble members. This can help to explore the parameter space more effectively and find a better solution. But we didn't have this problem in our case so it hasn't been used.
 
-\textbf{6.Pressure observation} Finaly, we can also add a pressure observation to the DA, which allows to take into account the pressure difference between the inlet and the outlet of the pump. This can help to improve the convergence of the solution and to have a more physical result. The pressure observation represents the difference of pressure between the inlet of the pipe and the outlet of the diffuser. The numerical coefficients are interpolating, respectively at (0,0,-0.35) and (0,0.390,0). Incertitude on p will be less than the measured one to take it better into account.
+\textbf{Strategie 6.Pressure observation} Finaly, we can also add a pressure observation to the DA, which allows to take into account the pressure difference between the inlet and the outlet of the pump. This can help to improve the convergence of the solution and to have a more physical result. The pressure observation represents the difference of pressure between the inlet of the pipe and the outlet of the diffuser. The numerical coefficients are interpolating, respectively at (0,0,-0.35) and (0,0.390,0). Incertitude on p will be less than the measured one to take it better into account.
 This implementation add one element on the observation vector.
 
 %Sans inflation pour commencer. Si on converge vers une solution qui ne nous satisfait pas, on peut essayer d'ajouter... Cela permet de s'échaper d'un minimum local en ajoutant du bruit artificiellement. 
