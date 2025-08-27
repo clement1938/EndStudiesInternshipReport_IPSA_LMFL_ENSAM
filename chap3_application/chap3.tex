@@ -107,6 +107,7 @@ After empirical tests and with experience of the laboratory, we found that the p
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.65\textwidth]{images/numericalPump/mvt.png}
+    \captionsetup{justification=centering}
     \caption{First results of the IBM for all parameters equal to 3e7. Slice at $z=0$ for $\mathbf{D} = (3e7, 3e7, 3e7), D_k = 3e7, D_{\omega} = 3e7$}
     \label{fig:Pumpfirst}
 \end{figure}
@@ -190,6 +191,7 @@ The parameters are optimised to fit the PIV data, and the velocity field is repr
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.65\textwidth]{images/numericalPump/assymetrie.png}
+    \captionsetup{justification=centering}
     \caption{First results of CONES optimisation.\\Slice at $z=0$, with $\mathbf{D} = (4e7, 2e7, 4e7), D_k = 3e7$ and $D_{\omega} = -3e7$}
     \label{fig:PumpfirstAssymetry}
 \end{figure}
@@ -217,7 +219,15 @@ To try to counter this problem, a few strategies are deployed one by one, tested
 The strategy is to force $D_x = D_y$ (it helps the convergence by the way, by reducing the number of parameters to optimise).
 In that case, the parameters vector is reduced to $\mathbf{D} = (D_x, D_z, D_k, D_{\omega})$.
 
-This strategy works well, until parameters gows up to make the simulation diverge. So it not solve the problem of the recirculation bubble, but it helps to have a more physical result. The sum of the \ac{NRMSE} on the velocity field decreased, of around 15\% before collaps again to a result with no circular repetition.
+This strategy works well, until parameters gows up to make the simulation diverge (see \autoref{fig:diverged}). So it not solve the problem of the recirculation bubble, but it helps to have a more physical result. The sum of the \ac{NRMSE} on the velocity field decreased, of around 15\% before collaps again to a result with no circular repetition.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/numericalPump/diverged.png}
+    \caption{Velocity field for Dx = 4e7 and Dy = 2e7}
+    \label{fig:diverged}
+\end{figure}
+
 
 \textbf{Strategie 2.} \boldmath{$D_{\omega} > 0$}
 The strategy is to force $D_{\omega} > 0$, keeping a variance between each other to allow the parameters to vary.
@@ -265,29 +275,30 @@ The minimum is found based on the blue cercles "coords\_seventh" interpolated po
     \label{fig:augmentedCoords}
 \end{figure}
 
-\textbf{Strategie 5.Inflation} The inflation strategy (explained in the \autoref{eqn:inflation}) is to use a more complex DA method, such as the EnKF with inflation, which allows to escape from local minima by adding noise to the ensemble members. This can help to explore the parameter space more effectively and find a better solution. But we didn't have this problem in our case so it hasn't been used.
+\textbf{Strategie 5.Inflation} The inflation strategy (explained in the \autoref{eqn:inflation}) is to use a more complex DA method, such as the EnKF with inflation, which allows to escape from local minima by adding noise to the ensemble members. This can help to explore the parameter space more effectively and find a better solution. But we finally didn't have this problem in our case so it hasn't been used.
 
 \textbf{Strategie 6.Pressure observation} Finaly, we can also add a pressure observation to the DA, which allows to take into account the pressure difference between the inlet and the outlet of the pump. This can help to improve the convergence of the solution and to have a more physical result. The pressure observation represents the difference of pressure between the inlet of the pipe and the outlet of the diffuser. The numerical coefficients are interpolating, respectively at (0,0,-0.35) and (0,0.390,0). Incertitude on p will be less than the measured one to take it better into account.
 This implementation add one element on the observation vector.
 
 %Sans inflation pour commencer. Si on converge vers une solution qui ne nous satisfait pas, on peut essayer d'ajouter... Cela permet de s'échaper d'un minimum local en ajoutant du bruit artificiellement. 
-/////////// Plus de détails sur 1 et 2 -> ce résultat, ...  ////////////
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/numericalPump/assymetrie.png}
-    \caption{Velocity field for Dx = 4e7 and Dy = 2e7}
-    \label{fig:assymetry}
-\end{figure}
 
-After applying these strategies, the solution is still not satisfactory, as we can see in the \autoref{fig:UpdtC14_10NMRSE} where the NRMSEs remain high and the velocity field is still not physical and not converged. The NRMSEs are computed between the numerical simulation and the PIV data, and we can see that they remain high, especially for the radial velocity and velocity over z, because of the no physical recirculation bubble.
+
+
+After applying these strategies, the solution is still not satisfactory, as we can see in the \autoref{fig:UpdtC14_10NMRSE} where the NRMSEs remain high and the velocity field is still not physical and not converged (see \autoref{fig:diverged2}). The NRMSEs are computed between the numerical simulation and the PIV data, and we can see that they remain high, especially for the radial velocity and velocity over z, because of the no physical recirculation bubble.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/UpdtC14_10NMRSE.png}
-    \caption{Evolution of the NRMSEs over EnKF analysis phases}
+    \includegraphics[width=1\textwidth]{images/UpdtC14_10NMRSE.png}
+    \caption{Evolution of the NRMSEs over EnKF analysis phases. Legend is organisez as follows: NMRSE 1 to 3 are for the radial velocities at respectively 25\%, 50\% and 75\% of the impeller height; NRMSE 4 to 6 for the azimuthal velocities and NRMSE 7 to 9 are oredered following the same ideal; NRMSE 10 is for the pressure difference between the inlet and the outlet of the pump.}
     \label{fig:UpdtC14_10NMRSE}
 \end{figure}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/numericalPump/diverged.png}
+    \caption{Velocity field for Dx = 4e7 and Dy = 2e7}
+    \label{fig:diverged2}
+\end{figure}
 
 After applying these strategies, the solution is still not satisfactory, as we can see in the \autoref{fig:UpdtC14_10NMRSE} where the NRMSEs remain high and the velocity field is still not physical and not converged.
 

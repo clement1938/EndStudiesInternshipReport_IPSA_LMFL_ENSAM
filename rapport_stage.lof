@@ -29,8 +29,9 @@
 \contentsline {figure}{\numberline {3.4}{\ignorespaces Comparison between the profiles inside the diffuser for the numerical simulation (continuous lines), and the PIV data (dashed lines). In particular, (\bluelinePython ) represents the radial velocity $u_r$, (\orangeline ) depicts the azimuthal velocity $u_\theta $, and (\greenline ) illustrates the vertical velocity $u_z$. $\mathbf {D} = (3e7, 3e7, 3e7), D_k = 3e7, D_{\omega } = 3e7$}}{40}{figure.caption.28}%
 \contentsline {figure}{\numberline {3.5}{\ignorespaces First results of CONES optimisation. Slice at $z=0$, with $\mathbf {D} = (4e7, 2e7, 4e7), D_k = 3e7$ and $D_{\omega } = -3e7$}}{42}{figure.caption.29}%
 \contentsline {figure}{\numberline {3.6}{\ignorespaces Formation of the recirculation bubble in the diffuser}}{43}{figure.caption.30}%
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Radial expension of Dz over the impeller radius}}{44}{figure.caption.31}%
-\contentsline {figure}{\numberline {3.8}{\ignorespaces Polynomial and sinusoidal interpolation of the blade shape}}{44}{figure.caption.32}%
-\contentsline {figure}{\numberline {3.9}{\ignorespaces Illustration of the augmented coordinates for the interpolation of the field}}{45}{figure.caption.33}%
-\contentsline {figure}{\numberline {3.10}{\ignorespaces Velocity field for Dx = 4e7 and Dy = 2e7}}{46}{figure.caption.34}%
-\contentsline {figure}{\numberline {3.11}{\ignorespaces Evolution of the NRMSEs over EnKF analysis phases}}{46}{figure.caption.35}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Velocity field for Dx = 4e7 and Dy = 2e7}}{44}{figure.caption.31}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Radial expension of Dz over the impeller radius}}{45}{figure.caption.32}%
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Polynomial and sinusoidal interpolation of the blade shape}}{45}{figure.caption.33}%
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Illustration of the augmented coordinates for the interpolation of the field}}{46}{figure.caption.34}%
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Evolution of the NRMSEs over EnKF analysis phases. Legend is organisez as follows: NMRSE 1 to 3 are for the radial velocities at respectively 25\%, 50\% and 75\% of the impeller height; NRMSE 4 to 6 for the azimuthal velocities and NRMSE 7 to 9 are oredered following the same ideal; NRMSE 10 is for the pressure difference between the inlet and the outlet of the pump.}}{47}{figure.caption.35}%
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Velocity field for Dx = 4e7 and Dy = 2e7}}{47}{figure.caption.36}%

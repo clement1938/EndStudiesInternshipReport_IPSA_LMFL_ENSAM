@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.20)  27 AUG 2025 16:27
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.20)  27 AUG 2025 17:04
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2372,6 +2372,8 @@ File: images/logo/ipsagarde.png Graphic file (type bmp)
 [42]
 File: images/numericalPump/LIC.png Graphic file (type bmp)
 <images/numericalPump/LIC.png>
+File: images/numericalPump/diverged.png Graphic file (type bmp)
+<images/numericalPump/diverged.png>
 
 
 File: images/logo/logos.png Graphic file (type bmp)
@@ -2388,8 +2390,6 @@ File: images/logo/ipsagarde.png Graphic file (type bmp)
 [43]
 File: images/numericalPump/radialExpension.png Graphic file (type bmp)
 <images/numericalPump/radialExpension.png>
-File: images/blade_interpolation_1.png Graphic file (type bmp)
-<images/blade_interpolation_1.png>
 
 
 File: images/logo/logos.png Graphic file (type bmp)
@@ -2404,10 +2404,10 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
 [44]
+File: images/blade_interpolation_1.png Graphic file (type bmp)
+<images/blade_interpolation_1.png>
 File: images/numericalPump/coords.png Graphic file (type bmp)
 <images/numericalPump/coords.png>
-File: images/numericalPump/assymetrie.png Graphic file (type bmp)
-<images/numericalPump/assymetrie.png>
 
 
 File: images/logo/logos.png Graphic file (type bmp)
@@ -2424,6 +2424,22 @@ File: images/logo/ipsagarde.png Graphic file (type bmp)
 [45]
 File: images/UpdtC14_10NMRSE.png Graphic file (type bmp)
 <images/UpdtC14_10NMRSE.png>
+
+
+File: images/logo/logos.png Graphic file (type bmp)
+<images/logo/logos.png>
+
+Package fancyhdr Warning: \headheight is too small (25.22153pt): 
+(fancyhdr)                Make it at least 25.2232pt, for example:
+(fancyhdr)                \setlength{\headheight}{25.2232pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
+
+File: images/logo/ipsagarde.png Graphic file (type bmp)
+<images/logo/ipsagarde.png>
+[46]
+File: images/numericalPump/diverged.png Graphic file (type bmp)
+<images/numericalPump/diverged.png>
 )
 
 File: images/logo/logos.png Graphic file (type bmp)
@@ -2437,7 +2453,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[46] (./conclusion/conclusion.tex
+[47] (./conclusion/conclusion.tex
 
 File: images/logo/logos.png Graphic file (type bmp)
 <images/logo/logos.png>
@@ -2450,7 +2466,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[47
+[48
 
 ] Excluding 'comment' comment. Excluding 'comment' comment.)
 
@@ -2465,7 +2481,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[48] (./rapport_stage.lof
+[49] (./rapport_stage.lof
 File: images/cavity/legende.png Graphic file (type bmp)
 <images/cavity/legende.png>
 )
@@ -2485,40 +2501,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[49]
-Missing character: There is no – ("2013) in font ec-lmr10!
-Missing character: There is no – ("2013) in font ec-lmr10!
-Missing character: There is no – ("2013) in font ec-lmr10!
-Missing character: There is no – ("2013) in font ec-lmr10!
-
-
-File: images/logo/logos.png Graphic file (type bmp)
-<images/logo/logos.png>
-
-Package fancyhdr Warning: \headheight is too small (25.22153pt): 
-(fancyhdr)                Make it at least 25.2232pt, for example:
-(fancyhdr)                \setlength{\headheight}{25.2232pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
-
-File: images/logo/ipsagarde.png Graphic file (type bmp)
-<images/logo/ipsagarde.png>
-[50
-
-] (./annexes/annexes.tex
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\leavevmode@ifvmode' on input line 19.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                \kern 1.82538pt
-(hyperref)                removed on input line 19.
-
-Missing character: There is no – ("2013) in font ec-lmr10!
-Missing character: There is no – ("2013) in font ec-lmr10!
-Missing character: There is no – ("2013) in font ec-lmbx10!
-
+[50]
 
 File: images/logo/logos.png Graphic file (type bmp)
 <images/logo/logos.png>
@@ -2532,6 +2515,11 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
 [51]
+Missing character: There is no – ("2013) in font ec-lmr10!
+Missing character: There is no – ("2013) in font ec-lmr10!
+Missing character: There is no – ("2013) in font ec-lmr10!
+Missing character: There is no – ("2013) in font ec-lmr10!
+
 
 File: images/logo/logos.png Graphic file (type bmp)
 <images/logo/logos.png>
@@ -2544,7 +2532,9 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[52]
+[52
+
+] (./annexes/annexes.tex
 
 File: images/logo/logos.png Graphic file (type bmp)
 <images/logo/logos.png>
@@ -2558,6 +2548,19 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
 [53]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 50.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 1.82538pt
+(hyperref)                removed on input line 50.
+
+Missing character: There is no – ("2013) in font ec-lmr10!
+Missing character: There is no – ("2013) in font ec-lmr10!
+Missing character: There is no – ("2013) in font ec-lmbx10!
+
 
 File: images/logo/logos.png Graphic file (type bmp)
 <images/logo/logos.png>
@@ -2583,7 +2586,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[55] Excluding 'comment' comment.)
+[55]
 
 File: images/logo/logos.png Graphic file (type bmp)
 <images/logo/logos.png>
@@ -2597,6 +2600,32 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
 [56]
+
+File: images/logo/logos.png Graphic file (type bmp)
+<images/logo/logos.png>
+
+Package fancyhdr Warning: \headheight is too small (25.22153pt): 
+(fancyhdr)                Make it at least 25.2232pt, for example:
+(fancyhdr)                \setlength{\headheight}{25.2232pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
+
+File: images/logo/ipsagarde.png Graphic file (type bmp)
+<images/logo/ipsagarde.png>
+[57] Excluding 'comment' comment.)
+
+File: images/logo/logos.png Graphic file (type bmp)
+<images/logo/logos.png>
+
+Package fancyhdr Warning: \headheight is too small (25.22153pt): 
+(fancyhdr)                Make it at least 25.2232pt, for example:
+(fancyhdr)                \setlength{\headheight}{25.2232pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
+
+File: images/logo/ipsagarde.png Graphic file (type bmp)
+<images/logo/ipsagarde.png>
+[58]
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/lmr/m/sc/10.95'.
 (microtype)             Ignoring protrusion settings for this character.
@@ -2613,7 +2642,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[57
+[59
 
 ]
 
@@ -2628,7 +2657,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[58]
+[60]
 
 File: images/logo/logos.png Graphic file (type bmp)
 <images/logo/logos.png>
@@ -2641,7 +2670,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[59
+[61
 
 ]
 Missing character: There is no – ("2013) in font ec-lmr10!
@@ -2659,7 +2688,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[60] Excluding 'comment' comment. Excluding 'comment' comment. Excluding 'comment' comment.)
+[62] Excluding 'comment' comment. Excluding 'comment' comment. Excluding 'comment' comment.)
 
 File: images/logo/logos.png Graphic file (type bmp)
 <images/logo/logos.png>
@@ -2672,7 +2701,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[61
+[63
 
 ] (./rapport_stage.aux)
  ***********
@@ -2680,18 +2709,18 @@ LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-08-13>
  ***********
 Package rerunfilecheck Info: File `rapport_stage.out' has not changed.
-(rerunfilecheck)             Checksum: 46B1BF4F70719D92B1580FDA6038DAAC;5014.
+(rerunfilecheck)             Checksum: B4A323DD82933853EEEA21D3BF7B980A;5014.
 Package logreq Info: Writing requests to 'rapport_stage.run.xml'.
 \openout1 = `rapport_stage.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 78020 strings out of 468441
- 1969361 string characters out of 5445543
- 2960258 words of memory out of 5000000
- 105447 multiletter control sequences out of 15000+600000
- 735348 words of font info for 193 fonts, out of 8000000 for 9000
+ 78030 strings out of 468441
+ 1969699 string characters out of 5445543
+ 2960649 words of memory out of 5000000
+ 105456 multiletter control sequences out of 15000+600000
+ 735350 words of font info for 193 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  125i,19n,137p,1671b,5830s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on rapport_stage.pdf (61 pages).
+Output written on rapport_stage.pdf (63 pages).
