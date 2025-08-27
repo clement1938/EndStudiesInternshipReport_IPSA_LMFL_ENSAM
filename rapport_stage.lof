@@ -1,7 +1,7 @@
 \acswitchoff 
 \babel@toc {english}{}\relax 
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces LMFL facilities; Top:Villeneuve d’Ascq campus, bringing together Centrale Lille, the CNRS, and Université de Lille. Bottom-left: ONERA. Bottom-right: Arts et Métiers campus (ENSAM) (source : \href {https://lmfl.cnrs.fr/le-laboratoire/}{lmfl.cnrs.fr})}}{6}{figure.caption.3}%
+\contentsline {figure}{\numberline {1.1}{\ignorespaces LMFL facilities; Top:Villeneuve d'Ascq campus, bringing together Centrale Lille, the CNRS, and Université de Lille. Bottom-left: ONERA. Bottom-right: Arts et Métiers campus (ENSAM) (source : \href {https://lmfl.cnrs.fr/le-laboratoire/}{lmfl.cnrs.fr})}}{6}{figure.caption.3}%
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Centrifugal pumps}}{11}{figure.caption.4}%
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Differents strategies for meshing}}{12}{figure.caption.5}%
@@ -20,7 +20,7 @@
 \contentsline {figure}{\numberline {2.15}{\ignorespaces IBM regions}}{28}{figure.caption.20}%
 \contentsline {figure}{\numberline {2.16}{\ignorespaces Kalman Filter process illustration}}{33}{figure.caption.21}%
 \contentsline {figure}{\numberline {2.17}{\ignorespaces Deterministic inflation}}{35}{figure.caption.22}%
-\contentsline {figure}{\numberline {2.18}{\ignorespaces Evolution of the state through EnKF iterations (\includegraphics [width=0.013\textwidth ]{images/cavity/legende.png}: observation point)}}{35}{figure.caption.23}%
+\contentsline {figure}{\numberline {2.18}{\ignorespaces Evolution of the state through EnKF iterations (\includegraphics [width=0.013\textwidth ]{images/cavity/legende.png}: observation point)}}{36}{figure.caption.23}%
 \contentsline {figure}{\numberline {2.19}{\ignorespaces CONES structure}}{36}{figure.caption.24}%
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Model of the RESEDA benchmark}}{37}{figure.caption.25}%
@@ -31,6 +31,6 @@
 \contentsline {figure}{\numberline {3.6}{\ignorespaces Formation of the recirculation bubble in the diffuser}}{43}{figure.caption.30}%
 \contentsline {figure}{\numberline {3.7}{\ignorespaces Radial expension of Dz over the impeller radius}}{44}{figure.caption.31}%
 \contentsline {figure}{\numberline {3.8}{\ignorespaces Polynomial and sinusoidal interpolation of the blade shape}}{44}{figure.caption.32}%
-\contentsline {figure}{\numberline {3.9}{\ignorespaces Evolution of the NRMSEs over EnKF analysis phases}}{45}{figure.caption.33}%
-\contentsline {figure}{\numberline {3.10}{\ignorespaces Illustration of the augmented coordinates for the interpolation of the field}}{46}{figure.caption.34}%
-\contentsline {figure}{\numberline {3.11}{\ignorespaces Velocity field for Dx = 4e7 and Dy = 2e7}}{47}{figure.caption.35}%
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Illustration of the augmented coordinates for the interpolation of the field}}{45}{figure.caption.33}%
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Velocity field for Dx = 4e7 and Dy = 2e7}}{46}{figure.caption.34}%
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Evolution of the NRMSEs over EnKF analysis phases}}{46}{figure.caption.35}%

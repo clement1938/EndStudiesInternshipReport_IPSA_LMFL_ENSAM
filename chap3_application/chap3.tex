@@ -17,6 +17,8 @@ In our simulation, the z-axis aligns with the rotational axis, and the reference
     \label{fig:RESEDA_Model}
 \end{figure}
 
+\newpage
+
 Boundary conditions are defined as follows:
 \begin{itemize}
     \item[$-$] Inlet: velocity inlet
@@ -51,7 +53,7 @@ where $\boldsymbol{u}_r = 0$, $\omega_{vis}=\frac{6 \nu}{\beta_1 y_{\mathrm{ref}
 
 
 
-Let's compute the $\Delta_t$ at the tip of the impeller, where the velocity is the highest and $\Delta_x$ the lowest.
+Knowing the mesh and the impeller velocity, based on the \autoref{eq:CFL}, we can compute the $\Delta_t$ at the tip of the impeller, where the velocity is the highest and $\Delta_x$ the lowest.
 
 - In our model, $\Delta_{x}$ is the distance between two cells in the azimuthal direction at the tip of the impeller, which is given as 1.5 mm or 0.0015 m.
 
@@ -73,7 +75,7 @@ Assuming the radius at the tip of the impeller is $r = 0.2566 \text{ m}$, we can
     \|U_{\infty}\| = 125.66 \text{ rps} \cdot 0.2566 \text{ m} =  \text{32.24 m/s}
 \end{equation}
 
-Assuming the distance between two cells in the azimuthal direction at the tip of the impeller is $\Delta_{x} = 0.0015 \text{ m}$ (which is 1.5 mm). Based on the \autoref{eq:CFL} we can now compute the time step $\Delta_{t}$:
+Assuming the distance between two cells in the azimuthal direction at the tip of the impeller is $\Delta_{x} = 0.0015 \text{ m}$ (which is 1.5 mm) we can now compute the time step $\Delta_{t}$:
 
 \begin{equation}
     \Delta_{t} = \frac{0.5 \cdot 0.0015 \text{ m}}{32.24 \text{ m/s}} = 2.3 \times 10^{-5} \text{ s} % \approx 2.3 \mu s.
@@ -181,19 +183,19 @@ An extract of the \texttt{conesDict} is given in appendix~\ref{annex:conesDict}.
 
 \textbf{First results}
 
-After letting the simulation run for around 50 iterations, we obtain the first results of the optimisation with CONES. The parameters are optimised to fit the PIV data, and the velocity field is represented on a slice at $z=0$. The resulting parameters are the following: $\mathbf{D} = (4e7, 2e7, 4e7), D_k = 3e7$ and $D_{\omega} = -3e7$. The sum of the NRMSEs on the velocity field decreased, of around 20\%. The global performance of the pump didn't change significantly.
-Usually, around 200 iterations are needed to converge but is not need for a first result and cost a lot of CPU time (1270 CPU $\times$ hours per EnKF iteration).
+After letting the simulation run for around 50 iterations, we obtain the first results of the optimisation with CONES. Usually, around 200 iterations are needed to converge but is not need for a first result and cost a lot of CPU time (1270 CPU $\times$ hours per EnKF iteration).
+The parameters are optimised to fit the PIV data, and the velocity field is represented on a slice at $z=0$. The resulting parameters are the following: $\mathbf{D} = (4e7, 2e7, 4e7), D_k = 3e7$ and $D_{\omega} = -3e7$. The sum of the \ac{NRMSE} on the velocity field decreased, of around 20\%. The global performance of the pump didn't change significantly.
 
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.65\textwidth]{images/numericalPump/assymetrie.png}
-    \caption{First results of CONES optimisation. Slice at $z=0$, with $\mathbf{D} = (4e7, 2e7, 4e7), D_k = 3e7$ and $D_{\omega} = -3e7$}
+    \caption{First results of CONES optimisation.\\Slice at $z=0$, with $\mathbf{D} = (4e7, 2e7, 4e7), D_k = 3e7$ and $D_{\omega} = -3e7$}
     \label{fig:PumpfirstAssymetry}
 \end{figure}
 
 We would expected $D_x = D_y$ because the geometry is symmetrical, but we see that the optimisation converges to a solution where $D_x \neq D_y$. The local minimum found by the optimisation gives us a unsatisfactory solution.
-$D_{\omega}$ is negative, which does not correspond to physical results.
+Also, $D_{\omega}$ is negative, which does not correspond to physical results.
 
 
 \newpage
@@ -211,12 +213,15 @@ Looking at the physics of the pump CFD optimise by DA more in detail, we realize
 
 To try to counter this problem, a few strategies are deployed, tested separately or in combination (each DA analysis cost a lot of CPU time, so we are limited in the number of analysis we can do):
 
-\textbf{1. $D_x = D_y$} strategy is to force $D_x = D_y$ (it helps the convergence by the way, by reducing the number of parameters to optimise).
+\textbf{1.} \boldmath{$D_x = D_y$}
+The strategy is to force $D_x = D_y$ (it helps the convergence by the way, by reducing the number of parameters to optimise).
 In that case, the parameters vector is reduced to $\mathbf{D} = (D_x, D_z, D_k, D_{\omega})$.
 
-\textbf{2. $D_{\omega} > 0$} strategy is to force $D_{\omega} > 0$, keeping a variance between each other to allow the parameters to vary.
+\textbf{2.} \boldmath{$D_{\omega} > 0$}
+The strategy is to force $D_{\omega} > 0$, keeping a variance between each other to allow the parameters to vary.
 
-\textbf{3. Radial expansion} strategy is to use a radial expansion of the five forcing coefficients as illustrated in the \autoref{fig:radialExpension}.
+\textbf{3. Radial expansion}
+The strategy is to use a radial expansion of the five forcing coefficients as illustrated in the \autoref{fig:radialExpension}.
 We used a second order polynomial to represent the radial expansion of the forcing coefficients, for a few raisons:
 \begin{itemize}
     \item it allows to have a more complete representation of the forcing coefficients, which can help to better fit the experimental data;
@@ -241,15 +246,6 @@ In that case, the parameters vector change from five values to fifteen values.
     \label{fig:bladeInterpolation}
 \end{figure}
 
-After applying these strategies, the solution is still not satisfactory, as we can see in the \autoref{fig:UpdtC14_10NMRSE} where the NRMSEs remain high and the velocity field is still not physical and not converged. The NRMSEs are computed between the numerical simulation and the PIV data, and we can see that they remain high, especially for the radial velocity and velocity over z, because of the no physical recirculation bubble.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{images/UpdtC14_10NMRSE.png}
-    \caption{Evolution of the NRMSEs over EnKF analysis phases}
-    \label{fig:UpdtC14_10NMRSE}
-\end{figure}
-
 \textbf{4. More global interpolation}
 
 The following explanations are based on the \autoref{fig:augmentedCoords}.
@@ -269,13 +265,23 @@ The minimum is found based on the blue cercles "coords\_seventh" interpolated po
 This implementation add one element on the observation vector.
 
 %Sans inflation pour commencer. Si on converge vers une solution qui ne nous satisfait pas, on peut essayer d'ajouter... Cela permet de s'échaper d'un minimum local en ajoutant du bruit artificiellement. 
-
+/////////// Plus de détails sur 1 et 2 -> ce résultat, ...  ////////////
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{images/numericalPump/assymetrie.png}
     \caption{Velocity field for Dx = 4e7 and Dy = 2e7}
     \label{fig:assymetry}
 \end{figure}
+
+After applying these strategies, the solution is still not satisfactory, as we can see in the \autoref{fig:UpdtC14_10NMRSE} where the NRMSEs remain high and the velocity field is still not physical and not converged. The NRMSEs are computed between the numerical simulation and the PIV data, and we can see that they remain high, especially for the radial velocity and velocity over z, because of the no physical recirculation bubble.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/UpdtC14_10NMRSE.png}
+    \caption{Evolution of the NRMSEs over EnKF analysis phases}
+    \label{fig:UpdtC14_10NMRSE}
+\end{figure}
+
 
 After applying these strategies, the solution is still not satisfactory, as we can see in the \autoref{fig:UpdtC14_10NMRSE} where the NRMSEs remain high and the velocity field is still not physical and not converged.
 

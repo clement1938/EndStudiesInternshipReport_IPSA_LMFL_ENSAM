@@ -1,20 +1,22 @@
 \chapter{Context of the study} % Optimizing the performance of a centrifugal pump with data assimilation
 
-%– Le récit de l’expérience préprofessionnelle doit faire état de toutes les fonctions exercées par le stagiaire à son poste. Il doit comporter des développements techniques (illustrés par des schémas expliqués et commentés, par exemple), mais il s’agit avant tout de donner au lecteur une idée de ce que furent l’emploi du temps du stagiaire, ses tâches quotidiennes, les contraintes du métier, la nature des relations humaines dans cet environnement, les difficultés rencontrées et les résultats obtenus.
-%– Les connaissances techniques acquises doivent transparaître dans le document. Le correcteur évaluera si celui-ci fait état d’une maîtrise réelle des outils (informatiques, mécaniques, etc.) utilisés pendant le stage. En outre, il estimera le niveau des connaissances techniques acquises que la rédaction du rapport aura su mettre en évidence.
+%– Le récit de l'expérience préprofessionnelle doit faire état de toutes les fonctions exercées par le stagiaire à son poste. Il doit comporter des développements techniques (illustrés par des schémas expliqués et commentés, par exemple), mais il s'agit avant tout de donner au lecteur une idée de ce que furent l'emploi du temps du stagiaire, ses tâches quotidiennes, les contraintes du métier, la nature des relations humaines dans cet environnement, les difficultés rencontrées et les résultats obtenus.
+%– Les connaissances techniques acquises doivent transparaître dans le document. Le correcteur évaluera si celui-ci fait état d'une maîtrise réelle des outils (informatiques, mécaniques, etc.) utilisés pendant le stage. En outre, il estimera le niveau des connaissances techniques acquises que la rédaction du rapport aura su mettre en évidence.
 
 % MIEUX INTRODUIRE PK CE STAGE, DA EXEMPLE MTO ETC -> Pa
 
 The internship began in February 2025. I was provided with a fix computer, credentials to connect to the \ac{TGCC} (Irene - Skylake and Rome partitions) and Cassiopée supercomputers, and the link to the \ac{CONES}'s gitlab\footnote{\url{https://gitlab.ensam.eu/pe431/cones-dev}}. Marcello MELDI, Antoine DAZIN and Miguel MARTINEZ VALERO who are my internship supervisors, showed me around the lab.
 Then, Tom MOUSSIE and Miguel MARTINEZ VALERO, my co-officies, explained me the basics of \ac{OpenFOAM} and CONES, the DA code. I was able to run a few tests on OpenFOAM on the supercomputers, which allowed me to familiarize myself with the tools and the code.
 
-To introduce the topic of my internship, let’s start with a simple example: weather forecasting. Meteorologists improve predictions by combining numerical models with real-time observations through a process called data assimilation. This approach corrects model errors and leads to more reliable forecasts.
+To introduce the topic of my internship, let's start with a simple example: weather forecasting. Meteorologists improve predictions by combining numerical models with real-time observations through a process called data assimilation. This approach corrects model errors and leads to more reliable forecasts.
 
-Similarly, in fluid mechanics, scientists rely on measurements and governing equations to study flow behaviour. While analytical solutions exist for simple cases, realistic flows often require numerical simulations. Unfortunately, high-fidelity simulations are too computationally demanding for most industrial applications.
+A similar challenge arises in fluid mechanics, where we aim to understand and predict the behaviour of complex flows. While analytical solutions exist for simple configurations, realistic flows, especially those found in industrial systems, often require numerical simulations. However, high-fidelity simulations are computationally very demanding, making them impractical in many cases.
 
-To overcome this, simplified models with adjustable parameters are used. These parameters must be calibrated to specific flow conditions, typically using experimental data. For instance, techniques such as the \ac{IBM}, described later, adopt a global modelling strategy, even though the underlying flow physics can vary significantly at a local level. High-fidelity data are therefore essential for proper calibration.
+This difficulty is particularly evident in the case of turbomachinery, such as pumps, which are at the heart of my study. Inside a pump, the flow is highly three-dimensional, naturally unsteady, and involves both fixed and rotating walls. It operates at high Reynolds numbers, leading to turbulence. Moreover, the complex geometry makes the mesh generation challenging, especially near the interfaces between moving and fixed parts. These difficulties motivate the use of techniques like the \ac{IBM}, which simplifies the treatment of complex geometries while maintaining accurate flow predictions.
 
-Manual parameter tuning works when only a few variables are involved, but it quickly becomes inefficient and unreliable as the number of parameters grows. This is why mathematical approaches such as the EnKF are increasingly used, and this motivation led to the definition of my internship topic.
+Because of these complexities, simplified flow models with adjustable parameters are commonly employed. However, these parameters must be carefully calibrated to capture the underlying physics, typically using experimental data. High-fidelity measurements are thus essential to improve model accuracy.
+
+Manual parameter tuning can work when only a few parameters are involved, but as their number grows, it quickly becomes inefficient and unreliable. This is where mathematical approaches like the \ac{EnKF} become valuable, as they automate parameter estimation by combining experimental data with model predictions. This need for accurate calibration in complex flow configurations is precisely what defines the motivation and objectives of my internship.
 
 
 
@@ -41,16 +43,16 @@ Manual parameter tuning works when only a few variables are involved, but it qui
 
 \paragraph{The pump} Centrifugal pumps are used since 1475\cite{retiFrancescoDiGiorgio1963} and remain essential in many applications, such as water supply, irrigation, turbomachinery, and industrial processes. 
 
-However, despite this apparent simplicity, the internal flow physics is highly complex. Rotor–stator interactions, flow instabilities, pressure fluctuations, and unsteady effects all strongly influence the pump’s efficiency and the maximum power that can be extracted\cite{SHAH2013715}. This complexity justifies the need for detailed experimental and numerical studies.
+However, despite this apparent simplicity, the internal flow physics is highly complex. Rotor–stator interactions, flow instabilities, pressure fluctuations, and unsteady effects all strongly influence the pump's efficiency and the maximum power that can be extracted\cite{SHAH2013715}. This complexity justifies the need for detailed experimental and numerical studies.
 
-In this work, the studied configuration is a \ac{SHF} radial impeller pump, designed for high flow rates and low head applications. The RESEDA benchmark, available at the laboratory, provides a reference case to investigate these complex phenomena under controlled conditions. Its dimensions and rotational speed are chosen to reproduce realistic operating conditions while remaining compatible with experimental diagnostics.
+In this work, the studied configuration is a \ac{SHF} radial impeller pump, designed for low head applications and high flow rates. The RESEDA benchmark, available at the laboratory, provides a reference case to investigate these complex phenomena under controlled conditions. Its dimensions and rotational speed are chosen to reproduce realistic operating conditions while remaining compatible with experimental diagnostics.
 %Their popularity comes from their relatively low cost, efficiency, and reliability. They are known for their low cost, efficiency and reliability, making them a popular choice for many fluid transport applications. The studied centrifugal pump is a \ac{SHF} radial impeller, which is a type of centrifugal pump designed for high flow rates and low head applications. The RESEDA benchmark, located in the lab facilities, is used to study complex flow on centrifugal machines as rotor/stator interactions, instabilities, performance degradation, pressure fluctuation, highly unsteady effects,...\cite{SHAH2013715}
 
 \begin{figure}[H]
     \centering
     \begin{subfigure}[b]{0.34\textwidth}
         \includegraphics[width=\textwidth]{images/other/pompe_centrifuge.jpg}
-        \caption{Old centrifugal pump used to move hay (personal picture)}
+        \caption{Old centrifugal fan used to move hay (personal picture)}
         \label{fig:old_centrifugal_pump}
     \end{subfigure}
     \hfill
@@ -151,23 +153,45 @@ EnKF for DA in CFD has been used at \ac{LMFL} for a few years now.
 
 \newpage
 
-This work focuses on applying the EnKF method to optimize the parameters of the IBM forcing term in a centrifugal pump configuration. Compared to the previous test cases, the pump presents additional challenges: it combines turbulent boundary layer effects, rotor–stator interactions, and a complex geometry that requires around 11 million cells. These features make the flow highly unsteady and difficult to capture with traditional CFD approaches.
+This work focuses on applying the EnKF method to optimize the parameters of the IBM forcing term in a centrifugal pump configuration. Compared to the previous test cases, the pump presents additional challenges: it combines turbulent boundary layer effects, rotor-stator interactions, and a complex geometry that requires around 11 million cells. These features make the flow highly unsteady and difficult to capture with traditional CFD approaches.
 
-The main objective is to improve flow predictions at the diffuser by calibrating the IBM parameters with Data Assimilation. This is achieved by combining CFD simulations with experimental measurements, namely PIV data in the diffuser and pressure tap data at the impeller inlet and diffuser. The goal is to enhance simulation accuracy and gain deeper insight into the pump’s behavior.
+The main objective is to employ a DA algorithm to enhance an IBM for the simulation of a centrifugal pump.% improve flow predictions at the diffuser by calibrating the IBM parameters with Data Assimilation.
+This is achieved by combining CFD simulations with experimental measurements, namely PIV data in the diffuser and pressure tap data at the impeller inlet and diffuser. The aim is to improve the predictive capability of the IBM and gain deeper insight into the pump's flow behavior.
 
-To address this objective, the thesis is structured as follows:
+To reach this goal, several secondary objectives are defined:
+
+\begin{itemize}
+    \item \textbf{Assess the limitations of the baseline IBM}: investigate how well the current implementation predicts centrifugal pump flows, particularly in the diffuser and near rotating components.
+    \item \textbf{Prepare high-fidelity experimental data}: identify, process, and validate PIV and pressure measurements to be used as reference inputs for DA.
+    \item \textbf{Integrate an adapted DA methodology}: implement an Ensemble Kalman Filter (EnKF) within the CFD solver and ensure its compatibility with the pump test case.
+    \item \textbf{Optimize IBM parameters via DA}: calibrate the IBM model using experimental data to improve both local flow predictions in the diffuser and global pump performance indicators.
+\end{itemize}
+
+The thesis is organized as follows:
 
 \begin{enumerate}
-\item a state of the art on centrifugal pumps, CFD methods (including IBM), and DA techniques (including EnKF) is presented in \autoref{sec:stateOfArt};
-\item the numerical framework, including governing equations, OpenFOAM, EnKF, CONES, and pump modeling, is introduced in \autoref{subsec:CFD_governing_equations};
-\item experimental data are processed for comparison with numerical results in \autoref{sec:Experimental_data_and_pre-processing};
-\item OpenFOAM is modified to perform first IBM-based simulations (\autoref{sec:IBM_preliminary_results});
-\item CONES is adapted to the pump case and DA is applied to optimize the IBM parameters (\autoref{sec:Application_of_the_DA});
-\item results of the DA are analyzed in terms of diffuser flow field and pump performance predictions (\autoref{sec:Results}).
+    \item A state of the art on centrifugal pumps, CFD methods (including IBM and its limitations), and DA techniques (including EnKF) is presented in \autoref{sec:stateOfArt};
+    \item Experimental data are processed for comparison with numerical results in \autoref{sec:Experimental_data_and_pre-processing};
+    \item The numerical framework, including governing equations, OpenFOAM, EnKF, CONES, and pump modeling, is introduced in \autoref{subsec:CFD_governing_equations};
+    \item OpenFOAM is modified to perform first IBM-based simulations (\autoref{sec:IBM_preliminary_results});
+    \item CONES is adapted to the pump case and DA is applied to optimize the IBM parameters (\autoref{sec:Application_of_the_DA});
+    \item Results of the DA are analyzed in terms of diffuser flow field and pump performance predictions (\autoref{sec:Results}).
 \end{enumerate}
 
 \begin{comment}
-    This led us to explore the use of the EnKF method to optimize the parameters of the IBM forcing term on a centrifugal pump, a more complex case than the previous ones. It combines the 3D turbulent boundary layer characteristics of the turbulent plane channel flow with the moving body configuration of the oscillating cylinder. Its complex geometry requires around 11 million cells. On top of that, rotor/stator interaction in centrifugal machines is highly unsteady and involves turbulent boundary layers and instabilities, making it particularly challenging to model. Traditional CFD approaches often fail to capture these effects accurately. Our goal here is to improve flow prediction at the diffuser by optimizing the IBM forcing parameters, which should enhance the overall simulation and provide a better understanding of the pump’s behavior.
+\begin{enumerate}
+    \item Analyze and understand the limitations of the baseline IBM for simulating centrifugal pump flows, especially in complex regions such as the diffuser (\autoref{sec:stateOfArt});
+\item Identify and process high-fidelity experimental data (PIV and pressure measurements) to be used as reference inputs in the DA framework (\autoref{sec:Experimental_data_and_pre-processing});
+%\item the numerical framework, including governing equations, OpenFOAM, EnKF, CONES, and pump modeling, is introduced in \autoref{subsec:CFD_governing_equations};
+\item Integrate an adapted DA methodology based on the EnKF into the CFD solver for the centrifugal pump test case (\autoref{sec:IBM_preliminary_results} and \autoref{sec:Application_of_the_DA});
+%\item CONES is adapted to the pump case and DA is applied to optimize the IBM parameters (\autoref{sec:Application_of_the_DA});
+\item Optimize the IBM parameters through DA to improve both local flow predictions within the diffuser and global pump performance indicators (\autoref{sec:Results}).
+\end{enumerate}
+\end{comment}
+
+
+\begin{comment}
+    This led us to explore the use of the EnKF method to optimize the parameters of the IBM forcing term on a centrifugal pump, a more complex case than the previous ones. It combines the 3D turbulent boundary layer characteristics of the turbulent plane channel flow with the moving body configuration of the oscillating cylinder. Its complex geometry requires around 11 million cells. On top of that, rotor/stator interaction in centrifugal machines is highly unsteady and involves turbulent boundary layers and instabilities, making it particularly challenging to model. Traditional CFD approaches often fail to capture these effects accurately. Our goal here is to improve flow prediction at the diffuser by optimizing the IBM forcing parameters, which should enhance the overall simulation and provide a better understanding of the pump's behavior.
 
 
     In this context, we aim to apply both of these innovative methodologies to enhance the original CFD predictions on a centrifugal pump test case. The approach leverages PIV measurements at the diffuser, along with pressure tap data from the impeller inlet and the diffuser. To achieve this, the thesis is organized around the following steps:
@@ -451,15 +475,14 @@ As we are at $Q/Q_d = 1$, we can retreive:
     \frac{\Delta P_{P}}{\rho U_{2}^{2}} = \eta \Leftrightarrow \Delta P_{P} = \rho U_{2}^{2} \eta
 \end{equation}
 
-For the high-fidelity value, we can find experimental data from the same pump \cite{fanEffectLeakagePerformanceb}, that's matches with M. Fan simulation (eq to approximately \(\eta\) = 0.4). So we can also compute:
-
-${U_{2}}$ is the impeller tip speed computed from the impeller diameter and the rotation speed of the pump.
+For the high-fidelity value, we can find experimental data from the same pump \cite{fanEffectLeakagePerformanceb}, that's matches with M. Fan simulation (equal to approximately \(\eta\) = 0.4). So we can also compute:
 
 \begin{equation}
     U_{2} = {(\Omega \times R2)}^2 = {(2 \times \pi \times \frac{1200}{60} \times 0.2566)}^2 = 32,2 m/s
 \end{equation}
+With ${U_{2}}$ the impeller tip speed computed from the impeller diameter and the rotation speed of the pump.
 
-Finally:
+Finally we can compute the pressure jump at the pump level, that will be used as a reference for the data assimilation:
 
 \begin{equation}
     \Delta P_{p} = 1.225 \times 32.24^2 \times 0.4 \approx 415~\text{Pa}
@@ -1141,10 +1164,26 @@ Observation data may be built using:
     \label{KF1}
 \end{figure}
 
-Kalman filter presents two main drawbacks that concern our case. First, as the \ac{EKF}, it only works for moderate deviations from linearity and Gaussianity. If $M$ represents the Navier-Stokes equations, then equations are very not linear. Secondly, for a CFD mesh, the covariance matrix $\mathbf{P}_k$ would have a dimention of $(n_{vars} \times n_{cells}, n_{vars} \times n_{cells})$.
+Kalman filter presents two main drawbacks that concern our case. First, it only works for moderate deviations from linearity and Gaussianity. If $M$ represents the Navier-Stokes equations, then equations are very not linear. Secondly, for a CFD mesh, the covariance matrix $\mathbf{P}_k$ would have a dimention of $(n_{vars} \times n_{cells}, n_{vars} \times n_{cells})$. % , as the \ac{EKF},
+
+As shown in Figure~\ref{KF1}, the Kalman Filter alternates between two steps: the forecast, where the model predicts the next state, and the analysis, where this forecast is corrected using available observations. The analysis step brings the model trajectory closer to the truth by optimally combining model and measurements.
+
+However, for CFD applications the standard KF quickly becomes impractical. First, it assumes linear dynamics and Gaussian errors, which is not valid when $\mathbf{M}$ represents the Navier–Stokes equations. Second, it requires storing and updating the covariance matrix $\mathbf{P}_k$, whose size scales with the number of variables and cells, making it computationally prohibitive.
+
 
 \paragraph{Ensemble Kalman Filter}
-The EnKF allows high dimensional systems by avoiding the explicit definition of $\mathbf{P}_k$ and its Monte-Carlo realisations are much more design for non-linear models. A problem can be the underestimation of $\mathbf{P}_k^a$ but the inflation, define later on this subsection, and localisation, helps mitigate this issue.
+
+The Ensemble Kalman Filter overcomes the limitations of the classical KF by using an ensemble of states to represent the uncertainty instead of explicitly propagating the full covariance matrix. Each ensemble member evolves independently according to the model equations, and the sample covariance of the ensemble is then used to update the state when new observations become available.
+
+In practice:
+\begin{itemize}
+    \item During the forecast step, all ensemble members are advanced in time by the CFD solver.
+    \item In the analysis step, each ensemble member is corrected using the innovation (observation minus forecast), weighted by the ensemble covariance.
+\end{itemize}
+
+The EnKF is particularly well suited for high-dimensional systems, since it avoids the explicit computation and storage of $\mathbf{P}_k$. Its Monte Carlo formulation also makes it more robust to non-linear dynamics compared to the standard KF. A known drawback is the tendency to underestimate the analysis covariance $\mathbf{P}_k^a$, but techniques such as covariance inflation and localisation (introduced later in this subsection) are commonly applied to mitigate this issue.
+
+
 
 
 \begin{comment}
@@ -1189,7 +1228,7 @@ The following matrices are needed to build the EnKF algorithm:
   \left[ \mathcal{H} \left( \mathbf{x}_i^f \right) \right]_{n_{\text{obs}}, m}
   \]
 
-  \item \textbf{Anomaly matrices} for the system’s state $\mathbf{x}_i^f$ and sampling $\mathcal{H} \left( \mathbf{x}_i^f \right) = \mathbf{s}_i^f$ matrices. They measure the deviation of each realization with respect to the mean.
+  \item \textbf{Anomaly matrices} for the system's state $\mathbf{x}_i^f$ and sampling $\mathcal{H} \left( \mathbf{x}_i^f \right) = \mathbf{s}_i^f$ matrices. They measure the deviation of each realization with respect to the mean.
   \[
   \mathbf{X}_i = \frac{\mathbf{x}_i - \bar{\mathbf{x}}}{\sqrt{m-1}}, \quad 
   \mathbf{S}_i = \frac{\mathbf{s}_i - \bar{\mathbf{s}}}{\sqrt{m-1}}

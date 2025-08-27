@@ -33,7 +33,7 @@
 \@writefile{toc}{\contentsline {section}{\numberline {1.1}Scientific environment and host institution}{6}{section.1.1}\protected@file@percent }
 \ACRO{recordpage}{ONERA}{6}{1}{6}
 \ACRO{recordpage}{CNRS}{6}{1}{6}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.1}{\ignorespaces LMFL facilities; Top:Villeneuve d’Ascq campus, bringing together Centrale Lille, the CNRS, and Université de Lille. Bottom-left: ONERA. Bottom-right: Arts et Métiers campus (ENSAM) (source : \href  {https://lmfl.cnrs.fr/le-laboratoire/}{lmfl.cnrs.fr})}}{6}{figure.caption.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1.1}{\ignorespaces LMFL facilities; Top:Villeneuve d'Ascq campus, bringing together Centrale Lille, the CNRS, and Université de Lille. Bottom-left: ONERA. Bottom-right: Arts et Métiers campus (ENSAM) (source : \href  {https://lmfl.cnrs.fr/le-laboratoire/}{lmfl.cnrs.fr})}}{6}{figure.caption.3}\protected@file@percent }
 \ACRO{recordpage}{HCERES}{7}{1}{7}
 \ACRO{recordpage}{CPER}{7}{1}{7}
 \ACRO{recordpage}{JFM}{8}{1}{8}
@@ -52,6 +52,7 @@
 \ACRO{recordpage}{CONES}{10}{1}{10}
 \ACRO{recordpage}{OpenFOAM}{10}{1}{10}
 \ACRO{recordpage}{IBM}{10}{1}{10}
+\ACRO{recordpage}{EnKF}{10}{1}{10}
 \abx@aux@cite{0}{retiFrancescoDiGiorgio1963}
 \abx@aux@segm{0}{0}{retiFrancescoDiGiorgio1963}
 \abx@aux@cite{0}{SHAH2013715}
@@ -64,8 +65,8 @@
 \newlabel{sec:stateOfArt}{{2.1}{11}{State of the art and problem investigation}{section.2.1}{}}
 \@writefile{toc}{\contentsline {paragraph}{The pump}{11}{section.2.1}\protected@file@percent }
 \ACRO{recordpage}{SHF}{11}{1}{11}
-\newlabel{fig:old_centrifugal_pump}{{2.1a}{11}{Old centrifugal pump used to move hay (personal picture)}{figure.caption.4}{}}
-\newlabel{sub@fig:old_centrifugal_pump}{{a}{11}{Old centrifugal pump used to move hay (personal picture)}{figure.caption.4}{}}
+\newlabel{fig:old_centrifugal_pump}{{2.1a}{11}{Old centrifugal fan used to move hay (personal picture)}{figure.caption.4}{}}
+\newlabel{sub@fig:old_centrifugal_pump}{{a}{11}{Old centrifugal fan used to move hay (personal picture)}{figure.caption.4}{}}
 \newlabel{fig:RESEDA_benchmark_impeller}{{2.1b}{11}{SHF impeller used in the RESEDA benchmark}{figure.caption.4}{}}
 \newlabel{sub@fig:RESEDA_benchmark_impeller}{{b}{11}{SHF impeller used in the RESEDA benchmark}{figure.caption.4}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces Centrifugal pumps}}{11}{figure.caption.4}\protected@file@percent }
@@ -203,26 +204,25 @@
 \@writefile{toc}{\contentsline {paragraph}{Kalman Filter}{31}{subsection.2.3.3}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {2.16}{\ignorespaces Kalman Filter process illustration}}{33}{figure.caption.21}\protected@file@percent }
 \newlabel{KF1}{{2.16}{33}{Kalman Filter process illustration}{figure.caption.21}{}}
-\ACRO{recordpage}{EKF}{33}{1}{33}
 \@writefile{toc}{\contentsline {paragraph}{Ensemble Kalman Filter}{33}{figure.caption.21}\protected@file@percent }
-\ACRO{recordpage}{DNS}{33}{1}{33}
-\ACRO{recordpage}{LES}{33}{1}{33}
-\ACRO{recordpage}{RANS}{33}{1}{33}
+\ACRO{recordpage}{DNS}{34}{1}{34}
+\ACRO{recordpage}{LES}{34}{1}{34}
+\ACRO{recordpage}{RANS}{34}{1}{34}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Scheme of the EnKF used in the present analyses for parameter optimization.}}{34}{algorithm.1}\protected@file@percent }
 \newlabel{alg:EnKF}{{1}{34}{Scheme of the EnKF used in the present analyses for parameter optimization}{algorithm.1}{}}
-\newlabel{eqn:inflation}{{2.41}{34}{Ensemble Kalman Filter}{equation.2.41}{}}
+\newlabel{eqn:inflation}{{2.41}{35}{Ensemble Kalman Filter}{equation.2.41}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.17}{\ignorespaces Deterministic inflation}}{35}{figure.caption.22}\protected@file@percent }
 \newlabel{fig:inflation}{{2.17}{35}{Deterministic inflation}{figure.caption.22}{}}
-\newlabel{fig:cavity2_1ms}{{2.18a}{35}{Initial state}{figure.caption.23}{}}
-\newlabel{sub@fig:cavity2_1ms}{{a}{35}{Initial state}{figure.caption.23}{}}
-\newlabel{fig:cavity2_3ms}{{2.18b}{35}{After one EnKF it}{figure.caption.23}{}}
-\newlabel{sub@fig:cavity2_3ms}{{b}{35}{After one EnKF it}{figure.caption.23}{}}
-\newlabel{fig:cavity_5ms}{{2.18c}{35}{Converged after 2 EnKF it}{figure.caption.23}{}}
-\newlabel{sub@fig:cavity_5ms}{{c}{35}{Converged after 2 EnKF it}{figure.caption.23}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.18}{\ignorespaces Evolution of the state through EnKF iterations (\includegraphics [width=0.013\textwidth ]{images/cavity/legende.png}: observation point)}}{35}{figure.caption.23}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.4}The CONES library}{35}{subsection.2.3.4}\protected@file@percent }
-\ACRO{recordpage}{MPI}{35}{1}{35}
-\newlabel{instants_partages}{{2.3.4}{35}{The CONES library}{subsection.2.3.4}{}}
+\newlabel{fig:cavity2_1ms}{{2.18a}{36}{Initial state}{figure.caption.23}{}}
+\newlabel{sub@fig:cavity2_1ms}{{a}{36}{Initial state}{figure.caption.23}{}}
+\newlabel{fig:cavity2_3ms}{{2.18b}{36}{After one EnKF it}{figure.caption.23}{}}
+\newlabel{sub@fig:cavity2_3ms}{{b}{36}{After one EnKF it}{figure.caption.23}{}}
+\newlabel{fig:cavity_5ms}{{2.18c}{36}{Converged after 2 EnKF it}{figure.caption.23}{}}
+\newlabel{sub@fig:cavity_5ms}{{c}{36}{Converged after 2 EnKF it}{figure.caption.23}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.18}{\ignorespaces Evolution of the state through EnKF iterations (\includegraphics [width=0.013\textwidth ]{images/cavity/legende.png}: observation point)}}{36}{figure.caption.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.4}The CONES library}{36}{subsection.2.3.4}\protected@file@percent }
+\ACRO{recordpage}{MPI}{36}{1}{36}
+\newlabel{instants_partages}{{2.3.4}{36}{The CONES library}{subsection.2.3.4}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.19}{\ignorespaces CONES structure}}{36}{figure.caption.24}\protected@file@percent }
 \newlabel{fig:CONES}{{2.19}{36}{CONES structure}{figure.caption.24}{}}
 \@writefile{toc}{\contentsline {chapter}{\numberline {3}Application}{37}{chapter.3}\protected@file@percent }
@@ -241,8 +241,9 @@
 \newlabel{fig:numVSxp}{{3.4}{40}{Comparison between the profiles inside the diffuser for the numerical simulation (continuous lines), and the PIV data (dashed lines). In particular, (\protect \bluelinePython ) represents the radial velocity $u_r$, (\protect \orangeline ) depicts the azimuthal velocity $u_\theta $, and (\protect \greenline ) illustrates the vertical velocity $u_z$. $\mathbf {D} = (3e7, 3e7, 3e7), D_k = 3e7, D_{\omega } = 3e7$}{figure.caption.28}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.3}First simple application of the DA}{41}{section.3.3}\protected@file@percent }
 \newlabel{sec:Application_of_the_DA}{{3.3}{41}{First simple application of the DA}{section.3.3}{}}
+\ACRO{recordpage}{NRMSE}{42}{1}{42}
 \@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces First results of CONES optimisation. Slice at $z=0$, with $\mathbf  {D} = (4e7, 2e7, 4e7), D_k = 3e7$ and $D_{\omega } = -3e7$}}{42}{figure.caption.29}\protected@file@percent }
-\newlabel{fig:PumpfirstAssymetry}{{3.5}{42}{First results of CONES optimisation. Slice at $z=0$, with $\mathbf {D} = (4e7, 2e7, 4e7), D_k = 3e7$ and $D_{\omega } = -3e7$}{figure.caption.29}{}}
+\newlabel{fig:PumpfirstAssymetry}{{3.5}{42}{First results of CONES optimisation.\\Slice at $z=0$, with $\mathbf {D} = (4e7, 2e7, 4e7), D_k = 3e7$ and $D_{\omega } = -3e7$}{figure.caption.29}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.4}Analysis and Results}{43}{section.3.4}\protected@file@percent }
 \newlabel{sec:Results}{{3.4}{43}{Analysis and Results}{section.3.4}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces Formation of the recirculation bubble in the diffuser}}{43}{figure.caption.30}\protected@file@percent }
@@ -251,30 +252,30 @@
 \newlabel{fig:radialExpension}{{3.7}{44}{Radial expension of Dz over the impeller radius}{figure.caption.31}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3.8}{\ignorespaces Polynomial and sinusoidal interpolation of the blade shape}}{44}{figure.caption.32}\protected@file@percent }
 \newlabel{fig:bladeInterpolation}{{3.8}{44}{Polynomial and sinusoidal interpolation of the blade shape}{figure.caption.32}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.9}{\ignorespaces Evolution of the NRMSEs over EnKF analysis phases}}{45}{figure.caption.33}\protected@file@percent }
-\newlabel{fig:UpdtC14_10NMRSE}{{3.9}{45}{Evolution of the NRMSEs over EnKF analysis phases}{figure.caption.33}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.10}{\ignorespaces Illustration of the augmented coordinates for the interpolation of the field}}{46}{figure.caption.34}\protected@file@percent }
-\newlabel{fig:augmentedCoords}{{3.10}{46}{Illustration of the augmented coordinates for the interpolation of the field}{figure.caption.34}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.11}{\ignorespaces Velocity field for Dx = 4e7 and Dy = 2e7}}{47}{figure.caption.35}\protected@file@percent }
-\newlabel{fig:assymetry}{{3.11}{47}{Velocity field for Dx = 4e7 and Dy = 2e7}{figure.caption.35}{}}
-\@writefile{toc}{\contentsline {chapter}{Conclusion}{48}{chapter*.36}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{Appendices table}{51}{appendix*.37}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{Appendices}{52}{appendix*.37}\protected@file@percent }
-\newlabel{annex:BatchCode}{{1}{52}{}{annex.1}{}}
-\@writefile{toc}{\contentsline {section}{Annex 1\ -- Batch code}{52}{annex.1}\protected@file@percent }
-\newlabel{annex:OpenFoamArbo}{{2}{53}{}{annex.2}{}}
-\@writefile{toc}{\contentsline {section}{Annex 2\ -- OpenFOAM Directory Tree}{53}{annex.2}\protected@file@percent }
-\newlabel{annex:conesDict}{{3}{54}{}{annex.3}{}}
-\@writefile{toc}{\contentsline {section}{Annex 3\ -- Extract of conesDict}{54}{annex.3}\protected@file@percent }
-\newlabel{annex:OpenFOAMRANS}{{4}{56}{}{annex.4}{}}
-\@writefile{toc}{\contentsline {section}{Annex 4\ -- Discretization and coupling in OpenFOAM (RANS / U\,-RANS)}{56}{annex.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.9}{\ignorespaces Illustration of the augmented coordinates for the interpolation of the field}}{45}{figure.caption.33}\protected@file@percent }
+\newlabel{fig:augmentedCoords}{{3.9}{45}{Illustration of the augmented coordinates for the interpolation of the field}{figure.caption.33}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.10}{\ignorespaces Velocity field for Dx = 4e7 and Dy = 2e7}}{46}{figure.caption.34}\protected@file@percent }
+\newlabel{fig:assymetry}{{3.10}{46}{Velocity field for Dx = 4e7 and Dy = 2e7}{figure.caption.34}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.11}{\ignorespaces Evolution of the NRMSEs over EnKF analysis phases}}{46}{figure.caption.35}\protected@file@percent }
+\newlabel{fig:UpdtC14_10NMRSE}{{3.11}{46}{Evolution of the NRMSEs over EnKF analysis phases}{figure.caption.35}{}}
+\@writefile{toc}{\contentsline {chapter}{Conclusion}{47}{chapter*.36}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{Appendices table}{50}{appendix*.37}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{Appendices}{51}{appendix*.37}\protected@file@percent }
+\newlabel{annex:OpenFOAMRANS}{{1}{51}{}{annex.1}{}}
+\@writefile{toc}{\contentsline {section}{Annex 1\ -- Discretization and coupling in OpenFOAM (RANS / U\,-RANS)}{51}{annex.1}\protected@file@percent }
+\newlabel{annex:BatchCode}{{2}{53}{}{annex.2}{}}
+\@writefile{toc}{\contentsline {section}{Annex 2\ -- Batch code}{53}{annex.2}\protected@file@percent }
+\newlabel{annex:OpenFoamArbo}{{3}{54}{}{annex.3}{}}
+\@writefile{toc}{\contentsline {section}{Annex 3\ -- OpenFOAM Directory Tree}{54}{annex.3}\protected@file@percent }
+\newlabel{annex:conesDict}{{4}{55}{}{annex.4}{}}
+\@writefile{toc}{\contentsline {section}{Annex 4\ -- Extract of conesDict}{55}{annex.4}\protected@file@percent }
 \abx@aux@nociteall
-\@writefile{toc}{\contentsline {chapter}{Bibliography}{59}{appendix*.38}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{List of acronyms}{61}{appendix*.39}\protected@file@percent }
-\newlabel{glossary}{{4}{61}{}{appendix*.39}{}}
+\@writefile{toc}{\contentsline {chapter}{Bibliography}{58}{appendix*.38}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{List of acronyms}{60}{appendix*.39}\protected@file@percent }
+\newlabel{glossary}{{4}{60}{}{appendix*.39}{}}
 \ACRO{total-barriers}{1}
-\@writefile{toc}{\contentsline {paragraph}{Résumé}{62}{appendix*.39}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Abstract}{62}{appendix*.39}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Résumé}{61}{appendix*.39}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Abstract}{61}{appendix*.39}\protected@file@percent }
 \abx@aux@read@bbl@mdfivesum{40E347BC981EED621BF71B5DFCC513EA}
 \abx@aux@defaultrefcontext{0}{alexis}{nty/global//global/global/global}
 \abx@aux@defaultrefcontext{0}{angotPenalizationMethodTake1999a}{nty/global//global/global/global}
@@ -294,7 +295,7 @@
 \abx@aux@defaultrefcontext{0}{villanuevaAugmentedStateEstimation2023}{nty/global//global/global/global}
 \ACRO{usage}{CPU=={1}}
 \ACRO{usage}{ML=={1}}
-\ACRO{usage}{EKF=={1}}
+\ACRO{usage}{EKF=={0}}
 \ACRO{usage}{PDF=={1}}
 \ACRO{usage}{Re=={1}}
 \ACRO{usage}{Ma=={1}}
@@ -311,14 +312,14 @@
 \ACRO{usage}{CTI=={1}}
 \ACRO{usage}{DDRS=={0}}
 \ACRO{usage}{CTES=={0}}
-\ACRO{usage}{NRMSE=={0}}
+\ACRO{usage}{NRMSE=={1}}
 \ACRO{usage}{DNS=={1}}
 \ACRO{usage}{CFL=={2}}
 \ACRO{usage}{AI=={1}}
 \ACRO{usage}{DA=={4}}
 \ACRO{usage}{RSU=={1}}
 \ACRO{usage}{CHSCTN=={1}}
-\ACRO{usage}{EnKF=={1}}
+\ACRO{usage}{EnKF=={2}}
 \ACRO{usage}{LES=={1}}
 \ACRO{usage}{RANS=={1}}
 \ACRO{usage}{PIV=={1}}
@@ -364,6 +365,7 @@
 \ACRO{usage}{AAM=={0}}
 \ACRO{usage}{GLOBC=={0}}
 \ACRO{usage}{RGPD=={0}}
+\ACRO{pages}{EKF=={33@1@33}}
 \ACRO{pages}{AI=={5@1@5}}
 \ACRO{pages}{CERFACS=={5@1@5}}
 \ACRO{pages}{IPSA=={5@1@5}}
@@ -387,7 +389,7 @@
 \ACRO{pages}{SHF=={11@1@11}}
 \ACRO{pages}{PIV=={11@1@11}}
 \ACRO{pages}{DA=={5@1@5|13@1@13}}
-\ACRO{pages}{EnKF=={13@1@13}}
+\ACRO{pages}{EnKF=={10@1@10|13@1@13}}
 \ACRO{pages}{PDF=={13@1@13}}
 \ACRO{pages}{CFD=={5@1@5|11@1@11|14@1@14}}
 \ACRO{pages}{LMFL=={5@1@5|14@1@14}}
@@ -400,9 +402,9 @@
 \ACRO{pages}{CFL=={12@1@12|28@1@28}}
 \ACRO{pages}{CPU=={30@1@30}}
 \ACRO{pages}{BC=={30@1@30}}
-\ACRO{pages}{EKF=={33@1@33}}
-\ACRO{pages}{DNS=={33@1@33}}
-\ACRO{pages}{LES=={33@1@33}}
-\ACRO{pages}{RANS=={33@1@33}}
-\ACRO{pages}{MPI=={35@1@35}}
-\gdef \@abspage@last{62}
+\ACRO{pages}{DNS=={34@1@34}}
+\ACRO{pages}{LES=={34@1@34}}
+\ACRO{pages}{RANS=={34@1@34}}
+\ACRO{pages}{MPI=={36@1@36}}
+\ACRO{pages}{NRMSE=={42@1@42}}
+\gdef \@abspage@last{61}

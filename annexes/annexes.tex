@@ -16,6 +16,94 @@
 
 % Chaque annexe porte un numéro et un titre.
 
+\annex{Discretization and coupling in OpenFOAM (RANS / U\,-RANS)}{annex:OpenFOAMRANS}
+
+In OpenFOAM (finite-volume), the RANS/U\,-RANS momentum equation is assembled with an
+\emph{effective} viscosity $\mu_{\mathrm{eff}}=\mu+\mu_t$ supplied by the turbulence model:
+\begin{equation}
+\rho\left(\frac{\partial \mathbf{U}}{\partial t} + (\mathbf{U}\!\cdot\!\nabla)\mathbf{U}\right)
+= -\nabla p + \nabla\!\cdot\!\Big[\mu_{\mathrm{eff}}\left(\nabla \mathbf{U} + \nabla \mathbf{U}^{T}\right)\Big] + \mathbf{f}.
+\end{equation}
+Using the Boussinesq hypothesis one has $\mu_t=\rho\,\nu_T(k,\omega)$ from the $k$–$\omega$ SST model.
+
+\medskip
+\noindent\textbf{Finite-volume form (symbolic):}
+\begin{equation}
+\underbrace{\mathrm{fvm::ddt}(\rho,\mathbf{U})}_{\text{unsteady}}
+\;+\;
+\underbrace{\mathrm{fvm::div}(\rho\,\boldsymbol{\phi},\mathbf{U})}_{\text{convection}}
+\;-\;
+\underbrace{\mathrm{fvm::laplacian}(\mu_{\mathrm{eff}},\mathbf{U})}_{\text{diffusion}}
+\;=\;
+-\nabla p \;+\; \mathbf{f},
+\end{equation}
+where $\boldsymbol{\phi}=\mathbf{S}_f\cdot\mathbf{U}_f$ is the face flux (surface vector $\mathbf{S}_f$ times face velocity), possibly density–weighted for compressible solvers.
+
+\medskip
+\noindent\textbf{Pressure–velocity coupling (PISO/PIMPLE):}
+\begin{align}
+&\text{(i) Momentum predictor:} && \mathbf{A}_U\,\mathbf{U} = \mathbf{H}_U - \nabla p, \\
+&\text{(ii) Continuity (incompressible):} && \nabla\!\cdot\!\mathbf{U}=0, \\
+&\text{(iii) Pressure eqn from flux continuity:} &&
+\nabla\!\cdot\!\left(\frac{1}{\mathbf{A}_U}\,\nabla p\right) = \nabla\!\cdot\!\left(\frac{\mathbf{H}_U}{\mathbf{A}_U}\right), \\
+&\text{(iv) Velocity correction:} &&
+\mathbf{U} \leftarrow \frac{\mathbf{H}_U - \nabla p}{\mathbf{A}_U}.
+\end{align}
+Here $\mathbf{A}_U$ is the diagonal of the discretized momentum operator (from \texttt{fvm::ddt}, \texttt{fvm::div}, \texttt{fvm::laplacian}) and $\mathbf{H}_U$ collects the explicit terms.
+
+\medskip
+\noindent\textbf{Turbulence-model coupling:} At each time step (or outer iteration),
+\begin{align}
+&\text{solve } k \text{ and } \omega \text{ transport eqs. with } \mathbf{U}, \\
+&\nu_T \leftarrow \nu_T(k,\omega), \quad \mu_{\mathrm{eff}} \leftarrow \mu + \rho\,\nu_T, \\
+&\text{reassemble momentum operator with } \mu_{\mathrm{eff}}, \text{ then PISO/PIMPLE correct } (p,\mathbf{U}).
+\end{align}
+
+\medskip
+\noindent\textbf{OpenFOAM-style pseudo-code (for clarity):}
+\begin{verbatim}
+volScalarField nuEff = nu + turbulence->nut();   // mu_eff / rho in incompressible solvers
+
+// UEqn: momentum predictor
+fvVectorMatrix UEqn
+  (
+    fvm::ddt(U)
+  + fvm::div(phi, U)
+  - fvm::laplacian(nuEff, U)
+  == source   // e.g. IBM force, body forces
+  );
+UEqn.relax();
+
+// Turbulence update (k-omega SST)
+turbulence->correct();           // solves k, omega and updates nut()
+
+// Pressure-velocity coupling
+while (pisoOrPimple.loop())
+{
+    // H and A of momentum equation
+    surfaceScalarField rAU = 1.0/UEqn.A();
+    U = rAU*UEqn.H();
+    phi = fvc::flux(U);          // face flux from predicted U
+
+    // Pressure equation
+    while (pisoOrPimple.correct())
+    {
+        fvScalarMatrix pEqn
+        (
+          fvm::laplacian(rAU, p) == fvc::div(phi)
+        );
+        pEqn.solve();
+
+        // Flux and velocity corrections
+        phi -= pEqn.flux();
+        U -= rAU*fvc::grad(p);
+        U.correctBoundaryConditions();
+    }
+}
+\end{verbatim}
+This makes explicit where the turbulence model enters: via $\nu_T$ in \texttt{nuEff}, which modifies the diffusive term in the discretized momentum equation; the $k$ and $\omega$ equations are advanced each step to refresh $\nu_T$ before (or within) the PISO/PIMPLE loop.
+
+\newpage
 
 \annex{Batch code}{annex:BatchCode}
 
@@ -221,122 +309,31 @@ verbosityLevel 2;
 \end{lstlisting}
 
 
-
-\newpage
-
-\annex{Discretization and coupling in OpenFOAM (RANS / U\,-RANS)}{annex:OpenFOAMRANS}
-
-In OpenFOAM (finite-volume), the RANS/U\,-RANS momentum equation is assembled with an
-\emph{effective} viscosity $\mu_{\mathrm{eff}}=\mu+\mu_t$ supplied by the turbulence model:
-\begin{equation}
-\rho\left(\frac{\partial \mathbf{U}}{\partial t} + (\mathbf{U}\!\cdot\!\nabla)\mathbf{U}\right)
-= -\nabla p + \nabla\!\cdot\!\Big[\mu_{\mathrm{eff}}\left(\nabla \mathbf{U} + \nabla \mathbf{U}^{T}\right)\Big] + \mathbf{f}.
-\end{equation}
-Using the Boussinesq hypothesis one has $\mu_t=\rho\,\nu_T(k,\omega)$ from the $k$–$\omega$ SST model.
-
-\medskip
-\noindent\textbf{Finite-volume form (symbolic):}
-\begin{equation}
-\underbrace{\mathrm{fvm::ddt}(\rho,\mathbf{U})}_{\text{unsteady}}
-\;+\;
-\underbrace{\mathrm{fvm::div}(\rho\,\boldsymbol{\phi},\mathbf{U})}_{\text{convection}}
-\;-\;
-\underbrace{\mathrm{fvm::laplacian}(\mu_{\mathrm{eff}},\mathbf{U})}_{\text{diffusion}}
-\;=\;
--\nabla p \;+\; \mathbf{f},
-\end{equation}
-where $\boldsymbol{\phi}=\mathbf{S}_f\cdot\mathbf{U}_f$ is the face flux (surface vector $\mathbf{S}_f$ times face velocity), possibly density–weighted for compressible solvers.
-
-\medskip
-\noindent\textbf{Pressure–velocity coupling (PISO/PIMPLE):}
-\begin{align}
-&\text{(i) Momentum predictor:} && \mathbf{A}_U\,\mathbf{U} = \mathbf{H}_U - \nabla p, \\
-&\text{(ii) Continuity (incompressible):} && \nabla\!\cdot\!\mathbf{U}=0, \\
-&\text{(iii) Pressure eqn from flux continuity:} &&
-\nabla\!\cdot\!\left(\frac{1}{\mathbf{A}_U}\,\nabla p\right) = \nabla\!\cdot\!\left(\frac{\mathbf{H}_U}{\mathbf{A}_U}\right), \\
-&\text{(iv) Velocity correction:} &&
-\mathbf{U} \leftarrow \frac{\mathbf{H}_U - \nabla p}{\mathbf{A}_U}.
-\end{align}
-Here $\mathbf{A}_U$ is the diagonal of the discretized momentum operator (from \texttt{fvm::ddt}, \texttt{fvm::div}, \texttt{fvm::laplacian}) and $\mathbf{H}_U$ collects the explicit terms.
-
-\medskip
-\noindent\textbf{Turbulence-model coupling:} At each time step (or outer iteration),
-\begin{align}
-&\text{solve } k \text{ and } \omega \text{ transport eqs. with } \mathbf{U}, \\
-&\nu_T \leftarrow \nu_T(k,\omega), \quad \mu_{\mathrm{eff}} \leftarrow \mu + \rho\,\nu_T, \\
-&\text{reassemble momentum operator with } \mu_{\mathrm{eff}}, \text{ then PISO/PIMPLE correct } (p,\mathbf{U}).
-\end{align}
-
-\medskip
-\noindent\textbf{OpenFOAM-style pseudo-code (for clarity):}
-\begin{verbatim}
-volScalarField nuEff = nu + turbulence->nut();   // mu_eff / rho in incompressible solvers
-
-// UEqn: momentum predictor
-fvVectorMatrix UEqn
-  (
-    fvm::ddt(U)
-  + fvm::div(phi, U)
-  - fvm::laplacian(nuEff, U)
-  == source   // e.g. IBM force, body forces
-  );
-UEqn.relax();
-
-// Turbulence update (k-omega SST)
-turbulence->correct();           // solves k, omega and updates nut()
-
-// Pressure-velocity coupling
-while (pisoOrPimple.loop())
-{
-    // H and A of momentum equation
-    surfaceScalarField rAU = 1.0/UEqn.A();
-    U = rAU*UEqn.H();
-    phi = fvc::flux(U);          // face flux from predicted U
-
-    // Pressure equation
-    while (pisoOrPimple.correct())
-    {
-        fvScalarMatrix pEqn
-        (
-          fvm::laplacian(rAU, p) == fvc::div(phi)
-        );
-        pEqn.solve();
-
-        // Flux and velocity corrections
-        phi -= pEqn.flux();
-        U -= rAU*fvc::grad(p);
-        U.correctBoundaryConditions();
-    }
-}
-\end{verbatim}
-This makes explicit where the turbulence model enters: via $\nu_T$ in \texttt{nuEff}, which modifies the diffusive term in the discretized momentum equation; the $k$ and $\omega$ equations are advanced each step to refresh $\nu_T$ before (or within) the PISO/PIMPLE loop.
-
-
 \begin{comment}
 
 \begin{table}[H]
     \centering
     \begin{tabular}{|p{4,5cm}|p{10,5cm}|}
     \hline
-    \textbf{Les principaux postes d’émissions identifiés} & \textbf{Quelques objectifs et actions} \\
+    \textbf{Les principaux postes d'émissions identifiés} & \textbf{Quelques objectifs et actions} \\
     \hline
     Missions & 
     - Prévention sur le sujet sur le site Carbon Footprint du Cerfacs et affiches présentes dans les locaux. \\
     \hline
     Chauffage & 
-    - Rénovation du circuit d’alimentation en eau glacée des ventilo-convecteurs de l’ancien bâtiment (Actions 2023 et 2024) \newline
-    - Traitement de l’étanchéité et de l’isolation de l’ancien bâtiment (analyse réalisée, actions en cours réparties sur plusieurs années pour cause de coût global). \\
+    - Rénovation du circuit d'alimentation en eau glacée des ventilo-convecteurs de l'ancien bâtiment (Actions 2023 et 2024) \newline
+    - Traitement de l'étanchéité et de l'isolation de l'ancien bâtiment (analyse réalisée, actions en cours réparties sur plusieurs années pour cause de coût global). \\
     \hline
     Calculateurs internes et usage & 
     - Un calculateur a été arrêté en février 2023 et remplacé seulement en 2024. \newline
-    - Une sensibilisation à l’optimisation de l’usage des calculateurs \\
+    - Une sensibilisation à l'optimisation de l'usage des calculateurs \\
     \hline
     Calculateurs internes et \\fabrication & 
     \phantom{-}
     \phantom{-}\\
     \hline
     Électricité hors clusters & 
-    - Automatisation de l’éclairage des circulations de l’ancien bâtiment (abandon de l’éclairage manuel). \\
+    - Automatisation de l'éclairage des circulations de l'ancien bâtiment (abandon de l'éclairage manuel). \\
     \hline
     Trajet domicile-travail & 
     - Participation à des initiatives en faveur du vélo ("Deux Pieds Deux Roues - 2P2R", "Objectif Employeur Pro Vélo") \newline
@@ -346,7 +343,7 @@ This makes explicit where the turbulence model enters: via $\nu_T$ in \texttt{nu
     Fuites de fluides &  \\
     \hline
     Calculateurs externes et usage & 
-    - Une sensibilisation à l’optimisation de l’usage des calculateurs \\
+    - Une sensibilisation à l'optimisation de l'usage des calculateurs \\
     \hline
     Calculateurs externes et \\fabrication &
     \phantom{-}
@@ -367,33 +364,33 @@ This makes explicit where the turbulence model enters: via $\nu_T$ in \texttt{nu
     \centering
     \begin{tabular}{|p{5cm}|p{10cm}|}
     \hline
-    \textbf{Axes de travail} & \textbf{Exemples d’actions} \\
+    \textbf{Axes de travail} & \textbf{Exemples d'actions} \\
     \hline
-    Optimiser l’organisation et gestion du travail au niveau global & 
-    - Organisation d’une réunion générale du Cerfacs par la direction 2 fois par an \newline
-    - Valorisation de la bibliothèque (réaménagement de l’espace) \newline
-    - Amélioration de la communication interne (journal de la QVT disponible sur l’intranet, newsletter interne mensuelle) et externe (nomination d’un référent Communication) \\
+    Optimiser l'organisation et gestion du travail au niveau global & 
+    - Organisation d'une réunion générale du Cerfacs par la direction 2 fois par an \newline
+    - Valorisation de la bibliothèque (réaménagement de l'espace) \newline
+    - Amélioration de la communication interne (journal de la QVT disponible sur l'intranet, newsletter interne mensuelle) et externe (nomination d'un référent Communication) \\
     \hline
-    Optimiser l’organisation et gestion du travail au niveau de l’équipe & 
-    - Proposer une formation à l’organisation et à la tenue de réunions efficaces \\
+    Optimiser l'organisation et gestion du travail au niveau de l'équipe & 
+    - Proposer une formation à l'organisation et à la tenue de réunions efficaces \\
     \hline
-    Optimiser l’organisation et gestion du travail au niveau personnel & 
+    Optimiser l'organisation et gestion du travail au niveau personnel & 
     - Information/sensibilisation au burn-out (par la médecine du travail) \\
     \hline
     Assurer un meilleur accueil et support des non permanents & 
-    - Mise en place d’un groupe de travail pour optimiser l’encadrement des non-permanents (doctorants, post-doctorants…) \newline
-    - Rédaction d’une charte QVT \\
+    - Mise en place d'un groupe de travail pour optimiser l'encadrement des non-permanents (doctorants, post-doctorants…) \newline
+    - Rédaction d'une charte QVT \\
     \hline
     Favoriser la vie sociale & 
-    - Organisation d’événements sociaux en dehors du temps de travail \newline
-    - Aménagement d’une salle de repos \newline
+    - Organisation d'événements sociaux en dehors du temps de travail \newline
+    - Aménagement d'une salle de repos \newline
     - Organisation de pauses café collectives mensuelles \\
     \hline
     Améliorer le confort matériel & 
-    - Nouvelle machine à café à grain mise à disposition pour tous (avec l’achat de café par le Cerfacs) \newline
-    - Gourdes métalliques offertes à l’ensemble du personnel \newline
-    - Achat et installation de nouveaux arceaux pour augmenter la capacité d’accueil des vélos \newline
-    - Sensibilisation à l’ergonomie sur le poste de travail (par la médecine du travail) \\
+    - Nouvelle machine à café à grain mise à disposition pour tous (avec l'achat de café par le Cerfacs) \newline
+    - Gourdes métalliques offertes à l'ensemble du personnel \newline
+    - Achat et installation de nouveaux arceaux pour augmenter la capacité d'accueil des vélos \newline
+    - Sensibilisation à l'ergonomie sur le poste de travail (par la médecine du travail) \\
     \hline
     \end{tabular}
     \caption{Axes de travail et exemples d'actions pour la Qualité de Vie au Travail au CERFACS}
