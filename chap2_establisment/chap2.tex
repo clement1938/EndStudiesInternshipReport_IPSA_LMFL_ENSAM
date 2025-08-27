@@ -14,7 +14,7 @@ Similarly, in fluid mechanics, scientists rely on measurements and governing equ
 
 To overcome this, simplified models with adjustable parameters are used. These parameters must be calibrated to specific flow conditions, typically using experimental data. For instance, techniques such as the \ac{IBM}, described later, adopt a global modelling strategy, even though the underlying flow physics can vary significantly at a local level. High-fidelity data are therefore essential for proper calibration.
 
-Manual parameter tuning works when only a few variables are involved, but it quickly becomes inefficient and unreliable as the number of parameters grows. This is why mathematical approaches such as the EnKF are increasingly used—and this motivation led to the definition of my internship topic.
+Manual parameter tuning works when only a few variables are involved, but it quickly becomes inefficient and unreliable as the number of parameters grows. This is why mathematical approaches such as the EnKF are increasingly used, and this motivation led to the definition of my internship topic.
 
 
 
@@ -110,6 +110,9 @@ There exist many methods for data assimilation, distributed in three main catego
     \label{fig:DAmap}
 \end{figure}
 
+\paragraph{Connection between experiments, CFD and DA}
+In the context of pump studies, experimental data (such as PIV or pressure measurements) provide high-fidelity but local information about the flow. CFD simulations, on the other hand, give a complete representation of the flow field but suffer from model uncertainties and parameter tuning. Data Assimilation creates the bridge between the two: it combines the predictive capability of CFD with the accuracy of experimental measurements, yielding a corrected flow representation that is both physically consistent and closer to reality. This makes DA a powerful tool for calibrating turbulence models, improving predictions, and enabling better understanding of complex flow mechanisms.
+
 
 \paragraph{EnKF} The EnKF, is a statistical Monte Carlo DA method that uses a set of model states (reffered to as ensemble member) to estimate the state of the system. The EnKF is particularly a well-suited tool for assimilating data on nonlinear and high-dimensional systems and has been successfully applied in various fields, including \ac{CFD} simulations, allowing for the correction of model predictions based on observed data.
 %The EnKF method is a powerful tool for assimilating data into CFD simulations, allowing 
@@ -146,22 +149,38 @@ EnKF for DA in CFD has been used at \ac{LMFL} for a few years now.
 
 %(Article in writing process)
 
-
-This led us to explore the use of the EnKF method to optimize the parameters of the IBM forcing term on a centrifugal pump — a more complex case than the previous ones. It combines the 3D turbulent boundary layer characteristics of the turbulent plane channel flow with the moving body configuration of the oscillating cylinder. Its complex geometry requires around 11 million cells. On top of that, rotor/stator interaction in centrifugal machines is highly unsteady and involves turbulent boundary layers and instabilities, making it particularly challenging to model. Traditional CFD approaches often fail to capture these effects accurately. Our goal here is to improve flow prediction at the diffuser by optimizing the IBM forcing parameters, which should enhance the overall simulation and provide a better understanding of the pump’s behavior.
-
 \newpage
 
-In this context, we aim to apply both of these innovative methodologies to enhance the original CFD predictions on a centrifugal pump test case. The approach leverages PIV measurements at the diffuser, along with pressure tap data from the impeller inlet and the diffuser. To achieve this, the thesis is organized around the following steps:
+This work focuses on applying the EnKF method to optimize the parameters of the IBM forcing term in a centrifugal pump configuration. Compared to the previous test cases, the pump presents additional challenges: it combines turbulent boundary layer effects, rotor–stator interactions, and a complex geometry that requires around 11 million cells. These features make the flow highly unsteady and difficult to capture with traditional CFD approaches.
+
+The main objective is to improve flow predictions at the diffuser by calibrating the IBM parameters with Data Assimilation. This is achieved by combining CFD simulations with experimental measurements, namely PIV data in the diffuser and pressure tap data at the impeller inlet and diffuser. The goal is to enhance simulation accuracy and gain deeper insight into the pump’s behavior.
+
+To address this objective, the thesis is structured as follows:
 
 \begin{enumerate}
-    \item Do a state of the art about the centrifugal pumps, CFD methods including IBM and DA including EnKF, detail in this \autoref{sec:stateOfArt};
-    \item understand some numerical ingredients as CFD governing equations, the open-source code OpenFoam, the EnKF method, the CONES library and the pump modeling that are explained in the \autoref{subsec:CFD_governing_equations};
-    \item pre-process the experimental data to be able to compare them to the numerical model, \autoref{sec:Experimental_data_and_pre-processing};
-    \item modify OpenFOAM to obtain first simulation results using IBM, \autoref{sec:IBM_preliminary_results};
-    \item modify CONES to adapt it to the pump case and apply the DA to modify the IBM parameters, \autoref{sec:Application_of_the_DA};
-    \item analyse the results of the DA on the optimization of the field in the diffuser and the accuracy of the perfomance of the pump, \autoref{sec:Results}.
+\item a state of the art on centrifugal pumps, CFD methods (including IBM), and DA techniques (including EnKF) is presented in \autoref{sec:stateOfArt};
+\item the numerical framework, including governing equations, OpenFOAM, EnKF, CONES, and pump modeling, is introduced in \autoref{subsec:CFD_governing_equations};
+\item experimental data are processed for comparison with numerical results in \autoref{sec:Experimental_data_and_pre-processing};
+\item OpenFOAM is modified to perform first IBM-based simulations (\autoref{sec:IBM_preliminary_results});
+\item CONES is adapted to the pump case and DA is applied to optimize the IBM parameters (\autoref{sec:Application_of_the_DA});
+\item results of the DA are analyzed in terms of diffuser flow field and pump performance predictions (\autoref{sec:Results}).
 \end{enumerate}
 
+\begin{comment}
+    This led us to explore the use of the EnKF method to optimize the parameters of the IBM forcing term on a centrifugal pump, a more complex case than the previous ones. It combines the 3D turbulent boundary layer characteristics of the turbulent plane channel flow with the moving body configuration of the oscillating cylinder. Its complex geometry requires around 11 million cells. On top of that, rotor/stator interaction in centrifugal machines is highly unsteady and involves turbulent boundary layers and instabilities, making it particularly challenging to model. Traditional CFD approaches often fail to capture these effects accurately. Our goal here is to improve flow prediction at the diffuser by optimizing the IBM forcing parameters, which should enhance the overall simulation and provide a better understanding of the pump’s behavior.
+
+
+    In this context, we aim to apply both of these innovative methodologies to enhance the original CFD predictions on a centrifugal pump test case. The approach leverages PIV measurements at the diffuser, along with pressure tap data from the impeller inlet and the diffuser. To achieve this, the thesis is organized around the following steps:
+
+    \begin{enumerate}
+        \item Do a state of the art about the centrifugal pumps, CFD methods including IBM and DA including EnKF, detail in this \autoref{sec:stateOfArt};
+        \item understand some numerical ingredients as CFD governing equations, the open-source code OpenFoam, the EnKF method, the CONES library and the pump modeling that are explained in the \autoref{subsec:CFD_governing_equations};
+        \item pre-process the experimental data to be able to compare them to the numerical model, \autoref{sec:Experimental_data_and_pre-processing};
+        \item modify OpenFOAM to obtain first simulation results using IBM, \autoref{sec:IBM_preliminary_results};
+        \item modify CONES to adapt it to the pump case and apply the DA to modify the IBM parameters, \autoref{sec:Application_of_the_DA};
+        \item analyse the results of the DA on the optimization of the field in the diffuser and the accuracy of the perfomance of the pump, \autoref{sec:Results}.
+    \end{enumerate}
+\end{comment}
 
 % Puis amener cas 3 (pompe) pour transitionnre vers la sous-parite suivante
 
@@ -190,20 +209,6 @@ In this context, we aim to apply both of these innovative methodologies to enhan
 \paragraph{Navier-Stokes equations} CFD is based on the fundamental equations of fluid mechanics. When the fluid is assumed to be Newtonian, these equations reduce to the nonlinear Navier–Stokes partial differential equations.
 
 These equations express three physical conservation principles, given here in their Eulerian form (i.e., fixed spatial reference frame), which is the standard in CFD because it describes how fluid properties evolve at fixed locations in space, which is ideal for mesh-based numerical simulations.
-
-
-%\[
-%\boldsymbol{\tau}
-%= \mu\big(\nabla\mathbf{U}+(\nabla\mathbf{U})^{\!\top}\big)
-%-\tfrac{2}{3}\mu\,(\nabla\!\cdot\mathbf{U})\,\mathbf{I},
-
-%\rho\Big(\frac{\partial \mathbf{U}}{\partial t}+(\mathbf{U}\cdot\nabla)\mathbf{U}\Big)
-%= -\,\nabla P + \mu\nabla^{2}\mathbf{U}
-%+ (\mu+\lambda)\,\nabla(\nabla\!\cdot\mathbf{U}) + \mathbf{f},
-
-%\rho\Big(\frac{\partial \mathbf{U}}{\partial t}+(\mathbf{U}\cdot\nabla)\mathbf{U}\Big)
-%= -\,\nabla P + \mu\nabla^{2}\mathbf{U} + \mathbf{f}.
-%\]
 
 
 \begin{itemize}
@@ -239,6 +244,31 @@ These equations express three physical conservation principles, given here in th
         \item $T$ is the temperature
     \end{itemize}
 \end{itemize}
+
+\paragraph{Turbulence modeling}  
+The equations above are exact, but in practice they cannot be solved directly for turbulent flows due to the wide range of spatial and temporal scales involved. To make the problem tractable, additional modeling is required:  
+
+\begin{itemize}
+    \item In the \textbf{RANS} framework, the velocity field is decomposed into mean and fluctuating components, leading to the Reynolds-averaged Navier--Stokes equations. This introduces the Reynolds stress tensor, which must be modeled using turbulence models (e.g.\ $k$--$\varepsilon$, $k$--$\omega$, Reynolds stress models).
+    \item In \textbf{LES}, the large turbulent structures are resolved, while the effect of the unresolved scales is modeled through a subgrid-scale model (e.g.\ Smagorinsky, WALE).
+    \item In \textbf{DNS}, no turbulence model is required, but the computational cost is prohibitive for most engineering applications.
+\end{itemize}
+
+In all cases, the closure problem appears in the momentum equation through the stress tensor $\boldsymbol{\tau}$, which must therefore be modeled.
+
+
+%\[
+%\boldsymbol{\tau}
+%= \mu\big(\nabla\mathbf{U}+(\nabla\mathbf{U})^{\!\top}\big)
+%-\tfrac{2}{3}\mu\,(\nabla\!\cdot\mathbf{U})\,\mathbf{I},
+
+%\rho\Big(\frac{\partial \mathbf{U}}{\partial t}+(\mathbf{U}\cdot\nabla)\mathbf{U}\Big)
+%= -\,\nabla P + \mu\nabla^{2}\mathbf{U}
+%+ (\mu+\lambda)\,\nabla(\nabla\!\cdot\mathbf{U}) + \mathbf{f},
+
+%\rho\Big(\frac{\partial \mathbf{U}}{\partial t}+(\mathbf{U}\cdot\nabla)\mathbf{U}\Big)
+%= -\,\nabla P + \mu\nabla^{2}\mathbf{U} + \mathbf{f}.
+%\]
 
 Two main indicators of the main behaviour of the flow are the \ac{Ma} and the \ac{Re}.
 
@@ -359,9 +389,9 @@ Note that DNS and LES do not rely on turbulence models in the traditional sense 
     \label{fig:Modelisation_of_turbulence2}
 \end{figure}
 
-In our study, we are going to have a look on the \ac{U-RANS} method using the same principle as the RANS method but it's unsteady, allowing to make turn physically the pump in our case.
+In our study, we are going to have a look on the \ac{URANS} method using the same principle as the RANS method but it's unsteady, allowing to make turn physically the pump in our case.
 
-More precisely, in our RANS and U-RANS simulation, we are going to use a $k-\omega$ \ac{SST} turbulence model. It is a two-equation eddy-viscosity model: it combines the $K-\epsilon$ and the $K-\omega$ turbulence approximations plus a blending region between both.
+More precisely, in our RANS and URANS simulation, we are going to use a $k-\omega$ \ac{SST} turbulence model. It is a two-equation eddy-viscosity model: it combines the $K-\epsilon$ and the $K-\omega$ turbulence approximations plus a blending region between both.
 
 $K-\omega$ is known to be a good model in the near-wall region but a bad prediction in bulk flow.
 $K-\epsilon$ makes a good numerical prediction in the bulk flow field but is less accurate near solid surfaces.
@@ -437,6 +467,33 @@ $\sigma_{k1}  = 0.85,  \sigma_{k2}  = 1$
 $\sigma_{\omega 1}  = 0.5,  \sigma_{\omega 2}  = 0.856$
 
 
+\paragraph{Integration into the NS equations}
+
+In practice, the turbulence model modifies the momentum equation through the stress tensor $\boldsymbol{\tau}$.  
+In RANS or URANS, $\boldsymbol{\tau}$ is decomposed into a molecular and a modeled part using the Boussinesq hypothesis:
+
+\begin{equation}
+    \tau_{ij} = 2 \mu S_{ij} - \frac{2}{3} \rho k \delta_{ij}
+              \quad \Rightarrow \quad
+              \tau_{ij}^{\text{RANS}} = 2 \mu_{\text{eff}} S_{ij} - \frac{2}{3} \rho k \delta_{ij}
+\end{equation}
+
+where $\mu_{\text{eff}} = \mu + \mu_t$ is the effective viscosity and $\mu_t = \rho \nu_T$ is the turbulent (eddy) viscosity provided by the turbulence model.  
+
+Thus, the discretized momentum equation solved in OpenFOAM is written as:
+
+\begin{equation}
+    \rho \left( \frac{\partial \mathbf{U}}{\partial t} + (\mathbf{U}\cdot\nabla)\mathbf{U} \right)
+    = - \nabla P + \nabla \cdot \left[ (\mu + \mu_t) \left( \nabla \mathbf{U} + \nabla \mathbf{U}^T \right) \right] + \mathbf{f}
+\end{equation}
+
+The additional transport equations for $k$ and $\omega$ are solved simultaneously with this momentum equation, and at each time step the updated $\mu_t$ field is used to close the system.
+
+In other words, the turbulence model does not change the structure of the NS equations, but it adds new PDEs for $k$ and $\omega$ and supplies the turbulent viscosity $\mu_t$ that augments the diffusive term in the discretized momentum balance.
+
+This equation is solved in OpenFOAM (see appendix~\ref{annex:OpenFOAMRANS}).
+
+\paragraph{Near-wall modeling}
 On the $\omega$ region, we can define a near-wall model where the mesh is too coarsed to capture the inner sublayer (see \autoref{fig:NearWallModelling})\footnote{\url{https://2021.help.altair.com/2021/hwsolvers/acusolve/topics/acusolve/training_manual/near_wall_modeling_r.htm}}.
 
 We can define the nomalized wall ditance as:
@@ -503,7 +560,7 @@ The additional terms $2 \vec{\Omega} \times \vec{u}_R$ (Coriolis force) and $\ve
 
 
 
-\paragraph{U-RANS} In the \ac{U-RANS} case, the impeller is physically moving. %Also, very large eddy are simulated.
+\paragraph{URANS} In the \ac{URANS} case, the impeller is physically moving. %Also, very large eddy are simulated.
 
 To do so, the \ac{CFL} or the courant number has to be computed. 
 
@@ -516,33 +573,7 @@ Typically set to a maximum of 1 for stability.
 
 The CFL number can be interpreted as the fraction of the cell size that a disturbance (or wave) travels during a single time step. In this case, it corresponds to the ratio between the distance covered at the impeller tip in one time step and the space between two cells in the azimuthal direction.
 %A way to visualize the CFL is to think of it as the fraction of the distance a wave travels in one time step relative to the distance between two cells in the azimuthal direction at the tip of the impeller.
-The CFL is computed locally at each mesh element. Let's compute the $\Delta_t$ at the tip of the impeller, where the velocity is the highest and $\Delta_x$ the lowest.
-
-- In our model, $\Delta_{x}$ is the distance between two cells in the azimuthal direction at the tip of the impeller, which is given as 1.5 mm or 0.0015 m.
-
-- $\|U_{\infty}\|$ is the magnitude of the maximal velocity usually "at infinity distance" from the body, which in our case can be approximated by the tangential velocity at the tip of the impeller.
-
-\begin{equation}
-    \|U_{\infty}\| = \Omega \cdot r_{tip}
-\end{equation}
-
-where:
-
-- $\omega$ is the angular velocity in radians per second,
-
-- $r_{tip}$ is the radius at the tip of the impeller.
-
-Assuming the radius at the tip of the impeller is $r = 0.2566 \text{ m}$, we can compute the tangential velocity:
-
-\begin{equation}
-    \|U_{\infty}\| = 125.66 \text{ rps} \cdot 0.2566 \text{ m} =  \text{32.24 m/s}
-\end{equation}
-
-Assuming the distance between two cells in the azimuthal direction at the tip of the impeller is $\Delta_{x} = 0.0015 \text{ m}$ (which is 1.5 mm), we can now compute the time step $\Delta_{t}$:
-
-\begin{equation}
-    \Delta_{t} = \frac{0.5 \cdot 0.0015 \text{ m}}{32.24 \text{ m/s}} = 2.3 \times 10^{-5} \text{ s} % \approx 2.3 \mu s.
-\end{equation}
+The CFL is computed locally at each mesh element.
 
 
 
@@ -633,7 +664,7 @@ Finnaly, the forcing terms are defined as follows\footnote{\url{https://www.sims
 
 
 
-The problem of this method is that $\mathbf{D}, D_{\eta}$ and $D_{\omega}$ need to be tuned to obtain the best results. For that, we use the EnKF method to optimize these constants.
+%The problem of this method is that $\mathbf{D}, D_{\eta}$ and $D_{\omega}$ need to be tuned to obtain the best results. For that, we will use the EnKF method to optimize these constants.
 
 
 
@@ -654,7 +685,7 @@ OpenFOAM provides a wide range of tools for solving the Navier-Stokes equations,
     \item[$-$] \textbf{Post-processing}, including many tools and libraries to compute post-processing operations. OpenFOAM fields can be visualized with \texttt{ParaView}, an open-source visualization application.
 \end{itemize}
 
-OpenFOAM is not provided with a graphical interface, which is why a simulation is built by writing ``dictionaries'', in which is stored the necessary information for the simulation (mesh, turbulence model, maximum number of characteristic times, $\dots$). See tree structure Annex~\ref{annex:OpenFoamArbo}.
+OpenFOAM is not provided with a graphical interface, which is why a simulation is built by writing ``dictionaries'', in which is stored the necessary information for the simulation (mesh, turbulence model, maximum number of characteristic times, $\dots$). See tree structure appendix~\ref{annex:OpenFoamArbo}.
 
 %// Ou si plus lisible: //
 
@@ -696,6 +727,7 @@ If it's called, the \texttt{postProcessing} directory stores data from the runni
 The \texttt{processor0}, ..., \texttt{processor"N-1"} directories directly result from the geometry decomposition, which is proceeded through the \texttt{decomposeParDict} dictionary.
 The \texttt{dummy.foam} is an empty file which allows to visualize the simulation with \texttt{ParaView}. 
 
+\newpage
 
 More precisely, for example, to implement the IBM forcage term on the speed "u", we can manually modify the momentum equation of the corresponding solver as follows:
 \begin{lstlisting}[language=C++]
@@ -788,7 +820,7 @@ The observation data $\mathbf{y}_k$ is defined as:
 Observation data may be built using:
 \begin{itemize}
     \item Velocity, pressure, temperature or other physical observed values;
-    \item Some discret model parameters such instantaneous global force coefficients $C_D$, $C_L$, $C_f$. In our case, it will be five IBM forcing parameters.
+    \item Some discret model parameters such instantaneous global force coefficients $C_D$, $C_L$, $C_f$ (in our case, it will be five IBM forcing parameters).
 \end{itemize}
 
 
@@ -845,6 +877,7 @@ Observation data may be built using:
 
 Kalman filter presents two main drawbacks that concern our case. First, as the \ac{EKF}, it only works for moderate deviations from linearity and Gaussianity. If $M$ represents the Navier-Stokes equations, then equations are very not linear. Secondly, for a CFD mesh, the covariance matrix $\mathbf{P}_k$ would have a dimention of $(n_{vars} \times n_{cells}, n_{vars} \times n_{cells})$.
 
+\paragraph{Ensemble Kalman Filter}
 The EnKF allows high dimensional systems by avoiding the explicit definition of $\mathbf{P}_k$ and its Monte-Carlo realisations are much more design for non-linear models. A problem can be the underestimation of $\mathbf{P}_k^a$ but the inflation, define later on this subsection, and localisation, helps mitigate this issue.
 
 
@@ -873,38 +906,8 @@ where \( \mathbf{R} \) represents the covariance matrix of the observations, and
 
 
 
-\paragraph{Ensemble Kalman Filter}
 
 We saw previously in this subsection that today, we can theorically run a \ac{DNS} which resolves exactly the Navier-Stokes equations, but it is still too expensive to be used in practice. Therefore, we generally use \ac{LES} or \ac{RANS} models to simulate the flow. The EnKF method can be applied to these models to adjust specific model parameters or flow fields, enhancing the overall physical consistency of the simulation.
-
-A good example based on the simple and academic \textit{cavity test case} illustrates it well.
-The cavity test case is a simple flow in a square cavity, where the flow is driven by a moving lid. The flow is characterized by a recirculation zone and a vortex in the center of the cavity. The EnKF method can be used to assimilate data from the flow, such as velocity or pressure measurements, to improve the accuracy of the simulation. The EnKF method can also be used to estimate the parameters of the model, such as viscosity or turbulence model coefficients, to improve the physical accuracy of the simulation.
-
-In our test case, we are going to optimise the velocity wall condition.
-To do so, we use the result on 5 locations of a precise converged simulation with a to boundary condition of 5 m.s$^{-1}$ as a reference. We will then assimilate data from the flow, at the 5 observation points (see \autoref{fig:cavity2_1ms}).
-We start from a simulation with a wall condition of 1 m.s$^{-1}$, which is not the correct value. The EnKF method will then be used to correct the wall condition by assimilating the data from the flow at the 5 observation points. The EnKF method will iteratively update the wall condition until it converges to the correct value, which is 5 m.s$^{-1}$ in this case. After only three EnKF iterations, the wall condition converges to the correct value (with a relative error of 0.05 m.s$^{-1}$).
-
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}[b]{0.3\textwidth}
-        \includegraphics[width=\textwidth]{images/cavity/cavity3_1ms.png}
-        \caption{Initial state}
-        \label{fig:cavity2_1ms}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.3\textwidth}
-        \includegraphics[width=\textwidth]{images/cavity/cavity3_3ms.png}
-        \caption{After one EnKF it.}
-        \label{fig:cavity2_3ms}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.3\textwidth}
-        \includegraphics[width=\textwidth]{images/cavity/cavity3_5ms.png}
-        \caption{Converged after 2 EnKF it.}
-        \label{fig:cavity_5ms}
-    \end{subfigure}
-    \caption{Evolution of the state through EnKF iterations (\includegraphics[width=0.013\textwidth]{images/cavity/legende.png}: observation point)}
-\end{figure}
 
 
 The following matrices are needed to build the EnKF algorithm:
@@ -1008,6 +1011,35 @@ Here is an illustration of the deterministic inflation, that increase the variab
 \end{figure}
 
 I coded it but it finally was not needed for the centrifugal pump case.
+
+A good example based on the simple and academic \textit{cavity test case} illustrates the DA with the EnKF well.
+The cavity test case is a simple flow in a square cavity, where the flow is driven by a moving lid. The flow is characterized by a recirculation zone and a vortex in the center of the cavity. The EnKF method can be used to assimilate data from the flow, such as velocity or pressure measurements, to improve the accuracy of the simulation. The EnKF method can also be used to estimate the parameters of the model, such as viscosity or turbulence model coefficients, to improve the physical accuracy of the simulation.
+
+In our test case, we are going to optimise the velocity wall condition.
+To do so, we use the result on 5 locations of a precise converged simulation with a to boundary condition of 5 m.s$^{-1}$ as a reference. We will then assimilate data from the flow, at the 5 observation points (see \autoref{fig:cavity2_1ms}).
+We start from a simulation with a wall condition of 1 m.s$^{-1}$, which is not the correct value. The EnKF method will then be used to correct the wall condition by assimilating the data from the flow at the 5 observation points. The EnKF method will iteratively update the wall condition until it converges to the correct value, which is 5 m.s$^{-1}$ in this case. After only three EnKF iterations, the wall condition converges to the correct value (with a relative error of 0.05 m.s$^{-1}$).
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{images/cavity/cavity3_1ms.png}
+        \caption{Initial state}
+        \label{fig:cavity2_1ms}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{images/cavity/cavity3_3ms.png}
+        \caption{After one EnKF it.}
+        \label{fig:cavity2_3ms}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{images/cavity/cavity3_5ms.png}
+        \caption{Converged after 2 EnKF it.}
+        \label{fig:cavity_5ms}
+    \end{subfigure}
+    \caption{Evolution of the state through EnKF iterations (\includegraphics[width=0.013\textwidth]{images/cavity/legende.png}: observation point)}
+\end{figure}
 
 \begin{comment}
 \begin{algorithm}[h!]

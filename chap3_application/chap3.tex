@@ -50,6 +50,35 @@ The penalisation coefficients used in the \autoref{eq:IB} are defined as follows
 where $\boldsymbol{u}_r = 0$, $\omega_{vis}=\frac{6 \nu}{\beta_1 y_{\mathrm{ref}}^2}$ is the viscous sublayer and $\omega_{log} = \frac{\sqrt{\mathcal{K}}}{C_\mu \kappa y_\mathrm{ref}}$ is the logarithmic region (see \ref{fig:NearWallModelling}).
 
 
+
+Let's compute the $\Delta_t$ at the tip of the impeller, where the velocity is the highest and $\Delta_x$ the lowest.
+
+- In our model, $\Delta_{x}$ is the distance between two cells in the azimuthal direction at the tip of the impeller, which is given as 1.5 mm or 0.0015 m.
+
+- $\|U_{\infty}\|$ is the magnitude of the maximal velocity usually "at infinity distance" from the body, which in our case can be approximated by the tangential velocity at the tip of the impeller.
+
+\begin{equation}
+    \|U_{\infty}\| = \Omega \cdot r_{tip}
+\end{equation}
+
+where:
+
+- $\omega$ is the angular velocity in radians per second,
+
+- $r_{tip}$ is the radius at the tip of the impeller.
+
+Assuming the radius at the tip of the impeller is $r = 0.2566 \text{ m}$, we can compute the tangential velocity:
+
+\begin{equation}
+    \|U_{\infty}\| = 125.66 \text{ rps} \cdot 0.2566 \text{ m} =  \text{32.24 m/s}
+\end{equation}
+
+Assuming the distance between two cells in the azimuthal direction at the tip of the impeller is $\Delta_{x} = 0.0015 \text{ m}$ (which is 1.5 mm). Based on the \autoref{eq:CFL} we can now compute the time step $\Delta_{t}$:
+
+\begin{equation}
+    \Delta_{t} = \frac{0.5 \cdot 0.0015 \text{ m}}{32.24 \text{ m/s}} = 2.3 \times 10^{-5} \text{ s} % \approx 2.3 \mu s.
+\end{equation}
+
 \newpage
 \section{Experimental data and pre-processing}
 \label{sec:Experimental_data_and_pre-processing}
@@ -183,11 +212,8 @@ The cathesian coordinates are given in a local system, where the absolute origin
     \caption{PIV acquisition zone in the RESEDA experiment, with orientation of the $(r,\theta)$ velocity components.}
 \end{figure}
 
-\textbf{Pre-processing on the velocity data}\footnote{
-In the numerical simulation, the z-axis is toward the center of the Earth, unlike in the experiment, where it is upwards.
-Then, the wheel rotates counterclockwise in the numerical simulation frame and counterclockwise in the experiment.
-Here, the numerical simulation formalism was the reference for the frame.
-}
+
+\textbf{DA details}
 
 In this work, we aim to improve the numerical model of a centrifugal pump using experimental data obtained from PIV. On one side, we have a numerical simulation of the pump (the digital twin), and on the other side, experimental PIV measurements. To combine the strengths of both, we use data assimilation, a method that updates a numerical model using real-world data.
 We specifically use the EnKF, a data assimilation technique that relies on an ensemble of simulations to estimate and reduce uncertainty in the model. The process can be summarized in two main steps:
@@ -197,7 +223,6 @@ We specifically use the EnKF, a data assimilation technique that relies on an en
     \item \textbf{Analysis Step} We compare the simulation results with the experimental PIV data. To do this, we interpolate the PIV measurements onto the mesh of the numerical model, creating an ensemble of observation vectors. We then compute the difference between the simulated and measured data, known as the innovation (see mathematical formulation in \autoref{subsec:CFD_governing_equations}). This innovation is used to update the ensemble through the EnKF algorithm, improving the numerical model.
 \end{enumerate}
 
-\newpage
 
 The measurements are done as follow:
 
@@ -209,6 +234,12 @@ The measurements are done as follow:
 
 Ideally, to compare consistent datasets, we could run a time-resolved unsteady simulation and synchronize it with the PIV snapshots. However, for this initial study, we chose to work with a steady MRF simulation.
 %Although we could attempt to reconstruct the spatial velocity field from the phase-averaged PIV data (as done by Dazin et al. \cite{dazinHighspeedStereoscopicPIV2011a}), there are two main limitations:
+
+\textbf{Pre-processing on the velocity data}\footnote{
+In the numerical simulation, the z-axis is toward the center of the Earth, unlike in the experiment, where it is upwards.
+Then, the wheel rotates counterclockwise in the numerical simulation frame and counterclockwise in the experiment.
+Here, the numerical simulation formalism was the reference for the frame.
+}
 
 To address these issues, we opted to average the PIV data over time, which is equivalent to spatial (azimuthal) averaging in the rotating frame. On the simulation side, we therefore perform azimuthal averaging of the numerical results to make them consistent with the experimental data.
 This approach ensures that the data fed into the EnKF, both the forecast and the observations, are comparable and compatible in both spatial and statistical sense.
@@ -266,17 +297,22 @@ Then, it computes the interpolation and average the data over the angle \(\theta
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{images/numericalPump/diffuseurMesh.png}
-    \caption{Imaginary points to compute the average of the data over the angle \(\theta\) in the diffuser}
-    \label{fig:diffuserMesh}
+    \begin{subfigure}[b]{0.47\textwidth}
+        \includegraphics[width=0.4\textwidth]{images/numericalPump/diffuseurMesh.png}
+        \caption{Diffuser mesh}  %Imaginary points to compute the average of the data over the angle \(\theta\) in the diffuser
+        \label{fig:diffuserMesh}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.46\textwidth}
+        \centering
+        \includegraphics[width=0.5\textwidth]{images/coordsSeventh.png}
+        \caption{Interpolation points over $2\pi/7$ degrees}
+        \label{fig:coordsSeventh}
+    \end{subfigure}
+    \caption{Diffuser mesh and interpolation points over $2\pi/7$ degrees}
 \end{figure}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/coordsSeventh.png}
-    \caption{Interpolation points over 360/7 degrees}
-    \label{coordsSeventh}
-\end{figure}
+
 
 \paragraph{Pressure data}
 

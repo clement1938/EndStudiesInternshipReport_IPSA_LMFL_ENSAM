@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.20)  26 AUG 2025 18:31
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.20)  27 AUG 2025 10:47
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1474,7 +1474,7 @@ File: pgflibrarypatterns.code.tex 2025-08-14 v3.1.11 (3.1.11)
 \c@g@acro@Re@int=\count594
 \c@g@acro@Ma@int=\count595
 \c@g@acro@BC@int=\count596
-\c@g@acro@U-RANS@int=\count597
+\c@g@acro@URANS@int=\count597
 \c@g@acro@OpenFOAM@int=\count598
 \c@g@acro@MPI@int=\count599
 \c@g@acro@MRF@int=\count600
@@ -1546,7 +1546,8 @@ Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'english'.
- (./rapport_stage.aux)
+
+No file rapport_stage.aux.
 \openout1 = `rapport_stage.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 702.
@@ -1570,10 +1571,11 @@ LaTeX Font Info:    ... okay on input line 702.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 702.
 LaTeX Font Info:    ... okay on input line 702.
 Package hyperref Info: Link coloring OFF on input line 702.
- (./rapport_stage.out) (./rapport_stage.out)
 \@outlinefile=\write7
 \openout7 = `rapport_stage.out'.
 
+
+Package hyperref Warning: Rerun to get /PageLabels entry.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -1696,7 +1698,8 @@ File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
 [2
 
-] (./rapport_stage.toc)
+]
+No file rapport_stage.toc.
 \tf@toc=\write8
 \openout8 = `rapport_stage.toc'.
 
@@ -1725,6 +1728,12 @@ Overfull \hbox (28.45276pt too wide) in paragraph at lines 104--118
 Overfull \hbox (2.43765pt too wide) in paragraph at lines 11--135
  [][] 
  []
+
+
+LaTeX Warning: Hyper reference `glossary' on page 4 undefined on input line 135.
+
+
+LaTeX Warning: Hyper reference `glossary' on page 4 undefined on input line 137.
 
 
 
@@ -1823,7 +1832,6 @@ File: images/logo/ipsagarde.png Graphic file (type bmp)
 [9] (./chap2_establisment/chap2.tex
 Chapter 2.
 Missing character: There is no ’ ("2019) in font ec-lmr10!
-Missing character: There is no — ("2014) in font ec-lmr10!
 
 
 File: images/logo/logos.png Graphic file (type bmp)
@@ -1846,6 +1854,9 @@ File: images/other/pompe_centrifuge.jpg Graphic file (type bmp)
 <images/other/pompe_centrifuge.jpg>
 File: images/experimentalPump/RESEDA_benchmark_impeller_pic.png Graphic file (type bmp)
 <images/experimentalPump/RESEDA_benchmark_impeller_pic.png>
+
+LaTeX Warning: Reference `fig:solidworksMesh' on page 11 undefined on input line 74.
+
 File: images/solidworksMesh3.png Graphic file (type bmp)
 <images/solidworksMesh3.png>
 
@@ -1863,6 +1874,16 @@ File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
 [11]
 
+LaTeX Warning: Reference `eq:CFL' on page 12 undefined on input line 88.
+
+
+LaTeX Warning: Reference `subsec:CFD_governing_equations' on page 12 undefined on input line 90.
+
+
+LaTeX Warning: Reference `eq:IBM' on page 12 undefined on input line 92.
+
+
+
 File: images/logo/logos.png Graphic file (type bmp)
 <images/logo/logos.png>
 
@@ -1875,8 +1896,28 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
 [12]
+
+LaTeX Warning: Reference `fig:DAmap' on page 13 undefined on input line 98.
+
 File: images/other/DAmap.png Graphic file (type bmp)
 <images/other/DAmap.png>
+
+
+File: images/logo/logos.png Graphic file (type bmp)
+<images/logo/logos.png>
+
+Package fancyhdr Warning: \headheight is too small (25.22153pt): 
+(fancyhdr)                Make it at least 25.2232pt, for example:
+(fancyhdr)                \setlength{\headheight}{25.2232pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
+
+File: images/logo/ipsagarde.png Graphic file (type bmp)
+<images/logo/ipsagarde.png>
+[13]
+
+LaTeX Warning: Reference `subsec:EnKF' on page 14 undefined on input line 124.
+
 File: images/EnKF_algorithm.pdf Graphic file (type pdf)
 <use images/EnKF_algorithm.pdf>
 
@@ -1892,23 +1933,28 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[13]
-Missing character: There is no — ("2014) in font ec-lmr10!
+[14]
+Missing character: There is no – ("2013) in font ec-lmr10!
 Missing character: There is no ’ ("2019) in font ec-lmr10!
 
+LaTeX Warning: Reference `sec:stateOfArt' on page 15 undefined on input line 161.
 
-File: images/logo/logos.png Graphic file (type bmp)
-<images/logo/logos.png>
 
-Package fancyhdr Warning: \headheight is too small (25.22153pt): 
-(fancyhdr)                Make it at least 25.2232pt, for example:
-(fancyhdr)                \setlength{\headheight}{25.2232pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
+LaTeX Warning: Reference `subsec:CFD_governing_equations' on page 15 undefined on input line 162.
 
-File: images/logo/ipsagarde.png Graphic file (type bmp)
-<images/logo/ipsagarde.png>
-[14]
+
+LaTeX Warning: Reference `sec:Experimental_data_and_pre-processing' on page 15 undefined on input line 163.
+
+
+LaTeX Warning: Reference `sec:IBM_preliminary_results' on page 15 undefined on input line 164.
+
+
+LaTeX Warning: Reference `sec:Application_of_the_DA' on page 15 undefined on input line 165.
+
+
+LaTeX Warning: Reference `sec:Results' on page 15 undefined on input line 166.
+
+Excluding 'comment' comment.
 
 File: images/logo/logos.png Graphic file (type bmp)
 <images/logo/logos.png>
@@ -1936,15 +1982,19 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[16] Excluding 'comment' comment.
+[16]
+
+LaTeX Warning: Reference `eq:mass_conservation' on page 17 undefined on input line 284.
+
+Excluding 'comment' comment.
 Missing character: There is no – ("2013) in font ec-lmr10!
+
+LaTeX Warning: Reference `fig:Turbulence3' on page 17 undefined on input line 352.
+
+
+LaTeX Warning: Reference `fig:Turbulence1' on page 17 undefined on input line 356.
+
 Missing character: There is no – ("2013) in font ec-lmbx10!
-File: images/turbCascade.png Graphic file (type bmp)
-<images/turbCascade.png>
-File: images/DNSLESRANS.png Graphic file (type bmp)
-<images/DNSLESRANS.png>
-File: images/sketch-turbulent-flow-modeling-DNS-LES-RAS.png Graphic file (type bmp)
-<images/sketch-turbulent-flow-modeling-DNS-LES-RAS.png>
 
 
 File: images/logo/logos.png Graphic file (type bmp)
@@ -1959,6 +2009,15 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
 [17]
+
+LaTeX Warning: Reference `fig:Turbulence2' on page 18 undefined on input line 360.
+
+File: images/turbCascade.png Graphic file (type bmp)
+<images/turbCascade.png>
+File: images/DNSLESRANS.png Graphic file (type bmp)
+<images/DNSLESRANS.png>
+File: images/sketch-turbulent-flow-modeling-DNS-LES-RAS.png Graphic file (type bmp)
+<images/sketch-turbulent-flow-modeling-DNS-LES-RAS.png>
 Missing character: There is no – ("2013) in font ec-lmr10!
 File: images/k-omega-sst.png Graphic file (type bmp)
 <images/k-omega-sst.png>
@@ -1989,8 +2048,28 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
 [19]
+
+LaTeX Warning: Reference `annex:OpenFOAMRANS' on page 20 undefined on input line 494.
+
+
+LaTeX Warning: Reference `fig:NearWallModelling' on page 20 undefined on input line 497.
+
 File: images/NearWallModelling.png Graphic file (type bmp)
 <images/NearWallModelling.png>
+
+
+File: images/logo/logos.png Graphic file (type bmp)
+<images/logo/logos.png>
+
+Package fancyhdr Warning: \headheight is too small (25.22153pt): 
+(fancyhdr)                Make it at least 25.2232pt, for example:
+(fancyhdr)                \setlength{\headheight}{25.2232pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
+
+File: images/logo/ipsagarde.png Graphic file (type bmp)
+<images/logo/ipsagarde.png>
+[20]
 File: images/MRF.png Graphic file (type bmp)
 <images/MRF.png>
 
@@ -2006,20 +2085,17 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[20]
-
-File: images/logo/logos.png Graphic file (type bmp)
-<images/logo/logos.png>
-
-Package fancyhdr Warning: \headheight is too small (25.22153pt): 
-(fancyhdr)                Make it at least 25.2232pt, for example:
-(fancyhdr)                \setlength{\headheight}{25.2232pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
-
-File: images/logo/ipsagarde.png Graphic file (type bmp)
-<images/logo/ipsagarde.png>
 [21]
+Missing character: There is no – ("2013) in font ec-lmr10!
+
+LaTeX Warning: Reference `sec:stateOfArt' on page 22 undefined on input line 593.
+
+
+LaTeX Warning: Reference `eq:IBMBody' on page 22 undefined on input line 593.
+
+
+LaTeX Warning: Reference `fig:IBM_Mesh' on page 22 undefined on input line 593.
+
 File: images/IBM_Mesh.pdf Graphic file (type pdf)
 <use images/IBM_Mesh.pdf>
 
@@ -2036,16 +2112,23 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
 [22]
-LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 654.
- (/usr/local/texlive/2025/texmf-dist/tex/latex/inconsolata/t1zi4.fd
+
+LaTeX Warning: Reference `eqn:forcePenDarcy' on page 23 undefined on input line 617.
+
+LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 685.
+(/usr/local/texlive/2025/texmf-dist/tex/latex/inconsolata/t1zi4.fd
 File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 10.95pt on input line 654.
+(Font)              scaled to size 10.95pt on input line 685.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `zi4' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
+
+
+LaTeX Warning: Reference `annex:OpenFoamArbo' on page 23 undefined on input line 688.
+
 
 
 File: images/logo/logos.png Graphic file (type bmp)
@@ -2059,7 +2142,20 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[23] (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
+[23]
+
+File: images/logo/logos.png Graphic file (type bmp)
+<images/logo/logos.png>
+
+Package fancyhdr Warning: \headheight is too small (25.22153pt): 
+(fancyhdr)                Make it at least 25.2232pt, for example:
+(fancyhdr)                \setlength{\headheight}{25.2232pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
+
+File: images/logo/ipsagarde.png Graphic file (type bmp)
+<images/logo/ipsagarde.png>
+[24] (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
@@ -2067,21 +2163,12 @@ File: lstlang1.sty 2024/09/23 1.10c listings language file
 File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 9.0pt on input line 701.
+(Font)              scaled to size 9.0pt on input line 733.
 
 
-File: images/logo/logos.png Graphic file (type bmp)
-<images/logo/logos.png>
+LaTeX Warning: Reference `sec:stateOfArt' on page 25 undefined on input line 790.
 
-Package fancyhdr Warning: \headheight is too small (25.22153pt): 
-(fancyhdr)                Make it at least 25.2232pt, for example:
-(fancyhdr)                \setlength{\headheight}{25.2232pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
 
-File: images/logo/ipsagarde.png Graphic file (type bmp)
-<images/logo/ipsagarde.png>
-[24]
 
 File: images/logo/logos.png Graphic file (type bmp)
 <images/logo/logos.png>
@@ -2102,8 +2189,6 @@ File: images/logo/ipsagarde.png Graphic file (type bmp)
 
 File: images/KF_algorithm-1.png Graphic file (type bmp)
 <images/KF_algorithm-1.png>
-Excluding 'comment' comment.
-Missing character: There is no – ("2013) in font ec-lmr10!
 
 
 File: images/logo/logos.png Graphic file (type bmp)
@@ -2117,18 +2202,8 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[26]
-File: images/cavity/cavity3_1ms.png Graphic file (type bmp)
-<images/cavity/cavity3_1ms.png>
-File: images/cavity/cavity3_3ms.png Graphic file (type bmp)
-<images/cavity/cavity3_3ms.png>
-File: images/cavity/cavity3_5ms.png Graphic file (type bmp)
-<images/cavity/cavity3_5ms.png>
-File: images/cavity/legende.png Graphic file (type bmp)
-<images/cavity/legende.png>
-File: images/cavity/legende.png Graphic file (type bmp)
-<images/cavity/legende.png>
-
+[26] Excluding 'comment' comment.
+Missing character: There is no – ("2013) in font ec-lmr10!
 Missing character: There is no ’ ("2019) in font ec-lmr10!
 
 
@@ -2144,10 +2219,10 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
 [27]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 955.
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 958.
 File: images/inflation.png Graphic file (type bmp)
 <images/inflation.png>
- Excluding 'comment' comment.
+
 
 File: images/logo/logos.png Graphic file (type bmp)
 <images/logo/logos.png>
@@ -2161,6 +2236,37 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
 [28]
+
+LaTeX Warning: Reference `fig:cavity2_1ms' on page 29 undefined on input line 1019.
+
+File: images/cavity/cavity3_1ms.png Graphic file (type bmp)
+<images/cavity/cavity3_1ms.png>
+File: images/cavity/cavity3_3ms.png Graphic file (type bmp)
+<images/cavity/cavity3_3ms.png>
+File: images/cavity/cavity3_5ms.png Graphic file (type bmp)
+<images/cavity/cavity3_5ms.png>
+File: images/cavity/legende.png Graphic file (type bmp)
+<images/cavity/legende.png>
+File: images/cavity/legende.png Graphic file (type bmp)
+<images/cavity/legende.png>
+Excluding 'comment' comment.
+
+LaTeX Warning: Reference `fig:CONES' on page 29 undefined on input line 1080.
+
+
+
+File: images/logo/logos.png Graphic file (type bmp)
+<images/logo/logos.png>
+
+Package fancyhdr Warning: \headheight is too small (25.22153pt): 
+(fancyhdr)                Make it at least 25.2232pt, for example:
+(fancyhdr)                \setlength{\headheight}{25.2232pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
+
+File: images/logo/ipsagarde.png Graphic file (type bmp)
+<images/logo/ipsagarde.png>
+[29]
 File: images/EnKF_ConesWithouCWIPI.pdf Graphic file (type pdf)
 <use images/EnKF_ConesWithouCWIPI.pdf>
 )
@@ -2176,8 +2282,11 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[29] (./chap3_application/chap3.tex
+[30] (./chap3_application/chap3.tex
 Chapter 3.
+
+LaTeX Warning: Reference `fig:RESEDA_Model' on page 31 undefined on input line 7.
+
 File: images/model/RESEDA_sketch.pdf Graphic file (type pdf)
 <use images/model/RESEDA_sketch.pdf>
 
@@ -2193,11 +2302,20 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[30
+[31
 
 ]
+
+LaTeX Warning: Reference `fig:interfaceMesh' on page 32 undefined on input line 27.
+
 File: images/numericalPump/frontalView.pdf Graphic file (type pdf)
 <use images/numericalPump/frontalView.pdf>
+
+LaTeX Warning: Reference `eq:IB' on page 32 undefined on input line 41.
+
+
+LaTeX Warning: Reference `fig:NearWallModelling' on page 32 undefined on input line 50.
+
 
 
 File: images/logo/logos.png Graphic file (type bmp)
@@ -2211,7 +2329,27 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[31]
+[32]
+
+LaTeX Warning: Reference `eq:CFL' on page 33 undefined on input line 76.
+
+
+
+File: images/logo/logos.png Graphic file (type bmp)
+<images/logo/logos.png>
+
+Package fancyhdr Warning: \headheight is too small (25.22153pt): 
+(fancyhdr)                Make it at least 25.2232pt, for example:
+(fancyhdr)                \setlength{\headheight}{25.2232pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
+
+File: images/logo/ipsagarde.png Graphic file (type bmp)
+<images/logo/ipsagarde.png>
+[33]
+
+LaTeX Warning: Reference `sec:stateOfArt' on page 34 undefined on input line 86.
+
 File: images/experimentalPump/diffuser.png Graphic file (type bmp)
 <images/experimentalPump/diffuser.png>
 File: images/experimentalPump/pressure_taps.png Graphic file (type bmp)
@@ -2233,7 +2371,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[32]
+[34]
 PGFPlots: reading {autre/points_piv_tikz.txt}
 
 
@@ -2248,37 +2386,10 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[33]
-
-File: images/logo/logos.png Graphic file (type bmp)
-<images/logo/logos.png>
-
-Package fancyhdr Warning: \headheight is too small (25.22153pt): 
-(fancyhdr)                Make it at least 25.2232pt, for example:
-(fancyhdr)                \setlength{\headheight}{25.2232pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
-
-File: images/logo/ipsagarde.png Graphic file (type bmp)
-<images/logo/ipsagarde.png>
-[34]
-
-File: images/logo/logos.png Graphic file (type bmp)
-<images/logo/logos.png>
-
-Package fancyhdr Warning: \headheight is too small (25.22153pt): 
-(fancyhdr)                Make it at least 25.2232pt, for example:
-(fancyhdr)                \setlength{\headheight}{25.2232pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
-
-File: images/logo/ipsagarde.png Graphic file (type bmp)
-<images/logo/ipsagarde.png>
 [35]
-File: images/numericalPump/diffuseurMesh.png Graphic file (type bmp)
-<images/numericalPump/diffuseurMesh.png>
-File: images/coordsSeventh.png Graphic file (type bmp)
-<images/coordsSeventh.png>
+
+LaTeX Warning: Reference `subsec:CFD_governing_equations' on page 36 undefined on input line 223.
+
 
 
 File: images/logo/logos.png Graphic file (type bmp)
@@ -2293,9 +2404,6 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
 [36]
-File: images/experimentalPump/perfo2.png Graphic file (type bmp)
-<images/experimentalPump/perfo2.png>
-
 
 File: images/logo/logos.png Graphic file (type bmp)
 <images/logo/logos.png>
@@ -2309,10 +2417,18 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
 [37]
-File: images/numericalPump/mvt.png Graphic file (type bmp)
-<images/numericalPump/mvt.png>
-File: images/numVSxp.pdf Graphic file (type pdf)
-<use images/numVSxp.pdf>
+
+LaTeX Warning: Reference `fig:diffuserMesh' on page 38 undefined on input line 291.
+
+File: images/numericalPump/diffuseurMesh.png Graphic file (type bmp)
+<images/numericalPump/diffuseurMesh.png>
+File: images/coordsSeventh.png Graphic file (type bmp)
+<images/coordsSeventh.png>
+
+LaTeX Warning: Reference `fig:PumpPerf' on page 38 undefined on input line 319.
+
+File: images/experimentalPump/perfo2.png Graphic file (type bmp)
+<images/experimentalPump/perfo2.png>
 
 
 File: images/logo/logos.png Graphic file (type bmp)
@@ -2340,137 +2456,19 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
 [39]
-File: images/numericalPump/assymetrie.png Graphic file (type bmp)
-<images/numericalPump/assymetrie.png>
+File: images/numericalPump/mvt.png Graphic file (type bmp)
+<images/numericalPump/mvt.png>
 
 
-File: images/logo/logos.png Graphic file (type bmp)
-<images/logo/logos.png>
+LaTeX Warning: Reference `tab:pump_parameters' on page 40 undefined on input line 375.
 
-Package fancyhdr Warning: \headheight is too small (25.22153pt): 
-(fancyhdr)                Make it at least 25.2232pt, for example:
-(fancyhdr)                \setlength{\headheight}{25.2232pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
+File: images/numVSxp.pdf Graphic file (type pdf)
+<use images/numVSxp.pdf>
 
-File: images/logo/ipsagarde.png Graphic file (type bmp)
-<images/logo/ipsagarde.png>
-[40]
-File: images/numericalPump/LIC.png Graphic file (type bmp)
-<images/numericalPump/LIC.png>
-File: images/numericalPump/radialExpension.png Graphic file (type bmp)
-<images/numericalPump/radialExpension.png>
+LaTeX Warning: Reference `fig:polar_slice_avg_theta_trimmed' on page 40 undefined on input line 384.
 
 
-File: images/logo/logos.png Graphic file (type bmp)
-<images/logo/logos.png>
-
-Package fancyhdr Warning: \headheight is too small (25.22153pt): 
-(fancyhdr)                Make it at least 25.2232pt, for example:
-(fancyhdr)                \setlength{\headheight}{25.2232pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
-
-File: images/logo/ipsagarde.png Graphic file (type bmp)
-<images/logo/ipsagarde.png>
-[41]
-File: images/blade_interpolation_1.png Graphic file (type bmp)
-<images/blade_interpolation_1.png>
-File: images/UpdtC14_10NMRSE.png Graphic file (type bmp)
-<images/UpdtC14_10NMRSE.png>
-
-
-File: images/logo/logos.png Graphic file (type bmp)
-<images/logo/logos.png>
-
-Package fancyhdr Warning: \headheight is too small (25.22153pt): 
-(fancyhdr)                Make it at least 25.2232pt, for example:
-(fancyhdr)                \setlength{\headheight}{25.2232pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
-
-File: images/logo/ipsagarde.png Graphic file (type bmp)
-<images/logo/ipsagarde.png>
-[42]
-File: images/numericalPump/coords.png Graphic file (type bmp)
-<images/numericalPump/coords.png>
-
-
-File: images/logo/logos.png Graphic file (type bmp)
-<images/logo/logos.png>
-
-Package fancyhdr Warning: \headheight is too small (25.22153pt): 
-(fancyhdr)                Make it at least 25.2232pt, for example:
-(fancyhdr)                \setlength{\headheight}{25.2232pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
-
-File: images/logo/ipsagarde.png Graphic file (type bmp)
-<images/logo/ipsagarde.png>
-[43]
-File: images/numericalPump/assymetrie.png Graphic file (type bmp)
-<images/numericalPump/assymetrie.png>
-
-
-File: images/logo/logos.png Graphic file (type bmp)
-<images/logo/logos.png>
-
-Package fancyhdr Warning: \headheight is too small (25.22153pt): 
-(fancyhdr)                Make it at least 25.2232pt, for example:
-(fancyhdr)                \setlength{\headheight}{25.2232pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
-
-File: images/logo/ipsagarde.png Graphic file (type bmp)
-<images/logo/ipsagarde.png>
-[44])
-
-File: images/logo/logos.png Graphic file (type bmp)
-<images/logo/logos.png>
-
-Package fancyhdr Warning: \headheight is too small (25.22153pt): 
-(fancyhdr)                Make it at least 25.2232pt, for example:
-(fancyhdr)                \setlength{\headheight}{25.2232pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
-
-File: images/logo/ipsagarde.png Graphic file (type bmp)
-<images/logo/ipsagarde.png>
-[45] (./conclusion/conclusion.tex
-
-File: images/logo/logos.png Graphic file (type bmp)
-<images/logo/logos.png>
-
-Package fancyhdr Warning: \headheight is too small (25.22153pt): 
-(fancyhdr)                Make it at least 25.2232pt, for example:
-(fancyhdr)                \setlength{\headheight}{25.2232pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
-
-File: images/logo/ipsagarde.png Graphic file (type bmp)
-<images/logo/ipsagarde.png>
-[46
-
-] Excluding 'comment' comment.)
-
-File: images/logo/logos.png Graphic file (type bmp)
-<images/logo/logos.png>
-
-Package fancyhdr Warning: \headheight is too small (25.22153pt): 
-(fancyhdr)                Make it at least 25.2232pt, for example:
-(fancyhdr)                \setlength{\headheight}{25.2232pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
-
-File: images/logo/ipsagarde.png Graphic file (type bmp)
-<images/logo/ipsagarde.png>
-[47] (./rapport_stage.lof
-Missing character: There is no ’ ("2019) in font ec-lmr10!
-File: images/cavity/legende.png Graphic file (type bmp)
-<images/cavity/legende.png>
-)
-\tf@lof=\write9
-\openout9 = `rapport_stage.lof'.
+LaTeX Warning: Reference `fig:LIC' on page 40 undefined on input line 388.
 
 
 
@@ -2479,179 +2477,4 @@ File: images/logo/logos.png Graphic file (type bmp)
 
 Package fancyhdr Warning: \headheight is too small (25.22153pt): 
 (fancyhdr)                Make it at least 25.2232pt, for example:
-(fancyhdr)                \setlength{\headheight}{25.2232pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
-
-File: images/logo/ipsagarde.png Graphic file (type bmp)
-<images/logo/ipsagarde.png>
-[48]
-Missing character: There is no – ("2013) in font ec-lmr10!
-Missing character: There is no – ("2013) in font ec-lmr10!
-Missing character: There is no – ("2013) in font ec-lmr10!
-
-
-File: images/logo/logos.png Graphic file (type bmp)
-<images/logo/logos.png>
-
-Package fancyhdr Warning: \headheight is too small (25.22153pt): 
-(fancyhdr)                Make it at least 25.2232pt, for example:
-(fancyhdr)                \setlength{\headheight}{25.2232pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
-
-File: images/logo/ipsagarde.png Graphic file (type bmp)
-<images/logo/ipsagarde.png>
-[49
-
-] (./annexes/annexes.tex
-
-File: images/logo/logos.png Graphic file (type bmp)
-<images/logo/logos.png>
-
-Package fancyhdr Warning: \headheight is too small (25.22153pt): 
-(fancyhdr)                Make it at least 25.2232pt, for example:
-(fancyhdr)                \setlength{\headheight}{25.2232pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
-
-File: images/logo/ipsagarde.png Graphic file (type bmp)
-<images/logo/ipsagarde.png>
-[50]
-
-File: images/logo/logos.png Graphic file (type bmp)
-<images/logo/logos.png>
-
-Package fancyhdr Warning: \headheight is too small (25.22153pt): 
-(fancyhdr)                Make it at least 25.2232pt, for example:
-(fancyhdr)                \setlength{\headheight}{25.2232pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
-
-File: images/logo/ipsagarde.png Graphic file (type bmp)
-<images/logo/ipsagarde.png>
-[51]
-
-File: images/logo/logos.png Graphic file (type bmp)
-<images/logo/logos.png>
-
-Package fancyhdr Warning: \headheight is too small (25.22153pt): 
-(fancyhdr)                Make it at least 25.2232pt, for example:
-(fancyhdr)                \setlength{\headheight}{25.2232pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
-
-File: images/logo/ipsagarde.png Graphic file (type bmp)
-<images/logo/ipsagarde.png>
-[52] Excluding 'comment' comment.)
-
-File: images/logo/logos.png Graphic file (type bmp)
-<images/logo/logos.png>
-
-Package fancyhdr Warning: \headheight is too small (25.22153pt): 
-(fancyhdr)                Make it at least 25.2232pt, for example:
-(fancyhdr)                \setlength{\headheight}{25.2232pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
-
-File: images/logo/ipsagarde.png Graphic file (type bmp)
-<images/logo/ipsagarde.png>
-[53]
-Package microtype Info: Character `029' is missing
-(microtype)             in font `T1/lmr/m/sc/10.95'.
-(microtype)             Ignoring protrusion settings for this character.
-
-
-File: images/logo/logos.png Graphic file (type bmp)
-<images/logo/logos.png>
-
-Package fancyhdr Warning: \headheight is too small (25.22153pt): 
-(fancyhdr)                Make it at least 25.2232pt, for example:
-(fancyhdr)                \setlength{\headheight}{25.2232pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
-
-File: images/logo/ipsagarde.png Graphic file (type bmp)
-<images/logo/ipsagarde.png>
-[54
-
-]
-
-File: images/logo/logos.png Graphic file (type bmp)
-<images/logo/logos.png>
-
-Package fancyhdr Warning: \headheight is too small (25.22153pt): 
-(fancyhdr)                Make it at least 25.2232pt, for example:
-(fancyhdr)                \setlength{\headheight}{25.2232pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
-
-File: images/logo/ipsagarde.png Graphic file (type bmp)
-<images/logo/ipsagarde.png>
-[55]
-
-File: images/logo/logos.png Graphic file (type bmp)
-<images/logo/logos.png>
-
-Package fancyhdr Warning: \headheight is too small (25.22153pt): 
-(fancyhdr)                Make it at least 25.2232pt, for example:
-(fancyhdr)                \setlength{\headheight}{25.2232pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
-
-File: images/logo/ipsagarde.png Graphic file (type bmp)
-<images/logo/ipsagarde.png>
-[56
-
-]
-Missing character: There is no – ("2013) in font ec-lmr10!
-Missing character: There is no – ("2013) in font ec-lmr10!
-(./quatre_couv/quatre_couv.tex
-
-File: images/logo/logos.png Graphic file (type bmp)
-<images/logo/logos.png>
-
-Package fancyhdr Warning: \headheight is too small (25.22153pt): 
-(fancyhdr)                Make it at least 25.2232pt, for example:
-(fancyhdr)                \setlength{\headheight}{25.2232pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
-
-File: images/logo/ipsagarde.png Graphic file (type bmp)
-<images/logo/ipsagarde.png>
-[57] Excluding 'comment' comment. Excluding 'comment' comment. Excluding 'comment' comment.)
-
-File: images/logo/logos.png Graphic file (type bmp)
-<images/logo/logos.png>
-
-Package fancyhdr Warning: \headheight is too small (25.22153pt): 
-(fancyhdr)                Make it at least 25.2232pt, for example:
-(fancyhdr)                \setlength{\headheight}{25.2232pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
-
-File: images/logo/ipsagarde.png Graphic file (type bmp)
-<images/logo/ipsagarde.png>
-[58
-
-] (./rapport_stage.aux)
- ***********
-LaTeX2e <2025-06-01> patch level 1
-L3 programming layer <2025-08-13>
- ***********
-Package rerunfilecheck Info: File `rapport_stage.out' has not changed.
-(rerunfilecheck)             Checksum: F568DB2186A7ECE01114D4E05D9D40ED;4594.
-Package logreq Info: Writing requests to 'rapport_stage.run.xml'.
-\openout1 = `rapport_stage.run.xml'.
-
- ) 
-Here is how much of TeX's memory you used:
- 77983 strings out of 468441
- 1968726 string characters out of 5445543
- 2957842 words of memory out of 5000000
- 105413 multiletter control sequences out of 15000+600000
- 732450 words of font info for 182 fonts, out of 8000000 for 9000
- 1348 hyphenation exceptions out of 8191
- 125i,19n,137p,1671b,5830s stack positions out of 10000i,1000n,20000p,200000b,200000s
-
-Output written on rapport_stage.pdf (58 pages).
+(fancyhdr
