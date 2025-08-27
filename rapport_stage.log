@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.20)  27 AUG 2025 17:04
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.20)  27 AUG 2025 18:25
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1831,7 +1831,6 @@ File: images/logo/ipsagarde.png Graphic file (type bmp)
 [10
 
 ]
-Missing character: There is no – ("2013) in font ec-lmr10!
 File: images/other/pompe_centrifuge.jpg Graphic file (type bmp)
 <images/other/pompe_centrifuge.jpg>
 File: images/experimentalPump/RESEDA_benchmark_impeller_pic.png Graphic file (type bmp)
@@ -1960,18 +1959,18 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
 [18]
-LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 423.
+LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 433.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/inconsolata/t1zi4.fd
 File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 9.0pt on input line 423.
+(Font)              scaled to size 10.95pt on input line 433.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `zi4' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 10.95pt on input line 429.
+(Font)              scaled to size 9.0pt on input line 444.
 
 
 File: images/logo/logos.png Graphic file (type bmp)
@@ -2019,8 +2018,6 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
 [21]
-Missing character: There is no – ("2013) in font ec-lmr10!
-
 
 File: images/logo/logos.png Graphic file (type bmp)
 <images/logo/logos.png>
@@ -2033,9 +2030,13 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[22] Excluding 'comment' comment.
-Missing character: There is no – ("2013) in font ec-lmr10!
-Missing character: There is no – ("2013) in font ec-lmbx10!
+[22]
+File: images/turbCascade.png Graphic file (type bmp)
+<images/turbCascade.png>
+File: images/DNSLESRANS.png Graphic file (type bmp)
+<images/DNSLESRANS.png>
+File: images/sketch-turbulent-flow-modeling-DNS-LES-RAS.png Graphic file (type bmp)
+<images/sketch-turbulent-flow-modeling-DNS-LES-RAS.png>
 
 
 File: images/logo/logos.png Graphic file (type bmp)
@@ -2050,14 +2051,6 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
 [23]
-File: images/turbCascade.png Graphic file (type bmp)
-<images/turbCascade.png>
-File: images/DNSLESRANS.png Graphic file (type bmp)
-<images/DNSLESRANS.png>
-File: images/sketch-turbulent-flow-modeling-DNS-LES-RAS.png Graphic file (type bmp)
-<images/sketch-turbulent-flow-modeling-DNS-LES-RAS.png>
-
-Missing character: There is no – ("2013) in font ec-lmr10!
 File: images/k-omega-sst.png Graphic file (type bmp)
 <images/k-omega-sst.png>
 
@@ -2200,11 +2193,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[32]
-Missing character: There is no – ("2013) in font ec-lmr10!
-Excluding 'comment' comment.
-Missing character: There is no – ("2013) in font ec-lmr10!
-
+[32] Excluding 'comment' comment.
 
 File: images/logo/logos.png Graphic file (type bmp)
 <images/logo/logos.png>
@@ -2218,7 +2207,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
 [33]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 1263.
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 1199.
 
 
 File: images/logo/logos.png Graphic file (type bmp)
@@ -2515,11 +2504,6 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
 [51]
-Missing character: There is no – ("2013) in font ec-lmr10!
-Missing character: There is no – ("2013) in font ec-lmr10!
-Missing character: There is no – ("2013) in font ec-lmr10!
-Missing character: There is no – ("2013) in font ec-lmr10!
-
 
 File: images/logo/logos.png Graphic file (type bmp)
 <images/logo/logos.png>
@@ -2672,10 +2656,7 @@ File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
 [61
 
-]
-Missing character: There is no – ("2013) in font ec-lmr10!
-Missing character: There is no – ("2013) in font ec-lmr10!
-(./quatre_couv/quatre_couv.tex
+] (./quatre_couv/quatre_couv.tex
 
 File: images/logo/logos.png Graphic file (type bmp)
 <images/logo/logos.png>
@@ -2715,10 +2696,10 @@ Package logreq Info: Writing requests to 'rapport_stage.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 78030 strings out of 468441
- 1969699 string characters out of 5445543
- 2960649 words of memory out of 5000000
- 105456 multiletter control sequences out of 15000+600000
+ 78029 strings out of 468441
+ 1969577 string characters out of 5445543
+ 2960189 words of memory out of 5000000
+ 105455 multiletter control sequences out of 15000+600000
  735350 words of font info for 193 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  125i,19n,137p,1671b,5830s stack positions out of 10000i,1000n,20000p,200000b,200000s

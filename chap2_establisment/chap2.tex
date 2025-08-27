@@ -1,7 +1,8 @@
 \chapter{Context of the study} % Optimizing the performance of a centrifugal pump with data assimilation
+\label{chap2}
 
-%– Le récit de l'expérience préprofessionnelle doit faire état de toutes les fonctions exercées par le stagiaire à son poste. Il doit comporter des développements techniques (illustrés par des schémas expliqués et commentés, par exemple), mais il s'agit avant tout de donner au lecteur une idée de ce que furent l'emploi du temps du stagiaire, ses tâches quotidiennes, les contraintes du métier, la nature des relations humaines dans cet environnement, les difficultés rencontrées et les résultats obtenus.
-%– Les connaissances techniques acquises doivent transparaître dans le document. Le correcteur évaluera si celui-ci fait état d'une maîtrise réelle des outils (informatiques, mécaniques, etc.) utilisés pendant le stage. En outre, il estimera le niveau des connaissances techniques acquises que la rédaction du rapport aura su mettre en évidence.
+%- Le récit de l'expérience préprofessionnelle doit faire état de toutes les fonctions exercées par le stagiaire à son poste. Il doit comporter des développements techniques (illustrés par des schémas expliqués et commentés, par exemple), mais il s'agit avant tout de donner au lecteur une idée de ce que furent l'emploi du temps du stagiaire, ses tâches quotidiennes, les contraintes du métier, la nature des relations humaines dans cet environnement, les difficultés rencontrées et les résultats obtenus.
+%- Les connaissances techniques acquises doivent transparaître dans le document. Le correcteur évaluera si celui-ci fait état d'une maîtrise réelle des outils (informatiques, mécaniques, etc.) utilisés pendant le stage. En outre, il estimera le niveau des connaissances techniques acquises que la rédaction du rapport aura su mettre en évidence.
 
 % MIEUX INTRODUIRE PK CE STAGE, DA EXEMPLE MTO ETC -> Pa
 
@@ -43,7 +44,7 @@ Manual parameter tuning can work when only a few parameters are involved, but as
 
 \paragraph{The pump} Centrifugal pumps are used since 1475\cite{retiFrancescoDiGiorgio1963} and remain essential in many applications, such as water supply, irrigation, turbomachinery, and industrial processes. 
 
-However, despite this apparent simplicity, the internal flow physics is highly complex. Rotor–stator interactions, flow instabilities, pressure fluctuations, and unsteady effects all strongly influence the pump's efficiency and the maximum power that can be extracted\cite{SHAH2013715}. This complexity justifies the need for detailed experimental and numerical studies.
+However, despite this apparent simplicity, the internal flow physics is highly complex. Rotor-stator interactions, flow instabilities, pressure fluctuations, and unsteady effects all strongly influence the pump's efficiency and the maximum power that can be extracted\cite{SHAH2013715}. This complexity justifies the need for detailed experimental and numerical studies.
 
 In this work, the studied configuration is a \ac{SHF} radial impeller pump, designed for low head applications and high flow rates. The RESEDA benchmark, available at the laboratory, provides a reference case to investigate these complex phenomena under controlled conditions. Its dimensions and rotational speed are chosen to reproduce realistic operating conditions while remaining compatible with experimental diagnostics.
 %Their popularity comes from their relatively low cost, efficiency, and reliability. They are known for their low cost, efficiency and reliability, making them a popular choice for many fluid transport applications. The studied centrifugal pump is a \ac{SHF} radial impeller, which is a type of centrifugal pump designed for high flow rates and low head applications. The RESEDA benchmark, located in the lab facilities, is used to study complex flow on centrifugal machines as rotor/stator interactions, instabilities, performance degradation, pressure fluctuation, highly unsteady effects,...\cite{SHAH2013715}
@@ -70,7 +71,9 @@ Different high-fidelity data has been recorded on the diffuser of the pump at th
     \item pressure data obtained by Fan et al.~\cite{fanEffectLeakagePerformanceb} in 2022.
 \end{itemize}
 
-Both experimental (traditionally) and numerical (increasingly in recent years) approaches have been used to investigate the rotor-stator interactions to improve performance, develop accurate models and permit real-time monitoring and control.
+Both experimental (traditionally) and numerical (increasingly in recent years) approaches have been used to investigate the rotor-stator interactions to improve performance, develop accurate models and permit real-time monitoring and control. 
+Experiences gives us a very precise view of the flow, but only at specific locations. Numerical simulations provide a complete view of the flow, but they are less accurate and require model calibration. Combining both approaches through data assimilation can leverage their respective strengths to achieve a more accurate and comprehensive understanding of the flow inside the pump.
+%Experimental data is essential to validate and calibrate numerical models, especially in complex flow configurations like the one studied here.
 
 \paragraph{CFD} To obtain a numerical simulation of the flow in the pump, a \ac{CFD} can be performed.
 There are different ways to discretize the space when we do CFD (see \autoref{fig:solidworksMesh}\footnote{\url{https://www.solidworks.com/sw/docs/flow_basis_of_cad_embedded_cfd_whitepaper.pdf}}). The most common are structured meshes, unstructured meshes and body-fitted meshes.
@@ -100,7 +103,8 @@ IBM are usually less accurate and need more cells element to keep good precision
 There exist many methods for data assimilation, distributed in three main categories: \textbf{variational}, \textbf{statistical} and \textbf{hybrid} methods (see \autoref{fig:DAmap}).
 \begin{itemize}
     \item Variational methods (also called classical methods), such as the 3D-Var and 4D-Var, use optimization techniques to find the best estimate of the state of a system by minimizing the difference between model predictions and observations\cite{rabierVariationalDataAssimilation};
-    \item Statistical methods (also called sequential methods), such as the Kalman filter and its \ac{EnKF} variant, update the model state iteratively as new observations become available\cite{aschDataAssimilationMethods2016}. It is working by maximizing a certain \ac{PDF} $\left\langle e^a \right\rangle_k = 0$;
+    \item Statistical methods (also called sequential methods), such as the Kalman filter and its \ac{EnKF} variant, update the model state iteratively as new observations become available\cite{aschDataAssimilationMethods2016}. They rely on the assumption that the analysis error $e^a$ has zero mean, i.e. $\mathbb{E}[e^a]=0$, which ensures that the analysis is unbiased.
+    %\item Statistical methods (also called sequential methods), such as the Kalman filter and its \ac{EnKF} variant, update the model state iteratively as new observations become available\cite{aschDataAssimilationMethods2016}. It is working by maximizing a certain \ac{PDF} $\left\langle e^a \right\rangle_k = 0$;
     \item Hybrid methods, which combine both variational and statistical approaches. They are not discussed here, as they were not used in this work and fall outside the scope of our study.
 \end{itemize}
 
@@ -155,7 +159,7 @@ EnKF for DA in CFD has been used at \ac{LMFL} for a few years now.
 
 This work focuses on applying the EnKF method to optimize the parameters of the IBM forcing term in a centrifugal pump configuration. Compared to the previous test cases, the pump presents additional challenges: it combines turbulent boundary layer effects, rotor-stator interactions, and a complex geometry that requires around 11 million cells. These features make the flow highly unsteady and difficult to capture with traditional CFD approaches.
 
-The main objective is to employ a DA algorithm to enhance an IBM for the simulation of a centrifugal pump.% improve flow predictions at the diffuser by calibrating the IBM parameters with Data Assimilation.
+The main objective is to employ a DA algorithm to enhance an IBM for the simulation of a centrifugal pump. % improve flow predictions at the diffuser by calibrating the IBM parameters with Data Assimilation.
 This is achieved by combining CFD simulations with experimental measurements, namely PIV data in the diffuser and pressure tap data at the impeller inlet and diffuser. The aim is to improve the predictive capability of the IBM and gain deeper insight into the pump's flow behavior.
 
 To reach this goal, several secondary objectives are defined:
@@ -372,7 +376,7 @@ The measurements are done as follow:
 
 \begin{enumerate}
     \item \textbf{Nature of the Numerical Simulation} The simulation is stationary (time-independent) and uses the MRF approach to model rotation. While the velocity field remains constant over time, it varies in space, especially in the diffuser region. Because of the pump's geometry, we expect a periodic velocity pattern that repeats every 1/7th of a revolution (due to the 7 blades). However, this repeating pattern is not clearly visible in unsteady simulations due to wake deformation.
-    \item \textbf{Nature of the Experimental Data} The PIV system captures 49 images per full rotor revolution, meaning there are 7 images between two successive blades. In the rotating frame of reference, each image corresponds to a phase shift of approximately 360°/49.
+    \item \textbf{Nature of the Experimental Data} The PIV system captures 49 images per full rotor revolution, meaning there are 7 images between two successive blades. In the rotating frame of reference, each image corresponds to a phase shift of approximately $2\pi/49$.
 \end{enumerate}
 
 
@@ -418,9 +422,9 @@ These files are distributed across six directories, each corresponding to a diff
 
 We further average the data between radii \(R_1\) and \(R_2\), resulting in three files of size $81 \times 125$ lines and $10$ columns.
 At this stage, we retain only the data along the line \(x = 0.0245\). More precisely, we average the data between \(x = 0.024\) and \(x = 0.025\).
-Finally, the data are truncated at line 89, where the radius exceeds 0.3~m. This truncation is necessary due to laser reflections on the pump casing during the PIV experiments.\footnote{Concretely, to average the data over the angle \(\theta\), we modify the interpolation function in CONES.
-Instead of read coords, the interpolation function read the data in a file named \texttt{coords\_seventh.txt}.
-Then, it computes the interpolation and average the data over the angle \(\theta\) (between -$\pi/7$ and $\pi/7$), by doing a sum over \(\theta\) and dividing by the number of points (150). To go back from 150x5x3x3 (to detail) to 5x3x3 data. All of those computations are made in a cylindrical referencial.}
+Finally, the data are truncated at line 89, where the radius exceeds 0.3~m. This truncation is necessary due to laser reflections on the pump casing during the PIV experiments.%\footnote{Concretely, to average the data over the angle \(\theta\), we modify the interpolation function in CONES.
+%Instead of read coords, the interpolation function read the data in a file named \texttt{coords\_seventh.txt}.
+%Then, it computes the interpolation and average the data over the angle \(\theta\) (between -$\pi/7$ and $\pi/7$), by doing a sum over \(\theta\) and dividing by the number of points (150). To go back from 150x5x3x3 (to detail) to 5x3x3 data. All of those computations are made in a cylindrical referencial.}
 
 
 \subparagraph{4.Shaping for CONES}
@@ -495,7 +499,7 @@ Finally we can compute the pressure jump at the pump level, that will be used as
 \subsection{CFD governing equations}
 \label{subsec:CFD_governing_equations}
 
-\paragraph{Navier-Stokes equations} CFD is based on the fundamental equations of fluid mechanics. When the fluid is assumed to be Newtonian, these equations reduce to the nonlinear Navier–Stokes partial differential equations.
+\paragraph{Navier-Stokes equations} CFD is based on the fundamental equations of fluid mechanics. When the fluid is assumed to be Newtonian, these equations reduce to the nonlinear Navier-Stokes partial differential equations.
 
 These equations express three physical conservation principles, given here in their Eulerian form (i.e., fixed spatial reference frame), which is the standard in CFD because it describes how fluid properties evolve at fixed locations in space, which is ideal for mesh-based numerical simulations.
 
@@ -509,7 +513,7 @@ These equations express three physical conservation principles, given here in th
 
     with $\rho$ the density and $\mathbf{U}$ the velocity.
 
-    \item \textbf{Momentum conservation (second Newton Law):}     % (Navier–Stokes equation)
+    \item \textbf{Momentum conservation (second Newton Law):}     % (Navier-Stokes equation)
     \begin{equation}
         \rho\Big(\frac{\partial \mathbf{U}}{\partial t}+(\mathbf{U}\cdot\nabla)\mathbf{U}\Big) = -\,\nabla P + \nabla\!\cdot\boldsymbol{\tau} + \mathbf{f}
     \end{equation}
@@ -533,31 +537,6 @@ These equations express three physical conservation principles, given here in th
         \item $T$ is the temperature
     \end{itemize}
 \end{itemize}
-
-\paragraph{Turbulence modeling}  
-The equations above are exact, but in practice they cannot be solved directly for turbulent flows due to the wide range of spatial and temporal scales involved. To make the problem tractable, additional modeling is required:  
-
-\begin{itemize}
-    \item In the \textbf{RANS} framework, the velocity field is decomposed into mean and fluctuating components, leading to the Reynolds-averaged Navier--Stokes equations. This introduces the Reynolds stress tensor, which must be modeled using turbulence models (e.g.\ $k$--$\varepsilon$, $k$--$\omega$, Reynolds stress models).
-    \item In \textbf{LES}, the large turbulent structures are resolved, while the effect of the unresolved scales is modeled through a subgrid-scale model (e.g.\ Smagorinsky, WALE).
-    \item In \textbf{DNS}, no turbulence model is required, but the computational cost is prohibitive for most engineering applications.
-\end{itemize}
-
-In all cases, the closure problem appears in the momentum equation through the stress tensor $\boldsymbol{\tau}$, which must therefore be modeled.
-
-
-%\[
-%\boldsymbol{\tau}
-%= \mu\big(\nabla\mathbf{U}+(\nabla\mathbf{U})^{\!\top}\big)
-%-\tfrac{2}{3}\mu\,(\nabla\!\cdot\mathbf{U})\,\mathbf{I},
-
-%\rho\Big(\frac{\partial \mathbf{U}}{\partial t}+(\mathbf{U}\cdot\nabla)\mathbf{U}\Big)
-%= -\,\nabla P + \mu\nabla^{2}\mathbf{U}
-%+ (\mu+\lambda)\,\nabla(\nabla\!\cdot\mathbf{U}) + \mathbf{f},
-
-%\rho\Big(\frac{\partial \mathbf{U}}{\partial t}+(\mathbf{U}\cdot\nabla)\mathbf{U}\Big)
-%= -\,\nabla P + \mu\nabla^{2}\mathbf{U} + \mathbf{f}.
-%\]
 
 Two main indicators of the main behaviour of the flow are the \ac{Ma} and the \ac{Re}.
 
@@ -589,62 +568,19 @@ $U$ is the velocity of the fluid, $L$ is the characteristic length and $\nu$ the
     Re_{r_{tip}}=\cfrac{R_2^2 \Omega}{\nu} = 5.53\times10^5
 \end{equation}
 
+We are therefore in a \textbf{turbulent} flow regime.
 
+\paragraph{Turbulence modeling}  
+The Navier-Stokes equations are exact, but in turbulent flows they cannot be solved directly due to the wide range of spatial and temporal scales. The smallest structures, the Kolmogorov scales, are where viscous dissipation occurs. Resolving them all through \textbf{DNS} is computationally unaffordable for most practical cases.  
 
-
-\begin{comment}
-- Conservation de la quantité de mouvement, équation de bilan de la quantité de mouvement: 
-
-- Conservation de l'éngergie: 
-...
-\textbf{Conservation de la quantite de mouvement (équation de NavierStokes)}:
-\[
-    \rho \left( \frac{\partial \mathbf{u}}{\partial t} + (\mathbf{u} \cdot \nabla)\mathbf{u} \right) = -\nabla p + \mu \nabla^2 \mathbf{u} + \mathbf{f}
-\]
-
-\textbf{Conservation de l energie}:
-\[
-    \rho \left( \frac{\partial e}{\partial t} + \mathbf{u} \cdot \nabla e \right) = -p \nabla \cdot \mathbf{u} + \Phi
-\]
-équations de Navier-Stokes incompressibles, isothermes, en coordonnées cartésiennes:
-
+To make the problem tractable, turbulence must be modeled. Different approaches exist (Figure~\ref{fig:Turbulence3}\footnote{\url{https://help.altair.com/hwcfdsolvers/acusolve/topics/acusolve/training_manual/turbulence_modeling_r.htm}}):  
 \begin{itemize}
-    \item \textbf{Conservation de la masse (équation de continuité)}:
-    \[
-        \frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} + \frac{\partial w}{\partial z} = 0
-    \]
-
-    \item \textbf{Conservation de la quantité de mouvement (x, y, z)}:
-    \[
-        \rho \left( \frac{\partial u}{\partial t} + u\frac{\partial u}{\partial x} + v\frac{\partial u}{\partial y} + w\frac{\partial u}{\partial z} \right) = -\frac{\partial p}{\partial x} + \mu \left( \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} + \frac{\partial^2 u}{\partial z^2} \right)
-    \]
-    \[
-        \rho \left( \frac{\partial v}{\partial t} + u\frac{\partial v}{\partial x} + v\frac{\partial v}{\partial y} + w\frac{\partial v}{\partial z} \right) = -\frac{\partial p}{\partial y} + \mu \left( \frac{\partial^2 v}{\partial x^2} + \frac{\partial^2 v}{\partial y^2} + \frac{\partial^2 v}{\partial z^2} \right)
-    \]
-    \[
-        \rho \left( \frac{\partial w}{\partial t} + u\frac{\partial w}{\partial x} + v\frac{\partial w}{\partial y} + w\frac{\partial w}{\partial z} \right) = -\frac{\partial p}{\partial z} + \mu \left( \frac{\partial^2 w}{\partial x^2} + \frac{\partial^2 w}{\partial y^2} + \frac{\partial^2 w}{\partial z^2} \right)
-    \]
+    \item \textbf{RANS}: the velocity field is decomposed into mean and fluctuating components. Averaging introduces the Reynolds stress tensor, which requires closure models (e.g.\ $k$--$\varepsilon$, $k$--$\omega$, Reynolds stress models). RANS is computationally cheap and widely used for steady-state simulations, but less accurate.  
+    \item \textbf{LES}: large, energy-containing structures are resolved, while small-scale turbulence is modeled with subgrid-scale models (e.g.\ Smagorinsky, WALE). LES is more accurate but significantly more expensive, especially near walls (Figure~\ref{fig:Turbulence1}\footnote{\url{https://www.cfdsupport.com/openfoam-training-by-cfd-support/node346/}}).  
+    \item \textbf{DNS}: no modeling is required, since all scales are resolved, but its prohibitive cost limits it to academic studies at low Reynolds numbers.  
 \end{itemize}
-\end{comment}
 
-
-%\paragraph{Turbulence modelling}  This equations permit runnig all the scales in case of turbulent flows, i.e. a \ac{DNS}, that would be too costly in our case.
-%The Kolmogorove scale, define by the spatial scale from which viscosity allows the kinetic energy of a flow to be dissipated, is very small. In fluid mechanics, turbulent flows consist of several scales which are responsible for different phenomena. As illustrated in the following \autoref{fig:Modelisation_of_turbulence}\footnote{\url{https://www.cfdsupport.com/openfoam-training-by-cfd-support/node346/}} and \autoref{fig:Turbulence3}\footnote{\url{https://help.altair.com/hwcfdsolvers/acusolve/topics/acusolve/training_manual/turbulence_modeling_r.htm}}, large scales are responsible dor the production of turbulence and energy, whiwh is shifted through the inertial range toward the Kolmogorov scale, responsible for the dissipation phenomena.
-%There are two major ways to model the turbulence.
-%The first one is by using \ac{LES}, that simulates only the small scale eddy usually in the near-wall region.
-%The second one is the \ac{RANS} that model every scall of eddy. The result is a stady-state and it less precise but fastly computed than LES.
-%The \autoref{fig:Turbulence2}\footnote{\url{https://blog.diphyx.com/comprehensive-guide-review-to-choosing-the-right-cfd-software-in-2023-features-performance-and-7ebc0623bfa6}} illustrates well a visualization of the fiels of the three type of CFD models.
-
-
-In turbulent flows, a wide range of spatial and temporal scales coexist. Solving the Navier–Stokes equations without any turbulence model (i.e., via \textbf{Direct Numerical Simulation (DNS)}) would theoretically capture all these scales. However, DNS is computationally unaffordable in most practical cases, as it requires resolving down to the smallest dissipative scales, known as Kolmogorov scales.
-
-These Kolmogorov scales define the smallest spatial structures in the flow where kinetic energy is dissipated by viscosity. As shown schematically in Figure~\ref{fig:Turbulence3}\footnote{\url{https://help.altair.com/hwcfdsolvers/acusolve/topics/acusolve/training_manual/turbulence_modeling_r.htm}}, turbulence consists of large energy-containing eddies, which transfer their energy through a cascade in the inertial range, down to the smallest dissipative structures.
-
-To reduce computational cost, turbulence modelling is employed. Two main approaches exist:
-\begin{itemize}
-    \item \textbf{Large Eddy Simulation (LES)}: it resolves the large, energy-carrying structures and models only the small-scale turbulence. LES is more accurate than RANS but more computationally expensive, particularly near walls (see Figure~\ref{fig:Turbulence1})\footnote{\url{https://www.cfdsupport.com/openfoam-training-by-cfd-support/node346/}}.
-    \item \textbf{Reynolds-Averaged Navier–Stokes (RANS)}: it models the entire turbulence spectrum through statistical averaging and closure models. It is less accurate but significantly cheaper, often used in steady-state simulations.
-\end{itemize}
+In all cases, the closure problem appears in the momentum equation through the stress tensor $\boldsymbol{\tau}$, which must therefore be modeled.  
 
 Note that DNS and LES do not rely on turbulence models in the traditional sense like RANS does; instead, they resolve directly or partially turbulence dynamics. Also, caution must be taken when interpreting visual comparisons of DNS, LES, and RANS fields (see Figure~\ref{fig:Turbulence2})\footnote{\url{https://blog.diphyx.com/comprehensive-guide-review-to-choosing-the-right-cfd-software-in-2023-features-performance-and-7ebc0623bfa6}}, as the underlying assumptions and modelling strategies differ.
 
@@ -1168,7 +1104,7 @@ Kalman filter presents two main drawbacks that concern our case. First, it only 
 
 As shown in Figure~\ref{KF1}, the Kalman Filter alternates between two steps: the forecast, where the model predicts the next state, and the analysis, where this forecast is corrected using available observations. The analysis step brings the model trajectory closer to the truth by optimally combining model and measurements.
 
-However, for CFD applications the standard KF quickly becomes impractical. First, it assumes linear dynamics and Gaussian errors, which is not valid when $\mathbf{M}$ represents the Navier–Stokes equations. Second, it requires storing and updating the covariance matrix $\mathbf{P}_k$, whose size scales with the number of variables and cells, making it computationally prohibitive.
+However, for CFD applications the standard KF quickly becomes impractical. First, it assumes linear dynamics and Gaussian errors, which is not valid when $\mathbf{M}$ represents the Navier-Stokes equations. Second, it requires storing and updating the covariance matrix $\mathbf{P}_k$, whose size scales with the number of variables and cells, making it computationally prohibitive.
 
 
 \paragraph{Ensemble Kalman Filter}

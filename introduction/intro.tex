@@ -7,33 +7,39 @@ I was also interested in the way water flows in rivers and sailing boats. In hig
 
 This fascination led me to study physics and mathematics at university, where I discovered applied mathematics including CFD, \ac{AI} and Kalman Filter.
 During my studies, I've become passionated about applied mathematics and fluid mechanics. That's why I did my last internship at the \ac{CERFACS}.
-It convinced me to do a thesis in \ac{CFD} after \ac{IPSA}, my current engeneering school.
+It convinced me to do a thesis in CFD after \ac{IPSA}, my current engeneering school.
 
 The subject proposed by the \ac{LMFL} really suited me: CFD using an open-source library, coupled with AI and experimental data. So it was with enthusiasm that I started this internship on February 26, 2025, in this laboratory for a duration of six months.
 
-The main objective of this internship is to improve the numerical simulation of a centrifugal pump using experimental data through \ac{DA}. This allow to improve the understandin of the physical phenomena involved in the pump's operation and then to optimize its performance.
+The main objective of this internship is to improve the numerical simulation of a centrifugal pump using experimental data through \ac{DA}. This allow to improve the understanding of the physical phenomena involved in the pump's operation and then to optimize its performance.
 
-Briefly, the LMFL is a public laboratory, consisting of 38 researchers and around 25 PhD students.
-The laboratory is present on three sites located in Lille (\ac{ENSAM} and \ac{ONERA}) and on the Villeneuve d'Ascq campus (Centrale Lille, \ac{CNRS} and University of Lille).
+The LMFL is a public laboratory with about 40 researchers and 25 PhD students, spread over three sites located in Lille (\ac{ENSAM} and \ac{ONERA}) and on the Villeneuve d'Ascq campus (Centrale Lille, \ac{CNRS} and University of Lille).
 
 My main tasks during this internship were:
 
-\begin{itemize}
-    \item Ensuring the convergence of the CFD solution;
-    \item implementing the \ac{DA} problem in \ac{OpenFOAM} and \ac{CONES};
-    \item optimizing the forcing parameters of the \ac{IBM} using \ac{DA} with CONES to correct a non-physical behavior.
+\vspace{-0.15cm}
+
+\begin{itemize}\setlength\itemsep{0.1em}
+    \item Explore and understand the limitations of the baseline \ac{IBM};
+    \item Establish the set of sensor signals to be employed as high-fidelity inputs in the DA;
+    \item Ensuring the convergence of the CFD solution using IBM;
+    \item Implementing the DA problem in \ac{OpenFOAM} and \ac{CONES};
+    \item Optimizing the forcing parameters of the IBM using DA with CONES to correct a non-physical behavior.
 \end{itemize}
 
+%\vspace{-0.05cm}
 
-To present the details of my internship work, I will first introduce the LMFL research laboratory. In the second part, I will describe the work I carried out, structured into the following six sections:
-\begin{enumerate}
-    \item State of the art;
-    \item Numerical ingredients;
-    \item Experimental data and pre-processing;
-    \item IBM preliminary results;
-    \item First simple application of the DA;
-    \item Analysis and results.
-\end{enumerate}
+To present the details of my internship work, the manuscript is structured as follows:
+
+\autoref{chap1} introduces the LMFL laboratory and the ENSAM Lille campus, with a focus on the scientific environment and the social/environmental 
+responsibility of the host institution. 
+
+\autoref{chap2} presents the context of the study: first the state of the art and the problem investigation, then the pre-processing of the experimental data, and finally the numerical ingredients employed, including the CFD governing equations, the OpenFOAM solver, the EnKF method and the CONES library. 
+
+\autoref{chap3} is dedicated to the application to the centrifugal pump case: the modelling of the pump, the preliminary IBM results, the first simple application of the DA, and finally the analysis of the obtained results. 
+
+The report ends with a conclusion, an appendix section gathering additional technical material, the bibliography, and a list of acronyms. 
+
 
 \begin{comment}
         \item Introduction to DA problems;

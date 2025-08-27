@@ -12,11 +12,11 @@
 \contentsline {figure}{\numberline {2.7}{\ignorespaces Position of the PIV points on a polar slice of the diffuser}}{17}{figure.caption.11}%
 \contentsline {figure}{\numberline {2.8}{\ignorespaces PIV acquisition zone in the RESEDA experiment, with orientation of the $(r,\theta )$ velocity components.}}{18}{figure.caption.12}%
 \contentsline {figure}{\numberline {2.9}{\ignorespaces Diffuser mesh and interpolation points over $2\pi /7$ degrees}}{20}{figure.caption.13}%
-\contentsline {figure}{\numberline {2.10}{\ignorespaces Overall pump performance versus reduced pump flow rate Q\blx@tocontentsinit {0}\cite {dazinHighspeedStereoscopicPIV2011a}}}{21}{figure.caption.14}%
+\contentsline {figure}{\numberline {2.10}{\ignorespaces Overall pump performance versus reduced pump flow rate Q\blx@tocontentsinit {0}\cite {dazinHighspeedStereoscopicPIV2011a}}}{20}{figure.caption.14}%
 \contentsline {figure}{\numberline {2.11}{\ignorespaces Turbulence models}}{24}{figure.caption.16}%
-\contentsline {figure}{\numberline {2.12}{\ignorespaces $k-\omega SST$ model}}{25}{figure.caption.17}%
-\contentsline {figure}{\numberline {2.13}{\ignorespaces Near wall model}}{27}{figure.caption.18}%
-\contentsline {figure}{\numberline {2.14}{\ignorespaces MRF strategy: the rotating region is solved in a non-inertial frame}}{28}{figure.caption.19}%
+\contentsline {figure}{\numberline {2.12}{\ignorespaces $k-\omega SST$ model}}{24}{figure.caption.17}%
+\contentsline {figure}{\numberline {2.13}{\ignorespaces Near wall model}}{26}{figure.caption.18}%
+\contentsline {figure}{\numberline {2.14}{\ignorespaces MRF strategy: the rotating region is solved in a non-inertial frame}}{27}{figure.caption.19}%
 \contentsline {figure}{\numberline {2.15}{\ignorespaces IBM regions}}{28}{figure.caption.20}%
 \contentsline {figure}{\numberline {2.16}{\ignorespaces Kalman Filter process illustration}}{33}{figure.caption.21}%
 \contentsline {figure}{\numberline {2.17}{\ignorespaces Deterministic inflation}}{35}{figure.caption.22}%
