@@ -1,23 +1,10 @@
-%\newpage
-%\section{Conclusion and outlook}
-
-
 %Outlook : Pb de la DA: plus rapide que LES mais toujours plus lent que RANS et le temps d'attente et de calcul sur supercalculateur (sur 4000 processeurs) est de l'orde de plusieurs jours. On peut donc se demander si la DA est vraiment utile dans ce cas. En effet, la DA est plus rapide que la LES mais pas que la RANS. Cependant, il faut prendre en compte le fait que la DA permet de réduire le temps de calcul de la simulation numérique en permettant d'optimiser les paramètres de l'IBM. De plus, la DA peut être utilisée pour d'autres cas d'étude où la LES est trop coûteuse.
 
-\textbf{NOTES PERSO CI-DESSOUS}
 
 
 Reduction of the pipe (with the research of the velocity inlet condition)
 
-%Toujours mentionner les paramètres utilisés (dans le controlDict et le conesDict)
-
-Problème de méthode et pas de miracle ave cette méthode IBM. Interpolation, instationnaire (avantage: on ne contraint plus avec MRF et donc plus facile de réconcilier solution numérique physique et mathématique)
-
 Parler des coefficients de relaxation.
-
-%Ouverture: méthode IBM interpolation, article non référencé.
-
-%\cite{valeroEnhancedStateEstimation2025} -> ML turbulent channel flow Miguel
 
 "Ouverture / idée": DA temps réel dans avion impossible pour encore longtemps.
 Solution: Contrôle actif de la puissance en fonction des mesures de pression dans le compresseur:
@@ -27,46 +14,23 @@ obs pression --> modèle de reconstruction du champ de vitesse --> modèle de re
 Peut-être faire deux filtres de Kalman imbriqués ? hyperparamètres type fenetre observation, variance initiale, ...
 
 
-Voir "TD -> Done et "TDSave -> Done" pour voir tt ce que j'ai fais
-
 The random variations are random but with a reproducibility seed (sed) that allows to have the same result each time the simulation is launched.
 
 
 The theorical average radial speed at the input of the diffuser is equal to \[\frac{Q_{dif_{in}}}{S_{dif_{in}}} = \frac{Q_{pump_{in}}}{2\pi R_{3} h_{dif}} = 3.65m.s^{-1}\]
 With $Q_{pump_{in}} = Q_{dif_{in}}$ because the mass flow rate is constant and the flow is incompressible.// -> No need ??
 
-\begin{figure}[H]
-    \includegraphics[width=0.4\textwidth]{images/coords360.png}
-    \caption{Interpolation points over 360 degrees}
-    \label{coords360}
-\end{figure}
 
 Methodo (forcage continue (vs interpolation ?)) -> avantages
 
 %////Annexe des opérateurs grad, div, nabla, rot, laplacien, laplacien vectoriel, etc...////
 
-The EnKF method will be used to assimilate data from the flow at the observation points and to update the forcing term until it converges to the optimal value. These high-fidelity data are obtained from an experiment explained in the next \autoref{sec:Experimental_data_and_pre-processing}.
-
-
 %En combien de temps l'information de pression remonte-t-elle dans le diffuser ? -->> "directement"
 %144 coeurs: 54it/min
 %300-> 336 coeurs: 100it/min (+- 20\%)
 
-%Limitations IBM à améliorer avec DA
-
-Graçe aux données xp (mentionné partie 2.1.2, on peut faire de la DA)
-
 Check consistance U, u, P, p, gras, italique,... dans les équations
-
-Comparer les 2-3 résultats: (avant DA, déjà fait section précédente), après simple et "complex" DA
 
 Supposons 1000 itération en moyenne entre chaque phase d'analyse, et 300 phases d'analyse, cela nous fait 300 000 itérations à simuler, soit 93h, sur env. 2800 coeurs, soit 264kh.processeur de calcul.
 
-Verif que j'ai mis ttes les images présentes dans le dossier "images"
-
-%Intro simple - globale
-
-% Essayer d'améliorer le rendu de l'image ci-dessous en mettant la pompe en transparence
-
-%L'expérience montre un ordre de grandeur de centaines d'itération entre les phases d'analyse, mais cela dépend beaucoup du cas.
-%Il en est de même pour le nombre de phases d'analyse.
+Ajouter la tentative d'imposer la vitesse à omega R à certaines it pour voir si ça pouvait arranger le problème.
