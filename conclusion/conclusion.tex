@@ -35,8 +35,23 @@ Finally, this work confirmed the potential of DA as an alternative to expensive 
 \subsection*{Perspectives}
 %\subsection*{Outlook}
 
-To continue this work, it would be interesting to test alternative IBM formulations, such as the interpolation method, or to run unsteady simulations (URANS or LES) to evaluate whether they can overcome the non-physical results observed with the current approach. The results obtained here suggest that the main limitation may lie either in the IBM implementation itself or in the use of the MRF method. In unsteady simulations, the MRF assumption would no longer be required, which could facilitate reconciling the numerical solution with the expected physical behavior, and potentially help to suppress the recirculation bubble observed in the diffuser.
+To continue this work, it would be interesting to test alternative IBM formulations, such as the interpolation method\cite{SEO20111000}, or to run unsteady simulations (URANS or LES) to evaluate whether they can overcome the non-physical results observed with the current approach. The results obtained here suggest that the main limitation may lie either in the IBM implementation itself or in the use of the MRF method. In unsteady simulations, the MRF assumption would no longer be required, which could facilitate reconciling the numerical solution with the expected physical behavior, and potentially help to suppress the recirculation bubble observed in the diffuser. In this perspective, a parallelized implementation of the impeller rotation has already been developed, providing a foundation for future unsteady simulations.
 
+
+In a broader perspective, this work can be placed within the ongoing effort to develop realistic
+Digital Twin frameworks for turbomachinery. \autoref{fig:DT_pump} illustrates how such a framework
+could operate for the centrifugal pump studied here: experimental measurements are assimilated
+into a low-fidelity numerical model, which is enhanced and optimized through data assimilation and
+machine learning. The corrected parameters can then be applied back to the physical system in a 
+bi-directional loop, paving the way toward predictive control, improved efficiency, and failure 
+prevention.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{images/model/Digital_Twin_pump.pdf}
+    \caption{Illustration of a real-time Digital Twin framework for a centrifugal pump}
+    \label{fig:DT_pump}
+\end{figure}
 
 From a human and methodological perspective, this opens a reflection on how to deal with incomplete or unsatisfactory results. The work showed that adapting DA to complex industrial cases is a long process, with frequent failures and heavy computational requirements. Running DA simulations often meant waiting several days before obtaining results, which required patience, organization and optimization of resources. I also learned that negative outcomes are part of research and can be valuable stepping stones for future improvements.
 

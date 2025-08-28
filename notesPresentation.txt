@@ -36,4 +36,6 @@ Données et préparation du cas d'étude :
 
 Conclusion :
 
-AJOUTER ANNEXES
+Ajouter gif de la pompe ou du baton qui tourne de manière parallélisé, en expliquant que le calcul est répartis entre les zones<->CPU
+
+AJOUTER slides ANNEXES au cas où; dont l'évolution des 15 paramètres

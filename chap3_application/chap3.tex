@@ -113,7 +113,8 @@ After empirical tests and with experience of the laboratory, we found that the p
     \label{fig:Pumpfirst}
 \end{figure}
 
-With the conditions specified in the \autoref{tab:pump_parameters}, and a value of 3e7 for the five forcing parameters, we obtain the velocity profiles shown \autoref{fig:numVSxp}, which compares the velocities from the simulation with the PIV data. Both are averages over time and over the angle \(\theta\):
+With the conditions specified in the \autoref{tab:pump_parameters}, and a value of 3e7 for the five forcing parameters, we obtain the velocity profiles shown \autoref{fig:numVSxp}, which compares the velocities from the simulation with the PIV data. Both are averages over time and over the angle \(\theta\). 
+The theorical average radial speed at the input of the diffuser is equal to $\frac{Q_{dif_{in}}}{S_{dif_{in}}} = \frac{Q_{pump_{in}}}{2\pi R_{3} h_{dif}} = 3.65ms^{-1}$
 
 \begin{figure}[H]
     \centering
@@ -209,7 +210,7 @@ To try to counter this problem, a few strategies are deployed one by one, tested
 
 \textbf{Strategie 1.} \boldmath{$D_x = D_y$}
 The strategy is to force $D_x = D_y$ (it helps the convergence by the way, by reducing the number of parameters to optimise).
-In that case, the parameters vector is reduced to $\mathbf{D} = (D_x, D_z, D_k, D_{\omega})$.
+In that case, the parameters vector is reduced to $\mathbf{D} = (D_{x/y}, D_z, D_k, D_{\omega})$.
 
 This strategy works well, until parameters goes up to make the simulation diverge (see \autoref{fig:diverged}). So it does not solve the problem of the recirculation bubble, but it helps to have a more physical result. The sum of the \ac{NRMSE} on the velocity field decreased, of around 15\% before collapsing again to a result with no circular repetition.
 
@@ -222,12 +223,11 @@ This strategy works well, until parameters goes up to make the simulation diverg
 
 
 \textbf{Strategie 2.} \boldmath{$D_{\omega} > 0$}
-The strategy is to force $D_{\omega} > 0$, keeping a variance between each other to allow the parameters to vary.
+The strategy is to enforce $D_{\omega} > 0$, while maintaining a variance between parameters to allow them to vary. This procedure has always been applied after the first simulation and consistently yielded stable results. As in other parts of the workflow where randomness is involved, a fixed random seed was introduced to ensure that the numerical experiments remain stochastic but reproducible.
 
-This strategy has always been applied after the first simulation and always worked well.
 
 \textbf{Strategie 3. Radial expansion}
-The strategy is to use a radial expansion of the five forcing coefficients as illustrated in the \autoref{fig:radialExpension}.
+The strategy is to use a radial expansion of the four forcing coefficients as illustrated in the \autoref{fig:radialExpension}.
 We used a second order polynomial to represent the radial expansion of the forcing coefficients, for a few raisons:
 \begin{itemize}
     \item it allows to have a more complete representation of the forcing coefficients, which can help to better fit the experimental data;
@@ -236,8 +236,18 @@ We used a second order polynomial to represent the radial expansion of the forci
     \item three parameters are not too many so that the optimisation is not too long and the convergence is not too difficult;
     \item it permits to eliminates a step of the value to 0 at the blade tips for a continuity of order 0, which can be important for the numerical stability of the simulation.
 \end{itemize}
-In that case, the parameters vector change from five values to fifteen values.
+In that case, the parameters vector change from four values to twelve values.
+Initial values are $(a,b,c) = (0, 0, 3e7)$ for all four forcing terms, with an absolute variance of $(1e7,1e7,1e6)$.
+We want to give enough variance on $a$, that will be multiplied by $r^2$, that is lower than 1, but not too much to avoid divergence. If it's stay low, we know that we can delete this term if it's not useful.
+$b$ should show if the forcing terms tend to increase (give more importance at the tip) or decrease (less discontinuity) with the radius.
+$c$ is the value between the center and the start of the blade, so it should stay around the initial value of $3e7$.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/blade_interpolation_1.png}
+    \caption{Polynomial and sinusoidal interpolation of the blade shape}
+    \label{fig:bladeInterpolation}
+\end{figure}
 
 
 \begin{figure}[H]
@@ -247,12 +257,17 @@ In that case, the parameters vector change from five values to fifteen values.
     \label{fig:radialExpension}
 \end{figure}
 
+The \autoref{fig:radialExpension2} shows the radial expansion of the four forcing terms after a few DA analysis. Globally, curves looks like going a bit down. 
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.95\textwidth]{images/blade_interpolation_1.png}
-    \caption{Polynomial and sinusoidal interpolation of the blade shape}
-    \label{fig:bladeInterpolation}
+    \includegraphics[width=0.75\textwidth]{images/graph/radialExp.png}
+    \caption{Representation of the radial expension of the four forcing terms}
+    \label{fig:radialExpension2}
 \end{figure}
+
+
+
 
 \textbf{Strategie 4.Inflation} The inflation strategy (explained in the \autoref{eqn:inflation}) is to use a more complex DA method, such as the EnKF with inflation, which allows to escape from local minima by adding noise to the ensemble members. This can help to explore the parameter space more effectively and find a better solution. But we finally didn't have this problem in our case so it hasn't been used.
 
@@ -298,6 +313,44 @@ After applying these strategies, the solution is still not satisfactory, NRMSEs 
     \caption{Velocity field diverged after applying all the strategies}
     \label{fig:diverged3}
 \end{figure}
+
+
+As an additional attempt, the classical IBM method was partially replaced, at selected iterations, by directly imposing the tangential velocity as $0$ or $\omega r$. The rationale was that this explicit enforcement of the rotational profile could help break the recirculation bubble and guide the flow toward a more physical state. The preliminary results are encouraging, as illustrated in \autoref{fig:omega_r}, where the bubble is significantly reduced and the overall velocity field appears more consistent with the expected physical behavior.
+
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.95\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{images/numericalPump/applyPen0.png}
+        \caption{Velocity field obtained by enforcing $\omega r$, showing an initial suppression of the recirculation bubble.}
+        \label{fig:omega_r1}
+    \end{subfigure}
+
+    \vspace{0.3cm}
+
+    \begin{subfigure}{0.8\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{images/LIC_43000_1e9x3.png}
+        \caption{Velocity field obtained a few iterations after enforcing $\omega r$.}
+        \label{fig:omega_r2}
+    \end{subfigure}
+
+    \vspace{0.3cm}
+
+    \begin{subfigure}{0.8\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{images/3e11-penwr-1-1it.png}
+        \caption{Velocity field obtained long after enforcing $\omega r$, confirming the suppression of the recirculation bubble.}
+        \label{fig:omega_r3}
+    \end{subfigure}
+
+    \caption{Effect of enforcing $\omega r$ on the velocity field at different stages of the simulation.}
+    \label{fig:omega_r}
+\end{figure}
+
+This ad-hoc strategy partially alleviates the issue of the recirculation bubble, as illustrated in \autoref{fig:omega_r}, but it also introduces secondary instabilities and lacks a rigorous physical basis. Nevertheless, these results suggest that directly enforcing the target velocity profile can effectively reproduce the wall boundary conditions. This observation indicates that it could be relevant to reconsider the penalisation-based IBM implementation within the PIMPLE algorithm, for instance by modifying the way the forcing term is imposed, in order to obtain a more stable and physically consistent treatment of the boundaries.
+
 
 %After applying these strategies, the solution is still not satisfactory, as we can see in the \autoref{fig:UpdtC14_10NMRSE} where the NRMSEs remain high and the velocity field is still not physical and not converged.
 

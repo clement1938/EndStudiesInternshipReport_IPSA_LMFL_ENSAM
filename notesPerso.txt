@@ -1,8 +1,7 @@
 %Outlook : Pb de la DA: plus rapide que LES mais toujours plus lent que RANS et le temps d'attente et de calcul sur supercalculateur (sur 4000 processeurs) est de l'orde de plusieurs jours. On peut donc se demander si la DA est vraiment utile dans ce cas. En effet, la DA est plus rapide que la LES mais pas que la RANS. Cependant, il faut prendre en compte le fait que la DA permet de réduire le temps de calcul de la simulation numérique en permettant d'optimiser les paramètres de l'IBM. De plus, la DA peut être utilisée pour d'autres cas d'étude où la LES est trop coûteuse.
 
 
-
-Reduction of the pipe (with the research of the velocity inlet condition)
+Reduction of the pipe (with the research of the velocity inlet condition) -> non car capteurs physique de pression placés au dessus
 
 Parler des coefficients de relaxation.
 
@@ -14,16 +13,7 @@ obs pression --> modèle de reconstruction du champ de vitesse --> modèle de re
 Peut-être faire deux filtres de Kalman imbriqués ? hyperparamètres type fenetre observation, variance initiale, ...
 
 
-The random variations are random but with a reproducibility seed (sed) that allows to have the same result each time the simulation is launched.
-
-
-The theorical average radial speed at the input of the diffuser is equal to \[\frac{Q_{dif_{in}}}{S_{dif_{in}}} = \frac{Q_{pump_{in}}}{2\pi R_{3} h_{dif}} = 3.65m.s^{-1}\]
-With $Q_{pump_{in}} = Q_{dif_{in}}$ because the mass flow rate is constant and the flow is incompressible.// -> No need ??
-
-
 Methodo (forcage continue (vs interpolation ?)) -> avantages
-
-%////Annexe des opérateurs grad, div, nabla, rot, laplacien, laplacien vectoriel, etc...////
 
 %En combien de temps l'information de pression remonte-t-elle dans le diffuser ? -->> "directement"
 %144 coeurs: 54it/min
@@ -32,5 +22,3 @@ Methodo (forcage continue (vs interpolation ?)) -> avantages
 Check consistance U, u, P, p, gras, italique,... dans les équations
 
 Supposons 1000 itération en moyenne entre chaque phase d'analyse, et 300 phases d'analyse, cela nous fait 300 000 itérations à simuler, soit 93h, sur env. 2800 coeurs, soit 264kh.processeur de calcul.
-
-Ajouter la tentative d'imposer la vitesse à omega R à certaines it pour voir si ça pouvait arranger le problème.

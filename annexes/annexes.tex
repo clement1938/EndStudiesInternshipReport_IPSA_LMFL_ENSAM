@@ -101,7 +101,7 @@ while (pisoOrPimple.loop())
     }
 }
 \end{verbatim}
-This makes explicit where the turbulence model enters: via $\nu_T$ in \texttt{nuEff}, which modifies the diffusive term in the discretized momentum equation; the $k$ and $\omega$ equations are advanced each step to refresh $\nu_T$ before (or within) the PISO/PIMPLE loop.
+This makes explicit where the turbulence model enters: via $\nu_T$ in \texttt{nuEff}, which modifies the diffusive term in the discretized momentum equation; the $k$ and $\omega$ equations are advanced each step to refresh $\nu_T$ before (or within) the PISO/PIMPLE loop. In practice, the relaxation coefficients used in these iterative procedures can also be adjusted manually in order to balance convergence speed and numerical accuracy.
 
 \newpage
 
