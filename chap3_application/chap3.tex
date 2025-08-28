@@ -113,7 +113,7 @@ After empirical tests and with experience of the laboratory, we found that the p
     \label{fig:Pumpfirst}
 \end{figure}
 
-With the conditions specified in the \autoref{tab:pump_parameters}, and a value of 3e7 for the all five forcing parameters, we obtain these velocity profils comparing the velocities of the simulation and of the PIV data. Both are averages over time and over the angle \(\theta\):
+With the conditions specified in the \autoref{tab:pump_parameters}, and a value of 3e7 for the five forcing parameters, we obtain the velocity profiles shown \autoref{fig:numVSxp}, which compares the velocities from the simulation with the PIV data. Both are averages over time and over the angle \(\theta\):
 
 \begin{figure}[H]
     \centering
@@ -176,7 +176,7 @@ An extract of the \texttt{conesDict} is given in appendix~\ref{annex:conesDict}.
 
 \textbf{First results}
 
-After letting the simulation run for around 50 iterations, we obtain the first results of the optimisation with CONES. Usually, around 200 iterations are needed to converge but as much iterations are not needed for a first result and cost a lot of CPU time (1270 CPU $\times$ hours per EnKF iteration).
+After letting the simulation run for around 50 iterations, we got the first results of the optimisation with CONES. Usually, around 200 iterations are needed to converge but as much iterations are not needed for a first result and cost a lot of CPU time (1270 CPU $\times$ hours per EnKF iteration).
 The parameters are optimised to fit the PIV data, and the velocity field is represented on a slice at $z=0$. The resulting parameters are the following: $\mathbf{D} = (4e7, 2e7, 4e7), D_k = 3e7$ and $D_{\omega} = -3e7$. The sum of the \ac{NRMSE} on the velocity field decreased, of around 20\%. The global performance of the pump didn't change significantly.
 
 
@@ -215,8 +215,8 @@ This strategy works well, until parameters goes up to make the simulation diverg
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/numericalPump/diverged.png}
-    \caption{Velocity field for Dx = Dy, but with parameters too high, which make the simulation diverge}
+    \includegraphics[width=0.75\textwidth]{images/numericalPump/diverged.png}
+    \caption{Velocity field for Dx = Dy, but with too high parameters, which made the simulation diverge}
     \label{fig:diverged}
 \end{figure}
 
@@ -242,27 +242,29 @@ In that case, the parameters vector change from five values to fifteen values.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{images/numericalPump/radialExpension.png}
+    \includegraphics[width=0.45\textwidth]{images/numericalPump/radialExpension.png}
     \caption{Radial expension of Dz over the impeller radius}
     \label{fig:radialExpension}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{images/blade_interpolation_1.png}
+    \includegraphics[width=0.95\textwidth]{images/blade_interpolation_1.png}
     \caption{Polynomial and sinusoidal interpolation of the blade shape}
     \label{fig:bladeInterpolation}
 \end{figure}
 
 \textbf{Strategie 4.Inflation} The inflation strategy (explained in the \autoref{eqn:inflation}) is to use a more complex DA method, such as the EnKF with inflation, which allows to escape from local minima by adding noise to the ensemble members. This can help to explore the parameter space more effectively and find a better solution. But we finally didn't have this problem in our case so it hasn't been used.
 
-\textbf{Strategie 5.Pressure observation} Finaly, we can also add a pressure observation to the DA, which allows to take into account the pressure difference between the inlet and the outlet of the pump. This can help to improve the convergence of the solution and have a more physical result. The pressure observation represents the difference of pressure between the inlet of the pipe and the outlet of the diffuser. The numerical coefficients are interpolating, respectively at (0,0,-0.35) and (0,0.390,0). Incertitude on p will be less than the measured one to take it better into account.
+\textbf{Strategie 5.Pressure observation} We can also add a pressure observation to the DA, which allows to take into account the pressure difference between the inlet and the outlet of the pump. This can help to improve the convergence of the solution and have a more physical result. The pressure observation represents the difference of pressure between the inlet of the pipe and the outlet of the diffuser. The numerical coefficients are interpolating, respectively at (0,0,-0.35) and (0,0.390,0). Incertitude on p will be less than the measured one to better take it into account.
 This implementation add one element on the observation vector.
+
+
 
 These strategy are not enough as we can see in the \autoref{fig:UpdtC14_10NMRSE} where the NRMSEs (computed between the numerical simulation and the PIV data) remain high and the velocity field is still not physical and not converged. The NRMSE on the highest PIV plan (75\%) is significantly reduced. This is locally true for the observation points, but not globally for the whole plan.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{images/UpdtC14_10NMRSE.png}
+    \includegraphics[width=1.0\textwidth]{images/UpdtC14_10NMRSE.png}
     \caption{Evolution of the NRMSEs over EnKF analysis phases}
     \label{fig:UpdtC14_10NMRSE}
 \end{figure}
@@ -273,7 +275,7 @@ More precisely, on the \autoref{fig:UpdtC14_10NMRSE}, the legend is organised as
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/numericalPump/coords.png}
+    \includegraphics[width=0.85\textwidth]{images/numericalPump/coords.png}
     \caption{Illustration of the augmented coordinates for the interpolation of the field}
     \label{fig:augmentedCoords}
 \end{figure}
@@ -292,10 +294,10 @@ After applying these strategies, the solution is still not satisfactory, NRMSEs 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/numericalPump/diverged3.png}
+    \includegraphics[width=0.75\textwidth]{images/numericalPump/diverged3.png}
     \caption{Velocity field diverged after applying all the strategies}
     \label{fig:diverged3}
 \end{figure}
 
-After applying these strategies, the solution is still not satisfactory, as we can see in the \autoref{fig:UpdtC14_10NMRSE} where the NRMSEs remain high and the velocity field is still not physical and not converged.
+%After applying these strategies, the solution is still not satisfactory, as we can see in the \autoref{fig:UpdtC14_10NMRSE} where the NRMSEs remain high and the velocity field is still not physical and not converged.
 

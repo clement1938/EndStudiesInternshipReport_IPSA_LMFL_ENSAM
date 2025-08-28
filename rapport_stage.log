@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.20)  28 AUG 2025 11:40
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.20)  28 AUG 2025 14:23
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1550,27 +1550,27 @@ Package csquotes Info: Redefining alias 'default' -> 'english'.
  (./rapport_stage.aux)
 \openout1 = `rapport_stage.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 710.
-LaTeX Font Info:    ... okay on input line 710.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 710.
-LaTeX Font Info:    ... okay on input line 710.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 710.
-LaTeX Font Info:    ... okay on input line 710.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 710.
-LaTeX Font Info:    ... okay on input line 710.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 710.
-LaTeX Font Info:    ... okay on input line 710.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 710.
-LaTeX Font Info:    ... okay on input line 710.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 710.
-LaTeX Font Info:    ... okay on input line 710.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 710.
-LaTeX Font Info:    ... okay on input line 710.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 710.
-LaTeX Font Info:    ... okay on input line 710.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 710.
-LaTeX Font Info:    ... okay on input line 710.
-Package hyperref Info: Link coloring OFF on input line 710.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 714.
+LaTeX Font Info:    ... okay on input line 714.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 714.
+LaTeX Font Info:    ... okay on input line 714.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 714.
+LaTeX Font Info:    ... okay on input line 714.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 714.
+LaTeX Font Info:    ... okay on input line 714.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 714.
+LaTeX Font Info:    ... okay on input line 714.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 714.
+LaTeX Font Info:    ... okay on input line 714.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 714.
+LaTeX Font Info:    ... okay on input line 714.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 714.
+LaTeX Font Info:    ... okay on input line 714.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 714.
+LaTeX Font Info:    ... okay on input line 714.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 714.
+LaTeX Font Info:    ... okay on input line 714.
+Package hyperref Info: Link coloring OFF on input line 714.
  (./rapport_stage.out) (./rapport_stage.out)
 \@outlinefile=\write7
 \openout7 = `rapport_stage.out'.
@@ -1632,25 +1632,25 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'rapport_stage.bbl' found.
  (./rapport_stage.bbl)
-Package biblatex Info: Reference section=0 on input line 710.
-Package biblatex Info: Reference segment=0 on input line 710.
+Package biblatex Info: Reference section=0 on input line 714.
+Package biblatex Info: Reference segment=0 on input line 714.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
 File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 710.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 714.
 
 Package pgfplots notification 'compat/show suggested version=true': you might benefit from \pgfplotsset{compat=1.18} (current compat level: 1.17).
 
 Package microtype Info: Patching varwidth to enable character protrusion.
 \MT@vwid@leftmargin=\dimen406
 \MT@vwid@rightmargin=\dimen407
-LaTeX Info: Redefining \microtypecontext on input line 710.
-Package microtype Info: Applying patch `item' on input line 710.
-Package microtype Info: Applying patch `toc' on input line 710.
-Package microtype Info: Applying patch `eqnum' on input line 710.
-Package microtype Info: Applying patch `footnote' on input line 710.
-Package microtype Info: Applying patch `verbatim' on input line 710.
-LaTeX Info: Redefining \microtypesetup on input line 710.
+LaTeX Info: Redefining \microtypecontext on input line 714.
+Package microtype Info: Applying patch `item' on input line 714.
+Package microtype Info: Applying patch `toc' on input line 714.
+Package microtype Info: Applying patch `eqnum' on input line 714.
+Package microtype Info: Applying patch `footnote' on input line 714.
+Package microtype Info: Applying patch `verbatim' on input line 714.
+LaTeX Info: Redefining \microtypesetup on input line 714.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: No adjustment of tracking.
@@ -2162,10 +2162,6 @@ File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
 [30]
 
-
-
-
-
 File: images/logo/logos.png Graphic file (type bmp)
 <images/logo/logos.png>
 
@@ -2199,10 +2195,21 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
 [32] Excluding 'comment' comment.
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 1200.
 
-Package hyperref Warning: No autoref name for `algorithm' on input line 1196.
 
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 1199.
+File: images/logo/logos.png Graphic file (type bmp)
+<images/logo/logos.png>
+
+Package fancyhdr Warning: \headheight is too small (25.22153pt): 
+(fancyhdr)                Make it at least 25.2232pt, for example:
+(fancyhdr)                \setlength{\headheight}{25.2232pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
+
+File: images/logo/ipsagarde.png Graphic file (type bmp)
+<images/logo/ipsagarde.png>
+[33]
 File: images/inflation.png Graphic file (type bmp)
 <images/inflation.png>
 
@@ -2218,7 +2225,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[33]
+[34]
 File: images/cavity/cavity3_1ms.png Graphic file (type bmp)
 <images/cavity/cavity3_1ms.png>
 File: images/cavity/cavity3_3ms.png Graphic file (type bmp)
@@ -2229,23 +2236,10 @@ File: images/cavity/legende.png Graphic file (type bmp)
 <images/cavity/legende.png>
 File: images/cavity/legende.png Graphic file (type bmp)
 <images/cavity/legende.png>
-
-
-File: images/logo/logos.png Graphic file (type bmp)
-<images/logo/logos.png>
-
-Package fancyhdr Warning: \headheight is too small (25.22153pt): 
-(fancyhdr)                Make it at least 25.2232pt, for example:
-(fancyhdr)                \setlength{\headheight}{25.2232pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
-
-File: images/logo/ipsagarde.png Graphic file (type bmp)
-<images/logo/ipsagarde.png>
-[34] Excluding 'comment' comment.
+ Excluding 'comment' comment.
 File: images/EnKF_ConesWithouCWIPI.pdf Graphic file (type pdf)
 <use images/EnKF_ConesWithouCWIPI.pdf>
-)
+
 
 File: images/logo/logos.png Graphic file (type bmp)
 <images/logo/logos.png>
@@ -2258,7 +2252,20 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[35] (./chap3_application/chap3.tex
+[35])
+
+File: images/logo/logos.png Graphic file (type bmp)
+<images/logo/logos.png>
+
+Package fancyhdr Warning: \headheight is too small (25.22153pt): 
+(fancyhdr)                Make it at least 25.2232pt, for example:
+(fancyhdr)                \setlength{\headheight}{25.2232pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
+
+File: images/logo/ipsagarde.png Graphic file (type bmp)
+<images/logo/ipsagarde.png>
+[36] (./chap3_application/chap3.tex
 Chapter 3.
 File: images/model/RESEDA_sketch.pdf Graphic file (type pdf)
 <use images/model/RESEDA_sketch.pdf>
@@ -2275,7 +2282,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[36
+[37
 
 ]
 File: images/numericalPump/frontalView.pdf Graphic file (type pdf)
@@ -2293,7 +2300,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[37]
+[38]
 
 File: images/logo/logos.png Graphic file (type bmp)
 <images/logo/logos.png>
@@ -2306,7 +2313,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[38]
+[39]
 File: images/numericalPump/mvt.png Graphic file (type bmp)
 <images/numericalPump/mvt.png>
 File: images/numVSxp.pdf Graphic file (type pdf)
@@ -2324,7 +2331,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[39]
+[40]
 
 File: images/logo/logos.png Graphic file (type bmp)
 <images/logo/logos.png>
@@ -2337,7 +2344,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[40]
+[41]
 File: images/numericalPump/assymetrie.png Graphic file (type bmp)
 <images/numericalPump/assymetrie.png>
 
@@ -2353,7 +2360,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[41]
+[42]
 File: images/numericalPump/LIC.png Graphic file (type bmp)
 <images/numericalPump/LIC.png>
 File: images/numericalPump/diverged.png Graphic file (type bmp)
@@ -2371,7 +2378,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[42]
+[43]
 File: images/numericalPump/radialExpension.png Graphic file (type bmp)
 <images/numericalPump/radialExpension.png>
 
@@ -2387,7 +2394,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[43]
+[44]
 File: images/blade_interpolation_1.png Graphic file (type bmp)
 <images/blade_interpolation_1.png>
 File: images/UpdtC14_10NMRSE.png Graphic file (type bmp)
@@ -2405,7 +2412,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[44]
+[45]
 File: images/numericalPump/coords.png Graphic file (type bmp)
 <images/numericalPump/coords.png>
 
@@ -2421,23 +2428,10 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[45]
+[46]
 File: images/numericalPump/diverged3.png Graphic file (type bmp)
 <images/numericalPump/diverged3.png>
-
-
-File: images/logo/logos.png Graphic file (type bmp)
-<images/logo/logos.png>
-
-Package fancyhdr Warning: \headheight is too small (25.22153pt): 
-(fancyhdr)                Make it at least 25.2232pt, for example:
-(fancyhdr)                \setlength{\headheight}{25.2232pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
-
-File: images/logo/ipsagarde.png Graphic file (type bmp)
-<images/logo/ipsagarde.png>
-[46])
+)
 
 File: images/logo/logos.png Graphic file (type bmp)
 <images/logo/logos.png>
@@ -2693,7 +2687,7 @@ Package logreq Info: Writing requests to 'rapport_stage.run.xml'.
 Here is how much of TeX's memory you used:
  78121 strings out of 468441
  1973101 string characters out of 5445543
- 2962141 words of memory out of 5000000
+ 2962492 words of memory out of 5000000
  105546 multiletter control sequences out of 15000+600000
  735650 words of font info for 194 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191

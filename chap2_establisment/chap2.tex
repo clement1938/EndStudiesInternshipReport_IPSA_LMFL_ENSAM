@@ -92,7 +92,7 @@ The body-fitted meshes are the most accurate but also the most expensive in term
 
 In 1972 Charles S. Peskin\cite{IBM_base} developped the IBM method. His goal was to reduce the computational time, mainly due to the computation of the mesh refinment based on the \ac{CFL} (see \autoref{eq:CFL}). He added an IBM forcing term on Navier-Stokes equations, only on the simulated artificial heart valve part. He overcame the numerical instabilitys due to the boundary forces by using an iterative method for solving a fixed-point problem for boundary forces.
 
-In 1999 Angot et al. \cite{angotPenalizationMethodTake1999a} discovered that using the penalization IMB, the velocity penalized at the wall was the same as the one from a body-fitted approach if $\mathbf{D}$, a forcing parameter defines in the \autoref{subsec:CFD_governing_equations}, tend to infinity.
+In 1999 Angot et al. \cite{angotPenalizationMethodTake1999a} discovered that using the penalization IBM, the velocity penalized at the wall was the same as the one from a body-fitted approach if $\mathbf{D}$, a forcing parameter defined in the \autoref{subsec:CFD_governing_equations}, tend to infinity.
 
 IBM are usually less accurate and need more cells element to keep good precision in the near-wall region, but more efficient in terms of computational resources when the geometry is moving. So it's more and more used in CFD \cite{annurev:/content/journals/10.1146/annurev-fluid-120720-022129}. The maths behind the method are detailed in the \autoref{eq:IBM}.
 
@@ -141,7 +141,7 @@ EnKF for DA in CFD has been used at \ac{LMFL} for a few years now.
     \item In 2023, Lucas Villanueva, with Miguel M.Valero and Marcello Meldi from LMFL wrote an article\cite{villanuevaAugmentedStateEstimation2023} about the amelioration of the flow around a building preforming EnKF on five CFD parameters, showing a global improvement for both the velocity field and the pressure field;
     \item In 2024, Tom Moussie, with Paolo Errante and Marcello Meldi from LMFL wrote an article\cite{moussieStatisticalInferenceUpstream2024a} successfully optimizing the boudary condition of the academical rectangular 5:1 cylinder benchmarck using EnKF, leading to a significant improvement of the accuracy in the prediction of the turbulent flow;
     \item This year, Miguel M.Valero and Marcello Meldi published an article combining EnKF, \ac{ML} and IBM on a turbulent channel flow \cite{valeroEnhancedStateEstimation2025}. It shows that this combination can gives very good and low cost results;
-    \item During my internship, Tom Moussie submitted an article on the determination of the incidence angle of a 2D wing using EnKF, and Miguel also submitted also an article about the optimization of forcing parameters of an IBM around an 2D oscillating cylinder, showing very good results.
+    \item During my internship, Tom Moussie submitted an article on the determination of the incidence angle of a 2D wing using EnKF, and Miguel M.Valero also submitted also an article about the optimization of forcing parameters of an IBM around an 2D oscillating cylinder, showing very good results.
 \end{itemize}
 
 
@@ -436,7 +436,7 @@ and \texttt{obs\_coordinates.txt} (of size $n_{\text{obs}}$ lines and $n_{\text{
 \subparagraph{5.Creation of a file for the interpolation}
 
 Finally, we need to create the \texttt{coords\_seventh.txt} file for the interpolation function in CONES.
-We don't just use the coordinates of the points in the PIV data, beacause we want to average over the angle \(\theta\) on the pump. The numerical simulation is $2\pi/7$ periodic, so we interpolate in 150 points over theta between 0 and $2\pi/7$, as illustrated in the \autoref{fig:diffuserMesh}. %$\frac{2\pi}{7}$
+We don't just use the coordinates of the points in the PIV data, because we want to average over the angle \(\theta\) on the pump. The numerical simulation is $2\pi/7$ periodic, so we interpolate in 150 points over theta between 0 and $2\pi/7$, as illustrated in the \autoref{fig:diffuserMesh}. %$\frac{2\pi}{7}$
 To do that, we just take the \texttt{obs\_coordinates.txt} file and duplicate 150 times the points over the angle \(\theta\) (between $-\pi/7$ and $\pi/7$). In our case, we chose 150 that will aproximately correspond to the shap of a cell at this radius.
 To be consistent with axis further, we take points between $-\pi/7 + \pi/2$ and $\pi/7 + \pi/2$.
 \footnote{Concretely, to average the data over the angle \(\theta\), we modify the interpolation function in CONES.
@@ -464,7 +464,7 @@ Then, it computes the interpolation and average the data over the angle \(\theta
 
 \paragraph{Pressure data}
 
-In addition to the nine pressure tapes on the diffuser, Dazin et al.~\cite{dazinHighspeedStereoscopicPIV2011a} have also captured (\autoref{fig:PumpPerf}) the inlet and outlet pressure that allows to compute the global performance of the pump, that matches with M. Fan simulation \cite{fanEffectLeakagePerformanceb}% (eq to approximately \(\eta\) = 0.4).
+In addition to the nine pressure tapes on the diffuser, Dazin et al.~\cite{dazinHighspeedStereoscopicPIV2011a} have also captured (\autoref{fig:PumpPerf}) the inlet and outlet pressure that allows to compute the global performance of the pump, that matching with M. Fan simulation \cite{fanEffectLeakagePerformanceb}% (eq to approximately \(\eta\) = 0.4).
 
 \begin{figure}[H]
     \centering
@@ -555,7 +555,7 @@ As we consider that we are in \textbf{incompressible} flow conditions (because w
 \end{equation}
 And the pressure and velocity are solved iteratively, contrary to compressible flows.
 
-The dimensionless $Re$ measures the ratio between inertial and viscous forces. It indicates if the flow is turbulent, laminar or both, it caratcterizes the flow regime. 
+The dimensionless $Re$ measures the ratio between inertial and viscous forces. It indicates if the flow is turbulent, laminar or both, it caracterizes the flow regime. 
 Let's compute the $Re$ around where the velocity should be the highest.
 
 \begin{equation}
@@ -785,7 +785,7 @@ The additional terms $2 \vec{\Omega} \times \vec{u}_R$ (Coriolis force) and $\ve
 %\end{equation}
 %So $\Omega = (0;0;125.66) rad.s^{-1}$ and $U_{abs} = U_{rel} + \Omega \times R$
 
-
+\newpage
 
 \paragraph{URANS} In the \ac{URANS} case, the impeller is physically moving. %Also, very large eddy are simulated.
 
@@ -1063,7 +1063,8 @@ Observation data may be built using:
     \mathbf{P}_{k|k} &= (\mathbf{I} - \mathbf{K}_k \mathbf{H}_k) \mathbf{P}_{k|k-1}
 \end{align}
 
-\vspace{1em}
+\newpage
+
 \textbf{Where:}
 
 \begin{multicols}{2}
@@ -1193,7 +1194,7 @@ The following matrices are needed to build the EnKF algorithm:
 %$\boldsymbol{u}_{i,0}^\prime = [\boldsymbol{u}_{i,0}, \theta_{i,0}]^T$ (initial states with $\boldsymbol{u}_{i,0} \sim \mathcal{N}(\boldsymbol{\overline{u}}_0, \boldsymbol{P}_0)$ and $\theta_{i,0} \sim \mathcal{N}(\overline{\theta}_0, \boldsymbol{P}_0)$)
 
 
-For RANS representation, there is no physical time advancement of the model, so each instant $k$ in the \autoref{alg:EnKF} is represented through a different interation of the solver.%, and 
+For RANS representation, there is no physical time advancement of the model, so each instant $k$ in the Algorithm \ref{alg:EnKF} is represented through a different interation of the solver.%, and 
 
 \begin{algorithm}[!ht]
     \caption{Scheme of the EnKF used in the present analyses for parameter optimization.}
@@ -1233,8 +1234,9 @@ With $\boldsymbol{\overline{x}}_k^{f} = [\boldsymbol{\overline{u}}_k^f, \overlin
 In our case, $\boldsymbol{\overline{x}}_k^{f} = [\overline{\theta}_{k-1}]^T$, $\boldsymbol{x}_{i,k}^{f} = [\theta_{i, k-1}]^T$, $\lambda_k = 0$ and $\boldsymbol{y}_k = \boldsymbol{y}$.
 
 
+\newpage
 
-Some \textit{deterministic inflation} is included to increase the variability of the state predicted by the EnKF:
+Some \textit{deterministic inflation} is included to increases the variability of the state predicted by the EnKF:
 
 \begin{equation}
     \boldsymbol{\alpha}_{i,k}^a = \boldsymbol{\overline{\alpha}}_k^a + \lambda_k \left(\boldsymbol{\alpha}_{i,k}^a - \boldsymbol{\overline{\alpha}}_k^a   \right)
@@ -1315,7 +1317,7 @@ We start from a simulation with a wall condition of 1 m.s$^{-1}$, which is not t
 \subsection{The CONES library}
 CONES is a library coded in Python/C++, that has been developed since 2022 at LMFL. % stands for "Coupling OpenFOAM with Numerical EnvironmentS" and
 It is the only code that permits online DA in CFD codes (it uses \ac{MPI} process to do it).
-It's parallelized and can be used on supercomputers using batch code as the on in appendix~\ref{annex:BatchCode}. It is mainly designed to work with OpenFOAM and DA codes as EnKF.\label{instants_partages}
+It's parallelized and can be used on supercomputers using batch code as the one in appendix~\ref{annex:BatchCode}. It is mainly designed to work with OpenFOAM and DA codes as EnKF.\label{instants_partages}
 
 
 A specific directory structure must be observed, as outlined in \autoref{fig:CONES}.
