@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.20)  27 AUG 2025 18:25
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.20)  28 AUG 2025 11:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1467,78 +1467,79 @@ File: tikzlibrarypatterns.code.tex 2025-08-14 v3.1.11 (3.1.11)
  (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibrarypatterns.code.tex
 File: pgflibrarypatterns.code.tex 2025-08-14 v3.1.11 (3.1.11)
 ))
-\c@g@acro@CPU@int=\count590
-\c@g@acro@ML@int=\count591
-\c@g@acro@EKF@int=\count592
-\c@g@acro@PDF@int=\count593
-\c@g@acro@Re@int=\count594
-\c@g@acro@Ma@int=\count595
-\c@g@acro@BC@int=\count596
-\c@g@acro@URANS@int=\count597
-\c@g@acro@OpenFOAM@int=\count598
-\c@g@acro@MPI@int=\count599
-\c@g@acro@MRF@int=\count600
-\c@g@acro@SST@int=\count601
-\c@g@acro@SHF@int=\count602
-\c@g@acro@JFM@int=\count603
-\c@g@acro@CPER@int=\count604
-\c@g@acro@HCERES@int=\count605
-\c@g@acro@CTI@int=\count606
-\c@g@acro@DDRS@int=\count607
-\c@g@acro@CTES@int=\count608
-\c@g@acro@NRMSE@int=\count609
-\c@g@acro@DNS@int=\count610
-\c@g@acro@CFL@int=\count611
-\c@g@acro@AI@int=\count612
-\c@g@acro@DA@int=\count613
-\c@g@acro@RSU@int=\count614
-\c@g@acro@CHSCTN@int=\count615
-\c@g@acro@EnKF@int=\count616
-\c@g@acro@LES@int=\count617
-\c@g@acro@RANS@int=\count618
-\c@g@acro@PIV@int=\count619
-\c@g@acro@IBM@int=\count620
-\c@g@acro@IPSA@int=\count621
-\c@g@acro@CONES@int=\count622
-\c@g@acro@ENSAM@int=\count623
-\c@g@acro@LMFL@int=\count624
-\c@g@acro@ONERA@int=\count625
-\c@g@acro@CFD@int=\count626
-\c@g@acro@TGCC@int=\count627
-\c@g@acro@CEA@int=\count628
-\c@g@acro@CNES@int=\count629
-\c@g@acro@CNRS@int=\count630
-\c@g@acro@EDF@int=\count631
-\c@g@acro@SAS@int=\count632
-\c@g@acro@SI@int=\count633
-\c@g@acro@KDTree@int=\count634
-\c@g@acro@Mo@int=\count635
-\c@g@acro@RBF@int=\count636
-\c@g@acro@MLS@int=\count637
-\c@g@acro@MISCOG@int=\count638
-\c@g@acro@DSM@int=\count639
-\c@g@acro@1D@int=\count640
-\c@g@acro@GIP@int=\count641
-\c@g@acro@CSR@int=\count642
-\c@g@acro@RSE@int=\count643
-\c@g@acro@CERFACS@int=\count644
-\c@g@acro@HPC@int=\count645
-\c@g@acro@IDW@int=\count646
-\c@g@acro@FWH@int=\count647
-\c@g@acro@NURBS@int=\count648
-\c@g@acro@CAO@int=\count649
-\c@g@acro@QVT@int=\count650
-\c@g@acro@CSE@int=\count651
-\c@g@acro@CSSCT@int=\count652
-\c@g@acro@DUERP@int=\count653
-\c@g@acro@OTP@int=\count654
-\c@g@acro@DSP@int=\count655
-\c@g@acro@ALGO-COOP@int=\count656
-\c@g@acro@CSG@int=\count657
-\c@g@acro@ES@int=\count658
-\c@g@acro@AAM@int=\count659
-\c@g@acro@GLOBC@int=\count660
-\c@g@acro@RGPD@int=\count661
+\c@g@acro@KF@int=\count590
+\c@g@acro@CPU@int=\count591
+\c@g@acro@ML@int=\count592
+\c@g@acro@EKF@int=\count593
+\c@g@acro@PDF@int=\count594
+\c@g@acro@Re@int=\count595
+\c@g@acro@Ma@int=\count596
+\c@g@acro@BC@int=\count597
+\c@g@acro@URANS@int=\count598
+\c@g@acro@OpenFOAM@int=\count599
+\c@g@acro@MPI@int=\count600
+\c@g@acro@MRF@int=\count601
+\c@g@acro@SST@int=\count602
+\c@g@acro@SHF@int=\count603
+\c@g@acro@JFM@int=\count604
+\c@g@acro@CPER@int=\count605
+\c@g@acro@HCERES@int=\count606
+\c@g@acro@CTI@int=\count607
+\c@g@acro@DDRS@int=\count608
+\c@g@acro@CTES@int=\count609
+\c@g@acro@NRMSE@int=\count610
+\c@g@acro@DNS@int=\count611
+\c@g@acro@CFL@int=\count612
+\c@g@acro@AI@int=\count613
+\c@g@acro@DA@int=\count614
+\c@g@acro@RSU@int=\count615
+\c@g@acro@CHSCTN@int=\count616
+\c@g@acro@EnKF@int=\count617
+\c@g@acro@LES@int=\count618
+\c@g@acro@RANS@int=\count619
+\c@g@acro@PIV@int=\count620
+\c@g@acro@IBM@int=\count621
+\c@g@acro@IPSA@int=\count622
+\c@g@acro@CONES@int=\count623
+\c@g@acro@ENSAM@int=\count624
+\c@g@acro@LMFL@int=\count625
+\c@g@acro@ONERA@int=\count626
+\c@g@acro@CFD@int=\count627
+\c@g@acro@TGCC@int=\count628
+\c@g@acro@CEA@int=\count629
+\c@g@acro@CNES@int=\count630
+\c@g@acro@CNRS@int=\count631
+\c@g@acro@EDF@int=\count632
+\c@g@acro@SAS@int=\count633
+\c@g@acro@SI@int=\count634
+\c@g@acro@KDTree@int=\count635
+\c@g@acro@Mo@int=\count636
+\c@g@acro@RBF@int=\count637
+\c@g@acro@MLS@int=\count638
+\c@g@acro@MISCOG@int=\count639
+\c@g@acro@DSM@int=\count640
+\c@g@acro@1D@int=\count641
+\c@g@acro@GIP@int=\count642
+\c@g@acro@CSR@int=\count643
+\c@g@acro@RSE@int=\count644
+\c@g@acro@CERFACS@int=\count645
+\c@g@acro@HPC@int=\count646
+\c@g@acro@IDW@int=\count647
+\c@g@acro@FWH@int=\count648
+\c@g@acro@NURBS@int=\count649
+\c@g@acro@CAO@int=\count650
+\c@g@acro@QVT@int=\count651
+\c@g@acro@CSE@int=\count652
+\c@g@acro@CSSCT@int=\count653
+\c@g@acro@DUERP@int=\count654
+\c@g@acro@OTP@int=\count655
+\c@g@acro@DSP@int=\count656
+\c@g@acro@ALGO-COOP@int=\count657
+\c@g@acro@CSG@int=\count658
+\c@g@acro@ES@int=\count659
+\c@g@acro@AAM@int=\count660
+\c@g@acro@GLOBC@int=\count661
+\c@g@acro@RGPD@int=\count662
  (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
 )
@@ -1549,27 +1550,27 @@ Package csquotes Info: Redefining alias 'default' -> 'english'.
  (./rapport_stage.aux)
 \openout1 = `rapport_stage.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 702.
-LaTeX Font Info:    ... okay on input line 702.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 702.
-LaTeX Font Info:    ... okay on input line 702.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 702.
-LaTeX Font Info:    ... okay on input line 702.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 702.
-LaTeX Font Info:    ... okay on input line 702.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 702.
-LaTeX Font Info:    ... okay on input line 702.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 702.
-LaTeX Font Info:    ... okay on input line 702.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 702.
-LaTeX Font Info:    ... okay on input line 702.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 702.
-LaTeX Font Info:    ... okay on input line 702.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 702.
-LaTeX Font Info:    ... okay on input line 702.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 702.
-LaTeX Font Info:    ... okay on input line 702.
-Package hyperref Info: Link coloring OFF on input line 702.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 710.
+LaTeX Font Info:    ... okay on input line 710.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 710.
+LaTeX Font Info:    ... okay on input line 710.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 710.
+LaTeX Font Info:    ... okay on input line 710.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 710.
+LaTeX Font Info:    ... okay on input line 710.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 710.
+LaTeX Font Info:    ... okay on input line 710.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 710.
+LaTeX Font Info:    ... okay on input line 710.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 710.
+LaTeX Font Info:    ... okay on input line 710.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 710.
+LaTeX Font Info:    ... okay on input line 710.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 710.
+LaTeX Font Info:    ... okay on input line 710.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 710.
+LaTeX Font Info:    ... okay on input line 710.
+Package hyperref Info: Link coloring OFF on input line 710.
  (./rapport_stage.out) (./rapport_stage.out)
 \@outlinefile=\write7
 \openout7 = `rapport_stage.out'.
@@ -1616,7 +1617,7 @@ Package caption Info: End \AtBeginDocument code.
 (/usr/local/texlive/2025/texmf-dist/tex/latex/upquote/upquote.sty
 Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verbatim
 )
-\c@lstlisting=\count662
+\c@lstlisting=\count663
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/biblatex/lbx/english.lbx
@@ -1631,25 +1632,25 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'rapport_stage.bbl' found.
  (./rapport_stage.bbl)
-Package biblatex Info: Reference section=0 on input line 702.
-Package biblatex Info: Reference segment=0 on input line 702.
+Package biblatex Info: Reference section=0 on input line 710.
+Package biblatex Info: Reference segment=0 on input line 710.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
 File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 702.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 710.
 
 Package pgfplots notification 'compat/show suggested version=true': you might benefit from \pgfplotsset{compat=1.18} (current compat level: 1.17).
 
 Package microtype Info: Patching varwidth to enable character protrusion.
 \MT@vwid@leftmargin=\dimen406
 \MT@vwid@rightmargin=\dimen407
-LaTeX Info: Redefining \microtypecontext on input line 702.
-Package microtype Info: Applying patch `item' on input line 702.
-Package microtype Info: Applying patch `toc' on input line 702.
-Package microtype Info: Applying patch `eqnum' on input line 702.
-Package microtype Info: Applying patch `footnote' on input line 702.
-Package microtype Info: Applying patch `verbatim' on input line 702.
-LaTeX Info: Redefining \microtypesetup on input line 702.
+LaTeX Info: Redefining \microtypecontext on input line 710.
+Package microtype Info: Applying patch `item' on input line 710.
+Package microtype Info: Applying patch `toc' on input line 710.
+Package microtype Info: Applying patch `eqnum' on input line 710.
+Package microtype Info: Applying patch `footnote' on input line 710.
+Package microtype Info: Applying patch `verbatim' on input line 710.
+LaTeX Info: Redefining \microtypesetup on input line 710.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: No adjustment of tracking.
@@ -2140,7 +2141,13 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[29]
+[29] (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2024/09/23 1.10c listings language file
+) (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2024/09/23 1.10c listings language file
+) (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
+)
 
 File: images/logo/logos.png Graphic file (type bmp)
 <images/logo/logos.png>
@@ -2153,13 +2160,11 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[30] (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2024/09/23 1.10c listings language file
-) (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2024/09/23 1.10c listings language file
-) (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstmisc.sty
-File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
-)
+[30]
+
+
+
+
 
 File: images/logo/logos.png Graphic file (type bmp)
 <images/logo/logos.png>
@@ -2195,6 +2200,13 @@ File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
 [32] Excluding 'comment' comment.
 
+Package hyperref Warning: No autoref name for `algorithm' on input line 1196.
+
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 1199.
+File: images/inflation.png Graphic file (type bmp)
+<images/inflation.png>
+
+
 File: images/logo/logos.png Graphic file (type bmp)
 <images/logo/logos.png>
 
@@ -2207,23 +2219,6 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
 [33]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 1199.
-
-
-File: images/logo/logos.png Graphic file (type bmp)
-<images/logo/logos.png>
-
-Package fancyhdr Warning: \headheight is too small (25.22153pt): 
-(fancyhdr)                Make it at least 25.2232pt, for example:
-(fancyhdr)                \setlength{\headheight}{25.2232pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
-
-File: images/logo/ipsagarde.png Graphic file (type bmp)
-<images/logo/ipsagarde.png>
-[34]
-File: images/inflation.png Graphic file (type bmp)
-<images/inflation.png>
 File: images/cavity/cavity3_1ms.png Graphic file (type bmp)
 <images/cavity/cavity3_1ms.png>
 File: images/cavity/cavity3_3ms.png Graphic file (type bmp)
@@ -2247,7 +2242,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[35] Excluding 'comment' comment.
+[34] Excluding 'comment' comment.
 File: images/EnKF_ConesWithouCWIPI.pdf Graphic file (type pdf)
 <use images/EnKF_ConesWithouCWIPI.pdf>
 )
@@ -2263,7 +2258,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[36] (./chap3_application/chap3.tex
+[35] (./chap3_application/chap3.tex
 Chapter 3.
 File: images/model/RESEDA_sketch.pdf Graphic file (type pdf)
 <use images/model/RESEDA_sketch.pdf>
@@ -2280,7 +2275,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[37
+[36
 
 ]
 File: images/numericalPump/frontalView.pdf Graphic file (type pdf)
@@ -2298,7 +2293,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[38]
+[37]
 
 File: images/logo/logos.png Graphic file (type bmp)
 <images/logo/logos.png>
@@ -2311,7 +2306,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[39]
+[38]
 File: images/numericalPump/mvt.png Graphic file (type bmp)
 <images/numericalPump/mvt.png>
 File: images/numVSxp.pdf Graphic file (type pdf)
@@ -2329,7 +2324,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[40]
+[39]
 
 File: images/logo/logos.png Graphic file (type bmp)
 <images/logo/logos.png>
@@ -2342,7 +2337,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[41]
+[40]
 File: images/numericalPump/assymetrie.png Graphic file (type bmp)
 <images/numericalPump/assymetrie.png>
 
@@ -2358,7 +2353,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[42]
+[41]
 File: images/numericalPump/LIC.png Graphic file (type bmp)
 <images/numericalPump/LIC.png>
 File: images/numericalPump/diverged.png Graphic file (type bmp)
@@ -2376,7 +2371,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[43]
+[42]
 File: images/numericalPump/radialExpension.png Graphic file (type bmp)
 <images/numericalPump/radialExpension.png>
 
@@ -2392,9 +2387,25 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[44]
+[43]
 File: images/blade_interpolation_1.png Graphic file (type bmp)
 <images/blade_interpolation_1.png>
+File: images/UpdtC14_10NMRSE.png Graphic file (type bmp)
+<images/UpdtC14_10NMRSE.png>
+
+
+File: images/logo/logos.png Graphic file (type bmp)
+<images/logo/logos.png>
+
+Package fancyhdr Warning: \headheight is too small (25.22153pt): 
+(fancyhdr)                Make it at least 25.2232pt, for example:
+(fancyhdr)                \setlength{\headheight}{25.2232pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
+
+File: images/logo/ipsagarde.png Graphic file (type bmp)
+<images/logo/ipsagarde.png>
+[44]
 File: images/numericalPump/coords.png Graphic file (type bmp)
 <images/numericalPump/coords.png>
 
@@ -2411,8 +2422,8 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
 [45]
-File: images/UpdtC14_10NMRSE.png Graphic file (type bmp)
-<images/UpdtC14_10NMRSE.png>
+File: images/numericalPump/diverged3.png Graphic file (type bmp)
+<images/numericalPump/diverged3.png>
 
 
 File: images/logo/logos.png Graphic file (type bmp)
@@ -2426,10 +2437,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[46]
-File: images/numericalPump/diverged.png Graphic file (type bmp)
-<images/numericalPump/diverged.png>
-)
+[46])
 
 File: images/logo/logos.png Graphic file (type bmp)
 <images/logo/logos.png>
@@ -2503,7 +2511,22 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[51]
+[51
+
+] (./annexes/annexes.tex
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 19.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 1.82538pt
+(hyperref)                removed on input line 19.
+
+Missing character: There is no – ("2013) in font ec-lmr10!
+Missing character: There is no – ("2013) in font ec-lmr10!
+Missing character: There is no – ("2013) in font ec-lmbx10!
+
 
 File: images/logo/logos.png Graphic file (type bmp)
 <images/logo/logos.png>
@@ -2516,9 +2539,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[52
-
-] (./annexes/annexes.tex
+[52]
 
 File: images/logo/logos.png Graphic file (type bmp)
 <images/logo/logos.png>
@@ -2532,19 +2553,6 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
 [53]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\leavevmode@ifvmode' on input line 50.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                \kern 1.82538pt
-(hyperref)                removed on input line 50.
-
-Missing character: There is no – ("2013) in font ec-lmr10!
-Missing character: There is no – ("2013) in font ec-lmr10!
-Missing character: There is no – ("2013) in font ec-lmbx10!
-
 
 File: images/logo/logos.png Graphic file (type bmp)
 <images/logo/logos.png>
@@ -2583,7 +2591,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[56]
+[56] Excluding 'comment' comment.)
 
 File: images/logo/logos.png Graphic file (type bmp)
 <images/logo/logos.png>
@@ -2596,20 +2604,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[57] Excluding 'comment' comment.)
-
-File: images/logo/logos.png Graphic file (type bmp)
-<images/logo/logos.png>
-
-Package fancyhdr Warning: \headheight is too small (25.22153pt): 
-(fancyhdr)                Make it at least 25.2232pt, for example:
-(fancyhdr)                \setlength{\headheight}{25.2232pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.00168pt}.
-
-File: images/logo/ipsagarde.png Graphic file (type bmp)
-<images/logo/ipsagarde.png>
-[58]
+[57]
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/lmr/m/sc/10.95'.
 (microtype)             Ignoring protrusion settings for this character.
@@ -2626,7 +2621,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[59
+[58
 
 ]
 
@@ -2641,7 +2636,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[60]
+[59]
 
 File: images/logo/logos.png Graphic file (type bmp)
 <images/logo/logos.png>
@@ -2654,7 +2649,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[61
+[60
 
 ] (./quatre_couv/quatre_couv.tex
 
@@ -2669,7 +2664,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[62] Excluding 'comment' comment. Excluding 'comment' comment. Excluding 'comment' comment.)
+[61] Excluding 'comment' comment. Excluding 'comment' comment. Excluding 'comment' comment.)
 
 File: images/logo/logos.png Graphic file (type bmp)
 <images/logo/logos.png>
@@ -2682,7 +2677,7 @@ Package fancyhdr Warning: \headheight is too small (25.22153pt):
 
 File: images/logo/ipsagarde.png Graphic file (type bmp)
 <images/logo/ipsagarde.png>
-[63
+[62
 
 ] (./rapport_stage.aux)
  ***********
@@ -2690,18 +2685,18 @@ LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-08-13>
  ***********
 Package rerunfilecheck Info: File `rapport_stage.out' has not changed.
-(rerunfilecheck)             Checksum: B4A323DD82933853EEEA21D3BF7B980A;5014.
+(rerunfilecheck)             Checksum: D953F62EF456077104A3E0590605ADA2;5074.
 Package logreq Info: Writing requests to 'rapport_stage.run.xml'.
 \openout1 = `rapport_stage.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 78029 strings out of 468441
- 1969577 string characters out of 5445543
- 2960189 words of memory out of 5000000
- 105455 multiletter control sequences out of 15000+600000
- 735350 words of font info for 193 fonts, out of 8000000 for 9000
+ 78121 strings out of 468441
+ 1973101 string characters out of 5445543
+ 2962141 words of memory out of 5000000
+ 105546 multiletter control sequences out of 15000+600000
+ 735650 words of font info for 194 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  125i,19n,137p,1671b,5830s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on rapport_stage.pdf (63 pages).
+Output written on rapport_stage.pdf (62 pages).

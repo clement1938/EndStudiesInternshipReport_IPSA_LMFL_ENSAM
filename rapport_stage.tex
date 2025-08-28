@@ -148,22 +148,30 @@
 %\renewcommand{\thetable}{\thesection.\arabic{table}} % Format table number as section.table
 %\renewcommand{\thefigure}{\thesection.\arabic{figure}} % Format figure number as section.figure
 % Command to refer to an appendix item as "Annexe n"
-\newcommand{\annexref}[1]{annexe~\ref{#1}}
+\newcommand{\annexref}[1]{Appendix~\ref{#1}}
 
 \newcounter{annex}
 \renewcommand{\theannex}{\arabic{annex}}
 
 \newcommand{\annex}[2]{%
   \refstepcounter{annex}%
-  \section*{Annex \theannex\ -- #1}%
+  \section*{Appendix \theannex\ -- #1}%
   \label{#2}%
-  \addcontentsline{toc}{section}{Annex \theannex\ -- #1}
+  \addcontentsline{toc}{section}{Appendix \theannex\ -- #1}
 }
 
 \usetikzlibrary{patterns}
 \pgfplotsset{compat=1.17}
 
 \setlength{\parskip}{0.5\baselineskip}
+
+
+
+\DeclareAcronym{KF}{
+  short = KF,
+  long = Kalman Filter,
+  short-indefinite = un,
+}
 
 \DeclareAcronym{CPU}{
   short = CPU,
@@ -758,10 +766,10 @@
 \addcontentsline{toc}{chapter}{Appendices table}
 
 \begin{itemize}
-    \item \textbf{Appendix 1} - Batch code used to run simulation on the Rome partition of TGCC cluster \dotfill \pageref{annex:BatchCode}
-    \item \textbf{Appendix 2} - Discretization and coupling in OpenFOAM (RANS / U\,-RANS) \dotfill \pageref{annex:OpenFOAMRANS}
-    \item \textbf{Appendix 3} - OpenFOAM Directory Tree \dotfill \pageref{annex:OpenFoamArbo}
-    \item \textbf{Appendix 4} - Extract of conesDict file \dotfill \pageref{annex:conesDict}
+    \item \textbf{Appendix 1} - Discretization and coupling in OpenFOAM (RANS / U\,-RANS) \dotfill \pageref{annex:OpenFOAMRANS}
+    \item \textbf{Appendix 2} - OpenFOAM Directory Tree \dotfill \pageref{annex:OpenFoamArbo}
+    \item \textbf{Appendix 3} - Extract of conesDict file \dotfill \pageref{annex:conesDict}
+    \item \textbf{Appendix 4} - Batch code used to run simulation on the Rome partition of TGCC cluster \dotfill \pageref{annex:BatchCode}
     % Ajoute ici les autres annexes au fur et à mesure  % \annex{Discretization and coupling in OpenFOAM (RANS / U\,-RANS)}{annex:OpenFOAMRANS}
 \end{itemize}
 
