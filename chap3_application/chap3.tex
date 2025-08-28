@@ -102,7 +102,7 @@ Assuming the distance between two cells in the azimuthal direction at the tip of
 
 %\textbf{IBM preliminary results}
 
-Once the pump model is implemented in OpenFOAM, we can run the simulation with the IBM.
+Once the pump model is implemented in OpenFOAM, we can run the simulation with the IBM and \ac{SIMPLE} solver.
 After empirical tests and with experience of the laboratory, we found that the parameters $\mathbf{D} = (3e7, 3e7, 3e7), D_k = 3e7$ and $D_{\omega} = 3e7$ are a good starting point for the IBM parameters. And it verifies a converged CFD solution.
 
 \begin{figure}[H]
@@ -217,7 +217,7 @@ This strategy works well, until parameters goes up to make the simulation diverg
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.75\textwidth]{images/numericalPump/diverged.png}
-    \caption{Velocity field for Dx = Dy, but with too high parameters, which made the simulation diverge}
+    \caption{Velocity field for $Dx = Dy$, with high parameters causing the simulation to diverge}
     \label{fig:diverged}
 \end{figure}
 
@@ -237,7 +237,7 @@ We used a second order polynomial to represent the radial expansion of the forci
     \item it permits to eliminates a step of the value to 0 at the blade tips for a continuity of order 0, which can be important for the numerical stability of the simulation.
 \end{itemize}
 In that case, the parameters vector change from four values to twelve values.
-Initial values are $(a,b,c) = (0, 0, 3e7)$ for all four forcing terms, with an absolute variance of $(1e7,1e7,1e6)$.
+Initial values are $(a,b,c) = (0, 0, 3e7)$ for all four forcing terms, with an absolute variance of $(1e7,1e7,1e7)$.
 We want to give enough variance on $a$, that will be multiplied by $r^2$, that is lower than 1, but not too much to avoid divergence. If it's stay low, we know that we can delete this term if it's not useful.
 $b$ should show if the forcing terms tend to increase (give more importance at the tip) or decrease (less discontinuity) with the radius.
 $c$ is the value between the center and the start of the blade, so it should stay around the initial value of $3e7$.
@@ -253,11 +253,11 @@ $c$ is the value between the center and the start of the blade, so it should sta
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.45\textwidth]{images/numericalPump/radialExpension.png}
-    \caption{Radial expension of Dz over the impeller radius}
+    \caption{Example of a radial expension of Dz over the impeller radius}
     \label{fig:radialExpension}
 \end{figure}
 
-The \autoref{fig:radialExpension2} shows the radial expansion of the four forcing terms after a few DA analysis. Globally, curves looks like going a bit down. 
+The \autoref{fig:radialExpension2} shows the radial expansion of the four forcing terms after a DA analysis. Globally, curves looks like going a bit down, but not enough to make a conclusion. 
 
 \begin{figure}[H]
     \centering
@@ -323,7 +323,7 @@ As an additional attempt, the classical IBM method was partially replaced, at se
     \begin{subfigure}{0.95\textwidth}
         \centering
         \includegraphics[width=\linewidth]{images/numericalPump/applyPen0.png}
-        \caption{Velocity field obtained by enforcing $\omega r$, showing an initial suppression of the recirculation bubble.}
+        \caption{Velocity field obtained by enforcing $\omega r$, showing an initial suppression of the recirculation bubble}
         \label{fig:omega_r1}
     \end{subfigure}
 
@@ -332,7 +332,7 @@ As an additional attempt, the classical IBM method was partially replaced, at se
     \begin{subfigure}{0.8\textwidth}
         \centering
         \includegraphics[width=\linewidth]{images/LIC_43000_1e9x3.png}
-        \caption{Velocity field obtained a few iterations after enforcing $\omega r$.}
+        \caption{Velocity field obtained a few iterations \textbf{after releasing} the $\omega r$ enforcement}
         \label{fig:omega_r2}
     \end{subfigure}
 
@@ -341,7 +341,7 @@ As an additional attempt, the classical IBM method was partially replaced, at se
     \begin{subfigure}{0.8\textwidth}
         \centering
         \includegraphics[width=\linewidth]{images/3e11-penwr-1-1it.png}
-        \caption{Velocity field obtained long after enforcing $\omega r$, confirming the suppression of the recirculation bubble.}
+        \caption{Velocity field obtained long after \textbf{releasing} the $\omega r$ enforcement, confirming the sustained suppression of the recirculation bubble}
         \label{fig:omega_r3}
     \end{subfigure}
 
@@ -349,7 +349,7 @@ As an additional attempt, the classical IBM method was partially replaced, at se
     \label{fig:omega_r}
 \end{figure}
 
-This ad-hoc strategy partially alleviates the issue of the recirculation bubble, as illustrated in \autoref{fig:omega_r}, but it also introduces secondary instabilities and lacks a rigorous physical basis. Nevertheless, these results suggest that directly enforcing the target velocity profile can effectively reproduce the wall boundary conditions. This observation indicates that it could be relevant to reconsider the penalisation-based IBM implementation within the PIMPLE algorithm, for instance by modifying the way the forcing term is imposed, in order to obtain a more stable and physically consistent treatment of the boundaries.
+This ad-hoc strategy partially alleviates the issue of the recirculation bubble, as illustrated in \autoref{fig:omega_r}, but it also introduces secondary instabilities and lacks a rigorous physical basis. Nevertheless, these results suggest that directly enforcing the target velocity profile can effectively reproduce the wall boundary conditions. This observation indicates that it could be relevant to reconsider the penalisation-based IBM implementation within the \ac{PIMPLE} (URANS) algorithm, for instance by modifying the way the forcing term is imposed, in order to obtain a more stable and physically consistent treatment of the boundaries.
 
 
 %After applying these strategies, the solution is still not satisfactory, as we can see in the \autoref{fig:UpdtC14_10NMRSE} where the NRMSEs remain high and the velocity field is still not physical and not converged.

@@ -29,9 +29,9 @@
 \contentsline {figure}{\numberline {3.4}{\ignorespaces Comparison between the profiles inside the diffuser for the numerical simulation (continuous lines), and the PIV data (dashed lines). In particular, (\bluelinePython ) represents the radial velocity $u_r$, (\orangeline ) depicts the azimuthal velocity $u_\theta $, and (\greenline ) illustrates the vertical velocity $u_z$. $\mathbf {D} = (3e7, 3e7, 3e7), D_k = 3e7, D_{\omega } = 3e7$}}{40}{figure.caption.28}%
 \contentsline {figure}{\numberline {3.5}{\ignorespaces First results of CONES optimisation. Slice at $z=0$, with $\mathbf {D} = (4e7, 2e7, 4e7), D_k = 3e7$ and $D_{\omega } = -3e7$}}{42}{figure.caption.29}%
 \contentsline {figure}{\numberline {3.6}{\ignorespaces Formation of the recirculation bubble in the diffuser}}{43}{figure.caption.30}%
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Velocity field for Dx = Dy, but with too high parameters, which made the simulation diverge}}{44}{figure.caption.31}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Velocity field for $Dx = Dy$, with high parameters causing the simulation to diverge}}{44}{figure.caption.31}%
 \contentsline {figure}{\numberline {3.8}{\ignorespaces Polynomial and sinusoidal interpolation of the blade shape}}{45}{figure.caption.32}%
-\contentsline {figure}{\numberline {3.9}{\ignorespaces Radial expension of Dz over the impeller radius}}{45}{figure.caption.33}%
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Example of a radial expension of Dz over the impeller radius}}{45}{figure.caption.33}%
 \contentsline {figure}{\numberline {3.10}{\ignorespaces Representation of the radial expension of the four forcing terms}}{46}{figure.caption.34}%
 \contentsline {figure}{\numberline {3.11}{\ignorespaces Evolution of the NRMSEs over EnKF analysis phases}}{47}{figure.caption.35}%
 \contentsline {figure}{\numberline {3.12}{\ignorespaces Illustration of the augmented coordinates for the interpolation of the field}}{47}{figure.caption.36}%

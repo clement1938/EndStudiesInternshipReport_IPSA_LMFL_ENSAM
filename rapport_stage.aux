@@ -232,6 +232,7 @@
 \newlabel{fig:interfaceMesh}{{3.2}{38}{Mesh interface between the pipe and the impeller}{figure.caption.26}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.2}IBM preliminary results}{40}{section.3.2}\protected@file@percent }
 \newlabel{sec:IBM_preliminary_results}{{3.2}{40}{IBM preliminary results}{section.3.2}{}}
+\ACRO{recordpage}{SIMPLE}{40}{1}{40}
 \@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces First results of the IBM for all parameters equal to 3e7. Slice at $z=0$ for $\mathbf  {D} = (3e7, 3e7, 3e7), D_k = 3e7, D_{\omega } = 3e7$}}{40}{figure.caption.27}\protected@file@percent }
 \newlabel{fig:Pumpfirst}{{3.3}{40}{First results of the IBM for all parameters equal to 3e7. Slice at $z=0$ for $\mathbf {D} = (3e7, 3e7, 3e7), D_k = 3e7, D_{\omega } = 3e7$}{figure.caption.27}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Comparison between the profiles inside the diffuser for the numerical simulation (continuous lines), and the PIV data (dashed lines). In particular, (\bluelinePython ) represents the radial velocity $u_r$, (\orangeline ) depicts the azimuthal velocity $u_\theta $, and (\greenline ) illustrates the vertical velocity $u_z$. $\mathbf  {D} = (3e7, 3e7, 3e7), D_k = 3e7, D_{\omega } = 3e7$}}{40}{figure.caption.28}\protected@file@percent }
@@ -246,12 +247,12 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces Formation of the recirculation bubble in the diffuser}}{43}{figure.caption.30}\protected@file@percent }
 \newlabel{fig:LIC}{{3.6}{43}{Formation of the recirculation bubble in the diffuser}{figure.caption.30}{}}
 \ACRO{recordpage}{NRMSE}{43}{1}{43}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.7}{\ignorespaces Velocity field for Dx = Dy, but with too high parameters, which made the simulation diverge}}{44}{figure.caption.31}\protected@file@percent }
-\newlabel{fig:diverged}{{3.7}{44}{Velocity field for Dx = Dy, but with too high parameters, which made the simulation diverge}{figure.caption.31}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.7}{\ignorespaces Velocity field for $Dx = Dy$, with high parameters causing the simulation to diverge}}{44}{figure.caption.31}\protected@file@percent }
+\newlabel{fig:diverged}{{3.7}{44}{Velocity field for $Dx = Dy$, with high parameters causing the simulation to diverge}{figure.caption.31}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3.8}{\ignorespaces Polynomial and sinusoidal interpolation of the blade shape}}{45}{figure.caption.32}\protected@file@percent }
 \newlabel{fig:bladeInterpolation}{{3.8}{45}{Polynomial and sinusoidal interpolation of the blade shape}{figure.caption.32}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.9}{\ignorespaces Radial expension of Dz over the impeller radius}}{45}{figure.caption.33}\protected@file@percent }
-\newlabel{fig:radialExpension}{{3.9}{45}{Radial expension of Dz over the impeller radius}{figure.caption.33}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.9}{\ignorespaces Example of a radial expension of Dz over the impeller radius}}{45}{figure.caption.33}\protected@file@percent }
+\newlabel{fig:radialExpension}{{3.9}{45}{Example of a radial expension of Dz over the impeller radius}{figure.caption.33}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3.10}{\ignorespaces Representation of the radial expension of the four forcing terms}}{46}{figure.caption.34}\protected@file@percent }
 \newlabel{fig:radialExpension2}{{3.10}{46}{Representation of the radial expension of the four forcing terms}{figure.caption.34}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3.11}{\ignorespaces Evolution of the NRMSEs over EnKF analysis phases}}{47}{figure.caption.35}\protected@file@percent }
@@ -262,34 +263,35 @@
 \newlabel{fig:diverged3}{{3.13}{48}{Velocity field diverged after applying all the strategies}{figure.caption.37}{}}
 \newlabel{fig:omega_r1}{{3.14a}{49}{Velocity field obtained by enforcing $\omega r$, showing an initial suppression of the recirculation bubble}{figure.caption.38}{}}
 \newlabel{sub@fig:omega_r1}{{a}{49}{Velocity field obtained by enforcing $\omega r$, showing an initial suppression of the recirculation bubble}{figure.caption.38}{}}
-\newlabel{fig:omega_r2}{{3.14b}{49}{Velocity field obtained a few iterations after enforcing $\omega r$}{figure.caption.38}{}}
-\newlabel{sub@fig:omega_r2}{{b}{49}{Velocity field obtained a few iterations after enforcing $\omega r$}{figure.caption.38}{}}
-\newlabel{fig:omega_r3}{{3.14c}{49}{Velocity field obtained long after enforcing $\omega r$, confirming the suppression of the recirculation bubble}{figure.caption.38}{}}
-\newlabel{sub@fig:omega_r3}{{c}{49}{Velocity field obtained long after enforcing $\omega r$, confirming the suppression of the recirculation bubble}{figure.caption.38}{}}
+\newlabel{fig:omega_r2}{{3.14b}{49}{Velocity field obtained a few iterations \textbf {after releasing} the $\omega r$ enforcement}{figure.caption.38}{}}
+\newlabel{sub@fig:omega_r2}{{b}{49}{Velocity field obtained a few iterations \textbf {after releasing} the $\omega r$ enforcement}{figure.caption.38}{}}
+\newlabel{fig:omega_r3}{{3.14c}{49}{Velocity field obtained long after \textbf {releasing} the $\omega r$ enforcement, confirming the sustained suppression of the recirculation bubble}{figure.caption.38}{}}
+\newlabel{sub@fig:omega_r3}{{c}{49}{Velocity field obtained long after \textbf {releasing} the $\omega r$ enforcement, confirming the sustained suppression of the recirculation bubble}{figure.caption.38}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3.14}{\ignorespaces Effect of enforcing $\omega r$ on the velocity field at different stages of the simulation.}}{49}{figure.caption.38}\protected@file@percent }
 \newlabel{fig:omega_r}{{3.14}{49}{Effect of enforcing $\omega r$ on the velocity field at different stages of the simulation}{figure.caption.38}{}}
+\ACRO{recordpage}{PIMPLE}{49}{1}{49}
 \abx@aux@cite{0}{SEO20111000}
 \abx@aux@segm{0}{0}{SEO20111000}
 \@writefile{toc}{\contentsline {chapter}{Conclusion}{50}{chapter*.39}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {3.15}{\ignorespaces Illustration of a real-time Digital Twin framework for a centrifugal pump}}{51}{figure.caption.40}\protected@file@percent }
 \newlabel{fig:DT_pump}{{3.15}{51}{Illustration of a real-time Digital Twin framework for a centrifugal pump}{figure.caption.40}{}}
-\@writefile{toc}{\contentsline {chapter}{Appendices table}{54}{appendix*.41}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{Appendices}{55}{appendix*.41}\protected@file@percent }
-\newlabel{annex:OpenFOAMRANS}{{1}{55}{}{annex.1}{}}
-\@writefile{toc}{\contentsline {section}{Appendix 1\ -- Discretization and coupling in OpenFOAM (RANS / U\,-RANS)}{55}{annex.1}\protected@file@percent }
-\newlabel{annex:OpenFoamArbo}{{2}{57}{}{annex.2}{}}
-\@writefile{toc}{\contentsline {section}{Appendix 2\ -- OpenFOAM Directory Tree}{57}{annex.2}\protected@file@percent }
-\newlabel{annex:conesDict}{{3}{58}{}{annex.3}{}}
-\@writefile{toc}{\contentsline {section}{Appendix 3\ -- Extract of conesDict}{58}{annex.3}\protected@file@percent }
-\newlabel{annex:BatchCode}{{4}{60}{}{annex.4}{}}
-\@writefile{toc}{\contentsline {section}{Appendix 4\ -- Batch code}{60}{annex.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{Appendices table}{53}{appendix*.41}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{Appendices}{54}{appendix*.41}\protected@file@percent }
+\newlabel{annex:OpenFOAMRANS}{{1}{54}{}{annex.1}{}}
+\@writefile{toc}{\contentsline {section}{Appendix 1\ -- Discretization and coupling in OpenFOAM (RANS / U\,-RANS)}{54}{annex.1}\protected@file@percent }
+\newlabel{annex:OpenFoamArbo}{{2}{56}{}{annex.2}{}}
+\@writefile{toc}{\contentsline {section}{Appendix 2\ -- OpenFOAM Directory Tree}{56}{annex.2}\protected@file@percent }
+\newlabel{annex:conesDict}{{3}{57}{}{annex.3}{}}
+\@writefile{toc}{\contentsline {section}{Appendix 3\ -- Extract of conesDict}{57}{annex.3}\protected@file@percent }
+\newlabel{annex:BatchCode}{{4}{59}{}{annex.4}{}}
+\@writefile{toc}{\contentsline {section}{Appendix 4\ -- Batch code}{59}{annex.4}\protected@file@percent }
 \abx@aux@nociteall
-\@writefile{toc}{\contentsline {chapter}{Bibliography}{62}{appendix*.42}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{List of acronyms}{64}{appendix*.43}\protected@file@percent }
-\newlabel{glossary}{{4}{64}{}{appendix*.43}{}}
+\@writefile{toc}{\contentsline {chapter}{Bibliography}{61}{appendix*.42}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{List of acronyms}{63}{appendix*.43}\protected@file@percent }
+\newlabel{glossary}{{4}{63}{}{appendix*.43}{}}
 \ACRO{total-barriers}{1}
-\@writefile{toc}{\contentsline {paragraph}{Résumé}{65}{appendix*.43}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Abstract}{65}{appendix*.43}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Résumé}{64}{appendix*.43}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Abstract}{64}{appendix*.43}\protected@file@percent }
 \abx@aux@read@bbl@mdfivesum{6E3B44BA04008C5F1A33802E1F11BE8A}
 \abx@aux@defaultrefcontext{0}{alexis}{nty/global//global/global/global}
 \abx@aux@defaultrefcontext{0}{angotPenalizationMethodTake1999a}{nty/global//global/global/global}
@@ -308,6 +310,9 @@
 \abx@aux@defaultrefcontext{0}{valeroEnhancedStateEstimation2025}{nty/global//global/global/global}
 \abx@aux@defaultrefcontext{0}{annurev:/content/journals/10.1146/annurev-fluid-120720-022129}{nty/global//global/global/global}
 \abx@aux@defaultrefcontext{0}{villanuevaAugmentedStateEstimation2023}{nty/global//global/global/global}
+\ACRO{usage}{SIMPLE=={1}}
+\ACRO{usage}{PIMPLE=={1}}
+\ACRO{usage}{PISO=={0}}
 \ACRO{usage}{KF=={1}}
 \ACRO{usage}{CPU=={1}}
 \ACRO{usage}{ML=={1}}
@@ -418,5 +423,7 @@
 \ACRO{pages}{BC=={30@1@30}}
 \ACRO{pages}{KF=={32@1@32}}
 \ACRO{pages}{MPI=={35@1@35}}
+\ACRO{pages}{SIMPLE=={40@1@40}}
 \ACRO{pages}{NRMSE=={42@1@42|43@1@43}}
-\gdef \@abspage@last{65}
+\ACRO{pages}{PIMPLE=={49@1@49}}
+\gdef \@abspage@last{64}
