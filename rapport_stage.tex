@@ -212,9 +212,9 @@
   short-indefinite = une,
 }
 
-\DeclareAcronym{U-RANS}{
-  short = U-RANS,
-  long = Unsteady Reynolds-Averaged Navier–Stokes,
+\DeclareAcronym{URANS}{
+  short = URANS,
+  long = Unsteady Reynolds-Averaged Navier-Stokes,
   short-indefinite = une,
 }
 
@@ -340,7 +340,7 @@
 
 \DeclareAcronym{RANS}{
   short = RANS,
-  long = Reynolds-Averaged Navier–Stokes equations,
+  long = Reynolds-Averaged Navier-Stokes equations,
   short-indefinite = une,
 }
 
@@ -486,7 +486,7 @@
 
 \DeclareAcronym{GIP}{
   short = GIP,
-  long = "Groupement d’Intérêt Public",
+  long = "Groupement d'Intérêt Public",
   short-indefinite = un,
 }
 
@@ -565,7 +565,7 @@
 
 \DeclareAcronym{DUERP}{
   short = DUERP,
-  long = "Document Unique d’Évaluation des Risques Professionnels",
+  long = "Document Unique d'Évaluation des Risques Professionnels",
   short-indefinite = le,
 }
 
@@ -691,7 +691,7 @@
   {\includegraphics[width=\paperwidth,height=0.32\paperheight, %\transparent{0.4}
   keepaspectratio]{images/numericalPump/Pump_sim2.png}}
   \vspace{2.0cm} % Adjust the spacing between the image and the title
-  \makebox[\paperwidth]{\textbf{Cross-section of the pump model}} % Center the title below the image
+  \makebox[\paperwidth]{\textbf{Cross section of the pump model}} % Center the title below the image
   }}}
 
 \captionsetup[table]{name=Table}
@@ -743,7 +743,10 @@
 
 \acresetall % Permet de redonner la définition des acronymes avec \ac{id}
 
-\input{chap2_pres_stage/chap2.tex}
+\input{chap2_establisment/chap2.tex}
+\newpage
+
+\input{chap3_application/chap3.tex}
 \newpage
 
 \input{conclusion/conclusion.tex}
@@ -753,19 +756,22 @@
 \listoffigures
 
 \newpage
+
+\appendix
+
 \chapter*{Appendices table}
 \addcontentsline{toc}{chapter}{Appendices table}
 
 \begin{itemize}
-    \item \textbf{Appendix 1} – Batch code used to run simulation on the Rome partition of TGCC cluster \dotfill \pageref{annex:BatchCode}
-    \item \textbf{Appendix 2} – OpenFOAM Directory Tree \dotfill \pageref{annex:OpenFoamArbo}
-    \item \textbf{Appendix 3} – Extract of conesDict file \dotfill \pageref{annex:conesDict}
-    % Ajoute ici les autres annexes au fur et à mesure
+    \item \textbf{Appendix 1} - Batch code used to run simulation on the Rome partition of TGCC cluster \dotfill \pageref{annex:BatchCode}
+    \item \textbf{Appendix 2} - Discretization and coupling in OpenFOAM (RANS / U\,-RANS) \dotfill \pageref{annex:OpenFOAMRANS}
+    \item \textbf{Appendix 3} - OpenFOAM Directory Tree \dotfill \pageref{annex:OpenFoamArbo}
+    \item \textbf{Appendix 4} - Extract of conesDict file \dotfill \pageref{annex:conesDict}
+    % Ajoute ici les autres annexes au fur et à mesure  % \annex{Discretization and coupling in OpenFOAM (RANS / U\,-RANS)}{annex:OpenFOAMRANS}
 \end{itemize}
-\newpage
-
 
 \newpage
+
 \input{annexes/annexes.tex}
 \newpage
 

@@ -1,0 +1,61 @@
+\documentclass[10pt, aspectratio=169]{beamer}
+
+% Thème et outer theme pour les cercles en haut
+\usetheme{Boadilla}
+\useoutertheme{miniframes}
+\setbeamertemplate{mini frame}[circle]
+\setbeamertemplate{mini frame in other subsection}[default][20]
+
+% Plan automatique au début de chaque section
+\AtBeginSection[]{
+  \begin{frame}{Plan}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\title{Exemple avec barre de progression}
+\author{Clément}
+\date{\today}
+
+\begin{document}
+
+% Page de titre
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% Plan initial
+\begin{frame}{Plan}
+  \tableofcontents
+\end{frame}
+
+\section{Introduction}
+\begin{frame}{Contexte}
+  Contenu de la première diapo.
+\end{frame}
+\begin{frame}{Objectifs}
+  Contenu de la deuxième diapo.
+\end{frame}
+
+\section{Méthodes}
+\begin{frame}{Modèle}
+  Contenu de la troisième diapo.
+\end{frame}
+\begin{frame}{Simulation}
+  Contenu de la quatrième diapo.
+\end{frame}
+
+\section{Résultats}
+\begin{frame}{Analyse}
+  Contenu de la cinquième diapo.
+\end{frame}
+\begin{frame}{Discussion}
+  Contenu de la sixième diapo.
+\end{frame}
+
+\section{Conclusion}
+\begin{frame}{Résumé}
+  Contenu de la dernière diapo.
+\end{frame}
+
+\end{document}

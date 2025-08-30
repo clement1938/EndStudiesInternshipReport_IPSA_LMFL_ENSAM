@@ -1,0 +1,305 @@
+\chapter{Application}
+\label{chap3}
+
+\section{Pump modelling}
+
+%The objective of the model is to try to find same physical behaviour as the experimental data. We call that digital twin.
+
+\autoref{fig:RESEDA_Model} illustrates the model of the pump on a $yz$ plane, for $x=0$. The suction pipe has a length of $H = 10 R_1$, allowing the near-wall boundary lawer to develop. Then, a cylinder, where the IBM and MRF will be applied, containing the impeller, is defined (the impeller in .stl can be find on github\footnote{\url{https://github.com/fromano88/CentrifugalPump}}).
+At the entrance of the impeller/outlet of the suction pipe junction and at the outlet of the impeller/inlet of the diffuser junction, there was leakage as the whole impeller that was moving during the experiment.
+We assume a zero-leakage as we aren't in a very hight mass flow rate.
+
+In our simulation, the z-axis aligns with the rotational axis, and the reference frame is centred at the impeller. The plane at $z = 0$ divides the diffuser into two identical halves.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/model/RESEDA_sketch.pdf}
+    \caption{Model of the RESEDA benchmark}
+    \label{fig:RESEDA_Model}
+\end{figure}
+
+\newpage
+
+Boundary conditions are defined as follows:
+\begin{itemize}
+    \item[$-$] Inlet: velocity inlet
+    \item[$-$] Outlet: pressure outlet
+    \item[$-$] Wall: no-slip wall
+\end{itemize}
+
+To process CFD, we need to discretize the numerical model of the pump. The mesh is generated using the \texttt{blockMesh} utility, which is a built-in OpenFOAM tool. It is composed of around 11 million hexahedral cells. (quasi only, excepted some interface, cf \autoref{fig:interfaceMesh}). We don't need complex mesh because we don't need to fit the geometry of the impeller as we use IBM.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/numericalPump/frontalView.pdf}
+    \caption{Mesh interface between the pipe and the impeller}
+    \label{fig:interfaceMesh}
+\end{figure}
+
+
+Regarding the near-wall treatment, at the suction pipe, $y^+ \approx 1$, enabling direct resolution of the viscous sublayer and imposition of boundary conditions without wall functions. On the other hand, the highest y + value in the body-fitted regions corresponds to $y^+ \approx 83$, so some of the mesh elements (mainly close to the lower wall of the diffuser) are located in the logarithmic region, thus requiring wall functions. Within the rotating cylinder and around the impeller, the mesh resolution yields $y^+ \approx 100$. The friction velocity $U_\tau$ is assumed to be around 20 - 25 times smaller than the peripheral velocity $U_2$ . The
+blades are discretised to ensure an average of six mesh elements across their solid thickness, preventing excessively thin regions.
+
+
+The penalisation coefficients used in the \autoref{eq:IB} are defined as follows:
+
+
+\begin{align}
+    \boldsymbol{u}_{\text{ib}} &= \cancel{\boldsymbol{u}_r} + \boldsymbol{\Omega} \times \boldsymbol{r} \\
+    \mathcal{K}_{\text{ib}} &= 0 \\
+    \omega_{\text{ib}} &= \left( \omega_{\text{vis}}^2 + \omega_{\text{log}}^2 \right)^{1/2}
+\end{align}
+
+where $\boldsymbol{u}_r = 0$, $\omega_{vis}=\frac{6 \nu}{\beta_1 y_{\mathrm{ref}}^2}$ is the viscous sublayer and $\omega_{log} = \frac{\sqrt{\mathcal{K}}}{C_\mu \kappa y_\mathrm{ref}}$ is the logarithmic region (see \ref{fig:NearWallModelling}).
+
+
+
+Knowing the mesh and the impeller velocity, based on the \autoref{eq:CFL}, we can compute the $\Delta_t$ at the tip of the impeller, where the velocity is the highest and $\Delta_x$ the lowest.
+
+- In our model, $\Delta_{x}$ is the distance between two cells in the azimuthal direction at the tip of the impeller, which is given as 1.5 mm or 0.0015 m.
+
+- $\|U_{\infty}\|$ is the magnitude of the maximal velocity usually "at infinity distance" from the body, which in our case can be approximated by the tangential velocity at the tip of the impeller.
+
+\begin{equation}
+    \|U_{\infty}\| = \Omega \cdot r_{tip}
+\end{equation}
+
+where:
+
+- $\omega$ is the angular velocity in radians per second,
+
+- $r_{tip}$ is the radius at the tip of the impeller.
+
+Assuming the radius at the tip of the impeller is $r = 0.2566 \text{ m}$, we can compute the tangential velocity:
+
+\begin{equation}
+    \|U_{\infty}\| = 125.66 \text{ rps} \cdot 0.2566 \text{ m} =  \text{32.24 m/s}
+\end{equation}
+
+Assuming the distance between two cells in the azimuthal direction at the tip of the impeller is $\Delta_{x} = 0.0015 \text{ m}$ (which is 1.5 mm) we can now compute the time step $\Delta_{t}$:
+
+\begin{equation}
+    \Delta_{t} = \frac{0.5 \cdot 0.0015 \text{ m}}{32.24 \text{ m/s}} = 2.3 \times 10^{-5} \text{ s} % \approx 2.3 \mu s.
+\end{equation}
+
+\newpage
+
+
+
+
+%As we are in a steady simulation, the restult of the numerical pressure is divided by the density of the fluid.
+
+%\begin{equation}
+%    \Delta P_{P} = 32.2^{2} \times 0.4 = 415 Pa
+%\end{equation}
+
+
+
+
+\newpage
+\section{IBM preliminary results}%and modifications on OpenFOAM 
+\label{sec:IBM_preliminary_results}
+
+%\textbf{IBM preliminary results}
+
+Once the pump model is implemented in OpenFOAM, we can run the simulation with the IBM.
+After empirical tests and with experience of the laboratory, we found that the parameters $\mathbf{D} = (3e7, 3e7, 3e7), D_k = 3e7$ and $D_{\omega} = 3e7$ are a good starting point for the IBM parameters. And it verifies a converged CFD solution.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\textwidth]{images/numericalPump/mvt.png}
+    \captionsetup{justification=centering}
+    \caption{First results of the IBM for all parameters equal to 3e7. Slice at $z=0$ for $\mathbf{D} = (3e7, 3e7, 3e7), D_k = 3e7, D_{\omega} = 3e7$}
+    \label{fig:Pumpfirst}
+\end{figure}
+
+With the conditions specified in the \autoref{tab:pump_parameters}, and a value of 3e7 for the all five forcing parameters, we obtain these velocity profils comparing the velocities of the simulation and of the PIV data. Both are averages over time and over the angle \(\theta\):
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/numVSxp.pdf}
+    \caption{Comparison between the profiles inside the diffuser for the numerical simulation (continuous lines), and the PIV data (dashed lines). In particular, (\protect\bluelinePython) represents the radial velocity $u_r$, (\protect\orangeline) depicts the azimuthal velocity $u_\theta$, and (\protect\greenline) illustrates the vertical velocity $u_z$. $\mathbf{D} = (3e7, 3e7, 3e7), D_k = 3e7, D_{\omega} = 3e7$} % \textit{(a)} Position of the PIV measurement planes, \textit{(b)} simplification of the experimental data (time- and azimuthally-averaged) for employment in the Data Assimilation experiment, and \textit{(c)} c
+    \label{fig:numVSxp}
+\end{figure}
+
+As seen in \autoref{fig:polar_slice_avg_theta_trimmed}, we use five observation points on the three PIV plans.
+Our goal is to make these curves fit as much as possible.
+
+
+We have already seen that there is a notable difference beteween the experimental and numerical radial velocity in the plan at 75\%. The numerical simulation predicts a negative velocity instead of a positive one. This is explained by a non physical recirculation bubble as you can see in the \autoref{fig:LIC} deeper exmplained in the following part. %\autoref{...}
+
+A good indicator of the accuracy of the simulation is the performance of the pump. It's directly linked to the pressure difference between the outlet and the inlet. As seen in the previous \autoref{sec:Experimental_data_and_pre-processing}, we should obtain around 415Pa. In our case, we obtain a pressure difference of around 306 Pa, far from what we expect.
+
+
+
+%At pump flow rate = pump design flow rate So Q?/Q? =1
+%\subsection{Modifications on OpenFOAM} %Preparation   %  and CONES for the DA
+
+%S'aider du plan de la présentation MALEAF + thèse M
+%Expliquer comment j'applique la DA sur le cas test de la pompe centrifuge (pas d'equation)
+
+
+\section{First simple application of the DA}
+\label{sec:Application_of_the_DA}
+
+As represented on the \autoref{fig:CONES}, we need to adapt the OpenFOAM and CONES codes to apply the EnKF on the centrifugal pump case. Among others, the MPI exchanges are coded.
+
+\textbf{Modifications on OpenFOAM}
+Previously, OpenFOAM has been adapted to our case, including the implementation of the IBM and MRF methods, as well as the definition of the mesh and boundary conditions. Now, we need to adapt OpenFOAM to work with CONES, by including MPI processes that will allow to run a simulation with variable IBM parameters and that will be able to return interpolated averaged velocities to CONES.
+
+\textbf{Adaptations on CONES}
+Although CONES is already adapted to work with OpenFOAM, we still need to adjust the code to fit our specific observations.
+
+\textbf{Test case}
+Finally, we have to initialize a repesitory for the test case, i.e., the centrifugal pump. This includes defining the initial parameters, the observation points, and the initial state of the ensemble members, including a \texttt{conesDict}.
+
+
+\textbf{Parameters} To determine the variance for the initial perturbation, two perspectives were considered. The experience at lab shows that an initial perturbation of around $5\%$ of variance is good. From our side, the target was that, around only one ensemble member differs by maximum approximately $1 \times 10^7$ from the previous time step, for parameter values of order $3 \times 10^7$. With 30 ensemble members, this corresponds to about $95\%$ of the values (i.e., within $2\sigma$) being contained in the interval 
+\[
+[3 \times 10^7 \pm 1 \times 10^7].
+\]
+This leads to a standard deviation of 
+\[
+\sigma = 0.5 \times 10^7,
+\]
+or about $17\%$.
+We finally choose a variance of 5\% for the first test.
+
+Let us introduce the observation window.  
+The observation window was defined by observing the number of iterations required for the influence of the IBM forcing to reach the diffuser and take the form of the converged result. Turbulence parameters were not considered for defining this window, since their effect is present throughout the domain and their influence is almost immediate (although their convergence is slower).  
+
+The number of iterations between two analysis phases was determined by monitoring how many iterations are required for a parameter perturbation (e.g., $34\%$ change) to significantly affect the solution in the diffuser. What matters here is not full convergence, but that the solution starts to follow the correct trend. For turbulence parameters, this timescale is expected to be much shorter, since the forcing is applied everywhere in the domain.  
+We determined a number of 800 iterations for the observation window.
+
+The \texttt{conesDict} and the \texttt{controlDict} contains the parameters of the EnKF algorithm, such as the observation window and the following. In our case, we set the number of ensemble members to 30, no inflation, no state optimisation (only parameters), and an absolute observation noise on the velocity of $0.2 \, \text{m/s}$ (equivalent to $1.5\%$ of the maximum observed velocity). These parameters must be adjusted depending on the specific requirements of the simulation and the characteristics of the data. The number of iterations (800) was determined by testing the convergence trend of a single OpenFOAM simulation when parameters are modified by 34\% (i.e., seven times the standard deviation of the initial parameter perturbation). Since the standard deviation may temporarily increase with iterations, care must be taken when choosing this number.
+An extract of the \texttt{conesDict} is given in appendix~\ref{annex:conesDict}.  
+
+%MThe \texttt{conesDict} contains the parameters of the EnKF algorithm such as the following. In our case, we set the number of ensemble members to 30, an observation window of 800 iterations, no inflation, no state optimisation (only parameters), and the absolute observation noise on the velocity of $0.2m/s$ (equivalent to $1.5\%$ of the maximal observation on the velocity). These parameters have to be adjusted based on the specific requirements of the simulation and the characteristics of the data.
+%The number of iterations is set to 800 by testing the tendancy of the convergence of one OpenFOAM simulation when parameters are modify of 40\%, which is 20 times the standard deviation of the initial perturbation on parameters (the standard deviation can momenta,ly increase with iterations, so we need to be careful with the number of iterations).
+
+%As initial parameters to optimise, we use the same as in the previous section, i.e., $\mathbf{D} = (3e7, 3e7, 3e7), D_k = 3e7$ and $D_{\omega} = 3e7$, with a gaussian perturbation of 2\%.
+%Comment calculer la variance que je veux mettre ?
+%Expérience: 5\%
+%De mon coté: je vise qu'en moyenne un membre d'ensemble ait un écart de 1e7 par rapport au temps précédent (pour des valeurs autour de 5e7), donc, pour 30 membres d'ensemble, environ 95\% = 2 sigma dans 5e7+-1e7, càd sigma = 0.5e7 = 10\%. Ensuite, le nombre d'itération entre les phases d'analyse est déterminé en regardans combien d'itération sont nécessaires pour faire varier la solution dans le diffuser (influe, rapidement, converge doucement mais ce qui nous intéresse c'est que ça prenne la tendace) lorsqu'un paramètre de forcage est modifié (supposé très inférieure pour la turbulence car appliquée de partout)
+
+
+\textbf{First results}
+
+After letting the simulation run for around 50 iterations, we obtain the first results of the optimisation with CONES. Usually, around 200 iterations are needed to converge but is not need for a first result and cost a lot of CPU time (1270 CPU $\times$ hours per EnKF iteration).
+The parameters are optimised to fit the PIV data, and the velocity field is represented on a slice at $z=0$. The resulting parameters are the following: $\mathbf{D} = (4e7, 2e7, 4e7), D_k = 3e7$ and $D_{\omega} = -3e7$. The sum of the \ac{NRMSE} on the velocity field decreased, of around 20\%. The global performance of the pump didn't change significantly.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\textwidth]{images/numericalPump/assymetrie.png}
+    \captionsetup{justification=centering}
+    \caption{First results of CONES optimisation.\\Slice at $z=0$, with $\mathbf{D} = (4e7, 2e7, 4e7), D_k = 3e7$ and $D_{\omega} = -3e7$}
+    \label{fig:PumpfirstAssymetry}
+\end{figure}
+
+We would expected $D_x = D_y$ because the geometry is symmetrical, but we see that the optimisation converges to a solution where $D_x \neq D_y$. The local minimum found by the optimisation gives us a unsatisfactory solution.
+Also, $D_{\omega}$ is negative, which does not correspond to physical results.
+
+
+\newpage
+\section{Analysis and Results}
+\label{sec:Results}
+
+Looking at the physics of the pump CFD optimise by DA more in detail, we realize that the IBM method as applied here does not give us a physical result at all and the DA does not allow us to improve this result. It let the flow passing through the external part of the impeller (see \autoref{fig:LIC}), which is not physical. This imply a recirculation bubble in the diffuser that we would like to avoid.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/numericalPump/LIC.png}
+    \caption{Formation of the recirculation bubble in the diffuser}
+    \label{fig:LIC}
+\end{figure}
+
+To try to counter this problem, a few strategies are deployed one by one, tested separately or in combination (each DA analysis cost a lot of CPU time, so we are limited in the number of analysis we can do):
+
+\textbf{Strategie 1.} \boldmath{$D_x = D_y$}
+The strategy is to force $D_x = D_y$ (it helps the convergence by the way, by reducing the number of parameters to optimise).
+In that case, the parameters vector is reduced to $\mathbf{D} = (D_x, D_z, D_k, D_{\omega})$.
+
+This strategy works well, until parameters gows up to make the simulation diverge (see \autoref{fig:diverged}). So it not solve the problem of the recirculation bubble, but it helps to have a more physical result. The sum of the \ac{NRMSE} on the velocity field decreased, of around 15\% before collaps again to a result with no circular repetition.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/numericalPump/diverged.png}
+    \caption{Velocity field for Dx = 4e7 and Dy = 2e7}
+    \label{fig:diverged}
+\end{figure}
+
+
+\textbf{Strategie 2.} \boldmath{$D_{\omega} > 0$}
+The strategy is to force $D_{\omega} > 0$, keeping a variance between each other to allow the parameters to vary.
+
+This strategy has alwais been apply after the first simulation and always works wells.
+
+\textbf{Strategie 3. Radial expansion}
+The strategy is to use a radial expansion of the five forcing coefficients as illustrated in the \autoref{fig:radialExpension}.
+We used a second order polynomial to represent the radial expansion of the forcing coefficients, for a few raisons:
+\begin{itemize}
+    \item it allows to have a more complete representation of the forcing coefficients, which can help to better fit the experimental data;
+    \item it allows to have a smooth variation of the coefficients over the impeller radius, which is more realistic than a constant value;
+    \item it allows to describe pretty well the geometry in a quadratic way, which is more complete than a sinusoidal representation (see \autoref{fig:bladeInterpolation}) which would also require 3 parameters;
+    \item three parameters are not too many so that the optimisation is not too long and the convergence is not too difficult;
+    \item it permits to eliminates a step of the value to 0 at the blade tips for a continuity of order 0, which can be important for the numerical stability of the simulation.
+\end{itemize}
+In that case, the parameters vector change from five values to fifteen values.
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/numericalPump/radialExpension.png}
+    \caption{Radial expension of Dz over the impeller radius}
+    \label{fig:radialExpension}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/blade_interpolation_1.png}
+    \caption{Polynomial and sinusoidal interpolation of the blade shape}
+    \label{fig:bladeInterpolation}
+\end{figure}
+
+\textbf{Strategie 4. More global interpolation}
+
+The following explanations are based on the \autoref{fig:augmentedCoords}.
+The minimum is found based on the blue cercles "coords\_seventh" interpolated points and averaged on the "avg\_seventh\_360" red point localisation. To try to have a more uniform field solution, we can average the parameters over a larger area, i.e., over 360 degrees instead of $360/7$ degrees. This allows to have a more global view of the parameters and to avoid local minima (green squares "coords\_7" average on the red cercles). But this can also lead to a solution that does not respect the periodicity of the pump, i.e., the solution is not 7 times the same pattern. So we can also average the parameters over 7 segments of $360/7$ degrees, which allows to have a more uniform field solution while respecting the periodicity of the pump (orange cruses "coords\_360" and purple cercles "avg\_7"). In this last case, the length of the coordinate of the observation points is 105 (5 variables, 3 PIV planes, and 7 segments of $360/7$ degrees) and the length of the observation vector is 315 (3 dimensions, 105 points).
+%Pour cela j'ai commencé en moyennant 1/7 mais les paramètres étant locaux (non globaux), j'ai ensuite moyenné sur 360 degrés, ce qui permet de mieux prendre en compte les variations locales des paramètres. Cependant, nous pouvons converger vers une moyenne physique qui atteinds un minimum local mais qui ne respecte pas d'avoir 7 fois le même pattern. Cela permet à Fx d'être très différent de Fy mais aussi à la simulation de diverger avec des paramètres et vitesses erronéees. Pour palier ce problème, je compare la moyenne des patternes sur mes 7 segments de 360/7 degrés.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/numericalPump/coords.png}
+    \caption{Illustration of the augmented coordinates for the interpolation of the field}
+    \label{fig:augmentedCoords}
+\end{figure}
+
+\textbf{Strategie 5.Inflation} The inflation strategy (explained in the \autoref{eqn:inflation}) is to use a more complex DA method, such as the EnKF with inflation, which allows to escape from local minima by adding noise to the ensemble members. This can help to explore the parameter space more effectively and find a better solution. But we finally didn't have this problem in our case so it hasn't been used.
+
+\textbf{Strategie 6.Pressure observation} Finaly, we can also add a pressure observation to the DA, which allows to take into account the pressure difference between the inlet and the outlet of the pump. This can help to improve the convergence of the solution and to have a more physical result. The pressure observation represents the difference of pressure between the inlet of the pipe and the outlet of the diffuser. The numerical coefficients are interpolating, respectively at (0,0,-0.35) and (0,0.390,0). Incertitude on p will be less than the measured one to take it better into account.
+This implementation add one element on the observation vector.
+
+%Sans inflation pour commencer. Si on converge vers une solution qui ne nous satisfait pas, on peut essayer d'ajouter... Cela permet de s'échaper d'un minimum local en ajoutant du bruit artificiellement. 
+
+
+
+After applying these strategies, the solution is still not satisfactory, as we can see in the \autoref{fig:UpdtC14_10NMRSE} where the NRMSEs remain high and the velocity field is still not physical and not converged (see \autoref{fig:diverged2}). The NRMSEs are computed between the numerical simulation and the PIV data, and we can see that they remain high, especially for the radial velocity and velocity over z, because of the no physical recirculation bubble.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/UpdtC14_10NMRSE.png}
+    \caption{Evolution of the NRMSEs over EnKF analysis phases. Legend is organisez as follows: NMRSE 1 to 3 are for the radial velocities at respectively 25\%, 50\% and 75\% of the impeller height; NRMSE 4 to 6 for the azimuthal velocities and NRMSE 7 to 9 are oredered following the same ideal; NRMSE 10 is for the pressure difference between the inlet and the outlet of the pump.}
+    \label{fig:UpdtC14_10NMRSE}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/numericalPump/diverged.png}
+    \caption{Velocity field for Dx = 4e7 and Dy = 2e7}
+    \label{fig:diverged2}
+\end{figure}
+
+After applying these strategies, the solution is still not satisfactory, as we can see in the \autoref{fig:UpdtC14_10NMRSE} where the NRMSEs remain high and the velocity field is still not physical and not converged.
+

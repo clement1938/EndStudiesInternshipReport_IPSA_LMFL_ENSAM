@@ -1,6 +1,4 @@
 \documentclass[10pt, aspectratio=169, dvipsnames]{beamer}
-\usetheme{Boadilla}
-\usefonttheme{serif} % default family is serif
 
 \usepackage{comment}
 
@@ -52,6 +50,28 @@
 \usepackage{fancyvrb}
 \usepackage{fvextra}
 
+%\usetheme{Boadilla} % Darmstadt
+\usetheme{Boadilla}
+\useoutertheme{miniframes}
+\setbeamertemplate{mini frame}[circle]
+\setbeamertemplate{mini frame in other subsection}[default][20]
+
+% Définit la couleur du texte des titres de section en blanc dans la barre de navigation
+\setbeamercolor{section in head/foot}{fg=white}
+\setbeamercolor{section in head/foot shaded}{fg=white!50} % Pour les sections non actives
+%\setbeamercolor{frametitle}{fg=white}
+\setbeamercolor{author in head/foot}{fg=white}
+\setbeamercolor{title in head/foot}{fg=white}
+\setbeamercolor{mini frame title}{fg=white}
+
+\setbeamercolor{mini frame title}{fg=white}
+\setbeamercolor{section in head/foot}{fg=white}
+\setbeamercolor{section in head/foot shaded}{fg=white!50}
+\setbeamercolor{subsection in head/foot}{fg=white}
+\setbeamercolor{subsection in head/foot shaded}{fg=white!50}
+
+%\setbeamercolor{date in head/foot}{fg=white}
+
 \newcommand{\backupbegin}{
    \newcounter{framenumberappendix}
    \setcounter{framenumberappendix}{\value{framenumber}}
@@ -85,15 +105,15 @@
 
 \titlegraphic{
 \begin{tikzpicture}[overlay,remember picture]
-\node[right=0.2cm, yshift=-1cm] at (current page.150){
-	\includegraphics[width=3.5cm]{logos/Logo ENSAM.png}
+\node[right=0.2cm, yshift=-1.6cm] at (current page.150){
+	\includegraphics[width=1.9cm]{../logos/IPSA.png}
 };
 \end{tikzpicture}
 
 
 \begin{tikzpicture}[overlay,remember picture]
-\node[left=0.2cm, yshift=-1cm] at (current page.30){
-	\includegraphics[width=2.5cm]{logos/Logo LMFL.png}
+\node[left=0.2cm, yshift=-1.6cm] at (current page.30){
+	\includegraphics[width=5.0cm]{../logos/logos.png}
 };
 \end{tikzpicture}
 }
@@ -102,13 +122,30 @@
 \title[Stage de fin d'études]{\texorpdfstring{\structure{Optimisation de la performance d'une pompe centrifuge par assimilation de données}}{Optimisation de la performance d'une pompe centrifuge par assimilation de données}}
 
 
-\author[Clément THIBAULT]{
-  Clément THIBAULT\texorpdfstring{\textsuperscript{\dag}}{\dag}
+\author[
+  Clément THIBAULT
+  %Samy LABSIR,
+  %Marcello MELDI,
+  %Antoine DAZIN,
+  %Miguel MATINEZ VALERO
+]{
+  \textbf{Stagiaire :} Clément THIBAULT\texorpdfstring{\textsuperscript{1, 2}}{\textsuperscript{1, 2}} \\
+  \textbf{Superviseur IPSA :} Samy LABSIR\texorpdfstring{\textsuperscript{1}}{\textsuperscript{1}} \\
+  \textbf{Superviseurs entreprise :} Marcello MELDI\texorpdfstring{\textsuperscript{2}}{\textsuperscript{2}}, Antoine DAZIN\texorpdfstring{\textsuperscript{2}}{\textsuperscript{2}}, Miguel MATINEZ VALERO\texorpdfstring{\textsuperscript{2}}{\textsuperscript{2}}
 }
-\institute{\textsuperscript{{\dag}}Univ. Lille, CNRS, ONERA, Arts et Métiers ParisTech, Centrale Lille, UMR 9014- LMFL- Laboratoire de Mécanique des fluides de Lille - Kampé de Feriet, F-59000 Lille, France}
-\date{DATE}
+\institute[
+  Institut Polytechnique des Sciences Avancées (IPSA),
+  Laboratoire de Mécanique des Fluides de Lille (LMFL)
+]{
+  \textsuperscript{1} Institut Polytechnique des Sciences Avancées (IPSA) \\
+  \textsuperscript{2} Laboratoire de Mécanique des Fluides de Lille (LMFL)
+}
+
+
+\date{4 septembre 2025}
 
 \setbeamersize{text margin left=10mm,text margin right=10mm}
+
 
 \setbeamercolor{lower separation line head}{bg=red}
 \makeatletter
@@ -116,12 +153,12 @@
   \nointerlineskip%
     \vskip0.0cm%
    \begin{beamercolorbox}[wd=\paperwidth,leftskip=.1cm,rightskip=.3cm plus1fil,vmode]{frametitle}%
-        \begin{minipage}{1.5cm}%
+        \begin{minipage}{1.8cm}%
         \begin{flushleft}
-            \includegraphics[height=1cm, width=1.6cm, trim = {0 3cm 0 3cm}, clip]{logos/Logo ENSAM.png}%
+            \includegraphics[height=0.75cm]{../logos/IPSA.png}%, width=1.3cm, trim = {0 3cm 0 3cm}, clip
         \end{flushleft}
         \end{minipage}%
-        \begin{minipage}{13cm}%
+        \begin{minipage}{10.2cm}%
         \vspace{0.25cm}
     \usebeamerfont*{frametitle}\insertframetitle\centering%
       \ifx\insertframesubtitle\@empty%
@@ -130,16 +167,19 @@
         \par{\usebeamerfont*{framesubtitle}{\usebeamercolor[fg]{framesubtitle}\insertframesubtitle}\strut\par}%
       \fi%%
         \end{minipage}%
-        \begin{minipage}{1.5cm}%
+        \begin{minipage}{4cm}%
         \begin{flushleft}
-            \includegraphics[height=0.8cm, width=1.3cm]{logos/Logo LMFL.png}%
+            %\includegraphics[height=0.8cm, width=1.3cm]{logos/Logo LMFL.png}%
+            \includegraphics[height=0.6cm]{../logos/logos.png}%Logo ENSAM.png}  % , width=1.3cm
         \end{flushleft}
         \end{minipage}%
   \end{beamercolorbox}%
-  \vskip-0.05cm
+  \vskip -0.2cm
   \begin{beamercolorbox}[colsep=1.0pt,wd=\paperwidth]{lower separation line head}
   \end{beamercolorbox}
 }
+
+
 \makeatother
 
 \usepackage{nicematrix,tikz}
@@ -171,6 +211,13 @@
 
 %\setbeamertemplate{sections/subsections in toc}[square]
 \begin{document}
+% Slide de plan au début de chaque section
+\AtBeginSection[]{
+  \begin{frame}{Plan}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
 
 \setbeamertemplate{caption}{\raggedright\insertcaption\par} 
 
@@ -211,54 +258,132 @@
 
 
 
-\section{Expérimentale}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \begin{frame}{Laboratoire et site d'acceuil}
+        \begin{columns}
+            \begin{column}{0.60\textwidth}
+                \includegraphics[scale=0.25]{../images/other/LMFL_facilities.png}
+            \end{column}
+            \begin{column}{0.35\textwidth}
+                \begin{enumerate}
+                    \item Centrale Lille
+                    \item Université de Lille
+                    \item Arts et Métiers (ENSAM)
+                    \item ONERA
+                    \item CNRS
+                \end{enumerate}
+            \end{column}
+        \end{columns}
+    \end{frame}
+
+
+    \begin{frame}{Domaine d'expertise du LMFL à l'ENSAM}
+        \begin{itemize}
+            \item Mécanique des fluides numérique
+            \item Ecoulements tourants
+            \item Assimilation de données
+        \end{itemize}
+    \end{frame}
+
+
+    \begin{frame}{Sujet du stage}
+
+        \begin{itemize}
+            \item \textbf{Pompes centrifuges} : équipements généralement industriels, utilisés dans divers secteurs (eau, pétrole, chimie, énergie).
+            \item \textbf{mécanique des fluides numérique numériquee} : important pour la prédiction du comportement physique, la conception et l'optimisation, mais confrontée à la complexité des écoulements.
+            \item \textbf{Optimisation de la performance} : essentielle pour réduire la consommation énergétique et les coûts opérationnels.
+            \item \textbf{Objectif du stage} : améliorer la performance d'une pompe centrifuge en utilisant des techniques d'assimilation de données (DA) pour ajuster les paramètres du modèle numérique.
+        \end{itemize}
+
+    \end{frame}
+
+
+
+%\begin{frame}{État de l'art}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section{Laboratoire et site d'acceuil}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    %\begin{frame}{Contexte et objectifs du stage}
+    %\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Outils numériques et État de l'art} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+    \begin{frame}{La mécanique des fluides}
+
+
+    \end{frame}
+
+
+    \begin{frame}{Le filtre de Kalman}
+
+
+    \end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Données et préparation du cas d'étude} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\includegraphics[scale=0.5]{../images/profil_pression_entrancePipe.png}
 
 \begin{frame}{Expérimentale}
 
-\begin{columns}
-    \hspace{-0.1cm}
-    \begin{column}{0.3\textwidth}
-        %\begin{columns}
-            %\begin{column}{0.542\textwidth}
-        \includegraphics[scale=0.31]{figures/RESEDA_benchmark.png}
-            %\end{column}
-            %\begin{column}{0.458\textwidth}
-        \includegraphics[scale=0.20]{figures/image1.png}
-    \end{column}
-        %\end{columns}
-    %\end{column}
-    
-    \begin{column}{0.3\textwidth}
-        \includegraphics[scale=0.4]{figures/impeller_position.png}
-    \end{column}
-    \hspace{-1.5cm}
-    \begin{column}{0.45\textwidth}
-    \small{
-        \begin{itemize}
-            \item $Re_\Omega=\cfrac{R_2^2 \Omega}{\nu} = 5.53\times10^5$ \textrm{\textbf{(turbulent)}}
-            \item $Ma = \cfrac{R_2 \Omega}{c} = 0.095$ \textrm{\textbf{(incompressible)}}
-            \item Point de fonctionnement au point de design \[\frac{Q}{Q_d} = 1\]
-            \item Vitesse de rotation : 1 200 tr/min
-            \item 7 aubes
-            \item Données PIV à 980Hz
-        \end{itemize}
-    }
-    %\hspace{-4cm}
+    \begin{columns}
+        \hspace{-0.1cm}
+        \begin{column}{0.3\textwidth}
+            %\begin{columns}
+                %\begin{column}{0.542\textwidth}
+            \includegraphics[scale=0.31]{../figures/RESEDA_benchmark.png}
+                %\end{column}
+                %\begin{column}{0.458\textwidth}
+            \includegraphics[scale=0.20]{../figures/image1.png}
+        \end{column}
+            %\end{columns}
+        %\end{column}
+        
+        \begin{column}{0.3\textwidth}
+            \includegraphics[scale=0.4]{../figures/impeller_position.png}
+        \end{column}
+        \hspace{-1.5cm}
+        \begin{column}{0.45\textwidth}
+        \small{
+            \begin{itemize}
+                \item $Re_\Omega=\cfrac{R_2^2 \Omega}{\nu} = 5.53\times10^5$ \textrm{\textbf{(turbulent)}}
+                \item $Ma = \cfrac{R_2 \Omega}{c} = 0.095$ \textrm{\textbf{(incompressible)}}
+                \item Point de fonctionnement au point de design \[\frac{Q}{Q_d} = 1\]
+                \item Vitesse de rotation : 1 200 tr/min
+                \item 7 aubes
+                \item Données PIV à 980Hz
+            \end{itemize}
+        }
+        %\hspace{-4cm}
 
-    \end{column}
+        \end{column}
 
-\end{columns}
+    \end{columns}
 
 \end{frame}
 
 
-\section{Modélisation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Modélisation
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \begin{frame}{Modélisation}
     \begin{columns}
         \begin{column}{0.5\textwidth}
-            \includegraphics[scale=0.5]{figures/RESEDA_sketch.pdf}
+            \includegraphics[scale=0.5]{../figures/RESEDA_sketch.pdf}
             \footnotesize{\begin{itemize}
                 \item \textbf{Conditions aux limites :}
                     \begin{itemize}
@@ -270,7 +395,7 @@
         \end{column}
         \hspace{1cm}
         \begin{column}{0.5\textwidth}
-            \includegraphics[scale=0.25]{figures/polar_slice_avg_theta_trimmed.pdf}
+            \includegraphics[scale=0.25]{../figures/polar_slice_avg_theta_trimmed.pdf}
         \end{column}
     \end{columns}
 \end{frame}
@@ -279,7 +404,7 @@
 \begin{frame}{Modélisation avec la méthode de frontières immergées}
 
 \begin{block}{\texorpdfstring{\structure{\textbf{Penalisation IBM:}}}{Penalisation IBM:}}
-        Pénalisation continue de type IBM pour les écoulements incompressibles $\Rightarrow$ définition d’un \texorpdfstring{\structure{terme de forçage direct local}}{terme de forçage direct local} $\boldsymbol{f}_P$ dans les équations de Navier–Stokes, afin d’\textbf{imposer les conditions aux limites sur la paroi immergée} $\boldsymbol{(ib)}$.
+        Pénalisation continue de type IBM pour les écoulements incompressibles $\Rightarrow$ définition d'un \texorpdfstring{\structure{terme de forçage direct local}}{terme de forçage direct local} $\boldsymbol{f}_P$ dans les équations de Navier–Stokes, afin d'\textbf{imposer les conditions aux limites sur la paroi immergée} $\boldsymbol{(ib)}$.
 \end{block}
 
 \vspace{-0.2cm}
@@ -299,9 +424,9 @@
             \underbrace{- \xi \nu \boldsymbol{D} \left( \boldsymbol{u} - \boldsymbol{u}_{ib} \right)}_{\boldsymbol{f}_P}
         \end{equation*}
 
-        \includegraphics[scale=0.25]{figures/IBM_Mesh.pdf}
-        %\only<1>{\includegraphics[scale=0.25]{figures/IBM_Mesh.pdf}}
-        %\only<2>{\includegraphics[scale=0.25]{figures/implicit_forcing.png}}
+        \includegraphics[scale=0.25]{../figures/IBM_Mesh.pdf}
+        %\only<1>{\includegraphics[scale=0.25]{../figures/IBM_Mesh.pdf}}
+        %\only<2>{\includegraphics[scale=0.25]{../figures/implicit_forcing.png}}
     \end{column}
     \begin{column}{0.5\textwidth}
         avec $[p] = M \cdot L^{-1} \cdot T^{-2}$
@@ -325,6 +450,102 @@
 \end{columns}
     
 \end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Résultats}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DA avec le Filtre de Kalman d'ensemble
+
+\begin{frame}{DA avec l'EnKF - Premiers paramètres}
+
+    \begin{itemize}
+        \item optimisation des 5 paramètres de forcage ($3\times$ vitesse, énergie turbulente et dissipation)
+        \item paramètres initiaux tous égaux à $3 \times 10^7$
+        \item simulation RANS et données PIV moyennées temporellement
+        \item fenêtre d'observation : 800 itérations
+        \item 30 membres d'ensemble
+        \item pas d'optimisation d'état
+        \item 45 observations ($Ur U_{\theta} Uz$) sur 5 points sur 3 plans
+        \item bruit d'observation : 0,2 m/s, soit 1,5\% du max. d'observation sur la vitesse
+        %\item pas d'inflation
+    \end{itemize}
+
+\end{frame}
+
+\begin{comment}
+    
+\begin{frame}{\texorpdfstring{DA avec l'EnKF - Premiers résultats en stationaire}{DA avec l'EnKF - Premiers résultats en stationaire}}
+
+    \begin{columns}
+        
+    \column{0.48\textwidth}
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.6\linewidth]{new../figures/assymetrie.png}
+            \caption{\texorpdfstring{Champs de vitesse absolue pour\\ Dx = 4e7 et Dy = 2e7}{Champs de vitesse absolue pour Dx = 4e7 et Dy = 2e7}}
+            \label{fig:enter-label11}
+        \end{figure}
+
+    \column{0.48\textwidth}
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.6\linewidth]{new../figures/coords.png}
+            \caption{\texorpdfstring{Points d'observation de vitesse numérique avant moyenne azimutale}{Points d'observation de vitesse numerique avant moyenne azimutale}}
+            \label{fig:enter-label12}
+        \end{figure}
+
+
+    \end{columns}
+
+    Problème : mesure uniquement sur 1/7ème de la simulation numérique impliquant $Dx \neq Dy$.
+    La NRMSE diminue car ces parmètres cassent la bulle de recirculation mais le résultat n'est pas physique.
+
+\end{frame}
+\end{comment}
+
+
+\begin{frame}{DA avec l'EnKF - Premiers résultats}
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\linewidth]{../newFigures/UpdtC14_10NMRSE.png}
+        \caption{Bulle de recirculation localement détruite}
+        \label{fig:enter-label}
+    \end{figure}
+
+\end{frame}
+
+%\begin{frame}{DA avec l'EnKF - Premiers résultats}
+    %\begin{figure}
+        %\centering
+        %\includegraphics[width=0.6\linewidth]{../newFigures/UpdtC14_10params.png}
+        %\caption{Enter Caption}
+        %\label{fig:enter-label}
+    %\end{figure}
+%\end{frame}
+
+%\begin{frame}{DA avec l'EnKF - Premiers résultats}
+%\begin{figure}
+    %\centering
+    %\includegraphics[width=0.6\linewidth]{../newFigures/UpdtC14_NMRSE.png}
+    %\caption{Enter Caption}
+    %\label{fig:enter-label}
+%\end{figure}
+%\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusions et perspectives}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
 
 
 
@@ -355,13 +576,12 @@
     \end{column}
     \begin{column}{0.5\linewidth}
         \centering
-        \includegraphics[width=0.8\textwidth]{figures/pressure_profile.pdf}
-        \includegraphics[width=0.8\textwidth]{figures/velocity_profile.pdf}
+        \includegraphics[width=0.8\textwidth]{../figures/pressure_profile.pdf}
+        \includegraphics[width=0.8\textwidth]{../figures/velocity_profile.pdf}
     \end{column}
 \end{columns}
 \end{frame}
 
-\section{Modélisation IBM}
 
 
 \begin{frame}{Modélisation IBM}
@@ -371,20 +591,20 @@
             \begin{itemize}
                 \item \texorpdfstring{\structure{\textbf{Performance du diffuseur expérimentale et numérique similaire mais différente}}}{Performance du diffuseur expérimentale et numérique similaire mais différente}
 
-                \includegraphics[scale=0.4]{figures/diffuser_performance.pdf}
+                \includegraphics[scale=0.4]{../figures/diffuser_performance.pdf}
 
                 %\item \structure{\textbf{Performance of the impeller}} still needs to be checked with different IBM coefficients $\eta$
             \end{itemize}
         \end{column}
 
         \only<1>{\begin{column}{0.5\linewidth}
-            \includegraphics[scale=0.7]{figures/pressure_taps.png}
+            \includegraphics[scale=0.7]{../figures/pressure_taps.png}
         \end{column}}
 
         \only<2>{\begin{column}{0.5\linewidth}
             \centering
-            \includegraphics[width=0.9\textwidth]{figures/velocity_verProfile.pdf}
-            \includegraphics[width=0.9\textwidth]{figures/pressure_verProfile.pdf}
+            \includegraphics[width=0.9\textwidth]{../figures/velocity_verProfile.pdf}
+            \includegraphics[width=0.9\textwidth]{../figures/pressure_verProfile.pdf}
         \end{column}}
         
     \end{columns}
@@ -394,7 +614,7 @@
 \begin{frame}{Modélisation IBM}
 
     \begin{center}
-        \includegraphics[scale=0.3]{figures/numVSxp.pdf}
+        \includegraphics[scale=0.3]{../figures/numVSxp.pdf}
     \end{center}
 
     \begin{center}
@@ -404,105 +624,23 @@
 \end{frame}
 
 
-\section{DA avec le Filtre de Kalman d'ensemble}
-
-\begin{frame}{DA avec l'EnKF - Premiers paramètres}
-
-    \begin{itemize}
-        \item optimisation des 5 paramètres de forcage ($3\times$ vitesse, énergie turbulente et dissipation)
-        \item paramètres initiaux tous égaux à $3 \times 10^7$
-        \item simulation RANS et données PIV moyennées temporellement
-        \item fenêtre d'observation : 800 itérations
-        \item 30 membres d'ensemble
-        \item pas d'optimisation d'état
-        \item 45 observations ($Ur U_{\theta} Uz$) sur 5 points sur 3 plans
-        \item bruit d'observation : 0,2 m/s, soit 1,5\% du max. d'observation sur la vitesse
-        %\item pas d'inflation
-    \end{itemize}
-\end{frame}
-
-\begin{comment}
-    
-\begin{frame}{\texorpdfstring{DA avec l'EnKF - Premiers résultats en stationaire}{DA avec l'EnKF - Premiers résultats en stationaire}}
-
-    \begin{columns}
-        
-    \column{0.48\textwidth}
-        \begin{figure}
-            \centering
-            \includegraphics[width=0.6\linewidth]{newFigures/assymetrie.png}
-            \caption{\texorpdfstring{Champs de vitesse absolue pour\\ Dx = 4e7 et Dy = 2e7}{Champs de vitesse absolue pour Dx = 4e7 et Dy = 2e7}}
-            \label{fig:enter-label11}
-        \end{figure}
-
-    \column{0.48\textwidth}
-        \begin{figure}
-            \centering
-            \includegraphics[width=0.6\linewidth]{newFigures/coords.png}
-            \caption{\texorpdfstring{Points d'observation de vitesse numérique avant moyenne azimutale}{Points d'observation de vitesse numerique avant moyenne azimutale}}
-            \label{fig:enter-label12}
-        \end{figure}
-
-
-    \end{columns}
-
-    Problème : mesure uniquement sur 1/7ème de la simulation numérique impliquant $Dx \neq Dy$.
-    La NRMSE diminue car ces parmètres cassent la bulle de recirculation mais le résultat n'est pas physique.
-
-\end{frame}
-\end{comment}
-
-
-\begin{frame}{DA avec l'EnKF - Premiers résultats}
-
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.8\linewidth]{newFigures/UpdtC14_10NMRSE.png}
-        \caption{Bulle de recirculation localement détruite}
-        \label{fig:enter-label}
-    \end{figure}
-
-\end{frame}
-
-%\begin{frame}{DA avec l'EnKF - Premiers résultats}
-
-    %\begin{figure}
-        %\centering
-        %\includegraphics[width=0.6\linewidth]{newFigures/UpdtC14_10params.png}
-        %\caption{Enter Caption}
-        %\label{fig:enter-label}
-    %\end{figure}
-
-%\end{frame}
-
-
-%\begin{frame}{DA avec l'EnKF - Premiers résultats}
-
-%\begin{figure}
-    %\centering
-    %\includegraphics[width=0.6\linewidth]{newFigures/UpdtC14_NMRSE.png}
-    %\caption{Enter Caption}
-    %\label{fig:enter-label}
-%\end{figure}
-
-%\end{frame}
 
 
 
-\section{Limitations de l'IBM}
+
 
 \begin{frame}{Limitations de la méthode IBM}
 
     \only<1>{%
         \centering
-        \includegraphics[width=0.9\linewidth]{newFigures/LIC_Uy.png} \\
+        \includegraphics[width=0.9\linewidth]{../newFigures/LIC_Uy.png} \\
         \vspace{0.2cm}
         {\footnotesize Champ LIC (Line Integral Convolution) et $U_y$}
     }
 
     \only<2>{%
         \centering
-        \includegraphics[width=0.9\linewidth]{newFigures/LIC.png} \\
+        \includegraphics[width=0.9\linewidth]{../newFigures/LIC.png} \\
         \vspace{0.2cm}
         {\footnotesize Bulle de recirculation}
     }
@@ -514,7 +652,7 @@
 
     %\begin{figure}
         %\centering
-        %\includegraphics[width=0.9\linewidth]{newFigures/pen0.png}
+        %\includegraphics[width=0.9\linewidth]{../newFigures/pen0.png}
         %\caption{Enter Caption}
         %\label{fig:enter-label}
     %\end{figure}
@@ -555,9 +693,9 @@
         \column{0.48\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=0.6\linewidth]{newFigures/radial_exp.png}
+                \includegraphics[width=0.6\linewidth]{../newFigures/radial_exp.png}
                 \caption{Expansion radiale}
-                \label{fig:enter-label}
+                \label{fig:enter-label42}
             \end{figure}
 
         \column{0.48\textwidth}
@@ -593,7 +731,7 @@
         \column{0.48\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=1\linewidth]{newFigures/coords.png}
+                \includegraphics[width=1\linewidth]{../newFigures/coords.png}
                 \caption{Points d'observation de vitesse numérique avant moyenne azimutale}
                 \label{fig:enter-label}
             \end{figure}
@@ -611,7 +749,7 @@
         \column{0.48\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=0.7\linewidth]{newFigures/radial_exp.png}
+                \includegraphics[width=0.7\linewidth]{../newFigures/radial_exp.png}
                 \caption{Expansion radiale}
                 \label{fig:enter-label}
             \end{figure}
@@ -619,7 +757,7 @@
         \column{0.48\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=0.7\linewidth]{newFigures/coords.png}
+                \includegraphics[width=0.7\linewidth]{../newFigures/coords.png}
                 \caption{Points d'observation de vitesse numérique avant moyenne azimutale}
                 \label{fig:enter-label}
             \end{figure}
@@ -644,7 +782,7 @@
         \column{0.48\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=1\linewidth]{newFigures/LIC.png}
+                \includegraphics[width=1\linewidth]{../newFigures/LIC.png}
                 \caption{Bulle de recirculation}
                 \label{fig:enter-label}
             \end{figure}
@@ -659,14 +797,14 @@
 %\]
 
 
-\setbeamercolor{item}{fg=blue} % Revenir à la couleur par défaut
+%\setbeamercolor{item}{fg=blue} % Revenir à la couleur par défaut
 
 \end{document}
 
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.5\linewidth]{recirculationBuble.png}
-    \caption{Enter Caption}
-    \label{fig:enter-label}
-\end{figure}
+%\begin{figure}
+%    \centering
+%    \includegraphics[width=0.5\linewidth]{recirculationBuble.png}
+%    \caption{Enter Caption}
+%    \label{fig:enter-label}
+%\end{figure}

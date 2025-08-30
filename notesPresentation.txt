@@ -1,0 +1,40 @@
+
+Slide 1 (titre):
+
+...
+
+Intro : 
+
+
+
+
+
+
+Outils numériques et état de l'art :
+
+    Slide n (La mécanique des fluides)
+    La mécanique de fluides est l'étude du comportement des fluides.
+    Elle se divise en deux branches majeurs : La mécanique des fluides numérique et l'étude expérimentale des fluides.
+
+
+    Slide n+1 (Le filtre de Kalman)
+    Le filtre de Kalman est un outil permettant d'estimer les états d'un système dynamique à partir d'une série de mesures incomplètes ou bruitées. Cela dans le but de contoler une trajectoire à l'aide d'un modèle et de mesures.
+    Le filtre de Kalman d'ensemble en est une variante, plus adaptée aux problèmes de grandes dimensions. Dans notre cas nous l'utilisons pour retrouver des paramètres optimaux dans une simulation numérique de mécanique des fluides.
+
+    Slide n+2 (Les travaux réalisés au laboratoire)
+    -> Numérique pur : CONES (mettre acronyme) : Coupleur MPI entre simulations numériques et données haute fidélités.
+
+    -> Mécanique des fluides :
+        - numérique : maillage et premières simulations de la pompe
+        - expérimentale : pompe centrifuge  (transition vers la partie suivante)
+
+
+Données et préparation du cas d'étude :
+
+
+
+
+
+Conclusion :
+
+AJOUTER ANNEXES

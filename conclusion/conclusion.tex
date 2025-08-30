@@ -9,22 +9,113 @@
 %Dans le cas de l'aéroacoustique, la méthode linéaire est plus précise que IDW dans tous les cas testés. Cependant, des résultats expérimentaux ont montré que des coefficients (\(N\), \(p\)) autour de (10, 10) donnaient de très bons résultats. Dans ce cas, IDW peut s'avérer plus précis que la méthode linéaire.
 
 
-The goal of this internship was to optimise the numerical performance of a centrifugal pump using DA.
-After preparing the experimental data and adapted the OpenFoam solver and CONES code, data was able to be assimilate by the EnKF.
-First results was not convincing, because a recirculation bubble still present in the diffuser. Few more implementation didn't allow the reciculation bubble to break.
-Then, ...
+%The goal of this internship was to optimise the numerical performance of a centrifugal pump using DA.
+%After preparing the experimental data and adapted the OpenFoam solver and CONES code, data was able to be assimilate by the EnKF.
+%First results was not convincing, because a recirculation bubble still present in the diffuser. Few more implementation didn't allow the reciculation bubble to break.
+%Then, ...
+
 
 \subsection*{Technical and human review}
 
-Véirifier les consignes
+The objective of this work was to use a DA algorithm to improve an IBM for the simulation of a centrifugal pump. Four milestones were defined: assess the limitations of the baseline IBM, prepare experimental data, integrate DA into the solver, and optimize IBM parameters.
+
+The first technical challenge was to identify the limitations of the baseline IBM. We observed that the method did not correctly impose wall boundary conditions, which generated non-physical recirculation zones in the diffuser. From a human perspective, this stage required learning how to question results critically and not to take numerical outputs at face value. Discussing these anomalies with colleagues helped me develop a more rigorous approach to verification and to communicate uncertainties clearly.
+
+Processing the high-fidelity experimental data (PIV and pressure taps) was another important step. This task was technical, requiring careful handling of noisy measurements, but also human, as it highlighted the importance of collaboration with experimentalists. Their expertise was essential to understand the limits of the data, and I learned to value multidisciplinary exchanges between numerical and experimental teams.
+
+The integration of the DA method via the EnKF into OpenFOAM represented the most demanding technical milestone. It required an in-depth study of OpenFOAM's structure and C++ implementation. Beyond the coding effort, this experience taught me perseverance: many tests failed before achieving a stable coupling. Regular discussions with my supervisors and peers played a key role in finding solutions, reinforcing the collaborative dimension of research. % and avoiding discouragement
+
+The final goal, optimizing IBM parameters via DA, could not be achieved. Despite several strategies, the DA corrections did not improve the simulation accuracy and the recirculation bubble persisted. This limitation is not only technical (the IBM formulation itself is insufficient) but also methodological: I learned that in research, negative results are just as important as positive ones. Presenting and accepting such results in a group setting was an exercise in humility and honesty, qualities that are crucial in a research environment.
+
+More generally, this internship allowed me to discover the specificities of an academic laboratory. The freedom to test ideas is greater, but it also comes with the responsibility to structure and document one's work to make it useful for others. I imagined similarities with the industrial world, such as social and environmental responsibility, but the emphasis here is placed on knowledge creation. % broadly  //  compared to a company
+
+Finally, this work confirmed the potential of DA as an alternative to expensive LES or DNS for industrial applications, while also underlining the computational and methodological challenges that remain. This balance between technical exploration and human learning convinced me to continue in this field, which led to my decision to pursue a PhD in the same laboratory.
+
+
+\subsection*{Perspectives}
+%\subsection*{Outlook}
+
+To continue this work, it would be interesting to test alternative IBM formulations, such as the interpolation method, or to run unsteady simulations (URANS or LES) to evaluate whether they can overcome the non-physical results observed with the current approach. The results obtained here suggest that the IBM implementation itself is the main limitation, since no parameter optimization via DA succeeded in removing the strong recirculation bubble in the diffuser.
+
+From a human and methodological perspective, this opens a reflection on how to deal with incomplete or unsatisfactory results. The work showed that adapting DA to complex industrial cases is a long process, with frequent failures and heavy computational requirements. Running DA simulations often meant waiting several days before obtaining results, which required patience, organization and optimization of resources. I also learned that negative outcomes are part of research and can be valuable stepping stones for future improvements.
+
+The DA method still has a strong potential for industrial applications, but its use faces challenges: reducing the computational cost, improving convergence, and adapting algorithms to complex geometries and real-time constraints. Exploring hybrid strategies, for instance coupling DA with machine learning techniques, could help overcome some of these barriers. In parallel, improving IBM formulations is essential to better capture wall effects and provide physically consistent flow predictions.
+
+%Overall, this work underlined that technical progress and human experience are highly linked: mastering advanced numerical methods requires both coding and modeling skills, but also teamwork, resilience, and the ability to critically interpret results. These lessons will guide the perspectives of my PhD research on DA applied to turbomachinery flows. % tightly
+
+
+
 
 \begin{comment}
-J’ai été enthousiasmé par ce stage au CERFACS, à plusieurs titres. Il m’a non seulement permis de développer et renforcer de nombreuses connaissances dans le domaine informatique mais également sur le plan humain. Il m’a donné une belle occasion de découvrir la vie d’un laboratoire de recherche.
+    
+\textbf{Technical and human review}
+% ///// Reprendre les objectifs définis à la fin de la section 2.1 //////
+
+%Bilan technique et humain. Liez chaque aspect technique à un aspect humain. Ne traitez pas tout ce qui est technique d'un côté et tout ce qui relève de l'humain d'un autre. Réflexion personnelle sur les spécificités de l'entreprise, du secteur d'activité et du métier que vous avez découverts.
+
+The main objective of this thesis was to employ a DA algorithm to enhance an IBM for the simulation of a centrifugal pump. To achieve this, several secondary objectives (milestones) were defined:
+
+\begin{enumerate}
+    \item \textbf{Assess the limitations of the baseline IBM};
+    \item \textbf{Prepare and process high-fidelity experimental data} (PIV and pressure measurements);
+    \item \textbf{Integrate an adapted DA methodology} based on the Ensemble Kalman Filter (EnKF) into the CFD solver;
+    \item \textbf{Optimize IBM parameters via DA} to improve local flow predictions and global pump performance.
+\end{enumerate}
+
+Throughout the work, significant progress was made on the first three milestones.
+
+\begin{itemize}
+    \item \textbf{Limitations of the baseline IBM} were clearly identified. The analysis showed that the current IBM implementation fails to properly impose wall boundary conditions. As illustrated in \autoref{fig:LIC}, fluid can enter and leave immersed boundaries, leading to non-physical recirculation bubbles in the diffuser.
+    \item \textbf{High-fidelity experimental data} were successfully processed, including PIV measurements and pressure taps, providing a solid reference for evaluating simulation accuracy.
+    \item \textbf{DA integration} was achieved by coupling the EnKF with the OpenFOAM-based solver. This required a detailed understanding of OpenFOAM's structure, C++ implementation, and numerical stability issues, which was a significant milestone.
+\end{itemize}
+
+However, the last objective, \textbf{optimizing IBM parameters via DA}, could not be fully achieved. Despite testing several strategies, the DA did not improve the accuracy of the IBM predictions. The solution often failed to converge, and the resulting velocity fields remained inconsistent with experimental observations, showing a strong non-physical recirculation bubble in the diffuser.
+
+A more detailed discussion of the results highlights several key points:   //// A RETRAVAILLER ////
+
+\begin{itemize}
+    \item For $D_x = D_y$, the diffuser velocity contours are periodic as expected. However, using the IBM parameters obtained after DA, the Normalized Root Mean Square Errors (NRMSE, to be defined explicitly in the text) computed in Fig.~3.16 ///// MIEUX REF ///// do not significantly decrease, except for $V_r$ at the $75\%$ span, where a substantial reduction is observed.
+    \item Figure~3.11 shows the radial, tangential, and axial velocity profiles ($V_r$, $V_\theta$, $V_z$) at $25\%$, $50\%$, and $75\%$ spans, comparing the baseline IBM and the DA-corrected simulations with PIV data. Although the overall trends remain almost identical, these comparisons are valuable to highlight where DA brings partial improvements and where IBM limitations dominate.
+    \item No choice of IBM parameters can resolve the strong recirculation in the diffuser because the limitation lies in the IBM formulation itself: the current method cannot impose accurate no-slip conditions on immersed boundaries.
+    \item Regarding pump performance, introducing the experimental efficiency as an observation did not improve the predicted efficiency. We suspect that the combination of the current IBM formulation with the Multiple Reference Frame (MRF) technique leads to artificial energization of the flow, which is not accounted for in the Poisson equation for pressure correction. Adding estimated pressure contours at the impeller outlet would help illustrate this mismatch.
+    \item Finally, additional fields such as turbulent kinetic energy, turbulent viscosity, or dissipation rate could also be analyzed to further characterize discrepancies between simulations and experiments.
+\end{itemize}
+
+The first thing that I discovered during this internship is the laboratory environment, which is different from a company. The work is more focused on research, and there is a lot of freedom to explore new ideas and methods. The team is very collaborative and supportive, and I learned a lot from my colleagues. I also discovered the importance of communication and documentation in a research environment, as it is essential to share knowledge and results with others. There are still similaritys with a company, such as the social and environmental responsibility, that I presented in a first part.
+
+After having done a state of art on the topics, we saw that the DA method is a good candidate to DNS or costly LES, for industrial applications, because it allows to have a good accuracy with a lower computational cost. I saw that an international expertise on application relies on this topic has been developed in the last few years on the laboratory. Numerical ingredients and usefull libraries were presented. The state of art was a good opportunity to learn more about the DA method and its applications. It was not too hard because most of information were already known by the laboratory. I also learned a lot about the IBM method and its applications, which is a good alternative to the traditional methods for the simulation of complex geometries.
+
+
+
+Then, an explanation of the pump modeling, the pre-processing of the experimental data and the implementation of the IBM method in OpenFOAM were given. The redaction of this part helps me to structure my thoughts and to better understand the different steps of the pre-processing. I also learned a lot about the IBM method and its implementation in OpenFOAM, which was not easy at the beginning because I had to learn a lot about OpenFOAM and C++ programming. The implementation of the IBM method was a good opportunity to learn more about OpenFOAM and its functionalities.
+
+Finally, we presented the first results of the numerical simulation and the first application of the DA method on the centrifugal pump case.
+The results show that the IBM method as applied here does not give us a result consistent with physical observations and the DA does not allow us to improve this result. The solution is not converging and the velocity field is not physical, with a recirculation bubble in the diffuser. Several strategies were tested to try to improve the solution, but none of them allowed to obtain a satisfactory result.
+
+
+
+In conclusion, while the final goal of improving the IBM via DA was not fully achieved, the analysis of the limitations, the integration of DA, and the preparation of experimental data provide a solid basis for future research. The proposed perspectives should enable significant improvements in both IBM modeling and DA application for centrifugal pump simulations.
+
+I really enjoyed this internship beacause I learned a lot about all the topics that I love. That is why I decided to continue to work on this topic for my PhD thesis "Combining experimental and numerical techniques for the analysis of axial compressor internal flows using Data Assimilation" in the same laboratory.
+
+%\subsection*{Technical and human review}
+
+\textbf{Outlook}
+
+To continue this work, it would be interesting to try to change the IBM method (try the "interpolation method" for example) or to try an instationnary (URANS or LES) simulation to see if it can overcome these non-physical results.
+
+The DA method is still not widely used in the industry, but it has a lot of potential for the future. The main challenge is to adapt the DA method to the specific needs of the industry, such as the use of complex geometries and the need for real-time applications. I discovered that DA can be long to implement and sometimes difficult to converge. At same time, EnKF needs a huge number of CPUs. Sometimes, I need to wait several days to launch a simulation. It would be interesting to try to reduce the computational cost of the DA method, by using more efficient algorithms or by using machine learning techniques, as presented in the state of art.
+The IBM method is a good alternative to the traditional methods for the simulation of complex geometries, because it allows to have a good accuracy with a lower computational cost. An other challenge is to improve the accuracy of the IBM method.
+\end{comment}
+
+\begin{comment}
+J'ai été enthousiasmé par ce stage au CERFACS, à plusieurs titres. Il m'a non seulement permis de développer et renforcer de nombreuses connaissances dans le domaine informatique mais également sur le plan humain. Il m'a donné une belle occasion de découvrir la vie d'un laboratoire de recherche.
 
 L'objectif de ce stage était d'implémenter une méthode d'interpolation linéaire dans Antares puis de comparer sa précision avec la méthode IDW dans le cas de propagation acoustique avec l'analogie FWH, tout en optimisant la vitesse d'exécution du code.
 Après avoir exploré la structure d'Antares, une recherche documentaire a été menée pour savoir quelle méthode, implémentable dans la librairie, pouvait être candidate pour compléter la méthode IDW et linéaire. Quelques méthodes polynomiales et géostatistiques ont pu être mises en évidence. Une présentation un plus détaillée de la méthode par voisin le plus proche, IDW et linéaire a aussi été réalisée.
 L'un des principaux résultats de ce stage a été l'implémentation globalement réussie de la méthode d'interpolation linéaire, qui s'est révélée  généralement plus précise que la méthode de Pondération Inverse à la Distance (IDW) précédemment codée.
-Coder l’interpolation linéaire jusqu’en 3D n’a été ni très difficile, ni chronophage. Cependant, l’intégrer au code déjà existant et faire les tests fut plus délicat. Le soutien de mon maître de stage a été primordial pour me montrer comment fonctionnent les outils au CERFACS et m'aider à sortir d'impasses.
+Coder l'interpolation linéaire jusqu'en 3D n'a été ni très difficile, ni chronophage. Cependant, l'intégrer au code déjà existant et faire les tests fut plus délicat. Le soutien de mon maître de stage a été primordial pour me montrer comment fonctionnent les outils au CERFACS et m'aider à sortir d'impasses.
 Cette nouvelle méthode a été testée sur des cas académiques mais aussi sur des cas industriels tels que sur une vue en coupe à la position (0, 0, 0.01), selon l'axe z de la chambre de combustion preccinsta.
 L'étude sur les coefficients \(N\) et \(p\) de la méthode IDW a montré que pour des paramètres (\(N\), \(p\)) autour de (10, 10) nous pouvons obtenir de meilleurs résultats qu'avec la méthode linéaire, dans le cas d'aéroacoustique étudié.
 Ce travail a aussi amélioré les performances du code (cinq fois plus rapide pour la méthode IDW dans un cas test d'aéroacoustique).
@@ -33,18 +124,18 @@ J'ai ressenti tout au long de mon stage l'importance de réaliser un travail ouv
 Enfin, ce stage n'a pas été qu'une expérience professionnelle enrichissante. Il a conforté mon intérêt pour les méthodes numériques appliquées et la recherche en calcul scientifique. Je suis particulièrement reconnaissant pour l'accompagnement dont j'ai bénéficié tout au long de cette expérience et pour les opportunités de développement personnel et professionnel qu'il m'a offert.
 \end{comment}
 
-\subsection*{Outlook}
+%\subsection*{Outlook}
 %Pour continuer à améliorer le traitement d'interpolation d'Antares, on pourrait implémenter l'une des méthodes d'ordre supérieur citées dans la section \ref{s223}.
 %On pourrait également compléter les tests de la méthode linéaire sur la chaîne aéroacoustique, en observant la polaire de l'amplitude en fonction de l'observateur dans le cas d'un Mac non nul.
-%Afin d'améliorer la rapidité, le code pourrait être passé en parallèle pour pouvoir s’exécuter sur plusieurs processeurs à la fois.
+%Afin d'améliorer la rapidité, le code pourrait être passé en parallèle pour pouvoir s'exécuter sur plusieurs processeurs à la fois.
 %Une petite amélioration qui permettrait de rendre le code compatible avec plus de bases serait d'inclure les bases "multizones" à l'interpolation linéaire.
 % Faire la ref
 
 
-\subsection*{Personal reflection}
+%\subsection*{Personal reflection}
 
 
-%Le CERFACS est un laboratoire privé à la pointe des simulations numériques. Il s'est d'abord spécialisé dans l'aérodynamique et s’intéresse maintenant de plus en plus à la combustion. Il adapte ses domaines de recherche aux domaines importants de l'industrie.
+%Le CERFACS est un laboratoire privé à la pointe des simulations numériques. Il s'est d'abord spécialisé dans l'aérodynamique et s'intéresse maintenant de plus en plus à la combustion. Il adapte ses domaines de recherche aux domaines importants de l'industrie.
 %Durant ce stage, au-delà des aspects techniques, j'ai eu un bel aperçu du métier de chercheur tant au travers de mes missions que dans mes rencontres. Il s'agit de rechercher et de s'appuyer sur le travail déjà réalisé autour de notre problématique.
 %Ensuite, il faut explorer des pistes qui peuvent s'avérer infructueuses après les avoir longuement explorées.
 %Enfin, un travail de rédaction est nécessaire pour expliquer clairement notre travail aux scientifiques.
