@@ -23,6 +23,8 @@
 \usepackage{physics}
 \usepackage{pifont}
 \usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning}
+
 \usepackage{mathdots}
 \usepackage{yhmath}
 \usepackage{cancel}
@@ -46,6 +48,9 @@
     citecolor=blue
            }
 \usepackage[style=ieee, citestyle=numeric-comp, backend=biber]{biblatex}
+
+\usecolortheme{beaver}
+
 
 \usepackage{fancyvrb}
 \usepackage{fvextra}
@@ -301,12 +306,74 @@
     \end{frame}
 
 
+    \begin{frame}{État de l'art}
+        \begin{itemize}
+            \item Context/Problématique : Pk je fais ça ?
+            \item Ce qui se fait au labo
+            \item-> Importance de la simulation numérique pour améliorer la performance des pompes centrifuges.
+            \item-> Avantages et limitations des modèles numériques actuels
+            \item-> Avantage et limitations des données expérimentales
+            \item-> Rôle de l'assimilation de données pour améliorer la précision des simulations.
+        \end{itemize}
+    \end{frame}
 
-%\begin{frame}{État de l'art}
+    \begin{frame}{Chaîne de traitement des données}
+    \centering
+        \begin{tikzpicture}[
+                node distance=1.8cm and 2.3cm,
+                box/.style={
+                    draw,
+                    rounded corners,
+                    minimum width=3cm,
+                    minimum height=1cm,
+                    align=center,
+                    font=\bfseries,
+                    fill=blue!10
+                },
+                arrow/.style={
+                    ->,
+                    thick
+                }
+            ]
+
+            % Nœuds
+            \node[box] (pump) {Pompe \\ expé};
+            \node[box, below=of pump] (data) {Données \\ expé};
+            \node[box, below=of data] (enkf) {EnKF};
+            \node[box, right=of enkf] (cones) {CONES};
+            \node[box, right=of cones] (ib7) {IB7 \\ Simu OpenFOAM \\ RANS / pimpleFoam};
+            \node[box, below=of ib7] (model) {Modèle num. \\ (maillage, CL)};
+
+            % Flèches principales
+            \draw[arrow] (pump) -- (data);
+            \draw[arrow] (data) -- (enkf);
+            \draw[arrow] (enkf) -- (cones);
+            \draw[arrow] (cones) -- (ib7);
+            \draw[arrow] (ib7) -- (model);
+
+            % Boucles
+            \draw[arrow] (model.west) -- ++(-3,0) |- (pump.south west);
+            \draw[arrow] (ib7.west) -- ++(-1.8,0.5) |- (enkf.east);
+
+        \end{tikzpicture}
+    \end{frame}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\section{Laboratoire et site d'acceuil}
+\section{Cas test}
+
+    \begin{frame}{Pompe centrifuge expérimentale}
+        Spé techniques et image
+    \end{frame}
+
+    \begin{frame}{Modèle numérique de la pompe centrifuge}
+        Fameuse image
+        Conditions limites
+        Expérimentale
+    \end{frame}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     %\begin{frame}{Contexte et objectifs du stage}
@@ -314,17 +381,17 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{État de l'art et Outils numériques} 
+\section{Outils numériques} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-    \begin{frame}{La mécanique des fluides}
+    \begin{frame}{La mécanique des fluides numérique}
 
 
     \end{frame}
 
 
-    \begin{frame}{Le filtre de Kalman}
+    \begin{frame}{Le filtre de Kalman d'ensemble}
 
 
     \end{frame}
@@ -725,6 +792,8 @@
         \end{itemize}
 
         \phantom{-}
+
+        TEST
         
         Évite un résultat de l'EnKF où les paramètres IBM cassent la périodicité.
 
@@ -733,7 +802,7 @@
                 \centering
                 \includegraphics[width=1\linewidth]{../newFigures/coords.png}
                 \caption{Points d'observation de vitesse numérique avant moyenne azimutale}
-                \label{fig:enter-label}
+                \label{fig:enter-label5}
             \end{figure}
             
     \end{columns}
@@ -751,7 +820,7 @@
                 \centering
                 \includegraphics[width=0.7\linewidth]{../newFigures/radial_exp.png}
                 \caption{Expansion radiale}
-                \label{fig:enter-label}
+                \label{fig:enter-label6}
             \end{figure}
 
         \column{0.48\textwidth}
@@ -759,7 +828,7 @@
                 \centering
                 \includegraphics[width=0.7\linewidth]{../newFigures/coords.png}
                 \caption{Points d'observation de vitesse numérique avant moyenne azimutale}
-                \label{fig:enter-label}
+                \label{fig:enter-label7}
             \end{figure}
     \end{columns}
 
@@ -784,7 +853,7 @@
                 \centering
                 \includegraphics[width=1\linewidth]{../newFigures/LIC.png}
                 \caption{Bulle de recirculation}
-                \label{fig:enter-label}
+                \label{fig:enter-label8}
             \end{figure}
             
     \end{columns}

@@ -1,61 +1,51 @@
-\documentclass[10pt, aspectratio=169]{beamer}
+\documentclass{beamer}
+\usetheme{Madrid}
+\usecolortheme{beaver}
 
-% Thème et outer theme pour les cercles en haut
-\usetheme{Boadilla}
-\useoutertheme{miniframes}
-\setbeamertemplate{mini frame}[circle]
-\setbeamertemplate{mini frame in other subsection}[default][20]
-
-% Plan automatique au début de chaque section
-\AtBeginSection[]{
-  \begin{frame}{Plan}
-    \tableofcontents[currentsection]
-  \end{frame}
-}
-
-\title{Exemple avec barre de progression}
-\author{Clément}
-\date{\today}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning}
 
 \begin{document}
 
-% Page de titre
-\begin{frame}
-  \titlepage
-\end{frame}
+\begin{frame}{Chaîne de traitement des données}
+\centering
+\begin{tikzpicture}[
+    node distance=1.8cm and 2.3cm,
+    box/.style={
+        draw,
+        rounded corners,
+        minimum width=3cm,
+        minimum height=1cm,
+        align=center,
+        font=\bfseries,
+        fill=blue!10
+    },
+    arrow/.style={
+        -{Latex[length=3mm,width=2mm]},
+        thick
+    }
+]
 
-% Plan initial
-\begin{frame}{Plan}
-  \tableofcontents
-\end{frame}
+% Nœuds
+\node[box] (pump) {Pompe \\ expé};
+\node[box, below=of pump] (data) {Données \\ expé};
+\node[box, below=of data] (enkf) {EnKF};
+\node[box, right=of enkf] (cones) {CONES};
+\node[box, right=of cones] (ib7) {IB7 \\ Simu OpenFOAM \\ RANS / pimpleFoam};
+\node[box, below=of ib7] (model) {Modèle num. \\ (maillage, CL)};
 
-\section{Introduction}
-\begin{frame}{Contexte}
-  Contenu de la première diapo.
-\end{frame}
-\begin{frame}{Objectifs}
-  Contenu de la deuxième diapo.
-\end{frame}
+% Flèches principales
+\draw[arrow] (pump) -- (data);
+\draw[arrow] (data) -- (enkf);
+\draw[arrow] (enkf) -- (cones);
+\draw[arrow] (cones) -- (ib7);
+\draw[arrow] (ib7) -- (model);
 
-\section{Méthodes}
-\begin{frame}{Modèle}
-  Contenu de la troisième diapo.
-\end{frame}
-\begin{frame}{Simulation}
-  Contenu de la quatrième diapo.
-\end{frame}
+% Boucles
+\draw[arrow] (model.west) -- ++(-3,0) |- (pump.south west);
+\draw[arrow] (ib7.west) -- ++(-1.8,0.5) |- (enkf.east);
 
-\section{Résultats}
-\begin{frame}{Analyse}
-  Contenu de la cinquième diapo.
-\end{frame}
-\begin{frame}{Discussion}
-  Contenu de la sixième diapo.
-\end{frame}
-
-\section{Conclusion}
-\begin{frame}{Résumé}
-  Contenu de la dernière diapo.
+\end{tikzpicture}
 \end{frame}
 
 \end{document}
