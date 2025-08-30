@@ -92,7 +92,7 @@ The body-fitted meshes are the most accurate but also the most expensive in term
 
 In 1972 Charles S. Peskin\cite{IBM_base} developped the IBM method. His goal was to reduce the computational time, mainly due to the computation of the mesh refinment based on the \ac{CFL} (see \autoref{eq:CFL}). He added an IBM forcing term on Navier-Stokes equations, only on the simulated artificial heart valve part. He overcame the numerical instabilitys due to the boundary forces by using an iterative method for solving a fixed-point problem for boundary forces.
 
-In 1999 Angot et al. \cite{angotPenalizationMethodTake1999a} discovered that using the penalization IMB, the velocity penalized at the wall was the same as the one from a body-fitted approach if $\mathbf{D}$, a forcing parameter defines in the \autoref{subsec:CFD_governing_equations}, tend to infinity.
+In 1999 Angot et al. \cite{angotPenalizationMethodTake1999a} discovered that using the penalization IBM, the velocity penalized at the wall was the same as the one from a body-fitted approach if $\mathbf{D}$, a forcing parameter defined in the \autoref{subsec:CFD_governing_equations}, tend to infinity.
 
 IBM are usually less accurate and need more cells element to keep good precision in the near-wall region, but more efficient in terms of computational resources when the geometry is moving. So it's more and more used in CFD \cite{annurev:/content/journals/10.1146/annurev-fluid-120720-022129}. The maths behind the method are detailed in the \autoref{eq:IBM}.
 
@@ -141,7 +141,7 @@ EnKF for DA in CFD has been used at \ac{LMFL} for a few years now.
     \item In 2023, Lucas Villanueva, with Miguel M.Valero and Marcello Meldi from LMFL wrote an article\cite{villanuevaAugmentedStateEstimation2023} about the amelioration of the flow around a building preforming EnKF on five CFD parameters, showing a global improvement for both the velocity field and the pressure field;
     \item In 2024, Tom Moussie, with Paolo Errante and Marcello Meldi from LMFL wrote an article\cite{moussieStatisticalInferenceUpstream2024a} successfully optimizing the boudary condition of the academical rectangular 5:1 cylinder benchmarck using EnKF, leading to a significant improvement of the accuracy in the prediction of the turbulent flow;
     \item This year, Miguel M.Valero and Marcello Meldi published an article combining EnKF, \ac{ML} and IBM on a turbulent channel flow \cite{valeroEnhancedStateEstimation2025}. It shows that this combination can gives very good and low cost results;
-    \item During my internship, Tom Moussie submitted an article on the determination of the incidence angle of a 2D wing using EnKF, and Miguel also submitted also an article about the optimization of forcing parameters of an IBM around an 2D oscillating cylinder, showing very good results.
+    \item During my internship, Tom Moussie submitted an article on the determination of the incidence angle of a 2D wing using EnKF, and Miguel M.Valero also submitted also an article about the optimization of forcing parameters of an IBM around an 2D oscillating cylinder, showing very good results.
 \end{itemize}
 
 
@@ -436,7 +436,7 @@ and \texttt{obs\_coordinates.txt} (of size $n_{\text{obs}}$ lines and $n_{\text{
 \subparagraph{5.Creation of a file for the interpolation}
 
 Finally, we need to create the \texttt{coords\_seventh.txt} file for the interpolation function in CONES.
-We don't just use the coordinates of the points in the PIV data, beacause we want to average over the angle \(\theta\) on the pump. The numerical simulation is $2\pi/7$ periodic, so we interpolate in 150 points over theta between 0 and $2\pi/7$, as illustrated in the \autoref{fig:diffuserMesh}. %$\frac{2\pi}{7}$
+We don't just use the coordinates of the points in the PIV data, because we want to average over the angle \(\theta\) on the pump. The numerical simulation is $2\pi/7$ periodic, so we interpolate in 150 points over theta between 0 and $2\pi/7$, as illustrated in the \autoref{fig:diffuserMesh}. %$\frac{2\pi}{7}$
 To do that, we just take the \texttt{obs\_coordinates.txt} file and duplicate 150 times the points over the angle \(\theta\) (between $-\pi/7$ and $\pi/7$). In our case, we chose 150 that will aproximately correspond to the shap of a cell at this radius.
 To be consistent with axis further, we take points between $-\pi/7 + \pi/2$ and $\pi/7 + \pi/2$.
 \footnote{Concretely, to average the data over the angle \(\theta\), we modify the interpolation function in CONES.
@@ -464,7 +464,7 @@ Then, it computes the interpolation and average the data over the angle \(\theta
 
 \paragraph{Pressure data}
 
-In addition to the nine pressure tapes on the diffuser, Dazin et al.~\cite{dazinHighspeedStereoscopicPIV2011a} have also captured (\autoref{fig:PumpPerf}) the inlet and outlet pressure that allows to compute the global performance of the pump, that matches with M. Fan simulation \cite{fanEffectLeakagePerformanceb}% (eq to approximately \(\eta\) = 0.4).
+In addition to the nine pressure tapes on the diffuser, Dazin et al.~\cite{dazinHighspeedStereoscopicPIV2011a} have also captured (\autoref{fig:PumpPerf}) the inlet and outlet pressure that allows to compute the global performance of the pump, that matching with M. Fan simulation \cite{fanEffectLeakagePerformanceb}% (eq to approximately \(\eta\) = 0.4).
 
 \begin{figure}[H]
     \centering
@@ -555,7 +555,7 @@ As we consider that we are in \textbf{incompressible} flow conditions (because w
 \end{equation}
 And the pressure and velocity are solved iteratively, contrary to compressible flows.
 
-The dimensionless $Re$ measures the ratio between inertial and viscous forces. It indicates if the flow is turbulent, laminar or both, it caratcterizes the flow regime. 
+The dimensionless $Re$ measures the ratio between inertial and viscous forces. It indicates if the flow is turbulent, laminar or both, it caracterizes the flow regime. 
 Let's compute the $Re$ around where the velocity should be the highest.
 
 \begin{equation}
@@ -575,7 +575,7 @@ The Navier-Stokes equations are exact, but in turbulent flows they cannot be sol
 
 To make the problem tractable, turbulence must be modeled. Different approaches exist (Figure~\ref{fig:Turbulence3}\footnote{\url{https://help.altair.com/hwcfdsolvers/acusolve/topics/acusolve/training_manual/turbulence_modeling_r.htm}}):  
 \begin{itemize}
-    \item \textbf{RANS}: the velocity field is decomposed into mean and fluctuating components. Averaging introduces the Reynolds stress tensor, which requires closure models (e.g.\ $k$--$\varepsilon$, $k$--$\omega$, Reynolds stress models). RANS is computationally cheap and widely used for steady-state simulations, but less accurate.  
+    \item \textbf{RANS}: the velocity field is decomposed into mean and fluctuating components. Averaging introduces the Reynolds stress tensor, which requires closure models (e.g.\ $k$-$\varepsilon$, $k$-$\omega$, Reynolds stress models). RANS is computationally cheap and widely used for steady-state simulations, but less accurate.  
     \item \textbf{LES}: large, energy-containing structures are resolved, while small-scale turbulence is modeled with subgrid-scale models (e.g.\ Smagorinsky, WALE). LES is more accurate but significantly more expensive, especially near walls (Figure~\ref{fig:Turbulence1}\footnote{\url{https://www.cfdsupport.com/openfoam-training-by-cfd-support/node346/}}).  
     \item \textbf{DNS}: no modeling is required, since all scales are resolved, but its prohibitive cost limits it to academic studies at low Reynolds numbers.  
 \end{itemize}
@@ -627,6 +627,8 @@ $K-\epsilon$ makes a good numerical prediction in the bulk flow field but is les
     \caption{$k-\omega SST$ model}
     \label{fig:kOmega_SST}
 \end{figure}
+
+\newpage
 
 $k-\omega SST$ model is defined as follows\footnote{\url{https://www.cfd-online.com/Wiki/SST_k-omega_model}}\cite{doi:10.2514/6.1993-2906}\cite{doi:10.2514/3.12149}:
 
@@ -721,7 +723,7 @@ This equation is solved in OpenFOAM (see appendix~\ref{annex:OpenFOAMRANS}).
 \paragraph{Near-wall modeling}
 On the $\omega$ region, we can define a near-wall model where the mesh is too coarsed to capture the inner sublayer (see \autoref{fig:NearWallModelling})\footnote{\url{https://2021.help.altair.com/2021/hwsolvers/acusolve/topics/acusolve/training_manual/near_wall_modeling_r.htm}}.
 
-We can define the nomalized wall ditance as:
+We can define\footnote{\url{https://www.simscale.com/forum/t/defining-turbulent-boundary-conditions/80895}, \url{https://www.openfoam.com/documentation/guides/latest/doc/guide-bcs-wall-turbulence-omegaWallFunction.html}} the nomalized wall ditance as:
 \begin{equation}
     y^+ = \frac{\rho u_{tau} y}{\mu}
 \end{equation}
@@ -783,7 +785,7 @@ The additional terms $2 \vec{\Omega} \times \vec{u}_R$ (Coriolis force) and $\ve
 %\end{equation}
 %So $\Omega = (0;0;125.66) rad.s^{-1}$ and $U_{abs} = U_{rel} + \Omega \times R$
 
-
+\newpage
 
 \paragraph{URANS} In the \ac{URANS} case, the impeller is physically moving. %Also, very large eddy are simulated.
 
@@ -803,12 +805,8 @@ The CFL is computed locally at each mesh element.
 
 
 
-
- %(voir https://fr.wikipedia.org/wiki/%C3%89quations_de_Navier-Stokes)
+%(voir https://fr.wikipedia.org/wiki/%C3%89quations_de_Navier-Stokes)
 % Mentionner que les solutions numériques ne sont pas démontrés?//
-
-
-
 
 
 
@@ -878,7 +876,7 @@ As we use a RANS turbulence model, in addition to the velocity, we need to penal
 
 
 
-Finnaly, the forcing terms are defined as follows\footnote{\url{https://www.simscale.com/forum/t/defining-turbulent-boundary-conditions/80895}, \url{https://www.openfoam.com/documentation/guides/latest/doc/guide-bcs-wall-turbulence-omegaWallFunction.html}},
+Finally, the forcing terms are defined as follows,
 
 \begin{align}
     \label{eq:IB}
@@ -902,7 +900,7 @@ Finnaly, the forcing terms are defined as follows\footnote{\url{https://www.sims
 
 Simulations are performed using the C++ framework OpenFOAM, used to discretize the equations previously presented. OpenFOAM is an finite-volume, open-source code which provides many tools, referred to as executables. %\citep[see][]{greenshields2021}. These executable files can be divided into three separate categories:
 
-OpenFOAM provides a wide range of tools for solving the Navier-Stokes equations, including solvers, meshing tools, and post-processing tools. It is widely used in the CFD community and has a large user base. It has been developped since 2004 and is today composed of more than a million lines.
+OpenFOAM provides a wide range of tools for solving the Navier-Stokes equations, including solvers, meshing tools, and post-processing tools. It is widely used in the CFD community and has a large user base. It has been developped since 2004 and is today composed of more than a million lines. It includes three main parts:
 
 \begin{itemize}
     \item[$-$] \textbf{Pre-processing}, including meshing and decomposing tools;
@@ -952,9 +950,8 @@ If it's called, the \texttt{postProcessing} directory stores data from the runni
 The \texttt{processor0}, ..., \texttt{processor"N-1"} directories directly result from the geometry decomposition, which is proceeded through the \texttt{decomposeParDict} dictionary.
 The \texttt{dummy.foam} is an empty file which allows to visualize the simulation with \texttt{ParaView}. 
 
-\newpage
 
-More precisely, for example, to implement the IBM forcage term on the speed "u", we can manually modify the momentum equation of the corresponding solver as follows:
+More precisely, for example, to implement the IBM forcage term on the speed $U$, we can manually modify the momentum equation of the corresponding solver as follows:
 \begin{lstlisting}[language=C++]
 // Momentum predictor step
 
@@ -982,7 +979,7 @@ fvConstraints.constrain(UEqn); // Applies physical constraints
 With
 \begin{itemize}
     \item \textit{cmptMultiply} the element-wise matrix multiplication;
-    \item $Dprime = \xi \nu D$, with $Dprime$ denoting the reduced form of $D$. The prime symbol is used to distinguish the non-dimensional quantity from its physical counterpart;
+    \item $D' = \xi \nu D$, with $D'$ denoting the reduced form of $D$. The prime symbol is used to distinguish the non-dimensional quantity from its physical counterpart;
     \item $U$ the flow velocity;
     \item $UIB$ is the imposed velocity at the walls. %(here $\Omega \times R$) 
 \end{itemize}
@@ -1066,7 +1063,8 @@ Observation data may be built using:
     \mathbf{P}_{k|k} &= (\mathbf{I} - \mathbf{K}_k \mathbf{H}_k) \mathbf{P}_{k|k-1}
 \end{align}
 
-\vspace{1em}
+\newpage
+
 \textbf{Where:}
 
 \begin{multicols}{2}
@@ -1097,19 +1095,22 @@ Observation data may be built using:
     \centering
     \includegraphics[width=0.7\textwidth]{images/KF_algorithm-1.png}
     \caption{Kalman Filter process illustration}
-    \label{KF1}
+    \label{fig:KF1}
 \end{figure}
 
-Kalman filter presents two main drawbacks that concern our case. First, it only works for moderate deviations from linearity and Gaussianity. If $M$ represents the Navier-Stokes equations, then equations are very not linear. Secondly, for a CFD mesh, the covariance matrix $\mathbf{P}_k$ would have a dimention of $(n_{vars} \times n_{cells}, n_{vars} \times n_{cells})$. % , as the \ac{EKF},
+As shown in \autoref{fig:KF1}, the Kalman Filter alternates between two steps: the forecast, where the model predicts the next state, and the analysis, where this forecast is corrected using available observations. The analysis step brings the model trajectory closer to the truth by optimally combining model and measurements.
 
-As shown in Figure~\ref{KF1}, the Kalman Filter alternates between two steps: the forecast, where the model predicts the next state, and the analysis, where this forecast is corrected using available observations. The analysis step brings the model trajectory closer to the truth by optimally combining model and measurements.
+Kalman filter presents two main drawbacks for CFD applications. First, it assumes linear dynamics and Gaussian errors, which is not valid when $\mathbf{M}$ represents the Navier--Stokes equations, as these are highly nonlinear. Second, it requires storing and updating the covariance matrix $\mathbf{P}_k$, whose dimension is $(n_{vars} \times n_{cells},\, n_{vars} \times n_{cells})$, making it computationally prohibitive on large CFD meshes.
 
-However, for CFD applications the standard KF quickly becomes impractical. First, it assumes linear dynamics and Gaussian errors, which is not valid when $\mathbf{M}$ represents the Navier-Stokes equations. Second, it requires storing and updating the covariance matrix $\mathbf{P}_k$, whose size scales with the number of variables and cells, making it computationally prohibitive.
+
+%Kalman filter presents two main drawbacks that concern our case. First, it only works for moderate deviations from linearity and Gaussianity. If $M$ represents the Navier-Stokes equations, then equations are very not linear. Secondly, for a CFD mesh, the covariance matrix $\mathbf{P}_k$ would have a dimention of $(n_{vars} \times n_{cells}, n_{vars} \times n_{cells})$. % , as the \ac{EKF},
+
+%For CFD applications the standard KF quickly becomes impractical. First, it assumes linear dynamics and Gaussian errors, which is not valid when $\mathbf{M}$ represents the Navier-Stokes equations. Second, it requires storing and updating the covariance matrix $\mathbf{P}_k$, whose size scales with the number of variables and cells, making it computationally prohibitive.
 
 
 \paragraph{Ensemble Kalman Filter}
 
-The Ensemble Kalman Filter overcomes the limitations of the classical KF by using an ensemble of states to represent the uncertainty instead of explicitly propagating the full covariance matrix. Each ensemble member evolves independently according to the model equations, and the sample covariance of the ensemble is then used to update the state when new observations become available.
+The Ensemble Kalman Filter overcomes the limitations of the classical \ac{KF} by using an ensemble of states to represent the uncertainty instead of explicitly propagating the full covariance matrix. Each ensemble member evolves independently according to the model equations, and the sample covariance of the ensemble is then used to update the state when new observations become available.
 
 In practice:
 \begin{itemize}
@@ -1148,7 +1149,7 @@ where \( \mathbf{R} \) represents the covariance matrix of the observations, and
 
 
 
-We saw previously in this subsection that today, we can theorically run a \ac{DNS} which resolves exactly the Navier-Stokes equations, but it is still too expensive to be used in practice. Therefore, we generally use \ac{LES} or \ac{RANS} models to simulate the flow. The EnKF method can be applied to these models to adjust specific model parameters or flow fields, enhancing the overall physical consistency of the simulation.
+We saw previously in this subsection that today, we can theorically run a DNS which resolves exactly the Navier-Stokes equations, but it is still too expensive to be used in practice. Therefore, we generally use LES or RANS models to simulate the flow. The EnKF method can be applied to these models to adjust specific model parameters or flow fields, enhancing the overall physical consistency of the simulation.
 
 
 The following matrices are needed to build the EnKF algorithm:
@@ -1193,7 +1194,7 @@ The following matrices are needed to build the EnKF algorithm:
 %$\boldsymbol{u}_{i,0}^\prime = [\boldsymbol{u}_{i,0}, \theta_{i,0}]^T$ (initial states with $\boldsymbol{u}_{i,0} \sim \mathcal{N}(\boldsymbol{\overline{u}}_0, \boldsymbol{P}_0)$ and $\theta_{i,0} \sim \mathcal{N}(\overline{\theta}_0, \boldsymbol{P}_0)$)
 
 
-For RANS representation, there is no physical time advancement of the model, so each instant is represented through a different interation of the solver.%, and 
+For RANS representation, there is no physical time advancement of the model, so each instant $k$ in the Algorithm \ref{alg:EnKF} is represented through a different interation of the solver.%, and 
 
 \begin{algorithm}[!ht]
     \caption{Scheme of the EnKF used in the present analyses for parameter optimization.}
@@ -1233,8 +1234,9 @@ With $\boldsymbol{\overline{x}}_k^{f} = [\boldsymbol{\overline{u}}_k^f, \overlin
 In our case, $\boldsymbol{\overline{x}}_k^{f} = [\overline{\theta}_{k-1}]^T$, $\boldsymbol{x}_{i,k}^{f} = [\theta_{i, k-1}]^T$, $\lambda_k = 0$ and $\boldsymbol{y}_k = \boldsymbol{y}$.
 
 
+\newpage
 
-Some \textit{deterministic inflation} is included to increase the variability of the state predicted by the EnKF:
+Some \textit{deterministic inflation} is included to increases the variability of the state predicted by the EnKF:
 
 \begin{equation}
     \boldsymbol{\alpha}_{i,k}^a = \boldsymbol{\overline{\alpha}}_k^a + \lambda_k \left(\boldsymbol{\alpha}_{i,k}^a - \boldsymbol{\overline{\alpha}}_k^a   \right)
@@ -1243,7 +1245,7 @@ Some \textit{deterministic inflation} is included to increase the variability of
 
 where $\boldsymbol{\alpha}$ can be either the state vector $\boldsymbol{u}$ or the model parameters $\theta$.
 
-Here is an illustration of the deterministic inflation, that increase the variability of the member ensemble to avoid a too fast collaps and permit to have more chance to find a lower local (or in a better case, global) minimum solution:
+The \autoref{fig:inflation} illustrates of the deterministic inflation, that increase the variability of the member ensemble to avoid a too fast collaps and permit to have more chance to find a lower local (or in a better case, global) minimum solution:
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{images/inflation.png}
@@ -1253,7 +1255,7 @@ Here is an illustration of the deterministic inflation, that increase the variab
 
 I coded it but it finally was not needed for the centrifugal pump case.
 
-A good example based on the simple and academic \textit{cavity test case} illustrates the DA with the EnKF well.
+\textbf{Example} A good example based on the simple and academic \textit{cavity test case} illustrates the DA with the EnKF well.
 The cavity test case is a simple flow in a square cavity, where the flow is driven by a moving lid. The flow is characterized by a recirculation zone and a vortex in the center of the cavity. The EnKF method can be used to assimilate data from the flow, such as velocity or pressure measurements, to improve the accuracy of the simulation. The EnKF method can also be used to estimate the parameters of the model, such as viscosity or turbulence model coefficients, to improve the physical accuracy of the simulation.
 
 In our test case, we are going to optimise the velocity wall condition.
@@ -1315,7 +1317,7 @@ We start from a simulation with a wall condition of 1 m.s$^{-1}$, which is not t
 \subsection{The CONES library}
 CONES is a library coded in Python/C++, that has been developed since 2022 at LMFL. % stands for "Coupling OpenFOAM with Numerical EnvironmentS" and
 It is the only code that permits online DA in CFD codes (it uses \ac{MPI} process to do it).
-It's parallelized and can be used on supercomputers using batch code as the on in appendix~\ref{annex:BatchCode}. It is mainly designed to work with OpenFOAM and DA codes as EnKF.\label{instants_partages}
+It's parallelized and can be used on supercomputers using batch code as the one in appendix~\ref{annex:BatchCode}. It is mainly designed to work with OpenFOAM and DA codes as EnKF.\label{instants_partages}
 
 
 A specific directory structure must be observed, as outlined in \autoref{fig:CONES}.

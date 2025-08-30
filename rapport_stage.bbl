@@ -526,6 +526,51 @@
       \verb https://www.jstor.org/stable/3100858?origin=crossref
       \endverb
     \endentry
+    \entry{SEO20111000}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=4139afb6a7b0c55f0bc15a033e2b0377}{%
+           family={Seo},
+           familyi={S\bibinitperiod},
+           given={Jung\bibnamedelima Hee},
+           giveni={J\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=17ea8f19e2f7f049e668cb418d9ed141}{%
+           family={Mittal},
+           familyi={M\bibinitperiod},
+           given={Rajat},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{2074613b468220e8039c9f2ad7a2aab2}
+      \strng{fullhash}{2074613b468220e8039c9f2ad7a2aab2}
+      \strng{fullhashraw}{2074613b468220e8039c9f2ad7a2aab2}
+      \strng{bibnamehash}{2074613b468220e8039c9f2ad7a2aab2}
+      \strng{authorbibnamehash}{2074613b468220e8039c9f2ad7a2aab2}
+      \strng{authornamehash}{2074613b468220e8039c9f2ad7a2aab2}
+      \strng{authorfullhash}{2074613b468220e8039c9f2ad7a2aab2}
+      \strng{authorfullhashraw}{2074613b468220e8039c9f2ad7a2aab2}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{A new sharp-interface immersed boundary method based approach for the computation of low-Mach number flow-induced sound around complex geometries is described. The underlying approach is based on a hydrodynamic/acoustic splitting technique where the incompressible flow is first computed using a second-order accurate immersed boundary solver. This is followed by the computation of sound using the linearized perturbed compressible equations (LPCE). The primary contribution of the current work is the development of a versatile, high-order accurate immersed boundary method for solving the LPCE in complex domains. This new method applies the boundary condition on the immersed boundary to a high-order by combining the ghost-cell approach with a weighted least-squares error method based on a high-order approximating polynomial. The method is validated for canonical acoustic wave scattering and flow-induced noise problems. Applications of this technique to relatively complex cases of practical interest are also presented.}
+      \field{issn}{0021-9991}
+      \field{journaltitle}{Journal of Computational Physics}
+      \field{number}{4}
+      \field{title}{A high-order immersed boundary method for acoustic wave scattering and low-Mach number flow-induced sound in complex geometries}
+      \field{volume}{230}
+      \field{year}{2011}
+      \field{pages}{1000\bibrangedash 1019}
+      \range{pages}{20}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.jcp.2010.10.017
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0021999110005711
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0021999110005711
+      \endverb
+      \keyw{Immersed boundary method,Computational aeroacoustics,Flow-induced noise,Phonation}
+    \endentry
     \entry{SHAH2013715}{article}{}{}
       \name{author}{4}{}{%
         {{hash=88fa628f97b95684d453ac923d45ca2e}{%
