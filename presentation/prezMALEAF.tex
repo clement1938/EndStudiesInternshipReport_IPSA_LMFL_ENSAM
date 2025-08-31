@@ -55,6 +55,9 @@
 \usepackage{fancyvrb}
 \usepackage{fvextra}
 
+%\usetikzlibrary{matrix}
+
+
 %\usetheme{Boadilla} % Darmstadt
 \usetheme{Boadilla}
 \useoutertheme{miniframes}
@@ -320,11 +323,10 @@
     \begin{frame}{Chaîne de traitement des données}
     \centering
         \begin{tikzpicture}[
-                node distance=1.8cm and 2.3cm,
                 box/.style={
                     draw,
                     rounded corners,
-                    minimum width=3cm,
+                    minimum width=2.5cm,
                     minimum height=1cm,
                     align=center,
                     font=\bfseries,
@@ -332,32 +334,54 @@
                 },
                 arrow/.style={
                     ->,
-                    thick
+                    semithick
+                },
+                dblearrow/.style={
+                    <->,
+                    semithick
                 }
             ]
 
-            % Nœuds
-            \node[box] (pump) {Pompe \\ expé};
-            \node[box, below=of pump] (data) {Données \\ expé};
-            \node[box, below=of data] (enkf) {EnKF};
-            \node[box, right=of enkf] (cones) {CONES};
-            \node[box, right=of cones] (ib7) {IB7 \\ Simu OpenFOAM \\ RANS / pimpleFoam};
-            \node[box, below=of ib7] (model) {Modèle num. \\ (maillage, CL)};
+            % Ligne principale
+            \node[box] (data) at (0,0) {Données \\ expérimentales};
+            \node[box] (cones) at (3.5,0) {CONES};
+            \node[box] (openfoam) at (7,0) {OpenFOAM};
 
-            % Flèches principales
-            \draw[arrow] (pump) -- (data);
-            \draw[arrow] (data) -- (enkf);
-            \draw[arrow] (enkf) -- (cones);
-            \draw[arrow] (cones) -- (ib7);
-            \draw[arrow] (ib7) -- (model);
+            % EnKF sous CONES
+            \node[box] (enkf) at (3.5,-2) {EnKF};
 
-            % Boucles
-            \draw[arrow] (model.west) -- ++(-3,0) |- (pump.south west);
-            \draw[arrow] (ib7.west) -- ++(-1.8,0.5) |- (enkf.east);
+            % Pompe sous Données
+            \node[box] (pump) at (0,-2) {Pompe \\ expérimentale};
+
+            % Modèle Numérique sous OpenFOAM
+            \node[box] (model) at (7,-2) {Modèle numérique \\ (maillage, CL)};
+
+            % Flèches horizontales
+            \draw[arrow] (data.east) -- (cones.west);
+
+            % Deux doubles flèches entre CONES et OpenFOAM
+            \draw[arrow] ([yshift=+0.15cm]cones.east) -- ([yshift=+0.15cm]openfoam.west);
+            \draw[arrow] ([yshift=-0.15cm]openfoam.west) -- ([yshift=-0.15cm]cones.east);
+
+            % Flèche double sens OpenFOAM <-> Modèle numérique
+            \draw[arrow] (openfoam.south) -- (model.north);
+
+            % Flèche simple Pompe -> Données
+            \draw[arrow] (pump.north) -- (data.south);
+
+            % Double flèche CONES <-> EnKF
+            \draw[dblearrow] (cones.south) -- (enkf.north);
 
         \end{tikzpicture}
     \end{frame}
 
+
+
+
+
+
+
+\end{document}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
