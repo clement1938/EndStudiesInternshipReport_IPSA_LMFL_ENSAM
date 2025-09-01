@@ -71,19 +71,20 @@
 \setbeamertemplate{mini frame}[circle]
 \setbeamertemplate{mini frame in other subsection}[default][20]
 
-% Définit la couleur du texte des titres de section en blanc dans la barre de navigation
-\setbeamercolor{section in head/foot}{fg=white}
-\setbeamercolor{section in head/foot shaded}{fg=white!50} % Pour les sections non actives
-%\setbeamercolor{frametitle}{fg=white}
-\setbeamercolor{author in head/foot}{fg=white}
-\setbeamercolor{title in head/foot}{fg=white}
-\setbeamercolor{mini frame title}{fg=white}
+% Couleur des sections dans la barre de navigation
+\setbeamercolor{section in head/foot}{fg=white} % section active
+\setbeamercolor{section in head/foot shaded}{fg=white!50} % sections non actives
 
-\setbeamercolor{mini frame title}{fg=white}
-\setbeamercolor{section in head/foot}{fg=white}
-\setbeamercolor{section in head/foot shaded}{fg=white}
+% Idem pour les sous-sections
 \setbeamercolor{subsection in head/foot}{fg=white}
-\setbeamercolor{subsection in head/foot shaded}{fg=white}
+\setbeamercolor{subsection in head/foot shaded}{fg=white!50}
+
+% Mini frames (les petits ronds)
+\setbeamercolor{mini frame}{fg=white,bg=}
+\setbeamercolor{mini frame in current subsection}{fg=white,bg=}
+\setbeamercolor{mini frame in other subsection}{fg=white!50,bg=}
+
+
 
 %\setbeamercolor{date in head/foot}{fg=white}
 
@@ -306,7 +307,7 @@
                 \includegraphics[scale=0.31]{../images/cme2.pdf}
                 \scriptsize Simulation d'un écoulement dans un compresseur axial (CME2) \\ Tom MOUSSIE, LMFL - ENSAM
             \end{column}
-            \begin{column}{0.35\textwidth}
+            \begin{column}{0.40\textwidth}
                 \begin{itemize}
                     \item Mécanique des fluides numérique
                     \item Ecoulements tourants
@@ -318,14 +319,23 @@
 
 
     \begin{frame}{Sujet du stage}
+        \begin{columns}
+            \begin{column}{0.60\textwidth}
+                \begin{itemize} 
+                    \item \textbf{Pompes centrifuges} : équipements généralement industriels, utilisés dans divers secteurs (eau, pétrole, chimie, énergie).
+                    \item \textbf{Mécanique des fluides numérique numérique} : important pour la prédiction du comportement physique, la conception et l'optimisation, mais confrontée à la complexité des écoulements.
+                    \item \textbf{Optimisation de la performance} : essentielle pour réduire la consommation énergétique et les coûts opérationnels.
+                    \item \textbf{Objectif du stage} : améliorer la performance d'une pompe centrifuge en utilisant des techniques d'assimilation de données (DA) pour ajuster les paramètres du modèle numérique.
+                \end{itemize}
+            \end{column}
 
-        \begin{itemize}
-            \item \textbf{Pompes centrifuges} : équipements généralement industriels, utilisés dans divers secteurs (eau, pétrole, chimie, énergie).
-            \item \textbf{mécanique des fluides numérique numérique} : important pour la prédiction du comportement physique, la conception et l'optimisation, mais confrontée à la complexité des écoulements.
-            \item \textbf{Optimisation de la performance} : essentielle pour réduire la consommation énergétique et les coûts opérationnels.
-            \item \textbf{Objectif du stage} : améliorer la performance d'une pompe centrifuge en utilisant des techniques d'assimilation de données (DA) pour ajuster les paramètres du modèle numérique.
-        \end{itemize}
+            \begin{column}{0.40\textwidth}
+                \includegraphics[scale=0.22]{../images/PompeCentrifuge.png}
+                \scriptsize Pompe centrifuge
+                \includegraphics[scale=0.22]{../images/CFD.png}
+            \end{column}
 
+        \end{columns}
     \end{frame}
 
 
@@ -435,18 +445,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Cas test}
 
-    \begin{frame}{Pompe centrifuge expérimentale}
-            \begin{columns}
-            %\hspace{-0.1cm}
-                \begin{column}{0.49\textwidth}
-                    \includegraphics[scale=0.24]{../images/experimentalPump/setting_centrifugalPump.png}
-                    \scriptsize Dispositif expérimental de la pompe centrifuge RESEDA
-            \end{column}
-            \begin{column}{0.51\textwidth}
-                \includegraphics[scale=0.22]{../images/Tableau_caract.png} %% A ENLEVER ?
-            \end{column}
-        \end{columns}
+    \begin{frame}{Dispositif expérimentale RESEDA}
+        \center
+        \includegraphics[scale=0.3]{../images/experimentalPump/setting_centrifugalPump.png}
+        %\scriptsize Dispositif expérimental de la pompe centrifuge RESEDA
+
     \end{frame}
+    
 
     \begin{frame}{Pompe centrifuge expérimentale}
 
@@ -498,7 +503,7 @@
             \end{column}
             \begin{column}{0.52\textwidth}
                 \begin{itemize}
-                    \item Vitesse en entrée : $U_{in} = XY.Z$ m/s
+                    \item Vitesse en entrée : $U_{in} = 3.77$ m/s
                     \item Condition de pression en sortie : $p_{out} = 0$ Pa
                     \item 11 millions de cellules structurées
                     \item 3 zones principales : entrée, roue, sortie
@@ -508,26 +513,26 @@
     \end{frame}
 
     \begin{frame}{Modèle numérique de la pompe centrifuge} % Modélisation
-    \begin{columns}
-        \begin{column}{0.48\textwidth}
-            \includegraphics[scale=0.45]{../figures/RESEDA_sketch.pdf}
-            \scriptsize Modèle de la pompe centrifuge RESEDA
-            \footnotesize{\begin{itemize}
-                \item \textbf{Conditions aux limites :}
-                    \begin{itemize}
-                        \item Entrée $\rightarrow$ Vitesse%\texttt{flowRateInletVelocity}
-                        \item Sortie $\rightarrow$ Pression%\texttt{fixedValue} (for the pressure $p$)
-                    \end{itemize}
-                \item \textbf{IBM:} Appliquée au niveau de la roue %\structure{computational domain around the impeller}
-            \end{itemize}}       
-        \end{column}
-        \hspace{1cm}
-        \begin{column}{0.46\textwidth}
-            \includegraphics[scale=0.25]{../figures/polar_slice_avg_theta_trimmed.pdf}
-            \scriptsize \phantom{-----} Mesures PIV moyennées azimutalement
-        \end{column}
-    \end{columns}
-\end{frame}
+        \begin{columns}
+            \begin{column}{0.48\textwidth}
+                \includegraphics[scale=0.45]{../figures/RESEDA_sketch.pdf}
+                \scriptsize Modèle de la pompe centrifuge RESEDA
+                \footnotesize{\begin{itemize}
+                    \item \textbf{Conditions aux limites :}
+                        \begin{itemize}
+                            \item Entrée $\rightarrow$ Vitesse%\texttt{flowRateInletVelocity}
+                            \item Sortie $\rightarrow$ Pression%\texttt{fixedValue} (for the pressure $p$)
+                        \end{itemize}
+                    \item \textbf{IBM:} Appliquée au niveau de la roue %\structure{computational domain around the impeller}
+                \end{itemize}}       
+            \end{column}
+            \hspace{1cm}
+            \begin{column}{0.46\textwidth}
+                \includegraphics[scale=0.25]{../figures/polar_slice_avg_theta_trimmed.pdf}
+                \scriptsize \phantom{-----} Mesures PIV moyennées azimutalement
+            \end{column}
+        \end{columns}
+    \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -635,11 +640,13 @@
         \center
         \includegraphics[scale=0.25]{../images/enkf_shem.png} % ou RESEDA_sketch.pdf
         %\scriptsize Schéma de principe de l'EnKF
-
-
     \end{frame}
 
-
+    \begin{frame}{CONES}
+        \center
+        \includegraphics[scale=0.6]{../images/EnKF_Cones_français.pdf} % ou RESEDA_sketch.pdf
+        %\scriptsize Schéma de principe de l'EnKF
+    \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Applications et résultats} 
@@ -912,42 +919,39 @@
 
 \end{frame}
 
-\begin{frame}{DA avec l'EnKF}
+\begin{frame}{DA avec l'EnKF - Nouveaux résultats}
 
     \begin{figure}
         \centering
-        \includegraphics[width=0.8\linewidth]{../newFigures/UpdtC14_10NMRSE.png} % 
+        \includegraphics[width=0.7\linewidth]{../newFigures/UpdtC14_10NMRSE.png} % 
         \caption{Bulle de recirculation localement détruite}
         \label{fig:10NRMSE}
     \end{figure}
 
+    Diminution moyenne de la NRMSE de quelques \%, avec des variations de paramètres dépendantes des conditions initiales.
+
 \end{frame}
 
-
-\begin{frame}{DA avec l'EnKF - Nouveaux résultats}
-
-    \begin{columns}[c]
-
-        \column{0.48\textwidth}
-            \begin{figure}
-                \centering
-                \includegraphics[width=0.7\linewidth]{../newFigures/radial_exp.png}
-                \caption{Expansion radiale}
-                \label{fig:expRad}
-            \end{figure}
-
-        \column{0.48\textwidth}
-            \begin{figure}
-                \centering
-                \includegraphics[width=0.7\linewidth]{../newFigures/coords.png}
-                \caption{Points d'observation de vitesse numérique avant moyenne azimutale}
-                \label{fig:enter-label7}
-            \end{figure}
-    \end{columns}
-
-    Diminution moyenne de la NRMSE de quelques \%, avec des variations de paramètres très dépendantes des conditions initiales.
-    
-\end{frame}
+\begin{comment}
+    \begin{frame}{DA avec l'EnKF - Nouveaux résultats}
+        \begin{columns}[c]
+            \column{0.48\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=0.7\linewidth]{../newFigures/radial_exp.png}
+                    \caption{Expansion radiale}
+                    \label{fig:expRad}
+                \end{figure}
+            \column{0.48\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=0.7\linewidth]{../newFigures/coords.png}
+                    \caption{Points d'observation de vitesse numérique avant moyenne azimutale}
+                    \label{fig:enter-label7}
+                \end{figure}
+        \end{columns}
+    \end{frame}
+\end{comment}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -991,6 +995,19 @@
     \end{frame}
 
 
+    \begin{frame}{A venir}
+        \begin{columns}
+            \begin{column}{0.55\textwidth}
+                \includegraphics[scale=0.31]{../images/cme2.pdf}
+                \scriptsize Simulation d'un écoulement dans un compresseur axial (CME2) \\ Tom MOUSSIE, LMFL - ENSAM
+            \end{column}
+            \begin{column}{0.45\textwidth}
+                \textbf{Thèse :} Combinaison de techniques expérimentales et numériques pour l'analyse des écoulements internes des compresseurs axiaux par assimilation de données
+                \textbf{Merci} de votre attention !
+            \end{column}
+        \end{columns}
+    \end{frame}
+  
 %\[
 %\text{Coût de calcul} = 100\,\text{it} \times 35\,\text{membres} \times 127\,\text{cœurs} \times 0{,}33\,\text{it/h} \approx 150\,\text{kheures}
 %\]
