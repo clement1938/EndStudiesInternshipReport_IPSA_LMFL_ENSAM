@@ -257,6 +257,8 @@
 \newcommand{\blueline}{\raisebox{2pt}{\tikz{\draw[-.,blue,solid,line width = 1pt](0,0) -- (5mm,0);}}}
 \newcommand{\bluelinedasheddotted}{\raisebox{2pt}{\tikz{\draw[-.,blue,dashdotted,line width = 1pt](0,0) -- (5mm,0);}}}
 \newcommand{\bluelinesolid}{\raisebox{2pt}{\tikz{\draw[-,blue,solid,line width = 1pt, opacity = 0.5](0,0) -- (5mm,0);}}}
+% Commande pour les puces rouges
+\newcommand{\baditem}{\item[\textcolor{red}{\textbullet}]}
 
 \definecolor{magenta}{RGB}{255,0,255}
 \newcommand{\magentaline}{\raisebox{2pt}{\tikz{\draw[-,magenta,dotted,line width = 0.7pt](0,0) -- (5mm,0);}}}
@@ -282,6 +284,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% https://www.researchgate.net/figure/LES-simulation-of-a-turbulent-flame-with-evaporating-droplets-11_fig11_268223531
+
     \begin{frame}{Laboratoire et site d'acceuil}
         \begin{columns}
             \begin{column}{0.61\textwidth}
@@ -300,6 +304,21 @@
         \end{columns}
     \end{frame}
 
+    \begin{frame}{Laboratoire et site d'acceuil}
+        %\begin{columns}
+            %\begin{column}{0.40\textwidth}
+                \includegraphics[scale=0.5]{../images/combo-LMFL.png}
+                \scriptsize LES simulation of a turbulent flame with evaporating droplets
+            %\end{column}
+            %\begin{column}{0.60\textwidth}
+                \begin{enumerate}
+                    \item \textbf{Turbulence}
+                    \item \textbf{Dynamique du vol en environnement instationnaire et inhomogène}
+                    \item \textbf{Ecoulements tourants}
+                \end{enumerate}
+            %\end{column}
+        %\end{columns}
+    \end{frame}
 
     \begin{frame}{Domaine d'expertise du LMFL à l'ENSAM}
         \begin{columns}
@@ -319,27 +338,51 @@
 
 
     \begin{frame}{Sujet du stage}
-        \begin{columns}
-            \begin{column}{0.60\textwidth}
-                \begin{itemize} 
-                    \item \textbf{Pompes centrifuges} : équipements généralement industriels, utilisés dans divers secteurs (eau, pétrole, chimie, énergie).
-                    \item \textbf{Mécanique des fluides numérique numérique} : important pour la prédiction du comportement physique, la conception et l'optimisation, mais confrontée à la complexité des écoulements.
-                    \item \textbf{Optimisation de la performance} : essentielle pour réduire la consommation énergétique et les coûts opérationnels.
-                    \item \textbf{Objectif du stage} : améliorer la performance d'une pompe centrifuge en utilisant des techniques d'assimilation de données (DA) pour ajuster les paramètres du modèle numérique.
+        \begin{columns}[t] % Alignement en haut
+            % Colonne gauche
+            \begin{column}{0.50\textwidth}
+                % Titre + image pompe
+                \begin{flushleft}
+                    \textbf{Sujet du stage} : améliorer la performance d'une pompe centrifuge en utilisant des techniques d'assimilation de données (DA).
+                    
+                    \vspace{0.5cm}
+                    \center
+                    \includegraphics[scale=0.20]{../images/PompeCentrifuge.png} \\
+                    \scriptsize Pompe centrifuge
+                \end{flushleft}
+                
+                %\vfill
+                
+                % Image avion en bas
+
+            \end{column}
+
+            % Colonne droite
+            \begin{column}{0.50\textwidth}
+                \begin{flushleft}
+                    \center
+                    \includegraphics[scale=0.20]{../images/CFD.png} \\
+                    \scriptsize Simulation Ansys Fluent d'une étude aérodynamique externe
+                \end{flushleft}
+
+                \vspace{0.5cm}
+
+                \begin{itemize}
+                    \item \textbf{Pompes centrifuges}
+                    \item \textbf{Mécanique des fluides numérique}
+                    \item \textbf{Optimisation de la performance}
                 \end{itemize}
             \end{column}
-
-            \begin{column}{0.40\textwidth}
-                \includegraphics[scale=0.22]{../images/PompeCentrifuge.png}
-                \scriptsize Pompe centrifuge
-                \includegraphics[scale=0.22]{../images/CFD.png}
-            \end{column}
-
         \end{columns}
     \end{frame}
 
 
-    \begin{frame}{Objectifs}
+    \begin{frame}{Etapes intermédiaires}
+
+        \textbf{Objectif du stage} : améliorer la performance d'une pompe centrifuge en utilisant des techniques d'assimilation de données (DA) pour ajuster les paramètres du modèle numérique.
+
+        \vspace{0.3cm}
+
         \begin{itemize}
             \item Mettre en avant les limitations de l'IBM dans le contexte des pompes centrifuges.
             \item Déterminer et préparer les données expérimentales disponibles qui seront utilisées pour l'assimilation.
@@ -350,48 +393,46 @@
     \end{frame}
 
     
-    \begin{frame}{Numérique et Expérimental}
-        \begin{columns}[t] % alignement en haut
+    \begin{frame}{Mécanique des fluides}
+        \vspace{-0.4cm}
+        \begin{columns}[T] % T = top align
             % Colonne numérique
-            \begin{column}{0.45\textwidth}
+            \begin{column}{0.50\textwidth}
                 \begin{block}{Simulation numérique}
                     \begin{itemize}
-                        \item Couverture complète (champ de vitesses, pressions, etc.)
+                        \item Champ complet (vitesses, pressions, etc.)
                         \item Peu coûteux une fois le modèle construit
-                        \item Mais : précision limitée par modèles (turbulence, maillage, CL)
+                        \baditem Précision limitée (turbulence, maillage, CL)
                     \end{itemize}
                 \end{block}
             \end{column}
 
             % Colonne expérimental
-            \begin{column}{0.45\textwidth}
+            \begin{column}{0.50\textwidth}
                 \begin{block}{Expérimental}
                     \begin{itemize}
                         \item Mesures réelles et précises
                         \item Validation indispensable des modèles
-                        \item Mais : données locales, coût et mise en place difficiles
+                        \baditem Données locales, coût et mise en place élevés
                     \end{itemize}
                 \end{block}
             \end{column}
         \end{columns}
 
-    \vspace{0.5cm}
-    \centering
+        %\vspace{0.3cm} % réduit pour remonter les deux du dessus
+        \centering
         \begin{block}{Assimilation de données}
             Combiner \textbf{numérique} (complet mais approximatif) et \textbf{expérimental} (précis mais limité) 
             pour obtenir des simulations plus fiables et robustes.
         \end{block}
-    \end{frame}
-
-
-    \begin{frame}{Chaîne de traitement des données}
-    \centering
+    
+        \centering
         \begin{tikzpicture}[
                 box/.style={
                     draw,
                     rounded corners,
-                    minimum width=2.5cm,
-                    minimum height=1cm,
+                    minimum width=2.4cm,
+                    minimum height=0.9cm,
                     align=center,
                     font=\bfseries,
                     fill=blue!10
@@ -400,45 +441,31 @@
                     ->,
                     semithick
                 },
-                dblearrow/.style={
-                    <->,
-                    semithick
+                bigbox/.style={
+                    draw,
+                    rounded corners,
+                    thick,
+                    inner sep=0.2cm,
+                    label={[font=\bfseries]above:CONES}
                 }
             ]
 
             % Ligne principale
             \node[box] (data) at (0,0) {Données \\ expérimentales};
-            \node[box] (cones) at (3.5,0) {CONES};
+            \node[box] (enkf) at (3.5,0) {EnKF};
             \node[box] (openfoam) at (7,0) {OpenFOAM};
 
-            % EnKF sous CONES
-            \node[box] (enkf) at (3.5,-2) {EnKF};
-
-            % Pompe sous Données
-            \node[box] (pump) at (0,-2) {Pompe \\ expérimentale};
-
-            % Modèle Numérique sous OpenFOAM
-            \node[box] (model) at (7,-2) {Modèle numérique \\ (maillage, CL)};
-
             % Flèches horizontales
-            \draw[arrow] (data.east) -- (cones.west);
+            \draw[arrow] (data.east) -- (enkf.west);
+            \draw[arrow] ([yshift=+0.15cm]enkf.east) -- ([yshift=+0.15cm]openfoam.west);
+            \draw[arrow] ([yshift=-0.15cm]openfoam.west) -- ([yshift=-0.15cm]enkf.east);
 
-            % Deux doubles flèches entre CONES et OpenFOAM
-            \draw[arrow] ([yshift=+0.15cm]cones.east) -- ([yshift=+0.15cm]openfoam.west);
-            \draw[arrow] ([yshift=-0.15cm]openfoam.west) -- ([yshift=-0.15cm]cones.east);
-
-            % Flèche double sens OpenFOAM <-> Modèle numérique
-            \draw[arrow] (model.north) -- (openfoam.south);
-
-            % Flèche simple Pompe -> Données
-            \draw[arrow] (pump.north) -- (data.south);
-
-            % Double flèche CONES <-> EnKF
-            \draw[dblearrow] (cones.south) -- (enkf.north);
+            % Gros cadre "CONES"
+            \node[bigbox, fit=(data)(enkf)(openfoam)] {};
 
         \end{tikzpicture}
-    \end{frame}
 
+    \end{frame}
 
 
 
