@@ -182,7 +182,7 @@
         \end{flushleft}
         \end{minipage}%
   \end{beamercolorbox}%
-  \vskip -0.2cm
+  \vskip -0.27cm    %%%%%%%%%% HAUTEUR DE LA DEUXIEME BARRE RED ROUGE %%%%%%%%%%
   \begin{beamercolorbox}[colsep=1.0pt,wd=\paperwidth]{lower separation line head}
   \end{beamercolorbox}
 }
@@ -272,8 +272,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \begin{frame}{Laboratoire et site d'acceuil}
         \begin{columns}
-            \begin{column}{0.60\textwidth}
-                \includegraphics[scale=0.25]{../images/other/LMFL_facilities.png}
+            \begin{column}{0.61\textwidth}
+                \includegraphics[scale=0.255]{../images/other/LMFL_facilities.png}
+                \scriptsize Bâtiments du Laboratoire de Mécanique des Fluides de Lille (LMFL)
             \end{column}
             \begin{column}{0.35\textwidth}
                 \begin{enumerate}
@@ -289,11 +290,19 @@
 
 
     \begin{frame}{Domaine d'expertise du LMFL à l'ENSAM}
-        \begin{itemize}
-            \item Mécanique des fluides numérique
-            \item Ecoulements tourants
-            \item Assimilation de données
-        \end{itemize}
+        \begin{columns}
+            \begin{column}{0.60\textwidth}
+                \includegraphics[scale=0.31]{../images/cme2.pdf}
+                \scriptsize Simulation d'un écoulement dans un compresseur axial (CME2) \\ Tom MOUSSIE, LMFL - ENSAM
+            \end{column}
+            \begin{column}{0.35\textwidth}
+                \begin{itemize}
+                    \item Mécanique des fluides numérique
+                    \item Ecoulements tourants
+                    \item Assimilation de données
+                \end{itemize}
+            \end{column}
+        \end{columns}
     \end{frame}
 
 
@@ -301,7 +310,7 @@
 
         \begin{itemize}
             \item \textbf{Pompes centrifuges} : équipements généralement industriels, utilisés dans divers secteurs (eau, pétrole, chimie, énergie).
-            \item \textbf{mécanique des fluides numérique numériquee} : important pour la prédiction du comportement physique, la conception et l'optimisation, mais confrontée à la complexité des écoulements.
+            \item \textbf{mécanique des fluides numérique numérique} : important pour la prédiction du comportement physique, la conception et l'optimisation, mais confrontée à la complexité des écoulements.
             \item \textbf{Optimisation de la performance} : essentielle pour réduire la consommation énergétique et les coûts opérationnels.
             \item \textbf{Objectif du stage} : améliorer la performance d'une pompe centrifuge en utilisant des techniques d'assimilation de données (DA) pour ajuster les paramètres du modèle numérique.
         \end{itemize}
@@ -309,16 +318,39 @@
     \end{frame}
 
 
-    \begin{frame}{État de l'art}
-        \begin{itemize}
-            \item Context/Problématique : Pk je fais ça ?
-            \item Ce qui se fait au labo
-            \item-> Importance de la simulation numérique pour améliorer la performance des pompes centrifuges.
-            \item-> Avantages et limitations des modèles numériques actuels
-            \item-> Avantage et limitations des données expérimentales
-            \item-> Rôle de l'assimilation de données pour améliorer la précision des simulations.
-        \end{itemize}
+    \begin{frame}{Numérique et Expérimental}
+        \begin{columns}[t] % alignement en haut
+            % Colonne numérique
+            \begin{column}{0.45\textwidth}
+                \begin{block}{Simulation numérique}
+                    \begin{itemize}
+                        \item Couverture complète (champ de vitesses, pressions, etc.)
+                        \item Peu coûteux une fois le modèle construit
+                        \item Mais : précision limitée par modèles (turbulence, maillage, CL)
+                    \end{itemize}
+                \end{block}
+            \end{column}
+
+            % Colonne expérimental
+            \begin{column}{0.45\textwidth}
+                \begin{block}{Expérimental}
+                    \begin{itemize}
+                        \item Mesures réelles et précises
+                        \item Validation indispensable des modèles
+                        \item Mais : données locales, coût et mise en place difficiles
+                    \end{itemize}
+                \end{block}
+            \end{column}
+        \end{columns}
+
+    \vspace{0.5cm}
+    \centering
+        \begin{block}{Assimilation de données}
+            Combiner \textbf{numérique} (complet mais approximatif) et \textbf{expérimental} (précis mais limité) 
+            pour obtenir des simulations plus fiables et robustes.
+        \end{block}
     \end{frame}
+
 
     \begin{frame}{Chaîne de traitement des données}
     \centering
@@ -364,7 +396,7 @@
             \draw[arrow] ([yshift=-0.15cm]openfoam.west) -- ([yshift=-0.15cm]cones.east);
 
             % Flèche double sens OpenFOAM <-> Modèle numérique
-            \draw[arrow] (openfoam.south) -- (model.north);
+            \draw[arrow] (model.north) -- (openfoam.south);
 
             % Flèche simple Pompe -> Données
             \draw[arrow] (pump.north) -- (data.south);
@@ -378,25 +410,102 @@
 
 
 
-
-
-
-\end{document}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Cas test}
 
     \begin{frame}{Pompe centrifuge expérimentale}
-        Spé techniques et image
+            \begin{columns}
+            %\hspace{-0.1cm}
+                \begin{column}{0.49\textwidth}
+                    \includegraphics[scale=0.24]{../images/experimentalPump/setting_centrifugalPump.png}
+                    \scriptsize Dispositif expérimental de la pompe centrifuge RESEDA
+            \end{column}
+            \begin{column}{0.51\textwidth}
+                \includegraphics[scale=0.22]{../images/Tableau_caract.png} %% A ENLEVER ?
+            \end{column}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}{Pompe centrifuge expérimentale}
+
+        \begin{columns}
+            \hspace{-0.1cm}
+            \begin{column}{0.3\textwidth}
+                %\begin{columns}
+                    %\begin{column}{0.542\textwidth}
+                \includegraphics[scale=0.27]{../figures/RESEDA_benchmark.png}
+                \scriptsize Roue à aubes de la pompe centrifuge RESEDA
+                    %\end{column}
+                    %\begin{column}{0.458\textwidth}
+                \includegraphics[scale=0.16]{../figures/image1.png}
+                \scriptsize Roue à aubes dans le dispositif
+                    %
+            \end{column}
+                %\end{columns}
+            %\end{column}
+            
+            \begin{column}{0.3\textwidth}
+                \includegraphics[scale=0.35]{../figures/impeller_position.png}
+                \scriptsize Position des plans PIV
+            \end{column}
+            \hspace{-1.5cm}
+            \begin{column}{0.45\textwidth}
+            \small{
+                \begin{itemize}
+                    \item $Re_\Omega=\cfrac{R_2^2 \Omega}{\nu} = 5.53\times10^5$ \textrm{\textbf{(turbulent)}}
+                    \item $Ma = \cfrac{R_2 \Omega}{c} = 0.095$ \textrm{\textbf{(incompressible)}}
+                    \item Point de fonctionnement au point de design \[\frac{Q}{Q_d} = 1\]
+                    \item Vitesse de rotation : 1 200 tr/min
+                    \item 7 aubes
+                    \item Données PIV à 980Hz
+                \end{itemize}
+            }
+            %\hspace{-4cm}
+
+            \end{column}
+
+        \end{columns}
+
     \end{frame}
 
     \begin{frame}{Modèle numérique de la pompe centrifuge}
-        Fameuse image
-        Conditions limites
-        Expérimentale
+        \begin{columns}
+            \begin{column}{0.5\textwidth}
+                \includegraphics[scale=0.3]{../images/model/Sketch1.png} % ou RESEDA_sketch.pdf
+                \scriptsize Modèle de la pompe centrifuge RESEDA
+            \end{column}
+            \begin{column}{0.5\textwidth}
+                \begin{itemize}
+                    \item Vitesse en entrée : $U_{in} = XY.Z$ m/s
+                    \item Condition de pression en sortie : $p_{out} = 0$ Pa
+                    \item 11 millions de cellules structurées
+                    \item 3 zones principales : entrée, roue, sortie
+                \end{itemize}   
+            \end{column}
+        \end{columns}       
     \end{frame}
 
+    \begin{frame}{Modèle numérique de la pompe centrifuge} % Modélisation
+    \begin{columns}
+        \begin{column}{0.48\textwidth}
+            \includegraphics[scale=0.45]{../figures/RESEDA_sketch.pdf}
+            \scriptsize Modèle de la pompe centrifuge RESEDA
+            \footnotesize{\begin{itemize}
+                \item \textbf{Conditions aux limites :}
+                    \begin{itemize}
+                        \item Entrée $\rightarrow$ Vitesse%\texttt{flowRateInletVelocity}
+                        \item Sortie $\rightarrow$ Pression%\texttt{fixedValue} (for the pressure $p$)
+                    \end{itemize}
+                \item \textbf{IBM:} Appliquée au niveau de la roue %\structure{computational domain around the impeller}
+            \end{itemize}}       
+        \end{column}
+        \hspace{1cm}
+        \begin{column}{0.48\textwidth}
+            \includegraphics[scale=0.22]{../figures/polar_slice_avg_theta_trimmed.pdf}
+            \scriptsize Mesures PIV moyennées azimutalement
+        \end{column}
+    \end{columns}
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -408,145 +517,155 @@
 \section{Outils numériques} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
     \begin{frame}{La mécanique des fluides numérique}
 
+        \begin{columns}[T]
+            % --- Colonne gauche : équations et modèles ---
+            \begin{column}{0.55\textwidth}
+                \begin{block}{Équations de Navier–Stokes incompressibles}
+                    \[
+                    \nabla \cdot \mathbf{u} = 0
+                    \]
+                    \[
+                    \rho \left( \frac{\partial \mathbf{u}}{\partial t} + \mathbf{u}\cdot\nabla \mathbf{u} \right)
+                    = -\nabla p + \mu \nabla^2 \mathbf{u}
+                    \]
+                \end{block}
 
-    \end{frame}
-
-
-    \begin{frame}{Le filtre de Kalman d'ensemble}
-
-
-    \end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Données et préparation du cas d'étude} 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\includegraphics[scale=0.5]{../images/profil_pression_entrancePipe.png}
-
-\begin{frame}{Expérimentale}
-
-    \begin{columns}
-        \hspace{-0.1cm}
-        \begin{column}{0.3\textwidth}
-            %\begin{columns}
-                %\begin{column}{0.542\textwidth}
-            \includegraphics[scale=0.31]{../figures/RESEDA_benchmark.png}
-                %\end{column}
-                %\begin{column}{0.458\textwidth}
-            \includegraphics[scale=0.20]{../figures/image1.png}
-        \end{column}
-            %\end{columns}
-        %\end{column}
-        
-        \begin{column}{0.3\textwidth}
-            \includegraphics[scale=0.4]{../figures/impeller_position.png}
-        \end{column}
-        \hspace{-1.5cm}
-        \begin{column}{0.45\textwidth}
-        \small{
-            \begin{itemize}
-                \item $Re_\Omega=\cfrac{R_2^2 \Omega}{\nu} = 5.53\times10^5$ \textrm{\textbf{(turbulent)}}
-                \item $Ma = \cfrac{R_2 \Omega}{c} = 0.095$ \textrm{\textbf{(incompressible)}}
-                \item Point de fonctionnement au point de design \[\frac{Q}{Q_d} = 1\]
-                \item Vitesse de rotation : 1 200 tr/min
-                \item 7 aubes
-                \item Données PIV à 980Hz
-            \end{itemize}
-        }
-        %\hspace{-4cm}
-
-        \end{column}
-
-    \end{columns}
-
-\end{frame}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  Modélisation
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\begin{frame}{Modélisation}
-    \begin{columns}
-        \begin{column}{0.5\textwidth}
-            \includegraphics[scale=0.5]{../figures/RESEDA_sketch.pdf}
-            \footnotesize{\begin{itemize}
-                \item \textbf{Conditions aux limites :}
+                \begin{block}{Méthodes numériques}
                     \begin{itemize}
-                        \item Entrée $\rightarrow$ Vitesse%\texttt{flowRateInletVelocity}
-                        \item Sortie $\rightarrow$ Pression%\texttt{fixedValue} (for the pressure $p$)
+                        \item RANS stationnaire
+                        \item Modèle de turbulence : \textbf{k–$\omega$ SST}
+                        \item Multiple Reference Frame (MRF)
+                        \item Immersed Boundary Method (IBM)
                     \end{itemize}
-                \item \textbf{IBM:} Appliquée au niveau de la roue %\structure{computational domain around the impeller}
-            \end{itemize}}       
-        \end{column}
-        \hspace{1cm}
-        \begin{column}{0.5\textwidth}
-            \includegraphics[scale=0.25]{../figures/polar_slice_avg_theta_trimmed.pdf}
-        \end{column}
-    \end{columns}
-\end{frame}
+                \end{block}
+            \end{column}
+
+            % --- Colonne droite : illustrations ---
+            \begin{column}{0.45\textwidth}
+                \begin{figure}
+                    \includegraphics[width=0.85\textwidth]{../images/meshEx.png}\\  % -> discretisation
+                    \scriptsize Exemple de maillage
+                \end{figure}
+                \vspace{-0.3cm}
+                \begin{figure}
+                    \includegraphics[width=0.75\textwidth]{../images/turbulence.jpg}\\
+                    \scriptsize Structures tourbillonnaires (turbulence)
+                \end{figure}
+            \end{column}
+        \end{columns}
+
+    \end{frame}
 
 
-\begin{frame}{Modélisation avec la méthode de frontières immergées}
+    \begin{frame}{Méthode de frontières immergées}
 
-\begin{block}{\texorpdfstring{\structure{\textbf{Penalisation IBM:}}}{Penalisation IBM:}}
-        Pénalisation continue de type IBM pour les écoulements incompressibles $\Rightarrow$ définition d'un \texorpdfstring{\structure{terme de forçage direct local}}{terme de forçage direct local} $\boldsymbol{f}_P$ dans les équations de Navier–Stokes, afin d'\textbf{imposer les conditions aux limites sur la paroi immergée} $\boldsymbol{(ib)}$.
-\end{block}
+        \begin{block}{\texorpdfstring{\structure{\textbf{Penalisation IBM:}}}{Penalisation IBM:}}
+                Pénalisation continue de type IBM pour les écoulements incompressibles $\Rightarrow$ définition d'un \texorpdfstring{\structure{terme de forçage direct local}}{terme de forçage direct local} $\boldsymbol{f}_P$ dans les équations de Navier–Stokes, afin d'\textbf{imposer les conditions aux limites sur la paroi immergée} $\boldsymbol{(ib)}$.
+        \end{block}
 
-\vspace{-0.2cm}
+        \vspace{-0.2cm}
 
 %\begin{equation*}
 %\rho\,\boldsymbol{\nabla} \cdot (\boldsymbol{u} \otimes \boldsymbol{u}) = -\boldsymbol{\nabla} p + \mu\, \nabla^2 \boldsymbol{u} \; \overbrace{-\,\chi\, \mu\, D \left(\boldsymbol{u} - \boldsymbol{u}_{ib} \right)}^{\boldsymbol{f}_P}
 %\end{equation*}
 
+        \begin{columns}
+            \begin{column}{0.5\textwidth}
+                \centering
+                \begin{equation*}
+                    (\boldsymbol{u} \cdot \boldsymbol{\nabla})\, \boldsymbol{u} = 
+                    -\frac{1}{\rho} \nabla p + \nu \nabla^2 \boldsymbol{u} 
+                    \underbrace{- \xi \nu \boldsymbol{D} \left( \boldsymbol{u} - \boldsymbol{u}_{ib} \right)}_{\boldsymbol{f}_P}
+                \end{equation*}
 
+                \includegraphics[scale=0.22]{../figures/IBM_Mesh.pdf}
+                %\only<1>{\includegraphics[scale=0.25]{../figures/IBM_Mesh.pdf}}
+                %\only<2>{\includegraphics[scale=0.25]{../figures/implicit_forcing.png}}
+            \end{column}
+            \begin{column}{0.5\textwidth}
+                avec $[p] = M \cdot L^{-1} \cdot T^{-2}$
+                \begin{equation*}
+                    \xi = \left\{
+                    \begin{array}{ll}
+                        0 & \textrm{if } \boldsymbol{x} \in \Omega_f \\
+                        1 & \textrm{if } \boldsymbol{x} \in (\Sigma_b \cup \Omega_b)
+                    \end{array} \right.
+                \end{equation*}
 
-\begin{columns}
-    \begin{column}{0.5\textwidth}
-        \centering
-        \begin{equation*}
-            (\boldsymbol{u} \cdot \boldsymbol{\nabla})\, \boldsymbol{u} = 
-            -\frac{1}{\rho} \nabla p + \nu \nabla^2 \boldsymbol{u} 
-            \underbrace{- \xi \nu \boldsymbol{D} \left( \boldsymbol{u} - \boldsymbol{u}_{ib} \right)}_{\boldsymbol{f}_P}
-        \end{equation*}
+                \colorbox{blue!20}
+                {\parbox{0.85\textwidth}
+                { \centering Quand $D \rightarrow \infty$, \\ \textbf{champ IBM = champ body-fitted }}}
 
-        \includegraphics[scale=0.25]{../figures/IBM_Mesh.pdf}
-        %\only<1>{\includegraphics[scale=0.25]{../figures/IBM_Mesh.pdf}}
-        %\only<2>{\includegraphics[scale=0.25]{../figures/implicit_forcing.png}}
-    \end{column}
-    \begin{column}{0.5\textwidth}
-        avec $[p] = M \cdot L^{-1} \cdot T^{-2}$
-        \begin{equation*}
-            \xi = \left\{
-            \begin{array}{ll}
-                0 & \textrm{if } \boldsymbol{x} \in \Omega_f \\
-                1 & \textrm{if } \boldsymbol{x} \in (\Sigma_b \cup \Omega_b)
-            \end{array} \right.
-        \end{equation*}
-
-        \colorbox{blue!20}
-        {\parbox{0.85\textwidth}
-        { \centering Quand $D \rightarrow \infty$, \\ \textbf{champ IBM = champ body-fitted }}}
-
-        \vspace{0.2cm}
+                \vspace{0.2cm}
+                
+                \footnotesize{... mais des valeurs trop élevées de $D$ peut mener à des instabilités...}
+                
+            \end{column}
+        \end{columns}
         
-        \footnotesize{... mais des valeurs trop élevées de $D$ peut mener à des instabilités...}
-        
-    \end{column}
-\end{columns}
+    \end{frame}
+
+    \begin{frame}{Modélisation avec la méthode de frontières immergées (IBM)}
+
+        \begin{columns}
+            \hspace{-0.5cm}
+            \begin{column}{0.5\linewidth}
+            \begin{itemize}[<+->]
+                \item Simulation stationnaire avec l'approche \texorpdfstring{\structure{\textbf{Multiple Reference Frame (MRF)}}}{Multiple Reference Frame (MRF)}
+                \item Modèle de turbulence $\mathcal{K}-\omega$ SST $\rightarrow$ Cinq coefficients de pénalisation $D = (\boldsymbol{D_u}, D_\mathcal{K}, D_\omega)$
+                
+
+            \begin{eqnarray*}
+                \boldsymbol{f}_{P_u} &= \xi \nu \boldsymbol{D} (\boldsymbol{u}-\boldsymbol{u_{ib}}) \rightarrow \boldsymbol{u_{ib}} &= \cancel{\boldsymbol{u}_r} + \boldsymbol{\Omega} \times \boldsymbol{r} \\
+                \boldsymbol{f}_{P_\mathcal{K}} &= \xi \nu D_{\eta} (\mathcal{K}-\mathcal{K}_{ib}) \rightarrow \mathcal{K}_{ib} &= 0 \\
+                \boldsymbol{f}_{P_\omega} &= \xi \nu D_{\omega} (\omega-\omega_{ib}) \rightarrow \omega_{ib} &= (\omega_{vis}^2+\omega_{log}^2)^{1/2}
+            \end{eqnarray*}
+            où $\omega_{vis}=\frac{6 \nu}{\beta_1 y_{\mathrm{ref}}^2}$ et $\omega_{log} = \frac{\sqrt{\mathcal{K}}}{C_\mu \kappa y_\mathrm{ref}}$
+
+            \vspace{0.5cm}
+
+            %\centering
+            %\texttt{kOmegaSST\_penalization}
+
+            \end{itemize}
+
+            \end{column}
+            \begin{column}{0.5\linewidth}
+                \centering
+                \includegraphics[width=0.8\textwidth]{../figures/pressure_profile.pdf}
+                \includegraphics[width=0.8\textwidth]{../figures/velocity_profile.pdf}
+            \end{column}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}{Le filtre de Kalman d'ensemble}
+        \center
+        \includegraphics[scale=0.24]{../images/enkf_shem.png} % ou RESEDA_sketch.pdf
+        \scriptsize Schéma de principe de l'EnKF
+
+
+    \end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Applications et résultats} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Modélisation IBM}
+
+    \begin{center}
+        \includegraphics[scale=0.3]{../figures/numVSxp.pdf}
+    \end{center}
+
+    \begin{center}
+        \tiny{Comparaison entre les profils à l'intérieur du diffuseur pour la simulation numérique (lignes continues) et les données PIV (lignes pointillées). En particulier, (\protect\bluelinePython) représente la vitesse radiale $u_r$, (\protect\orangeline) montre la vitesse azimutale $u_\theta$, et (\protect\greenline) illustre la vitesse verticale $u_z$.}
+    \end{center}
     
 \end{frame}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Résultats}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% DA avec le Filtre de Kalman d'ensemble
 
 \begin{frame}{DA avec l'EnKF - Premiers paramètres}
 
@@ -563,6 +682,8 @@
     \end{itemize}
 
 \end{frame}
+
+
 
 \begin{comment}
     
@@ -600,79 +721,12 @@
 
     \begin{figure}
         \centering
-        \includegraphics[width=0.8\linewidth]{../newFigures/UpdtC14_10NMRSE.png}
-        \caption{Bulle de recirculation localement détruite}
-        \label{fig:enter-label}
+        \includegraphics[width=0.4\linewidth]{../images/numericalPump/assymetrie.png}%{../newFigures/UpdtC14_10NMRSE.png} % Bulle de recirculation localement détruite
+        \caption{Premier résultat de la DA}
+        \label{fig:1erResultat}
     \end{figure}
 
 \end{frame}
-
-%\begin{frame}{DA avec l'EnKF - Premiers résultats}
-    %\begin{figure}
-        %\centering
-        %\includegraphics[width=0.6\linewidth]{../newFigures/UpdtC14_10params.png}
-        %\caption{Enter Caption}
-        %\label{fig:enter-label}
-    %\end{figure}
-%\end{frame}
-
-%\begin{frame}{DA avec l'EnKF - Premiers résultats}
-%\begin{figure}
-    %\centering
-    %\includegraphics[width=0.6\linewidth]{../newFigures/UpdtC14_NMRSE.png}
-    %\caption{Enter Caption}
-    %\label{fig:enter-label}
-%\end{figure}
-%\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Conclusions et perspectives}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-
-
-
-
-
-
-
-
-\begin{frame}{Modélisation avec la méthode de frontières immergées (IBM)}
-
-\begin{columns}
-    \hspace{-0.5cm}
-    \begin{column}{0.5\linewidth}
-    \begin{itemize}[<+->]
-        \item Simulation stationnaire avec l'approche \texorpdfstring{\structure{\textbf{Multiple Reference Frame (MRF)}}}{Multiple Reference Frame (MRF)}
-        \item Modèle de turbulence $\mathcal{K}-\omega$ SST $\rightarrow$ Cinq coefficients de pénalisation $D = (\boldsymbol{D_u}, D_\mathcal{K}, D_\omega)$
-        
-
-    \begin{eqnarray*}
-        \boldsymbol{f}_{P_u} &= \xi \nu \boldsymbol{D} (\boldsymbol{u}-\boldsymbol{u_{ib}}) \rightarrow \boldsymbol{u_{ib}} &= \cancel{\boldsymbol{u}_r} + \boldsymbol{\Omega} \times \boldsymbol{r} \\
-        \boldsymbol{f}_{P_\mathcal{K}} &= \xi \nu D_{\eta} (\mathcal{K}-\mathcal{K}_{ib}) \rightarrow \mathcal{K}_{ib} &= 0 \\
-        \boldsymbol{f}_{P_\omega} &= \xi \nu D_{\omega} (\omega-\omega_{ib}) \rightarrow \omega_{ib} &= (\omega_{vis}^2+\omega_{log}^2)^{1/2}
-    \end{eqnarray*}
-    où $\omega_{vis}=\frac{6 \nu}{\beta_1 y_{\mathrm{ref}}^2}$ et $\omega_{log} = \frac{\sqrt{\mathcal{K}}}{C_\mu \kappa y_\mathrm{ref}}$
-
-    \vspace{0.5cm}
-
-    %\centering
-    %\texttt{kOmegaSST\_penalization}
-
-        \end{itemize}
-
-    \end{column}
-    \begin{column}{0.5\linewidth}
-        \centering
-        \includegraphics[width=0.8\textwidth]{../figures/pressure_profile.pdf}
-        \includegraphics[width=0.8\textwidth]{../figures/velocity_profile.pdf}
-    \end{column}
-\end{columns}
-\end{frame}
-
 
 
 \begin{frame}{Modélisation IBM}
@@ -702,20 +756,35 @@
     
 \end{frame}
 
-\begin{frame}{Modélisation IBM}
+%\begin{frame}{DA avec l'EnKF - Premiers résultats}
+    %\begin{figure}
+        %\centering
+        %\includegraphics[width=0.6\linewidth]{../newFigures/UpdtC14_10params.png}
+        %\caption{Enter Caption}
+        %\label{fig:enter-label}
+    %\end{figure}
+%\end{frame}
 
-    \begin{center}
-        \includegraphics[scale=0.3]{../figures/numVSxp.pdf}
-    \end{center}
+%\begin{frame}{DA avec l'EnKF - Premiers résultats}
+%\begin{figure}
+    %\centering
+    %\includegraphics[width=0.6\linewidth]{../newFigures/UpdtC14_NMRSE.png}
+    %\caption{Enter Caption}
+    %\label{fig:enter-label}
+%\end{figure}
+%\end{frame}
 
-    \begin{center}
-        \tiny{Comparaison entre les profils à l'intérieur du diffuseur pour la simulation numérique (lignes continues) et les données PIV (lignes pointillées). En particulier, (\protect\bluelinePython) représente la vitesse radiale $u_r$, (\protect\orangeline) montre la vitesse azimutale $u_\theta$, et (\protect\greenline) illustre la vitesse verticale $u_z$.}
-    \end{center}
-    
+
+\begin{frame}{DA avec l'EnKF}
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\linewidth]{../newFigures/UpdtC14_10NMRSE.png} % 
+        \caption{Bulle de recirculation localement détruite}
+        \label{fig:10NRMSE}
+    \end{figure}
+
 \end{frame}
-
-
-
 
 
 
@@ -724,14 +793,14 @@
 
     \only<1>{%
         \centering
-        \includegraphics[width=0.9\linewidth]{../newFigures/LIC_Uy.png} \\
+        \includegraphics[width=0.8\linewidth]{../newFigures/LIC_Uy.png} \\
         \vspace{0.2cm}
         {\footnotesize Champ LIC (Line Integral Convolution) et $U_y$}
     }
 
     \only<2>{%
         \centering
-        \includegraphics[width=0.9\linewidth]{../newFigures/LIC.png} \\
+        \includegraphics[width=0.8\linewidth]{../newFigures/LIC.png} \\
         \vspace{0.2cm}
         {\footnotesize Bulle de recirculation}
     }
@@ -784,7 +853,7 @@
         \column{0.48\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=0.6\linewidth]{../newFigures/radial_exp.png}
+                \includegraphics[width=0.55\linewidth]{../newFigures/radial_exp.png}
                 \caption{Expansion radiale}
                 \label{fig:enter-label42}
             \end{figure}
@@ -817,14 +886,13 @@
 
         \phantom{-}
 
-        TEST
         
         Évite un résultat de l'EnKF où les paramètres IBM cassent la périodicité.
 
         \column{0.48\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=1\linewidth]{../newFigures/coords.png}
+                \includegraphics[width=0.9\linewidth]{../newFigures/coords.png}
                 \caption{Points d'observation de vitesse numérique avant moyenne azimutale}
                 \label{fig:enter-label5}
             \end{figure}
@@ -861,6 +929,9 @@
 \end{frame}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusions et perspectives}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{Conclusion, perspectives}
     \begin{columns}[c]
@@ -888,6 +959,33 @@
 %\[
 %\text{Coût de calcul} = 100\,\text{it} \times 35\,\text{membres} \times 127\,\text{cœurs} \times 0{,}33\,\text{it/h} \approx 150\,\text{kheures}
 %\]
+
+% --- Fin des slides principales ---
+\newcounter{finalframe}
+\setcounter{finalframe}{\value{framenumber}}
+
+\appendix
+\section*{Annexes}
+
+% Numérotation spéciale pour les annexes
+\renewcommand{\theframenumber}{A\arabic{framenumber}}
+
+% On fige le total au nombre de frames principales
+\setbeamertemplate{footline}{%
+  \hfill\theframenumber~/~\arabic{finalframe}\hspace{2ex}\vskip2pt
+}
+
+\begin{frame}
+  \frametitle{A1 : Profils de pression à l'entrée de la pompe}
+  \includegraphics[scale=0.25]{../images/profil_pression_entrancePipe.png}
+\end{frame}
+
+\begin{frame}
+  \frametitle{A2 : Autre résultat annexe}
+  ...
+\end{frame}
+
+
 
 
 %\setbeamercolor{item}{fg=blue} % Revenir à la couleur par défaut
