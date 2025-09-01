@@ -25,6 +25,13 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta, positioning}
 
+\usepackage{amssymb} % dans le préambule pour avoir \checkmark
+
+\usepackage{pifont}   % pour ding{51} (✓) et ding{55} (✗)
+\usepackage{xcolor}   % couleurs
+
+\usepackage{appendixnumberbeamer}
+
 \usepackage{mathdots}
 \usepackage{yhmath}
 \usepackage{cancel}
@@ -74,9 +81,9 @@
 
 \setbeamercolor{mini frame title}{fg=white}
 \setbeamercolor{section in head/foot}{fg=white}
-\setbeamercolor{section in head/foot shaded}{fg=white!50}
+\setbeamercolor{section in head/foot shaded}{fg=white}
 \setbeamercolor{subsection in head/foot}{fg=white}
-\setbeamercolor{subsection in head/foot shaded}{fg=white!50}
+\setbeamercolor{subsection in head/foot shaded}{fg=white}
 
 %\setbeamercolor{date in head/foot}{fg=white}
 
@@ -127,7 +134,11 @@
 }
 
 
-\title[Stage de fin d'études]{\texorpdfstring{\structure{Optimisation de la performance d'une pompe centrifuge par assimilation de données}}{Optimisation de la performance d'une pompe centrifuge par assimilation de données}}
+\title[\textcolor{white}{Stage de fin d'études}]{
+  \texorpdfstring{\structure{Optimisation de la performance d'une pompe centrifuge par assimilation de données}}
+  {Optimisation de la performance d'une pompe centrifuge par assimilation de données}
+}
+
 
 
 \author[
@@ -318,6 +329,17 @@
     \end{frame}
 
 
+    \begin{frame}{Objectifs}
+        \begin{itemize}
+            \item Mettre en avant les limitations de l'IBM dans le contexte des pompes centrifuges.
+            \item Déterminer et préparer les données expérimentales disponibles qui seront utilisées pour l'assimilation.
+            \item Intégrer une méthodologie d'assimilation de données, basée sur l'EnKF, adapté à la simulation IBM RANS de la pompe.
+            \item Trouver une combinaison optimale des coefficients de pénalisation IBM pour améliorer la précision de la simulation.
+            %\item Valider les résultats obtenus par rapport aux données expérimentales.
+        \end{itemize}
+    \end{frame}
+
+    
     \begin{frame}{Numérique et Expérimental}
         \begin{columns}[t] % alignement en haut
             % Colonne numérique
@@ -437,16 +459,16 @@
                 \scriptsize Roue à aubes de la pompe centrifuge RESEDA
                     %\end{column}
                     %\begin{column}{0.458\textwidth}
-                \includegraphics[scale=0.16]{../figures/image1.png}
+                \includegraphics[scale=0.18]{../figures/image1.png}
                 \scriptsize Roue à aubes dans le dispositif
                     %
             \end{column}
                 %\end{columns}
             %\end{column}
             
-            \begin{column}{0.3\textwidth}
-                \includegraphics[scale=0.35]{../figures/impeller_position.png}
-                \scriptsize Position des plans PIV
+            \begin{column}{0.28\textwidth}
+                \includegraphics[scale=0.36]{../figures/impeller_position.png}
+                \scriptsize \phantom{-} Position des plans PIV
             \end{column}
             \hspace{-1.5cm}
             \begin{column}{0.45\textwidth}
@@ -470,11 +492,11 @@
 
     \begin{frame}{Modèle numérique de la pompe centrifuge}
         \begin{columns}
-            \begin{column}{0.5\textwidth}
-                \includegraphics[scale=0.3]{../images/model/Sketch1.png} % ou RESEDA_sketch.pdf
+            \begin{column}{0.49\textwidth}
+                \includegraphics[scale=0.31]{../images/model/Sketch1.png} % ou RESEDA_sketch.pdf
                 \scriptsize Modèle de la pompe centrifuge RESEDA
             \end{column}
-            \begin{column}{0.5\textwidth}
+            \begin{column}{0.52\textwidth}
                 \begin{itemize}
                     \item Vitesse en entrée : $U_{in} = XY.Z$ m/s
                     \item Condition de pression en sortie : $p_{out} = 0$ Pa
@@ -500,9 +522,9 @@
             \end{itemize}}       
         \end{column}
         \hspace{1cm}
-        \begin{column}{0.48\textwidth}
-            \includegraphics[scale=0.22]{../figures/polar_slice_avg_theta_trimmed.pdf}
-            \scriptsize Mesures PIV moyennées azimutalement
+        \begin{column}{0.46\textwidth}
+            \includegraphics[scale=0.25]{../figures/polar_slice_avg_theta_trimmed.pdf}
+            \scriptsize \phantom{-----} Mesures PIV moyennées azimutalement
         \end{column}
     \end{columns}
 \end{frame}
@@ -545,12 +567,12 @@
             % --- Colonne droite : illustrations ---
             \begin{column}{0.45\textwidth}
                 \begin{figure}
-                    \includegraphics[width=0.85\textwidth]{../images/meshEx.png}\\  % -> discretisation
+                    \includegraphics[width=0.79\textwidth]{../images/meshEx.png}\\  % -> discretisation
                     \scriptsize Exemple de maillage
                 \end{figure}
-                \vspace{-0.3cm}
+                \vspace{-0.31cm}
                 \begin{figure}
-                    \includegraphics[width=0.75\textwidth]{../images/turbulence.jpg}\\
+                    \includegraphics[width=0.79\textwidth]{../images/turbulence.jpg}\\
                     \scriptsize Structures tourbillonnaires (turbulence)
                 \end{figure}
             \end{column}
@@ -580,7 +602,9 @@
                     \underbrace{- \xi \nu \boldsymbol{D} \left( \boldsymbol{u} - \boldsymbol{u}_{ib} \right)}_{\boldsymbol{f}_P}
                 \end{equation*}
 
-                \includegraphics[scale=0.22]{../figures/IBM_Mesh.pdf}
+                \vspace{-0.3cm}
+
+                \includegraphics[scale=0.20]{../figures/IBM_Mesh.pdf}
                 %\only<1>{\includegraphics[scale=0.25]{../figures/IBM_Mesh.pdf}}
                 %\only<2>{\includegraphics[scale=0.25]{../figures/implicit_forcing.png}}
             \end{column}
@@ -607,7 +631,21 @@
         
     \end{frame}
 
-    \begin{frame}{Modélisation avec la méthode de frontières immergées (IBM)}
+    \begin{frame}{Le filtre de Kalman d'ensemble}
+        \center
+        \includegraphics[scale=0.25]{../images/enkf_shem.png} % ou RESEDA_sketch.pdf
+        %\scriptsize Schéma de principe de l'EnKF
+
+
+    \end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Applications et résultats} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \begin{frame}{Modélisation IBM}
 
         \begin{columns}
             \hspace{-0.5cm}
@@ -640,20 +678,6 @@
         \end{columns}
     \end{frame}
 
-    \begin{frame}{Le filtre de Kalman d'ensemble}
-        \center
-        \includegraphics[scale=0.24]{../images/enkf_shem.png} % ou RESEDA_sketch.pdf
-        \scriptsize Schéma de principe de l'EnKF
-
-
-    \end{frame}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Applications et résultats} 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \begin{frame}{Modélisation IBM}
 
     \begin{center}
@@ -666,6 +690,52 @@
     
 \end{frame}
 
+
+
+\begin{frame}{Modélisation IBM}
+
+    \begin{columns}
+        \begin{column}{0.5\linewidth}
+            \begin{itemize}
+                \item \texorpdfstring{\structure{\textbf{Performance du diffuseur expérimentale et numérique similaire mais différente}}}{Performance du diffuseur expérimentale et numérique similaire mais différente}
+
+                \includegraphics[scale=0.4]{../figures/diffuser_performance.pdf}
+
+                %\item \structure{\textbf{Performance of the impeller}} still needs to be checked with different IBM coefficients $\eta$
+            \end{itemize}
+        \end{column}
+
+        \only<1>{\begin{column}{0.5\linewidth}
+            \includegraphics[scale=0.7]{../figures/pressure_taps.png}
+        \end{column}}
+
+        \only<2>{\begin{column}{0.5\linewidth}
+            \centering
+            \includegraphics[width=0.9\textwidth]{../figures/velocity_verProfile.pdf}
+            \includegraphics[width=0.9\textwidth]{../figures/pressure_verProfile.pdf}
+        \end{column}}
+        
+    \end{columns}
+    
+\end{frame}
+
+%\begin{frame}{DA avec l'EnKF - Premiers résultats}
+    %\begin{figure}
+        %\centering
+        %\includegraphics[width=0.6\linewidth]{../newFigures/UpdtC14_10params.png}
+        %\caption{Enter Caption}
+        %\label{fig:enter-label}
+    %\end{figure}
+%\end{frame}
+
+%\begin{frame}{DA avec l'EnKF - Premiers résultats}
+%\begin{figure}
+    %\centering
+    %\includegraphics[width=0.6\linewidth]{../newFigures/UpdtC14_NMRSE.png}
+    %\caption{Enter Caption}
+    %\label{fig:enter-label}
+%\end{figure}
+%\end{frame}
 
 \begin{frame}{DA avec l'EnKF - Premiers paramètres}
 
@@ -727,65 +797,6 @@
     \end{figure}
 
 \end{frame}
-
-
-\begin{frame}{Modélisation IBM}
-
-    \begin{columns}
-        \begin{column}{0.5\linewidth}
-            \begin{itemize}
-                \item \texorpdfstring{\structure{\textbf{Performance du diffuseur expérimentale et numérique similaire mais différente}}}{Performance du diffuseur expérimentale et numérique similaire mais différente}
-
-                \includegraphics[scale=0.4]{../figures/diffuser_performance.pdf}
-
-                %\item \structure{\textbf{Performance of the impeller}} still needs to be checked with different IBM coefficients $\eta$
-            \end{itemize}
-        \end{column}
-
-        \only<1>{\begin{column}{0.5\linewidth}
-            \includegraphics[scale=0.7]{../figures/pressure_taps.png}
-        \end{column}}
-
-        \only<2>{\begin{column}{0.5\linewidth}
-            \centering
-            \includegraphics[width=0.9\textwidth]{../figures/velocity_verProfile.pdf}
-            \includegraphics[width=0.9\textwidth]{../figures/pressure_verProfile.pdf}
-        \end{column}}
-        
-    \end{columns}
-    
-\end{frame}
-
-%\begin{frame}{DA avec l'EnKF - Premiers résultats}
-    %\begin{figure}
-        %\centering
-        %\includegraphics[width=0.6\linewidth]{../newFigures/UpdtC14_10params.png}
-        %\caption{Enter Caption}
-        %\label{fig:enter-label}
-    %\end{figure}
-%\end{frame}
-
-%\begin{frame}{DA avec l'EnKF - Premiers résultats}
-%\begin{figure}
-    %\centering
-    %\includegraphics[width=0.6\linewidth]{../newFigures/UpdtC14_NMRSE.png}
-    %\caption{Enter Caption}
-    %\label{fig:enter-label}
-%\end{figure}
-%\end{frame}
-
-
-\begin{frame}{DA avec l'EnKF}
-
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.8\linewidth]{../newFigures/UpdtC14_10NMRSE.png} % 
-        \caption{Bulle de recirculation localement détruite}
-        \label{fig:10NRMSE}
-    \end{figure}
-
-\end{frame}
-
 
 
 
@@ -901,6 +912,16 @@
 
 \end{frame}
 
+\begin{frame}{DA avec l'EnKF}
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\linewidth]{../newFigures/UpdtC14_10NMRSE.png} % 
+        \caption{Bulle de recirculation localement détruite}
+        \label{fig:10NRMSE}
+    \end{figure}
+
+\end{frame}
 
 
 \begin{frame}{DA avec l'EnKF - Nouveaux résultats}
@@ -912,7 +933,7 @@
                 \centering
                 \includegraphics[width=0.7\linewidth]{../newFigures/radial_exp.png}
                 \caption{Expansion radiale}
-                \label{fig:enter-label6}
+                \label{fig:expRad}
             \end{figure}
 
         \column{0.48\textwidth}
@@ -930,30 +951,44 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Conclusions et perspectives}
+\section{Conclusion et perspectives}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{Conclusion, perspectives}
-    \begin{columns}[c]
 
-        \column{0.48\textwidth}
-             \begin{itemize}
-                \item Passage de la simulation en instationnaire permettant notamment de ne plus utiliser l'approche MRF
-                \item Imposition d'une condition de paroi sur le « carénage » de la pompe avec un maillage body-fitted
-                \item Utilisation d'une méthode IBM plus sophistiquée
-                \end{itemize}
-        
-        \column{0.48\textwidth}
-            \begin{figure}
-                \centering
-                \includegraphics[width=1\linewidth]{../newFigures/LIC.png}
-                \caption{Bulle de recirculation}
-                \label{fig:enter-label8}
-            \end{figure}
+
+    \begin{frame}{Conclusion}
+        \begin{itemize}
+            \item<+-> {\color{green!60!black}\ding{51}}~ Mettre en avant les limitations de l'IBM dans le contexte des pompes centrifuges
+            \item<+-> {\color{green!60!black}\ding{51}}~ Déterminer et préparer les données expérimentales disponibles qui seront utilisées pour l'assimilation
+            \item<+-> {\color{green!60!black}\ding{51}}~ Intégrer une méthodologie d'assimilation de données, basée sur l'EnKF, adaptée à la simulation IBM RANS de la pompe
+            \item<+-> {\color{orange}\textbullet}~ Valider les résultats obtenus par rapport aux données expérimentales
+            % \item<+-> {\color{green!60!black}\ding{51}}~ Valider les résultats obtenus par rapport aux données expérimentales
+        \end{itemize}
+    \end{frame}
+
+
+
+    \begin{frame}{Perspectives}
+        \begin{columns}[c]
+
+            \column{0.48\textwidth}
+                \begin{itemize}
+                    \item Passage de la simulation en instationnaire permettant notamment de ne plus utiliser l'approche MRF
+                    \item Imposition d'une condition de paroi sur le « carénage » de la pompe avec un maillage body-fitted
+                    \item Utilisation d'une méthode IBM plus sophistiquée
+                    \end{itemize}
             
-    \end{columns}
+            \column{0.48\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=1\linewidth]{../newFigures/LIC.png}
+                    \caption{Bulle de recirculation}
+                    \label{fig:enter-label8}
+                \end{figure}
+                
+        \end{columns}
 
-\end{frame}
+    \end{frame}
 
 
 %\[
@@ -961,19 +996,23 @@
 %\]
 
 % --- Fin des slides principales ---
-\newcounter{finalframe}
-\setcounter{finalframe}{\value{framenumber}}
+% Juste avant \appendix :
+%\newcounter{mainframenumber}
+%\setcounter{mainframenumber}{\value{framenumber}}
+
 
 \appendix
+%\renewcommand{\insertframenumber}{A\arabic{framenumber}}
+
 \section*{Annexes}
 
-% Numérotation spéciale pour les annexes
-\renewcommand{\theframenumber}{A\arabic{framenumber}}
+% Figer le total au nombre de frames principales
+%\setbeamertemplate{footline}{%
+%  \hfill\\insertframenumber{} / \arabic{mainframenumber}\hspace{2ex}\vskip2pt
+%}
 
-% On fige le total au nombre de frames principales
-\setbeamertemplate{footline}{%
-  \hfill\theframenumber~/~\arabic{finalframe}\hspace{2ex}\vskip2pt
-}
+% On remplace la numérotation normale par A1, A2, ...
+%\renewcommand{\insertframenumber}{A\arabic{framenumber}}
 
 \begin{frame}
   \frametitle{A1 : Profils de pression à l'entrée de la pompe}
@@ -984,6 +1023,7 @@
   \frametitle{A2 : Autre résultat annexe}
   ...
 \end{frame}
+
 
 
 
