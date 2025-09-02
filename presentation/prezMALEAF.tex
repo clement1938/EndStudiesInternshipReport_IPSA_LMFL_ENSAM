@@ -304,7 +304,7 @@
         \end{columns}
     \end{frame}
 
-    \begin{frame}{Laboratoire et site d'acceuil}
+    \begin{frame}[t]{Laboratoire et site d'acceuil}
         %\begin{columns}
             %\begin{column}{0.40\textwidth}
                 \center
@@ -312,10 +312,12 @@
                 %\scriptsize Activitiées au LMFL
             %\end{column}
             %\begin{column}{0.60\textwidth}
+                \vspace{-0.3cm}
+
                 \begin{enumerate}
                     \item \textbf{Turbulence}
                     \item \textbf{Dynamique du vol en environnement instationnaire et inhomogène}
-                    \item \textcolor{red}{\textbf{Ecoulements tourants}}
+                    \item \textcolor{red}{\textbf{Écoulements tourants}}
                 \end{enumerate}
             %\end{column}
         %\end{columns}
@@ -648,82 +650,80 @@
 \section{Applications et résultats} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{Assimilation de données avec EnKF}
+    \begin{frame}{Assimilation de données avec EnKF}
 
-\begin{columns}[T]
-    % Partie modèle
-    \begin{column}{0.45\textwidth}
-        \begin{block}{\textbf{Modèle}}
-        \begin{itemize}
-            \item OpenFOAM
-            \item IBM
-            \item Pompe centrifuge avec 4 inserts
-        \end{itemize}
-        \end{block}
-    \end{column}
+        \begin{columns}[T]
+        % Partie modèle
+            \begin{column}{0.45\textwidth}
+                \begin{block}{\textbf{Modèle}}
+                \begin{itemize}
+                    \item 35 CFD (RANS, k-$\omega$ SST)
+                    \item OpenFOAM
+                    \item IBM
+                \end{itemize}
+                \end{block}
+            \end{column}
 
-    % Partie observations
-    \begin{column}{0.45\textwidth}
-        \textbf{Observations}
-        \begin{itemize}
-            \item Données expérimentales pompe
-            \item Vitesses $u$, $v$
-            \item 35 points de mesure
-        \end{itemize}
-    \end{column}
-\end{columns}
+        % Partie observations
+            \begin{column}{0.45\textwidth}
+                \begin{block}{\textbf{Observations}}
+                \begin{itemize}
+                    \item Données expérimentales pompe
+                    \item 45 vitesses $u$, pression $p$
+                \end{itemize}
+                \end{block}
+            \end{column}
+        \end{columns}
 
-\vspace{0.5cm}
+    \vspace{0.5cm}
 
-\begin{block}{Objectif}
-    Combiner \textbf{CFD + expérimental}
-\end{block}
+    \centering
+    \textbf{Objectif :} Combiner CFD + expérimental pour optimiser les coefficients $D_u, D_\mathcal{K}, D_\omega$
+    
+    \vspace{1cm}
 
-            \centering
-        \begin{tikzpicture}[
-                box/.style={
-                    draw,
-                    rounded corners,
-                    minimum width=2.4cm,
-                    minimum height=0.9cm,
-                    align=center,
-                    font=\bfseries,
-                    fill=blue!10
-                },
-                arrow/.style={
-                    ->,
-                    semithick
-                },
-                bigbox/.style={
-                    draw,
-                    rounded corners,
-                    thick,
-                    inner sep=0.2cm,
-                    label={[font=\bfseries]above:Coupling OpenFOAM with Numerical EnvironmentS (CONES)}
-                }
-            ]
+        \centering
+            \begin{tikzpicture}[
+                    box/.style={
+                        draw,
+                        rounded corners,
+                        minimum width=2.4cm,
+                        minimum height=0.9cm,
+                        align=center,
+                        font=\bfseries,
+                        fill=blue!10
+                    },
+                    arrow/.style={
+                        ->,
+                        semithick
+                    },
+                    bigbox/.style={
+                        draw,
+                        rounded corners,
+                        thick,
+                        inner sep=0.2cm,
+                        label={[font=\bfseries]above:Coupling OpenFOAM with Numerical EnvironmentS (CONES)}
+                    }
+                ]
 
-            % Ligne principale
-            \node[box] (data) at (0,0) {Données \\ expérimentales};
-            \node[box] (enkf) at (3.5,0) {EnKF};
-            \node[box] (openfoam) at (7,0) {OpenFOAM};
+                % Ligne principale
+                \node[box] (data) at (0,0) {Données \\ expérimentales};
+                \node[box] (enkf) at (3.5,0) {EnKF};
+                \node[box] (openfoam) at (7,0) {OpenFOAM};
 
-            % Flèches horizontales
-            \draw[arrow] (data.east) -- (enkf.west);
-            \draw[arrow] ([yshift=+0.15cm]enkf.east) -- ([yshift=+0.15cm]openfoam.west);
-            \draw[arrow] ([yshift=-0.15cm]openfoam.west) -- ([yshift=-0.15cm]enkf.east);
+                % Flèches horizontales
+                \draw[arrow] (data.east) -- (enkf.west);
+                \draw[arrow] ([yshift=+0.15cm]enkf.east) -- ([yshift=+0.15cm]openfoam.west);
+                \draw[arrow] ([yshift=-0.15cm]openfoam.west) -- ([yshift=-0.15cm]enkf.east);
 
-            % Gros cadre "CONES"
-            \node[bigbox, fit=(data)(enkf)(openfoam)] {};
+                % Gros cadre "CONES"
+                \node[bigbox, fit=(data)(enkf)(openfoam)] {};
 
-        \end{tikzpicture}
+            \end{tikzpicture}
 
-\vspace{0.3cm}
+    \vspace{0.3cm}
 
-\centering
-\textbf{Optimiser :} coefficients $D_u, D_\mathcal{K}, D_\omega$
-
-\end{frame}
+    \end{frame}
 
 
 
@@ -1061,14 +1061,12 @@
 \section{Conclusion et perspectives}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-
     \begin{frame}{Conclusion}
         \begin{itemize}
-            \item<+-> {\color{green!60!black}\ding{51}}~ Mettre en avant les limitations de l'IBM dans le contexte des pompes centrifuges
-            \item<+-> {\color{green!60!black}\ding{51}}~ Déterminer et préparer les données expérimentales disponibles qui seront utilisées pour l'assimilation
+            \item<+-> {\color{green!60!black}\ding{51}}~ Mise en avant des limitations de la méthode aux frontières immergées (IBM)
+            \item<+-> {\color{green!60!black}\ding{51}}~ Intégration d'algorithme d'assimilation de données
             \item<+-> {\color{green!60!black}\ding{51}}~ Intégrer une méthodologie d'assimilation de données, basée sur l'EnKF, adaptée à la simulation IBM RANS de la pompe
-            \item<+-> {\color{orange}\textbullet}~ Valider les résultats obtenus par rapport aux données expérimentales
+            \item<+-> {\color{orange}\textbullet}~ Optimisation des paramètres de la méthode IBM
             % \item<+-> {\color{green!60!black}\ding{51}}~ Valider les résultats obtenus par rapport aux données expérimentales
         \end{itemize}
     \end{frame}
@@ -1116,6 +1114,8 @@
             \begin{column}{0.45\textwidth}
                 \textbf{Ouverture :} Combinaison de techniques expérimentales et numériques pour l'analyse des écoulements internes des compresseurs axiaux par assimilation de données
 
+                \vspace{1cm}
+
                 \textbf{Merci} de votre attention !
             \end{column}
         \end{columns}
@@ -1159,6 +1159,7 @@
 \end{frame}
 
 \begin{frame}
+    \center
   \frametitle{A3 : Autre résultat annexe}
     \includegraphics[scale=0.35]{../images/pv_x.png}
 \end{frame} 
@@ -1265,6 +1266,18 @@
     \center
   \frametitle{A18 : Carte de la DA}
   \includegraphics[scale=0.24]{../images/other/DAmap.png}
+\end{frame}
+
+\begin{frame}
+    \center
+  \frametitle{A19 : Maillage}
+  \includegraphics[scale=0.22]{../images/numericalPump/mesh.png}
+\end{frame}
+
+\begin{frame}
+    \center
+  \frametitle{A20 : Modélisation proche paroi}
+  \includegraphics[scale=0.25]{../images/NearWallModelling.png}
 \end{frame}
 
 %\begin{frame}

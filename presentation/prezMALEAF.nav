@@ -130,10 +130,14 @@
 \headcommand {\beamer@framepages {59}{59}}
 \headcommand {\slideentry {6}{0}{18}{60/60}{}{1}}
 \headcommand {\beamer@framepages {60}{60}}
-\headcommand {\beamer@partpages {43}{60}}
-\headcommand {\beamer@subsectionpages {43}{60}}
-\headcommand {\beamer@sectionpages {43}{60}}
-\headcommand {\beamer@documentpages {60}}
-\headcommand {\gdef \inserttotalframenumber {18}}
+\headcommand {\slideentry {6}{0}{19}{61/61}{}{1}}
+\headcommand {\beamer@framepages {61}{61}}
+\headcommand {\slideentry {6}{0}{20}{62/62}{}{1}}
+\headcommand {\beamer@framepages {62}{62}}
+\headcommand {\beamer@partpages {43}{62}}
+\headcommand {\beamer@subsectionpages {43}{62}}
+\headcommand {\beamer@sectionpages {43}{62}}
+\headcommand {\beamer@documentpages {62}}
+\headcommand {\gdef \inserttotalframenumber {20}}
 \headcommand {\gdef \inserttotalframenumber {36}}
-\headcommand {\gdef \appendixtotalframenumber {18}}
+\headcommand {\gdef \appendixtotalframenumber {20}}
