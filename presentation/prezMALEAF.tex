@@ -47,13 +47,13 @@
 \usepackage{animate}
 \usetikzlibrary{decorations.pathreplacing}
 \usepackage[usestackEOL]{stackengine}
-\hypersetup{
-    colorlinks=true,
-    linkcolor=blue,
-    urlcolor=blue,
-    linktoc=all,
-    citecolor=blue
-           }
+%\hypersetup{
+%    colorlinks=true,
+%    linkcolor=blue,
+%    urlcolor=blue,
+%    linktoc=all,
+%    citecolor=blue
+%           }
 \usepackage[style=ieee, citestyle=numeric-comp, backend=biber]{biblatex}
 
 \usecolortheme{beaver}
@@ -146,8 +146,8 @@
 
 
 \title[\textcolor{white}{Stage de fin d'études}]{
-  \texorpdfstring{\structure{Optimisation de la performance d'une pompe centrifuge par assimilation de données}}
-  {Optimisation de la performance d'une pompe centrifuge par assimilation de données}
+  \texorpdfstring{\structure{Optimisation de la prédiction de la performance d'une pompe centrifuge par assimilation de données}}
+  {Optimisation de la prédiction de la performance d'une pompe centrifuge par assimilation de données}
 }
 
 
@@ -310,6 +310,15 @@
                     \item ONERA
                     \item CNRS
                 \end{enumerate}
+
+                \vspace{1cm}
+
+                \begin{itemize}
+                    \item 25 doctorants
+                    \item 38 permanents
+                \end{itemize}
+            
+
             \end{column}
         \end{columns}
     \end{frame}
@@ -327,7 +336,7 @@
                 \begin{enumerate}
                     \item \textbf{Turbulence}
                     \item \textbf{Dynamique du vol en environnement instationnaire et inhomogène}
-                    \item \textcolor{red}{\textbf{Écoulements tourants}}
+                    \item \textcolor{red}{\textbf{Écoulements tournants}}
                 \end{enumerate}
             %\end{column}
         %\end{columns}
@@ -361,7 +370,7 @@
                 \begin{block}{\textbf{Simulation numérique}}
                     \begin{itemize}
                         \item Champ complet (vitesses, pressions, etc.)
-                        \item Peu coûteux une fois le modèle construit
+                        %\item Peu coûteux une fois le modèle construit
                         \baditem Précision limitée (turbulence, maillage, CL)
                     \end{itemize}
                 \end{block}
@@ -429,21 +438,6 @@
     \end{frame}
 \end{comment}
 
-    \begin{frame}[t]{Étapes intermédiaires}
-
-        \textbf{Sujet du stage} : améliorer la performance d'une pompe centrifuge en utilisant des techniques d'assimilation de données (DA)
-
-        \vspace{1.2cm}
-
-        \begin{itemize}
-            \item Mise en avant des limitations de la méthode aux frontières immergées (IBM)
-            \item Préparation des données expérimentales (PIV)
-            \item Intégration d'algorithme d'assimilation de données
-            \item Optimisation des paramètres de la méthode IBM
-            %\item Valider les résultats obtenus par rapport aux données expérimentales.
-        \end{itemize}
-    \end{frame}
-
     
 \begin{frame}{Sommaire}
     \tableofcontents   
@@ -453,7 +447,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Cas test}
 
-    \begin{frame}{Dispositif expérimentale RESEDA}
+    \begin{frame}{Dispositif expérimental RESEDA}
         \center
         \includegraphics[scale=0.3]{../images/experimentalPump/setting_centrifugalPump.png}
         %\scriptsize Dispositif expérimental de la pompe centrifuge RESEDA
@@ -489,7 +483,7 @@
                 \begin{itemize}
                     \item $Re_\Omega=\cfrac{R_2^2 \Omega}{\nu} = 5.53\times10^5$ \textrm{\textbf{(turbulent)}}
                     \item $Ma = \cfrac{R_2 \Omega}{c} = 0.095$ \textrm{\textbf{(incompressible)}}
-                    \item Point de fonctionnement au point de design \[\frac{Q}{Q_d} = 1\]
+                    \item Point de fonctionnement nominal \[\frac{Q}{Q_d} = 1\]
                     \item Vitesse de rotation : 1 200 tr/min
                     \item 7 aubes
                     \item Données PIV à 980Hz
@@ -542,6 +536,21 @@
         \end{columns}
     \end{frame}
 
+    \begin{frame}[t]{Étapes intermédiaires}
+
+        \textbf{Sujet du stage} : améliorer la performance d'une pompe centrifuge en utilisant des techniques d'assimilation de données (DA)
+
+        \vspace{1.2cm}
+
+        \begin{itemize}
+            \item Mise en avant des limitations de la méthode aux frontières immergées (IBM)
+            \item Préparation des données expérimentales (PIV)
+            \item Intégration d'algorithme d'assimilation de données
+            \item Optimisation des paramètres de la méthode IBM
+            %\item Valider les résultats obtenus par rapport aux données expérimentales.
+        \end{itemize}
+    \end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     %\begin{frame}{Contexte et objectifs du stage}
@@ -563,7 +572,7 @@
                     \]
                     \[
                     \text{Moment : } \frac{\partial \mathbf{u}}{\partial t} + \mathbf{u}\cdot\nabla \mathbf{u}
-                    = - \frac{\nabla p}{\rho} + \nu \nabla^2 \mathbf{u}
+                    = - \frac{\nabla p}{\rho} + \nu \nabla^2 \mathbf{u} + \boldsymbol{f}_P
                     \]
                 \end{block}
 
@@ -594,9 +603,9 @@
     \end{frame}
 
 
-    \begin{frame}{Méthode de frontières immergées}
+    \begin{frame}{Méthode aux frontières immergées}
 
-        \begin{block}{\texorpdfstring{\structure{\textbf{Penalisation IBM:}}}{Penalisation IBM:}}
+        \begin{block}{\texorpdfstring{\structure{\textbf{Penalisation IBM:}}}{Pénalisation IBM:}}
                 Pénalisation continue de type IBM pour les écoulements incompressibles $\Rightarrow$ définition d'un \texorpdfstring{\structure{terme de forçage direct local}}{terme de forçage direct local} $\boldsymbol{f}_P$ dans les équations de Navier–Stokes, afin d'\textbf{imposer les conditions aux limites sur la paroi immergée} $\boldsymbol{(ib)}$.
         \end{block}
 
@@ -637,7 +646,7 @@
 
                 \vspace{0.2cm}
                 
-                \footnotesize{... mais des valeurs trop élevées de $D$ peut mener à des instabilités...}
+                \footnotesize{... mais des valeurs trop élevées de $D$ peuvent mener à des instabilités...}
                 
             \end{column}
         \end{columns}
