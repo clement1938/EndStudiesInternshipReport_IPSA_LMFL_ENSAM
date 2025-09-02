@@ -308,7 +308,7 @@
         %\begin{columns}
             %\begin{column}{0.40\textwidth}
                 \center
-                \includegraphics[scale=0.3]{../images/combo-LMFL.png}
+                \includegraphics[scale=0.3]{../images/combo3.png}
                 %\scriptsize Activitiées au LMFL
             %\end{column}
             %\begin{column}{0.60\textwidth}
@@ -648,7 +648,37 @@
 \section{Applications et résultats} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{DA}
+\begin{frame}{Assimilation de données avec EnKF}
+
+\begin{columns}[T]
+    % Partie modèle
+    \begin{column}{0.45\textwidth}
+        \begin{block}{\textbf{Modèle}}
+        \begin{itemize}
+            \item OpenFOAM
+            \item IBM
+            \item Pompe centrifuge avec 4 inserts
+        \end{itemize}
+        \end{block}
+    \end{column}
+
+    % Partie observations
+    \begin{column}{0.45\textwidth}
+        \textbf{Observations}
+        \begin{itemize}
+            \item Données expérimentales pompe
+            \item Vitesses $u$, $v$
+            \item 35 points de mesure
+        \end{itemize}
+    \end{column}
+\end{columns}
+
+\vspace{0.5cm}
+
+\begin{block}{Objectif}
+    Combiner \textbf{CFD + expérimental}
+\end{block}
+
             \centering
         \begin{tikzpicture}[
                 box/.style={
@@ -669,7 +699,7 @@
                     rounded corners,
                     thick,
                     inner sep=0.2cm,
-                    label={[font=\bfseries]above:CONES}
+                    label={[font=\bfseries]above:Coupling OpenFOAM with Numerical EnvironmentS (CONES)}
                 }
             ]
 
@@ -687,7 +717,16 @@
             \node[bigbox, fit=(data)(enkf)(openfoam)] {};
 
         \end{tikzpicture}
-    \end{frame}
+
+\vspace{0.3cm}
+
+\centering
+\textbf{Optimiser :} coefficients $D_u, D_\mathcal{K}, D_\omega$
+
+\end{frame}
+
+
+
 
     \begin{frame}{Modélisation IBM}
 
