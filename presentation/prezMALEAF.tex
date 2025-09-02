@@ -315,29 +315,68 @@
                 \begin{enumerate}
                     \item \textbf{Turbulence}
                     \item \textbf{Dynamique du vol en environnement instationnaire et inhomogène}
-                    \item \textbf{Ecoulements tourants}
+                    \item \textcolor{red}{\textbf{Ecoulements tourants}}
                 \end{enumerate}
             %\end{column}
         %\end{columns}
     \end{frame}
 
+\begin{comment}
+    
     \begin{frame}{Domaine d'expertise du LMFL à l'ENSAM}
         \begin{columns}
-            \begin{column}{0.60\textwidth}
+            \begin{column}{0.58\textwidth}
                 \includegraphics[scale=0.31]{../images/cme2.pdf}
                 \scriptsize Simulation d'un écoulement dans un compresseur axial (CME2) \\ Tom MOUSSIE, LMFL - ENSAM
             \end{column}
-            \begin{column}{0.40\textwidth}
+            \begin{column}{0.42\textwidth}
                 \begin{itemize}
                     \item Mécanique des fluides numérique
                     \item Ecoulements tourants
-                    \item Assimilation de données
+                    \item \textcolor{red}{Assimilation de données}
                 \end{itemize}
             \end{column}
         \end{columns}
     \end{frame}
+\end{comment}
 
 
+    \begin{frame}{DA dans la mécanique des fluides}
+        \vspace{-0.4cm}
+        \begin{columns}[T] % T = top align
+            % Colonne numérique
+            \begin{column}{0.50\textwidth}
+                \begin{block}{\textbf{Simulation numérique}}
+                    \begin{itemize}
+                        \item Champ complet (vitesses, pressions, etc.)
+                        \item Peu coûteux une fois le modèle construit
+                        \baditem Précision limitée (turbulence, maillage, CL)
+                    \end{itemize}
+                \end{block}
+            \end{column}
+
+            % Colonne expérimental
+            \begin{column}{0.50\textwidth}
+                \begin{block}{\textbf{Expérimentale}}
+                    \begin{itemize}
+                        \item Mesures réelles et précises
+                        \item Validation indispensable des modèles
+                        \baditem Données locales, coût et mise en place élevés
+                    \end{itemize}
+                \end{block}
+            \end{column}
+        \end{columns}
+
+        %\vspace{0.3cm} % réduit pour remonter les deux du dessus
+        \centering
+        \begin{block}{\textbf{Assimilation de données}}
+            Combiner \textbf{numérique} (complet mais approximatif) et \textbf{expérimental} (précis mais limité) 
+            pour obtenir des simulations plus fiables et robustes.
+        \end{block}
+
+    \end{frame}
+
+\begin{comment}
     \begin{frame}{Sujet du stage}
         \begin{columns}[t] % Alignement en haut
             % Colonne gauche
@@ -376,98 +415,27 @@
             \end{column}
         \end{columns}
     \end{frame}
+\end{comment}
 
+    \begin{frame}[t]{Étapes intermédiaires}
 
-    \begin{frame}{Etapes intermédiaires}
+        \textbf{Sujet du stage} : améliorer la performance d'une pompe centrifuge en utilisant des techniques d'assimilation de données (DA)
 
-        \textbf{Objectif du stage} : améliorer la performance d'une pompe centrifuge en utilisant des techniques d'assimilation de données (DA) pour ajuster les paramètres du modèle numérique.
-
-        \vspace{0.3cm}
+        \vspace{1.2cm}
 
         \begin{itemize}
-            \item Mettre en avant les limitations de la méthode aux fontières immergées (IBM) dans le contexte des pompes centrifuges.
-            \item Déterminer et préparer les données expérimentales disponibles qui seront utilisées pour l'assimilation.
-            \item Intégrer une méthodologie d'assimilation de données, basée sur le filtre de Kalman d'ensemble (EnKF), adapté à la simulation numérique de la pompe.
-            \item Trouver une combinaison optimale des coefficients de pénalisation IBM pour améliorer la précision de la simulation.
+            \item Mise en avant des limitations de la méthode aux frontières immergées (IBM)
+            \item Préparation des données expérimentales (PIV)
+            \item Intégration d'algorithme d'assimilation de données
+            \item Optimisation des paramètres de la méthode IBM
             %\item Valider les résultats obtenus par rapport aux données expérimentales.
         \end{itemize}
     \end{frame}
 
     
-    \begin{frame}{Mécanique des fluides}
-        \vspace{-0.4cm}
-        \begin{columns}[T] % T = top align
-            % Colonne numérique
-            \begin{column}{0.50\textwidth}
-                \begin{block}{Simulation numérique}
-                    \begin{itemize}
-                        \item Champ complet (vitesses, pressions, etc.)
-                        \item Peu coûteux une fois le modèle construit
-                        \baditem Précision limitée (turbulence, maillage, CL)
-                    \end{itemize}
-                \end{block}
-            \end{column}
-
-            % Colonne expérimental
-            \begin{column}{0.50\textwidth}
-                \begin{block}{Expérimental}
-                    \begin{itemize}
-                        \item Mesures réelles et précises
-                        \item Validation indispensable des modèles
-                        \baditem Données locales, coût et mise en place élevés
-                    \end{itemize}
-                \end{block}
-            \end{column}
-        \end{columns}
-
-        %\vspace{0.3cm} % réduit pour remonter les deux du dessus
-        \centering
-        \begin{block}{Assimilation de données}
-            Combiner \textbf{numérique} (complet mais approximatif) et \textbf{expérimental} (précis mais limité) 
-            pour obtenir des simulations plus fiables et robustes.
-        \end{block}
-    
-        \centering
-        \begin{tikzpicture}[
-                box/.style={
-                    draw,
-                    rounded corners,
-                    minimum width=2.4cm,
-                    minimum height=0.9cm,
-                    align=center,
-                    font=\bfseries,
-                    fill=blue!10
-                },
-                arrow/.style={
-                    ->,
-                    semithick
-                },
-                bigbox/.style={
-                    draw,
-                    rounded corners,
-                    thick,
-                    inner sep=0.2cm,
-                    label={[font=\bfseries]above:CONES}
-                }
-            ]
-
-            % Ligne principale
-            \node[box] (data) at (0,0) {Données \\ expérimentales};
-            \node[box] (enkf) at (3.5,0) {EnKF};
-            \node[box] (openfoam) at (7,0) {OpenFOAM};
-
-            % Flèches horizontales
-            \draw[arrow] (data.east) -- (enkf.west);
-            \draw[arrow] ([yshift=+0.15cm]enkf.east) -- ([yshift=+0.15cm]openfoam.west);
-            \draw[arrow] ([yshift=-0.15cm]openfoam.west) -- ([yshift=-0.15cm]enkf.east);
-
-            % Gros cadre "CONES"
-            \node[bigbox, fit=(data)(enkf)(openfoam)] {};
-
-        \end{tikzpicture}
-
-    \end{frame}
-
+\begin{frame}{Sommaire}
+    \tableofcontents   
+\end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -533,7 +501,7 @@
                 \begin{itemize}
                     \item Vitesse en entrée : $U_{in} = 3.77$ m/s
                     \item Condition de pression en sortie : $p_{out} = 0$ Pa
-                    \item 11 millions de cellules structurées
+                    \item 11 millions de cellules %structurées
                     \item 3 zones principales : entrée, roue, sortie
                 \end{itemize}   
             \end{column}
@@ -579,11 +547,11 @@
             \begin{column}{0.55\textwidth}
                 \begin{block}{Équations de Navier–Stokes incompressibles}
                     \[
-                    Continuité : \nabla \cdot \mathbf{u} = 0
+                    \text{Continuité : } \nabla \cdot \mathbf{u} = 0
                     \]
                     \[
-                    Moment : \rho \left( \frac{\partial \mathbf{u}}{\partial t} + \mathbf{u}\cdot\nabla \mathbf{u} \right)
-                    = -\nabla p + \mu \nabla^2 \mathbf{u}
+                    \text{Moment : } \frac{\partial \mathbf{u}}{\partial t} + \mathbf{u}\cdot\nabla \mathbf{u}
+                    = - \frac{\nabla p}{\rho} + \nu \nabla^2 \mathbf{u}
                     \]
                 \end{block}
 
@@ -642,7 +610,7 @@
                 %\only<2>{\includegraphics[scale=0.25]{../figures/implicit_forcing.png}}
             \end{column}
             \begin{column}{0.5\textwidth}
-                avec $[p] = M \cdot L^{-1} \cdot T^{-2}$
+                %avec $[p] = M \cdot L^{-1} \cdot T^{-2}$
                 \begin{equation*}
                     \xi = \left\{
                     \begin{array}{ll}
@@ -680,6 +648,47 @@
 \section{Applications et résultats} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\begin{frame}{DA}
+            \centering
+        \begin{tikzpicture}[
+                box/.style={
+                    draw,
+                    rounded corners,
+                    minimum width=2.4cm,
+                    minimum height=0.9cm,
+                    align=center,
+                    font=\bfseries,
+                    fill=blue!10
+                },
+                arrow/.style={
+                    ->,
+                    semithick
+                },
+                bigbox/.style={
+                    draw,
+                    rounded corners,
+                    thick,
+                    inner sep=0.2cm,
+                    label={[font=\bfseries]above:CONES}
+                }
+            ]
+
+            % Ligne principale
+            \node[box] (data) at (0,0) {Données \\ expérimentales};
+            \node[box] (enkf) at (3.5,0) {EnKF};
+            \node[box] (openfoam) at (7,0) {OpenFOAM};
+
+            % Flèches horizontales
+            \draw[arrow] (data.east) -- (enkf.west);
+            \draw[arrow] ([yshift=+0.15cm]enkf.east) -- ([yshift=+0.15cm]openfoam.west);
+            \draw[arrow] ([yshift=-0.15cm]openfoam.west) -- ([yshift=-0.15cm]enkf.east);
+
+            % Gros cadre "CONES"
+            \node[bigbox, fit=(data)(enkf)(openfoam)] {};
+
+        \end{tikzpicture}
+    \end{frame}
+
     \begin{frame}{Modélisation IBM}
 
         \begin{columns}
@@ -687,14 +696,17 @@
             \begin{column}{0.5\linewidth}
             \begin{itemize}[<+->]
                 \item Simulation stationnaire avec l'approche \texorpdfstring{\structure{\textbf{Multiple Reference Frame (MRF)}}}{Multiple Reference Frame (MRF)}
-                \item Modèle de turbulence $\mathcal{K}-\omega$ SST $\rightarrow$ Cinq coefficients de pénalisation $D = (\boldsymbol{D_u}, D_\mathcal{K}, D_\omega)$
+                \item Modèle de turbulence $\mathcal{K}-\omega$ SST $\rightarrow$ 
+                Cinq coefficients de pénalisation 
+                $D = (\textcolor{red}{\boldsymbol{D_u}}, \textcolor{red}{D_\mathcal{K}}, \textcolor{red}{D_\omega})$
+
                 
 
-            \begin{eqnarray*}
-                \boldsymbol{f}_{P_u} &= \xi \nu \boldsymbol{D} (\boldsymbol{u}-\boldsymbol{u_{ib}}) \rightarrow \boldsymbol{u_{ib}} &= \cancel{\boldsymbol{u}_r} + \boldsymbol{\Omega} \times \boldsymbol{r} \\
-                \boldsymbol{f}_{P_\mathcal{K}} &= \xi \nu D_{\eta} (\mathcal{K}-\mathcal{K}_{ib}) \rightarrow \mathcal{K}_{ib} &= 0 \\
-                \boldsymbol{f}_{P_\omega} &= \xi \nu D_{\omega} (\omega-\omega_{ib}) \rightarrow \omega_{ib} &= (\omega_{vis}^2+\omega_{log}^2)^{1/2}
-            \end{eqnarray*}
+            \begin{align*}
+                \boldsymbol{f}_{P_{\boldsymbol{u}}} = \xi \nu \textcolor{red}{\boldsymbol{D_u}} (\boldsymbol{u}-\boldsymbol{u_{ib}}) \quad \rightarrow \boldsymbol{u_{ib}} &= \cancel{\boldsymbol{u}_r} + \boldsymbol{\Omega} \times \boldsymbol{r} \\
+                \boldsymbol{f}_{P_\mathcal{K}} = \xi \nu \textcolor{red}{D_{\mathcal{K}}} (\mathcal{K}-\mathcal{K}_{ib}) \quad \rightarrow \mathcal{K}_{ib} &= 0 \\
+                \boldsymbol{f}_{P_\omega} = \xi \nu \textcolor{red}{D_{\omega}} (\omega-\omega_{ib}) \quad \rightarrow \omega_{ib} &= (\omega_{vis}^2+\omega_{log}^2)^{1/2}
+            \end{align*}
             où $\omega_{vis}=\frac{6 \nu}{\beta_1 y_{\mathrm{ref}}^2}$ et $\omega_{log} = \frac{\sqrt{\mathcal{K}}}{C_\mu \kappa y_\mathrm{ref}}$
 
             \vspace{0.5cm}
@@ -713,6 +725,7 @@
         \end{columns}
     \end{frame}
 
+%\end{document}
 \begin{frame}{Modélisation IBM}
 
     \begin{center}
@@ -1200,18 +1213,18 @@
 \begin{frame}
     \center
   \frametitle{A16 : Jumeau numérique}
-  \includegraphics[scale=0.20]{../images/model/DigitalTwin.png}
+  \includegraphics[scale=0.21]{../images/model/DigitalTwin.png}
 \end{frame}
 
 \begin{frame}
     \center
-  \frametitle{A17 : Autre résultat annexe}
+  \frametitle{A17 : Roue}
   \includegraphics[scale=0.23]{../images/numericalPump/impeller_cells.pdf}
 \end{frame}
 
 \begin{frame}
     \center
-  \frametitle{A18 : Autre résultat annexe}
+  \frametitle{A18 : Carte de la DA}
   \includegraphics[scale=0.24]{../images/other/DAmap.png}
 \end{frame}
 
