@@ -307,8 +307,9 @@
     \begin{frame}{Laboratoire et site d'acceuil}
         %\begin{columns}
             %\begin{column}{0.40\textwidth}
-                \includegraphics[scale=0.5]{../images/combo-LMFL.png}
-                \scriptsize LES simulation of a turbulent flame with evaporating droplets
+                \center
+                \includegraphics[scale=0.3]{../images/combo-LMFL.png}
+                %\scriptsize Activitiées au LMFL
             %\end{column}
             %\begin{column}{0.60\textwidth}
                 \begin{enumerate}
@@ -345,9 +346,9 @@
                 \begin{flushleft}
                     \textbf{Sujet du stage} : améliorer la performance d'une pompe centrifuge en utilisant des techniques d'assimilation de données (DA).
                     
-                    \vspace{0.5cm}
+                    \vspace{0.2cm}
                     \center
-                    \includegraphics[scale=0.20]{../images/PompeCentrifuge.png} \\
+                    \includegraphics[scale=0.24]{../images/PompeCentrifuge.png} \\
                     \scriptsize Pompe centrifuge
                 \end{flushleft}
                 
@@ -361,11 +362,11 @@
             \begin{column}{0.50\textwidth}
                 \begin{flushleft}
                     \center
-                    \includegraphics[scale=0.20]{../images/CFD.png} \\
+                    \includegraphics[scale=0.24]{../images/CFD.png} \\
                     \scriptsize Simulation Ansys Fluent d'une étude aérodynamique externe
                 \end{flushleft}
 
-                \vspace{0.5cm}
+                \vspace{0.3cm}
 
                 \begin{itemize}
                     \item \textbf{Pompes centrifuges}
@@ -384,9 +385,9 @@
         \vspace{0.3cm}
 
         \begin{itemize}
-            \item Mettre en avant les limitations de l'IBM dans le contexte des pompes centrifuges.
+            \item Mettre en avant les limitations de la méthode aux fontières immergées (IBM) dans le contexte des pompes centrifuges.
             \item Déterminer et préparer les données expérimentales disponibles qui seront utilisées pour l'assimilation.
-            \item Intégrer une méthodologie d'assimilation de données, basée sur l'EnKF, adapté à la simulation IBM RANS de la pompe.
+            \item Intégrer une méthodologie d'assimilation de données, basée sur le filtre de Kalman d'ensemble (EnKF), adapté à la simulation numérique de la pompe.
             \item Trouver une combinaison optimale des coefficients de pénalisation IBM pour améliorer la précision de la simulation.
             %\item Valider les résultats obtenus par rapport aux données expérimentales.
         \end{itemize}
@@ -578,17 +579,17 @@
             \begin{column}{0.55\textwidth}
                 \begin{block}{Équations de Navier–Stokes incompressibles}
                     \[
-                    \nabla \cdot \mathbf{u} = 0
+                    Continuité : \nabla \cdot \mathbf{u} = 0
                     \]
                     \[
-                    \rho \left( \frac{\partial \mathbf{u}}{\partial t} + \mathbf{u}\cdot\nabla \mathbf{u} \right)
+                    Moment : \rho \left( \frac{\partial \mathbf{u}}{\partial t} + \mathbf{u}\cdot\nabla \mathbf{u} \right)
                     = -\nabla p + \mu \nabla^2 \mathbf{u}
                     \]
                 \end{block}
 
                 \begin{block}{Méthodes numériques}
                     \begin{itemize}
-                        \item RANS stationnaire
+                        \item Reynolds-Averaged Navier–Stokes (RANS)
                         \item Modèle de turbulence : \textbf{k–$\omega$ SST}
                         \item Multiple Reference Frame (MRF)
                         \item Immersed Boundary Method (IBM)
@@ -775,11 +776,11 @@
 
     \begin{itemize}
         \item optimisation des 5 paramètres de forcage ($3\times$ vitesse, énergie turbulente et dissipation)
+        \item pas d'optimisation d'état
         \item paramètres initiaux tous égaux à $3 \times 10^7$
         \item simulation RANS et données PIV moyennées temporellement
         \item fenêtre d'observation : 800 itérations
         \item 30 membres d'ensemble
-        \item pas d'optimisation d'état
         \item 45 observations ($Ur U_{\theta} Uz$) sur 5 points sur 3 plans
         \item bruit d'observation : 0,2 m/s, soit 1,5\% du max. d'observation sur la vitesse
         %\item pas d'inflation
@@ -826,7 +827,7 @@
     \begin{figure}
         \centering
         \includegraphics[width=0.4\linewidth]{../images/numericalPump/assymetrie.png}%{../newFigures/UpdtC14_10NMRSE.png} % Bulle de recirculation localement détruite
-        \caption{Premier résultat de la DA}
+        \caption{Premier résultat de la DA : D=(4e7, 2e7, 4e7, 3e7, -3e7)}
         \label{fig:1erResultat}
     \end{figure}
 
@@ -863,6 +864,7 @@
     %\end{figure}
     
 %\end{frame}
+
 
 
 \begin{frame}{DA avec l'EnKF - Nouveaux paramètres}
@@ -917,6 +919,30 @@
     
 
 \end{frame}
+\begin{frame}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\linewidth]{../images/UpdtC14_10params.png} % 
+        \caption{Evolution des 15 paramètres de l'IBM au cours des itérations de l'EnKF}
+        \label{fig:NRMSE}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{DA avec l'EnKF - Nouveaux résultats}
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.65\linewidth]{../newFigures/UpdtC14_10NMRSE.png} % 
+        \caption{Bulle de recirculation localement détruite}
+        \label{fig:10NRMSE}
+    \end{figure}
+
+    Diminution moyenne de l'erreur (Normalized Root Mean Square Error) de quelques pourcents, avec des variations de paramètres dépendantes des conditions initiales.
+
+\end{frame}
+
+
+
 
 \begin{frame}{DA avec l'EnKF - Nouveaux paramètres}
 
@@ -937,7 +963,7 @@
         \column{0.48\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=0.9\linewidth]{../newFigures/coords.png}
+                \includegraphics[width=0.85\linewidth]{../newFigures/coords.png}
                 \caption{Points d'observation de vitesse numérique avant moyenne azimutale}
                 \label{fig:enter-label5}
             \end{figure}
@@ -946,17 +972,15 @@
 
 \end{frame}
 
-\begin{frame}{DA avec l'EnKF - Nouveaux résultats}
 
+
+\begin{frame}
     \begin{figure}
         \centering
-        \includegraphics[width=0.7\linewidth]{../newFigures/UpdtC14_10NMRSE.png} % 
-        \caption{Bulle de recirculation localement détruite}
-        \label{fig:10NRMSE}
+        \includegraphics[width=0.7\linewidth]{../images/UpdtC14_NMRSE.png} % 
+        \caption{Evolution de l'écart entre la simulation et l'expériemental au cours des itérations de l'EnKF}
+        \label{fig:NRMSE}
     \end{figure}
-
-    Diminution moyenne de la NRMSE de quelques \%, avec des variations de paramètres dépendantes des conditions initiales.
-
 \end{frame}
 
 \begin{comment}
@@ -1021,6 +1045,15 @@
 
     \end{frame}
 
+    \begin{frame}{Perspective : simulation instationnaire}
+        \centering
+        % Syntaxe : \animategraphics[options]{fps}{prefix}{first}{last}
+        \animategraphics[loop, autoplay, width=0.45\linewidth]{5}{../images/rotating/}{1}{5}
+        
+        \scriptsize Rotation de la partie à pénaliser, parallélisé sur 4 cœurs
+    \end{frame}
+
+
 
     \begin{frame}{A venir}
         \begin{columns}
@@ -1029,12 +1062,15 @@
                 \scriptsize Simulation d'un écoulement dans un compresseur axial (CME2) \\ Tom MOUSSIE, LMFL - ENSAM
             \end{column}
             \begin{column}{0.45\textwidth}
-                \textbf{Thèse :} Combinaison de techniques expérimentales et numériques pour l'analyse des écoulements internes des compresseurs axiaux par assimilation de données
+                \textbf{Ouverture :} Combinaison de techniques expérimentales et numériques pour l'analyse des écoulements internes des compresseurs axiaux par assimilation de données
+
                 \textbf{Merci} de votre attention !
             \end{column}
         \end{columns}
     \end{frame}
   
+
+
 %\[
 %\text{Coût de calcul} = 100\,\text{it} \times 35\,\text{membres} \times 127\,\text{cœurs} \times 0{,}33\,\text{it/h} \approx 150\,\text{kheures}
 %\]
@@ -1059,18 +1095,111 @@
 %\renewcommand{\insertframenumber}{A\arabic{framenumber}}
 
 \begin{frame}
+  \frametitle{A0 : Ouverture}
+  \includegraphics[scale=0.25]{../images/model/Digital_Twin_pump.pdf}
+\end{frame}
+
+\begin{frame}
   \frametitle{A1 : Profils de pression à l'entrée de la pompe}
   \includegraphics[scale=0.25]{../images/profil_pression_entrancePipe.png}
 \end{frame}
 
 \begin{frame}
   \frametitle{A2 : Autre résultat annexe}
-  ...
+  \includegraphics[scale=0.25]{../images/arborescence_of_2.png}
+\end{frame}
+
+\begin{frame}
+  \frametitle{A3 : Autre résultat annexe}
+  \includegraphics[scale=0.25]{../images/blade_interpolation_1.png}
+\end{frame}
+
+\begin{frame}
+  \frametitle{A4 : Autre résultat annexe}
+    \includegraphics[scale=0.25]{../images/compensation_recirculation.png}
+\end{frame}
+
+\begin{frame}
+  \frametitle{A5 : Autre résultat annexe}
+    \includegraphics[scale=0.25]{../images/DNSLESRANS.png}
+\end{frame}
+
+\begin{frame}
+  \frametitle{A6 : Autre résultat annexe}
+    \includegraphics[scale=0.25]{../images/EnKF_Cones_français.pdf}
 \end{frame}
 
 
+\begin{frame}
+  \frametitle{A7 : Autre résultat annexe}
+    \includegraphics[scale=0.25]{../images/inflation.png}
+\end{frame}
+
+\begin{frame}
+  \frametitle{A8 : Autre résultat annexe}
+    \includegraphics[scale=0.25]{../images/MRF.png}
+\end{frame}
 
 
+\begin{frame}
+  \frametitle{A9 : Autre résultat annexe}
+    \includegraphics[scale=0.25]{../images/pv_x.png}
+\end{frame} 
+
+\begin{frame}
+  \frametitle{A10 : Autre résultat annexe}
+    \includegraphics[scale=0.25]{../images/SHF_impeller_characteristics.png}
+\end{frame}
+
+\begin{frame}
+  \frametitle{A11 : Autre résultat annexe}
+    \includegraphics[scale=0.25]{../images/sketch-turbulent-flow-modeling-DNS-LES-RAS.png}
+\end{frame} 
+
+\begin{frame}
+  \frametitle{A12 : Autre résultat annexe}
+    \includegraphics[scale=0.25]{../images/solidworksMesh3.png}
+\end{frame}
+
+\begin{frame}
+  \frametitle{A13 : Autre résultat annexe}
+    \includegraphics[scale=0.25]{../images/Tableau_caract.png}
+\end{frame}
+
+\begin{frame}
+  \frametitle{A14 : Autre résultat annexe}
+    \includegraphics[scale=0.25]{../images/turbCascade.png}
+\end{frame} 
+
+\begin{frame}
+  \frametitle{A15 : Autre résultat annexe}
+    \includegraphics[scale=0.25]{../images/graph/radialExp.png}
+\end{frame} 
+
+\begin{frame}
+  \frametitle{A16 : Autre résultat annexe}
+    \includegraphics[scale=0.25]{../images/UpdtC14_10params.png}
+\end{frame}
+
+\begin{frame}
+  \frametitle{A17 : Autre résultat annexe}
+  \includegraphics[scale=0.25]{../images/model/Digital_Twin_pump.pdf}
+\end{frame}
+
+\begin{frame}
+  \frametitle{A18 : Autre résultat annexe}
+  \includegraphics[scale=0.25]{../images/numericalPump/impeller_cells.pdf}
+\end{frame}
+
+\begin{frame}
+  \frametitle{A19 : Autre résultat annexe}
+  \includegraphics[scale=0.25]{../images/other/DAmap.png}
+\end{frame}
+
+\begin{frame}
+  \frametitle{20 : Maillage}
+  \includegraphics[scale=0.25]{../images/model/Digital_Twin_pump.pdf}
+\end{frame}
 
 %\setbeamercolor{item}{fg=blue} % Revenir à la couleur par défaut
 
