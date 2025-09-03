@@ -371,7 +371,7 @@
                     \begin{itemize}
                         \item Champ complet (vitesses, pressions, etc.)
                         %\item Peu coûteux une fois le modèle construit
-                        \baditem Précision limitée (turbulence, maillage, conditions limites)
+                        \baditem Précision limitée (turbulence, maillage, conditions limites, etc.)
                     \end{itemize}
                 \end{block}
             \end{column}
@@ -394,6 +394,14 @@
             Combiner \textbf{numérique} (complet mais approximatif) et \textbf{expérimental} (précis mais limité) 
             pour obtenir des simulations plus fiables et robustes.
         \end{block}
+
+        \centering
+        \begin{block}{\textbf{Difficultés du cas test de la pompe centrifuge}} 
+            \textbf{Écoulement turbulent} autour d'une \textbf{géométrie complexe} en \textbf{rotation}. \\
+            \vspace{0.2cm}
+            \alert{Jamais encore étudié avec assimilation de données.}
+        \end{block}
+            
 
     \end{frame}
 
@@ -505,10 +513,11 @@
             \end{column}
             \begin{column}{0.52\textwidth}
                 \begin{itemize}
+                    \item 3 zones principales : entrée, roue, sortie
+                    \item Fluide : air à 15\degree C
                     \item Vitesse en entrée : $U_{in} = 3.77$ m/s
                     \item Condition de pression en sortie : $p_{out} = 0$ Pa
                     \item 11 millions de cellules %structurées
-                    \item 3 zones principales : entrée, roue, sortie
                 \end{itemize}   
             \end{column}
         \end{columns}       
@@ -578,8 +587,8 @@
 
                 \begin{block}{Méthodes numériques}
                     \begin{itemize}
-                        \item Reynolds-Averaged Navier–Stokes (RANS)
-                        \item Modèle de turbulence : \textbf{k–$\omega$ SST}
+                        \item Reynolds-Averaged Navier-Stokes (RANS)
+                        \item Modèle de turbulence : \textbf{$\mathcal{K}-\omega$ SST}
                         \item Multiple Reference Frame (MRF)
                         \item Immersed Boundary Method (IBM)
                     \end{itemize}
@@ -603,6 +612,7 @@
     \end{frame}
 
     \begin{frame}{Méthode aux frontières immergées}
+        \center
         \includegraphics[scale=0.25]{../images/solidworksMesh3.png}
         \scriptsize Différence entre un maillage body-fitted classique et un maillage IBM
     \end{frame}
@@ -680,7 +690,7 @@
             \begin{column}{0.45\textwidth}
                 \begin{block}{\textbf{Modèle}}
                 \begin{itemize}
-                    \item 35 CFD (RANS, k-$\omega$ SST)
+                    \item 35 simulations (RANS, k-$\omega$ SST)
                     \item OpenFOAM
                     \item IBM
                 \end{itemize}
@@ -757,7 +767,7 @@
             \hspace{-0.5cm}
             \begin{column}{0.5\linewidth}
             \begin{itemize}[<+->]
-                \item Simulation stationnaire avec l'approche \texorpdfstring{\structure{\textbf{Multiple Reference Frame (MRF)}}}{Multiple Reference Frame (MRF)}
+                \item Simulation stationnaire % avec l'approche \texorpdfstring{\structure{\textbf{Multiple Reference Frame (MRF)}}}{Multiple Reference Frame (MRF)}
                 \item Modèle de turbulence $\mathcal{K}-\omega$ SST $\rightarrow$ 
                 Cinq coefficients de pénalisation 
                 $D = (\textcolor{red}{\boldsymbol{D_u}}, \textcolor{red}{D_\mathcal{K}}, \textcolor{red}{D_\omega})$
@@ -791,12 +801,12 @@
 \begin{frame}{Modélisation IBM}
 
     \begin{center}
-        \includegraphics[scale=0.3]{../figures/numVSxp.pdf}
+        \includegraphics[scale=0.4]{../figures/numVSxpLegende.png}
+        \scriptsize Comparaison entre les profils à l'intérieur du diffuseur pour la simulation numérique (lignes continues) et les données PIV (lignes pointillées). En particulier, (\protect\bluelinePython) représente la vitesse radiale $u_r$, (\protect\orangeline) montre la vitesse azimutale $u_\theta$, et (\protect\greenline) illustre la vitesse verticale $u_z$.
     \end{center}
 
-    \begin{center}
-        \tiny{Comparaison entre les profils à l'intérieur du diffuseur pour la simulation numérique (lignes continues) et les données PIV (lignes pointillées). En particulier, (\protect\bluelinePython) représente la vitesse radiale $u_r$, (\protect\orangeline) montre la vitesse azimutale $u_\theta$, et (\protect\greenline) illustre la vitesse verticale $u_z$.}
-    \end{center}
+
+
     
 \end{frame}
 
@@ -827,6 +837,25 @@
         
     \end{columns}
     
+\end{frame}
+
+
+\begin{frame}{Limitations de la méthode IBM}
+
+    \only<1>{%
+        \centering
+        \includegraphics[width=0.8\linewidth]{../newFigures/LIC_Uy.png} \\
+        \vspace{0.2cm}
+        {\footnotesize Champ LIC (Line Integral Convolution) et $U_y$}
+    }
+
+    \only<2>{%
+        \centering
+        \includegraphics[width=0.8\linewidth]{../newFigures/LIC.png} \\
+        \vspace{0.2cm}
+        {\footnotesize Bulle de recirculation}
+    }
+
 \end{frame}
 
 %\begin{frame}{DA avec l'EnKF - Premiers résultats}
@@ -910,23 +939,6 @@
 
 
 
-\begin{frame}{Limitations de la méthode IBM}
-
-    \only<1>{%
-        \centering
-        \includegraphics[width=0.8\linewidth]{../newFigures/LIC_Uy.png} \\
-        \vspace{0.2cm}
-        {\footnotesize Champ LIC (Line Integral Convolution) et $U_y$}
-    }
-
-    \only<2>{%
-        \centering
-        \includegraphics[width=0.8\linewidth]{../newFigures/LIC.png} \\
-        \vspace{0.2cm}
-        {\footnotesize Bulle de recirculation}
-    }
-
-\end{frame}
 
 
 %\begin{frame}{Limitations de la méthode IBM}
@@ -997,25 +1009,37 @@
 \begin{frame}
     \begin{figure}
         \centering
-        \includegraphics[width=0.7\linewidth]{../images/UpdtC14_10params.png} % 
+        \includegraphics[width=0.7\linewidth]{../images/graph/UpdtC14_10params.png} % 
         \caption{Evolution des 15 paramètres de l'IBM au cours des itérations de l'EnKF}
-        \label{fig:NRMSE}
+        \label{fig:NRMSE1}
     \end{figure}
 \end{frame}
+
+\begin{frame}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\linewidth]{../images/graph/cdx.png} % 
+        \caption{Evolution du coefficient c Dx de l'IBM au cours des itérations de l'EnKF}
+        \label{fig:NRMSE2}
+    \end{figure}
+\end{frame}
+
 
 \begin{frame}{DA avec l'EnKF - Nouveaux résultats}
 
     \begin{figure}
         \centering
-        \includegraphics[width=0.65\linewidth]{../newFigures/UpdtC14_10NMRSE.png} % 
+        % La première image apparaît sur la première étape (<1>)
+        \only<1>{\includegraphics[width=0.65\linewidth]{../newFigures/UpdtC14_10NMRSE.png}}
+        % La deuxième image apparaît sur la deuxième étape (<2>)
+        \only<2>{\includegraphics[width=0.65\linewidth]{../images/graph/NRMSEcdx.png}}
         \caption{Bulle de recirculation localement détruite}
-        \label{fig:10NRMSE}
+        \label{fig:10NRMSE} % Attention : il est préférable d'avoir des labels uniques si possible
     \end{figure}
 
     Diminution moyenne de l'erreur (Normalized Root Mean Square Error) de quelques pourcents, avec des variations de paramètres dépendantes des conditions initiales.
 
 \end{frame}
-
 
 
 
@@ -1037,8 +1061,8 @@
         \column{0.48\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=0.85\linewidth]{../newFigures/coords.png}
-                \caption{Points d'observation de vitesse numérique avant moyenne azimutale}
+                \includegraphics[width=0.85\linewidth]{../newFigures/coordsBis.png}
+                %\caption{Points d'observation de vitesse numérique avant moyenne azimutale}
                 \label{fig:enter-label5}
             \end{figure}
             
@@ -1118,11 +1142,19 @@
     \end{frame}
 
     \begin{frame}{Perspective : simulation instationnaire}
-        \centering
-        % Syntaxe : \animategraphics[options]{fps}{prefix}{first}{last}
-        \animategraphics[loop, autoplay, width=0.45\linewidth]{5}{../images/rotating/}{1}{5}
-        
-        \scriptsize Rotation de la partie pénalisée, parallélisé sur 4 cœurs
+
+        \begin{columns}[c]
+
+            \column{0.48\textwidth}
+                \animategraphics[loop, autoplay, width=0.45\linewidth]{2}{../images/rotating/}{1}{5}
+                \scriptsize Rotation de la partie pénalisée, parallélisé sur 4 cœurs
+            
+            \column{0.48\textwidth}
+                \includegraphics[width=1\linewidth]{../images/rotating/3bis.png}
+                \scriptsize Déplacement de la partie pénalisée
+
+        \end{columns}
+
     \end{frame}
 
 
@@ -1172,18 +1204,21 @@
 \center
   \frametitle{A1 : Ouverture}
   \includegraphics[scale=0.5]{../images/model/Digital_Twin_pump.pdf}
+    \scriptsize Schéma du jumeau numérique de la pompe
 \end{frame}
 
 \begin{frame}
     \center
   \frametitle{A2 : Profils de pression à l'entrée de la pompe}
   \includegraphics[scale=0.28]{../images/profil_pression_entrancePipe.png}
+  \scriptsize Profil de pression à l'entrée de la pompe
 \end{frame}
 
 \begin{frame}
     \center
   \frametitle{A3 : Autre résultat annexe}
     \includegraphics[scale=0.35]{../images/pv_x.png}
+    \scriptsize Profil de pression analytique à l'entrée de la pompe
 \end{frame} 
 
 
@@ -1191,24 +1226,28 @@
     \center
   \frametitle{A4 : Autre résultat annexe}
   \includegraphics[scale=0.4]{../images/blade_interpolation_1.png}
+  \scriptsize Interpolation des pales
 \end{frame}
 
 \begin{frame}
     \center
   \frametitle{A5 : Autre résultat annexe}
     \includegraphics[scale=0.35]{../images/compensation_recirculation.png}
+    \scriptsize Mise en valeur de l'effet de la méthode IBM
 \end{frame}
 
 \begin{frame}
     \center
   \frametitle{A6 : Autre résultat annexe}
     \includegraphics[scale=0.55]{../images/DNSLESRANS.png}
+    \scriptsize Différence entre DNS, LES et RANS
 \end{frame}
 
 \begin{frame}
     \center
   \frametitle{A7 : Autre résultat annexe}
     \includegraphics[scale=0.55]{../images/EnKF_Cones_français.pdf}
+    \scriptsize Schéma détaillé de principe de CONES
 \end{frame}
 
 
@@ -1216,12 +1255,14 @@
     \center
   \frametitle{A8 : Autre résultat annexe}
     \includegraphics[scale=0.55]{../images/inflation.png}
+    \scriptsize Schéma de principe de l'inflation codée dans CONES
 \end{frame}
 
 \begin{frame}
     \center
   \frametitle{A9 : Autre résultat annexe}
     \includegraphics[scale=0.24]{../images/MRF.png}
+    \scriptsize Schéma de principe de la méthode MRF
 \end{frame}
 
 \begin{frame}
