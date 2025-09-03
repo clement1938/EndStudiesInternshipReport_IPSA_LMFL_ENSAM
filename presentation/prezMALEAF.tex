@@ -161,7 +161,8 @@
 ]{
   \textbf{Intern :} Clément THIBAULT\texorpdfstring{\textsuperscript{1, 2}}{\textsuperscript{1, 2}} \\
   \textbf{IPSA educational tutor :} Samy LABSIR\texorpdfstring{\textsuperscript{1}}{\textsuperscript{1}} \\
-  \textbf{Company supervisors :} Marcello MELDI\texorpdfstring{\textsuperscript{2}}{\textsuperscript{2}}, Antoine DAZIN\texorpdfstring{\textsuperscript{2}}{\textsuperscript{2}}, Miguel MARTINEZ VALERO\texorpdfstring{\textsuperscript{2}}{\textsuperscript{2}}
+  \textbf{Company supervisors :} Marcello MELDI\texorpdfstring{\textsuperscript{2}}{\textsuperscript{2}}, Antoine DAZIN\texorpdfstring{\textsuperscript{2}}{\textsuperscript{2}}, Miguel MARTINEZ VALERO\texorpdfstring{\textsuperscript{2}}{\textsuperscript{2}} \\
+  \textbf{Jury director :} Lorenzo ORTEGA \texorpdfstring{\textsuperscript{1}}{\textsuperscript{1}}
 }
 \institute[
   Institut Polytechnique des Sciences Avancées (IPSA),
@@ -323,6 +324,34 @@
         \end{columns}
     \end{frame}
 
+    \begin{frame}[t]{Corporate Social Responsibility (CSR)}
+        \center
+        \textbf{ENSAM action plan :}
+        \begin{itemize}
+            \item Strategy, governance and territorial anchoring
+            \item Education and training -> ecor-responsibility
+            \item Research and innovation free acces
+            \item Environmental management
+            \item Social policy
+        \end{itemize}
+
+        \vspace{0.3cm}
+
+        \textbf{LMFL action plan :} "Haut Conseil de l'Évaluation
+de la Recherche et de l'Enseignement Supérieur" (HCERES)
+        \begin{itemize}
+            \item Unique facilities
+            \item European laboratories in the field of next-generation aircraft design
+            \item Advanced numerical simulations (turbulence) and data-driven modeling
+            \item Synergy between geographically separated
+sites
+            \item High quality of scientific output (JFM)
+        \end{itemize}
+
+        
+
+    \end{frame}
+
     \begin{frame}[t]{Laboratory and host site}%{Laboratoire et site d'acceuil}
         %\begin{columns}
             %\begin{column}{0.40\textwidth}
@@ -362,14 +391,14 @@
 \end{comment}
 
 
-    \begin{frame}{DA in fluid mechanics}
+    \begin{frame}{Data Assimilation in fluid mechanics}
         \vspace{-0.4cm}
         \begin{columns}[T] % T = top align
             % Colonne numérique
             \begin{column}{0.50\textwidth}
                 \begin{block}{\textbf{Numerical simulation}}%{Simulation numérique}}
                     \begin{itemize}
-                        \item Full field (speeds, pressures, etc.)
+                        \item Full field (velocity , pressures, etc.)
                         %\item Peu coûteux une fois le modèle construit
                         \baditem Limited accuracy (turbulence, mesh, boundary conditions, etc.)
                     \end{itemize}
@@ -530,7 +559,7 @@
     \begin{frame}{Modèle numérique de la pompe centrifuge} % Modélisation
         \begin{columns}
             \begin{column}{0.48\textwidth}
-                \includegraphics[scale=0.45]{../figures/RESEDA_sketch.pdf}
+                \includegraphics[scale=0.45]{../figures/RESEDA_sketchBis.pdf}
                 \scriptsize Modèle de la pompe centrifuge RESEDA
                 \footnotesize{\begin{itemize}
                     \item \textbf{Conditions aux limites :}
@@ -551,7 +580,7 @@
 
     \begin{frame}[t]{Étapes intermédiaires}
 
-        \textbf{Sujet du stage} : améliorer la performance d'une pompe centrifuge en utilisant des techniques d'assimilation de données (DA)
+        \textbf{Sujet du stage} : améliorer la prédiction de la performance d'une pompe centrifuge en utilisant des techniques d'assimilation de données (DA)
 
         \vspace{1.2cm}
 
@@ -589,7 +618,7 @@
                     \]
                 \end{block}
 
-                \begin{block}{Méthodes numériques}
+                \begin{block}{Modèles numériques}
                     \begin{itemize}
                         \item Reynolds-Averaged Navier-Stokes (RANS)
                         \item Modèle de turbulence : \textbf{$\mathcal{K}-\omega$ SST}
@@ -607,7 +636,7 @@
                 \end{figure}
                 \vspace{-0.31cm}
                 \begin{figure}
-                    \includegraphics[width=0.79\textwidth]{../images/turbulence2.jpg}\\
+                    \includegraphics[width=0.70\textwidth]{../images/turbulence2.jpg}\\
                     \scriptsize Structures tourbillonnaires (turbulence)
                 \end{figure}
             \end{column}
@@ -680,9 +709,10 @@
     \end{frame}
 
     \begin{frame}{CONES}
-        \center
-        \includegraphics[scale=0.55]{../images/EnKF_Cones_français.pdf} % ou RESEDA_sketch.pdf
-        \scriptsize Schéma de principe de Coupling OpenFOAM with Numerical EnvironmentS (CONES)
+        \begin{center}
+            \includegraphics[scale=0.55]{../images/EnKF_Cones_français.pdf} % ou RESEDA_sketch.pdf
+            \scriptsize Schéma de principe de Coupling OpenFOAM with Numerical EnvironmentS (CONES)
+        \end{center}
     \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -696,7 +726,7 @@
             \begin{column}{0.45\textwidth}
                 \begin{block}{\textbf{Modèle}}
                 \begin{itemize}
-                    \item 35 simulations (RANS, k-$\omega$ SST)
+                    \item 30 simulations (RANS, k-$\omega$ SST)
                     \item OpenFOAM
                     \item IBM
                 \end{itemize}
@@ -961,7 +991,7 @@
         \item fenêtre d'observation : 800 itérations
         \item simulation RANS et données PIV moyennées temporellement
         \item pas d'optimisation d'état
-        \item 35 membres d'ensemble
+        \item 30 membres d'ensemble
     \end{itemize}
 
     \setbeamercolor{item}{fg=red}
@@ -1000,12 +1030,39 @@
                 a \cdot r^2 + b \cdot r + c & \text{sinon}
                 \end{cases}
                 \]       
-      
-      
     \end{columns}
     
 
 \end{frame}
+
+\begin{frame}{DA avec l'EnKF - Nouvelles techniques}
+
+    \begin{columns}[c]
+
+        \column{0.48\textwidth}
+        \setbeamercolor{item}{fg=red}
+        \vspace{-2cm}
+        \begin{itemize}
+            \item 106 observations : ($Ur U_{\theta} Uz$) sur 7 sections (avec 5 points sur 3 plans) + observation globale de pression
+        \end{itemize}
+
+        \phantom{-}
+
+        Évite un résultat de l'EnKF où les paramètres de forcage de l'IBM cassent la périodicité.
+
+        \column{0.48\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.85\linewidth]{../newFigures/coordsBis.png}
+                %\caption{Points d'observation de vitesse numérique avant moyenne azimutale}
+                \label{fig:enter-label5}
+            \end{figure}
+            
+    \end{columns}
+
+\end{frame}
+
+
 \begin{frame}
     \begin{figure}
         \centering
@@ -1043,32 +1100,7 @@
 
 
 
-\begin{frame}{DA avec l'EnKF - Nouveaux paramètres}
 
-    \begin{columns}[c]
-
-        \column{0.48\textwidth}
-        \setbeamercolor{item}{fg=red}
-        \vspace{-2cm}
-        \begin{itemize}
-            \item 106 observations : ($Ur U_{\theta} Uz$) sur 7 sections (avec 5 points sur 3 plans) + observation globale de pression
-        \end{itemize}
-
-        \phantom{-}
-
-        Évite un résultat de l'EnKF où les paramètres de forcage de l'IBM cassent la périodicité.
-
-        \column{0.48\textwidth}
-            \begin{figure}
-                \centering
-                \includegraphics[width=0.85\linewidth]{../newFigures/coordsBis.png}
-                %\caption{Points d'observation de vitesse numérique avant moyenne azimutale}
-                \label{fig:enter-label5}
-            \end{figure}
-            
-    \end{columns}
-
-\end{frame}
 
 
 
@@ -1350,6 +1382,12 @@
   \end{center}
 \end{frame}
 
+\begin{frame}
+  \frametitle{A21 : Penalisation IBM nulle}
+  \begin{center}
+    \includegraphics[scale=0.25]{../newFigures/pen0.png}
+  \end{center}
+\end{frame}
 
 \end{document}
 
