@@ -139,7 +139,7 @@
 
 \begin{tikzpicture}[overlay,remember picture]
 \node[left=0.2cm, yshift=-1.6cm] at (current page.30){
-	\includegraphics[width=5.0cm]{../logos/logosbis.png}
+	\includegraphics[width=5.0cm]{../logos/logos.png}
 };
 \end{tikzpicture}
 }
@@ -159,9 +159,9 @@
   %Antoine DAZIN,
   %Miguel MATINEZ VALERO
 ]{
-  \textbf{Stagiaire :} Clément THIBAULT\texorpdfstring{\textsuperscript{1, 2}}{\textsuperscript{1, 2}} \\
-  \textbf{Superviseur IPSA :} Samy LABSIR\texorpdfstring{\textsuperscript{1}}{\textsuperscript{1}} \\
-  \textbf{Superviseurs entreprise :} Marcello MELDI\texorpdfstring{\textsuperscript{2}}{\textsuperscript{2}}, Antoine DAZIN\texorpdfstring{\textsuperscript{2}}{\textsuperscript{2}}, Miguel MARTINEZ VALERO\texorpdfstring{\textsuperscript{2}}{\textsuperscript{2}}
+  \textbf{Intern :} Clément THIBAULT\texorpdfstring{\textsuperscript{1, 2}}{\textsuperscript{1, 2}} \\
+  \textbf{IPSA educational tutor :} Samy LABSIR\texorpdfstring{\textsuperscript{1}}{\textsuperscript{1}} \\
+  \textbf{Company supervisors :} Marcello MELDI\texorpdfstring{\textsuperscript{2}}{\textsuperscript{2}}, Antoine DAZIN\texorpdfstring{\textsuperscript{2}}{\textsuperscript{2}}, Miguel MARTINEZ VALERO\texorpdfstring{\textsuperscript{2}}{\textsuperscript{2}}
 }
 \institute[
   Institut Polytechnique des Sciences Avancées (IPSA),
@@ -172,7 +172,7 @@
 }
 
 
-\date{4 septembre 2025}
+\date{September 4, 2025}
 
 \setbeamersize{text margin left=10mm,text margin right=10mm}
 
@@ -336,7 +336,7 @@
                 \begin{enumerate}
                     \item \textbf{Turbulence}
                     \item \textbf{Flight dynamics in an unsteady and inhomogeneous environment}%{Dynamique du vol en environnement instationnaire et inhomogène}
-                    \item \textcolor{red}{\textbf{Écoulements tournants}}
+                    \item \textcolor{red}{\textbf{Rotating flows}}
                 \end{enumerate}
             %\end{column}
         %\end{columns}
@@ -367,7 +367,7 @@
         \begin{columns}[T] % T = top align
             % Colonne numérique
             \begin{column}{0.50\textwidth}
-                \begin{block}{\textbf{numerical simulation}}%{Simulation numérique}}
+                \begin{block}{\textbf{Numerical simulation}}%{Simulation numérique}}
                     \begin{itemize}
                         \item Full field (speeds, pressures, etc.)
                         %\item Peu coûteux une fois le modèle construit
@@ -607,7 +607,7 @@
                 \end{figure}
                 \vspace{-0.31cm}
                 \begin{figure}
-                    \includegraphics[width=0.79\textwidth]{../images/turbulence.jpg}\\
+                    \includegraphics[width=0.79\textwidth]{../images/turbulence2.jpg}\\
                     \scriptsize Structures tourbillonnaires (turbulence)
                 \end{figure}
             \end{column}
@@ -616,10 +616,12 @@
     \end{frame}
 
     \begin{frame}{Méthode aux frontières immergées}
-        \center
-        \includegraphics[scale=0.25]{../images/solidworksMesh3.png}
-        \scriptsize Différence entre un maillage body-fitted classique et un maillage IBM
+        \begin{center}
+            \includegraphics[scale=0.25]{../images/solidworksMesh3.png} \\
+            \scriptsize Différence entre un maillage body-fitted classique et un maillage IBM
+        \end{center}
     \end{frame}
+
 
     \begin{frame}{Méthode aux frontières immergées}
 
@@ -679,8 +681,8 @@
 
     \begin{frame}{CONES}
         \center
-        \includegraphics[scale=0.6]{../images/EnKF_Cones_français.pdf} % ou RESEDA_sketch.pdf
-        %\scriptsize Schéma de principe de l'EnKF
+        \includegraphics[scale=0.55]{../images/EnKF_Cones_français.pdf} % ou RESEDA_sketch.pdf
+        \scriptsize Schéma de principe de Coupling OpenFOAM with Numerical EnvironmentS (CONES)
     \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -715,7 +717,7 @@
     \vspace{0.5cm}
 
     \centering
-    \textbf{Objectif :} Combiner CFD + expérimental pour optimiser les coefficients $D_u, D_\mathcal{K}, D_\omega$
+    \textbf{Objectif :} Combiner CFD + expérimental pour optimiser les coefficients $\boldsymbol{D_u}, D_\mathcal{K}, D_\omega$
     
     \vspace{1cm}
 
@@ -1157,8 +1159,7 @@
 
     \end{frame}
 
-
-
+    
     \begin{frame}{A venir}
         \begin{columns}
             \begin{column}{0.55\textwidth}
@@ -1201,155 +1202,154 @@
 %\renewcommand{\insertframenumber}{A\arabic{framenumber}}
 
 \begin{frame}
-\center
   \frametitle{A1 : Ouverture}
-  \includegraphics[scale=0.5]{../images/model/Digital_Twin_pump.pdf}
+  \begin{center}
+    \includegraphics[scale=0.5]{../images/model/Digital_Twin_pump.pdf} \\
     \scriptsize Schéma du jumeau numérique de la pompe
+  \end{center}
 \end{frame}
 
 \begin{frame}
-    \center
   \frametitle{A2 : Profils de pression à l'entrée de la pompe}
-  \includegraphics[scale=0.28]{../images/profil_pression_entrancePipe.png}
-  \scriptsize Profil de pression à l'entrée de la pompe
+  \begin{center}
+    \includegraphics[scale=0.28]{../images/profil_pression_entrancePipe.png} \\
+    \scriptsize Profil de pression à l'entrée de la pompe
+  \end{center}
 \end{frame}
 
 \begin{frame}
-    \center
   \frametitle{A3 : Autre résultat annexe}
-    \includegraphics[scale=0.35]{../images/pv_x.png}
+  \begin{center}
+    \includegraphics[scale=0.35]{../images/pv_x.png} \\
     \scriptsize Profil de pression analytique à l'entrée de la pompe
-\end{frame} 
-
+  \end{center}
+\end{frame}
 
 \begin{frame}
-    \center
   \frametitle{A4 : Autre résultat annexe}
-  \includegraphics[scale=0.4]{../images/blade_interpolation_1.png}
-  \scriptsize Interpolation des pales
+  \begin{center}
+    \includegraphics[scale=0.4]{../images/blade_interpolation_1.png} \\
+    \scriptsize Interpolation des pales
+  \end{center}
 \end{frame}
 
 \begin{frame}
-    \center
   \frametitle{A5 : Autre résultat annexe}
-    \includegraphics[scale=0.35]{../images/compensation_recirculation.png}
+  \begin{center}
+    \includegraphics[scale=0.35]{../images/compensation_recirculation.png} \\
     \scriptsize Mise en valeur de l'effet de la méthode IBM
+  \end{center}
 \end{frame}
 
 \begin{frame}
-    \center
   \frametitle{A6 : Autre résultat annexe}
-    \includegraphics[scale=0.55]{../images/DNSLESRANS.png}
+  \begin{center}
+    \includegraphics[scale=0.55]{../images/DNSLESRANS.png} \\
     \scriptsize Différence entre DNS, LES et RANS
+  \end{center}
 \end{frame}
 
 \begin{frame}
-    \center
   \frametitle{A7 : Autre résultat annexe}
-    \includegraphics[scale=0.55]{../images/EnKF_Cones_français.pdf}
+  \begin{center}
+    \includegraphics[scale=0.55]{../images/EnKF_Cones_français.pdf} \\
     \scriptsize Schéma détaillé de principe de CONES
+  \end{center}
 \end{frame}
 
-
 \begin{frame}
-    \center
   \frametitle{A8 : Autre résultat annexe}
-    \includegraphics[scale=0.55]{../images/inflation.png}
+  \begin{center}
+    \includegraphics[scale=0.55]{../images/inflation.png} \\
     \scriptsize Schéma de principe de l'inflation codée dans CONES
+  \end{center}
 \end{frame}
 
 \begin{frame}
-    \center
   \frametitle{A9 : Autre résultat annexe}
-    \includegraphics[scale=0.24]{../images/MRF.png}
+  \begin{center}
+    \includegraphics[scale=0.24]{../images/MRF.png} \\
     \scriptsize Schéma de principe de la méthode MRF
+  \end{center}
 \end{frame}
 
 \begin{frame}
-    \center
   \frametitle{A10 : Autre résultat annexe}
-  \includegraphics[scale=0.25]{../images/arborescence_of_2.png}
+  \begin{center}
+    \includegraphics[scale=0.25]{../images/arborescence_of_2.png}
+  \end{center}
 \end{frame}
 
-%\begin{frame}
-%    \center
-%  \frametitle{A10 : Autre résultat annexe}
-%    \includegraphics[scale=0.55]{../images/SHF_impeller_characteristics.png}
-%\end{frame}
-
 \begin{frame}
-    \center
   \frametitle{A11 : Autre résultat annexe}
+  \begin{center}
     \includegraphics[scale=0.30]{../images/sketch-turbulent-flow-modeling-DNS-LES-RAS.png}
-\end{frame} 
+  \end{center}
+\end{frame}
 
 \begin{frame}
-    \center
   \frametitle{A12 : Autre résultat annexe}
+  \begin{center}
     \includegraphics[scale=0.25]{../images/solidworksMesh3.png}
+  \end{center}
 \end{frame}
 
 \begin{frame}
-    \center
   \frametitle{A13 : Autre résultat annexe}
+  \begin{center}
     \includegraphics[scale=0.25]{../images/Tableau_caract.png}
+  \end{center}
 \end{frame}
 
 \begin{frame}
-    \center
   \frametitle{A14 : Autre résultat annexe}
+  \begin{center}
     \includegraphics[scale=0.6]{../images/turbCascade.png}
-\end{frame} 
+  \end{center}
+\end{frame}
 
 \begin{frame}
-    \center
   \frametitle{A15 : Autre résultat annexe}
+  \begin{center}
     \includegraphics[scale=0.25]{../images/graph/radialExp.png}
-\end{frame} 
-
-%\begin{frame}
-%    \center
-%  \frametitle{A16 : Autre résultat annexe}
-%    \includegraphics[scale=0.25]{../images/UpdtC14_10params.png}
-%\end{frame}
+  \end{center}
+\end{frame}
 
 \begin{frame}
-    \center
   \frametitle{A16 : Jumeau numérique}
-  \includegraphics[scale=0.21]{../images/model/DigitalTwin.png}
+  \begin{center}
+    \includegraphics[scale=0.21]{../images/model/DigitalTwin.png}
+  \end{center}
 \end{frame}
 
 \begin{frame}
-    \center
   \frametitle{A17 : Roue}
-  \includegraphics[scale=0.23]{../images/numericalPump/impeller_cells.pdf}
+  \begin{center}
+    \includegraphics[scale=0.23]{../images/numericalPump/impeller_cells.pdf}
+  \end{center}
 \end{frame}
 
 \begin{frame}
-    \center
   \frametitle{A18 : Carte de la DA}
-  \includegraphics[scale=0.24]{../images/other/DAmap.png}
+  \begin{center}
+    \includegraphics[scale=0.24]{../images/other/DAmap.png}
+  \end{center}
 \end{frame}
 
 \begin{frame}
-    \center
   \frametitle{A19 : Maillage}
-  \includegraphics[scale=0.22]{../images/numericalPump/mesh.png}
+  \begin{center}
+    \includegraphics[scale=0.22]{../images/numericalPump/mesh.png}
+  \end{center}
 \end{frame}
 
 \begin{frame}
-    \center
   \frametitle{A20 : Modélisation proche paroi}
-  \includegraphics[scale=0.25]{../images/NearWallModelling.png}
+  \begin{center}
+    \includegraphics[scale=0.25]{../images/NearWallModelling.png}
+  \end{center}
 \end{frame}
 
-%\begin{frame}
-%    \center
-%  \frametitle{19 : Maillage}
-%  \includegraphics[scale=0.25]{../images/model/Digital_Twin_pump.pdf}
-%\end{frame}
-
-%\setbeamercolor{item}{fg=blue} % Revenir à la couleur par défaut
 
 \end{document}
 
