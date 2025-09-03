@@ -371,7 +371,7 @@
                     \begin{itemize}
                         \item Champ complet (vitesses, pressions, etc.)
                         %\item Peu coûteux une fois le modèle construit
-                        \baditem Précision limitée (turbulence, maillage, CL)
+                        \baditem Précision limitée (turbulence, maillage, conditions limites)
                     \end{itemize}
                 \end{block}
             \end{column}
@@ -602,6 +602,10 @@
 
     \end{frame}
 
+    \begin{frame}{Méthode aux frontières immergées}
+        \includegraphics[scale=0.25]{../images/solidworksMesh3.png}
+        \scriptsize Différence entre un maillage body-fitted classique et un maillage IBM
+    \end{frame}
 
     \begin{frame}{Méthode aux frontières immergées}
 
@@ -803,7 +807,7 @@
     \begin{columns}
         \begin{column}{0.5\linewidth}
             \begin{itemize}
-                \item \texorpdfstring{\structure{\textbf{Performance du diffuseur expérimentale et numérique similaire mais différente}}}{Performance du diffuseur expérimentale et numérique similaire mais différente}
+                \item \texorpdfstring{\structure{\textbf{Performance du diffuseur expérimentale et numérique non identiques}}}{Performance du diffuseur expérimentale et numérique non identiques}
 
                 \includegraphics[scale=0.4]{../figures/diffuser_performance.pdf}
 
@@ -952,7 +956,7 @@
 
     \begin{itemize}
         \item Expansion radiale des paramètres $\boldsymbol{D}$ (permettant de décrire la courbe de l'aube) et optimisation des 12 paramètres de forcage $3\times (2\times$ vitesse, énergie turbulente et dissipation)
-        \item 106 observations : ($Ur U_{\theta} Uz$) sur 7 sections (avec 5 points sur 3 plans) + observaltion globale de pression
+        \item 106 observations : ($Ur U_{\theta} Uz$) sur 7 sections (avec 5 points sur 3 plans) + observation globale de pression
         \item bruit d'observation : 0,2 m/s, soit 1,5\% du max. d'observation sur la vitesse et 5Pa soit 1,2\% du $\Delta P$ global sur la pression $\implies$ performance
         \item paramètres minorés à $0 + \left| \mathcal{N}(0, 1000) \right|$
     \end{itemize}
@@ -963,7 +967,7 @@
 
     \setbeamercolor{item}{fg=red}
     \begin{itemize}
-        \item Expansion radiale des paramètres $\boldsymbol{D_u}$ (pouvant permettant de décrire la courbe de l'aube) et optimisation des 12 paramètres de forcage $3\times (2\times$ vitesse, énergie turbulente et dissipation)
+        \item Expansion radiale des paramètres $\boldsymbol{D_u}$ (permettant de décrire la courbe de l'aube) et optimisation des 12 paramètres de forcage $3\times (2\times$ vitesse, énergie turbulente et dissipation)
     \end{itemize}
 
     \begin{columns}[c]
@@ -1028,8 +1032,7 @@
 
         \phantom{-}
 
-        
-        Évite un résultat de l'EnKF où les paramètres IBM cassent la périodicité.
+        Évite un résultat de l'EnKF où les paramètres de l'IBM cassent la périodicité.
 
         \column{0.48\textwidth}
             \begin{figure}
@@ -1083,8 +1086,8 @@
     \begin{frame}{Conclusion}
         \begin{itemize}
             \item<+-> {\color{green!60!black}\ding{51}}~ Mise en avant des limitations de la méthode aux frontières immergées (IBM)
+            \item<+-> {\color{green!60!black}\ding{51}}~ Préparation des données expérimentales (PIV)
             \item<+-> {\color{green!60!black}\ding{51}}~ Intégration d'algorithme d'assimilation de données
-            \item<+-> {\color{green!60!black}\ding{51}}~ Intégrer une méthodologie d'assimilation de données, basée sur l'EnKF, adaptée à la simulation IBM RANS de la pompe
             \item<+-> {\color{orange}\textbullet}~ Optimisation des paramètres de la méthode IBM
             % \item<+-> {\color{green!60!black}\ding{51}}~ Valider les résultats obtenus par rapport aux données expérimentales
         \end{itemize}
@@ -1119,7 +1122,7 @@
         % Syntaxe : \animategraphics[options]{fps}{prefix}{first}{last}
         \animategraphics[loop, autoplay, width=0.45\linewidth]{5}{../images/rotating/}{1}{5}
         
-        \scriptsize Rotation de la partie à pénaliser, parallélisé sur 4 cœurs
+        \scriptsize Rotation de la partie pénalisée, parallélisé sur 4 cœurs
     \end{frame}
 
 
@@ -1135,7 +1138,7 @@
 
                 \vspace{1cm}
 
-                \textbf{Merci} de votre attention !
+                \textbf{Merci} pour votre attention !
             \end{column}
         \end{columns}
     \end{frame}
