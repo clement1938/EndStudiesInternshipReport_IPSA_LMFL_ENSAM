@@ -8,7 +8,7 @@ from matplotlib.animation import FuncAnimation
 from matplotlib import cm
 
 # === Chargement des données ===
-data = np.loadtxt("UpdatedCoefficients20.txt", skiprows=1)  # Ignorer la première ligne qui contient les en-têtes
+data = np.loadtxt("UpdtCoeffs/UpdatedCoefficients116.txt", skiprows=1)  # Ignorer la première ligne qui contient les en-têtes
 # 18 17 16 very good 
 
 time = data[:, 0]
@@ -38,13 +38,20 @@ def partie_1():
 ################## Partie 2 ##################
     # === Affichage des NRMSE individuellement ===
 def partie_2():
+    group_names = ['Vr', '$V\\theta$', 'Dz', 'Dk', 'Dω']
+    labels = []
+    for group_name in group_names:
+        for letter in ['25', '50', '75']:
+            labels.append(f'{letter}% {group_name}')
     print("Exécution de la partie 2...")
     plt.figure(figsize=(12, 6))
     for i in range(nrmse.shape[1]):
-        plt.plot(time, nrmse[:, i], label=f'NRMSE {i+1}', color=colors[i])
+        #if i+1==3:
+            #plt.plot(time, nrmse[:, i], label=f'NRMSE {i+1}', color=colors[i])
+        plt.plot(time, nrmse[:, i], label=labels[i], color=colors[i])
     plt.xlabel('Time')
     plt.ylabel('NRMSE')
-    plt.title('Évolution individuelle des 10 NRMSE') 
+    plt.title('Évolution de la NRMSE de c Dx')
     plt.grid(True)
     plt.legend(loc='upper right', fontsize='small', ncol=2)
     plt.tight_layout()
@@ -54,13 +61,23 @@ def partie_2():
 ################## Partie 3 ##################
     # === Affichage des 15 paramètres ===
 def partie_3():
+    group_names = ['Dx', 'Dy', 'Dz', 'Dk', 'Dω']
+    group_names = ['Dr', 'Dr', 'Dz', 'Dk', 'Dω']
+    labels = []
+    for group_name in group_names:
+        for letter in ['a', 'b', 'c']:
+            labels.append(f'{letter} {group_name}')
     print("Exécution de la partie 3...")
     plt.figure(figsize=(10, 6))
     for i in range(params.shape[1]):
-        plt.plot(time, params[:, i], label=f'Param {i+1}', color=colors[i])
+        #plt.plot(time, params[:, i], label=f'Param {i+1}', color=colors[i])
+        if i+1==3:
+        #if i in [0,1,2,6,7,8,9,10,11,12,13,14]:
+            plt.plot(time, params[:, i], label=labels[i], color=colors[i])
     plt.xlabel('Time')
     plt.ylabel('Paramètres')
-    plt.title('Évolution des 15 paramètres')
+    #plt.title('Évolution des 12 paramètres')
+    plt.title('Évolution de c Dr')
     plt.grid(True)
     plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left', fontsize='small')
     plt.tight_layout()

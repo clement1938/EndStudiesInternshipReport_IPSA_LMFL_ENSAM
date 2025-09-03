@@ -132,14 +132,14 @@
 \titlegraphic{
 \begin{tikzpicture}[overlay,remember picture]
 \node[right=0.2cm, yshift=-1.6cm] at (current page.150){
-	\includegraphics[width=1.9cm]{../logos/IPSA.png}
+	\includegraphics[width=1.9cm]{../logos/LOGO_IPSA_2024.png}
 };
 \end{tikzpicture}
 
 
 \begin{tikzpicture}[overlay,remember picture]
 \node[left=0.2cm, yshift=-1.6cm] at (current page.30){
-	\includegraphics[width=5.0cm]{../logos/logos.png}
+	\includegraphics[width=5.0cm]{../logos/logosbis.png}
 };
 \end{tikzpicture}
 }
@@ -185,7 +185,7 @@
    \begin{beamercolorbox}[wd=\paperwidth,leftskip=.1cm,rightskip=.3cm plus1fil,vmode]{frametitle}%
         \begin{minipage}{1.8cm}%
         \begin{flushleft}
-            \includegraphics[height=0.75cm]{../logos/IPSA.png}%, width=1.3cm, trim = {0 3cm 0 3cm}, clip
+            \includegraphics[height=0.75cm]{../logos/LOGO_IPSA_2024.png}%, width=1.3cm, trim = {0 3cm 0 3cm}, clip
         \end{flushleft}
         \end{minipage}%
         \begin{minipage}{10.2cm}%
@@ -200,7 +200,7 @@
         \begin{minipage}{4cm}%
         \begin{flushleft}
             %\includegraphics[height=0.8cm, width=1.3cm]{logos/Logo LMFL.png}%
-            \includegraphics[height=0.6cm]{../logos/logos.png}%Logo ENSAM.png}  % , width=1.3cm
+            \includegraphics[height=0.6cm]{../logos/logosbis.png}%Logo ENSAM.png}  % , width=1.3cm
         \end{flushleft}
         \end{minipage}%
   \end{beamercolorbox}%
@@ -296,7 +296,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % https://www.researchgate.net/figure/LES-simulation-of-a-turbulent-flame-with-evaporating-droplets-11_fig11_268223531
 
-    \begin{frame}{Laboratoire et site d'acceuil}
+    \begin{frame}{Laboratory and host site}
         \begin{columns}
             \begin{column}{0.61\textwidth}
                 \includegraphics[scale=0.255]{../images/other/LMFL_facilities.png}
@@ -323,7 +323,7 @@
         \end{columns}
     \end{frame}
 
-    \begin{frame}[t]{Laboratoire et site d'acceuil}
+    \begin{frame}[t]{Laboratory and host site}%{Laboratoire et site d'acceuil}
         %\begin{columns}
             %\begin{column}{0.40\textwidth}
                 \center
@@ -362,27 +362,27 @@
 \end{comment}
 
 
-    \begin{frame}{DA dans la mécanique des fluides}
+    \begin{frame}{DA in fluid mechanics}
         \vspace{-0.4cm}
         \begin{columns}[T] % T = top align
             % Colonne numérique
             \begin{column}{0.50\textwidth}
-                \begin{block}{\textbf{Simulation numérique}}
+                \begin{block}{\textbf{numerical simulation}}%{Simulation numérique}}
                     \begin{itemize}
-                        \item Champ complet (vitesses, pressions, etc.)
+                        \item Full field (speeds, pressures, etc.)
                         %\item Peu coûteux une fois le modèle construit
-                        \baditem Précision limitée (turbulence, maillage, conditions limites, etc.)
+                        \baditem Limited accuracy (turbulence, mesh, boundary conditions, etc.)
                     \end{itemize}
                 \end{block}
             \end{column}
 
             % Colonne expérimental
             \begin{column}{0.50\textwidth}
-                \begin{block}{\textbf{Expérimentale}}
+                \begin{block}{\textbf{Experimental}}%{Expérimentale}}
                     \begin{itemize}
-                        \item Mesures réelles et précises
-                        \item Validation indispensable des modèles
-                        \baditem Données locales, coût et mise en place élevés
+                        \item Real and accurate measurements%Mesures réelles et précises
+                        \item Essential validation of models%Validation indispensable des modèles
+                        \baditem Local data, high cost and implementation%Données locales, coût et mise en place élevés
                     \end{itemize}
                 \end{block}
             \end{column}
@@ -390,16 +390,20 @@
 
         %\vspace{0.3cm} % réduit pour remonter les deux du dessus
         \centering
-        \begin{block}{\textbf{Assimilation de données}}
-            Combiner \textbf{numérique} (complet mais approximatif) et \textbf{expérimental} (précis mais limité) 
-            pour obtenir des simulations plus fiables et robustes.
+        \begin{block}{\textbf{Data Assimilation}}%{Assimilation de données}}
+            \textbf{Merge} numerical simulation and experimental data to obtain a more reliable and robust prediction.
+            %Combiner \textbf{numérique} (complet mais approximatif) et \textbf{expérimental} (précis mais limité) 
+            %pour obtenir des simulations plus fiables et robustes.
         \end{block}
 
         \centering
-        \begin{block}{\textbf{Difficultés du cas test de la pompe centrifuge}} 
-            \textbf{Écoulement turbulent} autour d'une \textbf{géométrie complexe} en \textbf{rotation}. \\
+        %\begin{block}{\textbf{Difficultés du cas test de la pompe centrifuge}}
+        \begin{block}{\textbf{Complexities of the centrifugal pump test case}}
+            \textbf{Turbulent flow} around a \textbf{complex geometry} in \textbf{rotation}. \\
+            %\textbf{Écoulement turbulent} autour d'une \textbf{géométrie complexe} en \textbf{rotation}. \\
             \vspace{0.2cm}
-            \alert{Jamais encore étudié avec assimilation de données.}
+            %\alert{Jamais encore étudié avec assimilation de données.}
+            \alert{Never studied yet with data assimilation}
         \end{block}
             
 
@@ -931,33 +935,27 @@
     \begin{figure}
         \centering
         \includegraphics[width=0.4\linewidth]{../images/numericalPump/assymetrie.png}%{../newFigures/UpdtC14_10NMRSE.png} % Bulle de recirculation localement détruite
-        \caption{Premier résultat de la DA : D=(4e7, 2e7, 4e7, 3e7, -3e7)}
+        \caption{Premier résultat de la DA :  $D = ({\boldsymbol{D_{u_x}}}, {\boldsymbol{D_{u_y}}}, {\boldsymbol{D_{u_z}}}, {D_\mathcal{K}}, {D_\omega}) = (4e7, 2e7, 4e7, 3e7, -3e7)$}
         \label{fig:1erResultat}
     \end{figure}
 
 \end{frame}
 
-
-
-
-
 %\begin{frame}{Limitations de la méthode IBM}
-
     %\begin{figure}
         %\centering
         %\includegraphics[width=0.9\linewidth]{../newFigures/pen0.png}
         %\caption{Enter Caption}
         %\label{fig:enter-label}
     %\end{figure}
-    
 %\end{frame}
 
 
 
-\begin{frame}{DA avec l'EnKF - Nouveaux paramètres}
+\begin{frame}{DA avec l'EnKF - Nouvelles techniques}
 
     \begin{itemize}
-        \item paramètres initiaux tous égaux à $3 \times 10^7$
+        \item paramètres de forcage initiaux tous égaux à $3 \times 10^7$
         \item fenêtre d'observation : 800 itérations
         \item simulation RANS et données PIV moyennées temporellement
         \item pas d'optimisation d'état
@@ -967,7 +965,7 @@
     \setbeamercolor{item}{fg=red}
 
     \begin{itemize}
-        \item Expansion radiale des paramètres $\boldsymbol{D}$ (permettant de décrire la courbe de l'aube) et optimisation des 12 paramètres de forcage $3\times (2\times$ vitesse, énergie turbulente et dissipation)
+        \item Expansion radiale des paramètres de forcage $\boldsymbol{D}$ (permettant de décrire la courbe de l'aube) et optimisation des 12 paramètres de forcage $3\times (2\times$ vitesse, énergie turbulente et dissipation)
         \item 106 observations : ($Ur U_{\theta} Uz$) sur 7 sections (avec 5 points sur 3 plans) + observation globale de pression
         \item bruit d'observation : 0,2 m/s, soit 1,5\% du max. d'observation sur la vitesse et 5Pa soit 1,2\% du $\Delta P$ global sur la pression $\implies$ performance
         \item paramètres minorés à $0 + \left| \mathcal{N}(0, 1000) \right|$
@@ -975,7 +973,7 @@
 
 \end{frame}
 
-\begin{frame}{DA avec l'EnKF - Nouveaux paramètres}
+\begin{frame}{DA avec l'EnKF - Nouvelles techniques}
 
     \setbeamercolor{item}{fg=red}
     \begin{itemize}
@@ -1009,8 +1007,8 @@
 \begin{frame}
     \begin{figure}
         \centering
-        \includegraphics[width=0.7\linewidth]{../images/graph/UpdtC14_10params.png} % 
-        \caption{Evolution des 15 paramètres de l'IBM au cours des itérations de l'EnKF}
+        \includegraphics[width=0.7\linewidth]{../images/graph/UpdtC14_12paramsNew.png} % 
+        \caption{Evolution des 12 paramètres de l'IBM au cours des itérations de l'EnKF}
         \label{fig:NRMSE1}
     \end{figure}
 \end{frame}
@@ -1018,7 +1016,7 @@
 \begin{frame}
     \begin{figure}
         \centering
-        \includegraphics[width=0.7\linewidth]{../images/graph/cdx.png} % 
+        \includegraphics[width=0.7\linewidth]{../images/graph/cdr.png} % 
         \caption{Evolution du coefficient c Dx de l'IBM au cours des itérations de l'EnKF}
         \label{fig:NRMSE2}
     \end{figure}
@@ -1030,14 +1028,14 @@
     \begin{figure}
         \centering
         % La première image apparaît sur la première étape (<1>)
-        \only<1>{\includegraphics[width=0.65\linewidth]{../newFigures/UpdtC14_10NMRSE.png}}
+        \only<1>{\includegraphics[width=0.65\linewidth]{../images/graph/NRMSE10.png}} %/newFigures/UpdtC14_10NMRSE.png}}
         % La deuxième image apparaît sur la deuxième étape (<2>)
         \only<2>{\includegraphics[width=0.65\linewidth]{../images/graph/NRMSEcdx.png}}
-        \caption{Bulle de recirculation localement détruite}
+        \caption{Bulle de recirculation détruite mais résultat non physique}
         \label{fig:10NRMSE} % Attention : il est préférable d'avoir des labels uniques si possible
     \end{figure}
 
-    Diminution moyenne de l'erreur (Normalized Root Mean Square Error) de quelques pourcents, avec des variations de paramètres dépendantes des conditions initiales.
+    Diminution moyenne de l'erreur (Normalized Root Mean Square Error) de quelques pourcents, avec des variations de paramètres de forcage dépendantes des conditions initiales.
 
 \end{frame}
 
@@ -1056,7 +1054,7 @@
 
         \phantom{-}
 
-        Évite un résultat de l'EnKF où les paramètres de l'IBM cassent la périodicité.
+        Évite un résultat de l'EnKF où les paramètres de forcage de l'IBM cassent la périodicité.
 
         \column{0.48\textwidth}
             \begin{figure}
@@ -1152,7 +1150,7 @@
             
             \column{0.48\textwidth}
                 \centering
-                \includegraphics[width=0.9\linewidth]{../images/rotating/3bis.png}
+                \includegraphics[width=0.9\linewidth]{../images/rotating/3bisbis.png}
                 \scriptsize Déplacement de la partie pénalisée
 
         \end{columns}
