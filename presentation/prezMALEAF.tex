@@ -325,11 +325,12 @@
     \end{frame}
 
     \begin{frame}[t]{Corporate Social Responsibility (CSR)}
+        \vspace{-0.5cm}
         \center
         \textbf{ENSAM action plan :}
         \begin{itemize}
             \item Strategy, governance and territorial anchoring
-            \item Education and training -> ecor-responsibility
+            \item Education and training -> eco-responsibility
             \item Research and innovation free acces
             \item Environmental management
             \item Social policy
@@ -337,18 +338,17 @@
 
         \vspace{0.3cm}
 
-        \textbf{LMFL action plan :} "Haut Conseil de l'Évaluation
-de la Recherche et de l'Enseignement Supérieur" (HCERES)
+        \textbf{LMFL action plan :}
         \begin{itemize}
+            \item Haut Conseil de l'Évaluation de la Recherche et de l'Enseignement Supérieur (HCERES)
             \item Unique facilities
             \item European laboratories in the field of next-generation aircraft design
             \item Advanced numerical simulations (turbulence) and data-driven modeling
-            \item Synergy between geographically separated
-sites
+            \item Synergy between geographically separated sites
             \item High quality of scientific output (JFM)
         \end{itemize}
 
-        
+
 
     \end{frame}
 
@@ -559,7 +559,7 @@ sites
     \begin{frame}{Modèle numérique de la pompe centrifuge} % Modélisation
         \begin{columns}
             \begin{column}{0.48\textwidth}
-                \includegraphics[scale=0.45]{../figures/RESEDA_sketchBis.pdf}
+                \includegraphics[scale=0.29]{../figures/RESEDA_sketchBisBis.png}
                 \scriptsize Modèle de la pompe centrifuge RESEDA
                 \footnotesize{\begin{itemize}
                     \item \textbf{Conditions aux limites :}
@@ -636,8 +636,8 @@ sites
                 \end{figure}
                 \vspace{-0.31cm}
                 \begin{figure}
-                    \includegraphics[width=0.70\textwidth]{../images/turbulence2.jpg}\\
-                    \scriptsize Structures tourbillonnaires (turbulence)
+                    \includegraphics[width=0.65\textwidth]{../images/turbulence2.jpg}\\
+                    \scriptsize Turbulence
                 \end{figure}
             \end{column}
         \end{columns}
@@ -708,12 +708,14 @@ sites
         %\scriptsize Schéma de principe de l'EnKF
     \end{frame}
 
-    \begin{frame}{CONES}
-        \begin{center}
-            \includegraphics[scale=0.55]{../images/EnKF_Cones_français.pdf} % ou RESEDA_sketch.pdf
-            \scriptsize Schéma de principe de Coupling OpenFOAM with Numerical EnvironmentS (CONES)
-        \end{center}
+    \begin{frame}
+    \frametitle{\centering Coupling OpenFOAM with Numerical EnvironmentS}
+    \begin{center}
+        \includegraphics[scale=0.56]{../images/EnKF_Cones_français.pdf} % ou RESEDA_sketch.pdf
+        %\scriptsize Schéma de principe de Coupling OpenFOAM with Numerical EnvironmentS (CONES)
+    \end{center}
     \end{frame}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Applications et résultats} 
@@ -998,9 +1000,9 @@ sites
 
     \begin{itemize}
         \item Expansion radiale des paramètres de forcage $\boldsymbol{D}$ (permettant de décrire la courbe de l'aube) et optimisation des 12 paramètres de forcage $3\times (2\times$ vitesse, énergie turbulente et dissipation)
-        \item 106 observations : ($Ur U_{\theta} Uz$) sur 7 sections (avec 5 points sur 3 plans) + observation globale de pression
-        \item bruit d'observation : 0,2 m/s, soit 1,5\% du max. d'observation sur la vitesse et 5Pa soit 1,2\% du $\Delta P$ global sur la pression $\implies$ performance
+        \item 316 observations : ($Ur U_{\theta} Uz$) sur 7 sections (avec 5 points sur 3 plans) + observation globale de pression
         \item paramètres minorés à $0 + \left| \mathcal{N}(0, 1000) \right|$
+        \item bruit d'observation : 0,2 m/s, soit 1,5\% du max. d'observation sur la vitesse et 5Pa soit 1,2\% du $\Delta P$ global sur la pression $\implies$ performance
     \end{itemize}
 
 \end{frame}
@@ -1076,7 +1078,7 @@ sites
     \begin{figure}
         \centering
         \includegraphics[width=0.7\linewidth]{../images/graph/cdr.png} % 
-        \caption{Evolution du coefficient c Dx de l'IBM au cours des itérations de l'EnKF}
+        \caption{Evolution du coefficient c Dr de l'IBM au cours des itérations de l'EnKF}
         \label{fig:NRMSE2}
     \end{figure}
 \end{frame}
@@ -1089,7 +1091,7 @@ sites
         % La première image apparaît sur la première étape (<1>)
         \only<1>{\includegraphics[width=0.65\linewidth]{../images/graph/NRMSE10.png}} %/newFigures/UpdtC14_10NMRSE.png}}
         % La deuxième image apparaît sur la deuxième étape (<2>)
-        \only<2>{\includegraphics[width=0.65\linewidth]{../images/graph/NRMSEcdx.png}}
+        \only<2>{\includegraphics[width=0.65\linewidth]{../images/graph/cdxbis.png}}
         \caption{Bulle de recirculation détruite mais résultat non physique}
         \label{fig:10NRMSE} % Attention : il est préférable d'avoir des labels uniques si possible
     \end{figure}
@@ -1252,7 +1254,7 @@ sites
 \begin{frame}
   \frametitle{A3 : Autre résultat annexe}
   \begin{center}
-    \includegraphics[scale=0.35]{../images/pv_x.png} \\
+    \includegraphics[scale=0.32]{../images/pv_x.png} \\
     \scriptsize Profil de pression analytique à l'entrée de la pompe
   \end{center}
 \end{frame}
@@ -1260,7 +1262,7 @@ sites
 \begin{frame}
   \frametitle{A4 : Autre résultat annexe}
   \begin{center}
-    \includegraphics[scale=0.4]{../images/blade_interpolation_1.png} \\
+    \includegraphics[scale=0.43]{../images/blade_interpolation_1.png} \\
     \scriptsize Interpolation des pales
   \end{center}
 \end{frame}
@@ -1268,7 +1270,7 @@ sites
 \begin{frame}
   \frametitle{A5 : Autre résultat annexe}
   \begin{center}
-    \includegraphics[scale=0.35]{../images/compensation_recirculation.png} \\
+    \includegraphics[scale=0.38]{../images/compensation_recirculation.png} \\
     \scriptsize Mise en valeur de l'effet de la méthode IBM
   \end{center}
 \end{frame}
@@ -1300,7 +1302,7 @@ sites
 \begin{frame}
   \frametitle{A9 : Autre résultat annexe}
   \begin{center}
-    \includegraphics[scale=0.24]{../images/MRF.png} \\
+    \includegraphics[scale=0.22]{../images/MRF.png} \\
     \scriptsize Schéma de principe de la méthode MRF
   \end{center}
 \end{frame}
@@ -1308,84 +1310,86 @@ sites
 \begin{frame}
   \frametitle{A10 : Autre résultat annexe}
   \begin{center}
-    \includegraphics[scale=0.25]{../images/arborescence_of_2.png}
+    \includegraphics[scale=0.24]{../images/arborescence_of_2.png} \\
+    \scriptsize Arborescence d'OpenFOAM
   \end{center}
 \end{frame}
 
 \begin{frame}
   \frametitle{A11 : Autre résultat annexe}
   \begin{center}
-    \includegraphics[scale=0.30]{../images/sketch-turbulent-flow-modeling-DNS-LES-RAS.png}
+    \includegraphics[scale=0.30]{../images/sketch-turbulent-flow-modeling-DNS-LES-RAS.png} \\
+    \scriptsize DNS, LES et RANS
   \end{center}
 \end{frame}
+
+%\begin{frame}
+%  \frametitle{A12 : Autre résultat annexe}
+%  \begin{center}
+%    \includegraphics[scale=0.25]{../images/solidworksMesh3.png}
+%  \end{center}
+%\end{frame}
 
 \begin{frame}
   \frametitle{A12 : Autre résultat annexe}
-  \begin{center}
-    \includegraphics[scale=0.25]{../images/solidworksMesh3.png}
-  \end{center}
-\end{frame}
-
-\begin{frame}
-  \frametitle{A13 : Autre résultat annexe}
   \begin{center}
     \includegraphics[scale=0.25]{../images/Tableau_caract.png}
   \end{center}
 \end{frame}
 
 \begin{frame}
-  \frametitle{A14 : Autre résultat annexe}
+  \frametitle{A13 : Autre résultat annexe}
   \begin{center}
     \includegraphics[scale=0.6]{../images/turbCascade.png}
   \end{center}
 \end{frame}
 
 \begin{frame}
-  \frametitle{A15 : Autre résultat annexe}
+  \frametitle{A14 : Autre résultat annexe}
   \begin{center}
     \includegraphics[scale=0.25]{../images/graph/radialExp.png}
   \end{center}
 \end{frame}
 
 \begin{frame}
-  \frametitle{A16 : Jumeau numérique}
+  \frametitle{A15 : Jumeau numérique}
   \begin{center}
     \includegraphics[scale=0.21]{../images/model/DigitalTwin.png}
   \end{center}
 \end{frame}
 
 \begin{frame}
-  \frametitle{A17 : Roue}
+  \frametitle{A16 : Roue}
   \begin{center}
     \includegraphics[scale=0.23]{../images/numericalPump/impeller_cells.pdf}
   \end{center}
 \end{frame}
 
 \begin{frame}
-  \frametitle{A18 : Carte de la DA}
+  \frametitle{A17 : Carte de la DA}
   \begin{center}
     \includegraphics[scale=0.24]{../images/other/DAmap.png}
   \end{center}
 \end{frame}
 
 \begin{frame}
-  \frametitle{A19 : Maillage}
+  \frametitle{A18 : Maillage}
   \begin{center}
     \includegraphics[scale=0.22]{../images/numericalPump/mesh.png}
   \end{center}
 \end{frame}
 
 \begin{frame}
-  \frametitle{A20 : Modélisation proche paroi}
+  \frametitle{A19 : Modélisation proche paroi}
   \begin{center}
     \includegraphics[scale=0.25]{../images/NearWallModelling.png}
   \end{center}
 \end{frame}
 
 \begin{frame}
-  \frametitle{A21 : Penalisation IBM nulle}
+  \frametitle{A20 : Penalisation IBM nulle}
   \begin{center}
-    \includegraphics[scale=0.25]{../newFigures/pen0.png}
+    \includegraphics[scale=0.30]{../newFigures/pen0.png}
   \end{center}
 \end{frame}
 

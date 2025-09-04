@@ -140,12 +140,10 @@
 \headcommand {\beamer@framepages {65}{65}}
 \headcommand {\slideentry {6}{0}{20}{66/66}{}{1}}
 \headcommand {\beamer@framepages {66}{66}}
-\headcommand {\slideentry {6}{0}{21}{67/67}{}{1}}
-\headcommand {\beamer@framepages {67}{67}}
-\headcommand {\beamer@partpages {47}{67}}
-\headcommand {\beamer@subsectionpages {47}{67}}
-\headcommand {\beamer@sectionpages {47}{67}}
-\headcommand {\beamer@documentpages {67}}
-\headcommand {\gdef \inserttotalframenumber {21}}
+\headcommand {\beamer@partpages {47}{66}}
+\headcommand {\beamer@subsectionpages {47}{66}}
+\headcommand {\beamer@sectionpages {47}{66}}
+\headcommand {\beamer@documentpages {66}}
+\headcommand {\gdef \inserttotalframenumber {20}}
 \headcommand {\gdef \inserttotalframenumber {39}}
-\headcommand {\gdef \appendixtotalframenumber {21}}
+\headcommand {\gdef \appendixtotalframenumber {20}}
